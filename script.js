@@ -1,6 +1,6 @@
 let dataBase = {
   DeckNames: {
-    /*Literature: [{
+    Literature: [{
         question: 'gggg',
         answer: 'answer1'
       },
@@ -8,7 +8,7 @@ let dataBase = {
         question: 'question2',
         answer: 'answer2'
       }
-    ]*/
+    ]
   },
 };
 
@@ -207,8 +207,8 @@ function createDom(obj, length = "long") {
 
         function questionNumber(random) {
           let questionField = document.getElementById("questionField");
-          questionField.value = `${
-            dataBase.DeckNames[newDeckText.innerHTML][random].question
+          questionField.innerText = `${
+            dataBase.DeckNames[item][random].question
           }`;
           key = random;
         }
@@ -218,15 +218,15 @@ function createDom(obj, length = "long") {
         function answerNumber(random) {
           let answerField = document.getElementById("answerField");
 
-          answerField.value = `${
-            dataBase.DeckNames[newDeckText.innerHTML][random].answer
+          answerField.innerText = `${
+            dataBase.DeckNames[item][random].answer
           }`;
           key = random;
         }
 
         function random() {
           return Math.floor(
-            Math.random() * dataBase.DeckNames[newDeckText.innerHTML].length
+            Math.random() * dataBase.DeckNames[item].length
           );
         }
         questionNumber(randomInScope);
