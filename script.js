@@ -17,6 +17,16 @@ let edit = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-ico
 let save = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="save" class="svg-inline--fa fa-save fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM224 416c-35.346 0-64-28.654-64-64 0-35.346 28.654-64 64-64s64 28.654 64 64c0 35.346-28.654 64-64 64zm96-304.52V212c0 6.627-5.373 12-12 12H76c-6.627 0-12-5.373-12-12V108c0-6.627 5.373-12 12-12h228.52c3.183 0 6.235 1.264 8.485 3.515l3.48 3.48A11.996 11.996 0 0 1 320 111.48z"></path></svg>`
 let addQuestionsToDeck = document.getElementById("addQuestionsToDeck");
 
+let question = document.getElementById("questionFieldAddQuestion");
+let answer = document.getElementById("answerFieldAddQuestion");
+
+let timer = null;
+let counter = {};
+let key = null;
+
+
+
+
 let listOfDecks = document.getElementById("listOfDecks");
 let questAnswerTrainOverv = document.getElementById("questAnswerTrainOverv");
 let pageNameforNewDeck = document.getElementById("pageNameforNewDeck");
@@ -68,11 +78,7 @@ function createDom(obj, length = 'long') {
     newDeck.style.marginTop = "10px";
     newDeck.style.marginLeft = "20px";
 
-  
     newDeckText.onclick = function () {
-
-     // if (d)
-
 
       pageNameforNewDeck.style.display = "flex";
       document.getElementById("chooseDeckToAdd").style.display = "none";
@@ -84,6 +90,7 @@ function createDom(obj, length = 'long') {
 
     let edited = false;
     editIcon.innerHTML = edit;
+
     trashIcon.onclick = () => {
       newDeck.parentNode.removeChild(newDeck)
       delete dataBase.DeckNames[item]
@@ -92,13 +99,13 @@ function createDom(obj, length = 'long') {
         createYourFirstDeckPrompt.style.display = 'block';
       }
     };
-    let newDeckInput = document.createElement("input");
 
+    let newDeckInput = document.createElement("input");
 
     /*changes the color and cursor when mouse is moved over deck name in the click and train overview --->*/
 
     newDeckText.onmouseover = function () {
-      newDeckText.style.color = "blue";
+      newDeckText.style.color = "rgb(200, 168, 115)";
       newDeckText.style.cursor = "pointer";
     };
 
@@ -148,6 +155,17 @@ function createDom(obj, length = 'long') {
      
       document.getElementById('nameOfDeckInAddQuestion').innerText = item;
       addQuestionsToDeck.style.display = 'flex';
+
+      /*
+      window.addEventListener('click', function(e){
+	
+        if (addQuestionsToDeck.contains(e.target)){
+          alert("Clicked in Box");
+        } else{
+          alert("Clicked outside Box");
+        }
+      })
+*/
     }
 
     newDeckText.onclick = function () {
@@ -155,6 +173,81 @@ function createDom(obj, length = 'long') {
       createEditDeleteDeckPage.style.display = "none";
       document.getElementById("nameOfDeckInTrainOverv").innerHTML = this.innerHTML;
 
+
+      let redCross = document.createElement('img');
+      redCross.src = 'redCross.svg';
+      document.getElementById('redCross').appendChild(redCross)
+
+
+
+    
+      let childShuffleButton = document.createElement('button');
+      childShuffleButton.innerHTML = 'Shuffle';     
+      childShuffleButton.id = 'shuffleButton';
+      document.getElementById('shuffleContainer').appendChild(childShuffleButton)
+
+      let childShowOrHideButton = document.createElement('button');
+      childShowOrHideButton.innerHTML = 'ShowOrHide';     
+      childShowOrHideButton.id = 'showOrHideButton';
+      document.getElementById('showOrHideContainer').appendChild(childShowOrHideButton)
+
+      let cardsStudied = 0;
+
+
+    childShowOrHideButton.onclick = function () {
+
+
+
+  let answerBox = document.getElementById("answers");
+  this.style.cursor = "pointer";
+  //changes pointer when moved over shorOrHide Button
+ // answerField.value = dataBase.DeckNames[newDeckText.innerText][key].answer;
+
+  if (answerBox.style.display === "none") {
+    answerBox.style.display = "flex";
+    answerBox.style.justifyContent = "center";
+    answerBox.style.flexDirection = "column";
+  } else {
+    answerBox.style.display = "none";
+  }
+    }
+
+
+      childShuffleButton.onclick = function () {
+        
+        cardsStudied ++ ;
+        dataBase.DeckNames[newDeckText.innerText].cardsStudied = cardsStudied;
+
+        function questionNumber(random) {
+          let questionField = document.getElementById("questionField");
+          questionField.value = `${dataBase.DeckNames[newDeckText.innerHTML][random].question}`;
+          key = random;
+        };
+      
+        let randomInScope = random();
+      
+        function answerNumber(random) {
+          let answerField = document.getElementById("answerField");
+      
+          answerField.value = `${dataBase.DeckNames[newDeckText.innerHTML][random].answer}`;
+          key = random;
+        }
+      
+        function random() {
+          return Math.floor(Math.random() * dataBase.DeckNames[newDeckText.innerHTML].length);
+        }
+        questionNumber(randomInScope);
+        answerNumber(randomInScope);
+        
+      }
+
+  redCross.onclick = function () {
+       childShuffleButton.parentNode.removeChild(childShuffleButton);
+        childShowOrHideButton.parentNode.removeChild(childShowOrHideButton);
+        this.parentNode.removeChild(this);
+       
+      }
+      
 
       // event
       timer = setInterval(() => {
@@ -165,14 +258,13 @@ function createDom(obj, length = 'long') {
         let secondsDeckStudied = counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML] += 1;
         dataBase.DeckNames[document.getElementById("nameOfDeckInTrainOverv").innerHTML].seconds = secondsDeckStudied;
 
-
-
-
         /*method below logs the seconds that passed while studiying a specific deck to the counter*/
 
         console.log(counter)
       }, 1000);
-    };
+    
+  };
+  
 
     let container = document.createElement('div');
     container.style.display = 'flex';
@@ -184,25 +276,22 @@ function createDom(obj, length = 'long') {
       container.appendChild(addIcon);
       container.appendChild(editIcon);
       container.appendChild(trashIcon);
-
     }
+
     newDeck.appendChild(container);
     newDeck.style.display = 'flex';
     newDeck.style.justifyContent = 'space-between';
 
-
     listOfDecks.appendChild(newDeck);
-
-
 
     pageNameforNewDeck.style.display = "none";
     listOfDecks.style.display = "block";
     let navOverview = document.getElementById("navOverview");
     navOverview.style.display = "flex";
     document.getElementById("createDeckButton").style.display = "block";
-    document.getElementById("navLine").style.display = 'flex';
-
-  });
+    document.getElementById("navLine").style.display = 'flex'; 
+})
+  
 };
 
 
@@ -212,15 +301,59 @@ document.getElementById("decks").onclick = function () {
   document.getElementById('studyStat').style.display = 'none';
   document.getElementById("createEditDeleteDeckPage").style.display =
     "block";
-  this.style.color = "blue";
+  this.style.color = "rgb(200, 168, 115)";
   statsInNavBar.style.color = "black";
   questAnswerTrainOverv.style.display = "none";
   pageNameforNewDeck.style.display = "none";
   createDom(dataBase.DeckNames)
-};
+
+ 
+
+/*
+    childShuffleButton.parentNode.removeChild(childShuffleButton);
+    childShowOrHideButton.parentNode.removeChild(childShowOrHideButton);
+    .parentNode.removeChild(this);
+  */ 
+  };
 
 
 
+
+
+
+
+/*
+        let cardsStudied = 0;
+
+        document.getElementById("shuffleButton").onclick = function () {
+          let nameOfDeckInTrainOverv = document.getElementById("nameOfDeckInTrainOverv").innerHTML;
+         
+          cardsStudied ++ ;
+          dataBase.DeckNames[document.getElementById("nameOfDeckInTrainOverv").innerHTML].cardsStudied = cardsStudied;
+        
+          function questionNumber(random) {
+            let questionField = document.getElementById("questionField");
+            questionField.value = `${dataBase.DeckNames[nameOfDeckInTrainOverv][random].question}`;
+            key = random;
+          };
+        
+          let randomInScope = random();
+        
+          function answerNumber(random) {
+            let answerField = document.getElementById("answerField");
+        
+            answerField.value = `${dataBase.DeckNames[nameOfDeckInTrainOverv][random].answer}`;
+            key = random;
+          }
+        
+          function random() {
+            return Math.floor(Math.random() * dataBase.DeckNames[nameOfDeckInTrainOverv].length);
+          }
+          questionNumber(randomInScope);
+          answerNumber(randomInScope);
+        }
+
+*/
 
 
 
@@ -238,16 +371,10 @@ let createEditDeleteDeckPage = document.getElementById(
 );
 
 
-let question = document.getElementById("questionFieldAddQuestion");
-let answer = document.getElementById("answerFieldAddQuestion");
 
-
-
-let timer = null;
-let counter = {};
-let key = null;
 
 /*when the button showORHideButton is clicked the answer to the corresponding question is displayed*/
+/*
 document.getElementById("showOrHideButton").onclick = function () {
   let answerBox = document.getElementById("answers");
   this.style.cursor = "pointer";
@@ -262,46 +389,18 @@ document.getElementById("showOrHideButton").onclick = function () {
     answerBox.style.display = "none";
   }
 };
-let cardsStudied = 0;
-
-document.getElementById("shuffleButton").onclick = function () {
-  let nameOfDeckInTrainOverv = document.getElementById("nameOfDeckInTrainOverv").innerHTML;
- 
-  cardsStudied ++ ;
-  dataBase.DeckNames[document.getElementById("nameOfDeckInTrainOverv").innerHTML].cardsStudied = cardsStudied;
+*/
 
 
 
-
-  function questionNumber(random) {
-    let questionField = document.getElementById("questionField");
-    questionField.value = `${dataBase.DeckNames[nameOfDeckInTrainOverv][random].question}`;
-    key = random;
-  };
-
-  let randomInScope = random();
-
-  function answerNumber(random) {
-    let answerField = document.getElementById("answerField");
-
-    answerField.value = `${dataBase.DeckNames[nameOfDeckInTrainOverv][random].answer}`;
-    key = random;
-  }
-
-  function random() {
-    return Math.floor(Math.random() * dataBase.DeckNames[nameOfDeckInTrainOverv].length);
-  }
-  questionNumber(randomInScope);
-  answerNumber(randomInScope);
-};
 /*<-------*/
 
 /*when stats in the nav bar is clicked all the other menu view displays are set to none --->*/
 
 statsInNavBar.onclick = function () {
   document.getElementById("createEditDeleteDeckPage").style.display = "none";
-  this.style.color = "blue";
-  document.getElementById('studyStat').style.display = 'block';
+  this.style.color = "rgb(200, 168, 115)";
+  document.getElementById('studyStat').style.display = 'flex';
 
   document.getElementById("decks").style.color = "black";
   questAnswerTrainOverv.style.display = "none";
@@ -337,10 +436,6 @@ document.getElementById("redCross").onclick = function () {
   questAnswerTrainOverv.style.display = "none";
   createEditDeleteDeckPage.style.display = "block";
   
-
-
-
-
 
 
 
@@ -432,7 +527,6 @@ document.getElementById("saveQuestButton").onclick = function () {
 
   question.value = "";
   answer.value = "";
-  addQuestionsToDeck.style.display = "none";
 };
 
 document.querySelector('#closeAddWindowButton').onclick = function () {

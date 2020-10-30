@@ -89,7 +89,7 @@
         </div>
         
         <div id="pageNameforNewDeck" style="display: none">
-          <div style="margin-left: 40px">Name for new deck:</div>
+          <div style="margin-left: 80px; margin-bottom: 5px">Name for new deck:</div>
           <input id="inputNameOfNewDeck" type="text">
           <div style="display: flex; justify-content: flex-end; width: 82%">
             <button id="cancelButton">Cancel</button>
@@ -99,7 +99,7 @@
 
 
         <div id="listOfDecks"></div>
-        <div id="createDeckButtonContainer" class="flexCenter" style="margin-top: -40px">
+        <div id="createDeckButtonContainer" class="flexCenter">
           <button id="createDeckButton">Create Deck</button>
         </div>
       </div>
@@ -125,10 +125,10 @@
                   border-radius: 5px;
                 ">
                 Question:
-                <input id="questionFieldAddQuestion" >
+                <textarea id="questionFieldAddQuestion"></textarea>
                 <div >
-                  <div>Answer:</div>
-                  <input id="answerFieldAddQuestion">
+                  <div style="margin-top: 30px">Answer:</div>
+                  <textarea id="answerFieldAddQuestion"></textarea>
                 </div>
                 
                   <button id="saveQuestButton">
@@ -146,7 +146,7 @@
           <div style="margin-left: 20px; margin-top: 20px">
             <div style="display: flex; flex-direction: column">
               <div style="font-weight: bold">Flashcards</div>
-              <div id="bla" style="
+              <div id="deckNameContainer" style="
                     display: flex;
                     border: 1px #bb9f06 solid;
                     padding: 5px;
@@ -155,7 +155,7 @@
                     border-radius: 5px;
                     font-weight: bold;
                   ">
-                Deck
+                Deck &#160
                 <div id="nameOfDeckInTrainOverv"></div>
               </div>
               <div style="
@@ -167,25 +167,29 @@
                     margin-top: 30px;
                     border-radius: 5px;
                   ">
-                <div style="margin-left: 22px; margin-top: 10px">
+                <div style="margin-left: 22px; margin-top: 10px; display: flex; flex-direction: column;">
                   <div style="
-                        display: flex;
-                        justify-content: flex-end;
+                        display: flex; 
+                        flex-direction: column;
+                        justify-content: flex-start;
                         margin-right: 10px;
                       ">
-                    <img id="redCross" src="redCross.svg">
+                    <div id="redCross">
                   </div>
                   Question
                   <div id="questionField" class="flexCenter">
                   </div>
 
                   <div style="display: flex; justify-content: flex-start">
-                    <button id="showOrHideButton">
+                   <!---- <button id="showOrHideButton">
                       Show/Hide Answer
-                    </button>
-                    <button id="shuffleButton">
+                    </button> -->
+
+                    <div id="showOrHideContainer"></div>
+                   <!--- <button id="shuffleButton">
                       Shuffle
-                    </button>
+                    </button> -->
+                    <div id="shuffleContainer"></div>
                   </div>
 
                   <div id="answers">
