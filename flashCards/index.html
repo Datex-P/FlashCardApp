@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>FlashCards App</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="outerLoginPage">
+    <div style="display: none">
+      <div id="registerPage">
+        <div class="flexCenter">
+          <img src="js_logo.svg" style="
+                width: 50px;
+                height: 40px;
+                border-radius: 5px;
+                margin-top: 20px;
+              ">
+        </div>
+        <div style="
+              width: 100%;
+              margin-top: 5px;
+              font-size: 20px;
+              text-align: center;
+            ">
+          Register
+        </div>
+        <div style="
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              width: 100%;
+            ">
+          <input style="width: 80%; margin-top: 70px" type="text" />
+          <input style="width: 80%; margin-top: 10px" type="text" />
+        </div>
+        <div class="flexCenter" style="margin-top: 140px">
+          <button style="width: 70%; background-color: #545863; color: #ffe3e3">
+            Register
+          </button>
+        </div>
+      </div>
+
+      <div id="loginPage">
+        <div class="flexCenter" style="margin-top: 20px">
+          <img src="js_logo.svg" style="width: 50px; height: 40px; border-radius: 5px" />
+        </div>
+        <div style="
+              width: 100%;
+              margin-top: 5px;
+              font-size: 20px;
+              text-align: center;
+            ">
+          Login
+        </div>
+        <div style="
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              width: 100%;
+            ">
+          <input style="width: 80%; margin-top: 70px" type="text" />
+          <input style="width: 80%; margin-top: 10px" type="text" />
+        </div>
+        <div id="registerButton" class="flexCenter">
+          <button id="loginButton">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mainMenu">
+      <nav id="navOverview">
+        <div id="decks">Decks</div>
+        <div id="stats">Stats</div>
+      </nav>
+      <div id="navLine" class="flexCenter">
+        <div style="border-bottom: 3px solid; width: 90%"></div>
+      </div>
+      <div id="createEditDeleteDeckPage">
+
+        <div id="createYourFirstDeckPrompt">Start and create your first Deck</div>
+        <div style="margin-top: 100px">
+            <div class= "arrowDown"></div>
+        </div>
+        
+        <div id="pageNameforNewDeck">
+          <div style="margin-left: 40px">Name for new deck:</div>
+          <input id="inputNameOfNewDeck" type="text">
+          <div style="display: flex; justify-content: flex-end; width: 82%">
+            <button id="cancelButton">Cancel</button>
+            <button id="okButton">OK</button>
+          </div>
+        </div>
+
+
+        <div id="listOfDecks"></div>
+        <div id="createDeckButtonContainer" class="flexCenter">
+          <button id="createDeckButton">Create Deck</button>
+        </div>
+      </div>
+
+
+
+      <div id="addQuestionsToDeck">
+        <div id='closeAddWindowButton'>X</div>
+        <div style="margin-left: 20px; margin-top: 20px">
+          <div style="display: flex; flex-direction: column">
+            <div style="font-weight: bold">
+              Deck:
+              <span id="nameOfDeckInAddQuestion"></span>
+            </div>
+            <div style="
+                  border: 1px solid #bb9f06;
+                  width: 300px;
+                  height: 320px;
+                  margin-bottom: 20px;
+                  display: flex;
+                  flex-direction: column;
+                  margin-top: 30px;
+                  border-radius: 5px;
+                ">
+                Question:
+                <input id="questionFieldAddQuestion" >
+                <div >
+                  <div>Answer:</div>
+                  <input id="answerFieldAddQuestion">
+                </div>
+                
+                  <button id="saveQuestButton">
+                    Add to Deck
+                  </button>
+                
+            
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="questAnswerTrainOverv">
+        <div style="display: flex; flex-direction: column; width: 100%">
+          <div style="margin-left: 20px; margin-top: 20px">
+            <div style="display: flex; flex-direction: column">
+              <div style="font-weight: bold">Flashcards</div>
+              <div id="bla" style="
+                    display: flex;
+                    border: 1px #bb9f06 solid;
+                    padding: 5px;
+                    width: 130px;
+                    margin-top: 10px;
+                    border-radius: 5px;
+                    font-weight: bold;
+                  ">
+                Deck
+                <div id="nameOfDeckInTrainOverv"></div>
+              </div>
+              <div style="
+                    border: 1px solid #bb9f06;
+                    width: 300px;
+                    height: 500px;
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 30px;
+                    border-radius: 5px;
+                  ">
+                <div style="margin-left: 22px; margin-top: 10px">
+                  <div style="
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-right: 10px;
+                      ">
+                    <img id="redCross" src="redCross.svg">
+                  </div>
+                  Question
+                  <div id="questionField" class="flexCenter">
+                  </div>
+
+                  <div style="display: flex; justify-content: flex-start">
+                    <button id="showOrHideButton">
+                      Show/Hide Answer
+                    </button>
+                    <button id="shuffleButton">
+                      Shuffle
+                    </button>
+                  </div>
+
+                  <div id="answers">
+                    <div style="font-weight:bold;">Answer</div>
+
+                    <div id="answerField">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="stats">
+        <div id="studyStat" style="display: none; justify-content: center; margin-top: 180px">
+          <div>Studied 0 cards in 0 seconds today</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+<!-----
+          <div
+            id="chooseDeckToAdd"
+            style="display: none; margin-left: 48px; margin-top: 10px"
+          >
+            <div style="margin-left: -35px" id="filtListofDecksInAdd">
+               <div style="font-weight: bold; margin-left: 36px; margin-top: 5px">
+                List of Decks
+              </div> 
+              <ul></ul>
+            </div>
+
+            <div style="margin-top: 10px; font-weight: bold">
+              Input name of Deck and press Enter
+            </div>
+            <input
+              id="filterDecks"
+              style="margin-top: 5px; width: 70%"
+              type="text"
+            />
+          </div>
+          ---->
