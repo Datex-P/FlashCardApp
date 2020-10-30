@@ -88,7 +88,7 @@
             <div class= "arrowDown"></div>
         </div>
         
-        <div id="pageNameforNewDeck">
+        <div id="pageNameforNewDeck" style="display: none">
           <div style="margin-left: 40px">Name for new deck:</div>
           <input id="inputNameOfNewDeck" type="text">
           <div style="display: flex; justify-content: flex-end; width: 82%">
@@ -99,7 +99,7 @@
 
 
         <div id="listOfDecks"></div>
-        <div id="createDeckButtonContainer" class="flexCenter">
+        <div id="createDeckButtonContainer" class="flexCenter" style="margin-top: -40px">
           <button id="createDeckButton">Create Deck</button>
         </div>
       </div>
@@ -107,7 +107,7 @@
 
 
       <div id="addQuestionsToDeck">
-        <div id='closeAddWindowButton'>X</div>
+          <img id='closeAddWindowButton' src="redCross.svg">
         <div style="margin-left: 20px; margin-top: 20px">
           <div style="display: flex; flex-direction: column">
             <div style="font-weight: bold">
@@ -204,7 +204,7 @@
 
       <div id="stats">
         <div id="studyStat" style="display: none; justify-content: center; margin-top: 180px">
-          <div>Studied 0 cards in 0 seconds today</div>
+          <div>Studied 0 cards in <div id="secondsStudied"></div> seconds today</div>
         </div>
       </div>
     </div>

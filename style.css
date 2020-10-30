@@ -95,10 +95,13 @@ button, input {
   left: 41px;
 }
 
-#closeAddwindowBtn {
+#closeAddWindowButton {
   position:absolute; 
   top:20px; 
-  right:20px;
+  right:20px;                 
+  width: 20px; 
+  height: 20px;
+
 }
 
 #loginButton {
@@ -222,8 +225,6 @@ margin-top: 5px;
 #createDeckButton {
   background-color: #545863; 
   color:#FFE3E3;  
-  border-radius: 5px; 
-  margin-top: 20px; 
   width: 70%;
   }
 

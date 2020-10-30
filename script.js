@@ -12,14 +12,7 @@ let dataBase = {
   }
 };
 
-let edit = `<svg 
-aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
->
-  <path 
-    fill="currentColor" 
-    d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
-  </path>
-</svg>`
+let edit = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>`
 
 let save = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="save" class="svg-inline--fa fa-save fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM224 416c-35.346 0-64-28.654-64-64 0-35.346 28.654-64 64-64s64 28.654 64 64c0 35.346-28.654 64-64 64zm96-304.52V212c0 6.627-5.373 12-12 12H76c-6.627 0-12-5.373-12-12V108c0-6.627 5.373-12 12-12h228.52c3.183 0 6.235 1.264 8.485 3.515l3.48 3.48A11.996 11.996 0 0 1 320 111.48z"></path></svg>`
 let addQuestionsToDeck = document.getElementById("addQuestionsToDeck");
@@ -34,14 +27,13 @@ createDom(dataBase.DeckNames)
 let arrowDown = document.querySelector('.arrowDown');
 document.getElementById("createDeckButton").onclick = function () {
 
-  pageNameforNewDeck.style.display = "flex";
-  pageNameforNewDeck.style.flexDirection = "column";
-  document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
+    pageNameforNewDeck.style.display = "flex";
+    pageNameforNewDeck.style.flexDirection = "column";
+    document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
 
-  listOfDecks.style.display = "none";
-  this.style.display = "none";
-  
-  arrowDown.style.display = 'none';
+    listOfDecks.style.display = "none";
+    this.style.display = "none";
+    arrowDown.style.display = 'none';
 };
 
 /*when Ok button is pressed the name that is put into the input field  
@@ -76,13 +68,16 @@ function createDom(obj, length = 'long') {
     newDeck.style.marginTop = "10px";
     newDeck.style.marginLeft = "20px";
 
-    /*this part works-->*/
+  
     newDeckText.onclick = function () {
+
+     // if (d)
+
+
       pageNameforNewDeck.style.display = "flex";
       document.getElementById("chooseDeckToAdd").style.display = "none";
       document.getElementById("nameOfDeckInAddQuestion").innerHTML = this.innerText;
     };
-    /*<-------*/
 
     let trashIcon = document.createElement("img");
     let editIcon = document.createElement("div");
@@ -93,7 +88,8 @@ function createDom(obj, length = 'long') {
       newDeck.parentNode.removeChild(newDeck)
       delete dataBase.DeckNames[item]
       if (!Object.keys(dataBase.DeckNames).length){
-        arrowDown.style.display = 'block'
+        arrowDown.style.display = 'block';
+        createYourFirstDeckPrompt.style.display = 'block';
       }
     };
     let newDeckInput = document.createElement("input");
@@ -146,10 +142,10 @@ function createDom(obj, length = 'long') {
     trashIcon.style.right = "5px";
 
     let addIcon = document.createElement('span');
-    addIcon.innerText = '+'
-    addIcon.onclick = function () {
-      //pageNameforNewDeck.style.display = "flex";
+    addIcon.innerText = '+';
 
+    addIcon.onclick = function () {
+     
       document.getElementById('nameOfDeckInAddQuestion').innerText = item;
       addQuestionsToDeck.style.display = 'flex';
     }
@@ -157,7 +153,6 @@ function createDom(obj, length = 'long') {
     newDeckText.onclick = function () {
       questAnswerTrainOverv.style.display = "flex";
       createEditDeleteDeckPage.style.display = "none";
-      /* not sure why this line does not work*/
       document.getElementById("nameOfDeckInTrainOverv").innerHTML = this.innerHTML;
 
 
@@ -166,11 +161,16 @@ function createDom(obj, length = 'long') {
         if (!counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML]) {
           counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML] = 0;
         }
-        counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML] += 1;
+        /*new stuff down there*/
+        let secondsDeckStudied = counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML] += 1;
+        dataBase.DeckNames[document.getElementById("nameOfDeckInTrainOverv").innerHTML].seconds = secondsDeckStudied;
+
+
+
 
         /*method below logs the seconds that passed while studiying a specific deck to the counter*/
 
-        //console.log(counter)
+        console.log(counter)
       }, 1000);
     };
 
@@ -209,6 +209,7 @@ function createDom(obj, length = 'long') {
 let statsInNavBar = document.getElementById("stats");
 
 document.getElementById("decks").onclick = function () {
+  document.getElementById('studyStat').style.display = 'none';
   document.getElementById("createEditDeleteDeckPage").style.display =
     "block";
   this.style.color = "blue";
@@ -261,9 +262,16 @@ document.getElementById("showOrHideButton").onclick = function () {
     answerBox.style.display = "none";
   }
 };
+let cardsStudied = 0;
 
 document.getElementById("shuffleButton").onclick = function () {
   let nameOfDeckInTrainOverv = document.getElementById("nameOfDeckInTrainOverv").innerHTML;
+ 
+  cardsStudied ++ ;
+  dataBase.DeckNames[document.getElementById("nameOfDeckInTrainOverv").innerHTML].cardsStudied = cardsStudied;
+
+
+
 
   function questionNumber(random) {
     let questionField = document.getElementById("questionField");
@@ -293,11 +301,23 @@ document.getElementById("shuffleButton").onclick = function () {
 statsInNavBar.onclick = function () {
   document.getElementById("createEditDeleteDeckPage").style.display = "none";
   this.style.color = "blue";
+  document.getElementById('studyStat').style.display = 'block';
 
   document.getElementById("decks").style.color = "black";
   questAnswerTrainOverv.style.display = "none";
  
   addQuestionsToDeck.style.display = "none";
+  console.log(counter)
+
+  const counterSecStudied = Object.values(counter);
+
+
+  let secStudied = document.getElementById('secondsStudied');
+  secStudied.innerHTML = counterSecStudied.reduce((acc, cur) => acc+cur)
+
+  //dataBase.DeckNames[document.getElementById("nameOfDeckInTrainOverv").innerHTML].cardsStudied
+
+
 };
 /*<-------------*/
 
@@ -335,16 +355,22 @@ Decks-->Click and train*/
 
 document.getElementById("cancelButton").onclick = function () {
 
-  
   listOfDecks.style.display = "block";
   pageNameforNewDeck.style.display = "none";
   inputNameOfNewDeck.value = "";
-  /*deckOverview.style.display = "flex";*/
-  document.getElementById('createYourFirstDeckPrompt').style.display = "block";
+
+  //document.getElementById('createYourFirstDeckPrompt').style.display = "block";
   document.getElementById('createDeckButton').style.display='block'
   document.getElementById("createDeckButtonContainer").style.display = "flex";
   document.getElementById("createDeckButtonContainer").style.justifyContent = 'center';
   document.getElementById("navLine").style.display = "flex";
+
+  if (!Object.keys(dataBase.DeckNames).length){
+    arrowDown.style.display = 'block';
+    createYourFirstDeckPrompt.style.display = 'block';
+  }
+
+
 };
 
 /*<---*/
