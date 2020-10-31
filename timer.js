@@ -1,14 +1,13 @@
 import {dataBase} from './dataBase.js'
 import createDom from './createDom.js'
 
-let timer = null;
+export let timer = null;
 let counter = {};
 
-export default timer = setInterval((item) => {
+export const startTimer =(item)=> {
+  timer = setInterval(() => {
 
-  if (
-    !counter[item]
-  ) {
+  if (!counter[item]) {
     counter[item] = 0;
   }
 
@@ -26,3 +25,4 @@ seconds studied in total
 
   console.log(counter);
 }, 1000);
+}

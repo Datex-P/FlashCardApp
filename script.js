@@ -10,7 +10,7 @@ let answer = document.getElementById("answerFieldAddQuestion");
 let timer = null;
 let counter = {};
 */
-let key = null;
+
 
 let listOfDecks = document.getElementById("listOfDecks");
 let questAnswerTrainOverv = document.getElementById("questAnswerTrainOverv");

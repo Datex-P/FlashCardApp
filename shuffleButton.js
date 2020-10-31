@@ -1,3 +1,6 @@
+import {  dataBase} from "./dataBase.js";
+
+// let key = null;
 export default function shuffle(item) {
 
   dataBase.DeckNames[item].cardsStudied += 1
@@ -7,7 +10,7 @@ export default function shuffle(item) {
     questionFieldTextArea.innerText = `${
         dataBase.DeckNames[item][random].question
         }`;
-    key = random;
+    // key = random;
   }
   let randomInScope = random();
 
@@ -17,7 +20,7 @@ export default function shuffle(item) {
     answerFieldTextArea.innerText = `${
         dataBase.DeckNames[item][random].answer
         }`;
-    key = random;
+    // key = random;
   }
 
   function random() {

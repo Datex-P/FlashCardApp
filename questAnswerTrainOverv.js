@@ -1,5 +1,5 @@
 import shuffle from './shuffleButton.js';
-import timer from  './timer.js';
+import {startTimer,timer} from  './timer.js';
 
 export default function questAnswerTrainOverv (item) {
 
@@ -54,6 +54,7 @@ export default function questAnswerTrainOverv (item) {
 
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
+      answerFieldTextArea.id = 'answerFieldTextArea'
 
 
   let innerWindow = document.createElement('div');
@@ -95,7 +96,7 @@ export default function questAnswerTrainOverv (item) {
   mainWindow.append(innerWindow);
   anchorElement.append(mainWindow);
 
-  timer(item);
+  startTimer(item);
 
 
 
