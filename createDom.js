@@ -1,4 +1,6 @@
 import {edit,save} from './svgs.js';
+import questAnswerTrainOverv from './questAnswerTrainOverv.js';
+import addQuestionsToDeck from './addQuestionsToDeck.js';
 
 export default function createDom(obj, length = "long") {
   listOfDecks.innerHTML = "";
@@ -11,12 +13,17 @@ export default function createDom(obj, length = "long") {
     newDeck.style.marginLeft = "20px";
 
     newDeckText.onclick = function () {
+      /*
       pageNameforNewDeck.style.display = "flex";
       document.getElementById("chooseDeckToAdd").style.display = "none";
       document.getElementById(
         "nameOfDeckInAddQuestion"
       ).innerHTML = this.innerText;
-      renderTrainModal(item)
+      */
+
+      questAnswerTrainOverv()
+
+
     };
 
     let trashIcon = document.createElement("img");
@@ -86,116 +93,18 @@ export default function createDom(obj, length = "long") {
     addIcon.innerText = "+";
 
     addIcon.onclick = function () {
+      /*
       document.getElementById("nameOfDeckInAddQuestion").innerText = item;
       addQuestionsToDeck.style.display = "flex";
+      */
+
+      addQuestionsToDeck();
 
       setTimeout(() => {
         window.addEventListener("click", handleOutsideClick);
       }, 10);
     };
 
-    newDeckText.onclick = function () {
-      questAnswerTrainOverv.style.display = "flex";
-      createEditDeleteDeckPage.style.display = "none";
-      document.getElementById(
-        "nameOfDeckInTrainOverv"
-      ).innerHTML = this.innerHTML;
-
-      // let redCross = document.createElement("img");
-      // redCross.src = ;
-      // document.getElementById("redCross").appendChild(redCross);
-
-      let childShuffleButton = document.createElement("button");
-      childShuffleButton.innerHTML = "Shuffle";
-      childShuffleButton.id = "shuffleButton";
-      document
-        .getElementById("shuffleContainer")
-        .appendChild(childShuffleButton);
-
-      let childShowOrHideButton = document.createElement("button");
-      childShowOrHideButton.innerHTML = "ShowOrHide";
-      childShowOrHideButton.id = "showOrHideButton";
-      document
-        .getElementById("showOrHideContainer")
-        .appendChild(childShowOrHideButton);
-
-      let cardsStudied = 0;
-
-      childShowOrHideButton.onclick = function () {
-        let answerBox = document.getElementById("answers");
-        this.style.cursor = "pointer";
-        //changes pointer when moved over shorOrHide Button
-        // answerField.value = dataBase.DeckNames[newDeckText.innerText][key].answer;
-
-        if (answerBox.style.display === "none") {
-          answerBox.style.display = "flex";
-          answerBox.style.justifyContent = "center";
-          answerBox.style.flexDirection = "column";
-        } else {
-          answerBox.style.display = "none";
-        }
-      };
-
-      childShuffleButton.onclick = function () {
-        cardsStudied++;
-        dataBase.DeckNames[newDeckText.innerText].cardsStudied = cardsStudied;
-
-        function questionNumber(random) {
-          let questionField = document.getElementById("questionField");
-          questionField.innerText = `${
-            dataBase.DeckNames[item][random].question
-          }`;
-          key = random;
-        }
-
-        let randomInScope = random();
-
-        function answerNumber(random) {
-          let answerField = document.getElementById("answerField");
-
-          answerField.innerText = `${
-            dataBase.DeckNames[item][random].answer
-          }`;
-          key = random;
-        }
-
-        function random() {
-          return Math.floor(
-            Math.random() * dataBase.DeckNames[item].length
-          );
-        }
-        questionNumber(randomInScope);
-        answerNumber(randomInScope);
-      };
-
-      redCross.onclick = function () {
-        childShuffleButton.parentNode.removeChild(childShuffleButton);
-        childShowOrHideButton.parentNode.removeChild(childShowOrHideButton);
-        this.parentNode.removeChild(this);
-      };
-
-      // event
-      timer = setInterval(() => {
-        if (
-          !counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML]
-        ) {
-          counter[
-            document.getElementById("nameOfDeckInTrainOverv").innerHTML
-          ] = 0;
-        }
-        /*new stuff down there*/
-        let secondsDeckStudied = (counter[
-          document.getElementById("nameOfDeckInTrainOverv").innerHTML
-        ] += 1);
-        dataBase.DeckNames[
-          document.getElementById("nameOfDeckInTrainOverv").innerHTML
-        ].seconds = secondsDeckStudied;
-
-        /*method below logs the seconds that passed while studiying a specific deck to the counter*/
-
-        console.log(counter);
-      }, 1000);
-    };
 
     let container = document.createElement("div");
     container.style.display = "flex";

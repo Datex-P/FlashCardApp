@@ -12,10 +12,9 @@ button, input, textarea {
 }
 
 textarea {
-  rows:'4'; 
-  cols:'35';
-  border-radius: 5px; 
   resize: none;
+  width: 80%;
+  height: 90px;
 }
 
 #cancelButton, #okButton {
@@ -97,10 +96,11 @@ textarea {
 }
 
 #addQuestionsToDeck {
-
+  display: flex;
+  flex-direction: column;
+  
   width: 343px;
-  height: fit-content;
-  display: none;
+  height: 500px;
   top:70px;
   background-color: rgba(200, 168, 115,0.95);
   position: absolute;
@@ -201,18 +201,18 @@ margin-top: 5px;
 
 #shuffleButton {
   width: 70px;
+  margin-left: 10px;
   background-color: grey;
   color: white;
-  margin-top: 20px;
-  margin-left: 20px;
+  /*margin-top: 20px;
+  margin-left: 20px;*/
 }
 
 #questAnswerTrainOverv {
   width: 100%;
-  height: 731px;
+  height: 531px;
   background-color: #86a873;
-  display: none;
-
+ 
 }
 
 #listOfDecks {
@@ -224,7 +224,8 @@ margin-top: 5px;
 }
 
 #showOrHideButton {
-  margin-top: 20px;
+  width: 90px;
+  /*margin-top: 20px;*/
   background-color: grey;
   color: white;
 }

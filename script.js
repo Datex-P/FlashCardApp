@@ -176,7 +176,7 @@ statsInNavBar.onclick = function () {
 //counter still needs to be implemented
 
 /*when the redCross in the game menu is pressed you get back to the main menu ----->*/
-
+/*
 document.getElementById("redCross").onclick = function () {
   questAnswerTrainOverv.style.display = "none";
   createEditDeleteDeckPage.style.display = "block";
@@ -184,7 +184,7 @@ document.getElementById("redCross").onclick = function () {
   clearInterval(timer);
   //	console.log('your current total is:',counter)
 };
-
+*/
 /*<-----*/
 
 /*when you click cancel in the  Name for new deck section in 
