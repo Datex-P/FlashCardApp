@@ -1,18 +1,6 @@
 import createDom from './createDom.js'
+import {dataBase} from './dataBase.js'
 
-let dataBase = {
-  DeckNames: {
-    Literature: [{
-        question: 'gggg',
-        answer: 'answer1'
-      },
-      {
-        question: 'question2',
-        answer: 'answer2'
-      }
-    ]
-  },
-};
 
 let addQuestionsToDeck = document.getElementById("addQuestionsToDeck");
 

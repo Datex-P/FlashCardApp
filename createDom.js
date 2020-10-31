@@ -98,7 +98,7 @@ export default function createDom(obj, length = "long") {
       addQuestionsToDeck.style.display = "flex";
       */
 
-      addQuestionsToDeck();
+      addQuestionsToDeck(item);
 
       setTimeout(() => {
         window.addEventListener("click", handleOutsideClick);

@@ -9,8 +9,9 @@ export default function questAnswerTrainOverv () {
 
   let containerForButtons = document.createElement('div');
       containerForButtons.style.display = 'flex';
-      containerForButtons.style.marginTop = '10px';
+      containerForButtons.style.marginTop = '10px'; 
       containerForButtons.style.marginBottom = '10px';
+      // containerForButtons.className = 'btn'
 
   let shuffleButton = document.createElement("button");
       shuffleButton.innerHTML = "Shuffle";  
@@ -63,19 +64,21 @@ export default function questAnswerTrainOverv () {
 
 
 /* wondering why it only fires once and not multiple times
-  shuffleButton.onclick =  hello()
+  shuffleButton.onclick = function (){
+    hello()
+  }
 
   function hello () {
     console.log('hi')
   }
 
 */
-  let cardsStudied = 0;
+  // let cardsStudied = 0;
   shuffleButton.onclick =  function() {
 
   
-      cardsStudied++;
-      dataBase.DeckNames[item].cardsStudied = cardsStudied;
+      // cardsStudied++;
+      dataBase.DeckNames[item].cardsStudied++
 
       function questionNumber(random) {
           let questionFieldTextArea = document.getElementById("questionFieldTextArea");

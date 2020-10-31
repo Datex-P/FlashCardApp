@@ -1,5 +1,5 @@
 
-export default function addQuestionsToDeck () {
+export default function addQuestionsToDeck (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
   let mainWindow = document.createElement("div");
