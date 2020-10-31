@@ -1,7 +1,7 @@
+import shuffle from './shuffleButton.js';
+import timer from  './timer.js';
 
-
-
-export default function questAnswerTrainOverv () {
+export default function questAnswerTrainOverv (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
   let mainWindow = document.createElement("div");
@@ -27,10 +27,10 @@ export default function questAnswerTrainOverv () {
   let theWordFlashCardsAndRedCrossContainer = document.createElement('div');
       theWordFlashCardsAndRedCrossContainer.style.display = 'flex';
       theWordFlashCardsAndRedCrossContainer.style.width = '255px';
-      theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between'
+      theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between';
      
   let theWordFlashCards = document.createElement('div');
-      theWordFlashCards.innerHTML = 'Flashcards';    
+      theWordFlashCards.innerHTML = item;    
       theWordFlashCards.style.fontWeight = 'bold';
 
   let redCross = document.createElement('img');
@@ -38,8 +38,6 @@ export default function questAnswerTrainOverv () {
        redCross.style.height = '20px';
        redCross.style.width = '20px';
   
-
-
   let theWordQuestion = document.createElement('div');
       theWordQuestion.innerHTML = 'Question';
       theWordQuestion.style.fontWeight = 'bold';
@@ -55,6 +53,7 @@ export default function questAnswerTrainOverv () {
       questionFieldTextArea.id = 'questionFieldTextArea';
 
   let answerFieldTextArea = document.createElement('textarea');
+      answerFieldTextArea.style.display = 'none';
 
 
   let innerWindow = document.createElement('div');
@@ -62,55 +61,24 @@ export default function questAnswerTrainOverv () {
     innerWindow.style.marginLeft = '30px';
 
 
-
-/* wondering why it only fires once and not multiple times
   shuffleButton.onclick = function (){
-    hello()
-  }
+    shuffle(item)
+  };
 
-  function hello () {
-    console.log('hi')
-  }
+  showOrHideButton.onclick = function () {
+    this.style.cursor = "pointer";
 
-*/
-  // let cardsStudied = 0;
-  shuffleButton.onclick =  function() {
-
-  
-      // cardsStudied++;
-      dataBase.DeckNames[item].cardsStudied++
-
-      function questionNumber(random) {
-          let questionFieldTextArea = document.getElementById("questionFieldTextArea");
-          questionFieldTextArea.innerText = `${
-          dataBase.DeckNames[item][random].question
-          }`;
-            key = random;
-          }
-        let randomInScope = random();
-
-      function answerNumber(random) {
-          let answerFieldTextArea = document.getElementById("answerFieldTextArea");
-
-          answerFieldTextArea.innerText = `${
-          dataBase.DeckNames[item][random].answer
-          }`;
-          key = random;
-          }
-
-      function random() {
-              return Math.floor(
-                    Math.random() * dataBase.DeckNames[item].length
-              );
-      }
-      questionNumber(randomInScope);
-      answerNumber(randomInScope);
-
-};
+    if (answerFieldTextArea.style.display === 'none') {
+      answerFieldTextArea.style.display = 'block';
+  // answerField.value = dataBase.DeckNames[newDeckText.innerText][key].answer;
+    } else {
+      answerFieldTextArea.style.display = 'none';
+    }
+  };
 
 
-  containerForButtons.append(showOrHideButton)
-  containerForButtons.append(shuffleButton)
+  containerForButtons.append(showOrHideButton);
+  containerForButtons.append(shuffleButton);
   
 
   insideFlashCardsContainer.append(theWordQuestion);
@@ -127,124 +95,19 @@ export default function questAnswerTrainOverv () {
   mainWindow.append(innerWindow);
   anchorElement.append(mainWindow);
 
+  timer(item);
+
+
+
   redCross.onclick = function () {
-
     mainWindow.parentNode.removeChild(mainWindow);
- 
-  };
 
+    clearInterval(timer)
+  //	console.log('your current total is:',counter)
 
-  
-
-
-
+  };  
 }
 
 
 
-/*
 
-  questAnswerTrainOverv.style.display = "flex";
-  createEditDeleteDeckPage.style.display = "none";
-  document.getElementById(
-    "nameOfDeckInTrainOverv"
-  ).innerHTML = this.innerHTML;
-
-
-
-
-
-
-  let childShuffleButton = document.createElement("button");
-  childShuffleButton.innerHTML = "Shuffle";
-  childShuffleButton.id = "shuffleButton";
-  document
-    .getElementById("shuffleContainer")
-    .appendChild(childShuffleButton);
-
-  let childShowOrHideButton = document.createElement("button");
-  childShowOrHideButton.innerHTML = "ShowOrHide";
-  childShowOrHideButton.id = "showOrHideButton";
-  document
-    .getElementById("showOrHideContainer")
-    .appendChild(childShowOrHideButton);
-
-  let cardsStudied = 0;
-
-  childShowOrHideButton.onclick = function () {
-    let answerBox = document.getElementById("answers");
-    this.style.cursor = "pointer";
-    //changes pointer when moved over shorOrHide Button
-    // answerField.value = dataBase.DeckNames[newDeckText.innerText][key].answer;
-
-    if (answerBox.style.display === "none") {
-      answerBox.style.display = "flex";
-      answerBox.style.justifyContent = "center";
-      answerBox.style.flexDirection = "column";
-    } else {
-      answerBox.style.display = "none";
-    }
-  };
-
-  childShuffleButton.onclick = function () {
-    cardsStudied++;
-    dataBase.DeckNames[newDeckText.innerText].cardsStudied = cardsStudied;
-
-    function questionNumber(random) {
-      let questionField = document.getElementById("questionField");
-      questionField.innerText = `${
-        dataBase.DeckNames[item][random].question
-      }`;
-      key = random;
-    }
-
-    let randomInScope = random();
-
-    function answerNumber(random) {
-      let answerField = document.getElementById("answerField");
-
-      answerField.innerText = `${
-        dataBase.DeckNames[item][random].answer
-      }`;
-      key = random;
-    }
-
-    function random() {
-      return Math.floor(
-        Math.random() * dataBase.DeckNames[item].length
-      );
-    }
-    questionNumber(randomInScope);
-    answerNumber(randomInScope);
-  };
-
-  redCross.onclick = function () {
-    childShuffleButton.parentNode.removeChild(childShuffleButton);
-    childShowOrHideButton.parentNode.removeChild(childShowOrHideButton);
-    this.parentNode.removeChild(this);
-  };
-
-  // event
-  timer = setInterval(() => {
-    if (
-      !counter[document.getElementById("nameOfDeckInTrainOverv").innerHTML]
-    ) {
-      counter[
-        document.getElementById("nameOfDeckInTrainOverv").innerHTML
-      ] = 0;
-    }
-*/
-    /*new stuff down there*/
-/*    
-    let secondsDeckStudied = (counter[
-      document.getElementById("nameOfDeckInTrainOverv").innerHTML
-    ] += 1);
-    dataBase.DeckNames[
-      document.getElementById("nameOfDeckInTrainOverv").innerHTML
-    ].seconds = secondsDeckStudied;
-
-    method below logs the seconds that passed while studiying a specific deck to the counter
-
-    console.log(counter);
-  }, 1000);
-  */

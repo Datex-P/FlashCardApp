@@ -4,16 +4,7 @@ export default function addQuestionsToDeck (item) {
   let anchorElement = document.getElementById('questAnswerTrainOverv');
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
-/*
-  let containerForButtons = document.createElement('div');
-      containerForButtons.style.display = 'flex';
-      containerForButtons.style.marginTop = '10px';
-      containerForButtons.style.marginBottom = '10px';
 
-  let shuffleButton = document.createElement("button");
-      shuffleButton.innerHTML = "Shuffle";  
-      shuffleButton.id = 'shuffleButton';
-*/
   let addToDeck = document.createElement("button");
       addToDeck.innerHTML = "Add to Deck";
       addToDeck.style.backgroundColor = '#545863';
@@ -21,11 +12,6 @@ export default function addQuestionsToDeck (item) {
       addToDeck.style.width = '70%';
       addToDeck.style.marginTop =  '10px';
     
-
-
-
-
-
       
   let insideFlashCardsContainer = document.createElement('div');
       insideFlashCardsContainer.style.marginTop = '30px'
@@ -89,6 +75,11 @@ export default function addQuestionsToDeck (item) {
     mainWindow.parentNode.removeChild(mainWindow);
  
   };
+
+  addToDeck.onclick = function () {
+    questionFieldTextArea.value = '';
+    answerFieldTextArea.value = '';
+  }
 
 
   

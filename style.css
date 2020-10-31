@@ -18,6 +18,8 @@ textarea {
 }
 
 #cancelButton, #okButton {
+  width: 30px;
+  height: 30px;
   background-color: #545863;
   color: #FFE3E3;
   margin-top: 5px;
@@ -182,6 +184,7 @@ margin-top: 5px;
 #inputNameOfNewDeck {
   width: 60%; 
   margin-left: 80px;
+  height: 30px;
 }
 
 #saveQuestButton {
@@ -225,7 +228,6 @@ margin-top: 5px;
 
 #showOrHideButton {
   width: 90px;
-  /*margin-top: 20px;*/
   background-color: grey;
   color: white;
 }
