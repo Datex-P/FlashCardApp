@@ -27,9 +27,14 @@ export default function addQuestionsToDeck (item) {
       theNameofTheDeck.innerHTML = item;    
       theNameofTheDeck.style.fontWeight = 'bold';
 
-let   theWordDeck = document.createElement('div');
+  let  theWordDeck = document.createElement('div');
       theWordDeck.innerHTML = 'Deck:';
       theWordDeck.fontWeight = 'bold';
+
+  let header = document.createElement('div');
+  header.appendChild(theWordDeck);
+  header.appendChild(theNameofTheDeck);
+  header.style.display = 'flex'
 
 
   let redCross = document.createElement('div');
@@ -67,8 +72,7 @@ let   theWordDeck = document.createElement('div');
   insideFlashCardsContainer.append(answerFieldTextArea);
   insideFlashCardsContainer.append(addToDeck);
   
-  theWordFlashCardsAndRedCrossContainer.append(theWordDeck);
-  theWordFlashCardsAndRedCrossContainer.append(theNameofTheDeck);
+  theWordFlashCardsAndRedCrossContainer.append(header);
   theWordFlashCardsAndRedCrossContainer.append(redCross);
   innerWindow.append(theWordFlashCardsAndRedCrossContainer)
   innerWindow.append(insideFlashCardsContainer);

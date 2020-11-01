@@ -2,8 +2,8 @@ import {redCross as redCrossIcon} from './svgs.js';
 
 let num = null;
 
-export default  function stats () {
-  let anchorElement = document.getElementById('stats');
+export default function stats () {
+  // let anchorElement = document.getElementById('stats');
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
 
@@ -24,7 +24,7 @@ export default  function stats () {
       redCross.style.height = '20px';
       redCross.style.width = '20px';
 
-  let stats = document.createElement('stats');
+  let stats = document.createElement('div');
       stats.innerHTML = 'Stats';
 
 
@@ -55,15 +55,15 @@ export default  function stats () {
        cardCounts.fontWeight = 'bold';  
 
 
-      todayAndCardsStudiedContainer.append(theWordToday);
-      todayAndCardsStudiedContainer.append(cardsStudied);
-      redCrossAndStatsContainer.append(todayAndCardsStudiedContainer)
-      redCrossAndStatsContainer.append(stats);
-      redCrossAndStatsContainer.append(redCross);
-      innerWindow.append(redCrossAndStatsContainer);
+      todayAndCardsStudiedContainer.appendChild(theWordToday);
+      todayAndCardsStudiedContainer.appendChild(cardsStudied);
+      redCrossAndStatsContainer.appendChild(todayAndCardsStudiedContainer)
+      redCrossAndStatsContainer.appendChild(stats);
+      redCrossAndStatsContainer.appendChild(redCross);
+      innerWindow.appendChild(redCrossAndStatsContainer);
 
-      mainWindow.append(innerWindow)
-      anchorElement.append(mainWindow);
+      mainWindow.appendChild(innerWindow)
+      document.body.appendChild(mainWindow);
 
 
       function handleOutsideClick(e) {
@@ -77,6 +77,7 @@ export default  function stats () {
 
 
       redCross.onclick = function () {
+        console.log('ok')
         mainWindow.parentNode.removeChild(mainWindow);     
       };
   
