@@ -1,5 +1,7 @@
 import shuffle from './shuffleButton.js';
 import {startTimer,timer} from  './timer.js';
+import {redCross as redCrossIcon} from './svgs.js';
+
 
 export default function questAnswerTrainOverv (item) {
 
@@ -32,12 +34,12 @@ export default function questAnswerTrainOverv (item) {
   let theWordFlashCards = document.createElement('div');
       theWordFlashCards.innerHTML = item;    
       theWordFlashCards.style.fontWeight = 'bold';
-/*
-  let redCross = document.createElement('img');
-       redCross.src = 'redCross.svg';
+
+  let redCross = document.createElement('div');
+       redCross.innerHTML = redCrossIcon;
        redCross.style.height = '20px';
        redCross.style.width = '20px';
-  */
+  
  
   let theWordQuestion = document.createElement('div');
       theWordQuestion.innerHTML = 'Question';
@@ -50,22 +52,27 @@ export default function questAnswerTrainOverv (item) {
       theWordAnswer.style.marginBottom = '10px';
 
 
-  let questionFieldTextArea = document.createElement('textarea');
-      questionFieldTextArea.value = shuffle(item)
-      questionFieldTextArea.id = 'questionFieldTextArea';
+    let  questionFieldTextArea = document.createElement('textarea');
+      //questionFieldTextArea.value = shuffle(item)
+      //questionFieldTextArea.id = 'questionFieldTextArea';
 
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
-      answerFieldTextArea.id = 'answerFieldTextArea'
+      //answerFieldTextArea.id = 'answerFieldTextArea'
 
 
   let innerWindow = document.createElement('div');
     innerWindow.style.marginTop = '20px';
     innerWindow.style.marginLeft = '30px';
 
-
+    let [question, answer] =  shuffle(item)
+    questionFieldTextArea.value = question
+    answerFieldTextArea.innerText = answer
+    
   shuffleButton.onclick = function (){
-    shuffle(item)
+    let [question, answer] =  shuffle(item)
+    questionFieldTextArea.value = question
+    answerFieldTextArea.innerText = answer
   };
 
   showOrHideButton.onclick = function () {
@@ -109,8 +116,5 @@ export default function questAnswerTrainOverv (item) {
   //	console.log('your current total is:',counter)
 
   };  
-}
-
-
-
+};
 

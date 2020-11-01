@@ -1,4 +1,5 @@
 import {dataBase} from './dataBase.js'
+import {redCross as redCrossIcon} from './svgs.js';
 
 export default function addQuestionsToDeck (item) {
 
@@ -31,8 +32,8 @@ let   theWordDeck = document.createElement('div');
       theWordDeck.fontWeight = 'bold';
 
 
-  let redCross = document.createElement('img');
-       redCross.src = 'redCross.svg';
+  let redCross = document.createElement('div');
+       redCross.innerHTML = redCrossIcon;
        redCross.style.height = '20px';
        redCross.style.width = '20px';
   
@@ -93,7 +94,7 @@ let   theWordDeck = document.createElement('div');
 
       questionFieldTextArea.value = '';
       answerFieldTextArea.value = '';
-    
+      console.log(dataBase)
     };
 
 

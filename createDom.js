@@ -1,4 +1,4 @@
-import {edit,save, trash} from './svgs.js';
+import {edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 
@@ -38,7 +38,7 @@ export default function createDom(obj, length = "long") {
         addEditDeleteContainer.style.alignItems = "center";
 
 
-    let trashIcon = document.createElement("img");
+    let trashIcon = document.createElement("div");
         trashIcon.innerHTML =  trash;
         trashIcon.style.width = "16px";
         trashIcon.style.height = "16px";

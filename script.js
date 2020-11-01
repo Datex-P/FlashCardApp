@@ -36,6 +36,7 @@ document.getElementById("okButton").onclick = function () {
     createDom(dataBase.DeckNames);
     inputNameOfNewDeck.value = "";
   }
+  console.log(dataBase)
 };
 
 /*
