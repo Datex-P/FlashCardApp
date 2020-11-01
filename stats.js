@@ -1,4 +1,6 @@
-import {redCross} from './svgs.js';
+import {redCross as redCrossIcon} from './svgs.js';
+
+let num = null;
 
 export default  function stats () {
   let anchorElement = document.getElementById('stats');
@@ -12,18 +14,37 @@ export default  function stats () {
 
   let redCrossAndStatsContainer = document.createElement('div');
       redCrossAndStatsContainer.style.display = 'flex';
-      redCrossAndStatsContainer.style.marginLeft = '20px';
-      redCrossAndStatsContainer.style.width = '300px';
+      redCrossAndStatsContainer.style.justifyContent = 'space-between';
+      redCrossAndStatsContainer.style.height = '20px';
+      redCrossAndStatsContainer.style.width = '255px';
+      redCrossAndStatsContainer.style.border = '1px black solid';
 
-  let redCross = document.createElement('img');
-      redCross.innerHTML = redCross;
+  let redCross = document.createElement('div');
+      redCross.innerHTML = redCrossIcon;
       redCross.style.height = '20px';
       redCross.style.width = '20px';
 
   let stats = document.createElement('stats');
       stats.innerHTML = 'Stats';
 
-  let statsContainer = document.createElement('div');
+
+  let todayAndCardsStudiedContainer = document.createElement('div');
+      todayAndCardsStudiedContainer.style.marginTop = '100px';
+      todayAndCardsStudiedContainer.style.display = 'flex';
+      todayAndCardsStudiedContainer.style.flexDirection = 'column';
+      //todayAndCardsStudiedContainer.style.alignItems = 'center';
+
+
+  let theWordToday = document.createElement('div');
+      theWordToday.innerHTML = 'Today';
+      theWordToday.style.fontWeight = 'bold'
+
+  let cardsStudied = document.createElement('div');
+      cardsStudied.innerHTML =  /*`${num}*/ '0 cards have been studied today.'
+
+      if (num === 0) {
+        cardsStudied.innerHTML = 'No cards have been studied today.'
+      }
 
   let  wordToday = document.createElement('div');
        wordToday.innerHTML = 'Today';
@@ -34,6 +55,9 @@ export default  function stats () {
        cardCounts.fontWeight = 'bold';  
 
 
+      todayAndCardsStudiedContainer.append(theWordToday);
+      todayAndCardsStudiedContainer.append(cardsStudied);
+      redCrossAndStatsContainer.append(todayAndCardsStudiedContainer)
       redCrossAndStatsContainer.append(stats);
       redCrossAndStatsContainer.append(redCross);
       innerWindow.append(redCrossAndStatsContainer);
@@ -41,7 +65,19 @@ export default  function stats () {
       mainWindow.append(innerWindow)
       anchorElement.append(mainWindow);
 
-      document.getElementById('decks').onclick = function () {
-        mainWindow.parentNode.removeChild(mainWindow)
+
+      function handleOutsideClick(e) {
+        if (mainWindow.contains(e.target)) {
+          alert("Clicked in Box");
+        } else {
+          alert("Clicked outside Box");
+        }
       }
+
+
+
+      redCross.onclick = function () {
+        mainWindow.parentNode.removeChild(mainWindow);     
+      };
+  
 }

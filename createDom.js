@@ -113,7 +113,7 @@ export default function createDom(obj, length = "long") {
 
     listOfDecks.appendChild(newDeckContainer);
 
-    pageNameforNewDeck.style.display = "none";
+    
     listOfDecks.style.display = "block";
     let navOverview = document.getElementById("navOverview");
     navOverview.style.display = "flex";

@@ -14,12 +14,12 @@ textarea {
 }
 
 #cancelButton, #okButton {
-  width: 30px;
+  width: 60px;
   height: 30px;
   background-color: #545863;
   color: #FFE3E3;
   margin-top: 5px;
-  margin-left: 8px;
+  margin-left: 10px;
 }
 
 #registerPage {
@@ -81,17 +81,9 @@ textarea {
   }
 }
 
-#pageNameForNewDeck {
-  display: none;
-  margin-left: 52px;
-  margin-top: 15px;
-  margin-right: 15px;
-}
-
 #addQuestionsToDeck {
   display: flex;
   flex-direction: column;
-  
   width: 343px;
   height: 500px;
   top:70px;
@@ -125,13 +117,6 @@ textarea {
   margin-left: 20px;
   }
 
-
-#answers {
-  margin-top: 50px;
-  display: none; 
-}
-
-
 #navOverview {
   margin-top: 30px; 
   display: flex; 
@@ -156,8 +141,9 @@ margin-top: 5px;
 }
 
 #inputNameOfNewDeck {
-  width: 60%; 
-  margin-left: 80px;
+  width: 90%; 
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 30px;
 }
 
@@ -195,7 +181,6 @@ margin-top: 5px;
   color: white;
 }
 
-
 #createDeckButtonContainer {
   margin-top: -40px;
 }
@@ -221,7 +206,7 @@ margin-top: 5px;
 	display: flex; 
 	flex-direction: column
 }
-.flexCenter{
+.flexCenter {
 	display: flex;
 	justify-content: center
 }
