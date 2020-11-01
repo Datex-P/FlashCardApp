@@ -2,14 +2,7 @@ import createDom from './createDom.js';
 import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 
-let addQuestionsToDeck = document.getElementById("addQuestionsToDeck");
 
-let question = document.getElementById("questionFieldAddQuestion");
-let answer = document.getElementById("answerFieldAddQuestion");
-/*
-let timer = null;
-let counter = {};
-*/
 
 
 let listOfDecks = document.getElementById("listOfDecks");
@@ -17,7 +10,6 @@ let questAnswerTrainOverv = document.getElementById("questAnswerTrainOverv");
 let pageNameforNewDeck = document.getElementById("pageNameforNewDeck");
 createDom(dataBase.DeckNames);
 
-/*when createDeck Button is clicked the current page display gets put to none*/
 
 let arrowDown = document.querySelector(".arrowDown");
 document.getElementById("createDeckButton").onclick = function () {
@@ -78,17 +70,6 @@ document.getElementById("decks").onclick = function () {
 
 
 
-let login = document.getElementById("login");
-let playFlashCards = document.getElementById("playFlashcards");
-let addQuestions = document.getElementById("addQuestions");
-let answerTemplate = document.getElementById("answerTemplate");
-
-let createEditDeleteDeckPage = document.getElementById(
-  "createEditDeleteDeckPage"
-);
-
-
-
 /*when stats in the nav bar is clicked all the other menu view displays are set to none --->*/
 /*
 statsInNavBar.onclick = function () {
@@ -124,7 +105,6 @@ document.getElementById("cancelButton").onclick = function () {
   pageNameforNewDeck.style.display = "none";
   inputNameOfNewDeck.value = "";
 
-  //document.getElementById('createYourFirstDeckPrompt').style.display = "block";
   document.getElementById("createDeckButton").style.display = "block";
   document.getElementById("createDeckButtonContainer").style.display = "flex";
   document.getElementById("createDeckButtonContainer").style.justifyContent =
@@ -137,9 +117,7 @@ document.getElementById("cancelButton").onclick = function () {
   }
 };
 
-/*<---*/
 
-/*<------*/
 
 //dataBase.nameOfDeckInTrainOverv.innerHTM
 

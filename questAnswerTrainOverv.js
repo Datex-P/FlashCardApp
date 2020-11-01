@@ -32,12 +32,13 @@ export default function questAnswerTrainOverv (item) {
   let theWordFlashCards = document.createElement('div');
       theWordFlashCards.innerHTML = item;    
       theWordFlashCards.style.fontWeight = 'bold';
-
+/*
   let redCross = document.createElement('img');
        redCross.src = 'redCross.svg';
        redCross.style.height = '20px';
        redCross.style.width = '20px';
-  
+  */
+ 
   let theWordQuestion = document.createElement('div');
       theWordQuestion.innerHTML = 'Question';
       theWordQuestion.style.fontWeight = 'bold';
@@ -50,6 +51,7 @@ export default function questAnswerTrainOverv (item) {
 
 
   let questionFieldTextArea = document.createElement('textarea');
+      questionFieldTextArea.value = shuffle(item)
       questionFieldTextArea.id = 'questionFieldTextArea';
 
   let answerFieldTextArea = document.createElement('textarea');

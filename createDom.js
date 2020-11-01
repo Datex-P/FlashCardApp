@@ -1,14 +1,14 @@
-import {edit,save} from './svgs.js';
+import {edit,save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
-//import dataBase from './dataBase.js'
+
 
 export default function createDom(obj, length = "long") {
 
   listOfDecks.innerHTML = "";
   let arr = Object.keys(obj);
 
-  arr.forEach((item, key, arr) => {
+  arr.forEach((item) => {
     let newDeckContainer = document.createElement("div");
         newDeckContainer.style.marginTop = "10px";
         newDeckContainer.style.marginLeft = "20px";
@@ -39,7 +39,7 @@ export default function createDom(obj, length = "long") {
 
 
     let trashIcon = document.createElement("img");
-        trashIcon.src = "trash.svg";
+        trashIcon.innerHTML =  trash;
         trashIcon.style.width = "16px";
         trashIcon.style.height = "16px";
         trashIcon.style.right = "5px";

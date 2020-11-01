@@ -1,3 +1,4 @@
+import {dataBase} from './dataBase.js'
 
 export default function addQuestionsToDeck (item) {
 
@@ -21,9 +22,14 @@ export default function addQuestionsToDeck (item) {
       theWordFlashCardsAndRedCrossContainer.style.width = '255px';
       theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between'
      
-  let theWordFlashCards = document.createElement('div');
-      theWordFlashCards.innerHTML = item;    
-      theWordFlashCards.style.fontWeight = 'bold';
+  let theNameofTheDeck = document.createElement('div');
+      theNameofTheDeck.innerHTML = item;    
+      theNameofTheDeck.style.fontWeight = 'bold';
+
+let   theWordDeck = document.createElement('div');
+      theWordDeck.innerHTML = 'Deck:';
+      theWordDeck.fontWeight = 'bold';
+
 
   let redCross = document.createElement('img');
        redCross.src = 'redCross.svg';
@@ -54,15 +60,14 @@ export default function addQuestionsToDeck (item) {
     innerWindow.style.marginLeft = '30px';
 
 
-  
-
   insideFlashCardsContainer.append(theWordQuestion);
   insideFlashCardsContainer.append(questionFieldTextArea);
   insideFlashCardsContainer.append(theWordAnswer);
   insideFlashCardsContainer.append(answerFieldTextArea);
   insideFlashCardsContainer.append(addToDeck);
   
-  theWordFlashCardsAndRedCrossContainer.append(theWordFlashCards);
+  theWordFlashCardsAndRedCrossContainer.append(theWordDeck);
+  theWordFlashCardsAndRedCrossContainer.append(theNameofTheDeck);
   theWordFlashCardsAndRedCrossContainer.append(redCross);
   innerWindow.append(theWordFlashCardsAndRedCrossContainer)
   innerWindow.append(insideFlashCardsContainer);
@@ -77,13 +82,22 @@ export default function addQuestionsToDeck (item) {
   };
 
   addToDeck.onclick = function () {
-    questionFieldTextArea.value = '';
-    answerFieldTextArea.value = '';
+    
+      if (!dataBase.DeckNames[item]) {
+         dataBase.DeckNames[item] = [];
+      }
+      dataBase.DeckNames[item].push({
+        question: questionFieldTextArea.value,
+        answer: answerFieldTextArea.value,
+      });
+
+      questionFieldTextArea.value = '';
+      answerFieldTextArea.value = '';
+    
+    };
+
+
   }
 
 
   
-
-
-
-}

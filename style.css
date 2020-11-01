@@ -2,11 +2,7 @@
 button:focus, input:focus, textarea {
   outline: none;
 }
-/*
-input:focus {
-  outline:none;
-}
-*/
+
 button, input, textarea {
   border-radius: 5px;
 }
@@ -85,11 +81,6 @@ textarea {
   }
 }
 
-
-
-
-
-
 #pageNameForNewDeck {
   display: none;
   margin-left: 52px;
@@ -134,11 +125,6 @@ textarea {
   margin-left: 20px;
   }
 
-#clickAndTrain {
-  margin-top: 30px; 
-  margin-left: 48px; 
-  font-weight: bold;
-}
 
 #answers {
   margin-top: 50px;
@@ -162,18 +148,6 @@ textarea {
 }
 
 
-
-#answerField {
-  border-color: #087f8c;
-  border-radius: 5px;
-  width: 80%;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-}
-
-
 #answerFieldAddQuestion {
 border-color: #087f8c;
 width: 80%;
@@ -187,15 +161,6 @@ margin-top: 5px;
   height: 30px;
 }
 
-#saveQuestButton {
-  text-align: center;
-  width: 70%;
-  margin-top: 30px;
-  padding: 5px;
-  background-color: #545863;
-  color: #ffe3e3;
-  }
-
 #redCross {
   margin-left: 240px;
   height: 20px;
@@ -207,8 +172,6 @@ margin-top: 5px;
   margin-left: 10px;
   background-color: grey;
   color: white;
-  /*margin-top: 20px;
-  margin-left: 20px;*/
 }
 
 #questAnswerTrainOverv {
@@ -232,14 +195,6 @@ margin-top: 5px;
   color: white;
 }
 
-#questionField {
-  width: 80%;
-  border-color: #5aaa95;
-  border-radius: 5px;
-  height: 60px;
-  margin-top: 5px;
-  background-color: white;
-}
 
 #createDeckButtonContainer {
   margin-top: -40px;
@@ -250,8 +205,6 @@ margin-top: 5px;
   color:#FFE3E3;  
   width: 70%;
   }
-
-
 
 #outerLoginPage {
 	width: 411px; 
@@ -265,7 +218,6 @@ margin-top: 5px;
 	width: 411px; 
 	height: 731px; 
 	border-radius: 5px; 
-	/*display: none;*/ 
 	display: flex; 
 	flex-direction: column
 }
