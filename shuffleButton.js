@@ -1,8 +1,10 @@
 import {  dataBase} from "./dataBase.js";
 
 export default function shuffle(item) {
-
-  //dataBase.DeckNames[item].cardsStudied += 1
+  //cardsStudied++
+  
+  //dataBase.DeckNames[item].cardsStudied = 1;
+  console.log(dataBase)
 
   function questionNumber(random) {
     return dataBase.DeckNames[item][random].question

@@ -7,10 +7,10 @@ export default function createNewDeck () {
   let anchorElement = document.getElementById('questAnswerTrainOverv');
   let mainWindow = document.createElement('div');
       mainWindow.style.height = '160px';
-      mainWindow.style.width = '220px';
+      mainWindow.style.width = '280px';
       mainWindow.style.backgroundColor = 'rgba(200, 168, 115,0.95)';
       mainWindow.style.top =  '100px';
-      mainWindow.style.marginLeft = '100px';
+      //mainWindow.style.marginLeft = '100px';
       mainWindow.style.position = 'absolute';
       mainWindow.style.borderRadius = '5px';
       mainWindow.style.display = 'flex';

@@ -32,7 +32,7 @@ export default function questAnswerTrainOverv (item) {
       theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between';
      
   let theWordFlashCards = document.createElement('div');
-      theWordFlashCards.innerHTML = item;    
+      theWordFlashCards.innerHTML = `&#160${item}`;   
       theWordFlashCards.style.fontWeight = 'bold';
 
   let redCross = document.createElement('div');

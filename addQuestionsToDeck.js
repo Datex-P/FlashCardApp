@@ -24,10 +24,10 @@ export default function addQuestionsToDeck (item) {
       theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between'
      
   let theNameofTheDeck = document.createElement('div');
-      theNameofTheDeck.innerHTML = item;    
+      theNameofTheDeck.innerHTML = `&#160${item}`;    
       theNameofTheDeck.style.fontWeight = 'bold';
 
-  let  theWordDeck = document.createElement('div');
+  let theWordDeck = document.createElement('div');
       theWordDeck.innerHTML = 'Deck:';
       theWordDeck.fontWeight = 'bold';
 
@@ -90,12 +90,13 @@ export default function addQuestionsToDeck (item) {
     
       if (!dataBase.DeckNames[item]) {
          dataBase.DeckNames[item] = [];
+         dataBase.DeckNames[item].cardsStudied = 0;
       }
       dataBase.DeckNames[item].push({
         question: questionFieldTextArea.value,
         answer: answerFieldTextArea.value,
       });
-
+      
       questionFieldTextArea.value = '';
       answerFieldTextArea.value = '';
       console.log(dataBase)

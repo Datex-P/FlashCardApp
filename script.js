@@ -34,9 +34,20 @@ function handleOutsideClick(e) {
 let statsInNavBar = document.getElementById("stats");
 
     statsInNavBar.onclick = function () {
-      stats()
+      stats(dataBase.deckNames);
+
+
     }
 
+      /*
+function handleOutsideClick(e) {
+  if (addQuestionsToDeck.contains(e.target)) {
+    alert("Clicked in Box");
+  } else {
+    alert("Clicked outside Box");
+  }
+}
+*/
 
 
 

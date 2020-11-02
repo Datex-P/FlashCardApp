@@ -1,5 +1,4 @@
 import {dataBase} from './dataBase.js'
-import createDom from './createDom.js'
 
 export let timer = null;
 let counter = {};
