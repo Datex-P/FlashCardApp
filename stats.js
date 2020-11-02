@@ -6,9 +6,9 @@ import {redCross as redCrossIcon} from './svgs.js';
 let num = null;
 
 export default function stats () {
-  let mainWindow = document.createElement("div");
-      mainWindow.id = 'questAnswerTrainOverv';
-
+  let mainWindow = document.querySelector("#questAnswerTrainOverv");
+      // mainWindow.id = 'questAnswerTrainOverv';
+      mainWindow.style.display = 'flex'
   let innerWindow = document.createElement('div');
       innerWindow.style.marginTop = '20px';
       innerWindow.style.marginLeft = '20px'
@@ -104,7 +104,7 @@ export default function stats () {
       innerWindow.appendChild(todayAndCardsStudiedContainer)
 
       mainWindow.appendChild(innerWindow)
-      document.body.appendChild(mainWindow);
+      // document.body.appendChild(mainWindow);
 
 
       function handleOutsideClick(e) {
@@ -119,7 +119,9 @@ export default function stats () {
 
       redCross.onclick = function () {
         console.log('ok')
-        mainWindow.parentNode.removeChild(mainWindow);     
+        //mainWindow.parentNode.removeChild(mainWindow);  
+        mainWindow.style.display = 'none';
+        mainWindow.innerHTML = '' 
       };
   
 }

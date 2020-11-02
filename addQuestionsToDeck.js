@@ -1,5 +1,6 @@
 import {dataBase} from './dataBase.js'
 import {redCross as redCrossIcon} from './svgs.js';
+import createDom from './createDom.js';
 
 export default function addQuestionsToDeck (item) {
 
@@ -101,7 +102,10 @@ export default function addQuestionsToDeck (item) {
       
       questionFieldTextArea.value = '';
       answerFieldTextArea.value = '';
+
+      createDom(dataBase.DeckNames);
     };
+    
   }
 
 

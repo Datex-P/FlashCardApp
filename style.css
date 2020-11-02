@@ -163,7 +163,7 @@ margin-top: 5px;
 #questAnswerTrainOverv {
   width: 411px;
   height: 531px;
-  /* background-color: #86a873; */
+  background-color: rgba(200, 168, 115,0.95);
   position: absolute;
   /* height: 100vh; */
   display: none;
@@ -213,4 +213,15 @@ margin-top: 5px;
 .flexCenter {
 	display: flex;
 	justify-content: center
+}
+
+
+.orange{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: orange;
 }

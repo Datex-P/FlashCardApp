@@ -27,10 +27,18 @@ export default function createDom(obj, length = "long") {
           nameOfNewDeck.style.color = "black";
         });
  
-        nameOfNewDeck.onclick = function () {
+        if(!dataBase.DeckNames[item].length){
+          nameOfNewDeck.onclick = function () {
+            
+            alert('You should add something')
+          };
+        }else{
+          nameOfNewDeck.onclick = function () {
             questAnswerTrainOverv(item)
             // anchorElement.style.display = 'flex'
         };
+        }
+        
 
     let addEditDeleteContainer = document.createElement("div");
         addEditDeleteContainer.style.display = "flex";
@@ -44,7 +52,7 @@ export default function createDom(obj, length = "long") {
         trashIcon.style.width = "16px";
         trashIcon.style.height = "16px";
         trashIcon.style.right = "5px";
-        //trash.style.fill = 'green'
+        trashIcon.querySelector('svg').style.color = 'red'
         
 
         trashIcon.onclick = () => {
@@ -63,10 +71,11 @@ export default function createDom(obj, length = "long") {
         editIcon.style.width = "16px";
         editIcon.style.height = "16px";
         editIcon.style.marginRight = "5px";
+        
 
     let edited = false;
         editIcon.innerHTML = edit;
-    
+        editIcon.querySelector('svg').style.color = 'orange'
         
     let changeNameofDeckInput = document.createElement("input");
 
@@ -93,19 +102,25 @@ export default function createDom(obj, length = "long") {
 
 //Hot w
 
-    let addIcon = document.createElement("span");
-      //  addIcon.backgroundImage= 'url (`${orangeCircle}`)'
-        addIcon.innerText = "+";
+    let addIcon = document.createElement("div");
+      addIcon.className = 'orange'
+      addIcon.innerText = "+";
+      if(!dataBase.DeckNames[item].length){
+        addIcon.style.border = '1px solid red'
+      }
+      addIcon.onclick = function () {
+            
+          addQuestionsToDeck(item);
+          /*
+          setTimeout(() => {
+          window.addEventListener("click", handleOutsideClick);
+          }, 10);
+          */
         
-        addIcon.onclick = function () {
-          
-        addQuestionsToDeck(item);
-        /*
-        setTimeout(() => {
-        window.addEventListener("click", handleOutsideClick);
-        }, 10);
-        */
-        };
+      }
+        
+        
+        
 
 
 
