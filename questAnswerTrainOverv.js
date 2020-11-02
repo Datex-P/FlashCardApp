@@ -6,6 +6,7 @@ import {redCross as redCrossIcon} from './svgs.js';
 export default function questAnswerTrainOverv (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
+  anchorElement.style.display = 'flex'
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
 
@@ -111,7 +112,7 @@ export default function questAnswerTrainOverv (item) {
 
   redCross.onclick = function () {
     mainWindow.parentNode.removeChild(mainWindow);
-
+    anchorElement.style.display = 'none'
     clearInterval(timer)
   //	console.log('your current total is:',counter)
 

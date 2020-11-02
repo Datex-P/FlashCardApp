@@ -91,7 +91,7 @@ textarea {
   position: absolute;
   border: 1px solid black;
   border-radius: 20px;
-  left: 41px;
+  /* left: 41px; */
 }
 
 #closeAddWindowButton {
@@ -161,10 +161,15 @@ margin-top: 5px;
 }
 
 #questAnswerTrainOverv {
-  width: 100%;
+  width: 411px;
   height: 531px;
-  background-color: #86a873;
- 
+  /* background-color: #86a873; */
+  position: absolute;
+  /* height: 100vh; */
+  text-align: center;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 #listOfDecks {

@@ -29,6 +29,7 @@ export default function createDom(obj, length = "long") {
  
         nameOfNewDeck.onclick = function () {
             questAnswerTrainOverv(item)
+            // anchorElement.style.display = 'flex'
         };
 
     let addEditDeleteContainer = document.createElement("div");
@@ -88,9 +89,9 @@ export default function createDom(obj, length = "long") {
 
     let addIcon = document.createElement("span");
         addIcon.innerText = "+";
-
+        
         addIcon.onclick = function () {
-     
+          
         addQuestionsToDeck(item);
         /*
         setTimeout(() => {

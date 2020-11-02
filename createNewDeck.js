@@ -5,6 +5,7 @@ import createDom from './createDom.js';
 export default function createNewDeck () {
   
   let anchorElement = document.getElementById('questAnswerTrainOverv');
+  anchorElement.style.display = 'flex'
   let mainWindow = document.createElement('div');
       mainWindow.style.height = '160px';
       mainWindow.style.width = '280px';
@@ -58,7 +59,7 @@ export default function createNewDeck () {
       anchorElement.append(mainWindow);
 
       cancelButton.onclick = function () {
-        
+        anchorElement.style.display = 'none'
         anchorElement.removeChild(mainWindow);
 /*
         if (!Object.keys(dataBase.DeckNames).length) {
@@ -70,7 +71,7 @@ export default function createNewDeck () {
       }
 
       okButton.onclick = function () {
-
+        anchorElement.style.display = 'none'
         if (inputNewDeck.value === "") {
           alert("Input needed");
         } else {

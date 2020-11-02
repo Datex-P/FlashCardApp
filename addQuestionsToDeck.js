@@ -4,6 +4,7 @@ import {redCross as redCrossIcon} from './svgs.js';
 export default function addQuestionsToDeck (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
+  anchorElement.style.display = 'flex'
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
 
@@ -83,11 +84,11 @@ export default function addQuestionsToDeck (item) {
   redCross.onclick = function () {
 
     mainWindow.parentNode.removeChild(mainWindow);
- 
+    anchorElement.style.display = 'none'
   };
 
   addToDeck.onclick = function () {
-    
+    anchorElement.style.display = 'none'
       if (!dataBase.DeckNames[item]) {
          dataBase.DeckNames[item] = [];
          dataBase.DeckNames[item].cardsStudied = 0;
