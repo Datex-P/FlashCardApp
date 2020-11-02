@@ -6,7 +6,7 @@ import {redCross as redCrossIcon} from './svgs.js';
 export default function questAnswerTrainOverv (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
-  anchorElement.style.display = 'flex'
+      anchorElement.style.display = 'flex'
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
 
@@ -25,7 +25,8 @@ export default function questAnswerTrainOverv (item) {
       showOrHideButton.id = "showOrHideButton";
 
   let insideFlashCardsContainer = document.createElement('div');
-      insideFlashCardsContainer.style.marginTop = '30px'
+      insideFlashCardsContainer.style.marginTop = '30px';
+     // insideFlashCardsContainer.style.display = 'flex';
 
   let theWordFlashCardsAndRedCrossContainer = document.createElement('div');
       theWordFlashCardsAndRedCrossContainer.style.display = 'flex';

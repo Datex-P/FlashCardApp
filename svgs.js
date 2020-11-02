@@ -4,6 +4,11 @@ export let save = `<svg aria-hidden="true" focusable="false" data-prefix="fas" d
 
 export let trash = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash-alt" class="svg-inline--fa fa-trash-alt fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg>`;
 
+export let orangeCircle = ` <svg width='20px' height='30px' viewBox="0 0 120 120">
+<circle cx="60" cy="60" r="50" fill='orange'/>
+</svg>`
+
+
 export let redCross = `<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 84.853 84.853" version="1.0">
   <g id="layer1" transform="translate(-153.29 -132.79)">
     <g id="g2762" transform="matrix(.70711 -.70711 .70711 .70711 -66.575 189.71)" fill="red">

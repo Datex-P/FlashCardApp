@@ -16,7 +16,6 @@ document.getElementById("createDeckButton").onclick = function () {
  
   arrowDown.style.display = "none";
   
- 
 };
 
 
@@ -35,6 +34,7 @@ let statsInNavBar = document.getElementById("stats");
 
     statsInNavBar.onclick = function () {
       stats(dataBase.deckNames);
+      console.log('hi')
 
 
     }

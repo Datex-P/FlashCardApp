@@ -1,7 +1,7 @@
-import {edit, save, trash} from './svgs.js';
+import {edit, save, trash, orangeCircle} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
-
+import {dataBase} from './dataBase.js';
 
 export default function createDom(obj, length = "long") {
 
@@ -44,14 +44,18 @@ export default function createDom(obj, length = "long") {
         trashIcon.style.width = "16px";
         trashIcon.style.height = "16px";
         trashIcon.style.right = "5px";
+        //trash.style.fill = 'green'
+        
 
         trashIcon.onclick = () => {
           newDeckContainer.parentNode.removeChild(newDeckContainer);
           delete dataBase.DeckNames[item];
-          if (!Object.keys(dataBase.DeckNames).length) {
-            arrowDown.style.display = "block";
-            createYourFirstDeckPrompt.style.display = "block";
-          }
+            if (!Object.keys(dataBase.DeckNames).length) {
+              let arrowDown = document.querySelector(".arrowDown");
+              arrowDown.style.display = "block";
+              document.getElementById('createYourFirstDeckPrompt').style.display = 'block'
+              
+            } 
         };
     
 
@@ -87,7 +91,10 @@ export default function createDom(obj, length = "long") {
       }
     };
 
+//Hot w
+
     let addIcon = document.createElement("span");
+      //  addIcon.backgroundImage= 'url (`${orangeCircle}`)'
         addIcon.innerText = "+";
         
         addIcon.onclick = function () {

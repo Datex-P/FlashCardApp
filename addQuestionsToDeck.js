@@ -4,7 +4,8 @@ import {redCross as redCrossIcon} from './svgs.js';
 export default function addQuestionsToDeck (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
-  anchorElement.style.display = 'flex'
+      anchorElement.style.display = 'flex';
+
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
 
@@ -100,10 +101,7 @@ export default function addQuestionsToDeck (item) {
       
       questionFieldTextArea.value = '';
       answerFieldTextArea.value = '';
-      console.log(dataBase)
     };
-
-
   }
 
 

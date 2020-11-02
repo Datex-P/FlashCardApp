@@ -5,9 +5,9 @@ import {redCross as redCrossIcon} from './svgs.js';
 
 let num = null;
 
-export default function stats (obj) {
+export default function stats () {
   let mainWindow = document.createElement("div");
-      mainWindow.id = 'addQuestionsToDeck';
+      mainWindow.id = 'questAnswerTrainOverv';
 
   let innerWindow = document.createElement('div');
       innerWindow.style.marginTop = '20px';
@@ -92,7 +92,7 @@ export default function stats (obj) {
   });
 */
 
-      todayAndCardsStudiedContainer.appendChild(container);
+     // todayAndCardsStudiedContainer.appendChild(container);
 // todayAndCardsStudiedContainer.appendChild(numberOfSeconds);
       todayAndCardsStudiedContainer.appendChild(theWordToday);
       todayAndCardsStudiedContainer.appendChild(cardsStudied);

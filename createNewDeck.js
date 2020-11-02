@@ -11,7 +11,6 @@ export default function createNewDeck () {
       mainWindow.style.width = '280px';
       mainWindow.style.backgroundColor = 'rgba(200, 168, 115,0.95)';
       mainWindow.style.top =  '100px';
-      //mainWindow.style.marginLeft = '100px';
       mainWindow.style.position = 'absolute';
       mainWindow.style.borderRadius = '5px';
       mainWindow.style.display = 'flex';
@@ -33,7 +32,7 @@ export default function createNewDeck () {
   let okButtonAndCancelButtonContainer = document.createElement('div');
       okButtonAndCancelButtonContainer.style.marginTop = '30px';
      
-  
+      document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
 
   let okButton = document.createElement("button");
       okButton.innerHTML = "Ok";  
@@ -61,16 +60,19 @@ export default function createNewDeck () {
       cancelButton.onclick = function () {
         anchorElement.style.display = 'none'
         anchorElement.removeChild(mainWindow);
-/*
+
         if (!Object.keys(dataBase.DeckNames).length) {
+          let arrowDown = document.querySelector(".arrowDown");
           arrowDown.style.display = "block";
+          document.getElementById('createYourFirstDeckPrompt').style.display = 'block'
           
         }
-        */
+      
 
       }
 
       okButton.onclick = function () {
+       
         anchorElement.style.display = 'none'
         if (inputNewDeck.value === "") {
           alert("Input needed");
@@ -78,6 +80,8 @@ export default function createNewDeck () {
           dataBase.DeckNames[inputNewDeck.value] = [];
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
+          document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
+          
         }
           }
       
