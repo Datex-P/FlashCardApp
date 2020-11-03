@@ -1,9 +1,9 @@
 import {dataBase} from "./dataBase.js";
 
 export default function shuffle(item) {
-  //cardsStudied++
+ 
   if(!dataBase.DeckNames[item].cardsStudied){
-    dataBase.DeckNames[item].cardsStudied = 0
+    dataBase.DeckNames[item].cardsStudied = 1
   }
   dataBase.DeckNames[item].cardsStudied++
   console.log(dataBase)

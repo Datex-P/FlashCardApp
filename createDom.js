@@ -49,9 +49,11 @@ export default function createDom(obj, length = "long") {
 
     let trashIcon = document.createElement("div");
         trashIcon.innerHTML =  trash;
-        trashIcon.style.width = "16px";
-        trashIcon.style.height = "16px";
         trashIcon.style.right = "5px";
+        /*
+        trashIcon.style.width = '16px';
+        trashIcon.style.height = '16px';
+        */
         trashIcon.querySelector('svg').style.color = 'red'
         
 
@@ -68,8 +70,6 @@ export default function createDom(obj, length = "long") {
     
 
     let editIcon = document.createElement("div");
-        editIcon.style.width = "16px";
-        editIcon.style.height = "16px";
         editIcon.style.marginRight = "5px";
         
 
@@ -100,7 +100,7 @@ export default function createDom(obj, length = "long") {
       }
     };
 
-//Hot w
+
 
     let addIcon = document.createElement("div");
       addIcon.className = 'orange'

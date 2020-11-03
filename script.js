@@ -19,24 +19,11 @@ document.getElementById("createDeckButton").onclick = function () {
 };
 
 
-/*
-function handleOutsideClick(e) {
-  if (addQuestionsToDeck.contains(e.target)) {
-    alert("Clicked in Box");
-  } else {
-    alert("Clicked outside Box");
-  }
-}
-*/
-
-
 let statsInNavBar = document.getElementById("stats");
 
     statsInNavBar.onclick = function () {
       stats(dataBase.deckNames);
-      console.log('hi')
-
-
+ 
     }
 
       /*

@@ -6,12 +6,26 @@ import {redCross as redCrossIcon} from './svgs.js';
 let num = null;
 
 export default function stats () {
-  let mainWindow = document.querySelector("#questAnswerTrainOverv");
-      // mainWindow.id = 'questAnswerTrainOverv';
-      mainWindow.style.display = 'flex'
-  let innerWindow = document.createElement('div');
-      innerWindow.style.marginTop = '20px';
-      innerWindow.style.marginLeft = '20px'
+  let anchorElement = document.querySelector("#questAnswerTrainOverv");
+      anchorElement.style.display = 'flex';
+      // anchorElement.id = 'questAnswerTrainOverv';
+
+  let mainWindow = document.createElement('div');
+      //mainWindow.style.marginTop = '20px';
+      //mainWindow.style.marginLeft = '20px'
+
+      mainWindow.style.width = '411px';
+      mainWindow.style.height = '531px';
+      mainWindow.style.backgroundColor = 'rgba(200, 168, 115,0.95)';
+     // mainWindow.style.position = 'absolute';
+     /* 
+     mainWindow.style.justifyContent = 'center';
+      mainWindow.style.alignItems = 'center';
+      mainWindow.style.display = 'flex';
+      */
+
+
+
 
 
   let redCrossAndStatsContainer = document.createElement('div');
@@ -67,11 +81,19 @@ export default function stats () {
 
   let cardsStudied = document.createElement('div');
       cardsStudied.style.marginTop = '10px';
-      cardsStudied.innerHTML =  /*`${num}*/ '0 cards have been studied today.'
-
+      //cardsStudied.innerHTML =  
+      
+      //console.log(dataBase.map(x=> DeckNames.x))
+      
+      //dataBase.DeckNames.Literature.cardsStudied;
+      
+      
+      /*${num} '0 cards have been studied today.'*/
+      /*
       if (num === 0) {
         cardsStudied.innerHTML = 'No cards have been studied today.'
       }
+      */
 
   let  wordToday = document.createElement('div');
        wordToday.innerHTML = 'Today';
@@ -100,15 +122,15 @@ export default function stats () {
       redCrossAndStatsContainer.appendChild(stats);
       redCrossAndStatsContainer.appendChild(redCross);
       
-      innerWindow.appendChild(redCrossAndStatsContainer);
-      innerWindow.appendChild(todayAndCardsStudiedContainer)
+      mainWindow.appendChild(redCrossAndStatsContainer);
+      mainWindow.appendChild(todayAndCardsStudiedContainer)
 
-      mainWindow.appendChild(innerWindow)
-      // document.body.appendChild(mainWindow);
+      anchorElement.appendChild(mainWindow)
+      // document.body.appendChild(anchorElement);
 
 
       function handleOutsideClick(e) {
-        if (mainWindow.contains(e.target)) {
+        if (anchorElement.contains(e.target)) {
           alert("Clicked in Box");
         } else {
           alert("Clicked outside Box");
@@ -119,9 +141,9 @@ export default function stats () {
 
       redCross.onclick = function () {
         console.log('ok')
-        //mainWindow.parentNode.removeChild(mainWindow);  
-        mainWindow.style.display = 'none';
-        mainWindow.innerHTML = '' 
+        //anchorElement.parentNode.removeChild(anchorElement);  
+        anchorElement.style.display = 'none';
+        anchorElement.innerHTML = '' 
       };
   
 }
