@@ -29,7 +29,7 @@ export default function createDom(obj, length = "long") {
  
         if(!dataBase.DeckNames[item].length){
           nameOfNewDeck.onclick = function () {
-            
+            addIcon.classList.remove('blinkingIcon')
             alert('Click on the blinking add icon')
             addIcon.classList.add('blinkingIcon')
       

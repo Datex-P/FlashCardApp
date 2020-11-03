@@ -23,6 +23,6 @@ export default function shuffle(item) {
     );
   }
 
-  return [questionNumber(randomInScope),answerNumber(randomInScope)];
+  return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
   
 };

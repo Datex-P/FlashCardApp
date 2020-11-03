@@ -115,7 +115,7 @@ export default function questAnswerTrainOverv (item) {
     innerWindow.style.marginTop = '20px';
     innerWindow.style.marginLeft = '30px';
 
-  let [question, answer] =  shuffle(item)
+  let [question, answer,index] =  shuffle(item)
       questionFieldTextArea.value = question
       answerFieldTextArea.innerText = answer
     /*
@@ -223,7 +223,7 @@ export default function questAnswerTrainOverv (item) {
   mainWindow.append(innerWindow);
   anchorElement.append(mainWindow);
 
-  startTimer(item);
+  startTimer(item,index);
 
 
   redCross.onclick = function () {
