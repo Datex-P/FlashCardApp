@@ -16,7 +16,7 @@ export default function questAnswerTrainOverv (item) {
       containerForButtons.style.marginBottom = '10px';
 
   let cont = document.createElement('div');
-      cont.style.display = 'flex';
+      cont.style.display = 'none';
       cont.style.justifyContent = 'space-between';
       cont.style.width = '255px';
  

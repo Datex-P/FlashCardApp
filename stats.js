@@ -93,7 +93,11 @@ export default function stats () {
       //console.log(dataBase.map(x=> DeckNames.x))
       
       //dataBase.DeckNames.Literature.cardsStudied;
-      
+      for(let deck in dataBase.DeckNames){
+        dataBase.DeckNames[deck].forEach(card=>{
+          console.log(card,`from ${deck}`)
+        })
+      }
       
       /*${num} '0 cards have been studied today.'*/
       /*
