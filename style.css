@@ -181,8 +181,8 @@ margin-top: 5px;
   margin-top: 10px;
 }
 
-#showOrHideButton {
-  width: 90px;
+#showAnswerButton {
+  width: 120px;
   background-color: grey;
   color: white;
 }

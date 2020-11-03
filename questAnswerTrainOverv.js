@@ -14,15 +14,72 @@ export default function questAnswerTrainOverv (item) {
       containerForButtons.style.display = 'flex';
       containerForButtons.style.marginTop = '10px'; 
       containerForButtons.style.marginBottom = '10px';
-      // containerForButtons.className = 'btn'
+
+  let cont = document.createElement('div');
+      cont.style.display = 'flex';
+      cont.style.justifyContent = 'space-between';
+      cont.style.width = '255px';
+ 
+
+  let containerForAgainGoodEasyButtons = document.createElement('div');
+      containerForAgainGoodEasyButtons.style.display = 'none';
+      containerForAgainGoodEasyButtons.style.border = '1px black solid';
+      containerForAgainGoodEasyButtons.style.width = '255px';
+
+   let containerForsmallerTwoMinutesEtc = document.createElement('div'); 
+      containerForsmallerTwoMinutesEtc.style.width = '255px';
+      containerForsmallerTwoMinutesEtc.style.display = 'flex';
+      containerForsmallerTwoMinutesEtc.style.flexDirection = 'column';
+
+      
+    
+
+  let containerForButtonsWithDescriptionsDisplay = document.createElement('div');
+      containerForButtonsWithDescriptionsDisplay.style.display = 'flex';
+      containerForButtonsWithDescriptionsDisplay.style.flexDirection = 'column';
+
+  let smallerTwoMin = document.createElement('div');
+      smallerTwoMin.innerText = '<2m';
+
+  let smallerTenMin = document.createElement('div');
+      smallerTenMin.innerText = '<10m';
+
+  let smallerTwoDays = document.createElement('div');
+      smallerTwoDays.innerText = '<2d';
+
+  let againButton = document.createElement('button');
+      againButton.style.width = '60px';
+      againButton.style.height = '30px';
+      againButton.innerText = 'Again';
+      againButton.style.backgroundColor = 'grey';
+      againButton.style.color = 'white';
+   
+
+
+  let goodButton = document.createElement('button');
+      goodButton.style.width = '60px';
+      goodButton.style.height = '30px';
+      goodButton.innerText = 'Good';
+      goodButton.style.backgroundColor = 'grey';
+      goodButton.style.color = 'white';
+    
+
+  let easyButton = document.createElement('button');
+      easyButton.style.width = '60px';
+      easyButton.style.height = '30px';
+      easyButton.innerText = 'Easy';
+      easyButton.style.backgroundColor = 'grey';
+      easyButton.style.color = 'white';
+  
+
 
   let shuffleButton = document.createElement("button");
       shuffleButton.innerHTML = "Shuffle";  
       shuffleButton.id = 'shuffleButton';
 
-  let showOrHideButton = document.createElement("button");
-      showOrHideButton.innerHTML = "ShowOrHide";
-      showOrHideButton.id = "showOrHideButton";
+  let showAnswerButton = document.createElement("button");
+      showAnswerButton.innerHTML = "Show Answer";
+      showAnswerButton.id = "showAnswerButton";
 
   let insideFlashCardsContainer = document.createElement('div');
       insideFlashCardsContainer.style.marginTop = '30px';
@@ -52,9 +109,10 @@ export default function questAnswerTrainOverv (item) {
       theWordAnswer.innerHTML = 'Answer'
       theWordAnswer.style.fontWeight = 'bold';
       theWordAnswer.style.marginBottom = '10px';
+      theWordAnswer.style.display = 'none';
 
 
-    let  questionFieldTextArea = document.createElement('textarea');
+  let questionFieldTextArea = document.createElement('textarea');
       //questionFieldTextArea.value = shuffle(item)
       //questionFieldTextArea.id = 'questionFieldTextArea';
 
@@ -67,9 +125,9 @@ export default function questAnswerTrainOverv (item) {
     innerWindow.style.marginTop = '20px';
     innerWindow.style.marginLeft = '30px';
 
-    let [question, answer] =  shuffle(item)
-    questionFieldTextArea.value = question
-    answerFieldTextArea.innerText = answer
+  let [question, answer] =  shuffle(item)
+      questionFieldTextArea.value = question
+      answerFieldTextArea.innerText = answer
     
   shuffleButton.onclick = function (){
     let [question, answer] =  shuffle(item)
@@ -77,21 +135,45 @@ export default function questAnswerTrainOverv (item) {
     answerFieldTextArea.innerText = answer
   };
 
-  showOrHideButton.onclick = function () {
+  showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
 
     if (answerFieldTextArea.style.display === 'none') {
       answerFieldTextArea.style.display = 'block';
+      theWordAnswer.style.display = 'block';
+      cont.style.display = 'flex';
+  
+      containerForAgainGoodEasyButtons.style.display = 'flex';
+      containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
   // answerField.value = dataBase.DeckNames[newDeckText.innerText][key].answer;
     } else {
       answerFieldTextArea.style.display = 'none';
+      theWordAnswer.style.display = 'none';
+      cont.style.display = 'none';
+      containerForAgainGoodEasyButtons.style.display = 'none'
     }
+    this.parentNode.removeChild(this);
   };
 
 
-  containerForButtons.append(showOrHideButton);
-  containerForButtons.append(shuffleButton);
-  
+
+  cont.append(smallerTwoMin)
+  cont.append(smallerTenMin)
+  cont.append(smallerTwoDays)
+ 
+
+  containerForAgainGoodEasyButtons.append(againButton);
+  containerForAgainGoodEasyButtons.append(goodButton);
+  containerForAgainGoodEasyButtons.append(easyButton);
+
+
+  containerForsmallerTwoMinutesEtc.append(cont)
+  containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
+
+  containerForButtons.append(showAnswerButton)
+  containerForButtons.append(containerForsmallerTwoMinutesEtc)
+
+  insideFlashCardsContainer.append(containerForButtons)
 
   insideFlashCardsContainer.append(theWordQuestion);
   insideFlashCardsContainer.append(questionFieldTextArea);

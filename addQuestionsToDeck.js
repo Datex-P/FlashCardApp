@@ -10,6 +10,10 @@ export default function addQuestionsToDeck (item) {
   let mainWindow = document.createElement("div");
       mainWindow.id = 'addQuestionsToDeck';
 
+  let innerWindow = document.createElement('div');
+      innerWindow.style.marginTop = '20px';
+      innerWindow.style.marginLeft = '30px';
+
   let addToDeck = document.createElement("button");
       addToDeck.innerHTML = "Add to Deck";
       addToDeck.style.backgroundColor = '#545863';
@@ -35,9 +39,9 @@ export default function addQuestionsToDeck (item) {
       theWordDeck.fontWeight = 'bold';
 
   let header = document.createElement('div');
-  header.appendChild(theWordDeck);
-  header.appendChild(theNameofTheDeck);
-  header.style.display = 'flex'
+      header.appendChild(theWordDeck);
+      header.appendChild(theNameofTheDeck);
+      header.style.display = 'flex'
 
 
   let redCross = document.createElement('div');
@@ -64,9 +68,6 @@ export default function addQuestionsToDeck (item) {
   let answerFieldTextArea = document.createElement('textarea');
 
 
-  let innerWindow = document.createElement('div');
-    innerWindow.style.marginTop = '20px';
-    innerWindow.style.marginLeft = '30px';
 
 
   insideFlashCardsContainer.append(theWordQuestion);

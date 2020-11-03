@@ -13,16 +13,22 @@ export default function stats () {
   let mainWindow = document.createElement('div');
       //mainWindow.style.marginTop = '20px';
       //mainWindow.style.marginLeft = '20px'
-
-      mainWindow.style.width = '411px';
-      mainWindow.style.height = '531px';
+      mainWindow.style.top = '70px';
+      mainWindow.style.width = '343px';
+      mainWindow.style.height = '500px';
       mainWindow.style.backgroundColor = 'rgba(200, 168, 115,0.95)';
-     // mainWindow.style.position = 'absolute';
-     /* 
-     mainWindow.style.justifyContent = 'center';
-      mainWindow.style.alignItems = 'center';
+      mainWindow.style.position = 'absolute';
+      mainWindow.style.border = '1px black solid';
+      mainWindow.style.borderRadius = '20px';
       mainWindow.style.display = 'flex';
-      */
+     mainWindow.style.justifyContent = 'center';
+    // mainWindow.style.alignItems = 'center';
+
+  
+  let innerWindow = document.createElement('div');
+      innerWindow.style.marginTop = '20px';
+      innerWindow.style.marginLeft = '30px';
+      
 
 
 
@@ -42,6 +48,7 @@ export default function stats () {
 
   let stats = document.createElement('div');
       stats.innerHTML = 'Stats';
+      stats.style.fontWeight = 'bold';
 
       /*
   let res = (eachWeekendOfMonth(new Date(2022, 1, 1)))
@@ -122,9 +129,10 @@ export default function stats () {
       redCrossAndStatsContainer.appendChild(stats);
       redCrossAndStatsContainer.appendChild(redCross);
       
-      mainWindow.appendChild(redCrossAndStatsContainer);
-      mainWindow.appendChild(todayAndCardsStudiedContainer)
+      innerWindow.appendChild(redCrossAndStatsContainer);
+      innerWindow.appendChild(todayAndCardsStudiedContainer)
 
+      mainWindow.append(innerWindow)
       anchorElement.appendChild(mainWindow)
       // document.body.appendChild(anchorElement);
 
