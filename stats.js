@@ -3,37 +3,20 @@ import {redCross as redCrossIcon} from './svgs.js';
 //let eachWeekendOfMonth = require('date-fns/eachWeekendOfMonth');
 
 
-let num = null;
+//let num = null;
 
 export default function stats () {
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
       anchorElement.style.display = 'flex';
-      // anchorElement.id = 'questAnswerTrainOverv';
 
-  let mainWindow = document.createElement('div');
-      //mainWindow.style.marginTop = '20px';
-      //mainWindow.style.marginLeft = '20px'
-      mainWindow.style.top = '70px';
-      mainWindow.style.width = '343px';
-      mainWindow.style.height = '500px';
-      mainWindow.style.backgroundColor = 'rgba(200, 168, 115,0.95)';
-      mainWindow.style.position = 'absolute';
-      mainWindow.style.border = '1px black solid';
-      mainWindow.style.borderRadius = '20px';
-      mainWindow.style.display = 'flex';
-     mainWindow.style.justifyContent = 'center';
-    // mainWindow.style.alignItems = 'center';
+  let mainWindow = document.createElement('div'); 
+      mainWindow.className = 'addQuestionsToDeck'
+   
 
-  
   let innerWindow = document.createElement('div');
       innerWindow.style.marginTop = '20px';
       innerWindow.style.marginLeft = '30px';
       
-
-
-
-
-
   let redCrossAndStatsContainer = document.createElement('div');
       redCrossAndStatsContainer.style.display = 'flex';
       redCrossAndStatsContainer.style.justifyContent = 'space-between';
@@ -60,6 +43,7 @@ export default function stats () {
       //container.style.templateRows =  'repeat(7, 10px)';
       container.style.templateRows = '30px';
       container.style.templateColumns = '20px';
+
       //container.style.templateRows.border = '1px black solid'
 /*
       for (let i =0; i<200; i++) {
@@ -88,14 +72,14 @@ export default function stats () {
 
   let cardsStudied = document.createElement('div');
       cardsStudied.style.marginTop = '10px';
-      //cardsStudied.innerHTML =  
+      //cardsStudied.innerHTML =  studyArray;
       
-      //console.log(dataBase.map(x=> DeckNames.x))
-      
-      //dataBase.DeckNames.Literature.cardsStudied;
-      for(let deck in dataBase.DeckNames){
+
+      let studyArray = [];
+
+      for (let deck in dataBase.DeckNames){
         dataBase.DeckNames[deck].forEach(card=>{
-          console.log(card,`from ${deck}`)
+          studyArray.push((card,`from ${deck}`))
         })
       }
       
@@ -113,9 +97,6 @@ export default function stats () {
   let  cardCounts = document.createElement('div');
        cardCounts.innerHTML = 'Card Counts';
        cardCounts.fontWeight = 'bold';  
-
-
-
 
 
 /*
@@ -152,10 +133,8 @@ export default function stats () {
 
 
       redCross.onclick = function () {
-        console.log('ok')
-        //anchorElement.parentNode.removeChild(anchorElement);  
+        mainWindow.parentNode.removeChild(mainWindow);
         anchorElement.style.display = 'none';
-        anchorElement.innerHTML = '' 
       };
   
 }

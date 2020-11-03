@@ -6,120 +6,110 @@ import {redCross as redCrossIcon} from './svgs.js';
 export default function questAnswerTrainOverv (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
-      anchorElement.style.display = 'flex'
+      anchorElement.style.display = 'flex';
+
   let mainWindow = document.createElement("div");
-      mainWindow.id = 'addQuestionsToDeck';
+      mainWindow.className = 'addQuestionsToDeck';
 
   let containerForButtons = document.createElement('div');
       containerForButtons.style.display = 'flex';
       containerForButtons.style.marginTop = '10px'; 
       containerForButtons.style.marginBottom = '10px';
 
-  let cont = document.createElement('div');
-      cont.style.display = 'none';
-      cont.style.justifyContent = 'space-between';
-      cont.style.width = '255px';
+  let containerForText1DayEtc = document.createElement('div');
+      containerForText1DayEtc.style.display = 'none';
+      containerForText1DayEtc.style.justifyContent = 'space-between';
+      containerForText1DayEtc.style.width = '205px';
+      containerForText1DayEtc.style.marginLeft = '20px';
+      containerForText1DayEtc.style.marginBottom = '2px';
+      //containerForText1DayEtc.style.border = '1px black solid';
+
  
 
   let containerForAgainGoodEasyButtons = document.createElement('div');
       containerForAgainGoodEasyButtons.style.display = 'none';
-      containerForAgainGoodEasyButtons.style.border = '1px black solid';
-      containerForAgainGoodEasyButtons.style.width = '255px';
+      //containerForAgainGoodEasyButtons.style.border = '1px black solid';
+      containerForAgainGoodEasyButtons.style.width = '239px';
+      containerForAgainGoodEasyButtons.style.marginLeft = '8px';
 
    let containerForsmallerTwoMinutesEtc = document.createElement('div'); 
       containerForsmallerTwoMinutesEtc.style.width = '255px';
       containerForsmallerTwoMinutesEtc.style.display = 'flex';
       containerForsmallerTwoMinutesEtc.style.flexDirection = 'column';
-
-      
-    
+   
 
   let containerForButtonsWithDescriptionsDisplay = document.createElement('div');
       containerForButtonsWithDescriptionsDisplay.style.display = 'flex';
       containerForButtonsWithDescriptionsDisplay.style.flexDirection = 'column';
 
   let smallerTwoMin = document.createElement('div');
-      smallerTwoMin.innerText = '<2m';
+      smallerTwoMin.innerText = '< 2m';
 
   let smallerTenMin = document.createElement('div');
-      smallerTenMin.innerText = '<10m';
+      smallerTenMin.innerText = '< 10m';
 
   let smallerTwoDays = document.createElement('div');
-      smallerTwoDays.innerText = '<2d';
+      smallerTwoDays.innerText = '< 2d';
 
   let againButton = document.createElement('button');
-      againButton.style.width = '60px';
-      againButton.style.height = '30px';
-      againButton.innerText = 'Again';
-      againButton.style.backgroundColor = 'grey';
-      againButton.style.color = 'white';
-   
-
-
-  let goodButton = document.createElement('button');
-      goodButton.style.width = '60px';
-      goodButton.style.height = '30px';
-      goodButton.innerText = 'Good';
-      goodButton.style.backgroundColor = 'grey';
-      goodButton.style.color = 'white';
+      againButton.className = 'againGoodEasyButton';
+      againButton.innerText = 'Again'
     
-
+  let goodButton = document.createElement('button');
+      goodButton.className = 'againGoodEasyButton';
+      goodButton.innerText = 'Good';
+      
   let easyButton = document.createElement('button');
-      easyButton.style.width = '60px';
-      easyButton.style.height = '30px';
+      easyButton.className = 'againGoodEasyButton';
       easyButton.innerText = 'Easy';
-      easyButton.style.backgroundColor = 'grey';
-      easyButton.style.color = 'white';
   
-
-
-  let shuffleButton = document.createElement("button");
-      shuffleButton.innerHTML = "Shuffle";  
-      shuffleButton.id = 'shuffleButton';
-
   let showAnswerButton = document.createElement("button");
       showAnswerButton.innerHTML = "Show Answer";
       showAnswerButton.id = "showAnswerButton";
+      showAnswerButton.style.marginLeft = '8px';
 
-  let insideFlashCardsContainer = document.createElement('div');
-      insideFlashCardsContainer.style.marginTop = '30px';
-     // insideFlashCardsContainer.style.display = 'flex';
+  let insideNameofDeckContainer = document.createElement('div');
+      insideNameofDeckContainer.style.marginTop = '30px';
 
-  let theWordFlashCardsAndRedCrossContainer = document.createElement('div');
-      theWordFlashCardsAndRedCrossContainer.style.display = 'flex';
-      theWordFlashCardsAndRedCrossContainer.style.width = '255px';
-      theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between';
+  let theNameOftheDeckAndRedCrossContainer = document.createElement('div');
+      theNameOftheDeckAndRedCrossContainer.style.display = 'flex';
+      theNameOftheDeckAndRedCrossContainer.style.width = '247px';
+      theNameOftheDeckAndRedCrossContainer.style.justifyContent = 'space-between';
+      theNameOftheDeckAndRedCrossContainer.style.marginLeft = '4px';
      
-  let theWordFlashCards = document.createElement('div');
-      theWordFlashCards.innerHTML = `&#160${item}`;   
-      theWordFlashCards.style.fontWeight = 'bold';
-
+  let theNameofTheDeck = document.createElement('div');
+      theNameofTheDeck.innerHTML = `Deck: ${item}`;   
+      
   let redCross = document.createElement('div');
        redCross.innerHTML = redCrossIcon;
        redCross.style.height = '20px';
        redCross.style.width = '20px';
   
- 
   let theWordQuestion = document.createElement('div');
+      theWordQuestion.style.marginLeft = '4px';
       theWordQuestion.innerHTML = 'Question';
       theWordQuestion.style.fontWeight = 'bold';
       theWordQuestion.style.marginBottom = '10px';
 
   let theWordAnswer = document.createElement('div');
       theWordAnswer.innerHTML = 'Answer'
+      theWordAnswer.style.marginLeft = '4px';
       theWordAnswer.style.fontWeight = 'bold';
       theWordAnswer.style.marginBottom = '10px';
       theWordAnswer.style.display = 'none';
 
 
   let questionFieldTextArea = document.createElement('textarea');
-      //questionFieldTextArea.value = shuffle(item)
-      //questionFieldTextArea.id = 'questionFieldTextArea';
+      questionFieldTextArea.style.padding = '5px 5px';
 
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
-      //answerFieldTextArea.id = 'answerFieldTextArea'
-
+      /*
+      answerFieldTextArea.style.paddingLeft = '5px';
+      answerFieldTextArea.style.paddingRight = '5px';
+      answerFieldTextArea.style.paddingTop = '5px;'
+      not sure why this does not work
+      */
 
   let innerWindow = document.createElement('div');
     innerWindow.style.marginTop = '20px';
@@ -128,69 +118,112 @@ export default function questAnswerTrainOverv (item) {
   let [question, answer] =  shuffle(item)
       questionFieldTextArea.value = question
       answerFieldTextArea.innerText = answer
-    
+    /*
   shuffleButton.onclick = function (){
     let [question, answer] =  shuffle(item)
     questionFieldTextArea.value = question
     answerFieldTextArea.innerText = answer
   };
+*/
+    function display () {
+    
+    answerFieldTextArea.style.display = 'none';
+    theWordAnswer.style.display = 'none';
+    containerForText1DayEtc.style.display = 'none';
+    containerForAgainGoodEasyButtons.style.display = 'none'
+    showAnswerButton.style.display = 'block'
+  }
+
+  function shuffleLogic() {
+    let [question, answer] =  shuffle(item);
+    questionFieldTextArea.value = question;
+    answerFieldTextArea.innerText = answer;
+  }
+
+  againButton.onclick = function () {
+    shuffleLogic()
+    this.style.cursor = 'pointer';
+    display();
+  };
+
+  goodButton.onclick = function () {
+    shuffleLogic()
+    this.style.cursor = 'pointer';
+    display(); 
+   /*
+    questionFieldTextArea.value = question;
+  
+    setInterval(() => {
+      question = questionFieldTextArea;
+      answer = answerFieldTextArea;
+
+      }, (Math.random ()* 1000*60*10) + 1000*60*2);
+      */
+    };
+  
+  
+
+
+
+  easyButton.onclick = function () {
+    shuffleLogic()
+    this.style.cursor = "pointer";
+    display();
+     /*
+    questionFieldTextArea.value = question;
+  
+    setInterval(() => {
+      question = questionFieldTextArea;
+      answer = answerFieldTextArea;
+
+      }, (Math.random ()* 1000*60*60*24*2) + 1000*60*10);
+      */
+    };
+  
 
   showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
-
-    if (answerFieldTextArea.style.display === 'none') {
-      answerFieldTextArea.style.display = 'block';
-      theWordAnswer.style.display = 'block';
-      cont.style.display = 'flex';
-  
-      containerForAgainGoodEasyButtons.style.display = 'flex';
-      containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
-  // answerField.value = dataBase.DeckNames[newDeckText.innerText][key].answer;
-    } else {
-      answerFieldTextArea.style.display = 'none';
-      theWordAnswer.style.display = 'none';
-      cont.style.display = 'none';
-      containerForAgainGoodEasyButtons.style.display = 'none'
+    answerFieldTextArea.style.display = 'block';
+    theWordAnswer.style.display = 'block';
+    containerForText1DayEtc.style.display = 'flex';
+    containerForAgainGoodEasyButtons.style.display = 'flex';
+    containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
+    this.style.display = 'none';
     }
-    this.parentNode.removeChild(this);
-  };
+;
 
-
-
-  cont.append(smallerTwoMin)
-  cont.append(smallerTenMin)
-  cont.append(smallerTwoDays)
+  containerForText1DayEtc.append(smallerTwoMin)
+  containerForText1DayEtc.append(smallerTenMin)
+  containerForText1DayEtc.append(smallerTwoDays)
  
 
   containerForAgainGoodEasyButtons.append(againButton);
   containerForAgainGoodEasyButtons.append(goodButton);
   containerForAgainGoodEasyButtons.append(easyButton);
 
-
-  containerForsmallerTwoMinutesEtc.append(cont)
+  containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc)
   containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
 
   containerForButtons.append(showAnswerButton)
   containerForButtons.append(containerForsmallerTwoMinutesEtc)
 
-  insideFlashCardsContainer.append(containerForButtons)
+  insideNameofDeckContainer.append(containerForButtons)
 
-  insideFlashCardsContainer.append(theWordQuestion);
-  insideFlashCardsContainer.append(questionFieldTextArea);
-  insideFlashCardsContainer.append(containerForButtons);
-  insideFlashCardsContainer.append(theWordAnswer);
-  insideFlashCardsContainer.append(answerFieldTextArea);
+  insideNameofDeckContainer.append(theWordQuestion);
+  insideNameofDeckContainer.append(questionFieldTextArea);
+  insideNameofDeckContainer.append(containerForButtons);
+  insideNameofDeckContainer.append(theWordAnswer);
+  insideNameofDeckContainer.append(answerFieldTextArea);
   
-  theWordFlashCardsAndRedCrossContainer.append(theWordFlashCards);
-  theWordFlashCardsAndRedCrossContainer.append(redCross);
-  innerWindow.append(theWordFlashCardsAndRedCrossContainer)
-  innerWindow.append(insideFlashCardsContainer);
+  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
+  theNameOftheDeckAndRedCrossContainer.append(redCross);
+  innerWindow.append(theNameOftheDeckAndRedCrossContainer)
+  innerWindow.append(insideNameofDeckContainer);
   
   mainWindow.append(innerWindow);
   anchorElement.append(mainWindow);
 
   startTimer(item);
-
 
 
   redCross.onclick = function () {

@@ -66,6 +66,13 @@ textarea {
    
 }
 
+.againGoodEasyButton {
+  width: 60px;
+  height: 30px;
+  background-color: grey;
+  color:white;
+}
+
 @-webkit-keyframes arrow {
   0%, 100% {
     top: 50px;
@@ -83,7 +90,7 @@ textarea {
   }
 }
 
-#addQuestionsToDeck {
+.addQuestionsToDeck {
   display: flex;
   flex-direction: column;
   width: 343px;
@@ -93,7 +100,6 @@ textarea {
   position: absolute;
   border: 1px solid black;
   border-radius: 20px;
-  /* left: 41px; */
 }
 
 #closeAddWindowButton {
@@ -132,6 +138,17 @@ textarea {
   border-color: #5aaa95;
   height: 60px;
   margin-top: 5px;
+}
+
+.blinkingIcon {
+  animation: blinker 1.3s linear infinite;
+  animation-iteration-count: 3;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 
@@ -218,7 +235,7 @@ margin-top: 5px;
 }
 
 
-.orange{
+.orangeCircle {
   width: 20px;
   height: 20px;
   border-radius: 50%;

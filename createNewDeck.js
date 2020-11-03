@@ -5,7 +5,8 @@ import createDom from './createDom.js';
 export default function createNewDeck () {
   
   let anchorElement = document.getElementById('questAnswerTrainOverv');
-  anchorElement.style.display = 'flex'
+      anchorElement.style.display = 'flex'
+
   let mainWindow = document.createElement('div');
       mainWindow.style.height = '160px';
       mainWindow.style.width = '280px';
@@ -42,9 +43,9 @@ export default function createNewDeck () {
       cancelButton.innerHTML = "Cancel";
       cancelButton.id = "cancelButton";
 
-      let newContainer = document.createElement('div');
-          newContainer.style.display = 'flex';
-          newContainer.style.flexDirection = 'column';
+  let newContainer = document.createElement('div');
+      newContainer.style.display = 'flex';
+      newContainer.style.flexDirection = 'column';
 
 
       nameForNewDeckTextandinputNewDeckContainer.append(nameForNewDeckText);

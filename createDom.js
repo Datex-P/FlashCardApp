@@ -30,14 +30,15 @@ export default function createDom(obj, length = "long") {
         if(!dataBase.DeckNames[item].length){
           nameOfNewDeck.onclick = function () {
             
-            alert('You should add something')
+            alert('Click on the blinking add icon')
+            addIcon.classList.add('blinkingIcon')
+      
           };
-        }else{
+        } else {
           nameOfNewDeck.onclick = function () {
             questAnswerTrainOverv(item)
-            // anchorElement.style.display = 'flex'
         };
-        }
+      }
         
 
     let addEditDeleteContainer = document.createElement("div");
@@ -50,10 +51,6 @@ export default function createDom(obj, length = "long") {
     let trashIcon = document.createElement("div");
         trashIcon.innerHTML =  trash;
         trashIcon.style.right = "5px";
-        /*
-        trashIcon.style.width = '16px';
-        trashIcon.style.height = '16px';
-        */
         trashIcon.querySelector('svg').style.color = 'red'
         
 
@@ -79,8 +76,8 @@ export default function createDom(obj, length = "long") {
         
     let changeNameofDeckInput = document.createElement("input");
 
-    editIcon.onclick = function () {
-      let oldInput = nameOfNewDeck.innerText;
+       editIcon.onclick = function () {
+    
       if (!edited) {
         this.innerHTML = save;
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
@@ -103,13 +100,13 @@ export default function createDom(obj, length = "long") {
 
 
     let addIcon = document.createElement("div");
-      addIcon.className = 'orange'
+      addIcon.className = 'orangeCircle'
       addIcon.innerText = "+";
       if(!dataBase.DeckNames[item].length){
         addIcon.style.border = '1px solid red'
       }
       addIcon.onclick = function () {
-            
+          this.classList.remove('blinkingIcon')
           addQuestionsToDeck(item);
           /*
           setTimeout(() => {
@@ -120,8 +117,6 @@ export default function createDom(obj, length = "long") {
       }
         
         
-        
-
 
 
     newDeckContainer.appendChild(nameOfNewDeck);
