@@ -29,7 +29,6 @@ export default function stats () {
       theWordStats.innerHTML = 'Stats';
       theWordStats.style.fontWeight = 'bold';
 
-  
 
   let container = document.createElement('div');
       container.style.display = 'grid';
@@ -38,12 +37,6 @@ export default function stats () {
       container.style.templateColumns = '20px';
 
       //container.style.templateRows.border = '1px black solid'
-/*
-      for (let i =0; i<200; i++) {
-
-      }
-*/
-
 
 
 
@@ -53,29 +46,73 @@ export default function stats () {
       todayAndCardsStudiedContainer.style.flexDirection = 'column';
       todayAndCardsStudiedContainer.style.alignItems = 'center';
 
+  
+  let theWordTodayContainer = document.createElement('div');
+      theWordTodayContainer.style.display = 'flex';
+      theWordTodayContainer.style.flexDirection = 'column';
+      theWordTodayContainer.style.alignItems = 'center';
+      theWordTodayContainer.style.marginBottom = '10px';
 
   let theWordToday = document.createElement('div');
       theWordToday.innerHTML = 'Today';
       theWordToday.style.fontWeight = 'bold';
+
+  let theWordCalendarContainer = document.createElement('div');
+      theWordCalendarContainer.style.display = 'flex';
+      theWordCalendarContainer.style.flexDirection = 'column';
+
+  let buttonLeft = document.createElement('button');
+      buttonLeft.className = 'calendarButtons';
+      buttonLeft.style.marginRight = '5px';
+      buttonLeft.innerHTML = '<';
+
+      function decrease () {
+        let dec = 1;
+        return function () {
+          year.innerHTML = ((yearOfStudy.getFullYear()-dec).toString());
+          dec++;
+      }
+    }
+
+    function increase () {
+      let dec = 1;
+      return function () {
+        year.innerHTML = ((yearOfStudy.getFullYear()+dec).toString());
+        dec++;
+    }
+  }
+
+      buttonLeft.onclick = function () {
+        decrease()
+        /*let dec = 1;
+        console.log(typeof((yearOfStudy.getFullYear()+dec).toString()))
+        */
+      };
+      
+      let buttonRight = document.createElement('button');
+          buttonRight.className = 'calendarButtons';
+          buttonRight.style.marginLeft = '5px';
+          buttonRight.innerHTML = '>';
+      
+      buttonRight.onclick = function () {
+        increase()
+        }
+      
+   let rightAndLeftButtonContainer = document.createElement('div');
+       rightAndLeftButtonContainer.style.display = 'flex';
+
+  let yearOfStudy = new Date();
+  let year = document.createElement('div');
+     year.innerHTML = yearOfStudy.getFullYear();
+
 
   let theWordCalendar = document.createElement('div');
       theWordCalendar.style.marginTop = '10px';
       theWordCalendar.innerHTML = 'Calendar';
       theWordCalendar.style.fontWeight = 'bold'
 
-  let cardsStudied = document.createElement('div');
-      cardsStudied.style.marginTop = '10px';
-     
-/*
-      for (let deck in dataBase.DeckNames){
-        dataBase.DeckNames[deck].forEach(card=>{
-        
-        cardsStudied.innerHTML += `<div>${card.counter} from ${deck}</div>`;
-        
-        })
-      }
 
-*/
+
 
     /*
   seconds studied in total
@@ -85,20 +122,32 @@ export default function stats () {
     secStudied.innerHTML = counterSecStudied.reduce((acc, cur) => acc + cur);
   */
 
-      let secsStudied = document.createElement('div');
+      let cardsStudied = document.createElement('div');
+          cardsStudied.style.display = 'flex';
+          cardsStudied.style.justifyContent = 'space-between';
+          //cardsStudied.style.border = '1px solid black';
+          cardsStudied.style.width = '300px';
 
+       
 
       for (let deck in dataBase.counter) {
-          // secsStudied.innerHTML += `<div>${deck} ${dataBase.counter[deck]}</div>`
-          console.log(`<div>${deck} ${dataBase.counter[deck]}</div>`)
-        
+          cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`  
+      //   cardsStudied += `<div>Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/></div>`  
       }
+     
 
       //console.log(dataBase.counter.Literature)
 
-      //console.log(dataBase)
      // console.log(dataBase.DeckNames.Literature.cardsStudied)
-  
+      if (cardsStudied.innerHTML === '') {
+        cardsStudied.innerHTML = 'No cards studied today';
+      }
+
+
+
+
+
+
 
   let  wordToday = document.createElement('div');
        wordToday.innerHTML = 'Today';
@@ -108,18 +157,31 @@ export default function stats () {
        cardCounts.innerHTML = 'Card Counts';
        cardCounts.fontWeight = 'bold';  
 
+
 /*
   let arr = Object.keys(obj);
   let numberOfSeconds.innerHTML = arr.forEach((item) => {
       (item + item.seconds)
   });
 */
+   
+     theWordTodayContainer.append(theWordToday)
+     theWordTodayContainer.appendChild(cardsStudied)
+   
+      todayAndCardsStudiedContainer.appendChild(theWordTodayContainer);
+      
+      todayAndCardsStudiedContainer.appendChild(theWordTodayContainer);
 
-     // todayAndCardsStudiedContainer.appendChild(container);
-// todayAndCardsStudiedContainer.appendChild(numberOfSeconds);
-      todayAndCardsStudiedContainer.appendChild(theWordToday);
-      todayAndCardsStudiedContainer.appendChild(cardsStudied);
-      todayAndCardsStudiedContainer.appendChild(theWordCalendar)
+
+      theWordCalendarContainer.appendChild(theWordCalendar);
+      rightAndLeftButtonContainer.appendChild(buttonLeft);
+      rightAndLeftButtonContainer.appendChild(year);
+      rightAndLeftButtonContainer.appendChild(buttonRight);
+      theWordCalendarContainer.append(rightAndLeftButtonContainer)
+     
+
+
+      todayAndCardsStudiedContainer.appendChild(theWordCalendarContainer);
       redCrossAndStatsContainer.appendChild(theWordStats);
       redCrossAndStatsContainer.appendChild(redCross);
       

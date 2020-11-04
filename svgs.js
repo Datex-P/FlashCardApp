@@ -8,7 +8,7 @@ export let orangeCircle = ` <svg width='20px' height='30px' viewBox="0 0 120 120
 <circle cx="60" cy="60" r="50" fill='orange'/>
 </svg>`
 
-export let doorLeave = `<svg  width='25px' height='25px' font-weight = 'bold'
+export let doorLeave = `<svg  width='25px' height='25px'
 viewBox="0 0 511.989 511.989" style="enable-background:new 0 0 511.989 511.989;" xml:space="preserve">
 <g>
 <g>

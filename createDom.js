@@ -99,6 +99,7 @@ export default function createDom(obj, length = "long") {
       }
     };
 
+    /*
     document.getElementById('stats').onmouseover = function () {
       this.innerHTML = statsIcon;
     }
@@ -106,7 +107,7 @@ export default function createDom(obj, length = "long") {
     document.getElementById('stats').onmouseleave = function () {
       this.innerHTML = 'Stats';
     }
-
+    */
 
 
     let addIcon = document.createElement("div");

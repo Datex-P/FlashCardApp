@@ -64,10 +64,10 @@ export default function addQuestionsToDeck (item) {
 
 
   let questionFieldTextArea = document.createElement('textarea');
-      questionFieldTextArea.id = 'questionFieldTextArea';
+     questionFieldTextArea.className = 'textareaStyling';
 
   let answerFieldTextArea = document.createElement('textarea');
-
+     answerFieldTextArea.className = 'textareaStyling';
 
 
       insideFlashCardsContainer.append(theWordQuestion);
@@ -104,7 +104,7 @@ export default function addQuestionsToDeck (item) {
    }, 10);
 
   addToDeck.onclick = function () {
-    anchorElement.style.display = 'none'
+   
       if (!dataBase.DeckNames[item]) {
          dataBase.DeckNames[item] = [];
          dataBase.DeckNames[item].cardsStudied = 0;

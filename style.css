@@ -142,6 +142,13 @@ textarea {
   }
 }
 
+.calendarButtons {
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  color:white;
+}
+
 
 #answerFieldAddQuestion {
   border-color: #087f8c;
@@ -163,12 +170,6 @@ textarea {
   width: 20px;
 }
 
-#shuffleButton {
-  width: 70px;
-  margin-left: 10px;
-  background-color: grey;
-  color: white;
-}
 
 #questAnswerTrainOverv {
   width: 411px;
