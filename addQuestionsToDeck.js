@@ -90,6 +90,19 @@ export default function addQuestionsToDeck (item) {
     anchorElement.style.display = 'none'
   };
 
+  setTimeout(function() {
+    window.onclick = function handleOutsideClick(e) {
+       if (mainWindow.contains(e.target)) {
+         //alert("Clicked in Box");         
+       } else {
+         //alert("Clicked outside Box");
+         redCross.classList.add('blinkingIcon');
+         setTimeout(()=>{
+         redCross.classList.remove('blinkingIcon')}, 3000);
+       }
+     }
+   }, 10);
+
   addToDeck.onclick = function () {
     anchorElement.style.display = 'none'
       if (!dataBase.DeckNames[item]) {
@@ -107,7 +120,7 @@ export default function addQuestionsToDeck (item) {
       createDom(dataBase.DeckNames);
     };
     
-  }
+  };
 
 
   

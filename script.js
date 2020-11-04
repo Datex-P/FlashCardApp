@@ -3,10 +3,6 @@ import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 import createNewDeck from './createNewDeck.js'
 
-
-
-let listOfDecks = document.getElementById("listOfDecks");
-
 createDom(dataBase.DeckNames);
 
 

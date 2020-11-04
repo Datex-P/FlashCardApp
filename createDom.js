@@ -1,4 +1,4 @@
-import {edit, save, trash, orangeCircle} from './svgs.js';
+import {edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import {dataBase} from './dataBase.js';
@@ -65,14 +65,13 @@ export default function createDom(obj, length = "long") {
             } 
         };
     
-
     let editIcon = document.createElement("div");
         editIcon.style.marginRight = "5px";
         
 
     let edited = false;
         editIcon.innerHTML = edit;
-        editIcon.querySelector('svg').style.color = 'orange'
+        editIcon.querySelector('svg').style.color = 'orange';
         
     let changeNameofDeckInput = document.createElement("input");
 
@@ -102,18 +101,12 @@ export default function createDom(obj, length = "long") {
     let addIcon = document.createElement("div");
       addIcon.className = 'orangeCircle'
       addIcon.innerText = "+";
-      if(!dataBase.DeckNames[item].length){
+      if(!dataBase.DeckNames[item].length) {
         addIcon.style.border = '1px solid red'
       }
       addIcon.onclick = function () {
           this.classList.remove('blinkingIcon')
           addQuestionsToDeck(item);
-          /*
-          setTimeout(() => {
-          window.addEventListener("click", handleOutsideClick);
-          }, 10);
-          */
-        
       }
         
         
@@ -127,14 +120,11 @@ export default function createDom(obj, length = "long") {
     }
 
     newDeckContainer.appendChild(addEditDeleteContainer);
-
-
     listOfDecks.appendChild(newDeckContainer);
 
     
     listOfDecks.style.display = "block";
-    let navOverview = document.getElementById("navOverview");
-    navOverview.style.display = "flex";
+    document.getElementById("navOverview").style.display = 'flex';
     document.getElementById("createDeckButton").style.display = "block";
     document.getElementById("navLine").style.display = "flex";
   });

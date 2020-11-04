@@ -65,11 +65,8 @@ export default function createNewDeck () {
         if (!Object.keys(dataBase.DeckNames).length) {
           let arrowDown = document.querySelector(".arrowDown");
           arrowDown.style.display = "block";
-          document.getElementById('createYourFirstDeckPrompt').style.display = 'block'
-          
+          document.getElementById('createYourFirstDeckPrompt').style.display = 'block';   
         }
-      
-
       }
 
       okButton.onclick = function () {
@@ -81,10 +78,9 @@ export default function createNewDeck () {
           dataBase.DeckNames[inputNewDeck.value] = [];
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
-          document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
-          
+          document.getElementById('createYourFirstDeckPrompt').style.display = 'none'        
         }
-          }
+          };
       
       
  };

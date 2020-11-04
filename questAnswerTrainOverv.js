@@ -118,20 +118,13 @@ export default function questAnswerTrainOverv (item) {
   let [question, answer,index] =  shuffle(item)
       questionFieldTextArea.value = question
       answerFieldTextArea.innerText = answer
-    /*
-  shuffleButton.onclick = function (){
-    let [question, answer] =  shuffle(item)
-    questionFieldTextArea.value = question
-    answerFieldTextArea.innerText = answer
-  };
-*/
-    function display () {
-    
+
+  function display () {
     answerFieldTextArea.style.display = 'none';
     theWordAnswer.style.display = 'none';
     containerForText1DayEtc.style.display = 'none';
-    containerForAgainGoodEasyButtons.style.display = 'none'
-    showAnswerButton.style.display = 'block'
+    containerForAgainGoodEasyButtons.style.display = 'none';
+    showAnswerButton.style.display = 'block';
   }
 
   function shuffleLogic() {
@@ -150,36 +143,13 @@ export default function questAnswerTrainOverv (item) {
     shuffleLogic()
     this.style.cursor = 'pointer';
     display(); 
-   /*
-    questionFieldTextArea.value = question;
-  
-    setInterval(() => {
-      question = questionFieldTextArea;
-      answer = answerFieldTextArea;
-
-      }, (Math.random ()* 1000*60*10) + 1000*60*2);
-      */
-    };
-  
-  
-
-
+  }
 
   easyButton.onclick = function () {
     shuffleLogic()
     this.style.cursor = "pointer";
     display();
-     /*
-    questionFieldTextArea.value = question;
-  
-    setInterval(() => {
-      question = questionFieldTextArea;
-      answer = answerFieldTextArea;
-
-      }, (Math.random ()* 1000*60*60*24*2) + 1000*60*10);
-      */
-    };
-  
+  }
 
   showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
@@ -189,8 +159,9 @@ export default function questAnswerTrainOverv (item) {
     containerForAgainGoodEasyButtons.style.display = 'flex';
     containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
     this.style.display = 'none';
-    }
-;
+    };
+
+
 
   containerForText1DayEtc.append(smallerTwoMin)
   containerForText1DayEtc.append(smallerTenMin)
@@ -226,12 +197,29 @@ export default function questAnswerTrainOverv (item) {
   startTimer(item,index);
 
 
+
+  setTimeout(function() {
+    window.onclick = function handleOutsideClick(e) {
+       if (mainWindow.contains(e.target)) {
+         //alert("Clicked in Box");
+        // redCross.classList.remove('blinkingIcon');
+         
+       } else {
+         //alert("Clicked outside Box");
+         redCross.classList.add('blinkingIcon');
+         setTimeout(()=>{
+         redCross.classList.remove('blinkingIcon')}, 4500);
+       }
+     }
+   }, 10);
+
+
   redCross.onclick = function () {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = 'none'
     clearInterval(timer)
   //	console.log('your current total is:',counter)
-
   };  
+
 };
 

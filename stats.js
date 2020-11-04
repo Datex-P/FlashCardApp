@@ -3,8 +3,6 @@ import {redCross as redCrossIcon} from './svgs.js';
 //let eachWeekendOfMonth = require('date-fns/eachWeekendOfMonth');
 
 
-//let num = null;
-
 export default function stats () {
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
       anchorElement.style.display = 'flex';
@@ -29,9 +27,9 @@ export default function stats () {
       redCross.style.height = '20px';
       redCross.style.width = '20px';
 
-  let stats = document.createElement('div');
-      stats.innerHTML = 'Stats';
-      stats.style.fontWeight = 'bold';
+  let the = document.createElement('div');
+      the.innerHTML = 'Stats';
+      the.style.fontWeight = 'bold';
 
       /*
   let res = (eachWeekendOfMonth(new Date(2022, 1, 1)))
@@ -83,9 +81,11 @@ export default function stats () {
         })
       }
       
-      /*${num} '0 cards have been studied today.'*/
       /*
-      if (num === 0) {
+      if (studyArray.length === 0) {
+        cardsStudied.innerHTML = 'No cards have been studied today.'
+      }
+      else {
         cardsStudied.innerHTML = 'No cards have been studied today.'
       }
       */
@@ -97,7 +97,6 @@ export default function stats () {
   let  cardCounts = document.createElement('div');
        cardCounts.innerHTML = 'Card Counts';
        cardCounts.fontWeight = 'bold';  
-
 
 /*
   let arr = Object.keys(obj);
@@ -111,7 +110,7 @@ export default function stats () {
       todayAndCardsStudiedContainer.appendChild(theWordToday);
       todayAndCardsStudiedContainer.appendChild(cardsStudied);
       todayAndCardsStudiedContainer.appendChild(theWordCalendar)
-      redCrossAndStatsContainer.appendChild(stats);
+      redCrossAndStatsContainer.appendChild(the);
       redCrossAndStatsContainer.appendChild(redCross);
       
       innerWindow.appendChild(redCrossAndStatsContainer);
@@ -119,16 +118,20 @@ export default function stats () {
 
       mainWindow.append(innerWindow)
       anchorElement.appendChild(mainWindow)
-      // document.body.appendChild(anchorElement);
+    
 
-
-      function handleOutsideClick(e) {
-        if (anchorElement.contains(e.target)) {
-          alert("Clicked in Box");
+    setTimeout(function() {
+     window.onclick = function handleOutsideClick(e) {
+        if (mainWindow.contains(e.target)) {
+          //alert("Clicked in Box");
         } else {
-          alert("Clicked outside Box");
+          //alert("Clicked outside Box");
+          redCross.classList.add('blinkingIcon');
+          setTimeout(()=>{
+          redCross.classList.remove('blinkingIcon')}, 3000);
         }
       }
+    }, 10);
 
 
 
