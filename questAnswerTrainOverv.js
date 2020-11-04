@@ -24,7 +24,6 @@ export default function questAnswerTrainOverv (item) {
       containerForText1DayEtc.style.marginBottom = '2px';
       //containerForText1DayEtc.style.border = '1px black solid';
 
- 
 
   let containerForAgainGoodEasyButtons = document.createElement('div');
       containerForAgainGoodEasyButtons.style.display = 'none';
@@ -86,34 +85,26 @@ export default function questAnswerTrainOverv (item) {
        redCross.style.width = '20px';
   
   let theWordQuestion = document.createElement('div');
-      theWordQuestion.style.marginLeft = '4px';
+      theWordQuestion.className = 'theWordQuestionAndAnswer'   
       theWordQuestion.innerHTML = 'Question';
-      theWordQuestion.style.fontWeight = 'bold';
-      theWordQuestion.style.marginBottom = '10px';
-
+    
   let theWordAnswer = document.createElement('div');
       theWordAnswer.innerHTML = 'Answer'
-      theWordAnswer.style.marginLeft = '4px';
-      theWordAnswer.style.fontWeight = 'bold';
-      theWordAnswer.style.marginBottom = '10px';
+      theWordAnswer.className = 'theWordQuestionAndAnswer'
       theWordAnswer.style.display = 'none';
 
 
   let questionFieldTextArea = document.createElement('textarea');
-      questionFieldTextArea.style.padding = '5px 5px';
+      questionFieldTextArea.className = 'textareaStyling';
 
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
-      
-      answerFieldTextArea.style.paddingLeft = '10px';
-      answerFieldTextArea.style.paddingRight = '5px';
-      answerFieldTextArea.style.paddingTop = '15px'
-      //not sure why this does not work
+      answerFieldTextArea.className = 'textareaStyling';
       
 
   let innerWindow = document.createElement('div');
-    innerWindow.style.marginTop = '20px';
-    innerWindow.style.marginLeft = '30px';
+      innerWindow.style.marginTop = '20px';
+      innerWindow.style.marginLeft = '30px';
 
   let [question, answer,index] =  shuffle(item)
       questionFieldTextArea.value = question
@@ -134,19 +125,19 @@ export default function questAnswerTrainOverv (item) {
   }
 
   againButton.onclick = function () {
-    shuffleLogic()
+    shuffleLogic();
     this.style.cursor = 'pointer';
     display();
   };
 
   goodButton.onclick = function () {
-    shuffleLogic()
+    shuffleLogic();
     this.style.cursor = 'pointer';
     display(); 
   }
 
   easyButton.onclick = function () {
-    shuffleLogic()
+    shuffleLogic();
     this.style.cursor = "pointer";
     display();
   }
@@ -202,7 +193,6 @@ export default function questAnswerTrainOverv (item) {
     window.onclick = function handleOutsideClick(e) {
        if (mainWindow.contains(e.target)) {
          //alert("Clicked in Box");
-        // redCross.classList.remove('blinkingIcon');
          
        } else {
          //alert("Clicked outside Box");

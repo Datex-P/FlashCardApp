@@ -1,7 +1,5 @@
 import { dataBase } from './dataBase.js';
 import {redCross as redCrossIcon} from './svgs.js';
-//let eachWeekendOfMonth = require('date-fns/eachWeekendOfMonth');
-
 
 export default function stats () {
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
@@ -27,14 +25,11 @@ export default function stats () {
       redCross.style.height = '20px';
       redCross.style.width = '20px';
 
-  let the = document.createElement('div');
-      the.innerHTML = 'Stats';
-      the.style.fontWeight = 'bold';
+  let theWordStats = document.createElement('div');
+      theWordStats.innerHTML = 'Stats';
+      theWordStats.style.fontWeight = 'bold';
 
-      /*
-  let res = (eachWeekendOfMonth(new Date(2022, 1, 1)))
-  console.log(res)
-*/
+  
 
   let container = document.createElement('div');
       container.style.display = 'grid';
@@ -70,25 +65,40 @@ export default function stats () {
 
   let cardsStudied = document.createElement('div');
       cardsStudied.style.marginTop = '10px';
-      //cardsStudied.innerHTML =  studyArray;
-      
-
-      let studyArray = [];
-
+     
+/*
       for (let deck in dataBase.DeckNames){
         dataBase.DeckNames[deck].forEach(card=>{
-          studyArray.push((card,`from ${deck}`))
+        
+        cardsStudied.innerHTML += `<div>${card.counter} from ${deck}</div>`;
+        
         })
       }
-      
-      /*
-      if (studyArray.length === 0) {
-        cardsStudied.innerHTML = 'No cards have been studied today.'
+
+*/
+
+    /*
+  seconds studied in total
+    const counterSecStudied = Object.values(counter);
+
+    let secStudied = document.getElementById("secondsStudied");
+    secStudied.innerHTML = counterSecStudied.reduce((acc, cur) => acc + cur);
+  */
+/*
+      let secsStudied = document.createElement('div');
+
+
+      for (let counter in dataBase.counter) {
+        dataBase[counter].forEach(deck=> {
+          secsStudied.innerHTML += `<div>${deck.key} ${deck.value}</div>`
+        })
       }
-      else {
-        cardsStudied.innerHTML = 'No cards have been studied today.'
-      }
-      */
+*/
+      //console.log(dataBase.counter.Literature)
+
+      //console.log(dataBase)
+     // console.log(dataBase.DeckNames.Literature.cardsStudied)
+  
 
   let  wordToday = document.createElement('div');
        wordToday.innerHTML = 'Today';
@@ -110,7 +120,7 @@ export default function stats () {
       todayAndCardsStudiedContainer.appendChild(theWordToday);
       todayAndCardsStudiedContainer.appendChild(cardsStudied);
       todayAndCardsStudiedContainer.appendChild(theWordCalendar)
-      redCrossAndStatsContainer.appendChild(the);
+      redCrossAndStatsContainer.appendChild(theWordStats);
       redCrossAndStatsContainer.appendChild(redCross);
       
       innerWindow.appendChild(redCrossAndStatsContainer);

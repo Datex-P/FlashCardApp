@@ -22,29 +22,6 @@ let statsInNavBar = document.getElementById("stats");
  
     }
 
-      /*
-function handleOutsideClick(e) {
-  if (addQuestionsToDeck.contains(e.target)) {
-    alert("Clicked in Box");
-  } else {
-    alert("Clicked outside Box");
-  }
-}
-*/
-
-
-
-
-
-/*
-document.querySelector("#closeAddWindowButton").onclick = function () {
-  addQuestionsToDeck.style.display = "none";
-  question.value = "";
-  answer.value = "";
-
-  window.removeEventListener("click", handleOutsideClick);
-};
-*/
 
 //dynamical property
 

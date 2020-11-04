@@ -102,15 +102,6 @@ textarea {
   border-radius: 20px;
 }
 
-#closeAddWindowButton {
-  position:absolute; 
-  top:20px; 
-  right:20px;                 
-  width: 20px; 
-  height: 20px;
-
-}
-
 #loginButton {
   width: 70%; 
   background-color: #545863; 
@@ -153,10 +144,10 @@ textarea {
 
 
 #answerFieldAddQuestion {
-border-color: #087f8c;
-width: 80%;
-height: 60px;
-margin-top: 5px;
+  border-color: #087f8c;
+  width: 80%;
+  height: 60px;
+  margin-top: 5px;
 }
 
 #inputNameOfNewDeck {
@@ -188,6 +179,19 @@ margin-top: 5px;
   display: none;
   justify-content: center;
   align-items: center;
+}
+
+.textareaStyling {
+  padding-left: 10px;
+  padding-right:10px;
+  padding-top: 15px;
+}
+
+
+.theWordQuestionAndAnswer {
+  margin-left: 4px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #listOfDecks {

@@ -1,4 +1,4 @@
-import {edit, save, trash} from './svgs.js';
+import {edit, save, trash, doorLeave, statsIcon} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import {dataBase} from './dataBase.js';
@@ -29,9 +29,9 @@ export default function createDom(obj, length = "long") {
  
         if(!dataBase.DeckNames[item].length){
           nameOfNewDeck.onclick = function () {
-            addIcon.classList.remove('blinkingIcon')
-            alert('Click on the blinking add icon')
-            addIcon.classList.add('blinkingIcon')
+            addIcon.classList.remove('blinkingIcon');
+            alert('Click on the blinking add icon');
+            addIcon.classList.add('blinkingIcon');
       
           };
         } else {
@@ -51,7 +51,7 @@ export default function createDom(obj, length = "long") {
     let trashIcon = document.createElement("div");
         trashIcon.innerHTML =  trash;
         trashIcon.style.right = "5px";
-        trashIcon.querySelector('svg').style.color = 'red'
+        trashIcon.querySelector('svg').style.color = 'red';
         
 
         trashIcon.onclick = () => {
@@ -60,7 +60,7 @@ export default function createDom(obj, length = "long") {
             if (!Object.keys(dataBase.DeckNames).length) {
               let arrowDown = document.querySelector(".arrowDown");
               arrowDown.style.display = "block";
-              document.getElementById('createYourFirstDeckPrompt').style.display = 'block'
+              document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
               
             } 
         };
@@ -74,6 +74,11 @@ export default function createDom(obj, length = "long") {
         editIcon.querySelector('svg').style.color = 'orange';
         
     let changeNameofDeckInput = document.createElement("input");
+
+    let containerDoorLeave = document.createElement('div');
+
+    document.getElementById('logout').append(containerDoorLeave);
+    containerDoorLeave.innerHTML = doorLeave;
 
        editIcon.onclick = function () {
     
@@ -96,14 +101,22 @@ export default function createDom(obj, length = "long") {
       }
     };
 
+    document.getElementById('stats').onmouseover = function () {
+      this.innerHTML =  statsIcon;
+    }
+
+    document.getElementById('stats').onmouseleave = function () {
+      this.innerHTML =  'Stats';
+    }
+
 
 
     let addIcon = document.createElement("div");
-      addIcon.className = 'orangeCircle'
+      addIcon.className = 'orangeCircle';
       addIcon.innerText = "+";
-      if(!dataBase.DeckNames[item].length) {
-        addIcon.style.border = '1px solid red'
-      }
+      addIcon.style.border = '1px solid red';
+
+
       addIcon.onclick = function () {
           this.classList.remove('blinkingIcon')
           addQuestionsToDeck(item);
@@ -121,8 +134,7 @@ export default function createDom(obj, length = "long") {
 
     newDeckContainer.appendChild(addEditDeleteContainer);
     listOfDecks.appendChild(newDeckContainer);
-
-    
+   
     listOfDecks.style.display = "block";
     document.getElementById("navOverview").style.display = 'flex';
     document.getElementById("createDeckButton").style.display = "block";

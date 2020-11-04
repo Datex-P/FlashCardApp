@@ -23,6 +23,8 @@ export default function createNewDeck () {
       nameForNewDeckText.innerHTML = 'Name for new deck' ;
      
 
+     // document.getElementById('logout').remove(containerDoorLeave);
+
   let inputNewDeck = document.createElement('input');
       inputNewDeck.id  = 'inputNameOfNewDeck'
 
