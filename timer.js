@@ -10,7 +10,7 @@ export const startTimer =(item,index)=> {
       counter[item] = 0;
     }
 
-    //let secondsDeckStudied = (counter[item] += 1);
+    counter[item]++
     dataBase.counter = counter;
 
     console.log(dataBase);
