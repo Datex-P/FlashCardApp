@@ -86,7 +86,7 @@ export default function addQuestionsToDeck (item) {
 
   redCross.onclick = function () {
 
-    mainWindow.parentNode.removeChild(mainWindow);
+    anchorElement.innerHTML = '';
     anchorElement.style.display = 'none'
   };
 

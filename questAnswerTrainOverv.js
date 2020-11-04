@@ -104,12 +104,12 @@ export default function questAnswerTrainOverv (item) {
 
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
-      /*
-      answerFieldTextArea.style.paddingLeft = '5px';
+      
+      answerFieldTextArea.style.paddingLeft = '10px';
       answerFieldTextArea.style.paddingRight = '5px';
-      answerFieldTextArea.style.paddingTop = '5px;'
-      not sure why this does not work
-      */
+      answerFieldTextArea.style.paddingTop = '15px'
+      //not sure why this does not work
+      
 
   let innerWindow = document.createElement('div');
     innerWindow.style.marginTop = '20px';
