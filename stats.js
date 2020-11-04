@@ -84,16 +84,16 @@ export default function stats () {
     let secStudied = document.getElementById("secondsStudied");
     secStudied.innerHTML = counterSecStudied.reduce((acc, cur) => acc + cur);
   */
-/*
+
       let secsStudied = document.createElement('div');
 
 
-      for (let counter in dataBase.counter) {
-        dataBase[counter].forEach(deck=> {
-          secsStudied.innerHTML += `<div>${deck.key} ${deck.value}</div>`
-        })
+      for (let deck in dataBase.counter) {
+          // secsStudied.innerHTML += `<div>${deck} ${dataBase.counter[deck]}</div>`
+          console.log(`<div>${deck} ${dataBase.counter[deck]}</div>`)
+        
       }
-*/
+
       //console.log(dataBase.counter.Literature)
 
       //console.log(dataBase)

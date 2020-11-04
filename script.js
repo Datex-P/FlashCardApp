@@ -2,6 +2,12 @@ import createDom from './createDom.js';
 import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 import createNewDeck from './createNewDeck.js'
+import {doorLeave } from './svgs.js';
+
+let containerDoorLeave = document.createElement('div');
+
+document.getElementById('logout').append(containerDoorLeave);
+containerDoorLeave.innerHTML = doorLeave;
 
 createDom(dataBase.DeckNames);
 
