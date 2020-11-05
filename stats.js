@@ -140,7 +140,10 @@ export default function stats() {
   let radioButtonContainer  = document.createElement('div');
       radioButtonContainer.style.display = 'flex';
 
-  
+  let oneMonth =  document.createElement('div');
+      oneMonth.innerText = '1 month';
+
+  let threeMonths = document.createElement('div');
 
 
 
