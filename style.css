@@ -147,6 +147,7 @@ textarea {
   height: 20px;
   background-color: grey;
   color:white;
+  border:none
 }
 
 
@@ -253,5 +254,7 @@ textarea {
 .day{
   width: 10px;
   height: 10px;
-  border: 1px black solid
+  border: 1px black solid;
+  box-sizing: border-box;
+  margin: 1px;
 }
