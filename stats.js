@@ -12,19 +12,26 @@ export default function stats() {
 
   let mainWindow = document.createElement("div");
   mainWindow.className = "addQuestionsToDeck";
+  //mainWindow.style.marginTop = '100px';
+  /*
   mainWindow.style.overflow = 'scroll';
   mainWindow.style.overflowX = 'hidden';
+*/
   //mainWindow.style.marginTop = '20px';
 
   let innerWindow = document.createElement("div");
   innerWindow.style.marginTop = "20px";
   innerWindow.style.marginLeft = "30px";
+  innerWindow.style.marginRight = '3px';
+  innerWindow.style.marginBottom = '20px';
+  innerWindow.style.overflow = 'scroll';
+  innerWindow.style.overflowX = 'hidden';
 
   let redCrossAndStatsContainer = document.createElement("div");
   redCrossAndStatsContainer.style.display = "flex";
   redCrossAndStatsContainer.style.justifyContent = "space-between";
   redCrossAndStatsContainer.style.height = "20px";
-  redCrossAndStatsContainer.style.width = "255px";
+  redCrossAndStatsContainer.style.width = "290px";
   redCrossAndStatsContainer.style.border = "1px black solid";
 
   let redCross = document.createElement("div");
@@ -43,12 +50,17 @@ export default function stats() {
   todayAndCardsStudiedContainer.style.alignItems = "center";
 
   let cardsStudied = document.createElement("div");
-  //cardsStudied.style.display = "flex";
-  //cardsStudied.style.justifyContent = "space-between";
-  //cardsStudied.style.border = '1px solid black';
-  //cardsStudied.style.width = "200px";
-  cardsStudied.style.maxHeight = '110px';
+
+  cardsStudied.style.display = "flex";
+  cardsStudied.style.justifyContent = "space-between";
+  cardsStudied.style.border = '1px solid black';
+  
+  cardsStudied.style.width = "200px";
+  cardsStudied.style.height = '100px'
+  
+  //cardsStudied.style.maxHeight = '110px';
   cardsStudied.style.overflow = 'scroll';
+  cardsStudied.style.overflowX = 'hidden';
   cardsStudied.style.marginBottom = '5px';
 
   let theWordTodayContainer = document.createElement("div");
@@ -88,6 +100,98 @@ export default function stats() {
   buttonRight.style.marginLeft = "5px";
   buttonRight.innerHTML = ">";
 
+  let container = document.createElement("div");
+  container.style.templateRows = "30px";
+  container.style.templateColumns = "20px";
+
+  let yearBoxContainer = document.createElement('div');
+  yearBoxContainer.style.display = 'flex';
+  yearBoxContainer.style.flexWrap = 'wrap'
+  //yearBoxContainer.style.width = '300px';
+  yearBoxContainer.style.width = '270px';
+  yearBoxContainer.style.height = '210px';
+  yearBoxContainer.style.border = '1px solid black';
+
+  let hourlyBreakdownContainer = document.createElement('div');
+      hourlyBreakdownContainer.style.display = 'flex';
+      hourlyBreakdownContainer.style.flexDirection = 'column';
+      hourlyBreakdownContainer.style.alignItems = 'center';
+
+  let theWordhourlyBreakdown = document.createElement('div');
+      theWordhourlyBreakdown.innerText = 'Hourly Breakdown'
+      theWordhourlyBreakdown.style.marginTop = '10px';
+      theWordhourlyBreakdown.style.fontWeight = 'bold';
+
+  let radioButtonContainer  = document.createElement('div');
+      radioButtonContainer.style.display = 'flex';
+      radioButtonContainer.style.border = '1px black solid';
+      radioButtonContainer.style.marginTop = '10px'
+
+   let oneMonthRadioButton = document.createElement('input') 
+       oneMonthRadioButton.setAttribute('type', 'radio');
+
+  let threeMonthRadioButton = document.createElement('input');
+      threeMonthRadioButton.setAttribute('type', 'radio');
+
+  let oneYearRadioButton = document.createElement('input');
+      oneYearRadioButton.setAttribute('type', 'radio');
+
+  let oneMonth =  document.createElement('div');
+      oneMonth.innerText = '1 month';
+
+  let threeMonths = document.createElement('div');
+      threeMonths.innerText = '3 months';
+
+  let oneYear = document.createElement('div');
+      oneYear.innerText = '1 year';
+
+  let usageChartContainer = document.createElement('div');
+      usageChartContainer.style.marginTop = '10px';
+      usageChartContainer.style.width = '270px';
+      usageChartContainer.style.height = '190px';
+      usageChartContainer.style.border = '1px black solid';
+      usageChartContainer.style.display = 'grid';
+      usageChartContainer.style.gridTemplateColumns = 'repeat(24, 1fr)';
+      usageChartContainer.style.gridTemplateRows = 'repeat(4, 1fr)';
+      usageChartContainer.style.gridGap = '5px';
+     // usageChartContainer.style.backgroundColor = 'blue';
+
+     let usageChartCaption = document.createElement('div');
+     usageChartCaption.style.marginTop = '10px';
+     usageChartCaption.style.width = '270px';
+     //usageChartCaption.style.height = '190px';
+     usageChartCaption.style.border = '1px black solid';
+     usageChartCaption.style.display = 'grid';
+     usageChartCaption.style.gridTemplateColumns = 'repeat(24, 1fr)';
+  
+     usageChartCaption.style.gridGap = '2px';
+
+
+     for (let i = 0; i<24; i++) {
+      let time = document.createElement('div');
+      time.innerText = `${i}`;
+      usageChartCaption.append(time)
+    }
+
+  let clickToView = document.createElement('button');
+      clickToView.style.height = '40px';
+      clickToView.style.width = '20px';
+      clickToView.innerHTML = 'Click to View';
+
+      clickToView.onclick = function () {
+        let newWindow = document.createElement('div');
+        newWindow.className = 'transformWindow';
+        //innerWindow.style.transform = 'rotate(90deg)';
+        newWindow.append(usageChartContainer);
+        newWindow.append(usageChartCaption);
+        hourlyBreakdownContainer.append(newWindow)
+
+        document.getElementById('mainMenu').style.transform = '90deg';
+      }
+
+
+
+
 
   let yearOfStudy = new Date();
   let year = document.createElement("div");
@@ -113,38 +217,19 @@ export default function stats() {
     increase();
   };
 
+  let chart1 = document.createElement('div');
+      chart1.style.backgroundColor = 'blue'
 
-  let container = document.createElement("div");
-  container.style.templateRows = "30px";
-  container.style.templateColumns = "20px";
+  let chart2 = document.createElement('div');
+      chart2.style.backgroundColor = 'green'
 
+
+      for (let i =1; i<=4; i++) {
+        let chartBar = document.createElement('div');
+        chartBar.style.backgroundColor = 'blue';
+        usageChartContainer.append(chartBar)
+      }
   
-  let yearBoxContainer = document.createElement('div');
-  yearBoxContainer.style.display = 'flex';
-  yearBoxContainer.style.flexWrap = 'wrap'
-  //yearBoxContainer.style.width = '300px';
-  yearBoxContainer.style.width = '270px';
-  yearBoxContainer.style.height = '210px';
-  yearBoxContainer.style.border = '1px solid black';
-
-
-  let hourlyBreakdownContainer = document.createElement('div');
-      hourlyBreakdownContainer.style.display = 'flex';
-      hourlyBreakdownContainer.style.flexDirection = 'column';
-
-  let theWordhourlyBreakdown = document.createElement('div');
-      theWordhourlyBreakdown.innerText = 'Hourly Breakdown'
-      theWordhourlyBreakdown.style.marginTop = '10px';
-      theWordhourlyBreakdown.style.fontWeight = 'bold';
-
-  let radioButtonContainer  = document.createElement('div');
-      radioButtonContainer.style.display = 'flex';
-
-  let oneMonth =  document.createElement('div');
-      oneMonth.innerText = '1 month';
-
-  let threeMonths = document.createElement('div');
-
 
 
   let thisYear = new Date(`January 1, ${+year.innerText}`);
@@ -201,6 +286,20 @@ export default function stats() {
   });
 */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   theWordTodayContainer.append(theWordToday);
   theWordTodayContainer.appendChild(cardsStudied);
   
@@ -212,10 +311,26 @@ export default function stats() {
   rightAndLeftButtonContainer.appendChild(buttonRight);
   
   theWordCalendarContainer.append(rightAndLeftButtonContainer);
+  theWordCalendarContainer.append(yearBoxContainer);
+
+  hourlyBreakdownContainer.append(theWordhourlyBreakdown);
   
-  theWordCalendarContainer.append(yearBoxContainer)
-  
-  hourlyBreakdownContainer.append(theWordhourlyBreakdown)
+  radioButtonContainer.append(oneMonthRadioButton);
+  radioButtonContainer.append(oneMonth);
+  radioButtonContainer.append(threeMonthRadioButton);
+  radioButtonContainer.append(threeMonths);
+  radioButtonContainer.append(oneYearRadioButton);
+  radioButtonContainer.append(oneYear);
+
+
+  hourlyBreakdownContainer.append(radioButtonContainer);
+
+  //usageChartContainer.append(chart2)
+  //usageChartContainer.append(chart1)
+  hourlyBreakdownContainer.append(clickToView);
+  hourlyBreakdownContainer.append(usageChartCaption);
+  hourlyBreakdownContainer.append(usageChartContainer);
+
   todayAndCardsStudiedContainer.appendChild(theWordCalendarContainer);
   todayAndCardsStudiedContainer.append(hourlyBreakdownContainer);
   redCrossAndStatsContainer.appendChild(theWordStats);
