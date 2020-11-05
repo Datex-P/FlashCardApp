@@ -249,3 +249,9 @@ textarea {
   align-items: center;
   background-color: orange;
 }
+
+.day{
+  width: 10px;
+  height: 10px;
+  border: 1px black solid
+}
