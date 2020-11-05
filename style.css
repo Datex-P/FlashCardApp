@@ -292,3 +292,28 @@ textarea {
   box-sizing: border-box;
   margin: 1px;
 }
+
+
+.hourAmount{
+  padding: 1px;
+  width: 20px;
+  height: 10px;
+  position: relative;
+  overflow: visible;
+  
+}
+.hourLevel{
+  position: absolute;
+  top:20px;
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height:200px
+}
+.level{
+  width: 10px;
+  height: 40px;
+  background-color: blue;
+  margin: 1px 0;
+}
