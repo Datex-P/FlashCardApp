@@ -96,6 +96,8 @@ export default function questAnswerTrainOverv (item) {
 
   let questionFieldTextArea = document.createElement('textarea');
       questionFieldTextArea.className = 'textareaStyling';
+      questionFieldTextArea.setAttribute('disabled', 'true')
+      questionFieldTextArea.style.backgroundColor = 'white';
 
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
