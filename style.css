@@ -327,3 +327,13 @@ textarea {
   background-color: blue;
   margin: 1px 0;
 }
+
+.littleModalWindow{
+  position: absolute;
+top: 20px;
+left: 20px;
+
+display: none;
+padding: 20px;
+background-color: white;
+}

@@ -208,22 +208,21 @@ export default function stats() {
 
   let dec = 0;
 
-  function decrease() {
-    dec--;
+  function change(dec) {
     let yearN = yearOfStudy.getFullYear() + dec;
     year.innerText = yearN
     renderDays(yearN)
   }
 
-  function increase() {
-    dec++;
-    let yearN = yearOfStudy.getFullYear() + dec
-    year.innerText = yearN
-    renderDays(yearN)
-  }
+  // function increase() {
+  //   dec++;
+  //   let yearN = yearOfStudy.getFullYear() + dec
+  //   year.innerText = yearN
+  //   renderDays(yearN)
+  // }
 
   buttonLeft.onclick = function () {
-    decrease();
+    change(--dec);
 /*
     dec--;
     let yearN = yearOfStudy.getFullYear() + dec;
@@ -234,7 +233,7 @@ export default function stats() {
   };
 
   buttonRight.onclick = function () {
-    increase();
+    change(++dec);
   /*
     dec++;
     let yearN = yearOfStudy.getFullYear() + dec
@@ -299,8 +298,8 @@ function renderDays(year){
   // console.log(dataBase.DeckNames.Literature.cardsStudied)
   if (cardsStudied.innerHTML === "") {
     cardsStudied.innerHTML = "No cards studied today";
-    cardsStudied.removeAttribute('border');
-    cardsStudied.removeAttribute('overflow');
+    cardsStudied.style.removeProperty('border');
+    cardsStudied.style.removeProperty('overflow');
   }
 
   /*

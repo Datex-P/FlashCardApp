@@ -95,21 +95,35 @@ export default function questAnswerTrainOverv (item) {
 
 let insideNameofDeckContainer = document.createElement('div');
 insideNameofDeckContainer.style.marginTop = '30px';
+insideNameofDeckContainer.id='insideNameofDeckContainer';
 
+let littleModalWindow = document.createElement('div');
+littleModalWindow.classList.add('littleModalWindow')
+
+let opened = false;
 ['edit', 'Delete Card'].forEach(el =>{
 
   let  buttons = document.createElement('button');
         buttons.innerText = el;
         buttons.className = 'againGoodEasyButton';
         buttons.style.width = '100px';
-        buttons.style.display = 'none'
         buttons.style.marginTop = '10px';
         buttons.style.marginLeft = '8px';
-        buttons.style.display = 'none'
 
-      
-        insideNameofDeckContainer.append(buttons);
+        littleModalWindow.appendChild(buttons);
   })
+
+  let settingsIconContainer = document.createElement('div');
+    settingsIconContainer.innerHTML = settingsIcon;
+    settingsIconContainer.style.display = 'none';
+    settingsIconContainer.style.position = 'relative';
+    settingsIconContainer.onclick = function () {
+      opened = !opened
+      littleModalWindow.style.display = opened?'block':'none'
+    }
+
+    settingsIconContainer.appendChild(littleModalWindow)
+    
 
 
 
@@ -177,10 +191,7 @@ insideNameofDeckContainer.style.marginTop = '30px';
       //theWordAnswerContainer.style.border = '1px black solid';
       theWordAnswerContainer.style.width = '270px';
 
-  let settingsIconContainer = document.createElement('div');
-      settingsIconContainer.innerHTML = settingsIcon;
-      settingsIconContainer.style.display = 'none';
-
+ 
 
   let innerWindow = document.createElement('div');
       innerWindow.style.marginTop = '20px';
@@ -231,9 +242,7 @@ insideNameofDeckContainer.style.marginTop = '30px';
   }
 */
 
-  settingsIconContainer.onclick = function () {
-    //deleteButton.style.display = 'block';
-  }
+  
 
   showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
