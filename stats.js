@@ -124,35 +124,42 @@ export default function stats() {
   let radioButtonContainer = document.createElement('div');
   radioButtonContainer.style.display = 'flex';
   radioButtonContainer.style.border = '1px black solid';
-  radioButtonContainer.style.marginTop = '10px'
+  radioButtonContainer.style.marginTop = '10px';
 
-  let oneMonthRadioButton = document.createElement('input')
-  oneMonthRadioButton.setAttribute('type', 'radio');
-  oneMonthRadioButton.className = 'oneMonthThreeMonthButton'
+
+
+  ['1 month','3 month','12 month'].forEach(radio=>{
+    let radioBtn = document.createElement('input')
+    let label = document.createElement('label');
+    label.innerText = radio;
+    radioBtn.value = radio;
+    radioBtn.setAttribute('type', 'radio');
+    radioBtn.className = 'oneMonthThreeMonthButton'
+    radioBtn.name = 'month'
+    radioBtn.onchange = function (event){
+      let {value} = event.target
+      console.log(value)
+    }
+    // radioBtn.onmouseover = function (event){
+    //   let {name,checked, value} = event.target
+    //   console.log(name,checked, value)
+    // }
+    radioButtonContainer.appendChild(radioBtn);
+    radioButtonContainer.appendChild(label)
+  });
+  
   
 
 
 
-  let threeMonthRadioButton = document.createElement('input');
-  threeMonthRadioButton.setAttribute('type', 'radio');
-  threeMonthRadioButton.className = 'oneMonthThreeMonthButton'
-
-
-
-
-  let oneYearRadioButton = document.createElement('input');
-  oneYearRadioButton.setAttribute('type', 'radio');
-  oneYearRadioButton.className = 'oneMonthThreeMonthButton'
   
-  let oneMonth = document.createElement('div');
-  oneMonth.innerText = '1 month';
-
-  let threeMonths = document.createElement('div');
-  threeMonths.innerText = '3 months';
 
 
-  let oneYear = document.createElement('div');
-  oneYear.innerText = '1 year';
+
+  
+  
+  
+ 
 
 
   document.getElementsByClassName('oneMonthThreeMonthButton').onclick = function(e) {
@@ -218,9 +225,6 @@ export default function stats() {
   }
 
 
-
-
-
   let yearOfStudy = new Date();
   let year = document.createElement("div");
   year.innerText = yearOfStudy.getFullYear();
@@ -229,12 +233,16 @@ export default function stats() {
 
   function decrease() {
     dec--;
-    year.innerText = yearOfStudy.getFullYear() + dec;
+    let yearN = yearOfStudy.getFullYear() + dec;
+    year.innerText = yearN
+    renderDays(yearN)
   }
 
   function increase() {
     dec++;
-    year.innerText = yearOfStudy.getFullYear() + dec;
+    let yearN = yearOfStudy.getFullYear() + dec
+    year.innerText = yearN
+    renderDays(yearN)
   }
 
   buttonLeft.onclick = function () {
@@ -253,12 +261,12 @@ export default function stats() {
 
 
   
+  renderDays(2020)
+function renderDays(year){
+  yearBoxContainer.innerHTML=''
+  let thisYear = new Date(`January 1, ${+year}`);
 
-
-
-  let thisYear = new Date(`January 1, ${+year.innerText}`);
-
-  while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year.innerText) {
+  while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
     let day = document.createElement('div');
     day.classList.add('day')
 
@@ -277,7 +285,7 @@ export default function stats() {
 
     yearBoxContainer.appendChild(day)
   }
-
+}
 
 
 
@@ -339,12 +347,7 @@ export default function stats() {
 
   hourlyBreakdownContainer.append(theWordhourlyBreakdown);
 
-  radioButtonContainer.append(oneMonthRadioButton);
-  radioButtonContainer.append(oneMonth);
-  radioButtonContainer.append(threeMonthRadioButton);
-  radioButtonContainer.append(threeMonths);
-  radioButtonContainer.append(oneYearRadioButton);
-  radioButtonContainer.append(oneYear);
+  
 
 
   hourlyBreakdownContainer.append(radioButtonContainer);
