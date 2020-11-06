@@ -61,6 +61,14 @@ export default function questAnswerTrainOverv (item) {
   let easyButton = document.createElement('button');
       easyButton.className = 'againGoodEasyButton';
       easyButton.innerText = 'Easy';
+
+  let deleteButton = document.createElement('button');
+      deleteButton.className = 'againGoodEasyButton';
+      deleteButton.style.width = '100px';
+      deleteButton.innerText = 'Delete Card';
+      deleteButton.style.display = 'none';
+      deleteButton.style.marginTop = '10px';
+      deleteButton.style.marginLeft = '8px';
   
   let showAnswerButton = document.createElement("button");
       showAnswerButton.innerHTML = "Show Answer";
@@ -102,7 +110,8 @@ export default function questAnswerTrainOverv (item) {
   let answerFieldTextArea = document.createElement('textarea');
       answerFieldTextArea.style.display = 'none';
       answerFieldTextArea.className = 'textareaStyling';
-      
+      answerFieldTextArea.setAttribute('disabled', 'true');
+      answerFieldTextArea.style.backgroundColor = 'white';
 
   let innerWindow = document.createElement('div');
       innerWindow.style.marginTop = '20px';
@@ -152,6 +161,8 @@ export default function questAnswerTrainOverv (item) {
     containerForAgainGoodEasyButtons.style.display = 'flex';
     containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
     this.style.display = 'none';
+    deleteButton.style.display = 'block';
+
     };
 
 
@@ -178,6 +189,7 @@ export default function questAnswerTrainOverv (item) {
   insideNameofDeckContainer.append(containerForButtons);
   insideNameofDeckContainer.append(theWordAnswer);
   insideNameofDeckContainer.append(answerFieldTextArea);
+  insideNameofDeckContainer.append(deleteButton);
   
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
   theNameOftheDeckAndRedCrossContainer.append(redCross);

@@ -51,11 +51,11 @@ export default function stats() {
 
   let cardsStudied = document.createElement("div");
 
-  cardsStudied.style.display = "flex";
-  cardsStudied.style.justifyContent = "space-between";
+  //ardsStudied.style.display = "flex";
+  //cardsStudied.style.justifyContent = "space-between";
   cardsStudied.style.border = '1px solid black';
 
-  cardsStudied.style.width = "200px";
+  cardsStudied.style.width = "270px";
   cardsStudied.style.height = '100px'
 
   //cardsStudied.style.maxHeight = '110px';
@@ -107,7 +107,6 @@ export default function stats() {
   let yearBoxContainer = document.createElement('div');
   yearBoxContainer.style.display = 'flex';
   yearBoxContainer.style.flexWrap = 'wrap'
-  //yearBoxContainer.style.width = '300px';
   yearBoxContainer.style.width = '270px';
   yearBoxContainer.style.height = '210px';
   yearBoxContainer.style.border = '1px solid black';
@@ -129,21 +128,38 @@ export default function stats() {
 
   let oneMonthRadioButton = document.createElement('input')
   oneMonthRadioButton.setAttribute('type', 'radio');
+  oneMonthRadioButton.className = 'oneMonthThreeMonthButton'
+  
+
+
 
   let threeMonthRadioButton = document.createElement('input');
   threeMonthRadioButton.setAttribute('type', 'radio');
+  threeMonthRadioButton.className = 'oneMonthThreeMonthButton'
+
+
+
 
   let oneYearRadioButton = document.createElement('input');
   oneYearRadioButton.setAttribute('type', 'radio');
-
+  oneYearRadioButton.className = 'oneMonthThreeMonthButton'
+  
   let oneMonth = document.createElement('div');
   oneMonth.innerText = '1 month';
 
   let threeMonths = document.createElement('div');
   threeMonths.innerText = '3 months';
 
+
   let oneYear = document.createElement('div');
   oneYear.innerText = '1 year';
+
+
+  document.getElementsByClassName('oneMonthThreeMonthButton').onclick = function(e) {
+    e.target.checked = true;
+  }
+
+
 
   // let usageChartContainer = document.createElement('div');
   // usageChartContainer.style.marginTop = '10px';

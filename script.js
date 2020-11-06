@@ -2,12 +2,21 @@ import createDom from './createDom.js';
 import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 import createNewDeck from './createNewDeck.js'
-import {doorLeave } from './svgs.js';
+import {statsIcon, logoutIcon } from './svgs.js';
 
 let containerDoorLeave = document.createElement('div');
+    containerDoorLeave.style.display = 'flex';
+    containerDoorLeave.style.flexDirection = 'column';
+    containerDoorLeave.style.alignItems = 'center';
+
+let containerStatsIcon = document.createElement('div');
 
 document.getElementById('logout').append(containerDoorLeave);
-containerDoorLeave.innerHTML = doorLeave;
+containerDoorLeave.innerHTML = logoutIcon;
+
+
+document.getElementById('stats').append(containerStatsIcon);
+containerStatsIcon.innerHTML = statsIcon;
 
 createDom(dataBase.DeckNames);
 
