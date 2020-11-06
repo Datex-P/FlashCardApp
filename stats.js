@@ -45,28 +45,20 @@ export default function stats() {
 
   let todayAndCardsStudiedContainer = document.createElement("div");
   todayAndCardsStudiedContainer.style.marginTop = "30px";
-  todayAndCardsStudiedContainer.style.display = "flex";
-  todayAndCardsStudiedContainer.style.flexDirection = "column";
-  todayAndCardsStudiedContainer.style.alignItems = "center";
+  todayAndCardsStudiedContainer.className = 'flexColumnAlignCenter';
 
   let cardsStudied = document.createElement("div");
-
-  //ardsStudied.style.display = "flex";
-  //cardsStudied.style.justifyContent = "space-between";
+  cardsStudied.className = 'flexCenter'
   cardsStudied.style.border = '1px solid black';
-
   cardsStudied.style.width = "270px";
   cardsStudied.style.height = '100px'
-
-  //cardsStudied.style.maxHeight = '110px';
   cardsStudied.style.overflow = 'scroll';
   cardsStudied.style.overflowX = 'hidden';
   cardsStudied.style.marginBottom = '5px';
 
+
   let theWordTodayContainer = document.createElement("div");
-  theWordTodayContainer.style.display = "flex";
-  theWordTodayContainer.style.flexDirection = "column";
-  theWordTodayContainer.style.alignItems = "center";
+  theWordTodayContainer.className = 'flexColumnAlignCenter';
   theWordTodayContainer.style.marginBottom = "10px";
 
   let theWordToday = document.createElement("div");
@@ -75,9 +67,7 @@ export default function stats() {
   theWordToday.style.marginBottom = '5px';
 
   let theWordCalendarContainer = document.createElement("div");
-  theWordCalendarContainer.style.display = "flex";
-  theWordCalendarContainer.style.flexDirection = "column";
-  theWordCalendarContainer.style.alignItems = 'center';
+  theWordCalendarContainer.className = 'flexColumnAlignCenter';
 
   let theWordCalendar = document.createElement("div");
   theWordCalendar.style.marginTop = "10px";
@@ -112,9 +102,7 @@ export default function stats() {
   yearBoxContainer.style.border = '1px solid black';
 
   let hourlyBreakdownContainer = document.createElement('div');
-  hourlyBreakdownContainer.style.display = 'flex';
-  hourlyBreakdownContainer.style.flexDirection = 'column';
-  hourlyBreakdownContainer.style.alignItems = 'center';
+  hourlyBreakdownContainer.className =  'flexColumnAlignCenter'
 
   let theWordhourlyBreakdown = document.createElement('div');
   theWordhourlyBreakdown.innerText = 'Hourly Breakdown'
@@ -154,17 +142,6 @@ export default function stats() {
 
   
 
-
-
-  
-  
-  
- 
-
-
-  document.getElementsByClassName('oneMonthThreeMonthButton').onclick = function(e) {
-    e.target.checked = true;
-  }
 
 
 
@@ -247,10 +224,23 @@ export default function stats() {
 
   buttonLeft.onclick = function () {
     decrease();
+/*
+    dec--;
+    let yearN = yearOfStudy.getFullYear() + dec;
+    year.innerText = yearN
+    renderDays(yearN)
+    */
+    
   };
 
   buttonRight.onclick = function () {
     increase();
+  /*
+    dec++;
+    let yearN = yearOfStudy.getFullYear() + dec
+    year.innerText = yearN
+    renderDays(yearN)
+*/
   };
 
   let chart1 = document.createElement('div');
@@ -309,6 +299,8 @@ function renderDays(year){
   // console.log(dataBase.DeckNames.Literature.cardsStudied)
   if (cardsStudied.innerHTML === "") {
     cardsStudied.innerHTML = "No cards studied today";
+    cardsStudied.removeAttribute('border');
+    cardsStudied.removeAttribute('overflow');
   }
 
   /*

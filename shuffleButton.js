@@ -9,12 +9,12 @@ export default function shuffle(item) {
   console.log(dataBase)
 
   function questionNumber(random) {
-    return dataBase.DeckNames[item][random].question
+    return dataBase.DeckNames[item][random].question;
   }
   let randomInScope = random();
 
   function answerNumber(random) {
-    return  dataBase.DeckNames[item][random].answer
+    return  dataBase.DeckNames[item][random].answer;
   }
 
   function random() {

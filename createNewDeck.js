@@ -14,10 +14,9 @@ export default function createNewDeck () {
       mainWindow.style.top =  '100px';
       mainWindow.style.position = 'absolute';
       mainWindow.style.borderRadius = '5px';
-      mainWindow.style.display = 'flex';
-      mainWindow.style.flexDirection = 'column';
-      mainWindow.style.alignItems = 'center';
+      mainWindow.className = 'flexColumnAlignCenter'
     
+      
   let nameForNewDeckText = document.createElement('div');
       nameForNewDeckText.style.fontWeight = 'bold';
       nameForNewDeckText.innerHTML = 'Name for new deck' ;

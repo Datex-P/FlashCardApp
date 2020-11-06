@@ -208,11 +208,16 @@ textarea {
   width: 20px;
 }
 
+.flexColumnAlignCenter {
+  display: flex;
+  flex-direction: column;
+  align-Items : center;
+}
+
 
 #questAnswerTrainOverv {
   width: 411px;
   height: 531px;
-  /*background-color: rgba(200, 168, 115,0.95);*/
   position: absolute;
   /* height: 100vh; */
   display: none;
@@ -251,9 +256,7 @@ textarea {
   margin-top: -40px;
 }
 
-.oneMonthThreeMonthButton {
 
-}
 
 #createDeckButton {
   background-color: #545863; 
@@ -292,7 +295,7 @@ textarea {
   background-color: orange;
 }
 
-.day{
+.day {
   width: 10px;
   height: 10px;
   border: 1px black solid;
@@ -301,7 +304,7 @@ textarea {
 }
 
 
-.hourAmount{
+.hourAmount {
   padding: 1px;
   width: 20px;
   height: 10px;
@@ -309,7 +312,7 @@ textarea {
   overflow: visible;
   
 }
-.hourLevel{
+.hourLevel {
   position: absolute;
   top:20px;
   width: 10px;
@@ -318,7 +321,7 @@ textarea {
   justify-content: flex-end;
   height:200px
 }
-.level{
+.level {
   width: 10px;
   height: 40px;
   background-color: blue;

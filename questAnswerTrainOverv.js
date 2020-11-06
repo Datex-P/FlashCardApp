@@ -1,6 +1,6 @@
 import shuffle from './shuffleButton.js';
 import {startTimer,timer} from  './timer.js';
-import {redCross as redCrossIcon} from './svgs.js';
+import {redCross as redCrossIcon, settingsIcon} from './svgs.js';
 
 
 export default function questAnswerTrainOverv (item) {
@@ -40,7 +40,7 @@ export default function questAnswerTrainOverv (item) {
   let containerForButtonsWithDescriptionsDisplay = document.createElement('div');
       containerForButtonsWithDescriptionsDisplay.style.display = 'flex';
       containerForButtonsWithDescriptionsDisplay.style.flexDirection = 'column';
-
+/*
   let smallerTwoMin = document.createElement('div');
       smallerTwoMin.innerText = '< 2m';
 
@@ -49,7 +49,25 @@ export default function questAnswerTrainOverv (item) {
 
   let smallerTwoDays = document.createElement('div');
       smallerTwoDays.innerText = '< 2d';
+*/
 
+
+/*
+      containerForText1DayEtc.append(smallerTwoMin)
+      containerForText1DayEtc.append(smallerTenMin)
+      containerForText1DayEtc.append(smallerTwoDays)
+*/
+
+
+/*
+['<2m', '<10m', '<2d'].forEach(el=>{
+  let smallerThan = document.createElement('div');
+      smallerThan.innerText = el;
+      containerForText1DayEtc.append(smallerThan);
+})
+*/ 
+
+    /*  
   let againButton = document.createElement('button');
       againButton.className = 'againGoodEasyButton';
       againButton.innerText = 'Again'
@@ -61,6 +79,42 @@ export default function questAnswerTrainOverv (item) {
   let easyButton = document.createElement('button');
       easyButton.className = 'againGoodEasyButton';
       easyButton.innerText = 'Easy';
+*/
+
+['again', 'good', 'easy'].forEach(el =>{
+
+  let  buttons = document.createElement('button');
+        buttons.innerText = el;
+        buttons.className = 'againGoodEasyButton';
+      
+        containerForAgainGoodEasyButtons.append(buttons);
+  })
+
+
+
+
+let insideNameofDeckContainer = document.createElement('div');
+insideNameofDeckContainer.style.marginTop = '30px';
+
+['edit', 'Delete Card'].forEach(el =>{
+
+  let  buttons = document.createElement('button');
+        buttons.innerText = el;
+        buttons.className = 'againGoodEasyButton';
+        buttons.style.width = '100px';
+        buttons.style.display = 'none'
+        buttons.style.marginTop = '10px';
+        buttons.style.marginLeft = '8px';
+        buttons.style.display = 'none'
+
+        //buttons  = buttons[idx]
+      
+        insideNameofDeckContainer.append(buttons);
+  })
+
+
+
+/*
 
   let deleteButton = document.createElement('button');
       deleteButton.className = 'againGoodEasyButton';
@@ -69,14 +123,19 @@ export default function questAnswerTrainOverv (item) {
       deleteButton.style.display = 'none';
       deleteButton.style.marginTop = '10px';
       deleteButton.style.marginLeft = '8px';
+*/
+
+
+
+
+
   
   let showAnswerButton = document.createElement("button");
       showAnswerButton.innerHTML = "Show Answer";
       showAnswerButton.id = "showAnswerButton";
       showAnswerButton.style.marginLeft = '8px';
 
-  let insideNameofDeckContainer = document.createElement('div');
-      insideNameofDeckContainer.style.marginTop = '30px';
+
 
   let theNameOftheDeckAndRedCrossContainer = document.createElement('div');
       theNameOftheDeckAndRedCrossContainer.style.display = 'flex';
@@ -113,6 +172,17 @@ export default function questAnswerTrainOverv (item) {
       answerFieldTextArea.setAttribute('disabled', 'true');
       answerFieldTextArea.style.backgroundColor = 'white';
 
+  let theWordAnswerContainer = document.createElement('div');
+      theWordAnswerContainer.style.display = 'flex';
+      theWordAnswerContainer.style.justifyContent = 'space-between';
+      //theWordAnswerContainer.style.border = '1px black solid';
+      theWordAnswerContainer.style.width = '270px';
+
+  let settingsIconContainer = document.createElement('div');
+      settingsIconContainer.innerHTML = settingsIcon;
+      settingsIconContainer.style.display = 'none';
+
+
   let innerWindow = document.createElement('div');
       innerWindow.style.marginTop = '20px';
       innerWindow.style.marginLeft = '30px';
@@ -135,6 +205,14 @@ export default function questAnswerTrainOverv (item) {
     answerFieldTextArea.innerText = answer;
   }
 
+/*
+  buttons.onclick = function () {
+    //this.style.cursor = 'pointer';
+    console.log('hi');
+  }
+*/
+
+/*
   againButton.onclick = function () {
     shuffleLogic();
     this.style.cursor = 'pointer';
@@ -152,6 +230,11 @@ export default function questAnswerTrainOverv (item) {
     this.style.cursor = "pointer";
     display();
   }
+*/
+
+  settingsIconContainer.onclick = function () {
+    //deleteButton.style.display = 'block';
+  }
 
   showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
@@ -161,20 +244,18 @@ export default function questAnswerTrainOverv (item) {
     containerForAgainGoodEasyButtons.style.display = 'flex';
     containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
     this.style.display = 'none';
-    deleteButton.style.display = 'block';
+    //deleteButton.style.display = 'block';
+    settingsIconContainer.style.display = 'block'
 
     };
 
 
 
-  containerForText1DayEtc.append(smallerTwoMin)
-  containerForText1DayEtc.append(smallerTenMin)
-  containerForText1DayEtc.append(smallerTwoDays)
  
 
-  containerForAgainGoodEasyButtons.append(againButton);
-  containerForAgainGoodEasyButtons.append(goodButton);
-  containerForAgainGoodEasyButtons.append(easyButton);
+ // containerForAgainGoodEasyButtons.append(againButton);
+  //containerForAgainGoodEasyButtons.append(goodButton);
+  //containerForAgainGoodEasyButtons.append(easyButton);
 
   containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc)
   containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
@@ -187,9 +268,14 @@ export default function questAnswerTrainOverv (item) {
   insideNameofDeckContainer.append(theWordQuestion);
   insideNameofDeckContainer.append(questionFieldTextArea);
   insideNameofDeckContainer.append(containerForButtons);
-  insideNameofDeckContainer.append(theWordAnswer);
+
+
+  theWordAnswerContainer.append(theWordAnswer)
+  theWordAnswerContainer.append(settingsIconContainer)
+  insideNameofDeckContainer.append(theWordAnswerContainer)
+  //insideNameofDeckContainer.append(theWordAnswer);
   insideNameofDeckContainer.append(answerFieldTextArea);
-  insideNameofDeckContainer.append(deleteButton);
+  //insideNameofDeckContainer.append(deleteButton);
   
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
   theNameOftheDeckAndRedCrossContainer.append(redCross);

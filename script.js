@@ -4,15 +4,13 @@ import stats from './stats.js';
 import createNewDeck from './createNewDeck.js'
 import {statsIcon, logoutIcon } from './svgs.js';
 
-let containerDoorLeave = document.createElement('div');
-    containerDoorLeave.style.display = 'flex';
-    containerDoorLeave.style.flexDirection = 'column';
-    containerDoorLeave.style.alignItems = 'center';
-
+let logoutIconContainer = document.createElement('div');
+    logoutIconContainer.className = 'flexColumnAlignCenter'
+  
 let containerStatsIcon = document.createElement('div');
 
-document.getElementById('logout').append(containerDoorLeave);
-containerDoorLeave.innerHTML = logoutIcon;
+document.getElementById('logout').append(logoutIconContainer);
+logoutIconContainer.innerHTML = logoutIcon;
 
 
 document.getElementById('stats').append(containerStatsIcon);
