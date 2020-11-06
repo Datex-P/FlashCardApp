@@ -107,7 +107,6 @@ insideNameofDeckContainer.style.marginTop = '30px';
         buttons.style.marginLeft = '8px';
         buttons.style.display = 'none'
 
-        //buttons  = buttons[idx]
       
         insideNameofDeckContainer.append(buttons);
   })

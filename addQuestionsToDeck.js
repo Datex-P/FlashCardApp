@@ -49,95 +49,34 @@ export default function addQuestionsToDeck (item) {
        redCross.innerHTML = redCrossIcon;
        redCross.style.height = '20px';
        redCross.style.width = '20px';
-/*
-  let theWordQuestion = document.createElement('div');
-      theWordQuestion.innerHTML = 'Question';
-      theWordQuestion.style.fontWeight = 'bold';
-      theWordQuestion.style.marginBottom = '10px';
-      theWordQuestion.style.marginLeft = '8px';
 
-  let theWordAnswer = document.createElement('div');
-      theWordAnswer.innerHTML = 'Answer'
-      theWordAnswer.style.fontWeight = 'bold';
-      theWordAnswer.style.marginBottom = '10px';
-      theWordAnswer.style.marginLeft = '8px';
-*/
 
-['Question', 'Answer'].forEach((el, idx) =>{
+['Question', 'Answer'].forEach(el =>{
 
-let  theWordQuestionAndAnswer = document.createElement('div');
+let  textarea = document.createElement('textarea');
+    textarea.className = 'textareaStyling';
+
+let theWordQuestionAndAnswer = document.createElement('div');
       theWordQuestionAndAnswer.innerText = el;
       theWordQuestionAndAnswer.style.fontWeight = 'bold';
       theWordQuestionAndAnswer.style.marginBottom = '10px';
       theWordQuestionAndAnswer.style.marginLeft = '8px';
-      //theWordQuestionAndAnswer = `theWordQuestionAndAnswer${idx}`
-      //theWordQuestionAndAnswer = `${idx}`;
-
+  
       insideFlashCardsContainer.append(theWordQuestionAndAnswer)
-
+      insideFlashCardsContainer.append(textarea)
 })
 
 
 
-/*
-  ['1 month','3 month','12 month'].forEach(radio=>{
-    let radioBtn = document.createElement('input')
-    let label = document.createElement('label');
-    label.innerText = radio;
-    radioBtn.value = radio;
-    radioBtn.setAttribute('type', 'radio');
-    radioBtn.className = 'oneMonthThreeMonthButton'
-    radioBtn.name = 'month'
-    radioBtn.onchange = function (event){
-      let {value} = event.target
-      console.log(value)
-    }
-    // radioBtn.onmouseover = function (event){
-    //   let {name,checked, value} = event.target
-    //   console.log(name,checked, value)
-    // }
-    radioButtonContainer.appendChild(radioBtn);
-    radioButtonContainer.appendChild(label)
-  });
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  let questionFieldTextArea = document.createElement('textarea');
-     questionFieldTextArea.className = 'textareaStyling';
-
-  let answerFieldTextArea = document.createElement('textarea');
-     answerFieldTextArea.className = 'textareaStyling';
-
-
-    //  insideFlashCardsContainer.append(theWordQuestion);
-      insideFlashCardsContainer.append(questionFieldTextArea);
-     // insideFlashCardsContainer.append(theWordAnswer);
-      insideFlashCardsContainer.append(answerFieldTextArea);
-      insideFlashCardsContainer.append(addToDeck);
+  insideFlashCardsContainer.append(addToDeck);
       
-      theWordFlashCardsAndRedCrossContainer.append(header);
-      theWordFlashCardsAndRedCrossContainer.append(redCross);
-      innerWindow.append(theWordFlashCardsAndRedCrossContainer)
-      innerWindow.append(insideFlashCardsContainer);
+  theWordFlashCardsAndRedCrossContainer.append(header);
+  theWordFlashCardsAndRedCrossContainer.append(redCross);
+  innerWindow.append(theWordFlashCardsAndRedCrossContainer)
+  innerWindow.append(insideFlashCardsContainer);
       
-      mainWindow.append(innerWindow);
-      anchorElement.append(mainWindow);
+  mainWindow.append(innerWindow);
+  anchorElement.append(mainWindow);
 
   redCross.onclick = function () {
 
