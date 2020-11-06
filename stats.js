@@ -222,7 +222,8 @@ export default function stats() {
   // }
 
   buttonLeft.onclick = function () {
-    change(--dec);
+    dec-=1
+    change(dec);
 /*
     dec--;
     let yearN = yearOfStudy.getFullYear() + dec;
@@ -233,7 +234,8 @@ export default function stats() {
   };
 
   buttonRight.onclick = function () {
-    change(++dec);
+    dec+=1
+    change(dec);
   /*
     dec++;
     let yearN = yearOfStudy.getFullYear() + dec
