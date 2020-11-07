@@ -268,17 +268,17 @@ textarea {
 }
 
 #createDeckButtonContainer {
-  margin-top: -40px;
-  /*position: fixed;*/
+  bottom: 40px;
+  position: absolute;
+  width: 100%;
 }
-
 
 
 #createDeckButton {
   background-color: #545863; 
   color:#FFE3E3;  
-  width: 70%;
-  }
+  padding: 10px 10px;
+}
 
 #outerLoginPage {
 	width: 411px; 
@@ -293,7 +293,8 @@ textarea {
 	height: 731px; 
 	border-radius: 5px; 
 	display: flex; 
-	flex-direction: column
+  flex-direction: column;
+  position: relative
 }
 .flexCenter {
 	display: flex;
@@ -317,6 +318,17 @@ textarea {
   border: 1px black solid;
   box-sizing: border-box;
   margin: 1px;
+  position: relative;
+}
+.day > div{
+  position: absolute;
+  top:0;
+  left:0;
+  display:flex;
+  width:120px;
+  background-color: white;
+  z-index:2;
+  padding: 5px;
 }
 
 

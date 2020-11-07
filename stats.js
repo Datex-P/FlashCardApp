@@ -50,7 +50,8 @@ export default function stats() {
   cardsStudied.className = 'flexCenter'
  // cardsStudied.style.border = '1px solid black';
   cardsStudied.style.width = "270px";
-  cardsStudied.style.height = '100px'
+  cardsStudied.style.maxHeight = '100px'
+  cardsStudied.style.height = 'fit-content'
   
   cardsStudied.style.overflow = 'scroll';
   cardsStudied.style.overflowX = 'hidden';
@@ -244,13 +245,12 @@ function renderDays(year){
 
     let date = thisYear.toDateString()
     day.onclick = function () {
-      let day1 = document.createElement('div');
-          day1.style.display = 'flex';
-          day1.innerText = `${date}`;
-          day1.style.width = '30px';
-          day1.style.backgroundColor = 'white';
-          day1.style.zIndex = '2';
-          day.append(day1)
+      yearBoxContainer.querySelectorAll('.day').forEach(day=>day.innerHTML = '')
+      let dayInner = document.createElement('div');
+      dayInner.innerText = `${date}`;
+ 
+      day.append(dayInner)
+
     }
 
     for (let deck in dataBase.DeckNames) {
@@ -289,7 +289,7 @@ function renderDays(year){
     cardsStudied.style.removeProperty('overflow');
   }
   
-  if  (Object.keys(dataBase.counter).length <7 /*|| !(Object.keys(dataBase.counter))*/ ) {
+  if  (Object.keys(dataBase.counter||{}).length <7 /*|| !(Object.keys(dataBase.counter))*/ ) {
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }

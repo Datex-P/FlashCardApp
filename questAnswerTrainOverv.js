@@ -87,9 +87,9 @@ export default function questAnswerTrainOverv(item) {
     button.style.marginLeft = "8px";
     button.onclick = function(){
       if (el === 'edit'){
-        answerFieldTextArea.setAttribute("disabled", "false");
-        questionFielTextArea.setAttribute('autofocus', 'true');
-        questionFieldTextArea.setAttribute("disabled", "false");
+        answerFieldTextArea.removeAttribute("disabled");
+        questionFieldTextArea.focus()
+        questionFieldTextArea.removeAttribute("disabled");
 
         console.log('I am edit');
       } else if (el === 'delete'){
