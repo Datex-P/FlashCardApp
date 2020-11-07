@@ -73,7 +73,7 @@ export default function questAnswerTrainOverv(item) {
       e.target.styyle.cursor = 'default'
     });
 
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function(){
     
 
       if (el ==='again') {
@@ -82,11 +82,11 @@ export default function questAnswerTrainOverv(item) {
       if (el == 'good') {
         shuffleLogic(); //different kinds of shuffle logic   
       }
-        if (el ==='again') {
-          shuffleLogic(); //different kinds of shuffle logic     
+      if (el ==='again') {
+        shuffleLogic(); //different kinds of shuffle logic     
       }
       display();
-    )};
+    });
 
     containerForAgainGoodEasyButtons.append(button)
   });

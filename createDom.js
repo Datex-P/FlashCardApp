@@ -74,36 +74,49 @@ export default function createDom(obj, length = "long") {
     editIcon.querySelector('svg').style.color = 'orange';
 
     let changeNameofDeckInput = document.createElement("input");
+    changeNameofDeckInput.onclick = function(event){
+      event.stopPropagation()
+    }
 
-    
-/*
-    editIcon.onclick = function () {
+    function clickOutsideHandle(){
+      alert("Clicked out Box")
+    }
 
-      setTimeout(function () {
-        window.onclick = function handleOutsideClick(e) {
-          if (changeNameofDeckInput.contains(e.target) || this.innerHTML) {
-            alert("Clicked in Box");
-          } else {
-              //alert('clicked outside')
-              this.classList.add = 'blinkingIcon';
+    editIcon.onclick = function (event) {
+      // setTimeout(()=>{
+      //   window.onclick = function handleOutsideClick(e) {
+      //     if (!changeNameofDeckInput.contains(e.target) && !editIcon.contains(e.target)) {
+      //       alert("Clicked out Box");
 
-     
-        }
-      }
-    }, 100);
+      //         //alert('clicked outside')
+      //       this.classList.add = 'blinkingIcon';
+
+      //     }
+      //   }
+      // },10)
+        // window.onclick = function handleOutsideClick(e) {
+        //     alert("Clicked out Box")
+        // }
+        window.addEventListener('click',clickOutsideHandle)
+      event.stopPropagation()
 
  
     this.classList.add = 'blinkingIcon';
     this.innerHTML = save;
+      
 
       if (!edited) {
         this.innerHTML = save;       
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
+        // window.removeEventListener('click',clickOutsideHandle)
+        console.log('click like a edit')
       } else {
+        this.innerHTML = edit; 
+        console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-        
+        window.removeEventListener('click',clickOutsideHandle)
         edited = false;
         //send fetch=>saveToDataBase
         // if ok
@@ -114,7 +127,7 @@ export default function createDom(obj, length = "long") {
       }
     };
 
-*/
+
 
 
 
