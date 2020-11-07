@@ -88,35 +88,17 @@ export default function createDom(obj, length = "long") {
     }
 
     editIcon.onclick = function (event) {
-      // setTimeout(()=>{
-      //   window.onclick = function handleOutsideClick(e) {
-      //     if (!changeNameofDeckInput.contains(e.target) && !editIcon.contains(e.target)) {
-      //       alert("Clicked out Box");
-
-      //         //alert('clicked outside')
-      //       this.classList.add = 'blinkingIcon';
-
-      //     }
-      //   }
-      // },10)
-        // window.onclick = function handleOutsideClick(e) {
-        //     alert("Clicked out Box")
-        // }
+    
         window.addEventListener('click',clickOutsideHandle)
       event.stopPropagation()
 
- 
-    //this.classList.add = 'blinkingIcon';
-    //this.innerHTML = save;
-      
-
       if (!edited) {
         this.innerHTML = save;       
-        //this.classList.add('blinkingIcon');
+        
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
-        // window.removeEventListener('click',clickOutsideHandle)
+    
         console.log('click like a edit')
       } else {
         this.innerHTML = edit; 
@@ -127,9 +109,6 @@ export default function createDom(obj, length = "long") {
         //send fetch=>saveToDataBase
         // if ok
         nameOfNewDeck.innerText = changeNameofDeckInput.value;
-
-       
-
       }
     };
 

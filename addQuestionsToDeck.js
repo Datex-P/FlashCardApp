@@ -46,8 +46,7 @@ export default function addQuestionsToDeck (item) {
 
   let redCross = document.createElement('div');
        redCross.innerHTML = redCrossIcon;
-       redCross.style.height = '20px';
-       redCross.style.width = '20px';
+       redCross.className = 'redCross';
 
 
 ['Question', 'Answer'].forEach(el =>{

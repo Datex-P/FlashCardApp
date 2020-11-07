@@ -20,7 +20,7 @@ export default function questAnswerTrainOverv(item) {
   containerForText1DayEtc.style.width = "205px";
   containerForText1DayEtc.style.marginLeft = "20px";
   containerForText1DayEtc.style.marginBottom = "2px";
-  //containerForText1DayEtc.style.border = '1px black solid';
+  containerForText1DayEtc.style.border = '1px black solid';
 
   let containerForAgainGoodEasyButtons = document.createElement("div");
   containerForAgainGoodEasyButtons.style.display = "none";
@@ -33,23 +33,6 @@ export default function questAnswerTrainOverv(item) {
   containerForsmallerTwoMinutesEtc.className= "flexColumn";
 
 
-  /*
-  let smallerTwoMin = document.createElement('div');
-      smallerTwoMin.innerText = '< 2m';
-
-  let smallerTenMin = document.createElement('div');
-      smallerTenMin.innerText = '< 10m';
-
-  let smallerTwoDays = document.createElement('div');
-      smallerTwoDays.innerText = '< 2d';
-*/
-
-  /*
-      containerForText1DayEtc.append(smallerTwoMin)
-      containerForText1DayEtc.append(smallerTenMin)
-      containerForText1DayEtc.append(smallerTwoDays)
-*/
-
   
 ['<2m', '<10m', '<2d'].forEach(el=>{
   let smallerThan = document.createElement('div');
@@ -57,27 +40,21 @@ export default function questAnswerTrainOverv(item) {
       containerForText1DayEtc.append(smallerThan);
 });
 
-
-
-
   ["again", "good", "easy"].forEach((el) => {
-    let button2 = document.createElement("button");
-    button2.innerText = el;
-    button2.className = "againGoodEasyButton";
+    let button = document.createElement("button");
+    button.innerText = el;
+    button.className = "againGoodEasyButton";
 
-    button2.onmouseover = function (e) {
+    button.onmouseover = function (e) {
       e.target.style.cursor = 'pointer';
     };
 
-    button2.addEventListener('mouseout', function (e) {
-      e.target.style.cursor = 'default'
-    });
-
-    button2.addEventListener('click', function(){
+    button.addEventListener('click', function(){
     
 
       if (el ==='again') {
           shuffleLogic(); //different kinds of shuffle logic     
+          display();
       }
       if (el == 'good') {
         shuffleLogic(); //different kinds of shuffle logic   
@@ -88,7 +65,7 @@ export default function questAnswerTrainOverv(item) {
       display();
     });
 
-    containerForAgainGoodEasyButtons.append(button2)
+    containerForAgainGoodEasyButtons.append(button)
   });
 
   
@@ -110,8 +87,16 @@ export default function questAnswerTrainOverv(item) {
     button.style.marginLeft = "8px";
     button.onclick = function(){
       if (el === 'edit'){
+        answerFieldTextArea.setAttribute("disabled", "false");
+        questionFielTextArea.setAttribute('autofocus', 'true');
+        questionFieldTextArea.setAttribute("disabled", "false");
+
         console.log('I am edit');
       } else if (el === 'delete'){
+
+        //dataBase.DeckNames[item][random].question;
+       // delete dataBase.DeckNames[item][random].answer;
+
         console.log('I am delete');
       }
     }
@@ -120,6 +105,7 @@ export default function questAnswerTrainOverv(item) {
 
   let settingsIconContainer = document.createElement("div");
   settingsIconContainer.innerHTML = settingsIcon;
+  settingsIconContainer.style.marginTop = '5px';
   settingsIconContainer.style.display = "none";
   settingsIconContainer.style.position = "relative";
   settingsIconContainer.onclick = function () {
@@ -129,16 +115,11 @@ export default function questAnswerTrainOverv(item) {
 
   settingsIconContainer.appendChild(littleModalWindow);
 
-  /*
+  settingsIconContainer.addEventListener('mouseover', function() {
+    settingsIconContainer.style.cursor = 'pointer';
+  });
 
-  let deleteButton = document.createElement('button');
-      deleteButton.className = 'againGoodEasyButton';
-      deleteButton.style.width = '100px';
-      deleteButton.innerText = 'Delete Card';
-      deleteButton.style.display = 'none';
-      deleteButton.style.marginTop = '10px';
-      deleteButton.style.marginLeft = '8px';
-*/
+
 
   let showAnswerButton = document.createElement("button");
   showAnswerButton.innerHTML = "Show Answer";
@@ -146,17 +127,18 @@ export default function questAnswerTrainOverv(item) {
   showAnswerButton.style.marginLeft = "8px";
 
   let theNameOftheDeckAndRedCrossContainer = document.createElement("div");
-  theNameOftheDeckAndRedCrossContainer.style.width = "247px";
+  theNameOftheDeckAndRedCrossContainer.style.width = "265px";
   theNameOftheDeckAndRedCrossContainer.className = 'flexSpaceBetween'
   theNameOftheDeckAndRedCrossContainer.style.marginLeft = "4px";
+  theNameOftheDeckAndRedCrossContainer.style.border = '1px black solid';
 
   let theNameofTheDeck = document.createElement("div");
   theNameofTheDeck.innerHTML = `Deck: ${item}`;
 
   let redCross = document.createElement("div");
   redCross.innerHTML = redCrossIcon;
-  redCross.style.height = "20px";
-  redCross.style.width = "20px";
+  redCross.className = 'redCross';
+ 
 
   let theWordQuestion = document.createElement("div");
   theWordQuestion.className = "theWordQuestionAndAnswer";
@@ -166,6 +148,7 @@ export default function questAnswerTrainOverv(item) {
   theWordAnswer.innerHTML = "Answer";
   theWordAnswer.className = "theWordQuestionAndAnswer";
   theWordAnswer.style.display = "none";
+  theWordAnswer.style.marginTop = '5px';
 
   let questionFieldTextArea = document.createElement("textarea");
   questionFieldTextArea.className = "textareaStyling";
@@ -194,9 +177,10 @@ export default function questAnswerTrainOverv(item) {
   function display() {
     answerFieldTextArea.style.display = "none";
     theWordAnswer.style.display = "none";
-   // containerForText1DayEtc.style.display = "none";
-    //containerForAgainGoodEasyButtons.style.display = "none";
+    containerForText1DayEtc.style.display = "none";
+    containerForAgainGoodEasyButtons.style.display = "none";
     showAnswerButton.style.display = "block";
+    settingsIconContainer.style.display = "none";
   }
 
   function shuffleLogic() {
@@ -207,38 +191,21 @@ export default function questAnswerTrainOverv(item) {
 
  
 
-  /*
-  againButton.onclick = function () {
-    shuffleLogic();
-    this.style.cursor = 'pointer';
-    display();
-  };
-
-  goodButton.onclick = function () {
-    shuffleLogic();
-    this.style.cursor = 'pointer';
-    display(); 
-  }
-
-  easyButton.onclick = function () {
-    shuffleLogic();
-    this.style.cursor = "pointer";
-    display();
-  }
-*/
+ 
 
   showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
     answerFieldTextArea.style.display = "block";
     theWordAnswer.style.display = "block";
-    /* not sure why those lines do not work*/
-    containerForAgainGoodEasyButtons.style.display = 'block';
-    containerForText1DayEtc.style.display = 'block'
-    //containerForText1DayEtc.classList.add("flexSpaceBetween");
-    //containerForAgainGoodEasyButtons.className += 'flexSpaceBetween';
+    containerForText1DayEtc.style.display = 'flex';
+    containerForText1DayEtc.style.justifyContent = 'space-between';
+    
+   // containerForAgainGoodEasyButtons.className = 'flexSpaceBetween';
+    
+    containerForAgainGoodEasyButtons.style.display = 'flex';
+    containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
     
     this.style.display = "none";
-    //deleteButton.style.display = 'block';
     settingsIconContainer.style.display = "block";
   };
 
@@ -248,15 +215,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-/*
-  nameOfNewDeck.addEventListener("mouseleave", () => {
-    nameOfNewDeck.style.color = "black";
-  });
-  */
-
-  // containerForAgainGoodEasyButtons.append(againButton);
-  //containerForAgainGoodEasyButtons.append(goodButton);
-  //containerForAgainGoodEasyButtons.append(easyButton);
 
   containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc);
   containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
@@ -273,9 +231,7 @@ export default function questAnswerTrainOverv(item) {
   theWordAnswerContainer.append(theWordAnswer);
   theWordAnswerContainer.append(settingsIconContainer);
   insideNameofDeckContainer.append(theWordAnswerContainer);
-  //insideNameofDeckContainer.append(theWordAnswer);
   insideNameofDeckContainer.append(answerFieldTextArea);
-  //insideNameofDeckContainer.append(deleteButton);
 
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
   theNameOftheDeckAndRedCrossContainer.append(redCross);
@@ -307,4 +263,12 @@ export default function questAnswerTrainOverv(item) {
     clearInterval(timer);
     //	console.log('your current total is:',counter)
   };
+
+  redCross.addEventListener('mouseover', function() {
+    redCross.style.cursor = 'pointer';
+  });
+
+  
+
+
 }

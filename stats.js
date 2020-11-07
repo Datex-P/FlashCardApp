@@ -36,8 +36,7 @@ export default function stats() {
 
   let redCross = document.createElement("div");
   redCross.innerHTML = redCrossIcon;
-  redCross.style.height = "20px";
-  redCross.style.width = "20px";
+  redCross.className = 'redCross';
 
   let theWordStats = document.createElement("div");
   theWordStats.innerHTML = "Stats";
@@ -49,9 +48,10 @@ export default function stats() {
 
   let cardsStudied = document.createElement("div");
   cardsStudied.className = 'flexCenter'
-  cardsStudied.style.border = '1px solid black';
+ // cardsStudied.style.border = '1px solid black';
   cardsStudied.style.width = "270px";
   cardsStudied.style.height = '100px'
+  
   cardsStudied.style.overflow = 'scroll';
   cardsStudied.style.overflowX = 'hidden';
   cardsStudied.style.marginBottom = '5px';
@@ -244,8 +244,13 @@ function renderDays(year){
 
     let date = thisYear.toDateString()
     day.onclick = function () {
-
-      console.log(date)
+      let day1 = document.createElement('div');
+          day1.style.display = 'flex';
+          day1.innerText = `${date}`;
+          day1.style.width = '30px';
+          day1.style.backgroundColor = 'white';
+          day1.style.zIndex = '2';
+          day.append(day1)
     }
 
     for (let deck in dataBase.DeckNames) {
@@ -270,9 +275,7 @@ function renderDays(year){
   */
 
   for (let deck in dataBase.counter) {
-    console.log(Object.keys(dataBase.counter))
-    console.log('hello')
-
+ 
     cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`;
     //   cardsStudied += `<div>Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/></div>`
   }
@@ -282,6 +285,11 @@ function renderDays(year){
   // console.log(dataBase.DeckNames.Literature.cardsStudied)
   if (cardsStudied.innerHTML === "") {
     cardsStudied.innerHTML = "No cards studied today";
+    cardsStudied.style.removeProperty('border');
+    cardsStudied.style.removeProperty('overflow');
+  }
+  
+  if  (Object.keys(dataBase.counter).length <7 /*|| !(Object.keys(dataBase.counter))*/ ) {
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }
@@ -364,4 +372,8 @@ function renderDays(year){
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
   };
+
+  redCross.addEventListener('mouseover', function() {
+    redCross.style.cursor = 'pointer';
+  });
 }
