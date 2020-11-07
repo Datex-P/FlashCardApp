@@ -27,10 +27,9 @@ export default function addQuestionsToDeck (item) {
       insideFlashCardsContainer.style.marginTop = '30px'
 
   let theWordFlashCardsAndRedCrossContainer = document.createElement('div');
-      theWordFlashCardsAndRedCrossContainer.style.display = 'flex';
       theWordFlashCardsAndRedCrossContainer.style.width = '247px';
-      theWordFlashCardsAndRedCrossContainer.style.justifyContent = 'space-between'
       theWordFlashCardsAndRedCrossContainer.style.marginLeft = '8px';
+      theWordFlashCardsAndRedCrossContainer.className = 'flexSpaceBetween';
      
   let theNameofTheDeck = document.createElement('div');
       theNameofTheDeck.innerHTML = `&#160${item}`;    
@@ -64,7 +63,7 @@ let theWordQuestionAndAnswer = document.createElement('div');
   
       insideFlashCardsContainer.append(theWordQuestionAndAnswer)
       insideFlashCardsContainer.append(textarea)
-})
+});
 
 
 
@@ -104,12 +103,13 @@ let theWordQuestionAndAnswer = document.createElement('div');
          dataBase.DeckNames[item].cardsStudied = 0;
       }
       dataBase.DeckNames[item].push({
-        question: questionFieldTextArea.value,
-        answer: answerFieldTextArea.value,
+        question: insideFlashCardsContainer.childNodes[1].value,
+        answer: insideFlashCardsContainer.childNodes[3].value,
       });
       
-      questionFieldTextArea.value = '';
-      answerFieldTextArea.value = '';
+      insideFlashCardsContainer.childNodes[1].value = '';
+      insideFlashCardsContainer.childNodes[3].value = '';
+     // answerFieldTextArea.value = '';
 
       createDom(dataBase.DeckNames);
     };

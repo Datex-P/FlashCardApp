@@ -16,7 +16,7 @@ export default function questAnswerTrainOverv(item) {
 
   let containerForText1DayEtc = document.createElement("div");
   containerForText1DayEtc.style.display = "none";
-  containerForText1DayEtc.style.justifyContent = "space-between";
+
   containerForText1DayEtc.style.width = "205px";
   containerForText1DayEtc.style.marginLeft = "20px";
   containerForText1DayEtc.style.marginBottom = "2px";
@@ -30,14 +30,9 @@ export default function questAnswerTrainOverv(item) {
 
   let containerForsmallerTwoMinutesEtc = document.createElement("div");
   containerForsmallerTwoMinutesEtc.style.width = "255px";
-  containerForsmallerTwoMinutesEtc.style.display = "flex";
-  containerForsmallerTwoMinutesEtc.style.flexDirection = "column";
+  containerForsmallerTwoMinutesEtc.className= "flexColumn";
 
-  let containerForButtonsWithDescriptionsDisplay = document.createElement(
-    "div"
-  );
-  containerForButtonsWithDescriptionsDisplay.style.display = "flex";
-  containerForButtonsWithDescriptionsDisplay.style.flexDirection = "column";
+
   /*
   let smallerTwoMin = document.createElement('div');
       smallerTwoMin.innerText = '< 2m';
@@ -55,34 +50,45 @@ export default function questAnswerTrainOverv(item) {
       containerForText1DayEtc.append(smallerTwoDays)
 */
 
-  /*
+  
 ['<2m', '<10m', '<2d'].forEach(el=>{
   let smallerThan = document.createElement('div');
       smallerThan.innerText = el;
       containerForText1DayEtc.append(smallerThan);
-})
-*/
+});
 
-  /*  
-  let againButton = document.createElement('button');
-      againButton.className = 'againGoodEasyButton';
-      againButton.innerText = 'Again'
-    
-  let goodButton = document.createElement('button');
-      goodButton.className = 'againGoodEasyButton';
-      goodButton.innerText = 'Good';
-      
-  let easyButton = document.createElement('button');
-      easyButton.className = 'againGoodEasyButton';
-      easyButton.innerText = 'Easy';
-*/
+
+
 
   ["again", "good", "easy"].forEach((el) => {
-    let buttons = document.createElement("button");
-    buttons.innerText = el;
-    buttons.className = "againGoodEasyButton";
+    let button = document.createElement("button");
+    button.innerText = el;
+    button.className = "againGoodEasyButton";
 
-    containerForAgainGoodEasyButtons.append(buttons);
+    button.onmouseover = function (e) {
+      e.target.style.cursor = 'pointer';
+    };
+
+    button.addEventListener('mouseout', function (e) {
+      e.target.styyle.cursor = 'default'
+    });
+
+    button.addEventListener('click', function () {
+    
+
+      if (el ==='again') {
+          shuffleLogic(); //different kinds of shuffle logic     
+      }
+      if (el == 'good') {
+        shuffleLogic(); //different kinds of shuffle logic   
+      }
+        if (el ==='again') {
+          shuffleLogic(); //different kinds of shuffle logic     
+      }
+      display();
+    )};
+
+    containerForAgainGoodEasyButtons.append(button)
   });
 
   let insideNameofDeckContainer = document.createElement("div");
@@ -101,9 +107,9 @@ export default function questAnswerTrainOverv(item) {
     button.style.marginTop = "10px";
     button.style.marginLeft = "8px";
     button.onclick = function(){
-      if(el === 'edit'){
+      if (el === 'edit'){
         console.log('I am edit');
-      }else if(el === 'delete'){
+      } else if (el === 'delete'){
         console.log('I am delete');
       }
     }
@@ -138,9 +144,8 @@ export default function questAnswerTrainOverv(item) {
   showAnswerButton.style.marginLeft = "8px";
 
   let theNameOftheDeckAndRedCrossContainer = document.createElement("div");
-  theNameOftheDeckAndRedCrossContainer.style.display = "flex";
   theNameOftheDeckAndRedCrossContainer.style.width = "247px";
-  theNameOftheDeckAndRedCrossContainer.style.justifyContent = "space-between";
+  theNameOftheDeckAndRedCrossContainer.className = 'flexSpaceBetween'
   theNameOftheDeckAndRedCrossContainer.style.marginLeft = "4px";
 
   let theNameofTheDeck = document.createElement("div");
@@ -172,8 +177,7 @@ export default function questAnswerTrainOverv(item) {
   answerFieldTextArea.style.backgroundColor = "white";
 
   let theWordAnswerContainer = document.createElement("div");
-  theWordAnswerContainer.style.display = "flex";
-  theWordAnswerContainer.style.justifyContent = "space-between";
+  theWordAnswerContainer.className ='flexSpaceBetween'
   //theWordAnswerContainer.style.border = '1px black solid';
   theWordAnswerContainer.style.width = "270px";
 
@@ -199,12 +203,7 @@ export default function questAnswerTrainOverv(item) {
     answerFieldTextArea.innerText = answer;
   }
 
-  /*
-  buttons.onclick = function () {
-    //this.style.cursor = 'pointer';
-    console.log('hi');
-  }
-*/
+ 
 
   /*
   againButton.onclick = function () {
@@ -230,9 +229,10 @@ export default function questAnswerTrainOverv(item) {
     this.style.cursor = "pointer";
     answerFieldTextArea.style.display = "block";
     theWordAnswer.style.display = "block";
-    containerForText1DayEtc.style.display = "flex";
-    containerForAgainGoodEasyButtons.style.display = "flex";
-    containerForAgainGoodEasyButtons.style.justifyContent = "space-between";
+    /* not sure why those lines do not work*/
+    containerForText1DayEtc.classList.add("flexSpaceBetween");
+    containerForAgainGoodEasyButtons.className += 'flexSpaceBetween';
+    
     this.style.display = "none";
     //deleteButton.style.display = 'block';
     settingsIconContainer.style.display = "block";

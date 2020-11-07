@@ -5,7 +5,7 @@ import createNewDeck from './createNewDeck.js'
 import {statsIcon, logoutIcon } from './svgs.js';
 
 let logoutIconContainer = document.createElement('div');
-    logoutIconContainer.className = 'flexColumnAlignCenter'
+    logoutIconContainer.className = 'flexColumnAlignCenter';
   
 let containerStatsIcon = document.createElement('div');
 

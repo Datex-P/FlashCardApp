@@ -13,8 +13,7 @@ export default function createDom(obj, length = "long") {
     let newDeckContainer = document.createElement("div");
     newDeckContainer.style.marginTop = "10px";
     newDeckContainer.style.marginLeft = "20px";
-    newDeckContainer.style.display = "flex";
-    newDeckContainer.style.justifyContent = "space-between";
+    newDeckContainer.className = 'flexSpaceBetween';
 
     let nameOfNewDeck = document.createElement("div");
     nameOfNewDeck.innerText = item;
@@ -77,27 +76,52 @@ export default function createDom(obj, length = "long") {
     let changeNameofDeckInput = document.createElement("input");
 
     
-
+/*
     editIcon.onclick = function () {
 
+      setTimeout(function () {
+        window.onclick = function handleOutsideClick(e) {
+          if (changeNameofDeckInput.contains(e.target) || this.innerHTML) {
+            alert("Clicked in Box");
+          } else {
+              //alert('clicked outside')
+              this.classList.add = 'blinkingIcon';
+
+     
+        }
+      }
+    }, 100);
+
+ 
+    this.classList.add = 'blinkingIcon';
+    this.innerHTML = save;
+
       if (!edited) {
-        this.innerHTML = save;
+        this.innerHTML = save;       
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
       } else {
-        this.innerHTML = edit;
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-
+        
         edited = false;
         //send fetch=>saveToDataBase
         // if ok
         nameOfNewDeck.innerText = changeNameofDeckInput.value;
-        // if not
-        // nameOfNewDeck.innerText = oldInput
-        // alert('smth wrong with server, try again later, sorry, free hugs')
+
+       
+
       }
     };
+
+*/
+
+
+
+
+
+
+
 
     /*
     document.getElementById('stats').onmouseover = function () {

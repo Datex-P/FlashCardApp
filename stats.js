@@ -214,34 +214,16 @@ export default function stats() {
     renderDays(yearN)
   }
 
-  // function increase() {
-  //   dec++;
-  //   let yearN = yearOfStudy.getFullYear() + dec
-  //   year.innerText = yearN
-  //   renderDays(yearN)
-  // }
 
   buttonLeft.onclick = function () {
     dec-=1
     change(dec);
-/*
-    dec--;
-    let yearN = yearOfStudy.getFullYear() + dec;
-    year.innerText = yearN
-    renderDays(yearN)
-    */
-    
+
   };
 
   buttonRight.onclick = function () {
     dec+=1
     change(dec);
-  /*
-    dec++;
-    let yearN = yearOfStudy.getFullYear() + dec
-    year.innerText = yearN
-    renderDays(yearN)
-*/
   };
 
   let chart1 = document.createElement('div');

@@ -22,14 +22,11 @@ export default function createNewDeck () {
       nameForNewDeckText.innerHTML = 'Name for new deck' ;
      
 
-     // document.getElementById('logout').remove(containerDoorLeave);
-
   let inputNewDeck = document.createElement('input');
       inputNewDeck.id  = 'inputNameOfNewDeck'
 
   let nameForNewDeckTextandinputNewDeckContainer = document.createElement('div');
-      nameForNewDeckTextandinputNewDeckContainer.style.display = 'flex';
-      nameForNewDeckTextandinputNewDeckContainer.style.flexDirection = 'column';
+      nameForNewDeckTextandinputNewDeckContainer.className = 'flexColumn'
 
   let okButtonAndCancelButtonContainer = document.createElement('div');
       okButtonAndCancelButtonContainer.style.marginTop = '30px';
@@ -45,8 +42,7 @@ export default function createNewDeck () {
       cancelButton.id = "cancelButton";
 
   let newContainer = document.createElement('div');
-      newContainer.style.display = 'flex';
-      newContainer.style.flexDirection = 'column';
+      newContainer.className = 'flexColumn';
 
 
       nameForNewDeckTextandinputNewDeckContainer.append(nameForNewDeckText);
@@ -72,7 +68,6 @@ export default function createNewDeck () {
 
       okButton.onclick = function () {
        
-        anchorElement.style.display = 'none'
         if (inputNewDeck.value === "") {
           alert("Input needed");
         } else {
@@ -80,6 +75,9 @@ export default function createNewDeck () {
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
           document.getElementById('createYourFirstDeckPrompt').style.display = 'none'        
+       
+       
+          anchorElement.style.display = 'none'
         }
           };
       
