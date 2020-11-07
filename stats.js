@@ -270,7 +270,7 @@ function renderDays(year){
   */
 
   for (let deck in dataBase.counter) {
-    console.log(dataBase.counter.keys)
+    console.log(Object.keys(dataBase.counter))
     console.log('hello')
 
     cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`;

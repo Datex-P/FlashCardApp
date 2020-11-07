@@ -79,8 +79,12 @@ export default function createDom(obj, length = "long") {
     }
 
     function clickOutsideHandle(){
-      alert("Clicked out Box")
+      //alert("Clicked out Box")
       editIcon.classList.add('blinkingIcon')
+      setTimeout(()=>{
+        editIcon.classList.remove('blinkingIcon')
+      },3000)
+     
     }
 
     editIcon.onclick = function (event) {
