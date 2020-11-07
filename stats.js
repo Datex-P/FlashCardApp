@@ -115,7 +115,6 @@ export default function stats() {
   radioButtonContainer.style.marginTop = '10px';
 
 
-
   ['1 month','3 month','12 month'].forEach(radio=>{
     let radioBtn = document.createElement('input')
     let label = document.createElement('label');
@@ -126,7 +125,7 @@ export default function stats() {
     radioBtn.name = 'month'
     radioBtn.onchange = function (event){
       let {value} = event.target
-      console.log(value)
+      console.log(value);
     }
     // radioBtn.onmouseover = function (event){
     //   let {name,checked, value} = event.target
@@ -260,9 +259,7 @@ function renderDays(year){
   }
 }
 
-
-
-
+/*when deck is deleted it should also be deleted out of stats*/
 
   /*
   seconds studied in total
@@ -273,6 +270,9 @@ function renderDays(year){
   */
 
   for (let deck in dataBase.counter) {
+    console.log(dataBase.counter.keys)
+    console.log('hello')
+
     cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`;
     //   cardsStudied += `<div>Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/></div>`
   }

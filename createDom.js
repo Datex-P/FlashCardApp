@@ -80,6 +80,7 @@ export default function createDom(obj, length = "long") {
 
     function clickOutsideHandle(){
       alert("Clicked out Box")
+      editIcon.classList.add('blinkingIcon')
     }
 
     editIcon.onclick = function (event) {
@@ -101,12 +102,13 @@ export default function createDom(obj, length = "long") {
       event.stopPropagation()
 
  
-    this.classList.add = 'blinkingIcon';
-    this.innerHTML = save;
+    //this.classList.add = 'blinkingIcon';
+    //this.innerHTML = save;
       
 
       if (!edited) {
         this.innerHTML = save;       
+        //this.classList.add('blinkingIcon');
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;

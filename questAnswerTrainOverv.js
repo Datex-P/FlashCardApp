@@ -61,19 +61,19 @@ export default function questAnswerTrainOverv(item) {
 
 
   ["again", "good", "easy"].forEach((el) => {
-    let button = document.createElement("button");
-    button.innerText = el;
-    button.className = "againGoodEasyButton";
+    let button2 = document.createElement("button");
+    button2.innerText = el;
+    button2.className = "againGoodEasyButton";
 
-    button.onmouseover = function (e) {
+    button2.onmouseover = function (e) {
       e.target.style.cursor = 'pointer';
     };
 
-    button.addEventListener('mouseout', function (e) {
-      e.target.styyle.cursor = 'default'
+    button2.addEventListener('mouseout', function (e) {
+      e.target.style.cursor = 'default'
     });
 
-    button.addEventListener('click', function(){
+    button2.addEventListener('click', function(){
     
 
       if (el ==='again') {
@@ -88,8 +88,10 @@ export default function questAnswerTrainOverv(item) {
       display();
     });
 
-    containerForAgainGoodEasyButtons.append(button)
+    containerForAgainGoodEasyButtons.append(button2)
   });
+
+  
 
   let insideNameofDeckContainer = document.createElement("div");
   insideNameofDeckContainer.style.marginTop = "30px";
@@ -192,8 +194,8 @@ export default function questAnswerTrainOverv(item) {
   function display() {
     answerFieldTextArea.style.display = "none";
     theWordAnswer.style.display = "none";
-    containerForText1DayEtc.style.display = "none";
-    containerForAgainGoodEasyButtons.style.display = "none";
+   // containerForText1DayEtc.style.display = "none";
+    //containerForAgainGoodEasyButtons.style.display = "none";
     showAnswerButton.style.display = "block";
   }
 
@@ -230,13 +232,27 @@ export default function questAnswerTrainOverv(item) {
     answerFieldTextArea.style.display = "block";
     theWordAnswer.style.display = "block";
     /* not sure why those lines do not work*/
-    containerForText1DayEtc.classList.add("flexSpaceBetween");
-    containerForAgainGoodEasyButtons.className += 'flexSpaceBetween';
+    containerForAgainGoodEasyButtons.style.display = 'block';
+    containerForText1DayEtc.style.display = 'block'
+    //containerForText1DayEtc.classList.add("flexSpaceBetween");
+    //containerForAgainGoodEasyButtons.className += 'flexSpaceBetween';
     
     this.style.display = "none";
     //deleteButton.style.display = 'block';
     settingsIconContainer.style.display = "block";
   };
+
+  showAnswerButton.addEventListener('mouseover', function() {
+    showAnswerButton.style.cursor = 'pointer';
+  })
+
+
+
+/*
+  nameOfNewDeck.addEventListener("mouseleave", () => {
+    nameOfNewDeck.style.color = "black";
+  });
+  */
 
   // containerForAgainGoodEasyButtons.append(againButton);
   //containerForAgainGoodEasyButtons.append(goodButton);
