@@ -116,24 +116,22 @@ export default function createDom(obj, length = "long") {
       }
     };
 
-    editIcon.addEventListener('mouseover', function() {
-      editIcon.style.cursor = 'pointer';
-    });
+    // editIcon.addEventListener('mouseover', function() {
+    //   editIcon.style.cursor = 'pointer';
+    // });
 
   
 
-    trashIcon.addEventListener('mouseover', function() {
-      trashIcon.style.cursor = 'pointer';
-    })
+    // trashIcon.addEventListener('mouseover', function() {
+    //   trashIcon.style.cursor = 'pointer';
+    // })
 
-/*
-[trashIcon, editIcon].forEach((el) => {
 
-  el.addEventListener = ('mouseover', function (e) {
-    e.target.style.cursor = 'pointer';
-  }
-});
-*/
+  [trashIcon, editIcon].forEach((el) => {
+
+    el.style.cursor = 'pointer';
+  });
+
 
 
 

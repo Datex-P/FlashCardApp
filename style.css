@@ -125,12 +125,12 @@ textarea {
   border: 1px solid black;
   border-radius: 20px;
 }
-/*
-body > *:not(#createDeckButtonContainer) {
+/* 
+body >div>div> *:not(#questAnswerTrainOverv) {
  
   filter: blur(3px);
-}
-*/
+} */
+
 
 .addQuestionsToDeck {
   display: flex;
@@ -238,12 +238,13 @@ body > *:not(#createDeckButtonContainer) {
 
 #questAnswerTrainOverv {
   width: 411px;
-  height: 531px;
+  height: 731px;
   position: absolute;
   /* height: 100vh; */
   display: none;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0,0,0,0.6);
 }
 
 .textareaStyling {

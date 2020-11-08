@@ -1,6 +1,6 @@
 import {dataBase} from "./dataBase.js";
 
-export default function shuffle(item) {
+export default function shuffle(item,index=null) {
  
   if(!dataBase.DeckNames[item].cardsStudied){
     dataBase.DeckNames[item].cardsStudied = [];
@@ -11,7 +11,7 @@ export default function shuffle(item) {
   function questionNumber(random) {
     return dataBase.DeckNames[item][random].question;
   }
-  let randomInScope = random();
+  let randomInScope = index || random();
 
   function answerNumber(random) {
     return  dataBase.DeckNames[item][random].answer;

@@ -203,9 +203,10 @@ export default function questAnswerTrainOverv(item) {
   }
 
   function shuffleLogic() {
-    let [question, answer] = shuffle(item);
+    let [question, answer,index] = shuffle(item);
     questionFieldTextArea.value = question;
     answerFieldTextArea.innerText = answer;
+    return index
   }
 
  
