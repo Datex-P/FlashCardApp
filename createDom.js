@@ -36,7 +36,9 @@ export default function createDom(obj, length = "long") {
       };
     } else {
       nameOfNewDeck.onclick = function () {
-        questAnswerTrainOverv(item)
+        questAnswerTrainOverv(item);
+      //nameOfNewDeck.style.filter = 'blur(5px)'
+     //document.getElementById('mainMenu').style.filter='blur(5px)';
       };
     }
 
@@ -93,16 +95,18 @@ export default function createDom(obj, length = "long") {
       event.stopPropagation()
 
       if (!edited) {
+        //save.querySelector('svg').style.color = 'orange';
         this.innerHTML = save;       
         
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
     
-        console.log('click like a edit')
+       // console.log('click like a edit')
       } else {
         this.innerHTML = edit; 
-        console.log('click like a save')
+        editIcon.querySelector('svg').style.color = 'orange';
+        //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
         window.removeEventListener('click',clickOutsideHandle)
         edited = false;
@@ -112,24 +116,26 @@ export default function createDom(obj, length = "long") {
       }
     };
 
+    editIcon.addEventListener('mouseover', function() {
+      editIcon.style.cursor = 'pointer';
+    });
+
+  
+
+    trashIcon.addEventListener('mouseover', function() {
+      trashIcon.style.cursor = 'pointer';
+    })
+
+/*
+[trashIcon, editIcon].forEach((el) => {
+
+  el.addEventListener = ('mouseover', function (e) {
+    e.target.style.cursor = 'pointer';
+  }
+});
+*/
 
 
-
-
-
-
-
-
-
-    /*
-    document.getElementById('stats').onmouseover = function () {
-      this.innerHTML = statsIcon;
-    }
-
-    document.getElementById('stats').onmouseleave = function () {
-      this.innerHTML = 'Stats';
-    }
-    */
 
 
     let addIcon = document.createElement("div");
@@ -143,7 +149,9 @@ export default function createDom(obj, length = "long") {
       addQuestionsToDeck(item);
     }
 
-
+    addIcon.addEventListener('mouseover', function() {
+      addIcon.style.cursor = 'pointer';
+    });
 
 
     newDeckContainer.appendChild(nameOfNewDeck);

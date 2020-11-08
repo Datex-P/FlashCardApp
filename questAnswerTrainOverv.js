@@ -54,6 +54,23 @@ export default function questAnswerTrainOverv(item) {
 
       if (el ==='again') {
           shuffleLogic(); //different kinds of shuffle logic     
+
+/*
+          let randomNum = Math.floor(Math.random() * 120);
+
+          //search for the index somehow based on the value of the field
+
+          //dataBase.DeckNames[deck].some(item => new Date(item.lastOpen).toDateString() == date)) 
+
+          if (randomNum > ((dataBase.DeckNames[item][index].lastOpen ) / 1000  )) {
+            button.addEventListener('click', function () {
+              //questionFieldTextArea.value = 
+                //answerFieldTextArea.value =
+            }
+          }
+*/
+
+
           display();
       }
       if (el == 'good') {
@@ -93,6 +110,8 @@ export default function questAnswerTrainOverv(item) {
 
         console.log('I am edit');
       } else if (el === 'delete'){
+
+       // search for the index of the question 
 
         //dataBase.DeckNames[item][random].question;
        // delete dataBase.DeckNames[item][random].answer;

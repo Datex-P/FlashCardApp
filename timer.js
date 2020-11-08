@@ -14,14 +14,14 @@ export const startTimer =(item,index)=> {
     dataBase.counter = counter;
 
     console.log(dataBase);
-  }, 1000);
-  if(dataBase.DeckNames[item][index].lastOpen){
-    let now = new Date().getTime()
-    let difference = now - dataBase.DeckNames[item][index].lastOpen
-    dataBase.DeckNames[item][index].lastOpen = now
-    dataBase.DeckNames[item][index].timeLastOpen = difference
-  }else{
-    dataBase.DeckNames[item][index].lastOpen = new Date().getTime()
+  }, 3000);
+  if (dataBase.DeckNames[item][index].lastOpen) {
+    let now = new Date().getTime();
+    let difference = now - dataBase.DeckNames[item][index].lastOpen;
+    dataBase.DeckNames[item][index].lastOpen = now;
+    dataBase.DeckNames[item][index].timeLastOpen = difference;
+  } else {
+    dataBase.DeckNames[item][index].lastOpen = (new Date().getTime()).toString()
   }
   
 }

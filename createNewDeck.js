@@ -67,10 +67,17 @@ export default function createNewDeck () {
       }
 
       okButton.onclick = function () {
+
+        let regex = /^(\s|\S)*(\S)+(\s|\S)*$/;
        
-        if (inputNewDeck.value === "") {
+        if (!regex.test(inputNewDeck.value)) {
           alert("Input needed");
-        } else {
+        } 
+        else if (dataBase.DeckNames[inputNewDeck.value]) {
+          alert('Name of Deck already exists')
+        }
+        
+        else {
           dataBase.DeckNames[inputNewDeck.value] = [];
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);

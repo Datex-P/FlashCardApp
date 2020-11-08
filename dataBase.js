@@ -2,6 +2,7 @@ export let dataBase = {
   DeckNames: {
     
     Literature: [
+      
       {
         question: 'question1',
         answer: 'answer1'
@@ -20,6 +21,8 @@ export let dataBase = {
         question: 'question2',
         answer: 'answer2'
       }
+      
     ]
+    
   },
 };

@@ -12,12 +12,7 @@ export default function stats() {
 
   let mainWindow = document.createElement("div");
   mainWindow.className = "addQuestionsToDeck";
-  //mainWindow.style.marginTop = '100px';
-  /*
-  mainWindow.style.overflow = 'scroll';
-  mainWindow.style.overflowX = 'hidden';
-*/
-  //mainWindow.style.marginTop = '20px';
+
 
   let innerWindow = document.createElement("div");
   innerWindow.style.marginTop = "20px";
@@ -28,8 +23,7 @@ export default function stats() {
   innerWindow.style.overflowX = 'hidden';
 
   let redCrossAndStatsContainer = document.createElement("div");
-  redCrossAndStatsContainer.style.display = "flex";
-  redCrossAndStatsContainer.style.justifyContent = "space-between";
+  redCrossAndStatsContainer.className = 'flexSpaceBetween';
   redCrossAndStatsContainer.style.height = "20px";
   redCrossAndStatsContainer.style.width = "290px";
   redCrossAndStatsContainer.style.border = "1px black solid";
@@ -48,14 +42,14 @@ export default function stats() {
 
   let cardsStudied = document.createElement("div");
   cardsStudied.className = 'flexCenter'
- // cardsStudied.style.border = '1px solid black';
-  cardsStudied.style.width = "270px";
+  cardsStudied.style.border = '1px solid black';
+  cardsStudied.style.width = "240px";
   cardsStudied.style.maxHeight = '100px'
   cardsStudied.style.height = 'fit-content'
-  
   cardsStudied.style.overflow = 'scroll';
   cardsStudied.style.overflowX = 'hidden';
   cardsStudied.style.marginBottom = '5px';
+  cardsStudied.style.flexDirection = 'column';
 
 
   let theWordTodayContainer = document.createElement("div");
@@ -142,31 +136,13 @@ export default function stats() {
 
   
 
-
-
-
-  // let usageChartContainer = document.createElement('div');
-  // usageChartContainer.style.marginTop = '10px';
-  // usageChartContainer.style.width = '270px';
-  // usageChartContainer.style.height = '190px';
-  // usageChartContainer.style.border = '1px black solid';
-  // usageChartContainer.style.display = 'flex';
-  // usageChartContainer.style.gridTemplateColumns = 'repeat(24, 1fr)';
-  // usageChartContainer.style.gridTemplateRows = 'repeat(4, 1fr)';
-  // usageChartContainer.style.gridGap = '5px';
-  // usageChartContainer.style.backgroundColor = 'blue';
-
   let usageChartCaption = document.createElement('div');
-  // usageChartCaption.style.marginTop = '10px';
-  // usageChartCaption.style.width = '270px';
+ 
   usageChartCaption.style.height = '190px';
   usageChartCaption.style.border = '1px black solid';
   usageChartCaption.style.display = 'flex';
   usageChartCaption.style.overflowY = 'scroll'
-  // usageChartCaption.style.gridTemplateColumns = 'repeat(24, 1fr)';
-
-  // usageChartCaption.style.gridGap = '2px';
-
+  
 
   for (let i = 0; i < 24; i++) {
     let time = document.createElement('div');
@@ -241,21 +217,38 @@ function renderDays(year){
 
   while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
     let day = document.createElement('div');
-    day.classList.add('day')
+    day.classList.add('day');
 
-    let date = thisYear.toDateString()
+    let date = thisYear.toDateString();
     day.onclick = function () {
-      yearBoxContainer.querySelectorAll('.day').forEach(day=>day.innerHTML = '')
+      yearBoxContainer.querySelectorAll('.day').forEach(day=>day.innerHTML = '');
       let dayInner = document.createElement('div');
       dayInner.innerText = `${date}`;
- 
-      day.append(dayInner)
+      
+/*
+      dataBase.DeckNames[deck].cardsStudied.forEach(day => {
+        let counter =  0;
+        if (day = date {
+          counter +=1;
 
-    }
+        }
+      })
+      
+      if (day.innerText !== '') {
+  
+      day.addEventListener('mouseover', function () {
+        this.style.cursor = 'pointer';
+      })
+    }*/
+     
+    day.append(dayInner)
+
+    };
+
 
     for (let deck in dataBase.DeckNames) {
       if (dataBase.DeckNames[deck].some(item => new Date(item.lastOpen).toDateString() == date)) {
-        day.style.backgroundColor = 'red'
+        day.style.backgroundColor = 'red';
       }
     }
     thisYear.setDate(thisYear.getDate() + 1)
@@ -275,8 +268,20 @@ function renderDays(year){
   */
 
   for (let deck in dataBase.counter) {
- 
-    cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`;
+    let container =  document.createElement('div');
+    //container.style.display = 'flex';
+    container.style.border = '1px black solid'
+    container.className = 'flexSpaceBetween'
+    let child1 = document.createElement('div');
+    let child2 = document.createElement('div');
+
+    child1.innerText = `Deck ${deck}:`;
+    child2.innerText = `${dataBase.counter[deck]} cards studied`;
+    //cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`;
+    cardsStudied.append(container);
+    container.append(child1);
+    container.append(child2);
+
     //   cardsStudied += `<div>Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/></div>`
   }
 
@@ -284,12 +289,13 @@ function renderDays(year){
 
   // console.log(dataBase.DeckNames.Literature.cardsStudied)
   if (cardsStudied.innerHTML === "") {
+    cardsStudied.style.textAlign = 'center';
     cardsStudied.innerHTML = "No cards studied today";
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }
   
-  if  (Object.keys(dataBase.counter||{}).length <7 /*|| !(Object.keys(dataBase.counter))*/ ) {
+  if  (Object.keys(dataBase.counter||{}).length <7) {
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }
