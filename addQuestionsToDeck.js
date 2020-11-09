@@ -21,6 +21,7 @@ export default function addQuestionsToDeck (item) {
       addToDeck.style.width = '70%';
       addToDeck.style.marginTop =  '10px';
       addToDeck.style.marginLeft = '8px';
+      addToDeck.style.cursor = 'pointer';
     
       
   let insideFlashCardsContainer = document.createElement('div');
@@ -113,11 +114,6 @@ let theWordQuestionAndAnswer = document.createElement('div');
       createDom(dataBase.DeckNames);
     };
     
+  }
 
-
-  [addToDeck, redCross].forEach((el) => {
-
-    el.style.cursor = 'pointer';
-  });
-
-};
+  

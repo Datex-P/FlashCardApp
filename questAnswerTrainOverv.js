@@ -55,20 +55,23 @@ export default function questAnswerTrainOverv(item) {
       if (el ==='again') {
           shuffleLogic(); //different kinds of shuffle logic     
 
-/*
           let randomNum = Math.floor(Math.random() * 120);
+
+          setTimeout(function() {
+            /*
+              button.addEventListener('click', function () {
+                //questionFieldTextArea.value =  dataBase.DeckNames[item][index].question.value
+                  //answerFieldTextArea.value = dataBase.DeckNames[item][index].answer.value
+              }
+            }
+  */
+  
+          }, randomNum * 1000);
+
 
           //search for the index somehow based on the value of the field
 
           //dataBase.DeckNames[deck].some(item => new Date(item.lastOpen).toDateString() == date)) 
-
-          if (randomNum > ((dataBase.DeckNames[item][index].lastOpen ) / 1000  )) {
-            button.addEventListener('click', function () {
-              //questionFieldTextArea.value = 
-                //answerFieldTextArea.value =
-            }
-          }
-*/
 
 
           display();
@@ -105,7 +108,6 @@ export default function questAnswerTrainOverv(item) {
     button.onclick = function(){
       if (el === 'edit'){
         answerFieldTextArea.removeAttribute("disabled");
-        
         questionFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.focus()
 
@@ -129,6 +131,8 @@ export default function questAnswerTrainOverv(item) {
   settingsIconContainer.style.marginTop = '5px';
   settingsIconContainer.style.display = "none";
   settingsIconContainer.style.position = "relative";
+  settingsIconContainer.style.cursor = 'pointer';
+
   settingsIconContainer.onclick = function () {
     opened = !opened;
     littleModalWindow.style.display = opened ? "block" : "none";
@@ -136,16 +140,12 @@ export default function questAnswerTrainOverv(item) {
 
   settingsIconContainer.appendChild(littleModalWindow);
 
-  settingsIconContainer.addEventListener('mouseover', function() {
-    settingsIconContainer.style.cursor = 'pointer';
-  });
-
-
-
+  
   let showAnswerButton = document.createElement("button");
   showAnswerButton.innerHTML = "Show Answer";
   showAnswerButton.id = "showAnswerButton";
   showAnswerButton.style.marginLeft = "8px";
+  showAnswerButton.style.cursor = "pointer";
 
   let theNameOftheDeckAndRedCrossContainer = document.createElement("div");
   theNameOftheDeckAndRedCrossContainer.style.width = "265px";
@@ -159,6 +159,7 @@ export default function questAnswerTrainOverv(item) {
   let redCross = document.createElement("div");
   redCross.innerHTML = redCrossIcon;
   redCross.className = 'redCross';
+  redCross.style.cursor = 'pointer';
  
 
   let theWordQuestion = document.createElement("div");
@@ -215,7 +216,7 @@ export default function questAnswerTrainOverv(item) {
 
  
   showAnswerButton.onclick = function () {
-    this.style.cursor = "pointer";
+  
     answerFieldTextArea.style.display = "block";
     theWordAnswer.style.display = "block";
     containerForText1DayEtc.style.display = 'flex';
@@ -228,9 +229,6 @@ export default function questAnswerTrainOverv(item) {
     settingsIconContainer.style.display = "block";
   };
 
-  // showAnswerButton.addEventListener('mouseover', function() {
-  //   showAnswerButton.style.cursor = 'pointer';
-  // })
 
 
 
@@ -282,11 +280,6 @@ export default function questAnswerTrainOverv(item) {
     clearInterval(timer);
     //	console.log('your current total is:',counter)
   };
-
-  redCross.addEventListener('mouseover', function() {
-    redCross.style.cursor = 'pointer';
-  });
-
   
 
 

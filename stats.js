@@ -31,6 +31,7 @@ export default function stats() {
   let redCross = document.createElement("div");
   redCross.innerHTML = redCrossIcon;
   redCross.className = 'redCross';
+  
 
   let theWordStats = document.createElement("div");
   theWordStats.innerHTML = "Stats";
@@ -133,12 +134,8 @@ export default function stats() {
     radioButtonContainer.appendChild(label)
   });
   
-  
-
-
 
   
-
   let usageChartCaption = document.createElement('div');
  
   usageChartCaption.style.height = '190px';
@@ -191,7 +188,7 @@ export default function stats() {
     let yearN = yearOfStudy.getFullYear() + dec;
     year.innerText = yearN
     renderDays(yearN)
-  }
+  };
 
 
   buttonLeft.onclick = function () {
@@ -203,13 +200,16 @@ export default function stats() {
   buttonRight.onclick = function () {
     dec+=1
     change(dec);
+
+  //console.log(dataBase.studyTime.Literature)
+  console.log('hello')
   };
 
   let chart1 = document.createElement('div');
-  chart1.style.backgroundColor = 'blue'
+  chart1.style.backgroundColor = 'blue';
 
   let chart2 = document.createElement('div');
-  chart2.style.backgroundColor = 'green'
+  chart2.style.backgroundColor = 'green';
 
 
   
@@ -221,26 +221,40 @@ function renderDays(year) {
   while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
     let day = document.createElement('div');
     day.classList.add('day');
-
     let date = thisYear.toDateString();
     day.onclick = function () {
       yearBoxContainer.querySelectorAll('.day').forEach(day=>day.innerHTML = '');
       let dayInner = document.createElement('div');
-      dayInner.innerText = `${date}`;
+      dayInner.innerText = `${date} Study time ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur)/60)} min cards studied:`;
       
-/*
-      dataBase.DeckNames[deck].cardsStudied.forEach(day => {
-        let counter =  0;
-        if (day === date) {
-          counter +=1;
-          console.log(counter)
-        }
-      })
-    */
-     
-    day.append(dayInner)
+      console.log(date.getMonth())
+      console.log(date.getDay())
+      /*
+      let counter = 0;
 
-    };
+      for (let deck in dataBase.DeckNames[deck].openHistory) {
+        for (let i =0; i<dataBase.DeckNames[deck].length; i++) {
+      
+        if (thisYear.getMonth() && thisYear.getDate() === deck[i].getMonth && deck[i].getDate()) {
+
+          counter ++
+        }
+      }
+    }
+    console.log(counter)
+    */
+
+    day.append(dayInner)   
+         
+        }
+        
+  
+      //console.log(date)
+
+     
+   
+
+   
 
 
     for (let deck in dataBase.DeckNames) {
@@ -255,19 +269,14 @@ function renderDays(year) {
   }
 }
 
+
 /*when deck is deleted it should also be deleted out of stats*/
 
-  /*
-  seconds studied in total
-    const counterSecStudied = Object.values(counter);
+//console.log(dataBase.DeckNames.Literature[0].openHistory.getMonth())
 
-    let secStudied = document.getElementById("secondsStudied");
-    secStudied.innerHTML = counterSecStudied.reduce((acc, cur) => acc + cur);
-  */
 
   for (let deck in dataBase.counter) {
     let container =  document.createElement('div');
-    //container.style.display = 'flex';
     container.style.border = '1px black solid'
     container.className = 'flexSpaceBetween'
     let child1 = document.createElement('div');
@@ -275,17 +284,27 @@ function renderDays(year) {
 
     child1.innerText = `Deck ${deck}:`;
     child2.innerText = `${dataBase.counter[deck]} cards studied`;
-    //cardsStudied.innerHTML += `Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/>`;
     cardsStudied.append(container);
     container.append(child1);
     container.append(child2);
 
-    //   cardsStudied += `<div>Deck ${deck}: ${dataBase.counter[deck]} cards studied<br/></div>`
   }
 
-  //console.log(dataBase.counter.Literature)
+  //console.log(dataBase.studyTime.Literature)
 
-  // console.log(dataBase.DeckNames.Literature.cardsStudied)
+ /*
+  for (const studyTime in dataBase.studyTime) {
+  }
+*/
+  
+
+//console.log(dataBase.DeckNames.studyTime[Literature])
+
+//console.log(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur))
+
+
+
+
   if (cardsStudied.innerHTML === "") {
     cardsStudied.style.textAlign = 'center';
     cardsStudied.innerHTML = "No cards studied today";
@@ -298,24 +317,7 @@ function renderDays(year) {
     cardsStudied.style.removeProperty('overflow');
   }
 
-  /*
-  let arr = Object.keys(obj);
-  let numberOfSeconds.innerHTML = arr.forEach((item) => {
-      (item + item.seconds)
-  });
-*/
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -334,16 +336,13 @@ function renderDays(year) {
 
   hourlyBreakdownContainer.append(theWordhourlyBreakdown);
 
-  
 
 
   hourlyBreakdownContainer.append(radioButtonContainer);
 
-  //usageChartContainer.append(chart2)
-  //usageChartContainer.append(chart1)
   hourlyBreakdownContainer.append(clickToView);
   hourlyBreakdownContainer.append(usageChartCaption);
-  // hourlyBreakdownContainer.append(usageChartContainer);
+
 
   todayAndCardsStudiedContainer.appendChild(theWordCalendarContainer);
   todayAndCardsStudiedContainer.append(hourlyBreakdownContainer);
@@ -377,7 +376,5 @@ function renderDays(year) {
     anchorElement.style.display = "none";
   };
 
-  redCross.addEventListener('mouseover', function() {
-    redCross.style.cursor = 'pointer';
-  });
-}
+
+};

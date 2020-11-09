@@ -14,6 +14,7 @@ export default function shuffle(item,index=null) {
   dataBase.DeckNames[item][randomInScope].openHistory.push(new Date());
   console.log(dataBase)
 
+
   function answerNumber(random) {
     return  dataBase.DeckNames[item][random].answer;
   }

@@ -1,13 +1,12 @@
 import {dataBase} from './dataBase.js'
 
 export let timer = null;
-let counter = {};
 
 export const startTimer =(item,index)=> {
-  if(!dataBase.studyTime){
-    dataBase.studyTime={}
+  if (!dataBase.studyTime) {
+    dataBase.studyTime={};
   }
-  if(!dataBase.studyTime[item]){
+  if (!dataBase.studyTime[item]) {
     dataBase.studyTime[item] = 0
   }
   timer = setInterval(() => {

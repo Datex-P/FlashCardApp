@@ -1,4 +1,4 @@
-import { edit, save, trash, statsIcon } from './svgs.js';
+import { edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
