@@ -215,7 +215,7 @@ export default function stats() {
   
   renderDays(2020)
 function renderDays(year) {
-  yearBoxContainer.innerHTML=''
+  yearBoxContainer.innerHTML='';
   let thisYear = new Date(`January 1, ${+year}`);
 
   while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
@@ -231,18 +231,12 @@ function renderDays(year) {
 /*
       dataBase.DeckNames[deck].cardsStudied.forEach(day => {
         let counter =  0;
-        if (day = date {
+        if (day === date) {
           counter +=1;
-
+          console.log(counter)
         }
       })
-      
-      if (day.innerText !== '') {
-  
-      day.addEventListener('mouseover', function () {
-        this.style.cursor = 'pointer';
-      })
-    }*/
+    */
      
     day.append(dayInner)
 

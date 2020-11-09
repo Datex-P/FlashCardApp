@@ -41,9 +41,10 @@ export default function createNewDeck () {
       cancelButton.innerHTML = "Cancel";
       cancelButton.id = "cancelButton";
 
-  let newContainer = document.createElement('div');
-      newContainer.className = 'flexColumn';
+      [okButton, cancelButton].forEach((el) => {
 
+        el.style.cursor = 'pointer';
+      });
 
       nameForNewDeckTextandinputNewDeckContainer.append(nameForNewDeckText);
       nameForNewDeckTextandinputNewDeckContainer.append(inputNewDeck);
@@ -90,10 +91,7 @@ export default function createNewDeck () {
      
           
 
-  [okButton, cancelButton].forEach((el) => {
-
-    el.style.cursor = 'pointer';
-  });
+ 
 
 
       
