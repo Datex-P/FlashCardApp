@@ -4,17 +4,20 @@ export let timer = null;
 let counter = {};
 
 export const startTimer =(item,index)=> {
+  if(!dataBase.studyTime){
+    dataBase.studyTime={}
+  }
+  if(!dataBase.studyTime[item]){
+    dataBase.studyTime[item] = 0
+  }
   timer = setInterval(() => {
 
-    if (!counter[item]) {
-      counter[item] = 0;
-    }
+   
 
-    counter[item]++
-    dataBase.counter = counter;
+    dataBase.studyTime[item]++
 
     console.log(dataBase);
-  }, 3000);
+  }, 1000);
   if (dataBase.DeckNames[item][index].lastOpen) {
     let now = new Date().getTime();
     let difference = now - dataBase.DeckNames[item][index].lastOpen;

@@ -105,8 +105,10 @@ export default function questAnswerTrainOverv(item) {
     button.onclick = function(){
       if (el === 'edit'){
         answerFieldTextArea.removeAttribute("disabled");
-        questionFieldTextArea.focus()
+        
         questionFieldTextArea.removeAttribute("disabled");
+        questionFieldTextArea.focus()
+
 
         console.log('I am edit');
       } else if (el === 'delete'){
@@ -173,6 +175,7 @@ export default function questAnswerTrainOverv(item) {
   questionFieldTextArea.className = "textareaStyling";
   questionFieldTextArea.setAttribute("disabled", "true");
   questionFieldTextArea.style.backgroundColor = "white";
+  questionFieldTextArea.title = 'imput smth here'
 
   let answerFieldTextArea = document.createElement("textarea");
   answerFieldTextArea.style.display = "none";
@@ -225,9 +228,9 @@ export default function questAnswerTrainOverv(item) {
     settingsIconContainer.style.display = "block";
   };
 
-  showAnswerButton.addEventListener('mouseover', function() {
-    showAnswerButton.style.cursor = 'pointer';
-  })
+  // showAnswerButton.addEventListener('mouseover', function() {
+  //   showAnswerButton.style.cursor = 'pointer';
+  // })
 
 
 
