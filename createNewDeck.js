@@ -87,7 +87,15 @@ export default function createNewDeck () {
           anchorElement.style.display = 'none'
         }
           };
-      
+     
+          
+
+  [okButton, cancelButton].forEach((el) => {
+
+    el.style.cursor = 'pointer';
+  });
+
+
       
  };
 

@@ -125,11 +125,6 @@ textarea {
   border: 1px solid black;
   border-radius: 20px;
 }
-/* 
-body >div>div> *:not(#questAnswerTrainOverv) {
- 
-  filter: blur(3px);
-} */
 
 
 .addQuestionsToDeck {
@@ -327,6 +322,7 @@ body >div>div> *:not(#questAnswerTrainOverv) {
   box-sizing: border-box;
   margin: 1px;
   position: relative;
+  
 }
 .day > div{
   position: absolute;

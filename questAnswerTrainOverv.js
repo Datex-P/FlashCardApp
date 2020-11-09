@@ -210,17 +210,12 @@ export default function questAnswerTrainOverv(item) {
   }
 
  
-
- 
-
   showAnswerButton.onclick = function () {
     this.style.cursor = "pointer";
     answerFieldTextArea.style.display = "block";
     theWordAnswer.style.display = "block";
     containerForText1DayEtc.style.display = 'flex';
     containerForText1DayEtc.style.justifyContent = 'space-between';
-    
-   // containerForAgainGoodEasyButtons.className = 'flexSpaceBetween';
     
     containerForAgainGoodEasyButtons.style.display = 'flex';
     containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';

@@ -42,7 +42,7 @@ export default function stats() {
 
   let cardsStudied = document.createElement("div");
   cardsStudied.className = 'flexCenter'
-  cardsStudied.style.border = '1px solid black';
+  //cardsStudied.style.border = '1px solid black';
   cardsStudied.style.width = "240px";
   cardsStudied.style.maxHeight = '100px'
   cardsStudied.style.height = 'fit-content'
@@ -77,12 +77,14 @@ export default function stats() {
   let buttonLeft = document.createElement("button");
   buttonLeft.className = "calendarButtons";
   buttonLeft.style.marginRight = "5px";
+  buttonLeft.style.cursor = 'pointer';
   buttonLeft.innerHTML = "<";
   buttonLeft.style.marginBottom = '5px';
 
   let buttonRight = document.createElement("button");
   buttonRight.className = "calendarButtons";
   buttonRight.style.marginLeft = "5px";
+  buttonRight.style.cursor = 'pointer'
   buttonRight.innerHTML = ">";
 
   let container = document.createElement("div");
@@ -94,7 +96,7 @@ export default function stats() {
   yearBoxContainer.style.flexWrap = 'wrap'
   yearBoxContainer.style.width = '270px';
   yearBoxContainer.style.height = '210px';
-  yearBoxContainer.style.border = '1px solid black';
+  //yearBoxContainer.style.border = '1px solid black';
 
   let hourlyBreakdownContainer = document.createElement('div');
   hourlyBreakdownContainer.className =  'flexColumnAlignCenter'
@@ -115,6 +117,7 @@ export default function stats() {
     let label = document.createElement('label');
     label.innerText = radio;
     radioBtn.value = radio;
+    radioBtn.style.cursor = 'pointer';
     radioBtn.setAttribute('type', 'radio');
     radioBtn.className = 'oneMonthThreeMonthButton'
     radioBtn.name = 'month'
@@ -211,7 +214,7 @@ export default function stats() {
 
   
   renderDays(2020)
-function renderDays(year){
+function renderDays(year) {
   yearBoxContainer.innerHTML=''
   let thisYear = new Date(`January 1, ${+year}`);
 
@@ -249,6 +252,7 @@ function renderDays(year){
     for (let deck in dataBase.DeckNames) {
       if (dataBase.DeckNames[deck].some(item => new Date(item.lastOpen).toDateString() == date)) {
         day.style.backgroundColor = 'red';
+        day.style.cursor = 'pointer';
       }
     }
     thisYear.setDate(thisYear.getDate() + 1)

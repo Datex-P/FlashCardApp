@@ -113,7 +113,11 @@ let theWordQuestionAndAnswer = document.createElement('div');
       createDom(dataBase.DeckNames);
     };
     
-  };
 
 
-  
+  [addToDeck, redCross].forEach((el) => {
+
+    el.style.cursor = 'pointer';
+  });
+
+};
