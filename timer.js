@@ -25,7 +25,7 @@ export const startTimer =(item,index)=> {
     dataBase.DeckNames[item][index].lastOpen = now;
     dataBase.DeckNames[item][index].timeLastOpen = difference;
   } else {
-    dataBase.DeckNames[item][index].lastOpen = (new Date().getTime()).toString()
+    dataBase.DeckNames[item][index].lastOpen = new Date().getTime()
   }
   
 }

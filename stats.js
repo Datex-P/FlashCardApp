@@ -31,7 +31,7 @@ export default function stats() {
   let redCross = document.createElement("div");
   redCross.innerHTML = redCrossIcon;
   redCross.className = 'redCross';
-  
+
 
   let theWordStats = document.createElement("div");
   theWordStats.innerHTML = "Stats";
@@ -100,7 +100,7 @@ export default function stats() {
   //yearBoxContainer.style.border = '1px solid black';
 
   let hourlyBreakdownContainer = document.createElement('div');
-  hourlyBreakdownContainer.className =  'flexColumnAlignCenter'
+  hourlyBreakdownContainer.className = 'flexColumnAlignCenter'
 
   let theWordhourlyBreakdown = document.createElement('div');
   theWordhourlyBreakdown.innerText = 'Hourly Breakdown'
@@ -113,7 +113,7 @@ export default function stats() {
   radioButtonContainer.style.marginTop = '10px';
 
 
-  ['1 month','3 month','12 month'].forEach(radio=>{
+  ['1 month', '3 month', '12 month'].forEach(radio => {
     let radioBtn = document.createElement('input')
     let label = document.createElement('label');
     label.innerText = radio;
@@ -122,8 +122,8 @@ export default function stats() {
     radioBtn.setAttribute('type', 'radio');
     radioBtn.className = 'oneMonthThreeMonthButton'
     radioBtn.name = 'month'
-    radioBtn.onchange = function (event){
-      let {value} = event.target
+    radioBtn.onchange = function (event) {
+      let { value } = event.target
       console.log(value);
     }
     // radioBtn.onmouseover = function (event){
@@ -133,16 +133,16 @@ export default function stats() {
     radioButtonContainer.appendChild(radioBtn);
     radioButtonContainer.appendChild(label)
   });
-  
 
-  
+
+
   let usageChartCaption = document.createElement('div');
- 
+
   usageChartCaption.style.height = '190px';
   usageChartCaption.style.border = '1px black solid';
   usageChartCaption.style.display = 'flex';
   usageChartCaption.style.overflowY = 'scroll'
-  
+
 
   for (let i = 0; i < 24; i++) {
     let time = document.createElement('div');
@@ -152,7 +152,7 @@ export default function stats() {
 
     let chartBar = document.createElement('div');
     chartBar.classList.add('hourLevel')
-    let j = i%2?3:4
+    let j = i % 2 ? 3 : 4
     for (let i = 1; i <= j; i++) {
       let level = document.createElement('div');
       level.classList.add('level')
@@ -192,17 +192,17 @@ export default function stats() {
 
 
   buttonLeft.onclick = function () {
-    dec-=1
+    dec -= 1
     change(dec);
 
   };
 
   buttonRight.onclick = function () {
-    dec+=1
+    dec += 1
     change(dec);
 
-  //console.log(dataBase.studyTime.Literature)
-  console.log('hello')
+    //console.log(dataBase.studyTime.Literature)
+    console.log('hello')
   };
 
   let chart1 = document.createElement('div');
@@ -212,75 +212,69 @@ export default function stats() {
   chart2.style.backgroundColor = 'green';
 
 
-  
+
   renderDays(2020)
-function renderDays(year) {
-  yearBoxContainer.innerHTML = '';
-  let thisYear = new Date(`January 1, ${+year}`);
+  function renderDays(year) {
+    yearBoxContainer.innerHTML = '';
+    let thisYear = new Date(`January 1, ${+year}`);
 
-  while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
-    let day = document.createElement('div');
-    day.classList.add('day');
-    let date = thisYear.toDateString();
-    day.onclick = function () {
-      yearBoxContainer.querySelectorAll('.day').forEach(day=>day.innerHTML = '');
-      let dayInner = document.createElement('div');
-      dayInner.innerText = `${date} Study time ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur)/60)} min cards studied:`;
-      
-      //console.log(date.getMonth())
-      //console.log(date.getDay())
-      /*
-      let counter = 0;
+    while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
+      let day = document.createElement('div');
+      day.classList.add('day');
+      let date = thisYear.toDateString();
+      day.onclick = function () {
+        yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
+        let dayInner = document.createElement('div');
+        dayInner.innerText = `${date} Study time ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min cards studied:`;
 
-      for (let deck in dataBase.DeckNames[deck].openHistory) {
-        for (let i =0; i<dataBase.DeckNames[deck].length; i++) {
-      
-        if (thisYear.getMonth() && thisYear.getDate() === deck[i].getMonth() && deck[i].getDate()) {
+        //console.log(date.getMonth())
+        //console.log(date.getDay())
 
-          counter ++;
+        let counter = 0;
+
+        for (let deck in dataBase.DeckNames) {
+          dataBase.DeckNames[deck].forEach(card=>{
+            card.openHistory && card.openHistory.forEach(openTime=>{
+              if (date === openTime.toDateString()) {
+                counter++;
+              }
+            })
+          })
+            
+          
+        }
+        console.log(counter);
+
+
+        day.append(dayInner)
+
+      }
+
+
+      let dayToday = new Date();
+      let threeMonthsAgo = new Date();
+      threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+
+      // for (let deck in dataBase.DeckNames[deck].openHistory) {
+      //   if (deck.getMonth() + 3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
+
+
+      //   }
+      // }
+
+
+
+      for (let deck in dataBase.DeckNames) {
+        if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
+          day.style.backgroundColor = 'red';
+          day.style.cursor = 'pointer';
         }
       }
+      thisYear.setDate(thisYear.getDate() + 1)
+
+      yearBoxContainer.appendChild(day)
     }
-    console.log(counter);
-    */
-
-    day.append(dayInner)   
-         
-        }
-        
-  
-     let dayToday = new Date();
-     let threeMonthsAgo = new Date();
-     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth()-3);
-
-     for (let deck in dataBase.DeckNames[deck].openHistory) {
-       if (deck.getMonth()+3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
-
-
-
-
-
-       }
-
-        
-
-
-   
-
-   
-
-
-    for (let deck in dataBase.DeckNames) {
-      if (dataBase.DeckNames[deck].some(item => new Date(item.lastOpen).toDateString() == date)) {
-        day.style.backgroundColor = 'red';
-        day.style.cursor = 'pointer';
-      }
-    }
-    thisYear.setDate(thisYear.getDate() + 1)
-
-    yearBoxContainer.appendChild(day)
   }
-}
 
 
 
@@ -290,13 +284,13 @@ function renderDays(year) {
 
 
 
-/*when deck is deleted it should also be deleted out of stats*/
+  /*when deck is deleted it should also be deleted out of stats*/
 
-//console.log(dataBase.DeckNames.Literature[0].openHistory.getMonth())
+  //console.log(dataBase.DeckNames.Literature[0].openHistory.getMonth())
 
 
   for (let deck in dataBase.counter) {
-    let container =  document.createElement('div');
+    let container = document.createElement('div');
     container.style.border = '1px black solid'
     container.className = 'flexSpaceBetween'
     let child1 = document.createElement('div');
@@ -312,15 +306,15 @@ function renderDays(year) {
 
   //console.log(dataBase.studyTime.Literature)
 
- /*
-  for (const studyTime in dataBase.studyTime) {
-  }
-*/
-  
+  /*
+   for (const studyTime in dataBase.studyTime) {
+   }
+ */
 
-//console.log(dataBase.DeckNames.studyTime[Literature])
 
-//console.log(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur))
+  //console.log(dataBase.DeckNames.studyTime[Literature])
+
+  //console.log(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur))
 
 
 
@@ -331,13 +325,13 @@ function renderDays(year) {
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }
-  
-  if  (Object.keys(dataBase.counter||{}).length <7) {
+
+  if (Object.keys(dataBase.counter || {}).length < 7) {
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }
 
- 
+
 
 
 
