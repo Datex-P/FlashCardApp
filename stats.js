@@ -215,7 +215,7 @@ export default function stats() {
   
   renderDays(2020)
 function renderDays(year) {
-  yearBoxContainer.innerHTML='';
+  yearBoxContainer.innerHTML = '';
   let thisYear = new Date(`January 1, ${+year}`);
 
   while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
@@ -227,21 +227,21 @@ function renderDays(year) {
       let dayInner = document.createElement('div');
       dayInner.innerText = `${date} Study time ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur)/60)} min cards studied:`;
       
-      console.log(date.getMonth())
-      console.log(date.getDay())
+      //console.log(date.getMonth())
+      //console.log(date.getDay())
       /*
       let counter = 0;
 
       for (let deck in dataBase.DeckNames[deck].openHistory) {
         for (let i =0; i<dataBase.DeckNames[deck].length; i++) {
       
-        if (thisYear.getMonth() && thisYear.getDate() === deck[i].getMonth && deck[i].getDate()) {
+        if (thisYear.getMonth() && thisYear.getDate() === deck[i].getMonth() && deck[i].getDate()) {
 
-          counter ++
+          counter ++;
         }
       }
     }
-    console.log(counter)
+    console.log(counter);
     */
 
     day.append(dayInner)   
@@ -249,9 +249,22 @@ function renderDays(year) {
         }
         
   
-      //console.log(date)
+     let dayToday = new Date();
+     let threeMonthsAgo = new Date();
+     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth()-3);
 
-     
+     for (let deck in dataBase.DeckNames[deck].openHistory) {
+       if (deck.getMonth()+3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
+
+
+
+
+
+       }
+
+        
+
+
    
 
    
@@ -268,6 +281,13 @@ function renderDays(year) {
     yearBoxContainer.appendChild(day)
   }
 }
+
+
+
+
+
+
+
 
 
 /*when deck is deleted it should also be deleted out of stats*/

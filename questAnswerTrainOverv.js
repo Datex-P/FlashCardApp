@@ -1,6 +1,7 @@
 import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
 import { redCross as redCrossIcon, settingsIcon } from "./svgs.js";
+import {dataBase} from './dataBase.js';
 
 export default function questAnswerTrainOverv(item) {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
@@ -40,7 +41,7 @@ export default function questAnswerTrainOverv(item) {
       containerForText1DayEtc.append(smallerThan);
 });
 
-  ["again", "good", "easy"].forEach((el) => {
+  ["again", "good", "easy"].forEach( (el) => {
     let button = document.createElement("button");
     button.innerText = el;
     button.className = "againGoodEasyButton";
@@ -49,49 +50,74 @@ export default function questAnswerTrainOverv(item) {
       e.target.style.cursor = 'pointer';
     };
 
-    button.addEventListener('click', function(){
+    button.addEventListener('click', function() {
     
 
       if (el ==='again') {
           shuffleLogic(); //different kinds of shuffle logic     
 
-          let randomNum = Math.floor(Math.random() * 120);
+          let randomNum = Math.floor(Math.random() * 3);
 
           setTimeout(function() {
-            /*
+            
               button.addEventListener('click', function () {
-                //questionFieldTextArea.value =  dataBase.DeckNames[item][index].question.value
-                  //answerFieldTextArea.value = dataBase.DeckNames[item][index].answer.value
-              }
-            }
-  */
-  
+                questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+                  answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+              })
+          
           }, randomNum * 1000);
-
-
-          //search for the index somehow based on the value of the field
-
-          //dataBase.DeckNames[deck].some(item => new Date(item.lastOpen).toDateString() == date)) 
-
 
           display();
       }
-      if (el == 'good') {
-        shuffleLogic(); //different kinds of shuffle logic   
-      }
-      if (el ==='again') {
-        shuffleLogic(); //different kinds of shuffle logic     
-      }
-      display();
-    });
 
+      
+      
+      if (el == 'good') {
+        shuffleLogic(); 
+        display();
+        /*
+        let randomNum = Math.floor(Math.random() * 3);
+        
+        setTimeout(function() {
+          
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+          
+          
+          
+        }, randomNum * 1000);
+        */
+      }
+      
+      
+      if (el ==='again') {
+        shuffleLogic(); 
+        
+        /*
+        let randomNum = Math.floor(Math.random() * 3);
+        
+        setTimeout(function() {
+          
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+          
+        }, randomNum * 1000);
+        */
+       display();
+      };
+    })
     containerForAgainGoodEasyButtons.append(button)
   });
-
-  
-
-  let insideNameofDeckContainer = document.createElement("div");
-  insideNameofDeckContainer.style.marginTop = "30px";
+      
+      
+      
+      
+      let insideNameofDeckContainer = document.createElement("div");
+      insideNameofDeckContainer.style.marginTop = "30px";
   insideNameofDeckContainer.id = "insideNameofDeckContainer";
 
   let littleModalWindow = document.createElement("div");
@@ -210,8 +236,8 @@ export default function questAnswerTrainOverv(item) {
     let [question, answer,index] = shuffle(item);
     questionFieldTextArea.value = question;
     answerFieldTextArea.innerText = answer;
-   // return index
-   console.log(index)
+    return index
+   //console.log(index)
   }
 
  
