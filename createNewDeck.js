@@ -18,11 +18,11 @@ export default function createNewDeck () {
     
   let nameForNewDeckText = document.createElement('div');
       nameForNewDeckText.style.fontWeight = 'bold';
-      nameForNewDeckText.innerHTML = 'Name for new deck' ;
+      nameForNewDeckText.innerHTML = 'Name for new deck';
      
 
   let inputNewDeck = document.createElement('input');
-      inputNewDeck.id  = 'inputNameOfNewDeck'
+      inputNewDeck.id  = 'inputNameOfNewDeck';
 
   let nameForNewDeckTextandinputNewDeckContainer = document.createElement('div');
       nameForNewDeckTextandinputNewDeckContainer.className = 'flexColumn'
@@ -56,7 +56,7 @@ export default function createNewDeck () {
       anchorElement.append(mainWindow);
 
       cancelButton.onclick = function () {
-        anchorElement.style.display = 'none'
+        anchorElement.style.display = 'none';
         anchorElement.removeChild(mainWindow);
 
         if (!Object.keys(dataBase.DeckNames).length) {
@@ -81,18 +81,13 @@ export default function createNewDeck () {
           dataBase.DeckNames[inputNewDeck.value] = [];
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
-          document.getElementById('createYourFirstDeckPrompt').style.display = 'none'        
+          document.getElementById('createYourFirstDeckPrompt').style.display = 'none';        
        
        
-          anchorElement.style.display = 'none'
+          anchorElement.style.display = 'none';
         }
           };
      
-          
-
- 
-
-
       
  };
 

@@ -145,7 +145,66 @@ export default function questAnswerTrainOverv(item) {
 
       } else if (el === 'delete'){
 
-        dataBase.DeckNames[item].splice(index,1)
+        dataBase.DeckNames[item].splice(index,1);
+
+        /*
+        function popUp () {
+
+        let dontShow = false;
+
+        return function innerPop () {
+
+        if (dontShow = false) {
+
+        let popUpWindowContainer = document.createElement('div');
+            popUpWindowContainer.style.display = 'flex';
+            popUpWindowContainer.style.flexDirection = 'column';
+            popUpWindowContainer.style.width = '200px';
+            popUpWindowContainer.style.height = '55px';
+            popUpWindowContainer.style.backgroundColor = 'white';
+            popUpWindowContainer.style.zIndex = '2';
+            popUpWindowContainer.style.position = 'absolute';
+            popUpWindowContainer.style.top = '200px';
+            popUpWindowContainer.style.border = '1px black solid'; 
+            popUpWindowContainer.style.display = 'flex';
+            popUpWindowContainer.style.justifyContent = 'space-between';
+            popUpWindowContainer.style.borderRadius = '5px';
+
+
+        let checkbox = document.createElement('input');
+            checkbox.setAttribute('type', 'checkbox');
+
+        let dontShowInfo = document.createElement('div');
+            dontShowInfo.innerHTML = `Don't show message again`;
+
+        let cardRemovedInfo = document.createElement('div');
+            cardRemovedInfo.innerHTML = 'Card was removed from deck';
+
+        let dontShowAndCheckboxContainer = document.createElement('div');
+            dontShowAndCheckboxContainer.style.display = 'flex';
+
+        dontShowAndCheckboxContainer.append(checkbox);
+        dontShowAndCheckboxContainer.append(dontShowInfo);
+
+        popUpWindowContainer.append(cardRemovedInfo);
+        popUpWindowContainer.append(dontShowAndCheckboxContainer);
+        insideNameofDeckContainer.append(popUpWindowContainer);
+
+        checkbox.onclick = function () {
+          donttShow = true;
+        }
+
+        setTimeout(function () {
+
+          popUpWindowContainer.style.display='none'
+        }, 10000);
+
+      }
+    }
+  }
+        
+      popUp();
+*/
 
         if(dataBase.DeckNames[item].length){
           shuffleLogic(); 

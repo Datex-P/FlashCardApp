@@ -240,23 +240,13 @@ export default function stats() {
             event.stopPropagation()
             yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
             let dayInner = document.createElement('div');
-            dayInner.innerText = `${date} Time: ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min \n Review: ${counter} cards`;
+            dayInner.innerText = `${date} Time:      ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min \n Review: ${counter} cards`;
             console.log(counter);
             day.append(dayInner)
           }
         }
-        /*
-
-        if (day.style.backgroundColor !== 'red') {
-            day.removeEventListener('click', dayOnClick);
-
-            day.removeClassList('day');
-        }
-        */
       }
 
-
-      
 
 /*
       let dayToday = new Date();
@@ -269,15 +259,6 @@ export default function stats() {
 
       //   }
       // }
-
-
-
-    
-
-
-
-
-
 
 
 
@@ -299,12 +280,32 @@ export default function stats() {
 
 
 
-
-
   /*when deck is deleted it should also be deleted out of stats*/
 
-  //console.log(dataBase.DeckNames.Literature[0].openHistory.getMonth())
+  let counterTwo = 0;
 
+  let date = new Date();
+  for (let deck in dataBase.DeckNames) {
+    dataBase.DeckNames[deck].forEach(card=>{
+      card.openHistory && card.openHistory.forEach(openTime=>{
+        if (date === openTime.toDateString()) {
+          counterTwo++;
+        }
+      })
+    })        
+  }
+
+  if (counterTwo === 0) {
+    cardsStudied.style.textAlign = 'center';
+    cardsStudied.innerHTML = "No cards studied today";
+    cardsStudied.style.removeProperty('border');
+    cardsStudied.style.removeProperty('overflow');
+  }
+
+  if (counterTwo < 7) {
+    cardsStudied.style.removeProperty('border');
+    cardsStudied.style.removeProperty('overflow');
+  }
 
   for (let deck in dataBase.counter) {
     let container = document.createElement('div');
@@ -320,21 +321,6 @@ export default function stats() {
     container.append(child2);
 
   }
-
-  if (counter === 0) {
-    cardsStudied.style.textAlign = 'center';
-    cardsStudied.innerHTML = "No cards studied today";
-    cardsStudied.style.removeProperty('border');
-    cardsStudied.style.removeProperty('overflow');
-  }
-
-  if (Object.keys(dataBase.counter || {}).length < 7) {
-    cardsStudied.style.removeProperty('border');
-    cardsStudied.style.removeProperty('overflow');
-  }
-
-
-
 
 
   theWordTodayContainer.append(theWordToday);

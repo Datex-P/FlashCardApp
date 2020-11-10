@@ -19,20 +19,16 @@ containerStatsIcon.innerHTML = statsIcon;
 createDom(dataBase.DeckNames);
 
 
-let arrowDown = document.querySelector(".arrowDown");
 document.getElementById("createDeckButton").onclick = function () {
   createNewDeck()
  
-  arrowDown.style.display = "none";
+  document.querySelector(".arrowDown").style.display = "none";
   
 };
 
 
-let statsInNavBar = document.getElementById("stats");
-
-    statsInNavBar.onclick = function () {
+document.getElementById("stats").onclick = function () {
       stats(dataBase.deckNames);
- 
     }
 
 
