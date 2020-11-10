@@ -240,7 +240,8 @@ export default function stats() {
             event.stopPropagation()
             yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
             let dayInner = document.createElement('div');
-            dayInner.innerText = `${date} Time:      ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min \n Review: ${counter} cards`;
+            let time = Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)
+            dayInner.innerText = `${date} Time: ${time.toString().padStart(4,'⠀')} min \n Review: ${counter} cards`;
             console.log(counter);
             day.append(dayInner)
           }

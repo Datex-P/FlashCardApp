@@ -1,9 +1,57 @@
 import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
 import { redCross as redCrossIcon, settingsIcon } from "./svgs.js";
-import {dataBase} from './dataBase.js';
+import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
+let dontShow = false;
+function popUp() {
+  if (!dontShow) {
 
+    let popUpWindowContainer = document.createElement('div');
+    popUpWindowContainer.style.display = 'flex';
+    popUpWindowContainer.style.flexDirection = 'column';
+    popUpWindowContainer.style.width = '200px';
+    popUpWindowContainer.style.height = '55px';
+    popUpWindowContainer.style.backgroundColor = 'white';
+    popUpWindowContainer.style.zIndex = '2';
+    popUpWindowContainer.style.position = 'absolute';
+    popUpWindowContainer.style.top = '200px';
+    popUpWindowContainer.style.border = '1px black solid';
+    popUpWindowContainer.style.justifyContent = 'space-between';
+    popUpWindowContainer.style.borderRadius = '5px';
+
+
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+
+    let dontShowInfo = document.createElement('div');
+    dontShowInfo.innerHTML = `Don't show message again`;
+
+    let cardRemovedInfo = document.createElement('div');
+    cardRemovedInfo.innerHTML = 'Card was removed from deck';
+
+    let dontShowAndCheckboxContainer = document.createElement('div');
+    dontShowAndCheckboxContainer.style.display = 'flex';
+
+    dontShowAndCheckboxContainer.append(checkbox);
+    dontShowAndCheckboxContainer.append(dontShowInfo);
+
+    popUpWindowContainer.append(cardRemovedInfo);
+    popUpWindowContainer.append(dontShowAndCheckboxContainer);
+    insideNameofDeckContainer.append(popUpWindowContainer);
+
+    checkbox.onclick = function () {
+      dontShow = true;
+      popUpWindowContainer.style.display = 'none'
+    }
+
+    setTimeout(function () {
+      popUpWindowContainer.style.display = 'none'
+      
+    }, 5000);
+
+  }
+}
 
 export default function questAnswerTrainOverv(item) {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
@@ -33,17 +81,17 @@ export default function questAnswerTrainOverv(item) {
 
   let containerForsmallerTwoMinutesEtc = document.createElement("div");
   containerForsmallerTwoMinutesEtc.style.width = "255px";
-  containerForsmallerTwoMinutesEtc.className= "flexColumn";
+  containerForsmallerTwoMinutesEtc.className = "flexColumn";
 
 
-  
-['<2m', '<10m', '<2d'].forEach(el=>{
-  let smallerThan = document.createElement('div');
-      smallerThan.innerText = el;
-      containerForText1DayEtc.append(smallerThan);
-});
 
-  ["again", "good", "easy"].forEach( (el) => {
+  ['<2m', '<10m', '<2d'].forEach(el => {
+    let smallerThan = document.createElement('div');
+    smallerThan.innerText = el;
+    containerForText1DayEtc.append(smallerThan);
+  });
+
+  ["again", "good", "easy"].forEach((el) => {
     let button = document.createElement("button");
     button.innerText = el;
     button.className = "againGoodEasyButton";
@@ -52,30 +100,30 @@ export default function questAnswerTrainOverv(item) {
       e.target.style.cursor = 'pointer';
     };
 
-    button.addEventListener('click', function() {
-    
+    button.addEventListener('click', function () {
 
-      if (el ==='again') {
-          shuffleLogic(); //different kinds of shuffle logic     
 
-          let randomNum = Math.floor(Math.random() * 3);
+      if (el === 'again') {
+        shuffleLogic(); //different kinds of shuffle logic     
 
-          setTimeout(function() {
-            
-              button.addEventListener('click', function () {
-                questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-                  answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-              })
-          
-          }, randomNum * 1000);
+        let randomNum = Math.floor(Math.random() * 3);
 
-          display();
+        setTimeout(function () {
+
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+
+        }, randomNum * 1000);
+
+        display();
       }
 
-      
-      
+
+
       if (el == 'good') {
-        shuffleLogic(); 
+        shuffleLogic();
         display();
         /*
         let randomNum = Math.floor(Math.random() * 3);
@@ -92,11 +140,11 @@ export default function questAnswerTrainOverv(item) {
         }, randomNum * 1000);
         */
       }
-      
-      
-      if (el ==='again') {
-        shuffleLogic(); 
-        
+
+
+      if (el === 'again') {
+        shuffleLogic();
+
         /*
         let randomNum = Math.floor(Math.random() * 3);
         
@@ -109,15 +157,15 @@ export default function questAnswerTrainOverv(item) {
           
         }, randomNum * 1000);
         */
-       display();
+        display();
       };
     })
     containerForAgainGoodEasyButtons.append(button)
   });
-      
-      
-      
-      
+
+
+
+
   let insideNameofDeckContainer = document.createElement("div");
   insideNameofDeckContainer.style.marginTop = "30px";
   insideNameofDeckContainer.id = "insideNameofDeckContainer";
@@ -134,8 +182,8 @@ export default function questAnswerTrainOverv(item) {
     button.style.width = "100px";
     button.style.marginTop = "10px";
     button.style.marginLeft = "8px";
-
-    button.onclick = function(){
+    
+    button.onclick = function () {
 
       if (el === 'edit') {
 
@@ -143,75 +191,22 @@ export default function questAnswerTrainOverv(item) {
         questionFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.focus();
 
-      } else if (el === 'delete'){
+      } else if (el === 'delete') {
 
-        dataBase.DeckNames[item].splice(index,1);
-
-        /*
-        function popUp () {
-
-        let dontShow = false;
-
-        return function innerPop () {
-
-        if (dontShow = false) {
-
-        let popUpWindowContainer = document.createElement('div');
-            popUpWindowContainer.style.display = 'flex';
-            popUpWindowContainer.style.flexDirection = 'column';
-            popUpWindowContainer.style.width = '200px';
-            popUpWindowContainer.style.height = '55px';
-            popUpWindowContainer.style.backgroundColor = 'white';
-            popUpWindowContainer.style.zIndex = '2';
-            popUpWindowContainer.style.position = 'absolute';
-            popUpWindowContainer.style.top = '200px';
-            popUpWindowContainer.style.border = '1px black solid'; 
-            popUpWindowContainer.style.display = 'flex';
-            popUpWindowContainer.style.justifyContent = 'space-between';
-            popUpWindowContainer.style.borderRadius = '5px';
+        dataBase.DeckNames[item].splice(index, 1);
 
 
-        let checkbox = document.createElement('input');
-            checkbox.setAttribute('type', 'checkbox');
-
-        let dontShowInfo = document.createElement('div');
-            dontShowInfo.innerHTML = `Don't show message again`;
-
-        let cardRemovedInfo = document.createElement('div');
-            cardRemovedInfo.innerHTML = 'Card was removed from deck';
-
-        let dontShowAndCheckboxContainer = document.createElement('div');
-            dontShowAndCheckboxContainer.style.display = 'flex';
-
-        dontShowAndCheckboxContainer.append(checkbox);
-        dontShowAndCheckboxContainer.append(dontShowInfo);
-
-        popUpWindowContainer.append(cardRemovedInfo);
-        popUpWindowContainer.append(dontShowAndCheckboxContainer);
-        insideNameofDeckContainer.append(popUpWindowContainer);
-
-        checkbox.onclick = function () {
-          donttShow = true;
-        }
-
-        setTimeout(function () {
-
-          popUpWindowContainer.style.display='none'
-        }, 10000);
-
-      }
-    }
-  }
         
-      popUp();
-*/
+        createDom(dataBase.DeckNames)
+        
 
-        if(dataBase.DeckNames[item].length){
-          shuffleLogic(); 
-        }else{
+
+        if (dataBase.DeckNames[item].length) {
+          shuffleLogic();
+        } else {
           close()
-          createDom(dataBase.DeckNames)
         }
+        popUp();
       }
     }
     littleModalWindow.appendChild(button);
@@ -231,7 +226,7 @@ export default function questAnswerTrainOverv(item) {
 
   settingsIconContainer.appendChild(littleModalWindow);
 
-  
+
   let showAnswerButton = document.createElement("button");
   showAnswerButton.innerHTML = "Show Answer";
   showAnswerButton.id = "showAnswerButton";
@@ -251,7 +246,7 @@ export default function questAnswerTrainOverv(item) {
   redCross.innerHTML = redCrossIcon;
   redCross.className = 'redCross';
   redCross.style.cursor = 'pointer';
- 
+
   let theWordQuestion = document.createElement("div");
   theWordQuestion.className = "theWordQuestionAndAnswer";
   theWordQuestion.innerHTML = "Question";
@@ -275,7 +270,7 @@ export default function questAnswerTrainOverv(item) {
   answerFieldTextArea.style.backgroundColor = "white";
 
   let theWordAnswerContainer = document.createElement("div");
-  theWordAnswerContainer.className ='flexSpaceBetween'
+  theWordAnswerContainer.className = 'flexSpaceBetween'
   //theWordAnswerContainer.style.border = '1px black solid';
   theWordAnswerContainer.style.width = "270px";
 
@@ -297,23 +292,23 @@ export default function questAnswerTrainOverv(item) {
   }
 
   function shuffleLogic() {
-    let [question, answer,index] = shuffle(item);
+    let [question, answer, index] = shuffle(item);
     questionFieldTextArea.value = question;
     answerFieldTextArea.innerText = answer;
     return index
   }
 
- 
+
   showAnswerButton.onclick = function () {
-  
+
     answerFieldTextArea.style.display = "block";
     theWordAnswer.style.display = "block";
     containerForText1DayEtc.style.display = 'flex';
     containerForText1DayEtc.style.justifyContent = 'space-between';
-    
+
     containerForAgainGoodEasyButtons.style.display = 'flex';
     containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
-    
+
     this.style.display = "none";
     settingsIconContainer.style.display = "block";
   };
@@ -360,13 +355,13 @@ export default function questAnswerTrainOverv(item) {
     };
   }, 10);
 
-  function close(){
+  function close() {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
     clearInterval(timer);
   }
   redCross.onclick = close
-  
+
 
 
 }
