@@ -303,17 +303,8 @@ export default function stats() {
     })        
   }
 
-
   console.log(counterTwo + ' counterTwo')
 
-
-
-
-
-
-
-
-  
   if (counterTwo === 0) {
     cardsStudied.style.textAlign = 'center';
     cardsStudied.innerHTML = "No cards studied today";
@@ -325,8 +316,13 @@ export default function stats() {
     cardsStudied.style.removeProperty('border');
     cardsStudied.style.removeProperty('overflow');
   }
+/*
+  for (let deck in dataBase.DeckNames) {
 
-  for (let deck in dataBase.counter) {
+    card.openHistory && card.openHistory.forEach(openTime=> {
+      if (date.toDateString() === openTime.toDateString()) {
+
+
     let container = document.createElement('div');
     container.style.border = '1px black solid'
     container.className = 'flexSpaceBetween'
@@ -338,9 +334,10 @@ export default function stats() {
     cardsStudied.append(container);
     container.append(child1);
     container.append(child2);
-
   }
-
+    })
+  };
+*/
 
   theWordTodayContainer.append(theWordToday);
   theWordTodayContainer.appendChild(cardsStudied);

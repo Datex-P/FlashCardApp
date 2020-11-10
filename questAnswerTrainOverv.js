@@ -1,6 +1,6 @@
 import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
-import { redCross as redCrossIcon, settingsIcon } from "./svgs.js";
+import { redCross as redCrossIcon} from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 let dontShow = false;
@@ -172,6 +172,7 @@ export default function questAnswerTrainOverv(item) {
 
   let littleModalWindow = document.createElement("div");
   littleModalWindow.classList.add("littleModalWindow");
+  littleModalWindow.style.transform = 'rotate(-90deg)';
 
   let opened = false;
   ["edit", "delete"].forEach((el) => {
@@ -188,12 +189,88 @@ export default function questAnswerTrainOverv(item) {
 
       if (el === 'edit') {
 
+       // containerForButtons.style.display = 'flex';
+       // containerForButtons.style.justifyContent = 'center';
+
         answerFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.focus();
         // mainWindow.style.backgroundColor = 'rgba(0,0,0,0.7)'
 
-      } else if (el === 'delete') {
+        containerForAgainGoodEasyButtons.parentNode.removeChild(containerForAgainGoodEasyButtons);
+        containerForText1DayEtc.parentNode.removeChild(containerForText1DayEtc);
+
+                  
+        let buttonContainer = document.createElement('div');
+        buttonContainer.style.display = 'flex';
+        buttonContainer.style.justifyContent = 'center';
+        buttonContainer.style.border = '1px black solid';
+        containerForButtons.append(buttonContainer);
+
+
+        ["discard", "save"].forEach((el) => {
+
+          let button = document.createElement("button");
+          button.innerText = el;
+          button.className = "againGoodEasyButton";
+          button.style.width = "100px";
+          button.style.marginTop = "10px";
+          button.style.marginLeft = "8px";
+          button.style.cursor = 'pointer';
+
+
+          buttonContainer.append(button);
+          
+          
+          button.onclick = function () {
+            if (el === 'discard') {
+
+
+              answerFieldTextArea.style.border = 'none';
+              questionFieldTextArea.style.border = 'none';
+              answerFieldTextArea.style.outline = 'none';
+              questionFieldTextArea.style.border = 'none';
+
+              containerForButtons.style.marginRight = '55px';
+
+              containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc);
+              containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
+              buttonContainer.parentNode.removeChild(buttonContainer);
+
+              answerFieldTextArea.setAttribute("disabled", 'true');
+              questionFieldTextArea.setAttribute("disabled", 'true');
+
+            }
+            if (el === 'save') {
+
+           //   question = questionFieldTextArea.value;
+            //  answer = answerFieldTextArea.value;
+            answerFieldTextArea.setAttribute("disabled", 'true');
+            questionFieldTextArea.setAttribute("disabled", 'true');
+
+              containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
+              buttonContainer.parentNode.removeChild(buttonContainer);
+              shuffleLogic();
+
+
+            }
+
+
+
+
+            
+          }
+        });
+
+
+
+
+    }
+
+
+
+
+       else if (el === 'delete') {
 
         dataBase.DeckNames[item].splice(index, 1);
         createDom(dataBase.DeckNames)
@@ -210,7 +287,9 @@ export default function questAnswerTrainOverv(item) {
   });
 
   let settingsIconContainer = document.createElement("div");
-  settingsIconContainer.innerHTML = settingsIcon;
+  settingsIconContainer.innerHTML = '...'
+  settingsIconContainer.style.transform = 'rotate(90deg)';
+  settingsIconContainer.style.fontWeight = 'bold';
   settingsIconContainer.style.marginTop = '5px';
   settingsIconContainer.style.display = "none";
   settingsIconContainer.style.position = "relative";
@@ -229,6 +308,7 @@ export default function questAnswerTrainOverv(item) {
   showAnswerButton.id = "showAnswerButton";
   showAnswerButton.style.marginLeft = "8px";
   showAnswerButton.style.cursor = "pointer";
+
 
   let theNameOftheDeckAndRedCrossContainer = document.createElement("div");
   theNameOftheDeckAndRedCrossContainer.style.width = "265px";
