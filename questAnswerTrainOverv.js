@@ -2,6 +2,8 @@ import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
 import { redCross as redCrossIcon, settingsIcon } from "./svgs.js";
 import {dataBase} from './dataBase.js';
+import createDom from './createDom.js';
+
 
 export default function questAnswerTrainOverv(item) {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
@@ -143,10 +145,14 @@ export default function questAnswerTrainOverv(item) {
 
       } else if (el === 'delete'){
 
-        delete dataBase.DeckNames[item][index].question;
-        delete dataBase.DeckNames[item][index].answer;
+        dataBase.DeckNames[item].splice(index,1)
 
-        shuffleLogic(); 
+        if(dataBase.DeckNames[item].length){
+          shuffleLogic(); 
+        }else{
+          close()
+          createDom(dataBase.DeckNames)
+        }
       }
     }
     littleModalWindow.appendChild(button);
@@ -295,12 +301,12 @@ export default function questAnswerTrainOverv(item) {
     };
   }, 10);
 
-  redCross.onclick = function () {
+  function close(){
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
     clearInterval(timer);
-    //	console.log('your current total is:',counter)
-  };
+  }
+  redCross.onclick = close
   
 
 

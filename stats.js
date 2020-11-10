@@ -235,6 +235,15 @@ export default function stats() {
         if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
           day.style.backgroundColor = 'red';
           day.style.cursor = 'pointer';
+
+          day.onclick = function (event) {
+            event.stopPropagation()
+            yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
+            let dayInner = document.createElement('div');
+            dayInner.innerText = `${date} Time: ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min \n Review: ${counter} cards`;
+            console.log(counter);
+            day.append(dayInner)
+          }
         }
         /*
 
@@ -247,26 +256,7 @@ export default function stats() {
       }
 
 
-      day.onclick = function dayOnClick() {
-
-        yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
-        let dayInner = document.createElement('div');
-        dayInner.innerText = `${date} Time: ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min \n Review: ${counter} cards`;
-
-        //console.log(date.getMonth())
-        //console.log(date.getDay())
-
-
-        console.log(counter);
-
-
-        day.append(dayInner)
-
-
-
       
-
-      }
 
 /*
       let dayToday = new Date();
@@ -294,11 +284,17 @@ export default function stats() {
       thisYear.setDate(thisYear.getDate() + 1)
 
       yearBoxContainer.appendChild(day)
+      yearBoxContainer.onclick = function(event){
+        alert('you do not have training in this day')
+      }
     }
   }
 
-
-
+  function removePopUpwindow(){
+    yearBoxContainer.querySelectorAll('div').forEach(div=>div.innerHTML = '')
+  }
+  mainWindow.onclick = removePopUpwindow
+  
 
 
 
