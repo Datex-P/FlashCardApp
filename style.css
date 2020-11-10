@@ -371,3 +371,10 @@ display: none;
 padding: 20px;
 background-color: white;
 }
+textarea:focus{
+  border: 2px solid red;
+  box-shadow: 0px 0px 10px red;
+}
+textarea:enabled{
+  border: 2px solid red;
+}

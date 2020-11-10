@@ -191,6 +191,7 @@ export default function questAnswerTrainOverv(item) {
         answerFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.focus();
+        // mainWindow.style.backgroundColor = 'rgba(0,0,0,0.7)'
 
       } else if (el === 'delete') {
 

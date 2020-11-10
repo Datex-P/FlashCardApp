@@ -296,7 +296,7 @@ export default function stats() {
   for (let deck in dataBase.DeckNames) {
     dataBase.DeckNames[deck].forEach(card=>{
       card.openHistory && card.openHistory.forEach(openTime=>{
-        if (date === openTime.toDateString()) {
+        if (date.toDateString() === openTime.toDateString()) {
           counterTwo++;
         }
       })
