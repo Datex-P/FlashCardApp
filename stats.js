@@ -13,7 +13,6 @@ export default function stats() {
   let mainWindow = document.createElement("div");
   mainWindow.className = "addQuestionsToDeck";
 
-
   let innerWindow = document.createElement("div");
   innerWindow.style.marginTop = "20px";
   innerWindow.style.marginLeft = "30px";
@@ -201,8 +200,6 @@ export default function stats() {
     dec += 1
     change(dec);
 
-    //console.log(dataBase.studyTime.Literature)
-    console.log('hello')
   };
 
   let chart1 = document.createElement('div');
@@ -212,6 +209,7 @@ export default function stats() {
   chart2.style.backgroundColor = 'green';
 
 
+  let counter = 0;
 
   renderDays(2020)
   function renderDays(year) {
@@ -222,39 +220,59 @@ export default function stats() {
       let day = document.createElement('div');
       day.classList.add('day');
       let date = thisYear.toDateString();
-      day.onclick = function () {
+
+      for (let deck in dataBase.DeckNames) {
+        dataBase.DeckNames[deck].forEach(card=>{
+          card.openHistory && card.openHistory.forEach(openTime=>{
+            if (date === openTime.toDateString()) {
+              counter++;
+            }
+          })
+        })        
+      }
+
+      for (let deck in dataBase.DeckNames) {
+        if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
+          day.style.backgroundColor = 'red';
+          day.style.cursor = 'pointer';
+        }
+        /*
+
+        if (day.style.backgroundColor !== 'red') {
+            day.removeEventListener('click', dayOnClick);
+
+            day.removeClassList('day');
+        }
+        */
+      }
+
+
+      day.onclick = function dayOnClick() {
+
         yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
         let dayInner = document.createElement('div');
-        dayInner.innerText = `${date} Study time ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min cards studied:`;
+        dayInner.innerText = `${date} Time: ${Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)} min \n Review: ${counter} cards`;
 
         //console.log(date.getMonth())
         //console.log(date.getDay())
 
-        let counter = 0;
 
-        for (let deck in dataBase.DeckNames) {
-          dataBase.DeckNames[deck].forEach(card=>{
-            card.openHistory && card.openHistory.forEach(openTime=>{
-              if (date === openTime.toDateString()) {
-                counter++;
-              }
-            })
-          })
-            
-          
-        }
         console.log(counter);
 
 
         day.append(dayInner)
 
+
+
+      
+
       }
 
-
+/*
       let dayToday = new Date();
       let threeMonthsAgo = new Date();
       threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-
+*/
       // for (let deck in dataBase.DeckNames[deck].openHistory) {
       //   if (deck.getMonth() + 3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
 
@@ -264,12 +282,15 @@ export default function stats() {
 
 
 
-      for (let deck in dataBase.DeckNames) {
-        if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
-          day.style.backgroundColor = 'red';
-          day.style.cursor = 'pointer';
-        }
-      }
+    
+
+
+
+
+
+
+
+
       thisYear.setDate(thisYear.getDate() + 1)
 
       yearBoxContainer.appendChild(day)
@@ -304,22 +325,7 @@ export default function stats() {
 
   }
 
-  //console.log(dataBase.studyTime.Literature)
-
-  /*
-   for (const studyTime in dataBase.studyTime) {
-   }
- */
-
-
-  //console.log(dataBase.DeckNames.studyTime[Literature])
-
-  //console.log(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur))
-
-
-
-
-  if (cardsStudied.innerHTML === "") {
+  if (counter === 0) {
     cardsStudied.style.textAlign = 'center';
     cardsStudied.innerHTML = "No cards studied today";
     cardsStudied.style.removeProperty('border');
@@ -389,6 +395,4 @@ export default function stats() {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
   };
-
-
 };

@@ -2,8 +2,6 @@ import {dataBase} from "./dataBase.js";
 
 export default function shuffle(item,index=null) {
  
-  
-
   function questionNumber(random) {
     return dataBase.DeckNames[item][random].question;
   }

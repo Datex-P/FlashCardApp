@@ -37,8 +37,6 @@ export default function createDom(obj, length = "long") {
     } else {
       nameOfNewDeck.onclick = function () {
         questAnswerTrainOverv(item);
-      //nameOfNewDeck.style.filter = 'blur(5px)'
-     //document.getElementById('mainMenu').style.filter='blur(5px)';
       };
     }
 

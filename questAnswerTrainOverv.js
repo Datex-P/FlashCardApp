@@ -116,8 +116,8 @@ export default function questAnswerTrainOverv(item) {
       
       
       
-      let insideNameofDeckContainer = document.createElement("div");
-      insideNameofDeckContainer.style.marginTop = "30px";
+  let insideNameofDeckContainer = document.createElement("div");
+  insideNameofDeckContainer.style.marginTop = "30px";
   insideNameofDeckContainer.id = "insideNameofDeckContainer";
 
   let littleModalWindow = document.createElement("div");
@@ -125,28 +125,28 @@ export default function questAnswerTrainOverv(item) {
 
   let opened = false;
   ["edit", "delete"].forEach((el) => {
+
     let button = document.createElement("button");
     button.innerText = el;
     button.className = "againGoodEasyButton";
     button.style.width = "100px";
     button.style.marginTop = "10px";
     button.style.marginLeft = "8px";
+
     button.onclick = function(){
-      if (el === 'edit'){
+
+      if (el === 'edit') {
+
         answerFieldTextArea.removeAttribute("disabled");
         questionFieldTextArea.removeAttribute("disabled");
-        questionFieldTextArea.focus()
+        questionFieldTextArea.focus();
 
-
-        console.log('I am edit');
       } else if (el === 'delete'){
 
-       // search for the index of the question 
+        delete dataBase.DeckNames[item][index].question;
+        delete dataBase.DeckNames[item][index].answer;
 
-        //dataBase.DeckNames[item][random].question;
-       // delete dataBase.DeckNames[item][random].answer;
-
-        console.log('I am delete');
+        shuffleLogic(); 
       }
     }
     littleModalWindow.appendChild(button);
@@ -187,7 +187,6 @@ export default function questAnswerTrainOverv(item) {
   redCross.className = 'redCross';
   redCross.style.cursor = 'pointer';
  
-
   let theWordQuestion = document.createElement("div");
   theWordQuestion.className = "theWordQuestionAndAnswer";
   theWordQuestion.innerHTML = "Question";
@@ -237,7 +236,6 @@ export default function questAnswerTrainOverv(item) {
     questionFieldTextArea.value = question;
     answerFieldTextArea.innerText = answer;
     return index
-   //console.log(index)
   }
 
  
@@ -254,9 +252,6 @@ export default function questAnswerTrainOverv(item) {
     this.style.display = "none";
     settingsIconContainer.style.display = "block";
   };
-
-
-
 
 
   containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc);
