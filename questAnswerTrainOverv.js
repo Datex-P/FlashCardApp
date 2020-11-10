@@ -15,11 +15,11 @@ function popUp() {
     popUpWindowContainer.style.backgroundColor = 'white';
     popUpWindowContainer.style.zIndex = '2';
     popUpWindowContainer.style.position = 'absolute';
-    popUpWindowContainer.style.top = '200px';
+    popUpWindowContainer.style.top = '120px';
     popUpWindowContainer.style.border = '1px black solid';
     popUpWindowContainer.style.justifyContent = 'space-between';
     popUpWindowContainer.style.borderRadius = '5px';
-
+    popUpWindowContainer.style.marginLeft = '10%';
 
     let checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
@@ -48,7 +48,7 @@ function popUp() {
     setTimeout(function () {
       popUpWindowContainer.style.display = 'none'
       
-    }, 5000);
+    }, 500000);
 
   }
 }
@@ -182,6 +182,7 @@ export default function questAnswerTrainOverv(item) {
     button.style.width = "100px";
     button.style.marginTop = "10px";
     button.style.marginLeft = "8px";
+    button.style.cursor = 'pointer';
     
     button.onclick = function () {
 
@@ -194,13 +195,8 @@ export default function questAnswerTrainOverv(item) {
       } else if (el === 'delete') {
 
         dataBase.DeckNames[item].splice(index, 1);
-
-
-        
         createDom(dataBase.DeckNames)
         
-
-
         if (dataBase.DeckNames[item].length) {
           shuffleLogic();
         } else {
@@ -223,7 +219,7 @@ export default function questAnswerTrainOverv(item) {
     opened = !opened;
     littleModalWindow.style.display = opened ? "block" : "none";
   };
-
+  
   settingsIconContainer.appendChild(littleModalWindow);
 
 

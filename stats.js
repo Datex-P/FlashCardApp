@@ -31,7 +31,6 @@ export default function stats() {
   redCross.innerHTML = redCrossIcon;
   redCross.className = 'redCross';
 
-
   let theWordStats = document.createElement("div");
   theWordStats.innerHTML = "Stats";
   theWordStats.style.fontWeight = "bold";
@@ -211,7 +210,8 @@ export default function stats() {
 
   let counter = 0;
 
-  renderDays(2020)
+  renderDays(2020);
+
   function renderDays(year) {
     yearBoxContainer.innerHTML = '';
     let thisYear = new Date(`January 1, ${+year}`);
@@ -241,7 +241,7 @@ export default function stats() {
             yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
             let dayInner = document.createElement('div');
             let time = Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)
-            dayInner.innerText = `${date} Time: ${time.toString().padStart(4,'⠀')} min \n Review: ${counter} cards`;
+            dayInner.innerText = `${date} Time: ${time.toString().padStart(3,'⠀')} min \n Review: ${counter} cards`;
             console.log(counter);
             day.append(dayInner)
           }
@@ -265,14 +265,14 @@ export default function stats() {
 
       thisYear.setDate(thisYear.getDate() + 1)
 
-      yearBoxContainer.appendChild(day)
-      yearBoxContainer.onclick = function(event){
+      yearBoxContainer.appendChild(day);
+      yearBoxContainer.onclick = function (event) {
         alert('you do not have training in this day')
       }
     }
   }
 
-  function removePopUpwindow(){
+  function removePopUpwindow() {
     yearBoxContainer.querySelectorAll('div').forEach(div=>div.innerHTML = '')
   }
   mainWindow.onclick = removePopUpwindow
@@ -286,6 +286,13 @@ export default function stats() {
   let counterTwo = 0;
 
   let date = new Date();
+
+/*
+  for (let deck in dataBase.DeckNames) {
+    if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
+*/
+
+
   for (let deck in dataBase.DeckNames) {
     dataBase.DeckNames[deck].forEach(card=>{
       card.openHistory && card.openHistory.forEach(openTime=>{
@@ -296,6 +303,17 @@ export default function stats() {
     })        
   }
 
+
+  console.log(counterTwo + ' counterTwo')
+
+
+
+
+
+
+
+
+  
   if (counterTwo === 0) {
     cardsStudied.style.textAlign = 'center';
     cardsStudied.innerHTML = "No cards studied today";
@@ -316,7 +334,7 @@ export default function stats() {
     let child2 = document.createElement('div');
 
     child1.innerText = `Deck ${deck}:`;
-    child2.innerText = `${dataBase.counter[deck]} cards studied`;
+    child2.innerText = `${counterTwo} cards studied`;
     cardsStudied.append(container);
     container.append(child1);
     container.append(child2);
