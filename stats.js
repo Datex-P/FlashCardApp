@@ -291,15 +291,24 @@ export default function stats() {
   for (let deck in dataBase.DeckNames) {
     if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
 */
-
-
+let resultContainer = document.createElement('div');
+resultContainer.style.border = '1px black solid'
+resultContainer.className = 'flexSpaceBetween'
+cardsStudied.append(resultContainer);
   for (let deck in dataBase.DeckNames) {
     dataBase.DeckNames[deck].forEach(card=>{
+      let child1 = document.createElement('div');
+      let child2 = document.createElement('div');
       card.openHistory && card.openHistory.forEach(openTime=>{
         if (date.toDateString() === openTime.toDateString()) {
           counterTwo++;
         }
       })
+      child1.innerText = `Deck ${deck}:`;
+      child2.innerText = `${counterTwo} cards studied`;
+      cardsStudied.append(resultContainer);
+      resultContainer.append(child1);
+      resultContainer.append(child2);
     })        
   }
 
