@@ -637,12 +637,7 @@ export default function questAnswerTrainOverv(item) {
   //   settingsIconContainer.style.display = "none";
   // }
 
-  // function shuffleLogic() {
-  //   let [question, answer, index] = shuffle(item);
-  //   questionFieldTextArea.value = question;
-  //   answerFieldTextArea.innerText = answer;
-  //   return index
-  // }
+ 
 
 
   // showAnswerButton.onclick = function () {

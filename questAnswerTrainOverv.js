@@ -42,12 +42,20 @@ function generateTextarea(inner, style={}){
 
   container.appendChild(label)
   container.appendChild(textarea)
-  return container
+  return [container,textarea]
 };
 
-
+ 
 
 export default function questAnswerTrainOverv(item) {
+  function shuffleLogic() {
+    let [question, answer, index] = shuffle(item);
+    questionFieldTextArea.value = question;
+    answerFieldTextArea.innerText = answer;
+    showAnswerButtonContainer.style.display = 'none'
+    answerContainer.style.display = 'none'
+    return index
+  }
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
@@ -55,7 +63,7 @@ export default function questAnswerTrainOverv(item) {
   anchorElement.appendChild(innerWindow);
   
   //header
-  let theNameOftheDeckAndRedCrossContainer = createElement(
+    let theNameOftheDeckAndRedCrossContainer = createElement(
       'div',
       '',
       {
@@ -63,197 +71,128 @@ export default function questAnswerTrainOverv(item) {
       },
       'flexSpaceBetween'
     );
-  innerWindow.append(theNameOftheDeckAndRedCrossContainer);
+    innerWindow.append(theNameOftheDeckAndRedCrossContainer);
 
     let theNameofTheDeck = createElement(
       "div",
       `Deck: ${item}`
     );
-  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
+    theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
     let redCross = createElement(
       'div', 
       redCrossIcon, 
       {}, 
       'redCross'
-      );
-      theNameOftheDeckAndRedCrossContainer.append(redCross);
-      //header
-      
-      innerWindow.appendChild(
-        generateTextarea(
-          'Question',
-          {
-            marginBottom:'20px',
-            marginTop:'20px',
-          }
-          )
-          );
-
-      innerWindow.appendChild(generateTextarea('Answer',{marginTop:'20px'}))
-
-
-      let showAnswerButtonContainer = createElement('div',
+    );
+    theNameOftheDeckAndRedCrossContainer.append(redCross);
+  //header
+    let [questionContainer,questionFieldTextArea] = generateTextarea(
+      'Question',
       {
-        display: flex,
-        width: '100px',
-        border: '1px black solid'
-      })
+        marginBottom:'20px',
+        marginTop:'20px',
+      }
+    )
+    innerWindow.appendChild(questionContainer);
+    let showAnswerButton = createElement(
+      'button',
+      'Show Answer', 
+      {
+        marginLeft: '8px',
+        cursor: 'pointer'
+      }, 
+      '', 
+      'showAnswerButton'
+    );
+    innerWindow.appendChild(showAnswerButton)
 
-
-
-
-
-          
-          let showAnswerButton = createElement('button', 'Show Answer', {
-            marginLeft: '8px',
-            cursor: 'pointer'
-          }, '', 'showAnswerButton');
-    
-          
+    let showAnswerButtonContainer = createElement(
+      'div',
+      '',
+      {
+        display: 'none',
+        width: '90%',
+        padding: '20px',
+        border: '1px black solid',
+        boxSizing: 'border-box',
+        marginTop: '10px'
+      }
+    )
     innerWindow.append(showAnswerButtonContainer);
-   // showAnswerButtonContainer.append(showAnswerButton)
+
+    let [answerContainer,answerFieldTextArea] = generateTextarea(
+      'Answer',
+      {
+        marginTop:'20px',
+        display:'none'
+      }
+    )
+    innerWindow.appendChild(answerContainer)
+    shuffleLogic()
+
+    showAnswerButton.onclick = function () {
+      answerContainer.style.display = 'block'
+      showAnswerButtonContainer.style.display = 'block'
+    };
+
+    let containerForAgainGoodEasyButtons = createElement(
+      'div', 
+      '', 
+      {
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: '5px 0'
+      }
+    );
+
+    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+    ["again", "good", "easy"].forEach((el) => {
+
+      let button = createElement(
+        "button",
+        el,
+        {
+          pointer: 'cursor'
+        },
+        "againGoodEasyButton"
+      )
+  
+      button.onclick = shuffleLogic
+
+      containerForAgainGoodEasyButtons.append(button)
+    });  
 
 
+    let containerForTimeButtons = createElement(
+      'div', 
+      '', 
+      {
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: '5px 0'
+      }
+    );
 
-
-
-
-  let containerForText1DayEtc = createElement('div', '', {
-    display: 'none',
-    width : '205px',
-    marginLeft: '20px',
-    marginBottom: '2px',
-    border: '1px black solid'
-  });
-
-
-
-  let containerForAgainGoodEasyButtons = createElement('div', '', {
-    display: 'flex',
-    justifyContent: 'space-between',
-  }, '', '');
-
-
-  let container2min = document.createElement('div');
-      container2min.style.display = 'flex';
-      container2min.style.justifyContent = 'space-between';
-      container2min.style.width = '80%';
-      //can I use margin for this box?
-
+    showAnswerButtonContainer.append(containerForTimeButtons);
 
   ['<2m', '<10m', '<2d'].forEach(el => {
-    let smallerThan = document.createElement('div');
-    smallerThan.innerText = el;
-    container2min.append(smallerThan);
+    let btn = createElement('button',el);
+    containerForTimeButtons.append(btn);
   });
 
-  ["again", "good", "easy"].forEach((el) => {
-    let button = document.createElement("button");
-    button.innerText = el;
-    button.className = "againGoodEasyButton";
-
-    button.onmouseover = function (e) {
-      e.target.style.cursor = 'pointer';
+  let settingsIconContainer = createElement(
+    'div',
+    '...',
+    {
+      transform: 'rotate(90deg)',
+      fontWeight: 'bold',
+      marginTop:'5px',
+      position: 'absolute',
+      cursor: 'pointer'
     }
-  
-    button.addEventListener('click', function () {
-
-
-      if (el === 'again') {
-        shuffleLogic(); //different kinds of shuffle logic     
-
-        let randomNum = Math.floor(Math.random() * 3);
-
-        setTimeout(function () {
-
-          button.addEventListener('click', function () {
-            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-          })
-
-        }, randomNum * 1000);
-
-        display();
-      }
-
-      if (el == 'good') {
-        shuffleLogic();
-        display();
-        
-        let randomNum = Math.floor(Math.random() * 3);
-        
-        setTimeout(function() {
-          
-          button.addEventListener('click', function () {
-            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-          })
-          
-          
-          
-        }, randomNum * 1000);
-        
-      }
-
-
-      if (el === 'again') {
-        shuffleLogic();
-
-        
-        let randomNum = Math.floor(Math.random() * 3);
-        
-        setTimeout(function() {
-          
-          button.addEventListener('click', function () {
-            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-          })
-          
-        }, randomNum * 1000);
-        
-        display();
-      };
-    })
-    containerForAgainGoodEasyButtons.append(button)
-  });
-
-
-   showAnswerButton.onclick = function () {
-
-    //why can t I hide showAnswerButton with this
-
-
-      //this.style.display = "none";
-
-        generateTextarea('Answer', {marginTop: '20px', display: 'none'})
-
-        innerWindow.childNodes[3].style.display = 'none';
-
-//        innerWindow.children[3].display
-  //   theWordAnswer.style.display = "block";
-     // this.style.display = 'none';
-     containerForText1DayEtc.style.display = 'flex';
-     containerForText1DayEtc.style.justifyContent = 'space-between';
-     containerForText1DayEtc.style.flexDirection = 'column';
-
-
-  //   containerForAgainGoodEasyButtons.style.display = 'flex';
-  //   containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
-
-  //   this.style.display = "none";
-  //   settingsIconContainer.style.display = "block";
-   };
-
-  let settingsIconContainer = createElement('div','...',{
-    transform: 'rotate(90deg)',
-    fontWeight: 'bold',
-    marginTop:'5px',
-    display: 'none',
-    position: 'absolute',
-    cursor: 'pointer'
-  },
-    '', '');
+  );
+  showAnswerButtonContainer.appendChild(settingsIconContainer)
 
 
 
@@ -266,33 +205,4 @@ export default function questAnswerTrainOverv(item) {
   
   // settingsIconContainer.appendChild(littleModalWindow);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-
-      
-
-      containerForText1DayEtc.append(container2min);
-      containerForText1DayEtc.append(containerForAgainGoodEasyButtons);
-      showAnswerButton.append(containerForText1DayEtc);
-
-
-  //innerWindow.childNodes[3].append(settingsIconContainer)    
-
-  
-
-  
 }
