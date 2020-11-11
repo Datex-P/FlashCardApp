@@ -55,15 +55,21 @@ function popUp() {
 }
 */
 
-function createElement(tag='div',inner='', style={}, className=''){
-  let element = document.createElement(tag)
-  element.innerText = inner
-  element.className = className
-  for(let prop in style){
+function createElement(tag='div',inner='', style={}, className='', id='') {
+
+  
+  let element = document.createElement(tag);
+  element.innerText = inner;
+  element.id = id;
+
+  element.className = className;
+  for (let prop in style) {
     element.style[prop] = style[prop]
   }
   return element
 }
+
+
 
 export default function questAnswerTrainOverv(item) {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
@@ -80,21 +86,138 @@ export default function questAnswerTrainOverv(item) {
     flexDirection: 'column'
   })
 
-      // innerWindow.style.justifyContent = 'space-evenly';
   
-  let theNameOftheDeckAndRedCrossContainer = createElement('div','',{width: "265px",marginLeft: "4px",border:'1px black solid'},'flexSpaceBetween')
+  let theNameOftheDeckAndRedCrossContainer = createElement('div','',{
+    width: "265px",
+    marginLeft: "4px",
+    border:'1px black solid'},
+    'flexSpaceBetween')
 
 
-  let redCross = document.createElement("div");
-      redCross.innerHTML = redCrossIcon;
-      redCross.className = 'redCross';
-      redCross.style.cursor = 'pointer'; 
+  // let redCross = createElement('div', redCrossIcon, {
+  //   cursor: 'pointer'
+  // }, 'redCross');
+
+
+  let showAnswerButton = createElement('button', 'Show Answer', {
+    marginLeft: '8px',
+    cursor: 'pointer'
+  }, '', 'showAnswerButton');
+
+
+  let containerForText1DayEtc = createElement('div', '', {
+    display: 'none',
+    width : '205px',
+    marginLeft: '20px',
+    marginBottom: '2px',
+    border: '1px black solid'
+  }, '', '');
+
+
+
+  let containerAgainGoodButton = createElement('div', '', {
+    display: 'flex',
+    justifyContent: 'space-between',
+  }, '', '');
+
+
+  let container2min = document.createElement('div');
+      container2min.style.display = 'flex';
+      container2min.style.justifyContent = 'space-between';
+      container2min.style.width = '80%';
+      //can I use margin for this box?
+
+
+  ['<2m', '<10m', '<2d'].forEach(el => {
+    let smallerThan = document.createElement('div');
+    smallerThan.innerText = el;
+    container2min.append(smallerThan);
+  });
+
+  ["again", "good", "easy"].forEach((el) => {
+    let button = document.createElement("button");
+    button.innerText = el;
+    button.className = "againGoodEasyButton";
+
+    button.onmouseover = function (e) {
+      e.target.style.cursor = 'pointer';
+    }
+  
+    button.addEventListener('click', function () {
+
+
+      if (el === 'again') {
+        shuffleLogic(); //different kinds of shuffle logic     
+
+        let randomNum = Math.floor(Math.random() * 3);
+
+        setTimeout(function () {
+
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+
+        }, randomNum * 1000);
+
+        display();
+      }
+
+      if (el == 'good') {
+        shuffleLogic();
+        display();
+        
+        let randomNum = Math.floor(Math.random() * 3);
+        
+        setTimeout(function() {
+          
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+          
+          
+          
+        }, randomNum * 1000);
+        
+      }
+
+
+      if (el === 'again') {
+        shuffleLogic();
+
+        
+        let randomNum = Math.floor(Math.random() * 3);
+        
+        setTimeout(function() {
+          
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+          
+        }, randomNum * 1000);
+        
+        display();
+      };
+    })
+    containerForAgainGoodEasyButtons.append(button)
+  });
+
+
+
+
+
+
+
+
+
 
   let theNameofTheDeck = document.createElement("div");
       theNameofTheDeck.innerHTML = `Deck: ${item}`;
 
 
-      function generateTextarea(inner,style={}){
+      function generateTextarea(inner, style={}){
         let container = document.createElement('div');
         const label = document.createElement('label');
         label.innerHTML = inner;
@@ -113,61 +236,103 @@ export default function questAnswerTrainOverv(item) {
 
         return container
 
-      }
-  // let theWordQuestion = document.createElement('div');
-  //     theWordQuestion.innerHTML = 'Question';
-  //     theWordQuestion.style.fontWeight = 'bold';
-  //     theWordQuestion.style.marginBottom = '10px';
-
-  // let theWordAnswer = document.createElement('div');
-  //     theWordAnswer.innerHTML = 'Answer';
-  //     theWordAnswer.style.fontWeight = 'bold';
-  //     theWordAnswer.style.marginBottom = '10px';
-
-  // let questionFieldTextArea = document.createElement("textarea");
-  //     questionFieldTextArea.className = "textareaStyling";
-  //     questionFieldTextArea.setAttribute("disabled", "true");
-  //     questionFieldTextArea.style.backgroundColor = "white";
+      };
 
 
-  // let answerFieldTextArea = document.createElement("textarea");
-  //     answerFieldTextArea.className = "textareaStyling";
-  //     answerFieldTextArea.setAttribute("disabled", "true");
-  //     answerFieldTextArea.style.backgroundColor = "white";
+   showAnswerButton.onclick = function () {
 
-  let showAnswerButton = document.createElement("button");
-      showAnswerButton.innerHTML = "Show Answer";
-      showAnswerButton.id = "showAnswerButton";
-      showAnswerButton.style.marginLeft = "8px";
-      showAnswerButton.style.cursor = "pointer";
+    //why can t I hide showAnswerButton with this
 
 
+      //this.style.display = "none";
+
+        generateTextarea('Answer', {marginTop: '20px', display: 'none'})
+
+        innerWindow.childNodes[3].style.display = 'none';
+
+//        innerWindow.children[3].display
+  //   theWordAnswer.style.display = "block";
+     // this.style.display = 'none';
+     containerForText1DayEtc.style.display = 'flex';
+     containerForText1DayEtc.style.justifyContent = 'space-between';
+     containerForText1DayEtc.style.flexDirection = 'column';
+
+
+  //   containerForAgainGoodEasyButtons.style.display = 'flex';
+  //   containerForAgainGoodEasyButtons.style.justifyContent = 'space-between';
+
+  //   this.style.display = "none";
+  //   settingsIconContainer.style.display = "block";
+   };
+
+  let settingsIconContainer = createElement('div','...',{
+    transform: 'rotate(90deg)',
+    fontWeight: 'bold',
+    marginTop:'5px',
+    display: 'none',
+    position: 'absolute',
+    cursor: 'pointer'
+  },
+    '', '');
 
 
 
-  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
-  theNameOftheDeckAndRedCrossContainer.append(redCross);
-  innerWindow.append(theNameOftheDeckAndRedCrossContainer);
-  // innerWindow.append(theWordQuestion);
-  // innerWindow.append(questionFieldTextArea);
-  innerWindow.appendChild(generateTextarea('Question',{marginBottom:'20px',marginTop:'20px'}))
-  innerWindow.append(showAnswerButton);
-  // innerWindow.append(theWordAnswer);
-  // innerWindow.append(answerFieldTextArea);
+
+
+  // settingsIconContainer.onclick = function () {
+  //   opened = !opened;
+  //   littleModalWindow.style.display = opened ? "block" : "none";
+  // };
+  
+  // settingsIconContainer.appendChild(littleModalWindow);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
+      //theNameOftheDeckAndRedCrossContainer.append(redCross);
+      innerWindow.append(theNameOftheDeckAndRedCrossContainer);
+
+      innerWindow.appendChild(generateTextarea('Question',{marginBottom:'20px',marginTop:'20px'}))
+
+      containerForText1DayEtc.append(container2min);
+      containerForText1DayEtc.append(containerAgainGoodButton);
+      showAnswerButton.append(containerForText1DayEtc);
+      innerWindow.append(showAnswerButton);
+
+
+  //innerWindow.childNodes[3].append(settingsIconContainer)    
   innerWindow.appendChild(generateTextarea('Answer',{marginTop:'20px'}))
   mainWindow.append(innerWindow);
   anchorElement.append(mainWindow);
 
-
+  
 }
 
 
-  
+// let showAnswerButton = document.createElement("button");
+//     showAnswerButton.innerHTML = "Show Answer";
+//     showAnswerButton.id = "showAnswerButton";
+//     showAnswerButton.style.marginLeft = "8px";
+//     showAnswerButton.style.cursor = "pointer";
 
-  // let containerForButtons = document.createElement("div");
-  // containerForButtons.style.display = "flex";
-  // containerForButtons.style.marginTop = "10px";
-  // containerForButtons.style.marginBottom = "10px";
+
+// let containerForButtons = document.createElement("div");
+// containerForButtons.style.display = "flex";
+// containerForButtons.style.marginTop = "10px";
+// containerForButtons.style.marginBottom = "10px";
 
   // let containerForText1DayEtc = document.createElement("div");
   // containerForText1DayEtc.style.display = "none";
@@ -195,77 +360,77 @@ export default function questAnswerTrainOverv(item) {
   //   containerForText1DayEtc.append(smallerThan);
   // });
 
-  // ["again", "good", "easy"].forEach((el) => {
-  //   let button = document.createElement("button");
-  //   button.innerText = el;
-  //   button.className = "againGoodEasyButton";
+  ["again", "good", "easy"].forEach((el) => {
+    let button = document.createElement("button");
+    button.innerText = el;
+    button.className = "againGoodEasyButton";
 
-  //   button.onmouseover = function (e) {
-  //     e.target.style.cursor = 'pointer';
-  //   };
+    button.onmouseover = function (e) {
+      e.target.style.cursor = 'pointer';
+    };
 
-  //   button.addEventListener('click', function () {
-
-
-  //     if (el === 'again') {
-  //       shuffleLogic(); //different kinds of shuffle logic     
-
-  //       let randomNum = Math.floor(Math.random() * 3);
-
-  //       setTimeout(function () {
-
-  //         button.addEventListener('click', function () {
-  //           questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-  //           answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-  //         })
-
-  //       }, randomNum * 1000);
-
-  //       display();
-  //     }
+    button.addEventListener('click', function () {
 
 
+      if (el === 'again') {
+        shuffleLogic(); //different kinds of shuffle logic     
 
-  //     if (el == 'good') {
-  //       shuffleLogic();
-  //       display();
+        let randomNum = Math.floor(Math.random() * 3);
+
+        setTimeout(function () {
+
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+
+        }, randomNum * 1000);
+
+        display();
+      }
+
+
+
+      if (el == 'good') {
+        shuffleLogic();
+        display();
         
-  //       let randomNum = Math.floor(Math.random() * 3);
+        let randomNum = Math.floor(Math.random() * 3);
         
-  //       setTimeout(function() {
+        setTimeout(function() {
           
-  //         button.addEventListener('click', function () {
-  //           questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-  //           answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-  //         })
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
           
           
           
-  //       }, randomNum * 1000);
-  //       */
-  //     }
+        }, randomNum * 1000);
+        */
+      }
 
 
-  //     if (el === 'again') {
-  //       shuffleLogic();
+      if (el === 'again') {
+        shuffleLogic();
 
         
-  //       let randomNum = Math.floor(Math.random() * 3);
+        let randomNum = Math.floor(Math.random() * 3);
         
-  //       setTimeout(function() {
+        setTimeout(function() {
           
-  //         button.addEventListener('click', function () {
-  //           questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-  //           answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-  //         })
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
           
-  //       }, randomNum * 1000);
+        }, randomNum * 1000);
         
-  //       display();
-  //     };
-  //   })
-  //   containerForAgainGoodEasyButtons.append(button)
-  // });
+        display();
+      };
+    })
+    containerForAgainGoodEasyButtons.append(button)
+  });
 
 
 
