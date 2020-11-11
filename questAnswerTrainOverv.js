@@ -9,10 +9,10 @@ function createElement(tag='div',inner='', style={}, className=null, id=null) {
   let element = document.createElement(tag);
 
   element.innerHTML = inner;
-  if(id){
+  if (id) {
     element.id = id;
   }
-  if(className){
+  if (className) {
     element.className = className;
   }
   for (let prop in style) {
@@ -55,47 +55,68 @@ export default function questAnswerTrainOverv(item) {
   anchorElement.appendChild(innerWindow);
   
   //header
-    let theNameOftheDeckAndRedCrossContainer = createElement(
+  let theNameOftheDeckAndRedCrossContainer = createElement(
       'div',
       '',
       {
         width: "265px"
       },
       'flexSpaceBetween'
-    )
-    innerWindow.append(theNameOftheDeckAndRedCrossContainer);
+    );
+  innerWindow.append(theNameOftheDeckAndRedCrossContainer);
 
     let theNameofTheDeck = createElement(
       "div",
       `Deck: ${item}`
-    )
-    theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
+    );
+  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
     let redCross = createElement(
       'div', 
       redCrossIcon, 
       {}, 
       'redCross'
-    );
-    theNameOftheDeckAndRedCrossContainer.append(redCross);
-  //header
+      );
+      theNameOftheDeckAndRedCrossContainer.append(redCross);
+      //header
+      
+      innerWindow.appendChild(
+        generateTextarea(
+          'Question',
+          {
+            marginBottom:'20px',
+            marginTop:'20px',
+          }
+          )
+          );
 
-  innerWindow.appendChild(
-    generateTextarea(
-      'Question',
+      innerWindow.appendChild(generateTextarea('Answer',{marginTop:'20px'}))
+
+
+      let showAnswerButtonContainer = createElement('div',
       {
-        marginBottom:'20px',
-        marginTop:'20px',
-      }
-    )
-  )
+        display: flex,
+        width: '100px',
+        border: '1px black solid'
+      })
 
 
 
-  let showAnswerButton = createElement('button', 'Show Answer', {
-    marginLeft: '8px',
-    cursor: 'pointer'
-  }, '', 'showAnswerButton');
+
+
+          
+          let showAnswerButton = createElement('button', 'Show Answer', {
+            marginLeft: '8px',
+            cursor: 'pointer'
+          }, '', 'showAnswerButton');
+    
+          
+    innerWindow.append(showAnswerButtonContainer);
+   // showAnswerButtonContainer.append(showAnswerButton)
+
+
+
+
 
 
   let containerForText1DayEtc = createElement('div', '', {
@@ -104,7 +125,7 @@ export default function questAnswerTrainOverv(item) {
     marginLeft: '20px',
     marginBottom: '2px',
     border: '1px black solid'
-  }, '', '');
+  });
 
 
 
@@ -267,11 +288,10 @@ export default function questAnswerTrainOverv(item) {
       containerForText1DayEtc.append(container2min);
       containerForText1DayEtc.append(containerForAgainGoodEasyButtons);
       showAnswerButton.append(containerForText1DayEtc);
-      innerWindow.append(showAnswerButton);
 
 
   //innerWindow.childNodes[3].append(settingsIconContainer)    
-    innerWindow.appendChild(generateTextarea('Answer',{marginTop:'20px'}))
+
   
 
   
