@@ -55,26 +55,35 @@ function popUp() {
 }
 */
 
+function createElement(tag='div',inner='', style={}, className=''){
+  let element = document.createElement(tag)
+  element.innerText = inner
+  element.className = className
+  for(let prop in style){
+    element.style[prop] = style[prop]
+  }
+  return element
+}
+
 export default function questAnswerTrainOverv(item) {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
-  let mainWindow = document.createElement("div");
-  mainWindow.className = "addQuestionsToDeck";
+  let mainWindow = createElement('div','',{},'addQuestionsToDeck')
+  // mainWindow.className = "addQuestionsToDeck";
 
-  let innerWindow = document.createElement("div");
-      innerWindow.style.margin = "20px";
-      innerWindow.style.border = '1px black solid'
-      innerWindow.style.height = '100%';
-      innerWindow.style.display = 'flex';
-     innerWindow.style.flexDirection = 'column';
+  let innerWindow = createElement('div','',{
+    margin: "20px",
+    border: '1px black solid',
+    height: '100%',
+    display:'flex',
+    flexDirection: 'column'
+  })
+
       // innerWindow.style.justifyContent = 'space-evenly';
   
-  let theNameOftheDeckAndRedCrossContainer = document.createElement("div");
-      theNameOftheDeckAndRedCrossContainer.style.width = "265px";
-      theNameOftheDeckAndRedCrossContainer.className = 'flexSpaceBetween'
-      theNameOftheDeckAndRedCrossContainer.style.marginLeft = "4px";
-      theNameOftheDeckAndRedCrossContainer.style.border = '1px black solid';
+  let theNameOftheDeckAndRedCrossContainer = createElement('div','',{width: "265px",marginLeft: "4px",border:'1px black solid'},'flexSpaceBetween')
+
 
   let redCross = document.createElement("div");
       redCross.innerHTML = redCrossIcon;
@@ -85,26 +94,46 @@ export default function questAnswerTrainOverv(item) {
       theNameofTheDeck.innerHTML = `Deck: ${item}`;
 
 
-  let theWordQuestion = document.createElement('div');
-      theWordQuestion.innerHTML = 'Question';
-      theWordQuestion.style.fontWeight = 'bold';
-      theWordQuestion.style.marginBottom = '10px';
+      function generateTextarea(inner,style={}){
+        let container = document.createElement('div');
+        const label = document.createElement('label');
+        label.innerHTML = inner;
+        label.style.fontWeight = 'bold';
+        label.style.marginBottom = '10px';
+        let textarea = document.createElement("textarea");
+        textarea.className = "textareaStyling";
+        textarea.setAttribute("disabled", "true");
+        textarea.style.backgroundColor = "white";
+        container.appendChild(label)
+        container.appendChild(textarea)
 
-  let theWordAnswer = document.createElement('div');
-      theWordAnswer.innerHTML = 'Answer';
-      theWordAnswer.style.fontWeight = 'bold';
-      theWordAnswer.style.marginBottom = '10px';
+        for(let prop in style){
+          container.style[prop] = style[prop]
+        }
 
-  let questionFieldTextArea = document.createElement("textarea");
-      questionFieldTextArea.className = "textareaStyling";
-      questionFieldTextArea.setAttribute("disabled", "true");
-      questionFieldTextArea.style.backgroundColor = "white";
+        return container
+
+      }
+  // let theWordQuestion = document.createElement('div');
+  //     theWordQuestion.innerHTML = 'Question';
+  //     theWordQuestion.style.fontWeight = 'bold';
+  //     theWordQuestion.style.marginBottom = '10px';
+
+  // let theWordAnswer = document.createElement('div');
+  //     theWordAnswer.innerHTML = 'Answer';
+  //     theWordAnswer.style.fontWeight = 'bold';
+  //     theWordAnswer.style.marginBottom = '10px';
+
+  // let questionFieldTextArea = document.createElement("textarea");
+  //     questionFieldTextArea.className = "textareaStyling";
+  //     questionFieldTextArea.setAttribute("disabled", "true");
+  //     questionFieldTextArea.style.backgroundColor = "white";
 
 
-  let answerFieldTextArea = document.createElement("textarea");
-      answerFieldTextArea.className = "textareaStyling";
-      answerFieldTextArea.setAttribute("disabled", "true");
-      answerFieldTextArea.style.backgroundColor = "white";
+  // let answerFieldTextArea = document.createElement("textarea");
+  //     answerFieldTextArea.className = "textareaStyling";
+  //     answerFieldTextArea.setAttribute("disabled", "true");
+  //     answerFieldTextArea.style.backgroundColor = "white";
 
   let showAnswerButton = document.createElement("button");
       showAnswerButton.innerHTML = "Show Answer";
@@ -119,16 +148,17 @@ export default function questAnswerTrainOverv(item) {
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
   theNameOftheDeckAndRedCrossContainer.append(redCross);
   innerWindow.append(theNameOftheDeckAndRedCrossContainer);
-  innerWindow.append(theWordQuestion);
-  innerWindow.append(questionFieldTextArea);
+  // innerWindow.append(theWordQuestion);
+  // innerWindow.append(questionFieldTextArea);
+  innerWindow.appendChild(generateTextarea('Question',{marginBottom:'20px',marginTop:'20px'}))
   innerWindow.append(showAnswerButton);
-  innerWindow.append(theWordAnswer);
-  innerWindow.append(answerFieldTextArea);
+  // innerWindow.append(theWordAnswer);
+  // innerWindow.append(answerFieldTextArea);
+  innerWindow.appendChild(generateTextarea('Answer',{marginTop:'20px'}))
   mainWindow.append(innerWindow);
   anchorElement.append(mainWindow);
 
 
-iuhhoihpjiohhuhihu
 }
 
 
