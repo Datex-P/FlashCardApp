@@ -322,44 +322,6 @@ export default function questAnswerTrainOverv(item) {
 }
 
 
-// let showAnswerButton = document.createElement("button");
-//     showAnswerButton.innerHTML = "Show Answer";
-//     showAnswerButton.id = "showAnswerButton";
-//     showAnswerButton.style.marginLeft = "8px";
-//     showAnswerButton.style.cursor = "pointer";
-
-
-// let containerForButtons = document.createElement("div");
-// containerForButtons.style.display = "flex";
-// containerForButtons.style.marginTop = "10px";
-// containerForButtons.style.marginBottom = "10px";
-
-  // let containerForText1DayEtc = document.createElement("div");
-  // containerForText1DayEtc.style.display = "none";
-
-  // containerForText1DayEtc.style.width = "205px";
-  // containerForText1DayEtc.style.marginLeft = "20px";
-  // containerForText1DayEtc.style.marginBottom = "2px";
-  // containerForText1DayEtc.style.border = '1px black solid';
-
-  // let containerForAgainGoodEasyButtons = document.createElement("div");
-  // containerForAgainGoodEasyButtons.style.display = "none";
-  // //containerForAgainGoodEasyButtons.style.border = '1px black solid';
-  // containerForAgainGoodEasyButtons.style.width = "239px";
-  // containerForAgainGoodEasyButtons.style.marginLeft = "8px";
-
-  // let containerForsmallerTwoMinutesEtc = document.createElement("div");
-  // containerForsmallerTwoMinutesEtc.style.width = "255px";
-  // containerForsmallerTwoMinutesEtc.className = "flexColumn";
-
-
-
-  // ['<2m', '<10m', '<2d'].forEach(el => {
-  //   let smallerThan = document.createElement('div');
-  //   smallerThan.innerText = el;
-  //   containerForText1DayEtc.append(smallerThan);
-  // });
-
   // ["again", "good", "easy"].forEach((el) => {
   //   let button = document.createElement("button");
   //   button.innerText = el;
@@ -654,28 +616,6 @@ export default function questAnswerTrainOverv(item) {
   //   settingsIconContainer.style.display = "block";
   // };
 
-
-  // containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc);
-  // containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
-
-  // containerForButtons.append(showAnswerButton);
-  // containerForButtons.append(containerForsmallerTwoMinutesEtc);
-
-  // insideNameofDeckContainer.append(containerForButtons);
-
-  // insideNameofDeckContainer.append(theWordQuestion);
-  // insideNameofDeckContainer.append(questionFieldTextArea);
-  // insideNameofDeckContainer.append(containerForButtons);
-
-  // theWordAnswerContainer.append(theWordAnswer);
-  // theWordAnswerContainer.append(settingsIconContainer);
-  // insideNameofDeckContainer.append(theWordAnswerContainer);
-  // insideNameofDeckContainer.append(answerFieldTextArea);
-
-  // theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
-  // theNameOftheDeckAndRedCrossContainer.append(redCross);
-  // innerWindow.append(theNameOftheDeckAndRedCrossContainer);
-  // innerWindow.append(insideNameofDeckContainer);
 
 
   // startTimer(item, index);

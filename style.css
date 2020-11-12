@@ -94,7 +94,7 @@ textarea {
   padding: 1px;
 }
 
-.againGoodEasyButton {
+.generalButtonStyling {
   width: 60px;
   height: 30px;
   background-color: grey;
@@ -370,7 +370,7 @@ left: 20px;
 
 display: none;
 padding: 20px;
-background-color: white;
+background-color: blue;
 }
 textarea:focus{
   border: 2px solid red;

@@ -1,92 +1,127 @@
 import {dataBase} from './dataBase.js';
 import createDom from './createDom.js';
 
+function createElement(tag='div',inner='', style={}, className=null, id=null) {
+
+  let element = document.createElement(tag);
+
+  element.innerHTML = inner;
+  if (id) {
+    element.id = id;
+  }
+  if (className) {
+    element.className = className;
+  }
+  for (let prop in style) {
+    element.style[prop] = style[prop]
+  }
+  return element
+}
+
+
 
 export default function createNewDeck () {
   
   let anchorElement = document.getElementById('questAnswerTrainOverv');
       anchorElement.style.display = 'flex'
 
-  let mainWindow = document.createElement('div');
-      mainWindow.style.height = '160px';
-      mainWindow.style.width = '280px';
-      mainWindow.style.backgroundColor = 'rgba(200, 168, 115,0.95)';
-      mainWindow.style.top =  '100px';
-      mainWindow.style.position = 'absolute';
-      mainWindow.style.borderRadius = '5px';
-      mainWindow.className = 'flexColumnAlignCenter'
+   
+  let mainWindow = createElement('div', '',
+    {
+      height: '160px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      width: '280px',
+      backgroundColor: 'rgba(200, 168, 115,0.95)',
+      top: '100px',
+      position: 'absolute',
+      borderRadius: '5px'   
+    },
+    'flexColumnAlignCenter'
+  );
+
+  anchorElement.append(mainWindow);
+
+  let nameForNewDeckText = createElement('div', 'Name for new deck',
+  {
+    fontWeight: 'bold'
+  });
+
+  mainWindow.append(nameForNewDeckText);
+
+  let inputField = createElement('input', '', {
+    width: '70%', 
+    marginTop: '10px',
+    marginBottom: '10px',
+    height: '30px'
+    });
+
+  mainWindow.append(inputField);
+
+  let buttonContainer =  createElement ('div', '', {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '47%',
+   // border: '1px black solid'
+  });
+    mainWindow.append(buttonContainer);
+
     
-  let nameForNewDeckText = document.createElement('div');
-      nameForNewDeckText.style.fontWeight = 'bold';
-      nameForNewDeckText.innerHTML = 'Name for new deck';
-     
+  ['Cancel', 'Ok'].forEach((el) => {
+    let button = createElement(
+      'button',
+      el,
+      {
+        pointer: 'cursor'
+      },
+      'generalButtonStyling' 
+      )
 
-  let inputNewDeck = document.createElement('input');
-      inputNewDeck.id  = 'inputNameOfNewDeck';
+      button.addEventListener('click', function () {
 
-  let nameForNewDeckTextandinputNewDeckContainer = document.createElement('div');
-      nameForNewDeckTextandinputNewDeckContainer.className = 'flexColumn'
+        //let regex = /^(\s|\S)*(\S)+(\s|\S)*$/;
 
-  let okButtonAndCancelButtonContainer = document.createElement('div');
-      okButtonAndCancelButtonContainer.style.marginTop = '30px';
-     
-      document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
-
-  let okButton = document.createElement("button");
-      okButton.innerHTML = "Ok";  
-      okButton.id = 'okButton';
-
-  let cancelButton = document.createElement("button");
-      cancelButton.innerHTML = "Cancel";
-      cancelButton.id = "cancelButton";
-
-      [okButton, cancelButton].forEach((el) => {
-
-        el.style.cursor = 'pointer';
-      });
-
-      nameForNewDeckTextandinputNewDeckContainer.append(nameForNewDeckText);
-      nameForNewDeckTextandinputNewDeckContainer.append(inputNewDeck);
-      okButtonAndCancelButtonContainer.append(nameForNewDeckTextandinputNewDeckContainer);
-      okButtonAndCancelButtonContainer.append(cancelButton);
-      okButtonAndCancelButtonContainer.append(okButton);
-      mainWindow.append(okButtonAndCancelButtonContainer)
-      
-
-      anchorElement.append(mainWindow);
-
-      cancelButton.onclick = function () {
+      if (el === 'Cancel') {
+        mainWindow.style.display = 'none';
         anchorElement.style.display = 'none';
-        anchorElement.removeChild(mainWindow);
 
-        if (!Object.keys(dataBase.DeckNames).length) {
-          let arrowDown = document.querySelector(".arrowDown");
-          arrowDown.style.display = "block";
-          document.getElementById('createYourFirstDeckPrompt').style.display = 'block';   
-        }
+        // if (!Object.keys(dataBase.DeckNames).length) {
+        //   //         let arrowDown = document.querySelector(".arrowDown");
+        //   //         arrowDown.style.display = "block";
+        //   //         document.getElementById('createYourFirstDeckPrompt').style.display = 'block';   
+        //   //       }
+
       }
+      if (el === 'Ok' && inputField.value === dataBase.DeckNames[inputField.value]) {
+                alert('Name of Deck already exists')
+              }
+      else if (el === 'Ok' &&  inputField.value=== '' /*!regex.test(inputField.value)*/) {
+        alert('Input needed')
+      }
+      else {
+        dataBase.DeckNames[inputField.value] = [];
+       // dataBase.DeckNames[inputField.value].sleepy = false;
+       
+        createDom(dataBase.DeckNames);
+        anchorElement.removeChild(mainWindow);
+        anchorElement.style.display = 'none';
+      }
+      
+    })
 
-      okButton.onclick = function () {
+      buttonContainer.append(button);    
+    });
 
-        let regex = /^(\s|\S)*(\S)+(\s|\S)*$/;
-       
-        if (!regex.test(inputNewDeck.value)) {
-          alert("Input needed");
-        } 
-        else if (dataBase.DeckNames[inputNewDeck.value]) {
-          alert('Name of Deck already exists')
-        }
-        
-        else {
-          dataBase.DeckNames[inputNewDeck.value] = [];
-          createDom(dataBase.DeckNames);
-          anchorElement.removeChild(mainWindow);
-          document.getElementById('createYourFirstDeckPrompt').style.display = 'none';        
-       
-       
-          anchorElement.style.display = 'none';
-        }
-          };
+
+  
+
+
+
+
+
+
+
      
       
  };

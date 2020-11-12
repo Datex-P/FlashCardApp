@@ -2,6 +2,10 @@ import {dataBase} from "./dataBase.js";
 
 export default function shuffle(item,index=null) {
  
+
+  //if data
+
+
   function questionNumber(random) {
     return dataBase.DeckNames[item][random].question;
   }
@@ -23,6 +27,11 @@ export default function shuffle(item,index=null) {
     );
   }
 
-  return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
-  
+  // if  (dataBase.DeckNames[item][random].sleepy === false) {
+
+  // return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
+  // }
+  // else {
+  //   //invoke shuffle again
+  // }
 };
