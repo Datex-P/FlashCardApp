@@ -95,17 +95,26 @@ export default function questAnswerTrainOverv(item) {
       }
     )
     innerWindow.appendChild(questionContainer);
+
+    let buttonContainer = createElement(
+      'div',
+      '',
+      {
+        textAlign: 'left',
+        width: '90%'
+      }
+    )
     let showAnswerButton = createElement(
       'button',
       'Show Answer', 
       {
-        marginRight: '160px',
         cursor: 'pointer'
       }, 
       '', 
       'showAnswerButton'
     );
-    innerWindow.appendChild(showAnswerButton)
+    buttonContainer.appendChild(showAnswerButton)
+    innerWindow.appendChild(buttonContainer)
 
     let showAnswerButtonContainer = createElement(
       'div',
@@ -125,7 +134,8 @@ export default function questAnswerTrainOverv(item) {
       'Answer',
       {
         marginTop:'20px',
-        display:'none'
+        display:'none',
+        position: 'relative'
       }
     )
     innerWindow.appendChild(answerContainer)
@@ -153,7 +163,7 @@ export default function questAnswerTrainOverv(item) {
         display: 'flex',
         justifyContent: 'space-between',
         //margin: '5px 0',
-        marginLeft: '20px',
+        margin: '0 auto',
         border: '1px black solid',
         width: '80%'
       }
@@ -192,14 +202,16 @@ export default function questAnswerTrainOverv(item) {
     {
       transform: 'rotate(90deg)',
       fontWeight: 'bold',
-      marginTop:'5px',
       position: 'absolute',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      top: '0',
+      right: '0'
     }
   );
-  showAnswerButtonContainer.appendChild(settingsIconContainer)
 
 
+
+  answerContainer.appendChild(settingsIconContainer)
 
   
   settingsIconContainer.onclick = function () {
