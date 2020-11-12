@@ -3,7 +3,6 @@ import {dataBase} from "./dataBase.js";
 export default function shuffle(item,index=null) {
  
 
-  //if data
 
 
   function questionNumber(random) {
@@ -29,7 +28,7 @@ export default function shuffle(item,index=null) {
 
   // if  (dataBase.DeckNames[item][random].sleepy === false) {
 
-  // return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
+  return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
   // }
   // else {
   //   //invoke shuffle again

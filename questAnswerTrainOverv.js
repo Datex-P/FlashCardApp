@@ -209,17 +209,45 @@ export default function questAnswerTrainOverv(item) {
     containerForTimeButtons.append(btn);
   });
 
-let quee = []
+let queue = {
 
-nextCardBtn.onclick = function(
-  if(quee.length){
-    let [question,answer] = quee.pop()
+//sort by time to open...
+
+
+};
+/*
+nextCardBtn.onclick = function() {
+    if (queue.length) {
+    
+      let [question,answer] = queue.pop()
     questionFieldTextArea.value = question
     answerFieldTextArea.value = answer
   }else{
     shuffleLogic();
   }
-)
+};
+*/
+
+
+// let queue = {
+//     //card : openNext
+// };
+
+// let sortQueue = [];
+// for (let item in queue) {
+//   sortQueue.push([item, item[queue]])
+// }
+
+// sortQueue.sort(function(a, b){
+//   return a[1] - b[1]
+// })
+
+
+
+
+
+
+
 
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     ["again", "good", "easy"].forEach((el) => {
@@ -233,88 +261,72 @@ nextCardBtn.onclick = function(
         "generalButtonStyling"
       );
 
-      // button.addEventListener('click', function () {
+       button.addEventListener('click', function () {
 
 
-      //   if (el === 'again') {
-      //     shuffleLogic();
-      //     showAnswerButton.style.display = 'block';
-      //     // shuffleLogic(); //different kinds of shuffle logic     
-  
-      //     // let randomNum = Math.floor(Math.random() * 2);
-      //     // //let randomNum = Math.floor(Math.random *2*60)
+        // let timeNow = new Date();
 
-      //     //remember card and deactivate if for a certain period of time
 
-      //     // setTimeout(function () {
-                quee.push(shuffle())
-      //     //   button.addEventListener('click', function () {
-      //     //     questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     //   })
-  
-      //     // }, randomNum * 1000); //right now card gets shown again after 2 sec, normally the formula is : 2 * 60 * 10000
-  
-      //     // display();
-      //   }
-  
-      //   if (el == 'good') {
-      //     shuffleLogic();
-      //     showAnswerButton.style.display = 'block';
+        // function utc (date) {
+
+        //   return Date.UTC(date.getUTCFullYear(), 
+        //   date.getUTCMonth(), 
+        //   date.getUTCDate(),
+        //   date.getUTCHours(),
+        //   date.getUTCMinutes(), 
+        //   date.getUTCSeconds());
+        // }
+
+    
+
+        //   if (utc(timeNow)<= sortQueue[0][1]) {
+        //     sortQueue.pop();
+        //     //display utc(queue[0].date)
+
+        //     questionFieldTextArea.value = sortQueue[0][0].question;
+        //     answerFieldTextArea.innerText = sortQueue[0][0].answer;
+        //   }
+        //   else {
+
+
+        //   shuffleLogic();
+        
+        //   showAnswerButton.style.display = 'block';
+
+
+        // if (el === 'again') {
+
+        //   let randomNum = Math.floor(Math.random() * 2);
+
+        //   let openNextTime =  utc(dataBase.DeckNames[item][index].lastOpen)  + randomNum*1000
+        //   //transfering it to a unix string
           
-      //     let randomNum = Math.floor(Math.random() * 3);
+        //   let card = dataBase.DeckNames[item][index];
 
-      //    // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2*60);
-      //     //var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-      //     //https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+        //   queue[card] = openNextTime;
+                
           
-      //     // setTimeout(function() {
-            
-      //     //   button.addEventListener('click', function () {
-      //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     //   })
-            
-            
-            
-      //     // }, randomNum * 1000);
+        //   console.log(queue)  
+        // };
+
+        if (el === 'good') {
+
+      //     let randomNum = Math.floor(Math.random() * 4 +2.1);
+      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+
+        }
+        if (el === 'easy') {
+
+//     let randomNum = Math.floor(Math.random() * 10 + 4);
+      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+
           
-      //   }
+      }    
+      });  
   
-      //   if (el === 'easy') {
-      //     shuffleLogic();
-      //     showAnswerButton.style.display = 'block';
-  
-          
-      //     let randomNum = Math.floor(Math.random() * 4);
-      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 3*60);
-
-      //     // setTimeout(function() {
-            
-      //     //   button.addEventListener('click', function () {
-      //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     //   })
-            
-      //     // }, randomNum * 1000);
-         
-      //   };
-      // })
-
-
-
-  
-      // button.onclick = shuffleLogic
-
       containerForAgainGoodEasyButtons.append(button)
 
-
-
-      
-    });  
-
-
-
+  });
 
 
 
@@ -494,3 +506,59 @@ nextCardBtn.onclick = function(
 
 
 // }
+
+
+
+
+
+
+
+//     //   button.addEventListener('click', function () {
+      //     //     questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+      //     //   })
+  
+      //     // }, randomNum * 1000); //right now card gets shown again after 2 sec, normally the formula is : 2 * 60 * 10000
+  
+      //     // display();
+      //   }
+  
+      //   if (el == 'good') {
+      //     shuffleLogic();
+      //     showAnswerButton.style.display = 'block';
+          
+      //     let randomNum = Math.floor(Math.random() * 3);
+
+      //    // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2*60);
+      //     //var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+      //     //https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+          
+      //     // setTimeout(function() {
+            
+      //     //   button.addEventListener('click', function () {
+      //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+      //     //   })
+            
+            
+            
+      //     // }, randomNum * 1000);
+          
+      //   }
+  
+      //   if (el === 'easy') {
+      //     shuffleLogic();
+      //     showAnswerButton.style.display = 'block';
+  
+          
+      //     let randomNum = Math.floor(Math.random() * 4);
+      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+
+      //     // setTimeout(function() {
+            
+      //     //   button.addEventListener('click', function () {
+      //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+      //     //   })
+            
+      //     // }, randomNum * 1000);
