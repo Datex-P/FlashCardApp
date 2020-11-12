@@ -99,7 +99,7 @@ export default function questAnswerTrainOverv(item) {
       'button',
       'Show Answer', 
       {
-        marginLeft: '8px',
+        marginRight: '160px',
         cursor: 'pointer'
       }, 
       '', 
@@ -145,6 +145,27 @@ export default function questAnswerTrainOverv(item) {
         margin: '5px 0'
       }
     );
+    
+    let containerForTimeButtons = createElement(
+      'div', 
+      '', 
+      {
+        display: 'flex',
+        justifyContent: 'space-between',
+        //margin: '5px 0',
+        marginLeft: '20px',
+        border: '1px black solid',
+        width: '80%'
+      }
+    );
+
+    showAnswerButtonContainer.append(containerForTimeButtons);
+
+  ['<2m', '<10m', '<2d'].forEach(el => {
+    let btn = createElement('div',el, {});
+    containerForTimeButtons.append(btn);
+  });
+
 
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     ["again", "good", "easy"].forEach((el) => {
@@ -164,22 +185,6 @@ export default function questAnswerTrainOverv(item) {
     });  
 
 
-    let containerForTimeButtons = createElement(
-      'div', 
-      '', 
-      {
-        display: 'flex',
-        justifyContent: 'space-between',
-        margin: '5px 0'
-      }
-    );
-
-    showAnswerButtonContainer.append(containerForTimeButtons);
-
-  ['<2m', '<10m', '<2d'].forEach(el => {
-    let btn = createElement('button',el);
-    containerForTimeButtons.append(btn);
-  });
 
   let settingsIconContainer = createElement(
     'div',
@@ -196,13 +201,16 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
-
-  // settingsIconContainer.onclick = function () {
-  //   opened = !opened;
-  //   littleModalWindow.style.display = opened ? "block" : "none";
-  // };
   
-  // settingsIconContainer.appendChild(littleModalWindow);
+  settingsIconContainer.onclick = function () {
+    opened = !opened;
+    littleModalWindow.style.display = opened ? "block" : "none";
+  };
+  
+  settingsIconContainer.appendChild(littleModalWindow);
+
+
+
+
 
 }
