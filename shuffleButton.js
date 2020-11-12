@@ -27,8 +27,12 @@ export default function shuffle(item,index=null) {
   }
 
   // if  (dataBase.DeckNames[item][random].sleepy === false) {
-
-  return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
+  if(dataBase.queue.length){
+    return Object.values(dataBase.queue.shift())
+  }else{
+    return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
+  }
+  
   // }
   // else {
   //   //invoke shuffle again

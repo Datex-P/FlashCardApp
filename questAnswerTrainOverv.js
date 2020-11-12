@@ -1,10 +1,10 @@
 import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
-import { redCross as redCrossIcon} from "./svgs.js";
+import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 
-function createElement(tag='div',inner='', style={}, className=null, id=null) {
+function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
 
   let element = document.createElement(tag);
 
@@ -21,8 +21,8 @@ function createElement(tag='div',inner='', style={}, className=null, id=null) {
   return element
 }
 
-function generateTextarea(inner, style={}){
-  let container = createElement('div','',{...style,width: '90%'});
+function generateTextarea(inner, style = {}) {
+  let container = createElement('div', '', { ...style, width: '90%' });
   const label = createElement(
     'label',
     inner,
@@ -32,7 +32,7 @@ function generateTextarea(inner, style={}){
   );
 
   let textarea = createElement(
-    "textarea",'',
+    "textarea", '',
     {
       backgroundColor: "white",
       marginTop: '10px'
@@ -42,10 +42,10 @@ function generateTextarea(inner, style={}){
 
   container.appendChild(label)
   container.appendChild(textarea)
-  return [container,textarea]
+  return [container, textarea]
 };
 
- 
+
 
 export default function questAnswerTrainOverv(item) {
   function shuffleLogic() {
@@ -54,47 +54,47 @@ export default function questAnswerTrainOverv(item) {
     answerFieldTextArea.innerText = answer;
     showAnswerButtonContainer.style.display = 'none'
     answerContainer.style.display = 'none'
-    return index
+    return [question, answer, index]
   }
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
-  let mainWindow = createElement('div','',{},'addQuestionsToDeck')
+  let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
   anchorElement.appendChild(mainWindow);
-  
+
   //header
-    let theNameOftheDeckAndRedCrossContainer = createElement(
-      'div',
-      '',
-      {
-        width: "265px"
-      },
-      'flexSpaceBetween'
-    );
-    mainWindow.append(theNameOftheDeckAndRedCrossContainer);
+  let theNameOftheDeckAndRedCrossContainer = createElement(
+    'div',
+    '',
+    {
+      width: "265px"
+    },
+    'flexSpaceBetween'
+  );
+  mainWindow.append(theNameOftheDeckAndRedCrossContainer);
 
-    let theNameofTheDeck = createElement(
-      "div",
-      `Deck: ${item}`
-    );
-    theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
+  let theNameofTheDeck = createElement(
+    "div",
+    `Deck: ${item}`
+  );
+  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
-    let redCross = createElement(
-      'div', 
-      redCrossIcon, 
-      {}, 
-      'redCross'
-    );
+  let redCross = createElement(
+    'div',
+    redCrossIcon,
+    {},
+    'redCross'
+  );
 
-    function close() {
-      mainWindow.parentNode.removeChild(mainWindow);
-      anchorElement.style.display = "none";
-      clearInterval(timer);  //not implemented yet
-    }
-    redCross.onclick = close
+  function close() {
+    mainWindow.parentNode.removeChild(mainWindow);
+    anchorElement.style.display = "none";
+    clearInterval(timer);  //not implemented yet
+  }
+  redCross.onclick = close
 
 
- // startTimer(item, index);
+  // startTimer(item, index);
 
   setTimeout(function () {
     window.onclick = function handleOutsideClick(e) {
@@ -116,215 +116,224 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-    theNameOftheDeckAndRedCrossContainer.append(redCross);
+  theNameOftheDeckAndRedCrossContainer.append(redCross);
   //header
-    let [questionContainer,questionFieldTextArea] = generateTextarea(
-      'Question',
-      {
-        marginBottom:'20px',
-        marginTop:'20px',
-      }
-    )
-    mainWindow.appendChild(questionContainer);
+  let [questionContainer, questionFieldTextArea] = generateTextarea(
+    'Question',
+    {
+      marginBottom: '20px',
+      marginTop: '20px',
+    }
+  )
+  mainWindow.appendChild(questionContainer);
 
-    let buttonContainer = createElement(
-      'div',
-      '',
-      {
-        textAlign: 'left',
-        width: '90%'
-      }
-    )
-    let showAnswerButton = createElement(
-      'button',
-      'Show Answer', 
-      {
-        cursor: 'pointer'
-      }, 
-      '', 
-      'showAnswerButton'
-    );
+  let buttonContainer = createElement(
+    'div',
+    '',
+    {
+      textAlign: 'left',
+      width: '90%'
+    }
+  )
+  let showAnswerButton = createElement(
+    'button',
+    'Show Answer',
+    {
+      cursor: 'pointer'
+    },
+    '',
+    'showAnswerButton'
+  );
 
-    buttonContainer.appendChild(showAnswerButton)
-    mainWindow.appendChild(buttonContainer)
+  buttonContainer.appendChild(showAnswerButton)
+  mainWindow.appendChild(buttonContainer)
 
-    let showAnswerButtonContainer = createElement(
-      'div',
-      '',
-      {
-        display: 'none',
-        width: '90%',
-        padding: '20px',
-        border: '1px black solid',
-        boxSizing: 'border-box',
-        marginTop: '10px'
-      }
-    )
+  let showAnswerButtonContainer = createElement(
+    'div',
+    '',
+    {
+      display: 'none',
+      width: '90%',
+      padding: '20px',
+      border: '1px black solid',
+      boxSizing: 'border-box',
+      marginTop: '10px'
+    }
+  )
 
-    mainWindow.append(showAnswerButtonContainer);
+  mainWindow.append(showAnswerButtonContainer);
 
-    let [answerContainer,answerFieldTextArea] = generateTextarea(
-      'Answer',
-      {
-        marginTop:'20px',
-        display:'none',
-        position: 'relative'
-      }
-    )
-    mainWindow.appendChild(answerContainer)
-    // shuffleLogic()
+  let [answerContainer, answerFieldTextArea] = generateTextarea(
+    'Answer',
+    {
+      marginTop: '20px',
+      display: 'none',
+      position: 'relative'
+    }
+  )
+  mainWindow.appendChild(answerContainer)
+  let [question, answer, index] = shuffleLogic()
 
-    showAnswerButton.onclick = function () {
-      this.style.display = 'none';
-      answerContainer.style.display = 'block';
-      showAnswerButtonContainer.style.display = 'block';
-    };
+  showAnswerButton.onclick = function () {
+    this.style.display = 'none';
+    answerContainer.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'block';
+  };
 
-    let containerForAgainGoodEasyButtons = createElement(
-      'div', 
-      '', 
-      {
-        display: 'flex',
-        justifyContent: 'space-between',
-        margin: '5px 0'
-      }
-    );
-    
-    let containerForTimeButtons = createElement(
-      'div', 
-      '', 
-      {
-        display: 'flex',
-        justifyContent: 'space-between',
-        margin: '0 auto',
-        border: '1px black solid',
-        width: '80%'
-      }
-    );
+  let containerForAgainGoodEasyButtons = createElement(
+    'div',
+    '',
+    {
+      display: 'flex',
+      justifyContent: 'space-between',
+      margin: '5px 0'
+    }
+  );
 
-    showAnswerButtonContainer.append(containerForTimeButtons);
+  let containerForTimeButtons = createElement(
+    'div',
+    '',
+    {
+      display: 'flex',
+      justifyContent: 'space-between',
+      margin: '0 auto',
+      border: '1px black solid',
+      width: '80%'
+    }
+  );
 
-  ['<2m', '<10m', '<2d'].forEach(el => {
-    let btn = createElement('div',el, {});
+  showAnswerButtonContainer.append(containerForTimeButtons);
+
+  
+
+  [1, 2, 20].forEach(el => {
+    let btn = createElement('div', `<${el}m`, {});
     containerForTimeButtons.append(btn);
+    btn.onclick = function(){
+      console.log('start')
+      setTimeout(()=>{
+        dataBase.queue.push({question, answer, index})
+        console.log('end')
+      },el*6000)
+    }
   });
 
-let queue = {
+  // let queue = {
 
-//sort by time to open...
-
-
-};
-/*
-nextCardBtn.onclick = function() {
-    if (queue.length) {
-    
-      let [question,answer] = queue.pop()
-    questionFieldTextArea.value = question
-    answerFieldTextArea.value = answer
-  }else{
-    shuffleLogic();
-  }
-};
-*/
+  // //sort by time to open...
 
 
-// let queue = {
-//     //card : openNext
-// };
+  // };
+  /*
+  nextCardBtn.onclick = function() {
+      if (queue.length) {
+      
+        let [question,answer] = queue.pop()
+      questionFieldTextArea.value = question
+      answerFieldTextArea.value = answer
+    }else{
+      shuffleLogic();
+    }
+  };
+  */
 
-// let sortQueue = [];
-// for (let item in queue) {
-//   sortQueue.push([item, item[queue]])
-// }
 
-// sortQueue.sort(function(a, b){
-//   return a[1] - b[1]
-// })
+  // let queue = {
+  //     //card : openNext
+  // };
 
+  // let sortQueue = [];
+  // for (let item in queue) {
+  //   sortQueue.push([item, item[queue]])
+  // }
 
+  // sortQueue.sort(function(a, b){
+  //   return a[1] - b[1]
+  // })
 
 
 
 
 
 
-    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-    ["again", "good", "easy"].forEach((el) => {
-
-      let button = createElement(
-        "button",
-        el,
-        {
-          pointer: 'cursor'
-        },
-        "generalButtonStyling"
-      );
-
-       button.addEventListener('click', function () {
 
 
-        // let timeNow = new Date();
+  showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+  ["again", "good", "easy"].forEach((el) => {
+
+    let button = createElement(
+      "button",
+      el,
+      {
+        pointer: 'cursor'
+      },
+      "generalButtonStyling"
+    );
+
+    button.addEventListener('click', function () {
 
 
-        // function utc (date) {
-
-        //   return Date.UTC(date.getUTCFullYear(), 
-        //   date.getUTCMonth(), 
-        //   date.getUTCDate(),
-        //   date.getUTCHours(),
-        //   date.getUTCMinutes(), 
-        //   date.getUTCSeconds());
-        // }
-
-    
-
-        //   if (utc(timeNow)<= sortQueue[0][1]) {
-        //     sortQueue.pop();
-        //     //display utc(queue[0].date)
-
-        //     questionFieldTextArea.value = sortQueue[0][0].question;
-        //     answerFieldTextArea.innerText = sortQueue[0][0].answer;
-        //   }
-        //   else {
+      // let timeNow = new Date();
 
 
-        //   shuffleLogic();
-        
-        //   showAnswerButton.style.display = 'block';
+      // function utc (date) {
+
+      //   return Date.UTC(date.getUTCFullYear(), 
+      //   date.getUTCMonth(), 
+      //   date.getUTCDate(),
+      //   date.getUTCHours(),
+      //   date.getUTCMinutes(), 
+      //   date.getUTCSeconds());
+      // }
 
 
-        // if (el === 'again') {
 
-        //   let randomNum = Math.floor(Math.random() * 2);
+      //   if (utc(timeNow)<= sortQueue[0][1]) {
+      //     sortQueue.pop();
+      //     //display utc(queue[0].date)
 
-        //   let openNextTime =  utc(dataBase.DeckNames[item][index].lastOpen)  + randomNum*1000
-        //   //transfering it to a unix string
-          
-        //   let card = dataBase.DeckNames[item][index];
+      //     questionFieldTextArea.value = sortQueue[0][0].question;
+      //     answerFieldTextArea.innerText = sortQueue[0][0].answer;
+      //   }
+      //   else {
 
-        //   queue[card] = openNextTime;
-                
-          
-        //   console.log(queue)  
-        // };
 
-        if (el === 'good') {
+      //   shuffleLogic();
 
-      //     let randomNum = Math.floor(Math.random() * 4 +2.1);
-      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+      //   showAnswerButton.style.display = 'block';
 
-        }
-        if (el === 'easy') {
 
-//     let randomNum = Math.floor(Math.random() * 10 + 4);
-      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+      // if (el === 'again') {
 
-          
-      }    
-      });  
-  
-      containerForAgainGoodEasyButtons.append(button)
+      //   let randomNum = Math.floor(Math.random() * 2);
+
+      //   let openNextTime =  utc(dataBase.DeckNames[item][index].lastOpen)  + randomNum*1000
+      //   //transfering it to a unix string
+
+      //   let card = dataBase.DeckNames[item][index];
+
+      //   queue[card] = openNextTime;
+
+
+      //   console.log(queue)  
+      // };
+
+      if (el === 'good') {
+
+        //     let randomNum = Math.floor(Math.random() * 4 +2.1);
+        //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+
+      }
+      if (el === 'easy') {
+
+        //     let randomNum = Math.floor(Math.random() * 10 + 4);
+        //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+
+
+      }
+    });
+
+    containerForAgainGoodEasyButtons.append(button)
 
   });
 
@@ -368,60 +377,60 @@ nextCardBtn.onclick = function() {
 
 
   settingsIconContainer.onclick = function () {
-  //  opened = !opened;
-  //  littleModalWindow.style.display = opened ? "block" : "none";
+    //  opened = !opened;
+    //  littleModalWindow.style.display = opened ? "block" : "none";
   };
-  
-  
-  
+
+
+
   let littleModalWindow = createElement(
     'div',
     '',
     {
       transform: 'rotate(-90deg)'
     },
-    'littleModalWindow'  
-    )
-    
-    
-    settingsIconContainer.appendChild(littleModalWindow);
+    'littleModalWindow'
+  )
+
+
+  settingsIconContainer.appendChild(littleModalWindow);
 
 
 
-    let dontShow = false;
+  let dontShow = false;
 
-  function popUp () {
-      if (!dontShow) {
-        let popUpWindowContainer = createElement(
-          'div',
-          '',
-          {
-            display: 'flex',
-            flexDirection: column,
-            width: '200px',
-            height: '55px',
-            backgroundColor: 'white',
-            zIndex: '2',
-            position: 'absolute',
-            top: '120px',
-            border: '1px black solid',
-            justifyContent: 'space-between',
-            borderRadius: '5px',
-            marginLeft: '10%'
+  function popUp() {
+    if (!dontShow) {
+      let popUpWindowContainer = createElement(
+        'div',
+        '',
+        {
+          display: 'flex',
+          flexDirection: column,
+          width: '200px',
+          height: '55px',
+          backgroundColor: 'white',
+          zIndex: '2',
+          position: 'absolute',
+          top: '120px',
+          border: '1px black solid',
+          justifyContent: 'space-between',
+          borderRadius: '5px',
+          marginLeft: '10%'
 
-          }
-        );
+        }
+      );
 
       let checkbox = createElement(
-          'input',
-          '',
-          { });
-        checkbox.setAttribute('type', 'checkbox');
-        
+        'input',
+        '',
+        {});
+      checkbox.setAttribute('type', 'checkbox');
+
       let dontShowInfo = createElement(
         'div',
         `Don't show message again`,
-         {});
+        {});
 
       let cardRemovedInfo = createElement(
         'div',
@@ -438,18 +447,18 @@ nextCardBtn.onclick = function() {
       )
 
 
-    checkbox.onclick = function () {
-      dontShow = true;
-      popUpWindowContainer.style.display = 'none';
-    }
-
-
+      checkbox.onclick = function () {
+        dontShow = true;
+        popUpWindowContainer.style.display = 'none';
       }
 
 
     }
 
+
   }
+
+}
 
 
 
@@ -498,7 +507,7 @@ nextCardBtn.onclick = function() {
 
 //     setTimeout(function () {
 //       popUpWindowContainer.style.display = 'none'
-      
+
 //     }, 500000);
 
 //   }
@@ -517,48 +526,48 @@ nextCardBtn.onclick = function() {
       //     //     questionFieldTextArea.value = dataBase.DeckNames[item][index].question
       //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
       //     //   })
-  
+
       //     // }, randomNum * 1000); //right now card gets shown again after 2 sec, normally the formula is : 2 * 60 * 10000
-  
+
       //     // display();
       //   }
-  
+
       //   if (el == 'good') {
       //     shuffleLogic();
       //     showAnswerButton.style.display = 'block';
-          
+
       //     let randomNum = Math.floor(Math.random() * 3);
 
       //    // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2*60);
       //     //var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
       //     //https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
-          
+
       //     // setTimeout(function() {
-            
+
       //     //   button.addEventListener('click', function () {
       //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
       //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
       //     //   })
-            
-            
-            
+
+
+
       //     // }, randomNum * 1000);
-          
+
       //   }
-  
+
       //   if (el === 'easy') {
       //     shuffleLogic();
       //     showAnswerButton.style.display = 'block';
-  
-          
+
+
       //     let randomNum = Math.floor(Math.random() * 4);
       //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
 
       //     // setTimeout(function() {
-            
+
       //     //   button.addEventListener('click', function () {
       //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
       //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
       //     //   })
-            
+
       //     // }, randomNum * 1000);
