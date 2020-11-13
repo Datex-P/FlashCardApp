@@ -235,46 +235,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-  // let queue = {
-
-  // //sort by time to open...
-
-
-  // };
-  /*
-  nextCardBtn.onclick = function() {
-      if (queue.length) {
-      
-        let [question,answer] = queue.pop()
-      questionFieldTextArea.value = question
-      answerFieldTextArea.value = answer
-    }else{
-      shuffleLogic();
-    }
-  };
-  */
-
-
-  // let queue = {
-  //     //card : openNext
-  // };
-
-  // let sortQueue = [];
-  // for (let item in queue) {
-  //   sortQueue.push([item, item[queue]])
-  // }
-
-  // sortQueue.sort(function(a, b){
-  //   return a[1] - b[1]
-  // })
-
-
-
-
-
-
-
-
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
   ["again", "good", "easy"].forEach((el) => {
 
