@@ -218,6 +218,18 @@ export default function questAnswerTrainOverv(item) {
     }
   });
 
+  //only count time when window is opened
+
+  //let randomNum = Math.floor(Math.random() * 10 + 4); //good
+  //let randomNum = Math.floor(Math.random() * 4 +2.1); //easy
+  //let randomNum = Math.floor(Math.random() * 2); //again
+
+
+
+
+
+
+
   // let queue = {
 
   // //sort by time to open...
@@ -341,23 +353,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   let settingsIconContainer = createElement(
     'div',
     '...',
@@ -376,9 +371,10 @@ export default function questAnswerTrainOverv(item) {
   answerContainer.appendChild(settingsIconContainer)
 
 
+  let opened = false;
   settingsIconContainer.onclick = function () {
-    //  opened = !opened;
-    //  littleModalWindow.style.display = opened ? "block" : "none";
+     opened = !opened;
+     littleModalWindow.style.display = opened ? "block" : "none";
   };
 
 
@@ -395,70 +391,255 @@ export default function questAnswerTrainOverv(item) {
 
   settingsIconContainer.appendChild(littleModalWindow);
 
+  
+
+["edit", "delete"].forEach((el) => {
+
+  let button = createElement("button", el, {
+    width: '100px',
+    marginTop: '10px',
+    marginLeft: '8px',
+   },
+    'generalButtonStyling'
+  )
+  
+  littleModalWindow.append(button);
 
 
-  let dontShow = false;
+   button.onclick = function () {
 
-  function popUp() {
-    if (!dontShow) {
-      let popUpWindowContainer = createElement(
-        'div',
-        '',
-        {
-          display: 'flex',
-          flexDirection: column,
-          width: '200px',
-          height: '55px',
-          backgroundColor: 'white',
-          zIndex: '2',
-          position: 'absolute',
-          top: '120px',
-          border: '1px black solid',
-          justifyContent: 'space-between',
-          borderRadius: '5px',
-          marginLeft: '10%'
 
+    if (el === 'edit') {
+
+
+
+
+       answerFieldTextArea.removeAttribute("disabled");
+       questionFieldTextArea.removeAttribute("disabled");
+       questionFieldTextArea.focus();
+     
+
+        showAnswerButtonContainer.removeChild(containerForTimeButtons);  
+        showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
+
+
+
+    let discardAndSaveContainer = createElement(
+      'div',
+      '',
+    {display: 'flex',
+     border: '1px black solid',
+     width: '60%',
+    justifyContent: 'space-between'},
+  );
+
+
+        showAnswerButtonContainer.style.display = 'flex';
+        showAnswerButtonContainer.style.justifyContent = 'center'
+
+        showAnswerButtonContainer.append(discardAndSaveContainer);
+     
+        ["discard", "save"].forEach((el) => {
+
+          let button = createElement("button", el, {
+          }, 'generalButtonStyling'
+        )
+        discardAndSaveContainer.append(button);
+      
+
+      button.onclick = function () {
+        if (el === 'discard') {
+          showAnswerButtonContainer.removeChild(discardAndSaveContainer);
+          showAnswerButtonContainer.append(containerForTimeButtons);
+          showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+
+          showAnswerButtonContainer.style.display = 'block';
         }
-      );
+      }
+      
+      button.onclick = function () {
+        if (el === 'save') {
 
-      let checkbox = createElement(
-        'input',
-        '',
-        {});
-      checkbox.setAttribute('type', 'checkbox');
+            //   question = questionFieldTextArea.value;
+            //  answer = answerFieldTextArea.value;
+            answerFieldTextArea.setAttribute("disabled", 'true');
+            questionFieldTextArea.setAttribute("disabled", 'true');          
 
-      let dontShowInfo = createElement(
-        'div',
-        `Don't show message again`,
-        {});
+          showAnswerButtonContainer.removeChild(discardAndSaveContainer);
+          showAnswerButtonContainer.append(containerForTimeButtons);
+          showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
 
-      let cardRemovedInfo = createElement(
-        'div',
-        'Card was removed from deck',
-        {}
-      );
-
-      let dontShowAndCheckboxContainer = createElement(
-        'div',
-        '',
-        {
-          display: 'flex'
+          showAnswerButtonContainer.style.display = 'block';
         }
-      )
-
-
-      checkbox.onclick = function () {
-        dontShow = true;
-        popUpWindowContainer.style.display = 'none';
       }
 
 
+
+
+
+
     }
+ );
+      
+          
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+   }
   }
 
+
+});
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+  
+  
+//   button.onclick = function () {
+//     if (el === 'discard') {
+
+
+//       answerFieldTextArea.style.border = 'none';
+//       questionFieldTextArea.style.border = 'none';
+//       answerFieldTextArea.style.outline = 'none';
+//       questionFieldTextArea.style.border = 'none';
+
+//       containerForButtons.style.marginRight = '55px';
+
+//       containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc);
+//       containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
+//       buttonContainer.parentNode.removeChild(buttonContainer);
+
+//       answerFieldTextArea.setAttribute("disabled", 'true');
+//       questionFieldTextArea.setAttribute("disabled", 'true');
+
+//     }
+//     if (el === 'save') {
+
+//    //   question = questionFieldTextArea.value;
+//     //  answer = answerFieldTextArea.value;
+//     answerFieldTextArea.setAttribute("disabled", 'true');
+//     questionFieldTextArea.setAttribute("disabled", 'true');
+
+//       containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
+//       buttonContainer.parentNode.removeChild(buttonContainer);
+//       shuffleLogic();
+
+
+//     }
+
+//   }
+
+  
+// });
+
+
+
+//   let dontShow = false;
+
+//   function popUp() {
+//     if (!dontShow) {
+//       let popUpWindowContainer = createElement(
+//         'div',
+//         '',
+//         {
+//           display: 'flex',
+//           flexDirection: column,
+//           width: '200px',
+//           height: '55px',
+//           backgroundColor: 'white',
+//           zIndex: '2',
+//           position: 'absolute',
+//           top: '120px',
+//           border: '1px black solid',
+//           justifyContent: 'space-between',
+//           borderRadius: '5px',
+//           marginLeft: '10%'
+
+//         }
+//       );
+
+//       let checkbox = createElement(
+//         'input',
+//         '',
+//         {});
+//       checkbox.setAttribute('type', 'checkbox');
+
+//       let dontShowInfo = createElement(
+//         'div',
+//         `Don't show message again`,
+//         {});
+
+//       let cardRemovedInfo = createElement(
+//         'div',
+//         'Card was removed from deck',
+//         {}
+//       );
+
+//       let dontShowAndCheckboxContainer = createElement(
+//         'div',
+//         '',
+//         {
+//           display: 'flex'
+//         }
+//       )
+
+
+//       checkbox.onclick = function () {
+//         dontShow = true;
+//         popUpWindowContainer.style.display = 'none';
+//       }
+
+
+//     }
+
+
+//   }
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
