@@ -5,6 +5,11 @@ button:focus, input:focus, textarea {
 
 button, input, textarea {
   border-radius: 5px;
+
+}
+button{
+  border: none;
+  font-size: 12px;
 }
 
 textarea {

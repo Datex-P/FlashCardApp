@@ -1,7 +1,7 @@
-import {dataBase} from './dataBase.js';
+import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 
-function createElement(tag='div',inner='', style={}, className=null, id=null) {
+function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
 
   let element = document.createElement(tag);
 
@@ -20,12 +20,12 @@ function createElement(tag='div',inner='', style={}, className=null, id=null) {
 
 
 
-export default function createNewDeck () {
-  
-  let anchorElement = document.getElementById('questAnswerTrainOverv');
-      anchorElement.style.display = 'flex'
+export default function createNewDeck() {
 
-   
+  let anchorElement = document.getElementById('questAnswerTrainOverv');
+  anchorElement.style.display = 'flex'
+
+
   let mainWindow = createElement('div', '',
     {
       height: '160px',
@@ -36,7 +36,7 @@ export default function createNewDeck () {
       backgroundColor: 'rgba(200, 168, 115,0.95)',
       top: '100px',
       position: 'absolute',
-      borderRadius: '5px'   
+      borderRadius: '5px'
     },
     'flexColumnAlignCenter'
   );
@@ -44,30 +44,30 @@ export default function createNewDeck () {
   anchorElement.append(mainWindow);
 
   let nameForNewDeckText = createElement('div', 'Name for new deck',
-  {
-    fontWeight: 'bold'
-  });
+    {
+      fontWeight: 'bold'
+    });
 
   mainWindow.append(nameForNewDeckText);
 
   let inputField = createElement('input', '', {
-    width: '70%', 
+    width: '70%',
     marginTop: '10px',
     marginBottom: '10px',
     height: '30px'
-    });
+  });
 
   mainWindow.append(inputField);
 
-  let buttonContainer =  createElement ('div', '', {
+  let buttonContainer = createElement('div', '', {
     display: 'flex',
     justifyContent: 'space-between',
     width: '47%',
-   // border: '1px black solid'
+    // border: '1px black solid'
   });
-    mainWindow.append(buttonContainer);
+  mainWindow.append(buttonContainer);
 
-    
+
   ['Cancel', 'Ok'].forEach((el) => {
     let button = createElement(
       'button',
@@ -75,12 +75,12 @@ export default function createNewDeck () {
       {
         pointer: 'cursor'
       },
-      'generalButtonStyling' 
-      )
+      'generalButtonStyling'
+    )
 
-      button.addEventListener('click', function () {
+    button.addEventListener('click', function () {
 
-        //let regex = /^(\s|\S)*(\S)+(\s|\S)*$/;
+      //let regex = /^(\s|\S)*(\S)+(\s|\S)*$/;
 
       if (el === 'Cancel') {
         mainWindow.style.display = 'none';
@@ -92,29 +92,24 @@ export default function createNewDeck () {
         //   //         document.getElementById('createYourFirstDeckPrompt').style.display = 'block';   
         //   //       }
 
+      }else if (el === 'Ok'){
+        if(Object.keys(dataBase.DeckNames).includes(inputField.value)){
+          alert('Name of Deck already exists')
+          inputField.value = ''
+        }else if(!inputField.value){
+          alert('Input needed')
+        }else{
+          dataBase.DeckNames[inputField.value] = [];
+          // dataBase.DeckNames[inputField.value].sleepy = false;
+          createDom(dataBase.DeckNames);
+          anchorElement.removeChild(mainWindow);
+          anchorElement.style.display = 'none';
+        } 
       }
-      if (el === 'Ok' && inputField.value === dataBase.DeckNames[inputField.value]) {
-                alert('Name of Deck already exists')
-              }
-      else if (el === 'Ok' &&  inputField.value=== '' /*!regex.test(inputField.value)*/) {
-        alert('Input needed')
-      }
-      else {
-        dataBase.DeckNames[inputField.value] = [];
-       // dataBase.DeckNames[inputField.value].sleepy = false;
-       
-        createDom(dataBase.DeckNames);
-        anchorElement.removeChild(mainWindow);
-        anchorElement.style.display = 'none';
-      }
-      
     })
 
-      buttonContainer.append(button);    
-    });
-
-
-  
+    buttonContainer.append(button);
+  });
 
 
 
@@ -122,8 +117,11 @@ export default function createNewDeck () {
 
 
 
-     
-      
- };
+
+
+
+
+
+};
 
 
