@@ -48,6 +48,19 @@ function generateTextarea(inner, style = {}) {
 
 
 export default function questAnswerTrainOverv(item) {
+  let decrementTimer = setInterval(()=>{
+    dataBase.queue.forEach((card,index)=>{
+      if(dataBase.queue[index].timeLeft>=1000){
+        dataBase.queue[index].timeLeft-=1000
+      }else{
+        dataBase.queue[index].timeLeft = 0
+      }
+      console.log(dataBase.queue[index].timeLeft)
+    })
+    
+  },1000)
+
+
   function shuffleLogic() {
     let [question, answer, index] = shuffle(item);
     questionFieldTextArea.value = question;
@@ -90,6 +103,7 @@ export default function questAnswerTrainOverv(item) {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
     clearInterval(timer);  //not implemented yet
+    clearInterval(decrementTimer);
   }
   redCross.onclick = close
 
@@ -109,11 +123,6 @@ export default function questAnswerTrainOverv(item) {
       }
     };
   }, 10);
-
-
-
-
-
 
 
   theNameOftheDeckAndRedCrossContainer.append(redCross);
@@ -210,11 +219,7 @@ export default function questAnswerTrainOverv(item) {
     let btn = createElement('div', `<${el}m`, {});
     containerForTimeButtons.append(btn);
     btn.onclick = function(){
-      console.log('start')
-      setTimeout(()=>{
-        dataBase.queue.push({question, answer, index})
-        console.log('end')
-      },el*6000)
+        dataBase.queue.push({question, answer, index,timeLeft: el*6000})
     }
   });
 

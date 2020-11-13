@@ -27,7 +27,7 @@ export default function shuffle(item,index=null) {
   }
 
   // if  (dataBase.DeckNames[item][random].sleepy === false) {
-  if(dataBase.queue.length){
+  if(dataBase.queue[0] && dataBase.queue[0].timeLeft == 0){
     return Object.values(dataBase.queue.shift())
   }else{
     return [questionNumber(randomInScope),answerNumber(randomInScope),randomInScope];
