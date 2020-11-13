@@ -112,28 +112,6 @@ export default function stats() {
 
 
 
-  let dec = 0;
-
-  function change(dec) {
-    let yearN = yearOfStudy.getFullYear() + dec;
-    year.innerText = yearN
-    renderDays(yearN)
-  };
-
-
-  buttonLeft.onclick = function () {
-    dec -= 1
-    change(dec);
-
-  };
-
-  buttonRight.onclick = function () {
-    dec += 1
-    change(dec);
-
-  };
-
-
 
 
 
@@ -162,6 +140,37 @@ export default function stats() {
     innerWindow.append(yearAndButtonContainer);
     yearAndButtonContainer.append(buttonLeft);
     yearAndButtonContainer.append(buttonRight);
+
+
+
+
+    let dec = 0;
+
+    function change(dec) {
+      let yearN = yearOfStudy.getFullYear() + dec;
+      year.innerText = yearN
+      renderDays(yearN)
+    };
+  
+  
+    buttonLeft.onclick = function () {
+      dec -= 1
+      change(dec);
+  
+    };
+  
+    buttonRight.onclick = function () {
+      dec += 1
+      change(dec);
+  
+    };
+  
+
+
+
+
+
+
 
 //   let yearOfStudy = new Date();
 //   let year = document.createElement("div");

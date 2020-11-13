@@ -290,50 +290,6 @@ export default function questAnswerTrainOverv(item) {
     button.addEventListener('click', function () {
 
 
-      // let timeNow = new Date();
-
-
-      // function utc (date) {
-
-      //   return Date.UTC(date.getUTCFullYear(), 
-      //   date.getUTCMonth(), 
-      //   date.getUTCDate(),
-      //   date.getUTCHours(),
-      //   date.getUTCMinutes(), 
-      //   date.getUTCSeconds());
-      // }
-
-
-
-      //   if (utc(timeNow)<= sortQueue[0][1]) {
-      //     sortQueue.pop();
-      //     //display utc(queue[0].date)
-
-      //     questionFieldTextArea.value = sortQueue[0][0].question;
-      //     answerFieldTextArea.innerText = sortQueue[0][0].answer;
-      //   }
-      //   else {
-
-
-      //   shuffleLogic();
-
-      //   showAnswerButton.style.display = 'block';
-
-
-      // if (el === 'again') {
-
-      //   let randomNum = Math.floor(Math.random() * 2);
-
-      //   let openNextTime =  utc(dataBase.DeckNames[item][index].lastOpen)  + randomNum*1000
-      //   //transfering it to a unix string
-
-      //   let card = dataBase.DeckNames[item][index];
-
-      //   queue[card] = openNextTime;
-
-
-      //   console.log(queue)  
-      // };
 
       if (el === 'good') {
 
