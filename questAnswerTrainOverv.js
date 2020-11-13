@@ -434,8 +434,8 @@ export default function questAnswerTrainOverv(item) {
   );
 
 
-        showAnswerButtonContainer.style.display = 'flex';
-        showAnswerButtonContainer.style.justifyContent = 'center'
+      //  showAnswerButtonContainer.style.display = 'flex';
+       // showAnswerButtonContainer.style.justifyContent = 'center'
 
         showAnswerButtonContainer.append(discardAndSaveContainer);
      
@@ -455,9 +455,7 @@ export default function questAnswerTrainOverv(item) {
 
           showAnswerButtonContainer.style.display = 'block';
         }
-      }
-      
-      button.onclick = function () {
+ 
         if (el === 'save') {
 
             //   question = questionFieldTextArea.value;
