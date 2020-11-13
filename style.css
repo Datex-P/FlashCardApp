@@ -184,8 +184,9 @@ textarea {
 
 #navOverview {
   margin-top: 30px; 
+  margin-left: 30px;
   display: flex; 
-  justify-content: space-around; 
+  /*justify-content: space-around; */
   width: 100%; 
   font-weight: bold;
 }
@@ -270,6 +271,13 @@ textarea {
   margin-left: 30px; 
   margin-top: 10px;
 }
+#listOfDecksSmall {
+  width: 60%; 
+  height:250px; 
+  left: 100px;
+  position: relative;
+  overflow: auto; 
+}
 
 #showAnswerButton {
   width: 120px;
@@ -285,10 +293,12 @@ textarea {
 
 
 #createDeckButton {
+  /*
   background-color: #545863; 
   color:#FFE3E3;  
   padding: 3px 3px;
   width: 220px;
+  */
 }
 
 #outerLoginPage {

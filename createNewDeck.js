@@ -1,4 +1,6 @@
-import { dataBase } from './dataBase.js';
+import {
+  dataBase
+} from './dataBase.js';
 import createDom from './createDom.js';
 
 function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
@@ -26,8 +28,7 @@ export default function createNewDeck() {
   anchorElement.style.display = 'flex'
 
 
-  let mainWindow = createElement('div', '',
-    {
+  let mainWindow = createElement('div', '', {
       height: '160px',
       display: 'flex',
       flexDirection: 'column',
@@ -43,10 +44,9 @@ export default function createNewDeck() {
 
   anchorElement.append(mainWindow);
 
-  let nameForNewDeckText = createElement('div', 'Name for new deck',
-    {
-      fontWeight: 'bold'
-    });
+  let nameForNewDeckText = createElement('div', 'Name for new deck', {
+    fontWeight: 'bold'
+  });
 
   mainWindow.append(nameForNewDeckText);
 
@@ -71,8 +71,7 @@ export default function createNewDeck() {
   ['Cancel', 'Ok'].forEach((el) => {
     let button = createElement(
       'button',
-      el,
-      {
+      el, {
         pointer: 'cursor'
       },
       'generalButtonStyling'
@@ -92,19 +91,19 @@ export default function createNewDeck() {
         //   //         document.getElementById('createYourFirstDeckPrompt').style.display = 'block';   
         //   //       }
 
-      }else if (el === 'Ok'){
-        if(Object.keys(dataBase.DeckNames).includes(inputField.value)){
+      } else if (el === 'Ok') {
+        if (Object.keys(dataBase.DeckNames).includes(inputField.value)) {
           alert('Name of Deck already exists')
           inputField.value = ''
-        }else if(!inputField.value){
+        } else if (!inputField.value) {
           alert('Input needed')
-        }else{
+        } else {
           dataBase.DeckNames[inputField.value] = [];
           // dataBase.DeckNames[inputField.value].sleepy = false;
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
           anchorElement.style.display = 'none';
-        } 
+        }
       }
     })
 
@@ -123,5 +122,3 @@ export default function createNewDeck() {
 
 
 };
-
-

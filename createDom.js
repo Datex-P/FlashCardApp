@@ -153,7 +153,7 @@ export default function createDom(obj, length = "long") {
 
     listOfDecks.style.display = "block";
     document.getElementById("navOverview").style.display = 'flex';
-    document.getElementById("createDeckButton").style.display = "block";
+   // document.getElementById("createDeckButton").style.display = "block";
     document.getElementById("navLine").style.display = "flex";
   });
 }
