@@ -3,51 +3,64 @@ import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 import settings from './settings.js';
 import createNewDeck from './createNewDeck.js'
-import {statsIcon, menuIcon, logoutIcon, settingsIcon, newCards} from './svgs.js';
-
-
-function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
-
-  let element = document.createElement(tag);
-
-  element.innerHTML = inner;
-  if (id) {
-    element.id = id;
-  }
-  if (className) {
-    element.className = className;
-  }
-  for (let prop in style) {
-    element.style[prop] = style[prop]
-  }
-  return element
-}
 
 
 
-
-let menuIconContainer = createElement('div', menuIcon, {});
-
-document.querySelector('.menu').append(menuIconContainer);
 
 
 createDom(dataBase.DeckNames);
 
+
+let opened = false;
 document.querySelector('.menu').onclick = function () {
+  
+   if (!opened)
+   {
   document.querySelector('.menuBox').style.display = 'flex';
   document.querySelector('.menuBox').style.justifyContent = 'space-around';
+  //opened = true;
+   }
+  //  if (opened) {
+  //    document.querySelector('.menuBox').style.display = 'none';
+  //    opened = false;
+  //  }
+    setTimeout(function () {
+    window.onclick = function handleOutsideClick(e) {
+      if (document.querySelector('.menuBox').contains(e.target)) {
+        //alert("Clicked in Box");
+      } else {
+        //alert("Clicked outside Box");
+      document.querySelector('.menuBox').style.display = 'none';
+     opened = false;
+      }
+    } 
+  }, 10);
+};
+
+let boxesInMenu = document.getElementsByClassName('menuBoxesStyling');
+
+  for (let i=0; i<boxesInMenu.length; i++) {
+    boxesInMenu[i].onmouseover = function (e) {
+      e.target.backgroundColor = 'blue';
+    }
+  }
 
 
-}
 
 
-/*
+
+
+
+
+
+
+
 document.getElementById("createDeckButton").onclick = function () {
   createNewDeck()
  
   document.querySelector(".arrowDown").style.display = "none";
   
-};*/
+};
 
 
 //dynamical property
