@@ -1,5 +1,7 @@
 import createDom from './createDom.js';
-import { dataBase } from './dataBase.js';
+import {
+  dataBase
+} from './dataBase.js';
 import stats from './stats.js';
 import settings from './settings.js';
 import createNewDeck from './createNewDeck.js'
@@ -11,38 +13,36 @@ import createNewDeck from './createNewDeck.js'
 createDom(dataBase.DeckNames);
 
 let opened = false;
+
 function handleOutsideClick(e) {
-  if ( !(document.querySelector('.menuBox').contains(e.target)) ) {
+  if (!(document.querySelector('.menuBox').contains(e.target))) {
     //alert("Clicked outside Box");
     document.querySelector('.menuBox').style.display = 'none';
     opened = false;
     console.log('window handler still alive')
     window.onclick = ''
   }
-  
+
 }
 
 
+
 document.querySelector('.menu').onclick = function () {
-  
-  
-  //document.querySelectorAll('menuContainer').setAttribute('class', 'trans')
-  
-  //document.querySelectorAll('menuContainer').setAttribute('id', 'trans')
-  
-  
-  
-  // document.getElementById('menuIcon2').style.display  = 'none';
+
+
+ // document.querySelectorAll('.menuContainer>div')[0].classList.add('trans')
+
+  //document.getElementById('menuIcon2').style.display = 'none';
 
   if (!opened) {
     document.querySelector('.menuBox').style.display = 'flex';
     document.querySelector('.menuBox').style.justifyContent = 'space-around';
     opened = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       window.onclick = handleOutsideClick;
-    },10)
+    }, 10)
 
-  
+
 
 
 
@@ -56,8 +56,8 @@ document.querySelector('.menu').onclick = function () {
 
 
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
-boxesInMenu.forEach(button=>{
-  button.onclick = function(){
+boxesInMenu.forEach(button => {
+  button.onclick = function () {
     if (button.innerText === 'Stats') {
       stats();
       document.querySelector('.menuBox').style.display = 'none';
@@ -102,4 +102,3 @@ document.getElementById("createDeckButton").onclick = function () {
 // obj.name
 // let key = 'name'
 // obj[key]//John
-
