@@ -125,16 +125,26 @@ textarea {
   font-weight: bold;
 }
 
+.menuIcon {
+  font-weight: bold; 
+  border: 2px black solid; 
+  width:48%; 
+  margin-bottom: 3px; 
+  border-radius: 12px;
+
+}
+
 .generalButtonStyling {
   width: 60px;
   height: 30px;
-  background-color: grey;
+  background-color: grey; 
   color:white;
   cursor: pointer;
 }
 
 .menuBoxesStyling {
-  background-color: pink;
+  /*background-color: #abc4ab;*/
+  background-color:#dcc9b6;
   border: 1px black solid;
   width: 33%;
   cursor: pointer;
@@ -142,9 +152,18 @@ textarea {
   justify-content: space-around
 }
 .menuBoxesStyling:hover{
-  background-color: blue;
+  /* background-color:#dcc9b6; */
+  background-color:#a39171;
+
 }
 
+/* /* #trans {
+  transform: rotate(90deg);
+} */
+
+.menuContainer {
+  width: 100%;
+} 
 
 
 

@@ -58,6 +58,91 @@ export default function settings() {
     'redCross'
   );
 
+  let changeTimeIntervall = createElement(
+    'div',
+    'Change Repetition Interval',
+    {}
+  );
+
+  mainWindow.append(changeTimeIntervall);
+
+  let containerForChangeTimeIntervall = createElement(
+    'div',
+    '',
+    {display: 'flex',
+    flexDirection: 'column',
+  width: '200px',
+border: '1px black solid'}
+  );
+
+  mainWindow.append(containerForChangeTimeIntervall);
+
+
+  let innerContainer = createElement(
+    'div',
+    '',
+    {display: 'flex',
+    border: '1px black solid',
+    width: '200px',
+    justifyContent: 'space-around'
+    });
+
+    containerForChangeTimeIntervall.append(innerContainer);
+
+
+    let innerContainer2 = createElement(
+      'div',
+      '',
+      {display: 'flex',
+      border: '1px black solid',
+      justifyContent: 'space-around'
+      });
+  
+      containerForChangeTimeIntervall.append(innerContainer2);
+
+
+      
+      [1, 2, 20].forEach(el => {
+        let btn = createElement('div', `<${el}m`, {
+          display: 'flex'
+        });
+      //  containerForTimeButtons.append(btn);
+    
+        innerContainer2.append(btn);
+      });
+
+ 
+
+  ["again", "good", "easy"].forEach((el) => {
+
+    let button = createElement(
+      "button",
+      el,
+      {
+        display: 'flex',
+        pointer: 'cursor'
+      },
+      "generalButtonStyling"
+    );
+    innerContainer.append(button)
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
@@ -78,7 +163,7 @@ export default function settings() {
     };
   }, 10);
 
-  //let changeBackgroundColor = 
+ 
 
 
 

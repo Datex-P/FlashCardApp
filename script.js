@@ -24,6 +24,15 @@ function handleOutsideClick(e) {
 
 
 document.querySelector('.menu').onclick = function () {
+  
+  
+  //document.querySelectorAll('menuContainer').setAttribute('class', 'trans')
+  
+  //document.querySelectorAll('menuContainer').setAttribute('id', 'trans')
+  
+  
+  
+  // document.getElementById('menuIcon2').style.display  = 'none';
 
   if (!opened) {
     document.querySelector('.menuBox').style.display = 'flex';
@@ -32,6 +41,11 @@ document.querySelector('.menu').onclick = function () {
     setTimeout(()=>{
       window.onclick = handleOutsideClick;
     },10)
+
+  
+
+
+
   } else {
     document.querySelector('.menuBox').style.display = 'none';
     opened = false;
@@ -44,7 +58,14 @@ document.querySelector('.menu').onclick = function () {
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
 boxesInMenu.forEach(button=>{
   button.onclick = function(){
-    alert(button.innerText)
+    if (button.innerText === 'Stats') {
+      stats();
+      document.querySelector('.menuBox').style.display = 'none';
+    }
+    if (button.innerText === 'Settings') {
+      settings();
+      document.querySelector('.menuBox').style.display = 'none';
+    }
   }
 })
 // for (let i=0; i<boxesInMenu.length; i++) {
