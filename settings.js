@@ -64,9 +64,6 @@ export default function settings() {
   }
   redCross.onclick = close
 
-
-  // startTimer(item, index);
-
   setTimeout(function () {
     window.onclick = function handleOutsideClick(e) {
       if (mainWindow.contains(e.target)) {
@@ -80,6 +77,9 @@ export default function settings() {
       }
     };
   }, 10);
+
+  //let changeBackgroundColor = 
+
 
 
   settingsAndRedCrossContainer.append(redCross);

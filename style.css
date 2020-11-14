@@ -72,6 +72,21 @@ textarea {
   font-weight:bold;
 }
 
+.menuBox {
+    background-color: #b0c4b1;
+    color: black;
+    border-radius: 5px;
+    height: 40px;
+    width: 321px;
+    display: none;
+    position: absolute;
+    z-index: 2;
+    border: 1px black solid;
+    top: 40px;
+    left: 30px;
+    border-radius: 5px;
+  }
+
 .arrowDown {
   margin-top: 180px;
   width: 100%;
@@ -105,7 +120,29 @@ textarea {
   background-color: grey;
   color:white;
   cursor: pointer;
-}
+};
+
+.menuBoxesStyling {
+  /*margin-top: 20px;
+  margin-bottom: 10px;*/
+  background-color: pink;
+  border: 1px black solid;
+  width: 33%;
+};
+
+/* #statsIconBox {
+  border: 1px black solid;
+  width: 33%;
+} */
+
+
+
+
+
+
+
+
+
 
 @-webkit-keyframes arrow {
   0%, 100% {
@@ -293,12 +330,12 @@ textarea {
 
 
 #createDeckButton {
-  /*
+  
   background-color: #545863; 
   color:#FFE3E3;  
   padding: 3px 3px;
   width: 220px;
-  */
+  
 }
 
 #outerLoginPage {

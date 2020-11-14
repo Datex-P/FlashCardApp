@@ -133,12 +133,16 @@ export default function stats() {
   let year = createElement('div', yearOfStudy.getFullYear(), {
   });
 
+
+ 
+
   let yearAndButtonContainer = createElement('div', '', {
     display: 'flex',
     width: '100%'
   });
     innerWindow.append(yearAndButtonContainer);
     yearAndButtonContainer.append(buttonLeft);
+    yearAndButtonContainer.append(year);
     yearAndButtonContainer.append(buttonRight);
 
 
