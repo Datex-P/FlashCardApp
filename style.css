@@ -115,7 +115,7 @@ textarea {
 }
 
 .menu {
-   display: flex;
+  display: flex;
   flex-direction: column; 
   align-items: center;
   position: absolute;
@@ -131,14 +131,19 @@ textarea {
   background-color: grey;
   color:white;
   cursor: pointer;
-};
+}
 
 .menuBoxesStyling {
   background-color: pink;
   border: 1px black solid;
   width: 33%;
   cursor: pointer;
-};
+  display: flex; 
+  justify-content: space-around
+}
+.menuBoxesStyling:hover{
+  background-color: blue;
+}
 
 
 
