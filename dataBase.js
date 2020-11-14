@@ -1,3 +1,10 @@
+export let dataBase = {
+  DeckNames: {},
+  queue: []
+};
+
+
+
 let arr = [];
 for (let i = 0; i<100; i++){
   arr.push({
@@ -6,23 +13,8 @@ for (let i = 0; i<100; i++){
   })
 };
 
-
-export let dataBase = {
-  DeckNames: {
-    
-    Literature: arr,
-    Literature2: [
-      {
-        question: 'question1',
-        answer: 'answer1'
-      },
-      {
-        question: 'question2',
-        answer: 'answer2'
-      }
-      
-    ]
-    
-  },
-  queue: []
+for (let i = 0; i<100; i++){
+  dataBase.DeckNames[`Literature${i}`] = arr
 };
+
+

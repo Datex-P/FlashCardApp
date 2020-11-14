@@ -11,9 +11,7 @@ export default function createDom(obj, length = "long") {
   
   arr.forEach((item) => {
     let newDeckContainer = document.createElement("div");
-    newDeckContainer.style.marginTop = "10px";
-    newDeckContainer.style.marginLeft = "20px";
-    newDeckContainer.className = 'flexSpaceBetween';
+    newDeckContainer.className = 'newDeckContainer';
 
     let nameOfNewDeck = document.createElement("div");
     nameOfNewDeck.innerText = item;

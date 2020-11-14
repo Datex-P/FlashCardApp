@@ -1,13 +1,15 @@
-
-button:focus, input:focus, textarea {
+button:focus,
+input:focus,
+textarea {
   outline: none;
 }
 
-button, input, textarea {
+button,
+input,
+textarea {
   border-radius: 5px;
-
 }
-button{
+button {
   border: none;
   font-size: 12px;
 }
@@ -17,16 +19,17 @@ textarea {
   width: 100%;
   height: 90px;
   padding-left: 10px;
-  padding-right:10px;
+  padding-right: 10px;
   padding-top: 15px;
   box-sizing: border-box;
 }
 
-#cancelButton, #okButton {
+#cancelButton,
+#okButton {
   width: 60px;
   height: 30px;
   background-color: #545863;
-  color: #FFE3E3;
+  color: #ffe3e3;
   margin-top: 5px;
   margin-left: 10px;
 }
@@ -54,38 +57,37 @@ textarea {
   background: #555;
 }
 
-
 #registerPage {
-  width: 411px; 
-  height: 731px; 
-  background-color: #86A873; 
+  width: 411px;
+  height: 731px;
+  background-color: #86a873;
   border-radius: 5px;
-  }
+}
 
 #registerButton {
   margin-top: 140px;
 }
 
 #createYourFirstDeckPrompt {
-  text-align: center; 
-  margin-top: 200px; 
-  font-weight:bold;
+  text-align: center;
+  margin-top: 200px;
+  font-weight: bold;
 }
 
 .menuBox {
-    background-color: #b0c4b1;
-    color: black;
-    border-radius: 5px;
-    height: 40px;
-    width: 321px;
-    display: none;
-    position: absolute;
-    z-index: 2;
-    border: 1px black solid;
-    top: 50px;
-    left: 60px;
-    border-radius: 5px;
-  }
+  background-color: #b0c4b1;
+  color: black;
+  border-radius: 5px;
+  height: 40px;
+  width: 321px;
+  display: none;
+  position: absolute;
+  z-index: 2;
+  border: 1px black solid;
+  top: 50px;
+  left: 60px;
+  border-radius: 5px;
+}
 
 .arrowDown {
   margin-top: 180px;
@@ -97,7 +99,7 @@ textarea {
 }
 
 .arrowDown::after {
-  content: '';
+  content: "";
   width: 15px;
   height: 15px;
   position: absolute;
@@ -116,7 +118,7 @@ textarea {
 
 .menu {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   position: absolute;
   cursor: pointer;
@@ -126,50 +128,46 @@ textarea {
 }
 
 .menuIcon {
-  font-weight: bold; 
-  border: 2px black solid; 
-  width:48%; 
-  margin-bottom: 3px; 
+  font-weight: bold;
+  border: 2px black solid;
+  width: 48%;
+  margin-bottom: 3px;
   border-radius: 12px;
-
 }
 
 .generalButtonStyling {
   width: 60px;
   height: 30px;
-  background-color: grey; 
-  color:white;
+  background-color: grey;
+  color: white;
   cursor: pointer;
 }
 
 .menuBoxesStyling {
   /*background-color: #abc4ab;*/
-  background-color:#dcc9b6;
+  background-color: #dcc9b6;
   border: 1px black solid;
   width: 33%;
   cursor: pointer;
-  display: flex; 
-  justify-content: space-around
+  display: flex;
+  justify-content: space-around;
 }
-.menuBoxesStyling:hover{
+.menuBoxesStyling:hover {
   /* background-color:#dcc9b6; */
-  background-color:#a39171;
-
+  background-color: #a39171;
 }
- 
+
 .trans {
   transform: rotate(90deg);
-} 
+}
 
 .menuContainer {
   width: 100%;
-} 
-
-
-
+}
 
 @-webkit-keyframes arrow {
-  0%, 100% {
+  0%,
+  100% {
     top: 50px;
   }
   50% {
@@ -177,7 +175,8 @@ textarea {
   }
 }
 @keyframes arrow {
-  0%, 100% {
+  0%,
+  100% {
     top: 50px;
   }
   50% {
@@ -190,21 +189,20 @@ textarea {
   flex-direction: column;
   width: 343px;
   height: 500px;
-  top:70px;
-  background-color: rgba(200, 168, 115,0.95);
+  top: 70px;
+  background-color: rgba(200, 168, 115, 0.95);
   position: absolute;
   border: 1px solid black;
   border-radius: 20px;
 }
-
 
 .addQuestionsToDeck {
   display: flex;
   flex-direction: column;
   width: 75%;
   height: 500px;
-  top:100px;
-  background-color: rgba(200, 168, 115,0.95);
+  top: 100px;
+  background-color: rgba(200, 168, 115, 0.95);
   position: absolute;
   border: 1px solid black;
   border-radius: 20px;
@@ -214,18 +212,18 @@ textarea {
 }
 
 #loginButton {
-  width: 70%; 
-  background-color: #545863; 
+  width: 70%;
+  background-color: #545863;
   color: #ffe3e3;
 }
 
 #loginPage {
-  width: 411px; 
-  height: 731px; 
-  background-color: #86A873; 
-  border-radius: 5px; 
+  width: 411px;
+  height: 731px;
+  background-color: #86a873;
+  border-radius: 5px;
   margin-left: 20px;
-  }
+}
 
 .redCross {
   height: 20px;
@@ -234,21 +232,39 @@ textarea {
 }
 
 .flexColumn {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  .flexSpaceBetween {
-    display: flex;
-    justify-content: space-between;
-  }
+.flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+.newDeckContainer{
+  height: 100px;
+  /* width: 100%; */
+  padding: 10px;
+  margin: 10px 0 0 20px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  margin-bottom: -80px;
+  background-color: white;
+  transition: all 1s;
+}
+.newDeckContainer:hover{
+  margin-top: 90px;
+  margin-bottom: 10px;
+}
 
 #navOverview {
-  margin-top: 30px; 
+  margin-top: 30px;
   margin-left: 30px;
-  display: flex; 
+  display: flex;
   /*justify-content: space-around; */
-  width: 100%; 
+  width: 100%;
   font-weight: bold;
 }
 
@@ -274,10 +290,9 @@ textarea {
   width: 20px;
   height: 20px;
   background-color: grey;
-  color:white;
-  border:none
+  color: white;
+  border: none;
 }
-
 
 #answerFieldAddQuestion {
   border-color: #087f8c;
@@ -287,7 +302,7 @@ textarea {
 }
 
 #inputNameOfNewDeck {
-  width: 90%; 
+  width: 90%;
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
@@ -302,9 +317,8 @@ textarea {
 .flexColumnAlignCenter {
   display: flex;
   flex-direction: column;
-  align-Items : center;
+  align-items: center;
 }
-
 
 #questAnswerTrainOverv {
   width: 411px;
@@ -314,10 +328,8 @@ textarea {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
-
-
 
 .theWordQuestionAndAnswer {
   margin-left: 4px;
@@ -326,18 +338,20 @@ textarea {
 }
 
 #listOfDecks {
-  width: 80%; 
-  height:250px; 
-  overflow: auto; 
-  margin-left: 30px; 
+  width: 80%;
+  height: 250px;
+  overflow: auto;
+  margin-left: 30px;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 #listOfDecksSmall {
-  width: 60%; 
-  height:250px; 
+  width: 60%;
+  height: 250px;
   left: 100px;
   position: relative;
-  overflow: auto; 
+  overflow: auto;
 }
 
 #showAnswerButton {
@@ -352,37 +366,33 @@ textarea {
   width: 100%;
 }
 
-
 #createDeckButton {
-  
-  background-color: #545863; 
-  color:#FFE3E3;  
+  background-color: #545863;
+  color: #ffe3e3;
   padding: 3px 3px;
   width: 220px;
-  
 }
 
 #outerLoginPage {
-	width: 411px; 
-	height:731px; 
-	display: flex; 
-	justify-content: center
+  width: 411px;
+  height: 731px;
+  display: flex;
+  justify-content: center;
 }
 
 #mainMenu {
-	background-color:#86A873; 
-	width: 411px; 
-	height: 731px; 
-	border-radius: 5px; 
-	display: flex; 
+  background-color: #86a873;
+  width: 411px;
+  height: 731px;
+  border-radius: 5px;
+  display: flex;
   flex-direction: column;
-  position: relative
+  position: relative;
 }
 .flexCenter {
-	display: flex;
-	justify-content: center
+  display: flex;
+  justify-content: center;
 }
-
 
 .orangeCircle {
   width: 20px;
@@ -401,20 +411,18 @@ textarea {
   box-sizing: border-box;
   margin: 1px;
   position: relative;
-  
 }
-.day > div{
+.day > div {
   position: absolute;
-  top:0;
-  left:0;
-  display:flex;
-  width:120px;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 120px;
   background-color: white;
-  border-radius:5px;
-  z-index:2;
+  border-radius: 5px;
+  z-index: 2;
   padding: 5px;
 }
-
 
 .hourAmount {
   padding: 1px;
@@ -422,16 +430,15 @@ textarea {
   height: 10px;
   position: relative;
   overflow: visible;
-  
 }
 .hourLevel {
   position: absolute;
-  top:20px;
+  top: 20px;
   width: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height:200px
+  height: 200px;
 }
 .level {
   width: 10px;
@@ -440,20 +447,19 @@ textarea {
   margin: 1px 0;
 }
 
-.littleModalWindow{
+.littleModalWindow {
   position: absolute;
-top: 20px;
-left: 20px;
+  top: 20px;
+  left: 20px;
 
-display: none;
-padding: 5px;
-background-color: white;
-
+  display: none;
+  padding: 5px;
+  background-color: white;
 }
-textarea:focus{
+textarea:focus {
   border: 3px solid grey;
   box-shadow: 0px 0px 15px grey;
 }
-textarea:enabled{
+textarea:enabled {
   border: 3px solid grey;
 }
