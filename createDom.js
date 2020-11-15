@@ -34,18 +34,22 @@ export default function createDom(obj, length = "long") {
 
 
 
-
-
+  let colors = ['red','blue','green','yellow','orange']
   
   arr.forEach((item, index) => {
     let newDeckContainer = document.createElement("div");
     newDeckContainer.className = 'newDeckContainer';
 
+    newDeckContainer.style.backgroundColor = colors[index%5]
 
+    newDeckContainer.style.transform =  `rotate(${index*-3}deg)`;
 
-    newDeckContainer.style.zIndex =  index+1;
-
-
+    newDeckContainer.onmouseenter = function(){
+      this.style.transform =  `rotate(0deg)`;
+    }
+    newDeckContainer.onmouseleave = function(){
+      this.style.transform =  `rotate(${index*-5}deg)`;
+    }
 
     let nameOfNewDeck = document.createElement("div");
     nameOfNewDeck.innerText = item;
@@ -217,9 +221,9 @@ export default function createDom(obj, length = "long") {
     }
 
     newDeckContainer.appendChild(addEditDeleteContainer);
-    listOfDecks.appendChild(newDeckContainer);
+    listOfDecks.prepend(newDeckContainer);
 
-    listOfDecks.style.display = "block";
+    // listOfDecks.style.display = "block";
 
 
   });

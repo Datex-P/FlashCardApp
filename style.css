@@ -267,11 +267,13 @@ textarea {
   /* background-color: white; */
   background-color: #dcc9b6;
   /*transition: all 1s; */
-  position: absolute
+  position: absolute;
+  top:70px;
+  transform-origin: 50px 120px;
 }
 .newDeckContainer:hover{
-  margin-top: 90px;
-  margin-bottom: 10px;
+  z-index:2;
+  /* transform: rotate(0deg); */
 }
 
 #navOverview {
@@ -354,13 +356,18 @@ textarea {
 
 #listOfDecks {
   width: 80%;
-  height: 250px;
-  overflow: auto;
+  height: 500px;
+  /* overflow: auto; */
   margin-left: 30px;
   margin-top: 10px;
-  display: flex;
+  position: absolute;
+  top: 0;
+  /* overflow: scroll; */
+  /* display: flex;
   flex-direction: column;
-  position: relative
+  position: relative */
+  padding: 20px;
+  
 }
 #listOfDecksSmall {
   width: 60%;
