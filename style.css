@@ -252,8 +252,8 @@ textarea {
   justify-content: space-between;
 }
 .newDeckContainer{
-  height: 150px;
-  width: 280px;
+  height: 168px;
+  width: 307px;
   /* width: 100%; */
   padding: 10px 0px 0px 0px;
   margin: 10px 0 0 20px;
@@ -262,7 +262,7 @@ textarea {
   flex-direction: column;
  
   /* justify-content: space-around; */
-  align-items: center;
+  /*align-items: center;*/
   margin-bottom: -80px;
   /* background-color: white; */
   background-color: #dcc9b6;
@@ -272,11 +272,11 @@ textarea {
   transform-origin: 0px 150px;
   
 }
-.strapped{
+/* .strapped{
   background:url(
 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2NkQAX/GZH4/xkYGBhhAmAOSBJEwDkgAQCCrgQEjpMcPgAAAABJRU5ErkJggg==
   ) repeat;
-}
+} */
 
 
 #navOverview {
@@ -421,13 +421,17 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
 }
 
 .orangeCircle {
-  width: 18px;
-  height: 18px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: grey;
+  position: absolute;
+  left: -12px;
+  top: 150px;
+  z-index: 3;
 }
 
 .day {
@@ -488,8 +492,8 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   position: absolute;
   top: 20px;
   left: 20px;
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 55px;
 
   display: none;
   padding: 5px;

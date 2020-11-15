@@ -5,16 +5,16 @@ export let dataBase = {
 
 
 
-let arr = [];
-for (let i = 0; i<100; i++){
-  arr.push({
-    question: `question${i}`,
-    answer: `answer${i}`
-  })
-};
+// let arr = [];
+// for (let i = 0; i<100; i++){
+//   arr.push({
+//     question: `question${i}`,
+//     answer: `answer${i}`
+//   })
+// };
 
-for (let i = 0; i<7; i++){
-  dataBase.DeckNames[`Literature${i}`] = arr
-};
+// for (let i = 0; i<7; i++){
+//   dataBase.DeckNames[`Literature${i}`] = arr
+//};
 
 
