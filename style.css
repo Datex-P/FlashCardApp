@@ -133,6 +133,7 @@ textarea {
   width: 48%;
   margin-bottom: 3px;
   border-radius: 12px;
+  position: relative;
 }
 
 .generalButtonStyling {
@@ -157,12 +158,22 @@ textarea {
   background-color: #a39171;
 }
 
-.trans {
-  transform: rotate(90deg);
+.transPlus {
+  transform: rotate(135deg);
+  
 }
+
+ 
+.transMinus {
+  transform: rotate(-135deg);
+  
+} 
+
 
 .menuContainer {
   width: 100%;
+  margin-bottom: 5px;
+  position: relative
 }
 
 @-webkit-keyframes arrow {
@@ -241,18 +252,22 @@ textarea {
   justify-content: space-between;
 }
 .newDeckContainer{
-  height: 100px;
+  height: 150px;
+  width: 280px;
   /* width: 100%; */
-  padding: 10px;
+  padding: 10px 0px 0px 0px;
   margin: 10px 0 0 20px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   display: flex;
   flex-direction: column;
+ 
   /* justify-content: space-around; */
   align-items: center;
   margin-bottom: -80px;
-  background-color: white;
-  transition: all 1s;
+  /* background-color: white; */
+  background-color: #dcc9b6;
+  /*transition: all 1s; */
+  position: absolute
 }
 .newDeckContainer:hover{
   margin-top: 90px;
@@ -345,6 +360,7 @@ textarea {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+  position: relative
 }
 #listOfDecksSmall {
   width: 60%;

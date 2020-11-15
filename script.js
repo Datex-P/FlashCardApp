@@ -30,9 +30,13 @@ function handleOutsideClick(e) {
 document.querySelector('.menu').onclick = function () {
 
 
- // document.querySelectorAll('.menuContainer>div')[0].classList.add('trans')
+ document.querySelectorAll('.menuContainer>div')[0].classList.add('transPlus');
+ document.querySelectorAll('.menuContainer>div')[2].classList.add('transMinus');
+// document.querySelectorAll('.menuContainer>div').removeProperty('margin-bottom');
 
-  //document.getElementById('menuIcon2').style.display = 'none';
+
+
+  document.getElementById('menuIcon2').style.display = 'none';
 
   if (!opened) {
     document.querySelector('.menuBox').style.display = 'flex';
@@ -49,7 +53,10 @@ document.querySelector('.menu').onclick = function () {
   } else {
     document.querySelector('.menuBox').style.display = 'none';
     opened = false;
-    window.onclick = ''
+    window.onclick = '';
+    document.querySelectorAll('.menuContainer>div')[0].classList.remove('transPlus');
+    document.querySelectorAll('.menuContainer>div')[2].classList.remove('transMinus');
+    document.getElementById('menuIcon2').style.display = 'block';
   }
 
 };

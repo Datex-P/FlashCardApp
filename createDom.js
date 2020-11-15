@@ -8,10 +8,44 @@ export default function createDom(obj, length = "long") {
   listOfDecks.innerHTML = "";
   let arr = Object.keys(obj);
 
+
+
+
+
+  listOfDecks.onwheel = function () {
+    // z Index of visible card  (currently 100) is 1
+      //z Index of all the other cards get incremented by 1
+      //how to get card with hightest zIndex
+
+      //for x in listofDecks
+     
+      function maxZIndex() {
+
+        console.log(Array.from(document.querySelectorAll('newDeckContainer'))
+              .map(a => parseFloat(window.getComputedStyle(a).zIndex))
+              .filter(a => !isNaN(a))
+              .sort()
+              .pop()
+   }
+   maxZIndex()
+
+  }
+
+
+
+
+
+
   
-  arr.forEach((item) => {
+  arr.forEach((item, index) => {
     let newDeckContainer = document.createElement("div");
     newDeckContainer.className = 'newDeckContainer';
+
+
+
+    newDeckContainer.style.zIndex =  index+1;
+
+
 
     let nameOfNewDeck = document.createElement("div");
     nameOfNewDeck.innerText = item;
@@ -43,8 +77,36 @@ export default function createDom(obj, length = "long") {
     addEditDeleteContainer.style.display = "flex";
     addEditDeleteContainer.style.justifyContent = "space-around";
     addEditDeleteContainer.style.width = "100px";
+    addEditDeleteContainer.style.marginTop = '60px'
     addEditDeleteContainer.style.alignItems = "center";
+    addEditDeleteContainer.style.zIndex = '3';
+    addEditDeleteContainer.style.position = 'absolute';
 
+
+
+    let blackLines = document.createElement('div');
+        blackLines.style.width = '99%';
+        blackLines.style.border= '0.5px #f7ede2 solid'
+
+    let blackLines2 = document.createElement('div');
+        blackLines2.style.marginTop = '15px';
+        blackLines2.style.width = '99%';
+        blackLines2.style.border= '0.5px #ffe8d6 solid'
+
+    let blackLines3 = document.createElement('div');
+        blackLines3.style.marginTop = '15px';
+        blackLines3.style.width = '99%';
+        blackLines3.style.border= '0.5px #eee4e1 solid'
+
+    let blackLines4 = document.createElement('div');
+        blackLines4.style.marginTop = '15px';
+        blackLines4.style.width = '99%';
+        blackLines4.style.border= '0.5px #ffe1a8 solid';
+
+    let blackLines5 = document.createElement('div');
+        blackLines5.style.marginTop = '15px';
+        blackLines5.style.width = '99%';
+        blackLines5.style.border= '0.5px #ffeedd solid';
 
     let trashIcon = document.createElement("div");
     trashIcon.innerHTML = trash;
@@ -144,6 +206,14 @@ export default function createDom(obj, length = "long") {
       addEditDeleteContainer.appendChild(addIcon);
       addEditDeleteContainer.appendChild(editIcon);
       addEditDeleteContainer.appendChild(trashIcon);
+
+
+      newDeckContainer.appendChild(blackLines);
+      newDeckContainer.appendChild(blackLines2);
+      newDeckContainer.appendChild(blackLines3);
+      newDeckContainer.appendChild(blackLines4);
+      newDeckContainer.appendChild(blackLines5);
+
     }
 
     newDeckContainer.appendChild(addEditDeleteContainer);
@@ -151,7 +221,6 @@ export default function createDom(obj, length = "long") {
 
     listOfDecks.style.display = "block";
 
-   // document.getElementById("createDeckButton").style.display = "block";
-   
+
   });
 }
