@@ -42,14 +42,16 @@ export default function createDom(obj, length = "long") {
 
     newDeckContainer.style.backgroundColor = colors[index%5]
 
-    newDeckContainer.style.transform =  `rotate(${index*-3}deg)`;
+    newDeckContainer.style.transform =  `rotate(${index*-2}deg)`;
 
-    newDeckContainer.onmouseenter = function(){
-      this.style.transform =  `rotate(0deg)`;
-    }
-    newDeckContainer.onmouseleave = function(){
-      this.style.transform =  `rotate(${index*-5}deg)`;
-    }
+    // newDeckContainer.onmouseenter = function(){
+    //   this.style.transform =  `rotate(0deg)`;
+    //   this.classList.add('strapped')
+    // }
+    // newDeckContainer.onmouseleave = function(){
+    //   this.style.transform =  `rotate(${index*-5}deg)`;
+    //   this.classList.remove('strapped')
+    // }
 
     let nameOfNewDeck = document.createElement("div");
         nameOfNewDeck.innerText = item;
@@ -109,44 +111,44 @@ export default function createDom(obj, length = "long") {
     // });
 
 
-    let blackLines = document.createElement('div');
-        blackLines.style.width = '99%';
-        blackLines.style.border= '0.5px #eee4e1 solid'
+    // let blackLines = document.createElement('div');
+    //     blackLines.style.width = '99%';
+    //     blackLines.style.border= '0.5px #eee4e1 solid'
 
-    let blackLines2 = document.createElement('div');
-        blackLines2.style.marginTop = '15px';
-        blackLines2.style.width = '99%';
-        blackLines2.style.border= '0.5px #eee4e1 solid'
+    // let blackLines2 = document.createElement('div');
+    //     blackLines2.style.marginTop = '15px';
+    //     blackLines2.style.width = '99%';
+    //     blackLines2.style.border= '0.5px #eee4e1 solid'
 
-    let blackLines3 = document.createElement('div');
-        blackLines3.style.marginTop = '15px';
-        blackLines3.style.width = '99%';
-        blackLines3.style.border= '0.5px #eee4e1 solid'
+    // let blackLines3 = document.createElement('div');
+    //     blackLines3.style.marginTop = '15px';
+    //     blackLines3.style.width = '99%';
+    //     blackLines3.style.border= '0.5px #eee4e1 solid'
 
-    let blackLines4 = document.createElement('div');
-        blackLines4.style.marginTop = '15px';
-        blackLines4.style.width = '99%';
-        blackLines4.style.border= '0.5px #eee4e1 solid';
+    // let blackLines4 = document.createElement('div');
+    //     blackLines4.style.marginTop = '15px';
+    //     blackLines4.style.width = '99%';
+    //     blackLines4.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines5 = document.createElement('div');
-        blackLines5.style.marginTop = '15px';
-        blackLines5.style.width = '99%';
-        blackLines5.style.border= '0.5px #eee4e1 solid';
+    // let blackLines5 = document.createElement('div');
+    //     blackLines5.style.marginTop = '15px';
+    //     blackLines5.style.width = '99%';
+    //     blackLines5.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines6 = document.createElement('div');
-        blackLines6.style.marginTop = '15px';
-        blackLines6.style.width = '99%';
-        blackLines6.style.border= '0.5px #eee4e1 solid';
+    // let blackLines6 = document.createElement('div');
+    //     blackLines6.style.marginTop = '15px';
+    //     blackLines6.style.width = '99%';
+    //     blackLines6.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines7 = document.createElement('div');
-        blackLines7.style.marginTop = '15px';
-        blackLines7.style.width = '99%';
-        blackLines7.style.border= '0.5px #eee4e1 solid';
+    // let blackLines7 = document.createElement('div');
+    //     blackLines7.style.marginTop = '15px';
+    //     blackLines7.style.width = '99%';
+    //     blackLines7.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines8 = document.createElement('div');
-        blackLines8.style.marginTop = '15px';
-        blackLines8.style.width = '99%';
-        blackLines8.style.border= '0.5px #eee4e1 solid';
+    // let blackLines8 = document.createElement('div');
+    //     blackLines8.style.marginTop = '15px';
+    //     blackLines8.style.width = '99%';
+    //     blackLines8.style.border= '0.5px #eee4e1 solid';
 
     let trashIcon = document.createElement("div");
     trashIcon.innerHTML = trash;
@@ -341,21 +343,40 @@ export default function createDom(obj, length = "long") {
       //addEditDeleteContainer.appendChild(trashIcon);
 
 
-      newDeckContainer.appendChild(blackLines);
-      newDeckContainer.appendChild(blackLines2);
-      newDeckContainer.appendChild(blackLines3);
-      newDeckContainer.appendChild(blackLines4);
-      newDeckContainer.appendChild(blackLines5);
-      newDeckContainer.appendChild(blackLines6);
-      newDeckContainer.appendChild(blackLines7);
-      newDeckContainer.appendChild(blackLines8);
+      // newDeckContainer.appendChild(blackLines);
+      // newDeckContainer.appendChild(blackLines2);
+      // newDeckContainer.appendChild(blackLines3);
+      // newDeckContainer.appendChild(blackLines4);
+      // newDeckContainer.appendChild(blackLines5);
+      // newDeckContainer.appendChild(blackLines6);
+      // newDeckContainer.appendChild(blackLines7);
+      // newDeckContainer.appendChild(blackLines8);
     }
 
     newDeckContainer.appendChild(addEditDeleteContainer);
+
     listOfDecks.prepend(newDeckContainer);
 
     // listOfDecks.style.display = "block";
 
 
   });
+
+
+  document.querySelector("#scrollable").onscroll = function(event){
+    let step = (1000-450)/arr.length
+    let index = Math.floor(event.target.scrollTop/step)
+
+    let all = listOfDecks.querySelectorAll('.newDeckContainer')
+    all.forEach(item=>{
+      item.style.zIndex = 0
+      item.classList.remove('strapped')
+    })
+    all[index].style.zIndex = 2
+    all[index].classList.add('strapped')
+
+    console.log(event.target.scrollTop,index)
+
+
+  }
 }
