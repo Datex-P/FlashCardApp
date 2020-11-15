@@ -327,8 +327,13 @@ export default function createDom(obj, length = "long") {
 let addToDeckIcon = document.createElement("div");
     addToDeckIcon.className = 'orangeCircle';
    addToDeckIcon.innerText = "+";
+   if(index ===0){
+    addToDeckIcon.style.display = 'flex'
+   }
 
-
+   addToDeckIcon.onclick = function(){
+    addQuestionsToDeck(item)
+   }
 
 
     let threeDotsIcon = document.createElement("div");
@@ -431,8 +436,10 @@ let addToDeckIcon = document.createElement("div");
     all.forEach(item=>{
       item.style.zIndex = 0
       item.classList.remove('strapped')
+      item.querySelector('.orangeCircle').style.display = 'none'
     })
     all[index].style.zIndex = 2
+    all[index].querySelector('.orangeCircle').style.display = 'flex'
     all[index].classList.add('strapped')
 
     console.log(event.target.scrollTop,index)
