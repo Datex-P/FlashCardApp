@@ -19,15 +19,15 @@ export default function createDom(obj, length = "long") {
 
       //for x in listofDecks
      
-      function maxZIndex() {
+  //     function maxZIndex() {
 
-        console.log(Array.from(document.querySelectorAll('newDeckContainer'))
-              .map(a => parseFloat(window.getComputedStyle(a).zIndex))
-              .filter(a => !isNaN(a))
-              .sort()
-              .pop()
-   }
-   maxZIndex()
+  //       console.log(Array.from(document.querySelectorAll('newDeckContainer'))
+  //             .map(a => parseFloat(window.getComputedStyle(a).zIndex))
+  //             .filter(a => !isNaN(a))
+  //             .sort()
+  //             .pop()
+  //  }
+  //  maxZIndex()
 
   }
 
