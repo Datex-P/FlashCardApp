@@ -192,6 +192,7 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 20px;
 }
 
 @-webkit-keyframes arrow {

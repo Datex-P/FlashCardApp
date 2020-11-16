@@ -17,15 +17,26 @@ let opened = false;
 function handleOutsideClick(e) {
   if (!(document.querySelector('.menuBox').contains(e.target))) {
     //alert("Clicked outside Box");
-    document.querySelector('.menuBox').style.display = 'none';
-    opened = false;
+    // document.querySelector('.menuBox').style.display = 'none';
+    // opened = false;
     console.log('window handler still alive')
-    window.onclick = ''
+    // window.onclick = ''
+    closeMenu()
   }
 
 }
 
-
+function closeMenu(){
+  let all = document.querySelectorAll('.menuContainer>div')
+  document.querySelector('.menuBox').style.display = 'none';
+  opened = false;
+  window.onclick = '';
+  all[0].classList.remove('transPlus');
+  all[0].style.top = '0px'
+  all[2].classList.remove('transMinus');
+  all[2].style.top = '16px'
+  document.getElementById('menuIcon2').style.display = 'block';
+}
 
 document.querySelector('.menu').onclick = function () {
 
@@ -47,32 +58,23 @@ document.querySelector('.menu').onclick = function () {
       window.onclick = handleOutsideClick;
     }, 10)
   } else {
-    document.querySelector('.menuBox').style.display = 'none';
-    opened = false;
-    window.onclick = '';
-    all[0].classList.remove('transPlus');
-    all[0].style.top = '0px'
-    all[2].classList.remove('transMinus');
-    all[2].style.top = '16px'
-    document.getElementById('menuIcon2').style.display = 'block';
+    closeMenu()
   }
 
 };
 
 
-let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
-boxesInMenu.forEach(button => {
-  button.onclick = function () {
-    if (button.innerText === 'Stats') {
-      stats();
-      document.querySelector('.menuBox').style.display = 'none';
-    }
-    if (button.innerText === 'Settings') {
-      settings();
-      document.querySelector('.menuBox').style.display = 'none';
-    }
+document.querySelector('.menuContainer').onclick = function () {
+  if (button.innerText === 'Stats') {
+    stats();
+    document.querySelector('.menuBox').style.display = 'none';
   }
-})
+  if (button.innerText === 'Settings') {
+    settings();
+    document.querySelector('.menuBox').style.display = 'none';
+  }
+}
+
 // for (let i=0; i<boxesInMenu.length; i++) {
 //   boxesInMenu[i].onmouseover = function (e) {
 //     e.target.style.backgroundColor = 'blue';
