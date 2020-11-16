@@ -24,10 +24,8 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
 
 export default function createDom(obj) {
 
-  listOfDecks.innerHTML = "";
+  listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
-
-
 
   let colors = ['#ffcdb2','#ffb4a2','#e5989b','#b5838d','#6d6875'];
   
@@ -137,6 +135,13 @@ export default function createDom(obj) {
 
     trashIconContainer.onclick = () => {
       newDeckContainer.parentNode.removeChild(newDeckContainer);
+
+      //newDeckContainer.className = 'orangeCircle';
+
+     // newDeckContainer.append(addToDeckIcon)
+
+
+
       delete dataBase.DeckNames[item];
       if (!Object.keys(dataBase.DeckNames).length) {
         let arrowDown = document.querySelector(".arrowDown");
@@ -277,13 +282,19 @@ let addToDeckIcon = createElement('div', '', {
 
     newDeckContainer.append(nameOfNewDeck);
 
-    newDeckContainer.append(threeDotsContainer)
+    newDeckContainer.append(threeDotsContainer);
+            threeDotsContainer.append(littleModalWindow);
+                         
+                            littleModalWindow.append(editIconContainer)
+            threeDotsContainer.append(threeDotsIcon);
 
 
-    threeDotsContainer.append(littleModalWindow)
-    threeDotsContainer.append(threeDotsIcon)
 
-    littleModalWindow.append(editIconContainer)
+    newDeckContainer.append(addEditDeleteContainer);
+           addEditDeleteContainer.append(toStudyContainer);
+           addEditDeleteContainer.append(toStudy);
+
+  
     editIconContainer.append(editIcon)
     editIconContainer.append(editIconText)
 
@@ -292,9 +303,9 @@ let addToDeckIcon = createElement('div', '', {
     trashIconContainer.append(trashIconText)
 
 
-    newDeckContainer.append(addEditDeleteContainer);
-    addEditDeleteContainer.append(toStudyContainer)
-    addEditDeleteContainer.append(toStudy)
+    
+
+
     toStudyContainer.append(toStudy)
     addEditDeleteContainer.append(toReviewContainer)
     toReviewContainer.append(toReview)
