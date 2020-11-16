@@ -21,6 +21,11 @@ function handleOutsideClick(e) {
     opened = false;
     console.log('window handler still alive')
     window.onclick = ''
+    document.querySelectorAll('.menuContainer>div')[0].classList.remove('transPlus');
+    document.querySelectorAll('.menuContainer>div')[2].classList.remove('transMinus');
+    document.getElementById('menuIcon2').style.display = 'block';
+      document.querySelectorAll('.menuContainer>div')[0].style.display = 'block';
+      document.querySelectorAll('.menuContainer>div')[2].style.display = 'block';
   }
 
 }
@@ -30,10 +35,8 @@ function handleOutsideClick(e) {
 document.querySelector('.menu').onclick = function () {
 
 
- document.querySelectorAll('.menuContainer>div')[0].classList.add('transPlus');
- document.querySelectorAll('.menuContainer>div')[2].classList.add('transMinus');
-// document.querySelectorAll('.menuContainer>div').removeProperty('margin-bottom');
-
+  document.querySelectorAll('.menuContainer>div')[0].classList.add('transPlus');
+  document.querySelectorAll('.menuContainer>div')[2].classList.add('transMinus');
 
 
   document.getElementById('menuIcon2').style.display = 'none';
@@ -57,6 +60,8 @@ document.querySelector('.menu').onclick = function () {
     document.querySelectorAll('.menuContainer>div')[0].classList.remove('transPlus');
     document.querySelectorAll('.menuContainer>div')[2].classList.remove('transMinus');
     document.getElementById('menuIcon2').style.display = 'block';
+  //document.querySelectorAll('.menuContainer>div')[0].style.display = 'block';
+//    document.querySelectorAll('.menuContainer>div')[2].style.display = 'block';
   }
 
 };

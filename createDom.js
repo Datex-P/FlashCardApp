@@ -70,9 +70,9 @@ export default function createDom(obj, length = "long") {
 
     if (!dataBase.DeckNames[item].length) {
       nameOfNewDeck.onclick = function () {
-        addToDeckIcon.classList.remove('blinkingIcon');
+        plusIcon.classList.remove('blinkingIcon');
         alert('Click on the blinking add icon');
-        addToDeckIcon.classList.add('blinkingIcon');
+        plusIcon.classList.add('blinkingIcon');
 
         
 
@@ -125,7 +125,7 @@ export default function createDom(obj, length = "long") {
 
     let decksize = document.createElement('div');
         decksize.style.width = '100%';
-        decksize.innerHTML = 'Decksize:'
+        decksize.innerHTML = `Decksize: ${dataBase.DeckNames[item].length}`
         decksize.style.backgroundColor = 'white';
 
 
@@ -174,16 +174,16 @@ export default function createDom(obj, length = "long") {
 
     let trashIcon = document.createElement("div");
     trashIcon.innerHTML = trash;
-   // trashIcon.innerHTML = 'deletenn e'
     trashIcon.style.right = "5px";
-    //thrashIcon.innerHTML = 'Delete deck'
-    //trashIcon.querySelector('svg').style.color = 'red';
 
 
     let trashIconContainer = document.createElement('div');
         trashIconContainer.style.border = '1px black solid';
         trashIconContainer.style.display = 'flex';
         trashIconContainer.style.justifyContent = 'space-around';
+        trashIconContainer.style.padding = '1px';
+        trashIconContainer.classList.add('trashIconContainer');
+        trashIconContainer.style.borderTop = '0px';
 
     let trashIconText = document.createElement('div');
         trashIconText.innerHTML = ' deck';
@@ -193,13 +193,15 @@ export default function createDom(obj, length = "long") {
         editIconContainer.style.border = '1px black solid';
         editIconContainer.style.display = 'flex';
         editIconContainer.style.justifyContent = 'space-around';
+        editIconContainer.style.padding = '1px';
+        editIconContainer.classList.add('editIconContainer');
 
     let editIconText = document.createElement('div');
         editIconText.innerHTML = 'name';
 
 
 
-    trashIcon.onclick = () => {
+    trashIconContainer.onclick = () => {
       newDeckContainer.parentNode.removeChild(newDeckContainer);
       delete dataBase.DeckNames[item];
       if (!Object.keys(dataBase.DeckNames).length) {
@@ -211,19 +213,7 @@ export default function createDom(obj, length = "long") {
     };
 
     let editIcon = document.createElement("div");
-    //editIcon.style.marginRight = "5px";
-    // editIcon.style.left = '190px'
-    // editIcon.style.position = 'absolute';
-    // editIcon.style.top = '11px'
-
-
-  
-    //addIcon.style.marginRight = "5px";
-    // addIcon.style.left = '180px'
-    // addIcon.style.position = 'absolute';
-    // addIcon.style.top = '11px'
-
-
+ 
 
 
 
@@ -232,10 +222,12 @@ export default function createDom(obj, length = "long") {
 
     let edited = false;
     editIcon.innerHTML = edit;
-    //editIcon.querySelector('svg').style.color = 'orange';
+  
 
     let changeNameofDeckInput = document.createElement("input");
         changeNameofDeckInput.style.width = '30%';
+        changeNameofDeckInput.style.position = 'absolute';
+        changeNameofDeckInput.style.left = '83px';
     changeNameofDeckInput.onclick = function(event){
       event.stopPropagation()
     }
@@ -249,13 +241,13 @@ export default function createDom(obj, length = "long") {
      
     }
 
-    editIcon.onclick = function (event) {
+    editIconContainer.onclick = function (event) {
     
         window.addEventListener('click',clickOutsideHandle)
       event.stopPropagation()
 
       if (!edited) {
-        //save.querySelector('svg').style.color = 'orange';
+       
         this.innerHTML = save;       
         
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
@@ -264,8 +256,12 @@ export default function createDom(obj, length = "long") {
     
        // console.log('click like a edit')
       } else {
-        this.innerHTML = edit; 
-       // editIcon.querySelector('svg').style.color = 'orange';
+       
+        editIconContainer.append(editIcon)
+        editIconContainer.append(editIconText)
+
+
+    
         //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
         window.removeEventListener('click',clickOutsideHandle)
@@ -318,15 +314,32 @@ export default function createDom(obj, length = "long") {
     threeDotsContainer.onclick = function () {
       opened = !opened;
       littleModalWindow.style.display = opened ? "block" : "none";
-      //littleModalWindow.style.display = 'block'
+  
+      if (opened) {
+        setTimeout(function () {
+          window.onclick = function handleOutsideClick(e) {
+            if (littleModalWindow.contains(e.target)) {
+              //alert("Clicked in Box");
+            } else {
+              littleModalWindow.style.display = 'none';
+              opened = false;
+            }
+          };
+        }, 10);
+      }
     }
 
+    let plusIcon = document.createElement('div');
+        plusIcon.innerText = '+';
+        plusIcon.style.color = 'white';
+        plusIcon.style.cursor = 'pointer';
 
 
 
 let addToDeckIcon = document.createElement("div");
     addToDeckIcon.className = 'orangeCircle';
-   addToDeckIcon.innerText = "+";
+   //addToDeckIcon.innerText = "+";
+   addToDeckIcon.style.cursor = 'pointer';
    if(index ===0){
     addToDeckIcon.style.display = 'flex'
    }
@@ -339,7 +352,7 @@ let addToDeckIcon = document.createElement("div");
     let threeDotsIcon = document.createElement("div");
 
    // let threeDotsIcon = document.createElement("div");
-    //threeDotsIcon.className = 'orangeCircle';
+   // threeDotsIcon.className = 'orangeCircle';
    // threeDotsIcon.innerText = "+";
     threeDotsIcon.style.color = 'black'
     threeDotsIcon.fontWeight = 'bold'
@@ -417,13 +430,11 @@ let addToDeckIcon = document.createElement("div");
     decksizeContainer.append(decksize)
 
     newDeckContainer.append(addToDeckIcon)
+    addToDeckIcon.append(plusIcon);
 
 
 
     listOfDecks.prepend(newDeckContainer);
-
-    // listOfDecks.style.display = "block";
-
 
   });
 
@@ -435,12 +446,12 @@ let addToDeckIcon = document.createElement("div");
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
     all.forEach(item=>{
       item.style.zIndex = 0
-      item.classList.remove('strapped')
+      // item.classList.remove('strapped')
       item.querySelector('.orangeCircle').style.display = 'none'
     })
     all[index].style.zIndex = 2
     all[index].querySelector('.orangeCircle').style.display = 'flex'
-    all[index].classList.add('strapped')
+    // all[index].classList.add('strapped')
 
     console.log(event.target.scrollTop,index)
 
