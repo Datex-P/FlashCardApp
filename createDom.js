@@ -237,23 +237,21 @@ export default function createDom(obj) {
 
 
     let littleModalWindow = createElement(
-      'div',  '', {}, 'littleModalWindow2');
+      'div',  '', {display: 'none'}, 'littleModalWindow2');
 
 
-let opened = false;
+// let opened = false;
 
     threeDotsContainer.onclick = function () {
-      opened = !opened;
-      littleModalWindow.style.display = opened ? "block" : "none";
+      // opened = !opened;
+      littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
   
-      if (opened) {
+      if (littleModalWindow.style.display === 'block') {
         setTimeout(function () {
-          window.onclick = function handleOutsideClick(e) {
-            if (littleModalWindow.contains(e.target)) {
-              //alert("Clicked in Box");
-            } else {
+          window.onclick = function(event) {
+            if (!littleModalWindow.contains(event.target)) {
               littleModalWindow.style.display = 'none';
-              opened = false;
+              window.onclick = ''
             }
           };
         }, 10);
@@ -323,8 +321,9 @@ let addToDeckIcon = createElement('div', '', {
 
 
   document.querySelector("#scrollable").onscroll = function(event){
-    let step = (1000-450)/arr.length
+    let step = (1000-140)/(arr.length-1)
     let index = Math.floor(event.target.scrollTop/step)
+    // index = (index > arr.length-1) ? arr.length-1 : index
 
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
     Array.from(all).reverse().forEach((item,index)=>{

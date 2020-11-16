@@ -519,7 +519,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   height: 47px;
   width: 55px;
   border-radius: 5px;
-  display: none;
+  /* display: none; */
   padding: 5px;
   background-color: white;
 }
