@@ -83,9 +83,6 @@ export default function createDom(obj, length = "long") {
         alert('Click on the blinking add icon');
         plusIcon.classList.add('blinkingIcon');
 
-        
-
-
 
       };
     } else {
@@ -154,13 +151,13 @@ export default function createDom(obj, length = "long") {
         decksize.style.backgroundColor = 'white';
 
 
-    let blackLines = createElement('div', {
-      width: '99%',
-      border: '0.5px #eee4e1 solid'
-    },
-    newDeckContainer.append(blackLines)
+    // let blackLines = createElement('div', {
+    //   width: '99%',
+    //   border: '0.5px #eee4e1 solid'
+    // },
+    // newDeckContainer.append(blackLines)
     
-    )
+    // )
 
 
 
@@ -363,7 +360,8 @@ let addToDeckIcon = document.createElement("div");
    //addToDeckIcon.innerText = "+";
    addToDeckIcon.style.cursor = 'pointer';
    if(index ===0){
-    addToDeckIcon.style.display = 'flex'
+    addToDeckIcon.style.display = 'flex';
+    newDeckContainer.style.zIndex = 2
    }
 
    addToDeckIcon.onclick = function(){
@@ -453,12 +451,14 @@ let addToDeckIcon = document.createElement("div");
     let index = Math.floor(event.target.scrollTop/step)
 
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
-    all.forEach(item=>{
+    Array.from(all).reverse().forEach((item,index)=>{
       item.style.zIndex = 0
       // item.classList.remove('strapped')
       item.querySelector('.orangeCircle').style.display = 'none'
+      item.style.transform =  `rotate(${index*-2}deg)`;
     })
-    all[index].style.zIndex = 2
+    all[index].style.zIndex = 2;
+    all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
     // all[index].classList.add('strapped')
 

@@ -7,9 +7,6 @@ import settings from './settings.js';
 import createNewDeck from './createNewDeck.js'
 
 
-
-
-
 createDom(dataBase.DeckNames);
 
 let opened = false;
