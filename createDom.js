@@ -53,11 +53,20 @@ export default function createDom(obj, length = "long") {
     //   this.classList.remove('strapped')
     // }
 
-    let nameOfNewDeck = document.createElement("div");
-        nameOfNewDeck.innerText = item;
-        nameOfNewDeck.style.position = 'absolute';
-        //nameOfNewDeck.style.fontWeight = 'bold';
-        nameOfNewDeck.style.left = '83px';
+    let nameOfNewDeck = createElement("div", item, {
+      position: 'absolute',
+      left: '83px'
+    })
+        // nameOfNewDeck.innerText = item;
+        // nameOfNewDeck.style.position = 'absolute';
+        // //nameOfNewDeck.style.fontWeight = 'bold';
+        // nameOfNewDeck.style.left = '83px';
+
+
+
+
+
+
 
     nameOfNewDeck.onmouseover = function () {
       nameOfNewDeck.style.color = "rgb(200, 168, 115)";
@@ -86,18 +95,34 @@ export default function createDom(obj, length = "long") {
     }
 
 
-    let addEditDeleteContainer = document.createElement("div");
-    addEditDeleteContainer.style.display = "flex";
-    addEditDeleteContainer.style.flexDirection = 'column';
-    addEditDeleteContainer.style.justifyContent = "space-around";
-    addEditDeleteContainer.style.width = "149px";
-    addEditDeleteContainer.style.height = '128px';
-    addEditDeleteContainer.style.marginTop = '20px'
-    //addEditDeleteContainer.style.alignItems = "center";
-    addEditDeleteContainer.style.left = '84px';
-    addEditDeleteContainer.style.border = '1px black solid'
-    addEditDeleteContainer.style.zIndex = '3';
-    addEditDeleteContainer.style.position = 'absolute';
+    let addEditDeleteContainer = createElement('div', '', {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      width: '149px',
+      height: '128px',
+      marginTop: '20px',
+      left: '84px',
+      border: '1px black solid',
+      zIndex: '3',
+      position: 'absolute'
+    })
+
+
+
+
+    // let addEditDeleteContainer = document.createElement("div");
+    // addEditDeleteContainer.style.display = "flex";
+    // addEditDeleteContainer.style.flexDirection = 'column';
+    // addEditDeleteContainer.style.justifyContent = "space-around";
+    // addEditDeleteContainer.style.width = "149px";
+    // addEditDeleteContainer.style.height = '128px';
+    // addEditDeleteContainer.style.marginTop = '20px'
+    // //addEditDeleteContainer.style.alignItems = "center";
+    // addEditDeleteContainer.style.left = '84px';
+    // addEditDeleteContainer.style.border = '1px black solid'
+    // addEditDeleteContainer.style.zIndex = '3';
+    // addEditDeleteContainer.style.position = 'absolute';
 
 
     let toStudyContainer = document.createElement('div');
@@ -129,48 +154,54 @@ export default function createDom(obj, length = "long") {
         decksize.style.backgroundColor = 'white';
 
 
+    let blackLines = createElement('div', {
+      width: '99%',
+      border: '0.5px #eee4e1 solid'
+    },
+    newDeckContainer.append(blackLines)
+    
+    )
 
 
 
+    // let blackLines = document.createElement('div');
+    //     blackLines.style.width = '99%';
+    //     blackLines.style.border= '0.5px #eee4e1 solid'
 
-    let blackLines = document.createElement('div');
-        blackLines.style.width = '99%';
-        blackLines.style.border= '0.5px #eee4e1 solid'
+    // let blackLines2 = document.createElement('div');
+    //     blackLines2.style.marginTop = '15px';
+    //     blackLines2.style.width = '99%';
+    //     blackLines2.style.border= '0.5px #eee4e1 solid'
 
-    let blackLines2 = document.createElement('div');
-        blackLines2.style.marginTop = '15px';
-        blackLines2.style.width = '99%';
-        blackLines2.style.border= '0.5px #eee4e1 solid'
+    // let blackLines3 = document.createElement('div');
+    //     blackLines3.style.marginTop = '15px';
+    //     blackLines3.style.width = '99%';
+    //     blackLines3.style.border= '0.5px #eee4e1 solid'
 
-    let blackLines3 = document.createElement('div');
-        blackLines3.style.marginTop = '15px';
-        blackLines3.style.width = '99%';
-        blackLines3.style.border= '0.5px #eee4e1 solid'
+    // let blackLines4 = document.createElement('div');
+    //     blackLines4.style.marginTop = '15px';
+    //     blackLines4.style.width = '99%';
+    //     blackLines4.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines4 = document.createElement('div');
-        blackLines4.style.marginTop = '15px';
-        blackLines4.style.width = '99%';
-        blackLines4.style.border= '0.5px #eee4e1 solid';
+    // let blackLines5 = document.createElement('div');
+    //     blackLines5.style.marginTop = '15px';
+    //     blackLines5.style.width = '99%';
+    //     blackLines5.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines5 = document.createElement('div');
-        blackLines5.style.marginTop = '15px';
-        blackLines5.style.width = '99%';
-        blackLines5.style.border= '0.5px #eee4e1 solid';
+    // let blackLines6 = document.createElement('div');
+    //     blackLines6.style.marginTop = '15px';
+    //     blackLines6.style.width = '99%';
+    //     blackLines6.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines6 = document.createElement('div');
-        blackLines6.style.marginTop = '15px';
-        blackLines6.style.width = '99%';
-        blackLines6.style.border= '0.5px #eee4e1 solid';
+    // let blackLines7 = document.createElement('div');
+    //     blackLines7.style.marginTop = '15px';
+    //     blackLines7.style.width = '99%';
+    //     blackLines7.style.border= '0.5px #eee4e1 solid';
 
-    let blackLines7 = document.createElement('div');
-        blackLines7.style.marginTop = '15px';
-        blackLines7.style.width = '99%';
-        blackLines7.style.border= '0.5px #eee4e1 solid';
-
-    let blackLines8 = document.createElement('div');
-        blackLines8.style.marginTop = '15px';
-        blackLines8.style.width = '99%';
-        blackLines8.style.border= '0.5px #eee4e1 solid';
+    // let blackLines8 = document.createElement('div');
+    //     blackLines8.style.marginTop = '15px';
+    //     blackLines8.style.width = '99%';
+    //     blackLines8.style.border= '0.5px #eee4e1 solid';
 
     let trashIcon = document.createElement("div");
     trashIcon.innerHTML = trash;
@@ -212,16 +243,7 @@ export default function createDom(obj, length = "long") {
       }
     };
 
-    let editIcon = document.createElement("div");
- 
-
-
-
-
-
-
-    let edited = false;
-    editIcon.innerHTML = edit;
+    
   
 
     let changeNameofDeckInput = document.createElement("input");
@@ -241,6 +263,13 @@ export default function createDom(obj, length = "long") {
      
     }
 
+    let editIcon = document.createElement("div");
+ 
+    let edited = false;
+    editIcon.innerHTML = edit;
+
+
+
     editIconContainer.onclick = function (event) {
     
         window.addEventListener('click',clickOutsideHandle)
@@ -254,7 +283,7 @@ export default function createDom(obj, length = "long") {
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
     
-       // console.log('click like a edit')
+       console.log('click like a edit')
       } else {
        
         editIconContainer.append(editIcon)
@@ -280,19 +309,12 @@ export default function createDom(obj, length = "long") {
   });
 
   let threeDotsContainer = document.createElement('div');
-      //threeDotsContainer.style.border = '1px black solid';
-      //threeDotsContainer.style.display = 'flex';
-     // threeDotsContainer.style.transform = 'rotate(180deg)';
       threeDotsContainer.style.left = '227px'
       threeDotsContainer.style.position = 'absolute';
       threeDotsContainer.style.top = '4px';
       threeDotsContainer.style.cursor = 'pointer';
 
-    // transform: 'rotate(90deg)',
-    // fontWeight: 'bold',
-    // marginTop:'5px',
-    // display: 'none',
-    // position: 'absolute',
+  
 
 
 
@@ -395,29 +417,16 @@ let addToDeckIcon = document.createElement("div");
 
 
     if (length == "long") {
-     // addEditDeleteContainer.appendChild(threeDotsIcon);
-      //addEditDeleteContainer.appendChild(editIcon);
+  
 
-      //addEditDeleteContainer.append(threeDotsContainer);
-     // addIconContainer.append(addIcon);
-     // addIconContainer.append(addIconText)
-
-
-      //addEditDeleteContainer.appendChild(trashIconContainer)
-
-     // trashIconContainer.append(trashIcon)
-      //trashIconContainer.append(trashIconText)
-      //addEditDeleteContainer.appendChild(trashIcon);
-
-
-      newDeckContainer.appendChild(blackLines);
-      newDeckContainer.appendChild(blackLines2);
-      newDeckContainer.appendChild(blackLines3);
-      newDeckContainer.appendChild(blackLines4);
-      newDeckContainer.appendChild(blackLines5);
-      newDeckContainer.appendChild(blackLines6);
-      newDeckContainer.appendChild(blackLines7);
-      newDeckContainer.appendChild(blackLines8);
+      // newDeckContainer.appendChild(blackLines);
+      // newDeckContainer.appendChild(blackLines2);
+      // newDeckContainer.appendChild(blackLines3);
+      // newDeckContainer.appendChild(blackLines4);
+      // newDeckContainer.appendChild(blackLines5);
+      // newDeckContainer.appendChild(blackLines6);
+      // newDeckContainer.appendChild(blackLines7);
+      // newDeckContainer.appendChild(blackLines8);
     }
 
     newDeckContainer.appendChild(addEditDeleteContainer);

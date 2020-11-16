@@ -67,79 +67,252 @@ export default function settings() {
 
   mainWindow.append(changeTimeIntervall);
 
+
+
+  let editContainer = createElement(
+    'div',
+    edit,
+    {border: '1px black solid',
+    position: 'absolute',
+    top: '10px',
+    right: '20px'
+  }
+  );
+
+  let editContainer2 = createElement(
+    'div',
+    edit,
+    {}
+  );
+
+
   let containerForChangeTimeIntervall = createElement(
     'div',
     '',
     {display: 'flex',
-    // flexDirection: 'column',
-  width: '200px',
+    flexDirection: 'column',
+  width: '300px',
+  height: '90px',
 border: '1px black solid'}
   );
 
   mainWindow.append(containerForChangeTimeIntervall);
 
+  let containerUpper = createElement(
+    'div',
+    '',
+    {display: 'flex',
+     justifyContent: 'space-around',
+  width: '100%',
+  height: '50%',
+  position: 'relative',
+border: '1px black solid'});
+
+containerForChangeTimeIntervall.append(containerUpper);
 
 
 
 
-    let oneTwoTwentyMinContainer = createElement(
-      'div',
-      '',
-      {display: 'flex',
-      border: '1px black solid',
-      // justifyContent: 'space-around',
-      flexDirection: 'column'
-      });
-  
-     containerForChangeTimeIntervall.append(oneTwoTwentyMinContainer);
+let container1  = document.createElement('div');
+container1.style.display = 'flex';
+container1.style.justifyContent = 'space-around';
+container1.style.width = '20%';
+container1.style.border = '1px black solid';
+
+["<", '0', 'min'].forEach((el) => {
+  let input = document.createElement("div");
+  input.innerText = el;
+  //input.className = "noBorders";
+  input.style.width = '20%';
+  input.style.height = '30%'
+  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-      
-      [1, 2, 20].forEach(el => {
-        let btn = createElement('input', `<${el}m`, {
-          display: 'flex',
-          width: '40%'
-        }, 'noBorders');
-     
+  container1.append(input)
+
+});
+containerUpper.append(container1);
+
+
+let container2  = document.createElement('div');
+container2.style.display = 'flex';
+container2.style.justifyContent = 'space-around';
+container2.style.width = '20%';
+container2.style.border = '1px black solid';
+
+
+
+["<", '0', 'min'].forEach((el) => {
+  let input = document.createElement("div");
+  input.innerText = el;
+  //input.className = "noBorders";
+  input.style.width = '20%';
+  input.style.height = '30%'
+  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+
+
+  container2.append(input)
+
+});
+containerUpper.append(container2)
+
+
+let container3  = document.createElement('div');
+container3.style.display = 'flex';
+container3.style.justifyContent = 'space-around';
+container3.style.width = '20%';
+container3.style.border = '1px black solid';
+
+
+
+["<", '0', 'min'].forEach((el) => {
+  let input = document.createElement("div");
+  input.innerText = el;
+  //input.className = "noBorders";
+  input.style.width = '20%';
+  input.style.height = '30%'
+  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+
+
+  container3.append(input)
+
+});
+containerUpper.append(container3)
+
+
+
+
+
+
+
+
+
+// let smallerThan1 = document.createElement('div');
+// smallerThan1.innerText = '<'
+// containerUpper.append(smallerThan1)
+
+
+
+
+
+
+containerUpper.append(editContainer)
+
+
+
+
+
+
+
+let containerLower = createElement(
+  'div',
+  '',
+  {
+    display: 'flex',
+    justifyContent: 'space-around',
+    position: 'relative',
+width: '100%',
+height: '50%',
+border: '1px black solid'});
+
+containerForChangeTimeIntervall.append(containerLower);
+
+
+["again", "good", "easy"].forEach((el) => {
+  let input = document.createElement("div");
+  input.innerText = el;
+ // input.className = "noBorders";
+  input.style.width = '25%';
+  input.style.height = '30%';
+  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+
+  containerLower.append(input)
+});
+
+containerLower.append(editContainer2)
+//containerLower.append(changeNameofDeckInput)
+
+
+
+
+
+
+
+
+let changeNameofDeckInput1 = document.createElement("input");
+        changeNameofDeckInput1.style.width = '3%';
+        changeNameofDeckInput1.style.position = 'absolute';
+        changeNameofDeckInput1.style.left = '67px';
+    changeNameofDeckInput1.onclick = function(event){
+      event.stopPropagation()
+    }
+
+
+    let changeNameofDeckInput2 = document.createElement("input");
+    changeNameofDeckInput2.style.width = '3%';
+    changeNameofDeckInput2.style.position = 'absolute';
+    changeNameofDeckInput2.style.left = '216px';
+changeNameofDeckInput2.onclick = function(event){
+  event.stopPropagation()
+}
+
+let changeNameofDeckInput3 = document.createElement("input");
+changeNameofDeckInput3.style.width = '3%';
+changeNameofDeckInput3.style.position = 'absolute';
+changeNameofDeckInput3.style.left = '280px';
+changeNameofDeckInput3.onclick = function(event){
+event.stopPropagation()
+}
+
+
+
+
+let edited = false;
+
+//let bla = containerUpper.childNodes[0]
+
+editContainer.onclick = function () {
     
-        oneTwoTwentyMinContainer.append(btn);
-      });
+//   window.addEventListener('click',clickOutsideHandle)
+// event.stopPropagation()
 
-
-      let againGoodEasyContainer = createElement(
-        'div',
-        '',
-        {display: 'flex',
-        border: '1px black solid',
-        width: '200px',
-        flexDirection: 'column'
-        // justifyContent: 'space-around'
-        });
-    
-        containerForChangeTimeIntervall.append(againGoodEasyContainer);
-
+//if (!edited) {
  
 
-  ["again", "good", "easy"].forEach((el) => {
+  container1.replaceChild(changeNameofDeckInput1, container1.childNodes[1]);
+  container2.replaceChild(changeNameofDeckInput2, container2.childNodes[1]);
+  container3.replaceChild(changeNameofDeckInput3, container3.childNodes[1]);
+  //containerUpper.replaceChild(changeNameofDeckInput3, containerUpper.childNodes[2] )
+ //this.innerHTML = save;       
+  
+  // containerUpper.replaceChild(test, changeNameofDeckInput);
+  // changeNameofDeckInput.value = nameOfNewDeck.innerText;
+  // edited = true;
 
-    let input = createElement(
-      "input", 'el',
-      {
-        display: 'flex',
-        flexDirection: 'column',
-        pointer: 'cursor',
-        width: '30%',
-        placeholder: el
-      },
-      "noBorders"
-    );
-    againGoodEasyContainer.append(input)
-  });
+ // console.log('click like a edit')
+// } else {
+ 
+//   editIconContainer.append(editIcon)
+//   editIconContainer.append(editIconText)
 
-  let editIcon = document.createElement("div");
-  editIcon.innerHTML = edit;
 
-  againGoodEasyContainer.append(editIcon)
+
+//   //console.log('click like a save')
+//   newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+//   window.removeEventListener('click',clickOutsideHandle)
+//   edited = false;
+//   //send fetch=>saveToDataBase
+//   // if ok
+//   nameOfNewDeck.innerText = changeNameofDeckInput.value;
+
+};
+
+
+
+
+
+
+
 
 
 
@@ -176,7 +349,7 @@ border: '1px black solid'}
     };
   }, 10);
 
- 
+ redCross.addEventListener('click', closeMenu());
 
 
 
@@ -185,7 +358,26 @@ border: '1px black solid'}
   
   //mainWindow.appendChild(questionContainer);
 
- 
+
+  function closeMenu(){
+    let all = document.querySelectorAll('.menuContainer>div')
+    document.querySelector('.menuBox').style.display = 'none';
+   // opened = false;
+    window.onclick = '';
+    all[0].classList.remove('transPlus');
+    all[0].style.top = '0px'
+    all[2].classList.remove('transMinus');
+    all[2].style.top = '16px'
+    document.getElementById('menuIcon2').style.display = 'block';
+  }
+
+//closeMenu()
+
+
+
+
+
+
 
     }
  

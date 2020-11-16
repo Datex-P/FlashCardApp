@@ -75,6 +75,16 @@ textarea {
   margin-top: 140px;
 }
 
+.calendarButtonStyling {
+  margin-right: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  color:white;
+}
+
 #createYourFirstDeckPrompt {
   text-align: center;
   margin-top: 200px;
