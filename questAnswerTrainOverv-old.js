@@ -94,9 +94,6 @@ export default function questAnswerTrainOverv(item) {
     'flexSpaceBetween')
 
 
-  // let redCross = createElement('div', redCrossIcon, {
-  //   cursor: 'pointer'
-  // }, 'redCross');
 
 
   let showAnswerButton = createElement('button', 'Show Answer', {
@@ -125,7 +122,15 @@ export default function questAnswerTrainOverv(item) {
       container2min.style.display = 'flex';
       container2min.style.justifyContent = 'space-between';
       container2min.style.width = '80%';
-      //can I use margin for this box?
+   
+
+  let container2min = createElement('div', '', {}, 'flexSpaceBetween'
+
+
+
+
+
+
 
 
   ['<2m', '<10m', '<2d'].forEach(el => {
@@ -241,18 +246,11 @@ export default function questAnswerTrainOverv(item) {
 
    showAnswerButton.onclick = function () {
 
-    //why can t I hide showAnswerButton with this
-
-
-      //this.style.display = "none";
 
         generateTextarea('Answer', {marginTop: '20px', display: 'none'})
 
         innerWindow.childNodes[3].style.display = 'none';
 
-//        innerWindow.children[3].display
-  //   theWordAnswer.style.display = "block";
-     // this.style.display = 'none';
      containerForText1DayEtc.style.display = 'flex';
      containerForText1DayEtc.style.justifyContent = 'space-between';
      containerForText1DayEtc.style.flexDirection = 'column';

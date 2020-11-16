@@ -7,6 +7,7 @@ import settings from './settings.js';
 import createNewDeck from './createNewDeck.js'
 
 
+
 createDom(dataBase.DeckNames);
 
 let opened = false;
@@ -20,7 +21,6 @@ function handleOutsideClick(e) {
     // window.onclick = ''
     closeMenu()
   }
-
 }
 
 function closeMenu(){
@@ -83,29 +83,10 @@ boxesInMenu.forEach(button => {
 
 
 
-
-
-
-
-
-
-
-
 document.getElementById("createDeckButton").onclick = function () {
   createNewDeck()
 
   document.querySelector(".arrowDown").style.display = "none";
-
 };
 
 
-//dynamical property
-
-// let obj = {
-// 	name: 'John',
-// 	'age from birth': 35,
-// }
-
-// obj.name
-// let key = 'name'
-// obj[key]//John

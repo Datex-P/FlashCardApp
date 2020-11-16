@@ -193,22 +193,18 @@ export default function questAnswerTrainOverv(item) {
     'div',
     '',
     {
-      display: 'flex',
-      justifyContent: 'space-between',
       margin: '5px 0'
-    }
+    }, 'flexSpaceBetween'
   );
 
   let containerForTimeButtons = createElement(
     'div',
     '',
     {
-      display: 'flex',
-      justifyContent: 'space-between',
       margin: '0 auto',
       border: '1px black solid',
       width: '80%'
-    }
+    }, 'flexSpaceBetween'
   );
 
   showAnswerButtonContainer.append(containerForTimeButtons);
@@ -230,11 +226,6 @@ export default function questAnswerTrainOverv(item) {
   //let randomNum = Math.floor(Math.random() * 2); //again
 
 
-
-
-
-
-
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
   ["again", "good", "easy"].forEach((el) => {
 
@@ -248,8 +239,6 @@ export default function questAnswerTrainOverv(item) {
     );
 
     button.addEventListener('click', function () {
-
-
 
       if (el === 'good') {
 
@@ -272,11 +261,8 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
-
   let settingsIconContainer = createElement(
-    'div',
-    '...',
+    'div', '...',
     {
       transform: 'rotate(90deg)',
       fontWeight: 'bold',
@@ -334,7 +320,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
        answerFieldTextArea.removeAttribute("disabled");
        questionFieldTextArea.removeAttribute("disabled");
        questionFieldTextArea.focus();
@@ -348,15 +333,13 @@ export default function questAnswerTrainOverv(item) {
     let discardAndSaveContainer = createElement(
       'div',
       '',
-    {display: 'flex',
+    {
      border: '1px black solid',
      width: '60%',
-    justifyContent: 'space-between'},
+    }, 'flexSpaceBetween'
   );
 
 
-      //  showAnswerButtonContainer.style.display = 'flex';
-       // showAnswerButtonContainer.style.justifyContent = 'center'
 
         showAnswerButtonContainer.append(discardAndSaveContainer);
      
@@ -393,26 +376,10 @@ export default function questAnswerTrainOverv(item) {
       }
 
 
-
-
-
-
     }
  );
       
           
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    }
@@ -421,19 +388,6 @@ export default function questAnswerTrainOverv(item) {
 
 });
   
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

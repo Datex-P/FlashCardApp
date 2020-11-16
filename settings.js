@@ -36,13 +36,10 @@ export default function settings() {
 
   //header
   let settingsAndRedCrossContainer = createElement(
-    'div',
-    '',
-    {
-      width: "265px"
-    },
-    'flexSpaceBetween'
+    'div', '', {width: "265px" }, 'flexSpaceBetween'
   );
+
+
   mainWindow.append(settingsAndRedCrossContainer);
 
   let theWordSettings = createElement(
@@ -60,10 +57,7 @@ export default function settings() {
   );
 
   let changeTimeIntervall = createElement(
-    'div',
-    'Change Repetition Interval',
-    {}
-  );
+    'div', 'Change Repetition Interval', {});
 
   mainWindow.append(changeTimeIntervall);
 
@@ -80,20 +74,16 @@ export default function settings() {
   );
 
   let editContainer2 = createElement(
-    'div',
-    edit,
-    {}
-  );
+    'div', edit, {});
 
 
   let containerForChangeTimeIntervall = createElement(
     'div',
     '',
-    {display: 'flex',
-    flexDirection: 'column',
-  width: '300px',
-  height: '90px',
-border: '1px black solid'}
+    {
+     width: '300px',
+    height: '90px',
+    border: '1px black solid'}, 'flexColumn'
   );
 
   mainWindow.append(containerForChangeTimeIntervall);
@@ -101,23 +91,24 @@ border: '1px black solid'}
   let containerUpper = createElement(
     'div',
     '',
-    {display: 'flex',
-     justifyContent: 'space-around',
+    {
   width: '100%',
   height: '50%',
   position: 'relative',
-border: '1px black solid'});
+border: '1px black solid'}, 'flexSpaceAround');
 
 containerForChangeTimeIntervall.append(containerUpper);
 
 
 
 
-let container1  = document.createElement('div');
-container1.style.display = 'flex';
-container1.style.justifyContent = 'space-around';
-container1.style.width = '20%';
-container1.style.border = '1px black solid';
+let container1 = createElement('div', '', {
+  width: '20%', 
+  border: '1px black solid',
+  
+}, 'flexSpaceAround');
+
+
 
 ["<", '0', 'min'].forEach((el) => {
   let input = document.createElement("div");
@@ -134,11 +125,14 @@ container1.style.border = '1px black solid';
 containerUpper.append(container1);
 
 
-let container2  = document.createElement('div');
-container2.style.display = 'flex';
-container2.style.justifyContent = 'space-around';
-container2.style.width = '20%';
-container2.style.border = '1px black solid';
+let container2 = createElement('div', '', {
+  width: '20%',
+  border: '1px black solid',
+  
+}, 'flexSpaceAround');
+
+
+
 
 
 
@@ -157,11 +151,11 @@ container2.style.border = '1px black solid';
 containerUpper.append(container2)
 
 
-let container3  = document.createElement('div');
-container3.style.display = 'flex';
-container3.style.justifyContent = 'space-around';
-container3.style.width = '20%';
-container3.style.border = '1px black solid';
+let container3 = createElement('div', '', {
+  width: '20%',
+  border: '1px black solid',
+  
+}, 'flexSpaceAround');
 
 
 
@@ -187,15 +181,6 @@ containerUpper.append(container3)
 
 
 
-// let smallerThan1 = document.createElement('div');
-// smallerThan1.innerText = '<'
-// containerUpper.append(smallerThan1)
-
-
-
-
-
-
 containerUpper.append(editContainer)
 
 
@@ -208,12 +193,10 @@ let containerLower = createElement(
   'div',
   '',
   {
-    display: 'flex',
-    justifyContent: 'space-around',
     position: 'relative',
 width: '100%',
 height: '50%',
-border: '1px black solid'});
+border: '1px black solid'}, 'flexSpaceAround');
 
 containerForChangeTimeIntervall.append(containerLower);
 
@@ -260,6 +243,13 @@ let changeNameofDeckInput3 = document.createElement("input");
 changeNameofDeckInput3.style.width = '3%';
 changeNameofDeckInput3.style.position = 'absolute';
 changeNameofDeckInput3.style.left = '280px';
+
+
+
+
+
+
+
 changeNameofDeckInput3.onclick = function(event){
 event.stopPropagation()
 }
@@ -269,7 +259,6 @@ event.stopPropagation()
 
 let edited = false;
 
-//let bla = containerUpper.childNodes[0]
 
 editContainer.onclick = function () {
     

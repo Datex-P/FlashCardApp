@@ -60,11 +60,9 @@ export default function createNewDeck() {
   mainWindow.append(inputField);
 
   let buttonContainer = createElement('div', '', {
-    display: 'flex',
-    justifyContent: 'space-between',
     width: '47%',
     // border: '1px black solid'
-  });
+  }, 'flexSpaceBetween');
   mainWindow.append(buttonContainer);
 
 
@@ -79,7 +77,6 @@ export default function createNewDeck() {
 
     button.addEventListener('click', function () {
 
-      //let regex = /^(\s|\S)*(\S)+(\s|\S)*$/;
 
       if (el === 'Cancel') {
         mainWindow.style.display = 'none';
@@ -99,7 +96,6 @@ export default function createNewDeck() {
           alert('Input needed')
         } else {
           dataBase.DeckNames[inputField.value] = [];
-          // dataBase.DeckNames[inputField.value].sleepy = false;
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
           anchorElement.style.display = 'none';

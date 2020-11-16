@@ -19,7 +19,7 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
     element.style[prop] = style[prop]
   }
   return element
-}
+};
 
 
 export default function createDom(obj) {
@@ -29,17 +29,10 @@ export default function createDom(obj) {
 
 
 
-
-
-  let colors = ['#ffcdb2','#ffb4a2','#e5989b','#b5838d','#6d6875']
+  let colors = ['#ffcdb2','#ffb4a2','#e5989b','#b5838d','#6d6875'];
   
   arr.forEach((item, index) => {
-    // let newDeckContainer = document.createElement("div");
-    // newDeckContainer.className = 'newDeckContainer';
-    // newDeckContainer.style.backgroundColor = colors[index%5]
-    // newDeckContainer.style.transform =  `rotate(${index*-2}deg)`;
-
-
+ 
     let newDeckContainer = createElement('div', '', {
       backgroundColor : colors[index%5],
       transform: `rotate(${index*-2}deg)`
@@ -76,10 +69,7 @@ export default function createDom(obj) {
       };
     }
 
-
     let addEditDeleteContainer = createElement('div', '', {
-      display: 'flex',
-      flexDirection: 'column',
       justifyContent: 'space-around',
       width: '149px',
       height: '128px',
@@ -88,7 +78,7 @@ export default function createDom(obj) {
       border: '1px black solid',
       zIndex: '3',
       position: 'absolute'
-    })
+    }, 'flexColumn')
 
 
 
@@ -98,24 +88,20 @@ export default function createDom(obj) {
       
 
     let toStudy = createElement('div', 'To Study:', {
-      //width: '100%'
       backgroundColor: 'white'
     });
 
     
     let toReviewContainer = createElement('div', '', {
-       // toReviewContainer.style.width = '100%';
         border:'1px black solid'
     });
 
     let toReview = createElement('div', 'To Review:', {
         backgroundColor: 'white'
-      //width: '100%'
     });
 
     let decksizeContainer = createElement('div', '', {
       border: '1px black solid',
-      // width: '100%'
     });
 
     let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].length}`, {
@@ -138,17 +124,13 @@ export default function createDom(obj) {
 
     let trashIconContainer = createElement('div', '',{
       border: '1px black solid',
-      display: 'flex',
-      justifyContent: 'space-around',
       padding: '1px',
       borderTop: '0px'
-    });
+    }, 'flexSpaceAround');
 
     trashIconContainer.classList.add('trashIconContainer');
 
-    let trashIcon = createElement('div', trash, {
-      right: '5px'
-    });
+    let trashIcon = createElement('div', trash, {right: '5px'});
 
     let trashIconText = createElement('div', 'deck', {});
    
@@ -191,16 +173,13 @@ export default function createDom(obj) {
       editIcon.classList.add('blinkingIcon')
       setTimeout(()=>{
         editIcon.classList.remove('blinkingIcon')
-      },3000)
-     
+      },3000)   
     }
 
     let editIcon = createElement('div', edit, {});
  
     let edited = false;
   
-
-
 
     editIconContainer.onclick = function (event) {
     
@@ -233,10 +212,8 @@ export default function createDom(obj) {
 
 
 
-  [trashIcon, editIcon].forEach((el) => {
+  [trashIcon, editIcon].forEach((el) => {el.style.cursor = 'pointer';});
 
-    el.style.cursor = 'pointer';
-  });
 
   let threeDotsContainer = createElement('div', '', {
     left: '227px',
@@ -277,8 +254,7 @@ let opened = false;
           };
         }, 10);
       }
-    }
-
+    };
 
     let plusIcon = createElement('div', '+', {
       color: 'white', 
@@ -287,9 +263,7 @@ let opened = false;
 
     
 
-
 let addToDeckIcon = createElement('div', '', {
-  cursor: 'pointer'
 }, 'orangeCircle');
   
    if(index ===0){
@@ -302,9 +276,6 @@ let addToDeckIcon = createElement('div', '', {
    }
 
 
-
-
- 
 
     newDeckContainer.append(nameOfNewDeck);
 
@@ -349,17 +320,15 @@ let addToDeckIcon = createElement('div', '', {
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
     Array.from(all).reverse().forEach((item,index)=>{
       item.style.zIndex = 0
-      // item.classList.remove('strapped')
+      
       item.querySelector('.orangeCircle').style.display = 'none'
       item.style.transform =  `rotate(${index*-2}deg)`;
     })
     all[index].style.zIndex = 2;
     all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
-    // all[index].classList.add('strapped')
+    
 
     console.log(event.target.scrollTop,index)
-
-
   }
 }
