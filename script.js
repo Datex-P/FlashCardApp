@@ -64,16 +64,19 @@ document.querySelector('.menu').onclick = function () {
 };
 
 
-document.querySelector('.menuContainer').onclick = function () {
-  if (button.innerText === 'Stats') {
-    stats();
-    document.querySelector('.menuBox').style.display = 'none';
+let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
+boxesInMenu.forEach(button => {
+  button.onclick = function () {
+    if (button.innerText === 'Stats') {
+      stats();
+      document.querySelector('.menuBox').style.display = 'none';
+    }
+    if (button.innerText === 'Settings') {
+      settings();
+      document.querySelector('.menuBox').style.display = 'none';
+    }
   }
-  if (button.innerText === 'Settings') {
-    settings();
-    document.querySelector('.menuBox').style.display = 'none';
-  }
-}
+})
 
 // for (let i=0; i<boxesInMenu.length; i++) {
 //   boxesInMenu[i].onmouseover = function (e) {
