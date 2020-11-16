@@ -29,10 +29,11 @@ function handleOutsideClick(e) {
 
 document.querySelector('.menu').onclick = function () {
 
-
- document.querySelectorAll('.menuContainer>div')[0].classList.add('transPlus');
- document.querySelectorAll('.menuContainer>div')[2].classList.add('transMinus');
-// document.querySelectorAll('.menuContainer>div').removeProperty('margin-bottom');
+  let all = document.querySelectorAll('.menuContainer>div')
+  all[0].classList.add('transPlus');
+  all[2].classList.add('transMinus');
+  all.forEach(item => item.style.top = '8px')
+  // document.querySelectorAll('.menuContainer>div').removeProperty('margin-bottom');
 
 
 
@@ -45,17 +46,14 @@ document.querySelector('.menu').onclick = function () {
     setTimeout(() => {
       window.onclick = handleOutsideClick;
     }, 10)
-
-
-
-
-
   } else {
     document.querySelector('.menuBox').style.display = 'none';
     opened = false;
     window.onclick = '';
-    document.querySelectorAll('.menuContainer>div')[0].classList.remove('transPlus');
-    document.querySelectorAll('.menuContainer>div')[2].classList.remove('transMinus');
+    all[0].classList.remove('transPlus');
+    all[0].style.top = '0px'
+    all[2].classList.remove('transMinus');
+    all[2].style.top = '16px'
     document.getElementById('menuIcon2').style.display = 'block';
   }
 
