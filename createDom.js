@@ -22,13 +22,10 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
 }
 
 
-export default function createDom(obj, length = "long") {
+export default function createDom(obj) {
 
   listOfDecks.innerHTML = "";
   let arr = Object.keys(obj);
-
-
-
 
 
 
@@ -44,29 +41,12 @@ export default function createDom(obj, length = "long") {
 
     newDeckContainer.style.transform =  `rotate(${index*-2}deg)`;
 
-    // newDeckContainer.onmouseenter = function(){
-    //   this.style.transform =  `rotate(0deg)`;
-    //   this.classList.add('strapped')
-    // }
-    // newDeckContainer.onmouseleave = function(){
-    //   this.style.transform =  `rotate(${index*-5}deg)`;
-    //   this.classList.remove('strapped')
-    // }
-
+ 
     let nameOfNewDeck = createElement("div", item, {
       position: 'absolute',
       left: '83px'
     })
-        // nameOfNewDeck.innerText = item;
-        // nameOfNewDeck.style.position = 'absolute';
-        // //nameOfNewDeck.style.fontWeight = 'bold';
-        // nameOfNewDeck.style.left = '83px';
-
-
-
-
-
-
+      
 
     nameOfNewDeck.onmouseover = function () {
       nameOfNewDeck.style.color = "rgb(200, 168, 115)";
@@ -111,6 +91,13 @@ export default function createDom(obj, length = "long") {
         toStudyContainer.style.width = '100%';
         toStudyContainer.style.border = '1px black solid';
 
+
+
+
+
+
+        
+
     let toStudy = document.createElement('div');
         toStudy.style.width = '100%';
         toStudy.innerHTML = 'To Study:'
@@ -148,59 +135,24 @@ export default function createDom(obj, length = "long") {
   //   newDeckContainer.append(blackLines)
   // }
 
-
-  
-  // let trashIconContainer = document.createElement('div');
-  //     trashIconContainer.style.border = '1px black solid';
-  //     trashIconContainer.style.display = 'flex';
-  //     trashIconContainer.style.justifyContent = 'space-around';
-  //     trashIconContainer.style.padding = '1px';
-  //     trashIconContainer.classList.add('trashIconContainer');
-  //     trashIconContainer.style.borderTop = '0px';
-
-
     let trashIconContainer = createElement('div', '',{
       border: '1px black solid',
       display: 'flex',
       justifyContent: 'space-around',
       padding: '1px',
       borderTop: '0px'
-    })
+    });
 
     trashIconContainer.classList.add('trashIconContainer');
 
     let trashIcon = createElement('div', trash, {
-      rigth: '5px'
+      right: '5px'
     });
-
-
-
-    // let trashIcon = document.createElement("div");
-    // trashIcon.innerHTML = trash;
-    // trashIcon.style.right = "5px";
 
     let trashIconText = document.createElement('div');
         trashIconText.innerHTML = ' deck';
 
-    let editIconContainer = createElement('div', '', {
-      border: '1px black solid',
-      display: 'flex',
-      justifyContent: 'space-around',
-      padding: '1px'
-    });
-
-    editIconContainer.classList.add('editIconContainer');  
-
-
-    // let editIconContainer = document.createElement('div');
-    //     editIconContainer.style.border = '1px black solid';
-    //     editIconContainer.style.display = 'flex';
-    //     editIconContainer.style.justifyContent = 'space-around';
-    //     editIconContainer.style.padding = '1px';
-    //     editIconContainer.classList.add('editIconContainer');
-
-    let editIconText = document.createElement('div');
-        editIconText.innerHTML = 'name';
+   
 
 
 
@@ -214,6 +166,19 @@ export default function createDom(obj, length = "long") {
 
       }
     };
+
+    let editIconContainer = createElement('div', '', {
+      border: '1px black solid',
+      display: 'flex',
+      justifyContent: 'space-around',
+      padding: '1px'
+    });
+
+    editIconContainer.classList.add('editIconContainer');  
+
+
+    let editIconText = document.createElement('div');
+        editIconText.innerHTML = 'name';
 
     
   
@@ -280,11 +245,14 @@ export default function createDom(obj, length = "long") {
     el.style.cursor = 'pointer';
   });
 
-  let threeDotsContainer = document.createElement('div');
-      threeDotsContainer.style.left = '227px'
-      threeDotsContainer.style.position = 'absolute';
-      threeDotsContainer.style.top = '4px';
-      threeDotsContainer.style.cursor = 'pointer';
+  let threeDotsContainer = createElement('div', '', {
+    left: '227px',
+    position: 'absolute',
+    top: '4px',
+    cursor: 'pointer'
+  });
+
+
 
 
     let littleModalWindow = createElement(
@@ -311,17 +279,21 @@ export default function createDom(obj, length = "long") {
       }
     }
 
-    let plusIcon = document.createElement('div');
-        plusIcon.innerText = '+';
-        plusIcon.style.color = 'white';
-        plusIcon.style.cursor = 'pointer';
+
+    let plusIcon = createElement('div', '+', {
+      color: 'white',
+      cursor: 'pointer'
+    });
+
+    
 
 
+let addToDeckIcon = createElement('div', '', {
+  cursor: 'pointer'
+}, 'orangeCircle');
+  //   addToDeckIcon.className = 'orangeCircle';
+  //  addToDeckIcon.style.cursor = 'pointer';
 
-let addToDeckIcon = document.createElement("div");
-    addToDeckIcon.className = 'orangeCircle';
-   //addToDeckIcon.innerText = "+";
-   addToDeckIcon.style.cursor = 'pointer';
    if(index ===0){
     addToDeckIcon.style.display = 'flex';
     newDeckContainer.style.zIndex = 2
@@ -332,16 +304,15 @@ let addToDeckIcon = document.createElement("div");
    }
 
 
-    let threeDotsIcon = document.createElement("div");
-    threeDotsIcon.style.color = 'black'
-    threeDotsIcon.fontWeight = 'bold'
-    threeDotsIcon.style.transform = 'rotate(90deg)';
-    threeDotsIcon.innerText='...';
-    threeDotsIcon.style.fontSize = '24px'
-    threeDotsIcon.style.fontWeight = 'bold';
-  
+   let threeDotsIcon = createElement('div', '...', {
+     color: 'black',
+     fontWeight: 'bold',
+     transform: 'rotate(90deg)',
+     fontSize: '24px',
+   });
 
-   
+
+ 
 
     newDeckContainer.appendChild(nameOfNewDeck);
 
