@@ -14,6 +14,13 @@ button {
   font-size: 12px;
 }
 
+.noBorders {
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border-bottom: 3px solid black;
+}
+
 textarea {
   resize: none;
   width: 100%;
@@ -505,7 +512,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   left: 15px;
   height: 47px;
   width: 55px;
-
+  border-radius: 5px;
   display: none;
   padding: 5px;
   background-color: white;

@@ -3,6 +3,7 @@ import { startTimer, timer } from "./timer.js";
 import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
+import { edit, save, trash} from './svgs.js';
 
 function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
 
@@ -70,7 +71,7 @@ export default function settings() {
     'div',
     '',
     {display: 'flex',
-    flexDirection: 'column',
+    // flexDirection: 'column',
   width: '200px',
 border: '1px black solid'}
   );
@@ -78,55 +79,67 @@ border: '1px black solid'}
   mainWindow.append(containerForChangeTimeIntervall);
 
 
-  let innerContainer = createElement(
-    'div',
-    '',
-    {display: 'flex',
-    border: '1px black solid',
-    width: '200px',
-    justifyContent: 'space-around'
-    });
-
-    containerForChangeTimeIntervall.append(innerContainer);
 
 
-    let innerContainer2 = createElement(
+
+    let oneTwoTwentyMinContainer = createElement(
       'div',
       '',
       {display: 'flex',
       border: '1px black solid',
-      justifyContent: 'space-around'
+      // justifyContent: 'space-around',
+      flexDirection: 'column'
       });
   
-      containerForChangeTimeIntervall.append(innerContainer2);
+     containerForChangeTimeIntervall.append(oneTwoTwentyMinContainer);
 
 
       
       [1, 2, 20].forEach(el => {
-        let btn = createElement('div', `<${el}m`, {
-          display: 'flex'
-        });
-      //  containerForTimeButtons.append(btn);
+        let btn = createElement('input', `<${el}m`, {
+          display: 'flex',
+          width: '40%'
+        }, 'noBorders');
+     
     
-        innerContainer2.append(btn);
+        oneTwoTwentyMinContainer.append(btn);
       });
+
+
+      let againGoodEasyContainer = createElement(
+        'div',
+        '',
+        {display: 'flex',
+        border: '1px black solid',
+        width: '200px',
+        flexDirection: 'column'
+        // justifyContent: 'space-around'
+        });
+    
+        containerForChangeTimeIntervall.append(againGoodEasyContainer);
 
  
 
   ["again", "good", "easy"].forEach((el) => {
 
-    let button = createElement(
-      "button",
-      el,
+    let input = createElement(
+      "input", 'el',
       {
         display: 'flex',
-        pointer: 'cursor'
+        flexDirection: 'column',
+        pointer: 'cursor',
+        width: '30%',
+        placeholder: el
       },
-      "generalButtonStyling"
+      "noBorders"
     );
-    innerContainer.append(button)
+    againGoodEasyContainer.append(input)
   });
 
+  let editIcon = document.createElement("div");
+  editIcon.innerHTML = edit;
+
+  againGoodEasyContainer.append(editIcon)
 
 
 
