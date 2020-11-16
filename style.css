@@ -122,8 +122,6 @@ textarea {
   position: absolute;
   margin: 0 auto;
   top: -150px;
-  /* bottom: 500px; */
-  /* left: 200px; */
   border-right: 4px solid black;
   border-bottom: 4px solid black;
   -webkit-transform: rotate(45deg);
@@ -177,21 +175,13 @@ textarea {
   background-color: #a39171;
 }
 
-
-
-
-
-
 .transPlus {
-  transform: rotate(135deg);
-
-  
+  transform: rotate(135deg);  
 }
 
  
 .transMinus {
-  transform: rotate(-135deg);
-  
+  transform: rotate(-135deg); 
 } 
 
 
@@ -312,7 +302,6 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   margin-top: 30px;
   margin-left: 30px;
   display: flex;
-  /*justify-content: space-around; */
   width: 100%;
   font-weight: bold;
 }
@@ -454,7 +443,6 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   background-color: grey;
@@ -462,7 +450,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   left: -12px;
   top: 150px;
   z-index: 3;
-  display:none
+  display:none;
 }
 
 .day {
@@ -512,7 +500,6 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   position: absolute;
   top: 20px;
   left: 20px;
-
   display: none;
   padding: 5px;
   background-color: white;
@@ -530,12 +517,6 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   padding: 5px;
   background-color: white;
 }
-
-
-
-
-
-
 
 textarea:focus {
   border: 3px solid grey;

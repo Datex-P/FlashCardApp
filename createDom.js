@@ -34,12 +34,17 @@ export default function createDom(obj) {
   let colors = ['#ffcdb2','#ffb4a2','#e5989b','#b5838d','#6d6875']
   
   arr.forEach((item, index) => {
-    let newDeckContainer = document.createElement("div");
-    newDeckContainer.className = 'newDeckContainer';
+    // let newDeckContainer = document.createElement("div");
+    // newDeckContainer.className = 'newDeckContainer';
+    // newDeckContainer.style.backgroundColor = colors[index%5]
+    // newDeckContainer.style.transform =  `rotate(${index*-2}deg)`;
 
-    newDeckContainer.style.backgroundColor = colors[index%5]
 
-    newDeckContainer.style.transform =  `rotate(${index*-2}deg)`;
+    let newDeckContainer = createElement('div', '', {
+      backgroundColor : colors[index%5],
+      transform: `rotate(${index*-2}deg)`
+    }, 'newDeckContainer');
+
 
  
     let nameOfNewDeck = createElement("div", item, {
@@ -87,42 +92,38 @@ export default function createDom(obj) {
 
 
 
-    let toStudyContainer = document.createElement('div');
-        toStudyContainer.style.width = '100%';
-        toStudyContainer.style.border = '1px black solid';
+    let toStudyContainer = createElement('div', '', {
+      border: '1px black solid'
+    });
+      
 
+    let toStudy = createElement('div', 'To Study:', {
+      //width: '100%'
+      backgroundColor: 'white'
+    });
 
-
-
-
-
-        
-
-    let toStudy = document.createElement('div');
-        toStudy.style.width = '100%';
-        toStudy.innerHTML = 'To Study:'
-        toStudy.style.backgroundColor = 'white';
     
-    let toReviewContainer = document.createElement('div');
-        toReviewContainer.style.width = '100%';
-        toReviewContainer.style.border = '1px black solid';
+    let toReviewContainer = createElement('div', '', {
+       // toReviewContainer.style.width = '100%';
+        border:'1px black solid'
+    });
 
-    let toReview = document.createElement('div');
-        toReview.style.width = '100%';
-        toReview.innerHTML = 'To Review:'
-        toReview.style.backgroundColor = 'white';
+    let toReview = createElement('div', 'To Review:', {
+        backgroundColor: 'white'
+      //width: '100%'
+    });
+
+    let decksizeContainer = createElement('div', '', {
+      border: '1px black solid',
+      // width: '100%'
+    });
+
+    let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].length}`, {
+      backgroundColor: 'white'
+    });
 
  
-    let decksizeContainer = document.createElement('div');
-        decksizeContainer.style.width = '100%';
-        decksizeContainer.style.border = '1px black solid';
-
-    let decksize = document.createElement('div');
-        decksize.style.width = '100%';
-        decksize.innerHTML = `Decksize: ${dataBase.DeckNames[item].length}`
-        decksize.style.backgroundColor = 'white';
-
-
+  
 
   //   for (let i = 0; i<8; i++) {
 
@@ -149,12 +150,8 @@ export default function createDom(obj) {
       right: '5px'
     });
 
-    let trashIconText = document.createElement('div');
-        trashIconText.innerHTML = ' deck';
-
+    let trashIconText = createElement('div', 'deck', {});
    
-
-
 
     trashIconContainer.onclick = () => {
       newDeckContainer.parentNode.removeChild(newDeckContainer);
@@ -172,21 +169,19 @@ export default function createDom(obj) {
       display: 'flex',
       justifyContent: 'space-around',
       padding: '1px'
+    }, 'editIconContainer');
+
+
+    let editIconText = createElement('div', 'name', {});
+
+
+    let changeNameofDeckInput = createElement('input', '', {
+      width: '30%',
+      position: 'absolute',
+      left: '83px'
     });
+        
 
-    editIconContainer.classList.add('editIconContainer');  
-
-
-    let editIconText = document.createElement('div');
-        editIconText.innerHTML = 'name';
-
-    
-  
-
-    let changeNameofDeckInput = document.createElement("input");
-        changeNameofDeckInput.style.width = '30%';
-        changeNameofDeckInput.style.position = 'absolute';
-        changeNameofDeckInput.style.left = '83px';
     changeNameofDeckInput.onclick = function(event){
       event.stopPropagation()
     }
@@ -200,10 +195,10 @@ export default function createDom(obj) {
      
     }
 
-    let editIcon = document.createElement("div");
+    let editIcon = createElement('div', edit, {});
  
     let edited = false;
-    editIcon.innerHTML = edit;
+  
 
 
 
@@ -225,8 +220,6 @@ export default function createDom(obj) {
        
         editIconContainer.append(editIcon)
         editIconContainer.append(editIconText)
-
-
     
         //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
@@ -252,14 +245,21 @@ export default function createDom(obj) {
     cursor: 'pointer'
   });
 
+  let threeDotsIcon = createElement('div', '...', {
+    color: 'black',
+    fontWeight: 'bold',
+    transform: 'rotate(90deg)',
+    fontSize: '24px',
+  });
 
 
 
     let littleModalWindow = createElement(
       'div',  '', {}, 'littleModalWindow2');
 
+;
 
-    let opened = false
+let opened = false;
 
     threeDotsContainer.onclick = function () {
       opened = !opened;
@@ -281,7 +281,7 @@ export default function createDom(obj) {
 
 
     let plusIcon = createElement('div', '+', {
-      color: 'white',
+      color: 'white', 
       cursor: 'pointer'
     });
 
@@ -291,9 +291,7 @@ export default function createDom(obj) {
 let addToDeckIcon = createElement('div', '', {
   cursor: 'pointer'
 }, 'orangeCircle');
-  //   addToDeckIcon.className = 'orangeCircle';
-  //  addToDeckIcon.style.cursor = 'pointer';
-
+  
    if(index ===0){
     addToDeckIcon.style.display = 'flex';
     newDeckContainer.style.zIndex = 2
@@ -304,17 +302,11 @@ let addToDeckIcon = createElement('div', '', {
    }
 
 
-   let threeDotsIcon = createElement('div', '...', {
-     color: 'black',
-     fontWeight: 'bold',
-     transform: 'rotate(90deg)',
-     fontSize: '24px',
-   });
 
 
  
 
-    newDeckContainer.appendChild(nameOfNewDeck);
+    newDeckContainer.append(nameOfNewDeck);
 
     newDeckContainer.append(threeDotsContainer)
 
@@ -331,14 +323,7 @@ let addToDeckIcon = createElement('div', '', {
     trashIconContainer.append(trashIconText)
 
 
-
-    // if (length == "long") {
-  
-
- 
-    // }
-
-    newDeckContainer.appendChild(addEditDeleteContainer);
+    newDeckContainer.append(addEditDeleteContainer);
     addEditDeleteContainer.append(toStudyContainer)
     addEditDeleteContainer.append(toStudy)
     toStudyContainer.append(toStudy)
