@@ -234,7 +234,6 @@ export default function createDom(obj) {
     let littleModalWindow = createElement(
       'div',  '', {}, 'littleModalWindow2');
 
-;
 
 let opened = false;
 
@@ -257,8 +256,7 @@ let opened = false;
     };
 
     let plusIcon = createElement('div', '+', {
-      color: 'white', 
-      cursor: 'pointer'
+      color: 'white',  cursor: 'pointer'
     });
 
     

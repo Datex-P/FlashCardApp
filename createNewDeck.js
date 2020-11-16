@@ -30,8 +30,6 @@ export default function createNewDeck() {
 
   let mainWindow = createElement('div', '', {
       height: '160px',
-      display: 'flex',
-      flexDirection: 'column',
       justifyContent: 'center',
       width: '280px',
       backgroundColor: 'rgba(200, 168, 115,0.95)',

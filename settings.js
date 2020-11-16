@@ -27,7 +27,6 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
 export default function settings() {
   
 
-
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
@@ -62,10 +61,8 @@ export default function settings() {
   mainWindow.append(changeTimeIntervall);
 
 
-
   let editContainer = createElement(
-    'div',
-    edit,
+    'div', edit,
     {border: '1px black solid',
     position: 'absolute',
     top: '10px',
@@ -100,12 +97,9 @@ border: '1px black solid'}, 'flexSpaceAround');
 containerForChangeTimeIntervall.append(containerUpper);
 
 
-
-
 let container1 = createElement('div', '', {
   width: '20%', 
-  border: '1px black solid',
-  
+  border: '1px black solid'
 }, 'flexSpaceAround');
 
 
@@ -130,9 +124,6 @@ let container2 = createElement('div', '', {
   border: '1px black solid',
   
 }, 'flexSpaceAround');
-
-
-
 
 
 
@@ -177,10 +168,6 @@ containerUpper.append(container3)
 
 
 
-
-
-
-
 containerUpper.append(editContainer)
 
 
@@ -219,36 +206,34 @@ containerLower.append(editContainer2)
 
 
 
+let changeNameofDeckInput1 = createElement('input', '', {
+  width: '3%',
+  position: 'absolute',
+  left: '67px'
+});
 
 
-
-let changeNameofDeckInput1 = document.createElement("input");
-        changeNameofDeckInput1.style.width = '3%';
-        changeNameofDeckInput1.style.position = 'absolute';
-        changeNameofDeckInput1.style.left = '67px';
-    changeNameofDeckInput1.onclick = function(event){
+ changeNameofDeckInput1.onclick = function(event){
       event.stopPropagation()
-    }
+    };
+
+let changeNameofDeckInput2 = createElement('input', '', {
+      width: '3%',
+      position: 'absolute',
+      left: '216px'
+    });
 
 
-    let changeNameofDeckInput2 = document.createElement("input");
-    changeNameofDeckInput2.style.width = '3%';
-    changeNameofDeckInput2.style.position = 'absolute';
-    changeNameofDeckInput2.style.left = '216px';
 changeNameofDeckInput2.onclick = function(event){
   event.stopPropagation()
-}
-
-let changeNameofDeckInput3 = document.createElement("input");
-changeNameofDeckInput3.style.width = '3%';
-changeNameofDeckInput3.style.position = 'absolute';
-changeNameofDeckInput3.style.left = '280px';
+};
 
 
-
-
-
-
+let changeNameofDeckInput3 = createElement('input', '', {
+  width: '3%',
+  position: 'absolute',
+  left: '280px'
+});
 
 changeNameofDeckInput3.onclick = function(event){
 event.stopPropagation()
@@ -295,22 +280,6 @@ editContainer.onclick = function () {
 //   nameOfNewDeck.innerText = changeNameofDeckInput.value;
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
