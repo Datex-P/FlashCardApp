@@ -107,21 +107,6 @@ export default function createDom(obj, length = "long") {
 
 
 
-
-    // let addEditDeleteContainer = document.createElement("div");
-    // addEditDeleteContainer.style.display = "flex";
-    // addEditDeleteContainer.style.flexDirection = 'column';
-    // addEditDeleteContainer.style.justifyContent = "space-around";
-    // addEditDeleteContainer.style.width = "149px";
-    // addEditDeleteContainer.style.height = '128px';
-    // addEditDeleteContainer.style.marginTop = '20px'
-    // //addEditDeleteContainer.style.alignItems = "center";
-    // addEditDeleteContainer.style.left = '84px';
-    // addEditDeleteContainer.style.border = '1px black solid'
-    // addEditDeleteContainer.style.zIndex = '3';
-    // addEditDeleteContainer.style.position = 'absolute';
-
-
     let toStudyContainer = document.createElement('div');
         toStudyContainer.style.width = '100%';
         toStudyContainer.style.border = '1px black solid';
@@ -151,78 +136,68 @@ export default function createDom(obj, length = "long") {
         decksize.style.backgroundColor = 'white';
 
 
-    // let blackLines = createElement('div', {
-    //   width: '99%',
-    //   border: '0.5px #eee4e1 solid'
-    // },
-    // newDeckContainer.append(blackLines)
-    
-    // )
+
+  //   for (let i = 0; i<8; i++) {
+
+
+  //   let blackLines = createElement('div', {
+  //     width: '99%',
+  //     marginTop: '15px',
+  //     border: '0.5px #eee4e1 solid'
+  //   });
+  //   newDeckContainer.append(blackLines)
+  // }
+
+
+  
+  // let trashIconContainer = document.createElement('div');
+  //     trashIconContainer.style.border = '1px black solid';
+  //     trashIconContainer.style.display = 'flex';
+  //     trashIconContainer.style.justifyContent = 'space-around';
+  //     trashIconContainer.style.padding = '1px';
+  //     trashIconContainer.classList.add('trashIconContainer');
+  //     trashIconContainer.style.borderTop = '0px';
+
+
+    let trashIconContainer = createElement('div', '',{
+      border: '1px black solid',
+      display: 'flex',
+      justifyContent: 'space-around',
+      padding: '1px',
+      borderTop: '0px'
+    })
+
+    trashIconContainer.classList.add('trashIconContainer');
+
+    let trashIcon = createElement('div', trash, {
+      rigth: '5px'
+    });
 
 
 
-    // let blackLines = document.createElement('div');
-    //     blackLines.style.width = '99%';
-    //     blackLines.style.border= '0.5px #eee4e1 solid'
-
-    // let blackLines2 = document.createElement('div');
-    //     blackLines2.style.marginTop = '15px';
-    //     blackLines2.style.width = '99%';
-    //     blackLines2.style.border= '0.5px #eee4e1 solid'
-
-    // let blackLines3 = document.createElement('div');
-    //     blackLines3.style.marginTop = '15px';
-    //     blackLines3.style.width = '99%';
-    //     blackLines3.style.border= '0.5px #eee4e1 solid'
-
-    // let blackLines4 = document.createElement('div');
-    //     blackLines4.style.marginTop = '15px';
-    //     blackLines4.style.width = '99%';
-    //     blackLines4.style.border= '0.5px #eee4e1 solid';
-
-    // let blackLines5 = document.createElement('div');
-    //     blackLines5.style.marginTop = '15px';
-    //     blackLines5.style.width = '99%';
-    //     blackLines5.style.border= '0.5px #eee4e1 solid';
-
-    // let blackLines6 = document.createElement('div');
-    //     blackLines6.style.marginTop = '15px';
-    //     blackLines6.style.width = '99%';
-    //     blackLines6.style.border= '0.5px #eee4e1 solid';
-
-    // let blackLines7 = document.createElement('div');
-    //     blackLines7.style.marginTop = '15px';
-    //     blackLines7.style.width = '99%';
-    //     blackLines7.style.border= '0.5px #eee4e1 solid';
-
-    // let blackLines8 = document.createElement('div');
-    //     blackLines8.style.marginTop = '15px';
-    //     blackLines8.style.width = '99%';
-    //     blackLines8.style.border= '0.5px #eee4e1 solid';
-
-    let trashIcon = document.createElement("div");
-    trashIcon.innerHTML = trash;
-    trashIcon.style.right = "5px";
-
-
-    let trashIconContainer = document.createElement('div');
-        trashIconContainer.style.border = '1px black solid';
-        trashIconContainer.style.display = 'flex';
-        trashIconContainer.style.justifyContent = 'space-around';
-        trashIconContainer.style.padding = '1px';
-        trashIconContainer.classList.add('trashIconContainer');
-        trashIconContainer.style.borderTop = '0px';
+    // let trashIcon = document.createElement("div");
+    // trashIcon.innerHTML = trash;
+    // trashIcon.style.right = "5px";
 
     let trashIconText = document.createElement('div');
         trashIconText.innerHTML = ' deck';
 
+    let editIconContainer = createElement('div', '', {
+      border: '1px black solid',
+      display: 'flex',
+      justifyContent: 'space-around',
+      padding: '1px'
+    });
 
-    let editIconContainer = document.createElement('div');
-        editIconContainer.style.border = '1px black solid';
-        editIconContainer.style.display = 'flex';
-        editIconContainer.style.justifyContent = 'space-around';
-        editIconContainer.style.padding = '1px';
-        editIconContainer.classList.add('editIconContainer');
+    editIconContainer.classList.add('editIconContainer');  
+
+
+    // let editIconContainer = document.createElement('div');
+    //     editIconContainer.style.border = '1px black solid';
+    //     editIconContainer.style.display = 'flex';
+    //     editIconContainer.style.justifyContent = 'space-around';
+    //     editIconContainer.style.padding = '1px';
+    //     editIconContainer.classList.add('editIconContainer');
 
     let editIconText = document.createElement('div');
         editIconText.innerHTML = 'name';
@@ -311,21 +286,9 @@ export default function createDom(obj, length = "long") {
       threeDotsContainer.style.top = '4px';
       threeDotsContainer.style.cursor = 'pointer';
 
-  
-
-
-
-    
-
 
     let littleModalWindow = createElement(
-      'div',
-      '',
-      {
-        // transform: 'rotate(-90deg)'
-      },
-      'littleModalWindow2'
-    )
+      'div',  '', {}, 'littleModalWindow2');
 
 
     let opened = false
@@ -370,34 +333,18 @@ let addToDeckIcon = document.createElement("div");
 
 
     let threeDotsIcon = document.createElement("div");
-
-   // let threeDotsIcon = document.createElement("div");
-   // threeDotsIcon.className = 'orangeCircle';
-   // threeDotsIcon.innerText = "+";
     threeDotsIcon.style.color = 'black'
     threeDotsIcon.fontWeight = 'bold'
-    //threeDotsIcon.style.border = '1px solid grey';
-
-    //threeDotsIcon.style.zIndex = '3';
     threeDotsIcon.style.transform = 'rotate(90deg)';
     threeDotsIcon.innerText='...';
     threeDotsIcon.style.fontSize = '24px'
     threeDotsIcon.style.fontWeight = 'bold';
   
 
-    // threeDotsIcon.onclick = function () {
-    //   this.classList.remove('blinkingIcon')
-    //   addQuestionsToDeck(item);
-    // }
-
-    // threeDotsIcon.addEventListener('mouseover', function() {
-    //   threeDotsIcon.style.cursor = 'pointer';
-    // });
-
+   
 
     newDeckContainer.appendChild(nameOfNewDeck);
 
-    //newDeckContainer.append(editIcon)
     newDeckContainer.append(threeDotsContainer)
 
 
@@ -414,18 +361,11 @@ let addToDeckIcon = document.createElement("div");
 
 
 
-    if (length == "long") {
+    // if (length == "long") {
   
 
-      // newDeckContainer.appendChild(blackLines);
-      // newDeckContainer.appendChild(blackLines2);
-      // newDeckContainer.appendChild(blackLines3);
-      // newDeckContainer.appendChild(blackLines4);
-      // newDeckContainer.appendChild(blackLines5);
-      // newDeckContainer.appendChild(blackLines6);
-      // newDeckContainer.appendChild(blackLines7);
-      // newDeckContainer.appendChild(blackLines8);
-    }
+ 
+    // }
 
     newDeckContainer.appendChild(addEditDeleteContainer);
     addEditDeleteContainer.append(toStudyContainer)
