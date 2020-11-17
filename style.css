@@ -330,7 +330,7 @@ textarea {
   /*transition: all 1s; */
   position: absolute;
   top:70px;
-  transform-origin: 0px 150px;
+  transform-origin: 0px 175px;
   
 }
 /* .strapped{
@@ -564,3 +564,9 @@ textarea:focus {
 textarea:enabled {
   border: 3px solid grey;
 }
+
+/* 
+body{
+  cursor: url('pencil.svg'), auto;
+
+} */

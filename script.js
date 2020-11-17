@@ -62,7 +62,7 @@ document.querySelector('.menu').onclick = function () {
 
 
 document.getElementById('paintbrush').onclick = function () {
-  document.body.style.cursor = "url('paintbrush.svg'), auto";
+  document.body.style.cursor = "url('pencil.svg') 10 20, auto";
   console.log('hello')
 }
 

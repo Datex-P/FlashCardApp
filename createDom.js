@@ -147,6 +147,14 @@ export default function createDom(obj) {
     trashIconContainer.onclick = () => {
       newDeckContainer.parentNode.removeChild(newDeckContainer);
 
+      let all = listOfDecks.querySelectorAll('.newDeckContainer')
+
+      let lastIndex  = all.length - 1 
+      all[lastIndex].style.zIndex = 2;
+      all[lastIndex].querySelector('.threeDotsIcon').style.opacity = 1;
+      all[lastIndex].style.transform = 'rotate(0deg)';
+      all[lastIndex].querySelector('.orangeCircle').style.display = 'flex'
+
       // listOfDecks.childNodes[1].className = 'orangeCircle';
 
       // listOfDecks.childNodes[1].append(addToDeckIcon)
@@ -354,11 +362,12 @@ export default function createDom(obj) {
 
 
   document.querySelector("#scrollable").onscroll = function (event) {
-    let step = (1000 - 140) / (arr.length - 1)
+    let all = listOfDecks.querySelectorAll('.newDeckContainer')
+    let step = (1000 - 140) / (all.length - 1)
     let index = Math.floor(event.target.scrollTop / step)
     // index = (index > arr.length-1) ? arr.length-1 : index
 
-    let all = listOfDecks.querySelectorAll('.newDeckContainer')
+    
     Array.from(all).reverse().forEach((item, index) => {
       item.style.zIndex = 0
       item.querySelector('.threeDotsIcon').style.opacity = 0;

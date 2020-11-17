@@ -215,31 +215,34 @@ containerLower.append(editContainerLower)
 
 
 
-let changeNameofDeckInput1 = createElement('input', '', {
-  width: '28%',
-});
+let [changeNameofDeckInput1,changeNameofDeckInput2,changeNameofDeckInput3,changeNameofDeckInput4,changeNameofDeckInput5,changeNameofDeckInput6] = [...Array(3).fill('28%'), ...Array(3).fill('20%')].map(width=>{
+  return createElement('input', '', {width});
+})
+// let changeNameofDeckInput1 = createElement('input', '', {
+//   width: '28%',
+// });
 
-let changeNameofDeckInput2 = createElement('input', '', {
-  width: '28%',
+// let changeNameofDeckInput2 = createElement('input', '', {
+//   width: '28%',
 
-});
+// });
 
-let changeNameofDeckInput3 = createElement('input', '', {
-  width: '28%',
-});
+// let changeNameofDeckInput3 = createElement('input', '', {
+//   width: '28%',
+// });
 
-let changeNameofDeckInput4 = createElement('input', '', {
-  width: '20%',
+// let changeNameofDeckInput4 = createElement('input', '', {
+//   width: '20%',
 
-});
+// });
 
-let changeNameofDeckInput5 = createElement('input', '', {
-  width: '20%',
-});
+// let changeNameofDeckInput5 = createElement('input', '', {
+//   width: '20%',
+// });
 
-let changeNameofDeckInput6 = createElement('input', '', {
-  width: '20%',
-});
+// let changeNameofDeckInput6 = createElement('input', '', {
+//   width: '20%',
+// });
 
 let reviewAndStudy = createElement(
   'div', 'Review and Study Interval', {marginTop: "20px" }
