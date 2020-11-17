@@ -1,10 +1,10 @@
-import { edit, save, trash} from './svgs.js';
+import { edit, save, trash } from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
 
 
-function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
+function createElement(tag = 'div', inner = '', style = {}, className = null, id = null, parentNode = null) {
 
   let element = document.createElement(tag);
 
@@ -18,7 +18,12 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
   for (let prop in style) {
     element.style[prop] = style[prop]
   }
+  if (parentNode) {
+    parentNode.appendChild(element)
+  }
+
   return element
+
 };
 
 
@@ -27,22 +32,22 @@ export default function createDom(obj) {
   listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
-  let colors = ['#ffcdb2','#ffb4a2','#e5989b','#b5838d','#6d6875'];
-  
+  let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+
   arr.forEach((item, index) => {
- 
+
     let newDeckContainer = createElement('div', '', {
-      backgroundColor : colors[index%5],
-      transform: `rotate(${index*-2}deg)`
+      backgroundColor: colors[index % 5],
+      transform: `rotate(${index * -2}deg)`
     }, 'newDeckContainer');
 
 
- 
+
     let nameOfNewDeck = createElement("div", item, {
       position: 'absolute',
       left: '83px'
     })
-      
+
 
     nameOfNewDeck.onmouseover = function () {
       nameOfNewDeck.style.color = "rgb(200, 168, 115)";
@@ -67,35 +72,41 @@ export default function createDom(obj) {
       };
     }
 
-    let addEditDeleteContainer = createElement('div', '', {
-      justifyContent: 'space-around',
-      width: '149px',
-      height: '128px',
-      marginTop: '20px',
-      left: '84px',
-      border: '1px black solid',
-      zIndex: '3',
-      position: 'absolute'
-    }, 'flexColumn')
-
+    let addEditDeleteContainer = createElement(
+      'div', 
+      '', 
+      {
+        justifyContent: 'space-around',
+        width: '149px',
+        height: '128px',
+        marginTop: '20px',
+        left: '84px',
+        border: '1px black solid',
+        zIndex: '3',
+        position: 'absolute'
+      }, 
+      'flexColumn',
+      '',
+      newDeckContainer
+    )
 
 
     let toStudyContainer = createElement('div', '', {
       border: '1px black solid'
     });
-      
+
 
     let toStudy = createElement('div', 'To Study:', {
       backgroundColor: 'white'
     });
 
-    
+
     let toReviewContainer = createElement('div', '', {
-        border:'1px black solid'
+      border: '1px black solid'
     });
 
     let toReview = createElement('div', 'To Review:', {
-        backgroundColor: 'white'
+      backgroundColor: 'white'
     });
 
     let decksizeContainer = createElement('div', '', {
@@ -106,21 +117,21 @@ export default function createDom(obj) {
       backgroundColor: 'white'
     });
 
- 
-  
-
-  //   for (let i = 0; i<8; i++) {
 
 
-  //   let blackLines = createElement('div', {
-  //     width: '99%',
-  //     marginTop: '15px',
-  //     border: '0.5px #eee4e1 solid'
-  //   });
-  //   newDeckContainer.append(blackLines)
-  // }
 
-    let trashIconContainer = createElement('div', '',{
+    //   for (let i = 0; i<8; i++) {
+
+
+    //   let blackLines = createElement('div', {
+    //     width: '99%',
+    //     marginTop: '15px',
+    //     border: '0.5px #eee4e1 solid'
+    //   });
+    //   newDeckContainer.append(blackLines)
+    // }
+
+    let trashIconContainer = createElement('div', '', {
       border: '1px black solid',
       padding: '1px',
       borderTop: '0px'
@@ -128,17 +139,17 @@ export default function createDom(obj) {
 
     trashIconContainer.classList.add('trashIconContainer');
 
-    let trashIcon = createElement('div', trash, {right: '5px'});
+    let trashIcon = createElement('div', trash, { right: '5px' });
 
     let trashIconText = createElement('div', 'deck', {});
-   
+
 
     trashIconContainer.onclick = () => {
       newDeckContainer.parentNode.removeChild(newDeckContainer);
 
       //newDeckContainer.className = 'orangeCircle';
 
-     // newDeckContainer.append(addToDeckIcon)
+      // newDeckContainer.append(addToDeckIcon)
 
 
 
@@ -167,47 +178,47 @@ export default function createDom(obj) {
       position: 'absolute',
       left: '83px'
     });
-        
 
-    changeNameofDeckInput.onclick = function(event){
+
+    changeNameofDeckInput.onclick = function (event) {
       event.stopPropagation()
     }
 
-    function clickOutsideHandle(){
+    function clickOutsideHandle() {
       //alert("Clicked out Box")
       editIcon.classList.add('blinkingIcon')
-      setTimeout(()=>{
+      setTimeout(() => {
         editIcon.classList.remove('blinkingIcon')
-      },3000)   
+      }, 3000)
     }
 
     let editIcon = createElement('div', edit, {});
- 
+
     let edited = false;
-  
+
 
     editIconContainer.onclick = function (event) {
-    
-        window.addEventListener('click',clickOutsideHandle)
+
+      window.addEventListener('click', clickOutsideHandle)
       event.stopPropagation()
 
       if (!edited) {
-       
-        this.innerHTML = save;       
-        
+
+        this.innerHTML = save;
+
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
-    
-       console.log('click like a edit')
+
+        console.log('click like a edit')
       } else {
-       
+
         editIconContainer.append(editIcon)
         editIconContainer.append(editIconText)
-    
+
         //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-        window.removeEventListener('click',clickOutsideHandle)
+        window.removeEventListener('click', clickOutsideHandle)
         edited = false;
         //send fetch=>saveToDataBase
         // if ok
@@ -217,39 +228,39 @@ export default function createDom(obj) {
 
 
 
-  [trashIcon, editIcon].forEach((el) => {el.style.cursor = 'pointer';});
+    [trashIcon, editIcon].forEach((el) => { el.style.cursor = 'pointer'; });
 
 
-  let threeDotsContainer = createElement('div', '', {
-    left: '227px',
-    position: 'absolute',
-    top: '4px',
-    cursor: 'pointer'
-  });
+    let threeDotsContainer = createElement('div', '', {
+      left: '227px',
+      position: 'absolute',
+      top: '4px',
+      cursor: 'pointer'
+    });
 
-  let threeDotsIcon = createElement('div', '...', {
-    color: 'black',
-    fontWeight: 'bold',
-    transform: 'rotate(90deg)',
-    fontSize: '24px',
+    let threeDotsIcon = createElement('div', '...', {
+      color: 'black',
+      fontWeight: 'bold',
+      transform: 'rotate(90deg)',
+      fontSize: '24px',
 
-  }, 'threeDotsIcon');
+    }, 'threeDotsIcon');
 
 
 
     let littleModalWindow = createElement(
-      'div',  '', {display: 'none'}, 'littleModalWindow2');
+      'div', '', { display: 'none' }, 'littleModalWindow2');
 
 
-// let opened = false;
+    // let opened = false;
 
     threeDotsContainer.onclick = function () {
       // opened = !opened;
       littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
-  
+
       if (littleModalWindow.style.display === 'block') {
         setTimeout(function () {
-          window.onclick = function(event) {
+          window.onclick = function (event) {
             if (!littleModalWindow.contains(event.target)) {
               littleModalWindow.style.display = 'none';
               window.onclick = ''
@@ -260,35 +271,35 @@ export default function createDom(obj) {
     };
 
     let plusIcon = createElement('div', '+', {
-      color: 'white',  cursor: 'pointer'
+      color: 'white', cursor: 'pointer'
     });
 
-    
 
-let addToDeckIcon = createElement('div', '', {
-}, 'orangeCircle');
-  
-   if(index ===0){
-    addToDeckIcon.style.display = 'flex';
-    newDeckContainer.style.zIndex = 2
-   }
 
-   addToDeckIcon.onclick = function(){
-    addQuestionsToDeck(item)
-   }
+    let addToDeckIcon = createElement('div', '', {
+    }, 'orangeCircle');
+
+    if (index === 0) {
+      addToDeckIcon.style.display = 'flex';
+      newDeckContainer.style.zIndex = 2
+    }
+
+    addToDeckIcon.onclick = function () {
+      addQuestionsToDeck(item)
+    }
 
 
 
     newDeckContainer.append(nameOfNewDeck);
 
     newDeckContainer.append(threeDotsContainer);
-  threeDotsContainer.append(littleModalWindow);
-                         
-  littleModalWindow.append(editIconContainer)
-  threeDotsContainer.append(threeDotsIcon);
+    threeDotsContainer.append(littleModalWindow);
+
+    littleModalWindow.append(editIconContainer)
+    threeDotsContainer.append(threeDotsIcon);
 
 
-    newDeckContainer.append(addEditDeleteContainer);
+    
     addEditDeleteContainer.append(toStudyContainer);
     addEditDeleteContainer.append(toStudy);
 
@@ -301,7 +312,7 @@ let addToDeckIcon = createElement('div', '', {
     trashIconContainer.append(trashIconText)
 
 
-    
+
 
 
     toStudyContainer.append(toStudy)
@@ -320,26 +331,26 @@ let addToDeckIcon = createElement('div', '', {
   });
 
 
-  document.querySelector("#scrollable").onscroll = function(event){
-    let step = (1000-140)/(arr.length-1)
-    let index = Math.floor(event.target.scrollTop/step)
+  document.querySelector("#scrollable").onscroll = function (event) {
+    let step = (1000 - 140) / (arr.length - 1)
+    let index = Math.floor(event.target.scrollTop / step)
     // index = (index > arr.length-1) ? arr.length-1 : index
 
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
-    Array.from(all).reverse().forEach((item,index)=>{
+    Array.from(all).reverse().forEach((item, index) => {
       item.style.zIndex = 0
       item.querySelector('.threeDotsIcon').style.opacity = 0;
 
 
       item.querySelector('.orangeCircle').style.display = 'none'
-      item.style.transform =  `rotate(${index*-2}deg)`;
+      item.style.transform = `rotate(${index * -2}deg)`;
     })
     all[index].style.zIndex = 2;
     all[index].querySelector('.threeDotsIcon').style.opacity = 1;
     all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
-    
 
-    console.log(event.target.scrollTop,index)
+
+    console.log(event.target.scrollTop, index)
   }
 }
