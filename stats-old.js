@@ -274,6 +274,21 @@ export default function stats() {
     }
 
 
+    function closeMenu(){
+      let all = document.querySelectorAll('.menuContainer>div')
+      document.querySelector('.menuBox').style.display = 'none';
+     // opened = false;
+      window.onclick = '';
+      all[0].classList.remove('transPlus');
+      all[0].style.top = '0px'
+      all[2].classList.remove('transMinus');
+      all[2].style.top = '16px'
+      document.getElementById('menuIcon2').style.display = 'block';
+    }
+  
+  closeMenu()  
+
+
 
 
 

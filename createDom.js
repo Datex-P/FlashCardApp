@@ -147,10 +147,10 @@ export default function createDom(obj) {
     trashIconContainer.onclick = () => {
       newDeckContainer.parentNode.removeChild(newDeckContainer);
 
-      //newDeckContainer.className = 'orangeCircle';
+      // listOfDecks.childNodes[1].className = 'orangeCircle';
 
-      // newDeckContainer.append(addToDeckIcon)
-
+      // listOfDecks.childNodes[1].append(addToDeckIcon)
+      // deletedDeck();
 
 
       delete dataBase.DeckNames[item];
@@ -164,10 +164,8 @@ export default function createDom(obj) {
 
     let editIconContainer = createElement('div', '', {
       border: '1px black solid',
-      display: 'flex',
-      justifyContent: 'space-around',
       padding: '1px'
-    }, 'editIconContainer');
+    }, 'editIconContainer, flexSpaceAround');
 
 
     let editIconText = createElement('div', 'name', {});
@@ -279,7 +277,7 @@ export default function createDom(obj) {
     let addToDeckIcon = createElement('div', '', {
     }, 'orangeCircle');
 
-    if (index === 0) {
+     if (index === 0 /*|| index === 1*/) {
       addToDeckIcon.style.display = 'flex';
       newDeckContainer.style.zIndex = 2
     }
@@ -331,6 +329,30 @@ export default function createDom(obj) {
   });
 
 
+  //   function deletedDeck() {
+  
+  //   let all = listOfDecks.querySelectorAll('.newDeckContainer')
+  //   Array.from(all).reverse().forEach((item, index) => {
+  //     item.style.zIndex = 0
+  //     item.querySelector('.threeDotsIcon').style.opacity = 0;
+
+  //     item.querySelector('.orangeCircle').style.display = 'none'
+  //     item.style.transform = `rotate(${index * -2}deg)`;
+  //   })
+  //   all[index].style.zIndex = 2;
+  //   all[index].querySelector('.threeDotsIcon').style.opacity = 1;
+  //   all[index].style.transform = 'rotate(0deg)';
+  //   all[index].querySelector('.orangeCircle').style.display = 'flex'
+  // }
+
+
+
+
+
+
+
+
+
   document.querySelector("#scrollable").onscroll = function (event) {
     let step = (1000 - 140) / (arr.length - 1)
     let index = Math.floor(event.target.scrollTop / step)
@@ -340,7 +362,7 @@ export default function createDom(obj) {
     Array.from(all).reverse().forEach((item, index) => {
       item.style.zIndex = 0
       item.querySelector('.threeDotsIcon').style.opacity = 0;
-
+     // console.log(all[index])
 
       item.querySelector('.orangeCircle').style.display = 'none'
       item.style.transform = `rotate(${index * -2}deg)`;
@@ -351,6 +373,6 @@ export default function createDom(obj) {
     all[index].querySelector('.orangeCircle').style.display = 'flex'
 
 
-    console.log(event.target.scrollTop, index)
+   // console.log(event.target.scrollTop, index)
   }
 }

@@ -30,7 +30,12 @@ export default function settings() {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
-  let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
+  let mainWindow = createElement('div', '', {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    border: '1px black solid'
+   }, 'addQuestionsToDeck')
   anchorElement.appendChild(mainWindow);
 
   //header
@@ -61,7 +66,7 @@ export default function settings() {
   mainWindow.append(changeTimeIntervall);
 
 
-  let editContainer = createElement(
+  let editContainer1 = createElement(
     'div', edit,
     {border: '1px black solid',
     position: 'absolute',
@@ -168,7 +173,7 @@ containerUpper.append(container3)
 
 
 
-containerUpper.append(editContainer)
+containerUpper.append(editContainer1)
 
 
 
@@ -201,6 +206,25 @@ containerForChangeTimeIntervall.append(containerLower);
 
 containerLower.append(editContainer2)
 //containerLower.append(changeNameofDeckInput)
+
+
+let changeNameofDeckInput4 = createElement('input', '', {
+  width: '18%',
+  height: '20px'
+});
+
+let changeNameofDeckInput5 = createElement('input', '', {
+  width: '18%',
+  height: '20px'
+});
+
+let changeNameofDeckInput6 = createElement('input', '', {
+  width: '18%',
+  height: '20px',
+});
+
+
+
 
 
 
@@ -240,12 +264,19 @@ event.stopPropagation()
 }
 
 
+let changeCardColors = createElement('div', 'Change Layout', {})
+
+let changebuttonColor = createElement('div', 'Change Layout', {})
+
+//let changeBackgroundColor = createElement
+
+
 
 
 let edited = false;
 
 
-editContainer.onclick = function () {
+editContainer1.onclick = function () {
     
 //   window.addEventListener('click',clickOutsideHandle)
 // event.stopPropagation()
@@ -281,6 +312,21 @@ editContainer.onclick = function () {
 
 };
 
+editContainer2.onclick = function () {
+
+  containerLower.replaceChild(changeNameofDeckInput4, containerLower.childNodes[0]);
+  
+  changeNameofDeckInput4.value = containerLower.childNodes[0].innerHTML;
+  
+  
+  
+  containerLower.replaceChild(changeNameofDeckInput5, containerLower.childNodes[1]);
+   containerLower.replaceChild(changeNameofDeckInput6, containerLower.childNodes[2]);
+
+
+}
+
+console.log(containerLower.childNodes[0].innerHTML)
 
 
 
@@ -329,7 +375,7 @@ editContainer.onclick = function () {
     document.getElementById('menuIcon2').style.display = 'block';
   }
 
-//closeMenu()
+closeMenu()
 
 
 
