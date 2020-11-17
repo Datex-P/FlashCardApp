@@ -193,7 +193,7 @@ border: '1px black solid'}, 'flexSpaceAround');
 containerForChangeTimeIntervall.append(containerLower);
 
 
-["again", "good", "easy"].forEach((el) => {
+let [again, good, easy] = ["again", "good", "easy"].map((el) => {
   let input = document.createElement("div");
   input.innerText = el;
  // input.className = "noBorders";
@@ -202,6 +202,7 @@ containerForChangeTimeIntervall.append(containerLower);
   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
   containerLower.append(input)
+  return input
 });
 
 containerLower.append(editContainer2)
@@ -313,20 +314,19 @@ editContainer1.onclick = function () {
 };
 
 editContainer2.onclick = function () {
+  containerLower.replaceChild(changeNameofDeckInput4, again);
+  changeNameofDeckInput4.value = again.innerText;
+  
+  containerLower.replaceChild(changeNameofDeckInput5, good);
+  changeNameofDeckInput5.value = good.innerText;
 
-  containerLower.replaceChild(changeNameofDeckInput4, containerLower.childNodes[0]);
-  
-  changeNameofDeckInput4.value = containerLower.childNodes[0].innerHTML;
-  
-  
-  
-  containerLower.replaceChild(changeNameofDeckInput5, containerLower.childNodes[1]);
-   containerLower.replaceChild(changeNameofDeckInput6, containerLower.childNodes[2]);
+  containerLower.replaceChild(changeNameofDeckInput6, easy);
+  changeNameofDeckInput6.value = easy.innerText;
 
 
 }
 
-console.log(containerLower.childNodes[0].innerHTML)
+// console.log(containerLower.childNodes[0].innerHTML)
 
 
 
