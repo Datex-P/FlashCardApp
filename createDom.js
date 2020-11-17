@@ -232,7 +232,8 @@ export default function createDom(obj) {
     fontWeight: 'bold',
     transform: 'rotate(90deg)',
     fontSize: '24px',
-  });
+
+  }, 'threeDotsIcon');
 
 
 
@@ -281,18 +282,17 @@ let addToDeckIcon = createElement('div', '', {
     newDeckContainer.append(nameOfNewDeck);
 
     newDeckContainer.append(threeDotsContainer);
-            threeDotsContainer.append(littleModalWindow);
+  threeDotsContainer.append(littleModalWindow);
                          
-                            littleModalWindow.append(editIconContainer)
-            threeDotsContainer.append(threeDotsIcon);
-
+  littleModalWindow.append(editIconContainer)
+  threeDotsContainer.append(threeDotsIcon);
 
 
     newDeckContainer.append(addEditDeleteContainer);
-           addEditDeleteContainer.append(toStudyContainer);
-           addEditDeleteContainer.append(toStudy);
+    addEditDeleteContainer.append(toStudyContainer);
+    addEditDeleteContainer.append(toStudy);
 
-  
+
     editIconContainer.append(editIcon)
     editIconContainer.append(editIconText)
 
@@ -328,11 +328,14 @@ let addToDeckIcon = createElement('div', '', {
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
     Array.from(all).reverse().forEach((item,index)=>{
       item.style.zIndex = 0
-      
+      item.querySelector('.threeDotsIcon').style.opacity = 0;
+
+
       item.querySelector('.orangeCircle').style.display = 'none'
       item.style.transform =  `rotate(${index*-2}deg)`;
     })
     all[index].style.zIndex = 2;
+    all[index].querySelector('.threeDotsIcon').style.opacity = 1;
     all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
     
