@@ -66,20 +66,14 @@ export default function settings() {
   mainWindow.append(changeTimeIntervall);
 
 
-  let editContainer1 = createElement(
-    'div', edit,
-    {border: '1px black solid',
-    position: 'absolute',
-    top: '10px',
-    right: '20px'
-  }
-  );
+  let editContainerUpper = createElement(
+    'div', edit,{});
 
-  let editContainer2 = createElement(
+  let editContainerLower = createElement(
     'div', edit, {});
 
 
-  let containerForChangeTimeIntervall = createElement(
+  let changeRepetitionIntervalContainer = createElement(
     'div',
     '',
     {
@@ -88,7 +82,7 @@ export default function settings() {
     border: '1px black solid'}, 'flexColumn'
   );
 
-  mainWindow.append(containerForChangeTimeIntervall);
+  mainWindow.append(changeRepetitionIntervalContainer);
 
   let containerUpper = createElement(
     'div',
@@ -97,87 +91,88 @@ export default function settings() {
   width: '100%',
   height: '50%',
   position: 'relative',
-border: '1px black solid'}, 'flexSpaceAround');
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+border: '1px black solid'});
 
-containerForChangeTimeIntervall.append(containerUpper);
+changeRepetitionIntervalContainer.append(containerUpper);
 
 
-let container1 = createElement('div', '', {
+let upperLeftContainer = createElement('div', '', {
   width: '20%', 
-  border: '1px black solid'
-}, 'flexSpaceAround');
+   border: '1px black solid'
+}, 'flexSpaceAroundAlignCenter');
 
 
 
-["<", '0', 'min'].forEach((el) => {
+let [upperLeftsmallerThan, upperLeftZero, upperLeftMin] = ["<", '0', 'min'].map((el) => {
   let input = document.createElement("div");
   input.innerText = el;
   //input.className = "noBorders";
-  input.style.width = '20%';
+ // input.style.width = '20%';
   input.style.height = '30%'
   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-  container1.append(input)
+  upperLeftContainer.append(input)
+  return input;
 
 });
-containerUpper.append(container1);
+containerUpper.append(upperLeftContainer);
 
 
-let container2 = createElement('div', '', {
+
+
+let upperMiddleContainer = createElement('div', '', {
   width: '20%',
-  border: '1px black solid',
+  //border: '1px black solid',
   
-}, 'flexSpaceAround');
+}, 'flexSpaceAroundAlignCenter');
 
 
-
-["<", '0', 'min'].forEach((el) => {
+let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'].map((el) => {
   let input = document.createElement("div");
   input.innerText = el;
   //input.className = "noBorders";
-  input.style.width = '20%';
+ // input.style.width = '20%';
   input.style.height = '30%'
   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-  container2.append(input)
+  upperMiddleContainer.append(input)
+  return input;
 
 });
-containerUpper.append(container2)
+
+ containerUpper.append(upperMiddleContainer)
 
 
-let container3 = createElement('div', '', {
+let upperRightContainer = createElement('div', '', {
   width: '20%',
-  border: '1px black solid',
+ border: '1px black solid',
   
-}, 'flexSpaceAround');
+}, 'flexSpaceAroundAlignCenter');
 
-
-
-["<", '0', 'min'].forEach((el) => {
+let [upperRightSmallerThan, upperRightZero, upperRightMin] = ["<", '0', 'min'].map((el) => {
   let input = document.createElement("div");
   input.innerText = el;
   //input.className = "noBorders";
-  input.style.width = '20%';
+ // input.style.width = '20%';
   input.style.height = '30%'
   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
-
-  container3.append(input)
+  upperRightContainer.append(input)
+  return input;
 
 });
-containerUpper.append(container3)
 
 
 
+containerUpper.append(upperRightContainer)
 
 
-containerUpper.append(editContainer1)
-
-
-
-
+containerUpper.append(editContainerUpper)
 
 
 
@@ -188,9 +183,11 @@ let containerLower = createElement(
     position: 'relative',
 width: '100%',
 height: '50%',
-border: '1px black solid'}, 'flexSpaceAround');
+border: '1px black solid',
+}, 'flexSpaceAroundAlignCenter');
 
-containerForChangeTimeIntervall.append(containerLower);
+changeRepetitionIntervalContainer.append(containerLower);
+
 
 
 let [again, good, easy] = ["again", "good", "easy"].map((el) => {
@@ -198,122 +195,111 @@ let [again, good, easy] = ["again", "good", "easy"].map((el) => {
   input.innerText = el;
  // input.className = "noBorders";
   input.style.width = '25%';
-  input.style.height = '30%';
-  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+  input.style.textAlign = 'center';
+  input.style.height = '57%';
+  input.style.backgroundColor = 'grey';
+  input.style.color = 'white';
+  input.style.borderRadius = '5px';
 
   containerLower.append(input)
   return input
 });
 
-containerLower.append(editContainer2)
-//containerLower.append(changeNameofDeckInput)
-
-
-let changeNameofDeckInput4 = createElement('input', '', {
-  width: '18%',
-  height: '20px'
-});
-
-let changeNameofDeckInput5 = createElement('input', '', {
-  width: '18%',
-  height: '20px'
-});
-
-let changeNameofDeckInput6 = createElement('input', '', {
-  width: '18%',
-  height: '20px',
-});
 
 
 
 
+
+containerLower.append(editContainerLower)
 
 
 
 
 let changeNameofDeckInput1 = createElement('input', '', {
-  width: '3%',
-  position: 'absolute',
-  left: '67px'
+  width: '28%',
 });
-
-
- changeNameofDeckInput1.onclick = function(event){
-      event.stopPropagation()
-    };
 
 let changeNameofDeckInput2 = createElement('input', '', {
-      width: '3%',
-      position: 'absolute',
-      left: '216px'
-    });
+  width: '28%',
 
-
-changeNameofDeckInput2.onclick = function(event){
-  event.stopPropagation()
-};
-
-
-let changeNameofDeckInput3 = createElement('input', '', {
-  width: '3%',
-  position: 'absolute',
-  left: '280px'
 });
 
-changeNameofDeckInput3.onclick = function(event){
-event.stopPropagation()
-}
+let changeNameofDeckInput3 = createElement('input', '', {
+  width: '28%',
+});
+
+let changeNameofDeckInput4 = createElement('input', '', {
+  width: '20%',
+
+});
+
+let changeNameofDeckInput5 = createElement('input', '', {
+  width: '20%',
+});
+
+let changeNameofDeckInput6 = createElement('input', '', {
+  width: '20%',
+});
+
+let reviewAndStudy = createElement(
+  'div', 'Review and Study Interval', {marginTop: "20px" }
+);
+
+mainWindow.append(reviewAndStudy)
+
+let studyContainer = createElement(
+  'div', '', {});
+
+let studyText = createElement(
+  'div', 'To study:', {marginTop: "20px" }
+);
+
+let studyInput = createElement(
+  'div', '', {});
+
+  let reviewContainer = createElement(
+    'div', '', {});
+
+
+let reviewText = createElement(
+  'div', 'To review:', {marginTop: "20px" }
+);
+
+let reviewInput = createElement(
+  'div', '', {});
+
+mainWindow.append(studyContainer);
+studyContainer.append(studyText);
+studyContainer.append(studyInput);
+
+mainWindow.append(reviewContainer);
+studyContainer.append(reviewText);
+studyContainer.append(reviewInput);
+
+
 
 
 let changeCardColors = createElement('div', 'Change Layout', {})
 
 let changebuttonColor = createElement('div', 'Change Layout', {})
 
-//let changeBackgroundColor = createElement
 
 
-
-
-let edited = false;
-
-
-editContainer1.onclick = function () {
+editContainerUpper.onclick = function () {
     
-//   window.addEventListener('click',clickOutsideHandle)
-// event.stopPropagation()
 
-//if (!edited) {
  
 
-  container1.replaceChild(changeNameofDeckInput1, container1.childNodes[1]);
-  container2.replaceChild(changeNameofDeckInput2, container2.childNodes[1]);
-  container3.replaceChild(changeNameofDeckInput3, container3.childNodes[1]);
-  //containerUpper.replaceChild(changeNameofDeckInput3, containerUpper.childNodes[2] )
- //this.innerHTML = save;       
-  
-  // containerUpper.replaceChild(test, changeNameofDeckInput);
-  // changeNameofDeckInput.value = nameOfNewDeck.innerText;
-  // edited = true;
-
- // console.log('click like a edit')
-// } else {
- 
-//   editIconContainer.append(editIcon)
-//   editIconContainer.append(editIconText)
-
-
-
-//   //console.log('click like a save')
-//   newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-//   window.removeEventListener('click',clickOutsideHandle)
-//   edited = false;
-//   //send fetch=>saveToDataBase
-//   // if ok
-//   nameOfNewDeck.innerText = changeNameofDeckInput.value;
+  upperLeftContainer.replaceChild(changeNameofDeckInput1, upperLeftZero);
+  changeNameofDeckInput1.value = upperLeftZero.innerText;  
+  upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
+  changeNameofDeckInput2.value = upperMiddleZero.innerText;  
+  upperRightContainer.replaceChild(changeNameofDeckInput3, upperRightZero);
+  changeNameofDeckInput3.value = upperRightZero.innerText;  
 
 };
 
-editContainer2.onclick = function () {
+editContainerLower.onclick = function () {
   containerLower.replaceChild(changeNameofDeckInput4, again);
   changeNameofDeckInput4.value = again.innerText;
   
@@ -322,11 +308,10 @@ editContainer2.onclick = function () {
 
   containerLower.replaceChild(changeNameofDeckInput6, easy);
   changeNameofDeckInput6.value = easy.innerText;
-
-
 }
 
-// console.log(containerLower.childNodes[0].innerHTML)
+
+
 
 
 
@@ -360,9 +345,6 @@ editContainer2.onclick = function () {
   settingsAndRedCrossContainer.append(redCross);
 
   
-  //mainWindow.appendChild(questionContainer);
-
-
   function closeMenu(){
     let all = document.querySelectorAll('.menuContainer>div')
     document.querySelector('.menuBox').style.display = 'none';

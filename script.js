@@ -61,6 +61,12 @@ document.querySelector('.menu').onclick = function () {
 };
 
 
+document.getElementById('paintbrush').onclick = function () {
+  document.body.style.cursor = "url('paintbrush.svg'), auto";
+  console.log('hello')
+}
+
+
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
 boxesInMenu.forEach(button => {
   button.onclick = function () {

@@ -271,6 +271,27 @@ textarea {
   justify-content: space-around;
 }
 
+.flexSpaceAroundAlignCenter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* .module {
+  cursor: url('paintbrush.svg'), auto;	
+} */
+
+#paintbrush {
+  width: 25px; 
+  height: 25px; 
+  top: 32px; 
+  /*cursor:pointer; */
+  right: 30px; 
+  position: absolute;
+}
+
+
+
 .flexColumn {
   display: flex;
   flex-direction: column;
