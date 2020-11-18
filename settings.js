@@ -60,7 +60,7 @@ export default function settings() {
     '',
     {
      width: '300px',
-    height: '90px',
+    height: '68px',
     border: '1px black solid', 
     marginTop: '10px'}, 'flexColumn'
   );
@@ -77,9 +77,29 @@ export default function settings() {
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
-  border: '1px black solid'});
+  border: '1px black solid',
+  borderBottom: '0px'});
 
 changeRepetitionIntervalContainer.append(containerUpper);
+
+
+
+let containerLower = createElement(
+  'div',
+  '',
+  { 
+position: 'relative',
+width: '100%',
+height: '50%',
+border: '1px black solid',
+borderTop: '0px'
+}, 'flexSpaceAroundAlignCenter');
+
+changeRepetitionIntervalContainer.append(containerLower);
+
+
+
+
 
 
 let upperLeftContainer = createElement('div', '', {
@@ -93,7 +113,6 @@ let [upperLeftsmallerThan, upperLeftZero, upperLeftMin] = ["<", '0', 'min'].map(
   let input = document.createElement("div");
   input.innerText = el;
   //input.className = "noBorders";
- // input.style.width = '20%';
   input.style.height = '30%'
   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
@@ -118,7 +137,6 @@ let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'
   let input = document.createElement("div");
   input.innerText = el;
   //input.className = "noBorders";
- // input.style.width = '20%';
   input.style.height = '30%'
   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
@@ -151,7 +169,6 @@ let [upperRightSmallerThan, upperRightZero, upperRightMin] = ["<", '0', 'min'].m
 });
 
 
-
 containerUpper.append(upperRightContainer)
 
 
@@ -159,40 +176,18 @@ containerUpper.append(editContainerUpper)
 
 
 
-let containerLower = createElement(
-  'div',
-  '',
-  {
-    position: 'relative',
-width: '100%',
-height: '50%',
-border: '1px black solid',
-}, 'flexSpaceAroundAlignCenter');
 
-changeRepetitionIntervalContainer.append(containerLower);
 
 
 
 let [again, good, easy] = ["again", "good", "easy"].map((el) => {
-  let input = document.createElement('div', el, {
-    width: '25%',
+  let input = createElement('div', el, {
+    width: '68px',
     textAlign: 'center',
-    height: '57%',
+    height: '21px',
     backgroundColor: 'grey',
     color: 'white',
     borderRadius: '5px'
-  
-//   input.innerText = el;
-//  // input.className = "noBorders";
-//   input.style.width = '25%';
-//   input.style.textAlign = 'center';
-//   input.style.height = '57%';
-//   input.style.backgroundColor = 'grey';
-//   input.style.color = 'white';
-//   input.style.borderRadius = '5px';
-
-
-//  return input
   })
   containerLower.append(input)
   return input
@@ -210,11 +205,6 @@ let reviewAndStudy = createElement(
 
 mainWindow.append(reviewAndStudy)
 
-// let studyContainer = createElement(
-//   'div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', marginTop: '10px'});
-
-// let reviewContainer = createElement(
-//     'div', '', {border: '1px black solid',  display: 'flex', justifyContent: 'space-around', marginTop: '10px', width: '200px'});
 
   let [studyContainer, reviewContainer] = [ '', ''].map(el=>{
     return createElement('div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', marginTop: '10px'})
@@ -247,7 +237,7 @@ reviewContainer.append(editToReview);
 
 
 
-let [studyCardInput, reviewCardInput] =  Array(2).fill('10px').map(width=>createElement('input' , '', {width}))
+let [studyCardInput, reviewCardInput] =  Array(2).fill('23px').map(width=>createElement('input' , '', {width}))
 
 
 
@@ -264,22 +254,35 @@ editContainerUpper.onclick = function () {
  
   upperLeftContainer.replaceChild(changeNameofDeckInput1, upperLeftZero);
   changeNameofDeckInput1.value = upperLeftZero.innerText;  
+  changeNameofDeckInput1.className = 'settingsButtonStyling'
+  
+
+
   upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
-  changeNameofDeckInput2.value = upperMiddleZero.innerText;  
+  changeNameofDeckInput2.value = upperMiddleZero.innerText; 
+  changeNameofDeckInput2.className = 'settingsButtonStyling'
+  
   upperRightContainer.replaceChild(changeNameofDeckInput3, upperRightZero);
   changeNameofDeckInput3.value = upperRightZero.innerText;  
+  changeNameofDeckInput3.className = 'settingsButtonStyling'
+
 
 };
 
 editContainerLower.onclick = function () {
   containerLower.replaceChild(changeNameofDeckInput4, again);
   changeNameofDeckInput4.value = again.innerText;
-  
+  changeNameofDeckInput4.className = 'settingsButtonStyling'
+  //changeNameofDeckInput4.focus();
+
   containerLower.replaceChild(changeNameofDeckInput5, good);
   changeNameofDeckInput5.value = good.innerText;
-
+  changeNameofDeckInput5.className = 'settingsButtonStyling'
+  
   containerLower.replaceChild(changeNameofDeckInput6, easy);
   changeNameofDeckInput6.value = easy.innerText;
+  changeNameofDeckInput6.className = 'settingsButtonStyling'
+  
 }
 
 

@@ -277,6 +277,16 @@ textarea {
   align-items: center;
 }
 
+.flexSpaceAroundAlignCenter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+
 
 #paintbrush {
   width: 25px; 
@@ -525,6 +535,16 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2
   justify-content: flex-end;
   height: 200px;
 }
+
+
+.settingsButtonStyling {
+  background-color: grey;
+  text-align: center;
+  color: white;
+}
+
+
+
 .level {
   width: 10px;
   height: 40px;
