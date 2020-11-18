@@ -277,7 +277,7 @@ textarea {
   align-items: center;
 }
 
-.flexSpaceAroundAlignCenter {
+.flexSpaceBetween {
   display: flex;
   justify-content: space-between;
   align-items: center;

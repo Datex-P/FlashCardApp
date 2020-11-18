@@ -13,11 +13,8 @@ export default function settings() {
   anchorElement.style.display = "flex";
 
   let mainWindow = createElement('div', '', {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
     border: '1px black solid'
-   }, 'addQuestionsToDeck')
+   }, 'addQuestionsToDeck flexColumnCenter')
   anchorElement.appendChild(mainWindow);
 
   //header
@@ -48,11 +45,11 @@ export default function settings() {
   mainWindow.append(changeTimeIntervall);
 
 
-  let editContainerUpper = createElement(
-    'div', edit,{});
+  
+  let [editContainerLower, editContainerUpper] = ['', ''].map(el=>{
+    return createElement('div', edit, {})
+  });
 
-  let editContainerLower = createElement(
-    'div', edit, {});
 
 
   let changeRepetitionIntervalContainer = createElement(
@@ -95,6 +92,17 @@ border: '1px black solid',
 borderTop: '0px'
 }, 'flexSpaceAroundAlignCenter');
 
+
+
+
+// let [containerLower, containerUpper] = ['', ''].map((el) =>{
+//   let div = document.createElement('div');
+//   div.style.width = '100%';
+//   div.style.height = '50%';
+//   div.style.position = 'relative';
+
+// })
+
 changeRepetitionIntervalContainer.append(containerLower);
 
 
@@ -103,9 +111,9 @@ changeRepetitionIntervalContainer.append(containerLower);
 
 
 let upperLeftContainer = createElement('div', '', {
-  width: '20%', 
+  width: '23%', 
    border: '1px black solid'
-}, 'flexSpaceAroundAlignCenter');
+}, 'flexSpaceBetween');
 
 
 
@@ -127,10 +135,10 @@ containerUpper.append(upperLeftContainer);
 
 
 let upperMiddleContainer = createElement('div', '', {
-  width: '20%',
-  //border: '1px black solid',
+  width: '23%',
+  border: '1px black solid',
   
-}, 'flexSpaceAroundAlignCenter');
+}, 'flexSpaceBetween');
 
 
 let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'].map((el) => {
@@ -150,10 +158,10 @@ let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'
 
 
 let upperRightContainer = createElement('div', '', {
-  width: '20%',
+  width: '23%',
  border: '1px black solid',
   
-}, 'flexSpaceAroundAlignCenter');
+}, 'flexSpaceBetween');
 
 let [upperRightSmallerThan, upperRightZero, upperRightMin] = ["<", '0', 'min'].map((el) => {
   let input = document.createElement("div");
@@ -207,7 +215,7 @@ mainWindow.append(reviewAndStudy)
 
 
   let [studyContainer, reviewContainer] = [ '', ''].map(el=>{
-    return createElement('div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', marginTop: '10px'})
+    return createElement('div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', alignItems: 'center', marginTop: '10px'})
   })
 
 
