@@ -4,9 +4,7 @@ import stats from './stats.js';
 import settings from './settings.js';
 import createNewDeck from './createNewDeck.js';
 import {closeMenu,createElement} from './exportFunctions.js';
-import {
-  brush
-} from "./svgs.js";
+import {brush} from "./svgs.js";
 
 createDom(dataBase.DeckNames);
 
@@ -65,9 +63,9 @@ let colorContainer = createElement('div','',{
 document.getElementById('paintbrush').onclick = function () {
 
   if (document.body.style.cursor == 'default'){
-    // document.body.style.cursor = "url('brush.svg') 10 20, auto";
-    document.body.style.cursor = "url(`${brush}`) 10 20, auto";
-
+    document.body.style.cursor = "url('brush.svg') 10 20, auto";
+    // document.body.style.cursor = `url(${brush}') 10 20, auto`;
+    console.log(`url('${brush}') 10 20, auto`)
 
     document.body.onmousemove = function(event){
       function componentToHex(c) {

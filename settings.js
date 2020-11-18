@@ -247,10 +247,7 @@ reviewContainer.append(editToReview);
 
 
 
-let [studyCardInput, reviewCardInput] =  [Array(2).fill('10px')].map(width=>{
-  return createElement('input' , '', {width});
-})
-
+let [studyCardInput, reviewCardInput] =  Array(2).fill('10px').map(width=>createElement('input' , '', {width}))
 
 
 
