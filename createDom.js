@@ -2,29 +2,8 @@ import { edit, save, trash } from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
+import {createElement} from './exportFunctions.js'
 
-
-function createElement(tag = 'div', inner = '', style = {}, className = null, id = null, parentNode = null) {
-
-  let element = document.createElement(tag);
-
-  element.innerHTML = inner;
-  if (id) {
-    element.id = id;
-  }
-  if (className) {
-    element.className = className;
-  }
-  for (let prop in style) {
-    element.style[prop] = style[prop]
-  }
-  if (parentNode) {
-    parentNode.appendChild(element)
-  }
-
-  return element
-
-};
 
 
 export default function createDom(obj) {
@@ -130,6 +109,10 @@ export default function createDom(obj) {
     //   });
     //   newDeckContainer.append(blackLines)
     // }
+
+
+
+
 
     let trashIconContainer = createElement('div', '', {
       border: '1px black solid',

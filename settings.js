@@ -4,25 +4,7 @@ import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 import { edit, save, trash} from './svgs.js';
-
-function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
-
-  let element = document.createElement(tag);
-
-  element.innerHTML = inner;
-  if (id) {
-    element.id = id;
-  }
-  if (className) {
-    element.className = className;
-  }
-  for (let prop in style) {
-    element.style[prop] = style[prop]
-  }
-  return element
-};
-
-
+import {createElement, closeMenu} from './exportFunctions.js'
 
 export default function settings() {
   
@@ -218,31 +200,7 @@ containerLower.append(editContainerLower)
 let [changeNameofDeckInput1,changeNameofDeckInput2,changeNameofDeckInput3,changeNameofDeckInput4,changeNameofDeckInput5,changeNameofDeckInput6] = [...Array(3).fill('28%'), ...Array(3).fill('20%')].map(width=>{
   return createElement('input', '', {width});
 })
-// let changeNameofDeckInput1 = createElement('input', '', {
-//   width: '28%',
-// });
 
-// let changeNameofDeckInput2 = createElement('input', '', {
-//   width: '28%',
-
-// });
-
-// let changeNameofDeckInput3 = createElement('input', '', {
-//   width: '28%',
-// });
-
-// let changeNameofDeckInput4 = createElement('input', '', {
-//   width: '20%',
-
-// });
-
-// let changeNameofDeckInput5 = createElement('input', '', {
-//   width: '20%',
-// });
-
-// let changeNameofDeckInput6 = createElement('input', '', {
-//   width: '20%',
-// });
 
 let reviewAndStudy = createElement(
   'div', 'Review and Study Interval', {marginTop: "20px" }
@@ -348,24 +306,8 @@ editContainerLower.onclick = function () {
   settingsAndRedCrossContainer.append(redCross);
 
   
-  function closeMenu(){
-    let all = document.querySelectorAll('.menuContainer>div')
-    document.querySelector('.menuBox').style.display = 'none';
-   // opened = false;
-    window.onclick = '';
-    all[0].classList.remove('transPlus');
-    all[0].style.top = '0px'
-    all[2].classList.remove('transMinus');
-    all[2].style.top = '16px'
-    document.getElementById('menuIcon2').style.display = 'block';
-  }
 
 closeMenu()
-
-
-
-
-
 
 
     }

@@ -3,23 +3,9 @@ import { startTimer, timer } from "./timer.js";
 import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
+import {createElement} from './exportFunctions.js'
 
-function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
 
-  let element = document.createElement(tag);
-
-  element.innerHTML = inner;
-  if (id) {
-    element.id = id;
-  }
-  if (className) {
-    element.className = className;
-  }
-  for (let prop in style) {
-    element.style[prop] = style[prop]
-  }
-  return element
-}
 
 function generateTextarea(inner, style = {}) {
   let container = createElement('div', '', { ...style, width: '90%' });

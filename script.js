@@ -4,8 +4,8 @@ import {
 } from './dataBase.js';
 import stats from './stats.js';
 import settings from './settings.js';
-import createNewDeck from './createNewDeck.js'
-
+import createNewDeck from './createNewDeck.js';
+import {closeMenu} from './exportFunctions.js';
 
 
 createDom(dataBase.DeckNames);
@@ -23,17 +23,7 @@ function handleOutsideClick(e) {
   }
 }
 
-function closeMenu(){
-  let all = document.querySelectorAll('.menuContainer>div')
-  document.querySelector('.menuBox').style.display = 'none';
-  opened = false;
-  window.onclick = '';
-  all[0].classList.remove('transPlus');
-  all[0].style.top = '0px'
-  all[2].classList.remove('transMinus');
-  all[2].style.top = '16px'
-  document.getElementById('menuIcon2').style.display = 'block';
-}
+closeMenu();
 
 document.querySelector('.menu').onclick = function () {
 
@@ -61,10 +51,33 @@ document.querySelector('.menu').onclick = function () {
 };
 
 
-document.getElementById('paintbrush').onclick = function () {
-  document.body.style.cursor = "url('pencil.svg') 10 20, auto";
-  console.log('hello')
-}
+// document.getElementById('paintbrush').onclick = function () {
+//   document.body.style.cursor = "url('brush.svg') 10 20, auto";
+  
+//   document.querySelector('.orangeCircle').onmouseenter = function () {
+//     this.id = 'picker';
+//     //var colorPicker = new iro.ColorPicker('#picker');
+//     var colorPicker = new iro.ColorPicker("#picker", {
+//       // Set the size of the color picker
+//       width: 320,
+//       // Set the initial color to pure red
+//       color: "#f00"
+//     });
+//     this.append(colorPicker);
+//   }
+
+//   this.addEventListener('click', function () {
+//     document.body.style.cursor = 'default'
+//   });
+
+//   // this.removeEventListener('click', function () {
+//   //   document.body.style.cursor = 'default'
+//   // });
+
+ 
+
+//   }
+
 
 
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
