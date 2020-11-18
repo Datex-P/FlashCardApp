@@ -1,53 +1,39 @@
 import {dataBase} from './dataBase.js'
 import {redCross as redCrossIcon} from './svgs.js';
 import createDom from './createDom.js';
+import {createElement} from './exportFunctions.js';
+
 
 export default function addQuestionsToDeck (item) {
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
       anchorElement.style.display = 'flex';
 
-  let mainWindow = document.createElement("div");
-      mainWindow.className = 'addQuestionsToDeck';
 
-  let innerWindow = document.createElement('div');
-      innerWindow.style.marginTop = '20px';
-      innerWindow.style.marginLeft = '30px';
+  let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck');
 
-  let addToDeck = document.createElement("button");
-      addToDeck.innerHTML = "Add to Deck";
-      addToDeck.style.backgroundColor = '#545863';
-      addToDeck.style.color = '#FFE3E3';  
-      addToDeck.style.width = '70%';
-      addToDeck.style.marginTop =  '10px';
-      addToDeck.style.marginLeft = '8px';
-      addToDeck.style.cursor = 'pointer';
-    
-      
-  let insideFlashCardsContainer = document.createElement('div');
-      insideFlashCardsContainer.style.marginTop = '30px'
+  let innerWindow = createElement('div', '', {marginTop: '20px', marginLeft: '30px'});
 
-  let theWordFlashCardsAndRedCrossContainer = document.createElement('div');
-      theWordFlashCardsAndRedCrossContainer.style.width = '247px';
-      theWordFlashCardsAndRedCrossContainer.style.marginLeft = '8px';
-      theWordFlashCardsAndRedCrossContainer.className = 'flexSpaceBetween';
+  let addToDeck = createElement('button', 'Add to Deck', {backgroundColor: '#545863', color: '#FFE3E3', width: '70%', marginTop: '10px', 
+  marginLeft: '8px', cursor: 'pointer'});
+
+  let insideFlashCardsContainer = createElement('div', '', {marginTop: '30px'});
+
+  let theWordFlashCardsAndRedCrossContainer = createElement('div', '', {width: '247px', marginLeft: '8px'}, 'flexSpaceBetween')
+
+  let theNameOfTheDeck = createElement('div', `&#160${item}`, {});
+
+  let theWordDeck = createElement('div', 'Deck', {fontWeight: 'bold'});
+
+  let redCross = createElement('div', redCrossIcon, {}, 'redCross');
      
-  let theNameofTheDeck = document.createElement('div');
-      theNameofTheDeck.innerHTML = `&#160${item}`;    
+  let header = createElement('div', {display: 'flex'});
 
-  let theWordDeck = document.createElement('div');
-      theWordDeck.innerHTML = 'Deck:';
-      theWordDeck.fontWeight = 'bold';
-
-  let header = document.createElement('div');
       header.appendChild(theWordDeck);
-      header.appendChild(theNameofTheDeck);
-      header.style.display = 'flex'
+      header.appendChild(theNameOfTheDeck);
+    
 
 
-  let redCross = document.createElement('div');
-       redCross.innerHTML = redCrossIcon;
-       redCross.className = 'redCross';
 
 
 ['Question', 'Answer'].forEach(el =>{
