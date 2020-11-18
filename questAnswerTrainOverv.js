@@ -189,7 +189,7 @@ export default function questAnswerTrainOverv(item) {
     {
       margin: '0 auto',
       border: '1px black solid',
-      width: '80%'
+      width: '90%'
     }, 'flexSpaceBetween'
   );
 
@@ -198,7 +198,7 @@ export default function questAnswerTrainOverv(item) {
   
 
   [1, 2, 20].forEach(el => {
-    let btn = createElement('div', `<${el}m`, {});
+    let btn = createElement('div', `< ${el}m`, {fontWeight: 'bold'});
     containerForTimeButtons.append(btn);
     btn.onclick = function(){
         dataBase.queue.push({question, answer, index,timeLeft: el*6000})
@@ -255,7 +255,8 @@ export default function questAnswerTrainOverv(item) {
       position: 'absolute',
       cursor: 'pointer',
       top: '0',
-      right: '0'
+      right: '0',
+      fontWeight: 'bold'
     }
   );
 

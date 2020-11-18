@@ -1,7 +1,5 @@
 import createDom from './createDom.js';
-import {
-  dataBase
-} from './dataBase.js';
+import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 import settings from './settings.js';
 import createNewDeck from './createNewDeck.js';
@@ -18,12 +16,12 @@ function handleOutsideClick(e) {
     // document.querySelector('.menuBox').style.display = 'none';
     // opened = false;
     console.log('window handler still alive')
-    // window.onclick = ''
+     window.onclick = ''
     closeMenu()
   }
 }
 
-closeMenu();
+//closeMenu();
 
 document.querySelector('.menu').onclick = function () {
 

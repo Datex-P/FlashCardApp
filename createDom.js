@@ -5,7 +5,6 @@ import { dataBase } from './dataBase.js';
 import {createElement} from './exportFunctions.js'
 
 
-
 export default function createDom(obj) {
 
   listOfDecks.innerHTML = '';
@@ -137,11 +136,6 @@ export default function createDom(obj) {
       all[lastIndex].querySelector('.threeDotsIcon').style.opacity = 1;
       all[lastIndex].style.transform = 'rotate(0deg)';
       all[lastIndex].querySelector('.orangeCircle').style.display = 'flex'
-
-      // listOfDecks.childNodes[1].className = 'orangeCircle';
-
-      // listOfDecks.childNodes[1].append(addToDeckIcon)
-      // deletedDeck();
 
 
       delete dataBase.DeckNames[item];
@@ -318,28 +312,6 @@ export default function createDom(obj) {
     listOfDecks.prepend(newDeckContainer);
 
   });
-
-
-  //   function deletedDeck() {
-  
-  //   let all = listOfDecks.querySelectorAll('.newDeckContainer')
-  //   Array.from(all).reverse().forEach((item, index) => {
-  //     item.style.zIndex = 0
-  //     item.querySelector('.threeDotsIcon').style.opacity = 0;
-
-  //     item.querySelector('.orangeCircle').style.display = 'none'
-  //     item.style.transform = `rotate(${index * -2}deg)`;
-  //   })
-  //   all[index].style.zIndex = 2;
-  //   all[index].querySelector('.threeDotsIcon').style.opacity = 1;
-  //   all[index].style.transform = 'rotate(0deg)';
-  //   all[index].querySelector('.orangeCircle').style.display = 'flex'
-  // }
-
-
-
-
-
 
 
 

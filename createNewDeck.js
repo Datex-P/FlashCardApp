@@ -2,24 +2,7 @@ import {
   dataBase
 } from './dataBase.js';
 import createDom from './createDom.js';
-
-function createElement(tag = 'div', inner = '', style = {}, className = null, id = null) {
-
-  let element = document.createElement(tag);
-
-  element.innerHTML = inner;
-  if (id) {
-    element.id = id;
-  }
-  if (className) {
-    element.className = className;
-  }
-  for (let prop in style) {
-    element.style[prop] = style[prop]
-  }
-  return element
-}
-
+import {createElement} from './exportFunctions.js'
 
 
 export default function createNewDeck() {
@@ -30,6 +13,7 @@ export default function createNewDeck() {
 
   let mainWindow = createElement('div', '', {
       height: '160px',
+      // zIndex: '4',
       justifyContent: 'center',
       width: '280px',
       backgroundColor: 'rgba(200, 168, 115,0.95)',
@@ -104,14 +88,6 @@ export default function createNewDeck() {
 
     buttonContainer.append(button);
   });
-
-
-
-
-
-
-
-
 
 
 
