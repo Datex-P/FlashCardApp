@@ -6,6 +6,28 @@ import {createElement} from './exportFunctions.js'
 
 
 export default function createNewDeck() {
+  document.querySelector('#listOfDecks').style.display= 'none'
+  // let all = listOfDecks.querySelectorAll('.newDeckContainer')
+
+  // let selectedIndex = 0
+
+  
+  // Array.from(all).reverse().forEach((item,index) => {
+    
+  //   if(!!(+item.style.zIndex)){
+  //     selectedIndex = index
+  //     console.log(item.style.zIndex,index)
+  //   }
+  //   item.style.zIndex = 0
+  //   // item.querySelector('.orangeCircle').style.display = 'none'
+  //   item.querySelector('.threeDotsIcon').style.opacity = 0;
+  //   // console.log(all[index])
+  // })
+
+  // console.log(selectedIndex)
+    
+
+
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
   anchorElement.style.display = 'flex'
@@ -58,11 +80,17 @@ export default function createNewDeck() {
     )
 
     button.addEventListener('click', function () {
+      // Array.from(all).reverse()[selectedIndex].style.zIndex = 2;
+      // Array.from(all).reverse()[selectedIndex].querySelector('.threeDotsIcon').style.opacity = 1;
+      // Array.from(all).reverse()[selectedIndex].style.transform = 'rotate(0deg)';
+      // Array.from(all).reverse()[selectedIndex].querySelector('.orangeCircle').style.display = 'flex'
 
+      document.querySelector('#listOfDecks').style.display= 'block'
 
       if (el === 'Cancel') {
         mainWindow.style.display = 'none';
         anchorElement.style.display = 'none';
+
 
         // if (!Object.keys(dataBase.DeckNames).length) {
         //   //         let arrowDown = document.querySelector(".arrowDown");
