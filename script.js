@@ -3,7 +3,7 @@ import {dataBase} from './dataBase.js';
 import stats from './stats.js';
 import settings from './settings.js';
 import createNewDeck from './createNewDeck.js';
-import {closeMenu} from './exportFunctions.js';
+import {closeMenu,createElement} from './exportFunctions.js';
 
 
 createDom(dataBase.DeckNames);
@@ -18,10 +18,11 @@ function handleOutsideClick(e) {
     console.log('window handler still alive')
      window.onclick = ''
     closeMenu()
+    opened = false;
   }
 }
 
-closeMenu();
+// closeMenu();
 
 document.querySelector('.menu').onclick = function () {
 
@@ -44,37 +45,69 @@ document.querySelector('.menu').onclick = function () {
     }, 10)
   } else {
     closeMenu()
+    opened = false;
   }
 
 };
 
+let colorContainer = createElement('div','',{
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  display: 'block'
+},'','',document.body)
+// let colorInput = createElement('input')
+//       colorInput.type = 'color'
+//       colorContainer.appendChild(colorInput)
 
-// document.getElementById('paintbrush').onclick = function () {
-//   document.body.style.cursor = "url('brush.svg') 10 20, auto";
+document.getElementById('paintbrush').onclick = function () {
+
+  if (document.body.style.cursor == 'default'){
+    document.body.style.cursor = "url('brush.svg') 10 20, auto";
+    document.body.onmousemove = function(event){
+      function componentToHex(c) {
+        let num = +c
+        var hex = num.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+      }
+      
+      function rgbToHex(r, g, b) {
+        return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+      }
+      let colorInput = createElement('input')
+      colorInput.type = 'color'
+      let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
+      let params = color.match(/([0-9]{3})/g) || [0,0,0]
+      colorInput.value = rgbToHex(...params);
+      // console.log(color)
+      // console.log(event.target.style.backgroundColor)
+      colorContainer.innerHTML = ''
+      colorContainer.appendChild(colorInput) 
+      colorContainer.style.display = 'block'
+
+      // event.target.style.backgroundColor = 'red'
+
+      
+    }
+
+  }else{
+    document.body.style.cursor = 'default'
+  }
   
-//   document.querySelector('.orangeCircle').onmouseenter = function () {
-//     this.id = 'picker';
-//     //var colorPicker = new iro.ColorPicker('#picker');
-//     var colorPicker = new iro.ColorPicker("#picker", {
-//       // Set the size of the color picker
-//       width: 320,
-//       // Set the initial color to pure red
-//       color: "#f00"
-//     });
-//     this.append(colorPicker);
-//   }
+  
+  // document.querySelector('.orangeCircle').onmouseenter = function () {
+  //   this.id = 'picker';
+  //   //var colorPicker = new iro.ColorPicker('#picker');
+  //   var colorPicker = new iro.ColorPicker("#picker", {
+  //     // Set the size of the color picker
+  //     width: 320,
+  //     // Set the initial color to pure red
+  //     color: "#f00"
+  //   });
+  //   this.append(colorPicker);
+  // }
 
-//   this.addEventListener('click', function () {
-//     document.body.style.cursor = 'default'
-//   });
-
-//   // this.removeEventListener('click', function () {
-//   //   document.body.style.cursor = 'default'
-//   // });
-
- 
-
-//   }
+  }
 
 
 
