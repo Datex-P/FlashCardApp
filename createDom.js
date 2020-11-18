@@ -262,7 +262,7 @@ export default function createDom(obj) {
     let addToDeckIcon = createElement('div', '', {
     }, 'orangeCircle');
 
-     if (index === 0 /*|| index === 1*/) {
+     if (index === 0 ) {
       addToDeckIcon.style.display = 'flex';
       newDeckContainer.style.zIndex = 2
     }
