@@ -21,7 +21,7 @@ function handleOutsideClick(e) {
   }
 }
 
-//closeMenu();
+closeMenu();
 
 document.querySelector('.menu').onclick = function () {
 
