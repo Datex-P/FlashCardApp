@@ -22,7 +22,7 @@ export default function settings() {
 
   //header
   let settingsAndRedCrossContainer = createElement(
-    'div', '', {width: "265px" }, 'flexSpaceBetween'
+    'div', '', {width: "265px", marginBottom: '10px'}, 'flexSpaceBetween'
   );
 
 
@@ -61,7 +61,8 @@ export default function settings() {
     {
      width: '300px',
     height: '90px',
-    border: '1px black solid'}, 'flexColumn'
+    border: '1px black solid', 
+    marginTop: '10px'}, 'flexColumn'
   );
 
   mainWindow.append(changeRepetitionIntervalContainer);
@@ -76,7 +77,7 @@ export default function settings() {
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
-border: '1px black solid'});
+  border: '1px black solid'});
 
 changeRepetitionIntervalContainer.append(containerUpper);
 
@@ -173,34 +174,35 @@ changeRepetitionIntervalContainer.append(containerLower);
 
 
 let [again, good, easy] = ["again", "good", "easy"].map((el) => {
-  let input = document.createElement("div");
-  input.innerText = el;
- // input.className = "noBorders";
-  input.style.width = '25%';
-  input.style.textAlign = 'center';
-  input.style.height = '57%';
-  input.style.backgroundColor = 'grey';
-  input.style.color = 'white';
-  input.style.borderRadius = '5px';
+  let input = document.createElement('div', el, {
+    width: '25%',
+    textAlign: 'center',
+    height: '57%',
+    backgroundColor: 'grey',
+    color: 'white',
+    borderRadius: '5px'
+  
+//   input.innerText = el;
+//  // input.className = "noBorders";
+//   input.style.width = '25%';
+//   input.style.textAlign = 'center';
+//   input.style.height = '57%';
+//   input.style.backgroundColor = 'grey';
+//   input.style.color = 'white';
+//   input.style.borderRadius = '5px';
 
+
+//  return input
+  })
   containerLower.append(input)
   return input
 });
 
-
-
-
-
-
 containerLower.append(editContainerLower)
-
-
-
 
 let [changeNameofDeckInput1,changeNameofDeckInput2,changeNameofDeckInput3,changeNameofDeckInput4,changeNameofDeckInput5,changeNameofDeckInput6] = [...Array(3).fill('28%'), ...Array(3).fill('20%')].map(width=>{
   return createElement('input', '', {width});
 })
-
 
 let reviewAndStudy = createElement(
   'div', 'Review and Study Interval', {marginTop: "20px" }
@@ -208,49 +210,61 @@ let reviewAndStudy = createElement(
 
 mainWindow.append(reviewAndStudy)
 
-let studyContainer = createElement(
-  'div', '', {});
+// let studyContainer = createElement(
+//   'div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', marginTop: '10px'});
 
-let studyText = createElement(
-  'div', 'To study:', {marginTop: "20px" }
+// let reviewContainer = createElement(
+//     'div', '', {border: '1px black solid',  display: 'flex', justifyContent: 'space-around', marginTop: '10px', width: '200px'});
+
+  let [studyContainer, reviewContainer] = [ '', ''].map(el=>{
+    return createElement('div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', marginTop: '10px'})
+  })
+
+
+
+let studyCards = createElement(
+  'div', 'cards', {width: '30px'}
 );
 
-let studyInput = createElement(
-  'div', '', {});
 
-  let reviewContainer = createElement(
-    'div', '', {});
+let [studyText, studyInput, editToStudy, editToReview, reviewText, reviewInput, reviewCards] =  ['To study', '', edit, edit, 'To review', '', 'cards'].map(el=>{
+  return createElement('div', el, {})
+});
 
 
-let reviewText = createElement(
-  'div', 'To review:', {marginTop: "20px" }
-);
-
-let reviewInput = createElement(
-  'div', '', {});
 
 mainWindow.append(studyContainer);
 studyContainer.append(studyText);
 studyContainer.append(studyInput);
+studyContainer.append(studyCards)
+studyContainer.append(editToStudy);
 
 mainWindow.append(reviewContainer);
-studyContainer.append(reviewText);
-studyContainer.append(reviewInput);
+reviewContainer.append(reviewText);
+reviewContainer.append(reviewInput);
+reviewContainer.append(reviewCards);
+reviewContainer.append(editToReview);
+
+
+
+let [studyCardInput, reviewCardInput] =  [Array(2).fill('10px')].map(width=>{
+  return createElement('input' , '', {width});
+})
 
 
 
 
-let changeCardColors = createElement('div', 'Change Layout', {})
+editToReview.onclick = function () {
+  reviewContainer.replaceChild(reviewCardInput, reviewInput)
+}
 
-let changebuttonColor = createElement('div', 'Change Layout', {})
-
+editToStudy.onclick = function () {
+  studyContainer.replaceChild(studyCardInput, studyInput)
+}
 
 
 editContainerUpper.onclick = function () {
-    
-
  
-
   upperLeftContainer.replaceChild(changeNameofDeckInput1, upperLeftZero);
   changeNameofDeckInput1.value = upperLeftZero.innerText;  
   upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
