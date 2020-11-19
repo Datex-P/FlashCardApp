@@ -1,9 +1,14 @@
 import createDom from './createDom.js';
-import {dataBase} from './dataBase.js';
+import {
+  dataBase
+} from './dataBase.js';
 import stats from './stats.js';
 import settings from './settings.js';
 import createNewDeck from './createNewDeck.js';
-import {closeMenu,createElement} from './exportFunctions.js';
+import {
+  closeMenu,
+  createElement
+} from './exportFunctions.js';
 import {
   brush
 } from "./svgs.js";
@@ -18,7 +23,7 @@ function handleOutsideClick(e) {
     // document.querySelector('.menuBox').style.display = 'none';
     // opened = false;
     console.log('window handler still alive')
-     window.onclick = ''
+    window.onclick = ''
     closeMenu()
     opened = false;
   }
@@ -52,84 +57,83 @@ document.querySelector('.menu').onclick = function () {
 
 };
 
-let colorContainer = createElement('div','',{
+let colorContainer = createElement('div', '', {
   position: 'absolute',
   top: 0,
   right: 0,
   display: 'block'
-},'','',document.body)
+}, '', '', document.body)
 // let colorInput = createElement('input')
 //       colorInput.type = 'color'
 //       colorContainer.appendChild(colorInput)
 
 document.getElementById('paintbrush').onclick = function () {
 
-  if (document.body.style.cursor == 'default'){
-    document.body.style.cursor = "url('brush.svg') 10 20, auto";
-    // document.body.style.cursor = "url(`${brush}`) 10 20, auto";
+    if (document.body.style.cursor == 'default') {
+      document.body.style.cursor = "url('brush.svg') 10 20, auto";
+      // document.body.style.cursor = "url(`${brush}`) 10 20, auto";
 
 
-    document.body.onmousemove = function(event){
-      function componentToHex(c) {
-        let num = +c
-        var hex = num.toString(16);
-        return hex.length == 1 ? "0" + hex : hex;
+      document.body.onmousemove = function (event) {
+        function componentToHex(c) {
+          let num = +c
+          var hex = num.toString(16);
+          return hex.length == 1 ? "0" + hex : hex;
+        }
+
+        function rgbToHex(r, g, b) {
+          return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+        let colorInput = createElement('input')
+        colorInput.type = 'color'
+        let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
+        let params = color.match(/([0-9]{3})/g) || [0, 0, 0]
+        colorInput.value = rgbToHex(...params);
+        // console.log(color)
+        // console.log(event.target.style.backgroundColor)
+        colorContainer.innerHTML = ''
+        colorContainer.appendChild(colorInput)
+        colorContainer.style.display = 'block'
+
+        // event.target.style.backgroundColor = 'red'
+
+
       }
-      
-      function rgbToHex(r, g, b) {
-        return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-      }
-      let colorInput = createElement('input')
-      colorInput.type = 'color'
-      let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
-      let params = color.match(/([0-9]{3})/g) || [0,0,0]
-      colorInput.value = rgbToHex(...params);
-      // console.log(color)
-      // console.log(event.target.style.backgroundColor)
-      colorContainer.innerHTML = ''
-      colorContainer.appendChild(colorInput) 
-      colorContainer.style.display = 'block'
 
-      // event.target.style.backgroundColor = 'red'
-
-      
-    }
-
-  }else{
-    document.body.style.cursor = 'default'
-  }
-  
-  
- 
-
-
-
-let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
-boxesInMenu.forEach(button => {
-  button.onclick = function () {
-    if (button.innerText === 'Stats') {
-      stats();
-      document.querySelector('.menuBox').style.display = 'none';
-    }
-    if (button.innerText === 'Settings') {
-      settings();
-      document.querySelector('.menuBox').style.display = 'none';
+    } else {
+      document.body.style.cursor = 'default'
     }
   }
-})
-
-// for (let i=0; i<boxesInMenu.length; i++) {
-//   boxesInMenu[i].onmouseover = function (e) {
-//     e.target.style.backgroundColor = 'blue';
-//   }
-// }
 
 
 
-document.getElementById("createDeckButton").onclick = function () {
-  createNewDeck()
-
-  document.querySelector(".arrowDown").style.display = "none";
-};
 
 
+
+    let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
+    boxesInMenu.forEach(button => {
+      button.onclick = function () {
+        if (button.innerText === 'Stats') {
+          stats();
+          document.querySelector('.menuBox').style.display = 'none';
+        }
+        if (button.innerText === 'Settings') {
+          settings();
+          document.querySelector('.menuBox').style.display = 'none';
+        }
+      }
+    });
+
+    // for (let i=0; i<boxesInMenu.length; i++) {
+    //   boxesInMenu[i].onmouseover = function (e) {
+    //     e.target.style.backgroundColor = 'blue';
+    //   }
+    // }
+
+
+
+    document.getElementById("createDeckButton").onclick = function () {
+      createNewDeck()
+
+      document.querySelector(".arrowDown").style.display = "none";
+    };
