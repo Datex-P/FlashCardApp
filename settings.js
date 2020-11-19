@@ -4,7 +4,7 @@ import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 import { edit, save, trash} from './svgs.js';
-import {createElement, closeMenu, redCross} from './exportFunctions.js'
+import {createElement, closeMenu, redCross, handleOutsideClick} from './exportFunctions.js'
 
 export default function settings() {
   
@@ -277,7 +277,6 @@ editContainerUpper.onclick = function () {
     item.smaller.style.display = 'none'
   })
  
-
 };
 
 editContainerLower.onclick = function () {
@@ -296,9 +295,6 @@ editContainerLower.onclick = function () {
 
 
 
-
-
-
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
@@ -306,19 +302,7 @@ editContainerLower.onclick = function () {
 
   redCross.onclick = close
 
-  setTimeout(function () {
-    window.onclick = function handleOutsideClick(e) {
-      if (mainWindow.contains(e.target)) {
-        //alert("Clicked in Box");
-      } else {
-        //alert("Clicked outside Box");
-        redCross.classList.add("blinkingIcon");
-        setTimeout(() => {
-          redCross.classList.remove("blinkingIcon");
-        }, 4500);
-      }
-    };
-  }, 10);
+handleOutsideClick(mainWindow)
 
  
 
