@@ -311,10 +311,6 @@ textarea {
   flex-direction: column;
 }
 
-
-
-
-
 .flexSpaceBetween {
   display: flex;
   justify-content: space-between;
