@@ -3,7 +3,7 @@ import { startTimer, timer } from "./timer.js";
 import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
-import { edit, save, trash} from './svgs.js';
+import { edit, save, trash, reset} from './svgs.js';
 import {createElement, closeMenu, redCross, handleOutsideClick} from './exportFunctions.js'
 
 export default function settings() {
@@ -158,13 +158,6 @@ let [upperLeftMin,upperMiddleMin,upperRightMin] = [upperLeftContainer,upperMiddl
 
 
 
-
-
-
-
-
-
-
 containerUpper.append(editContainerUpper)
 
 
@@ -203,6 +196,33 @@ mainWindow.append(reviewAndStudy)
     return createElement('div', '', {border: '1px black solid', display: 'flex', width: '160px', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px'})
   })
 
+  let theWordResetConfigurations = createElement(
+    'div', 'Reset Configurations', {
+      border: '1px black solid',
+      marginTop: '20px',
+      marginBottom: '10px'
+    }
+  );
+
+  let resetColorSchemeContainer = createElement(
+    'div', '', {
+      width: '154px',
+      border: '1px black solid',
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  );
+
+  let resetColor = createElement(
+    'div', 'Reset Colorscheme', {}
+  );
+
+  let resetColorIcon = createElement(
+    'div', reset, {}
+  );
+
+
+
 
 
 let studyCards = createElement(
@@ -232,6 +252,11 @@ reviewContainer.append(reviewText);
 reviewContainer.append(reviewInput);
 reviewContainer.append(reviewCards);
 reviewContainer.append(editToReview);
+
+mainWindow.append(theWordResetConfigurations)
+mainWindow.append(resetColorSchemeContainer);
+resetColorSchemeContainer.append(resetColor);
+resetColorSchemeContainer.append(resetColorIcon);
 
 
 
