@@ -127,18 +127,19 @@ export default function createDom(obj) {
 
 
     trashIconContainer.onclick = () => {
-      newDeckContainer.parentNode.removeChild(newDeckContainer);
+      // newDeckContainer.parentNode.removeChild(newDeckContainer);
 
-      let all = listOfDecks.querySelectorAll('.newDeckContainer')
+      // let all = listOfDecks.querySelectorAll('.newDeckContainer')
 
-      let lastIndex  = all.length - 1 
-      all[lastIndex].style.zIndex = 2;
-      all[lastIndex].querySelector('.threeDotsIcon').style.opacity = 1;
-      all[lastIndex].style.transform = 'rotate(0deg)';
-      all[lastIndex].querySelector('.orangeCircle').style.display = 'flex'
+      // let lastIndex  = all.length - 1 
+      // all[lastIndex].style.zIndex = 2;
+      // all[lastIndex].querySelector('.threeDotsIcon').style.opacity = 1;
+      // all[lastIndex].style.transform = 'rotate(0deg)';
+      // all[lastIndex].querySelector('.orangeCircle').style.display = 'flex'
 
 
       delete dataBase.DeckNames[item];
+      createDom(dataBase.DeckNames)
       if (!Object.keys(dataBase.DeckNames).length) {
         let arrowDown = document.querySelector(".arrowDown");
         arrowDown.style.display = "block";
@@ -329,7 +330,7 @@ export default function createDom(obj) {
      // console.log(all[index])
 
       item.querySelector('.orangeCircle').style.display = 'none'
-      item.style.transform = `rotate(${index * -2}deg)`;
+      item.style.transform = `rotate(${(index * -2)||-2}deg)`;
     })
     all[index].style.zIndex = 2;
     all[index].querySelector('.threeDotsIcon').style.opacity = 1;

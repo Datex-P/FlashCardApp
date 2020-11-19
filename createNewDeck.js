@@ -109,7 +109,7 @@ export default function createNewDeck() {
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
           anchorElement.style.display = 'none';
-          document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
+          //document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
         }
       }
     })
