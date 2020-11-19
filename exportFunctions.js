@@ -1,10 +1,10 @@
-import { redCross as redCrossIcon} from "./svgs.js";
+import { redCross as redCrossIcon } from "./svgs.js";
 
 
- function closeMenu(){
+function closeMenu() {
   let all = document.querySelectorAll('.menuContainer>div')
   document.querySelector('.menuBox').style.display = 'none';
- // opened = false;
+  // opened = false;
   window.onclick = '';
   all[0].classList.remove('transPlus');
   all[0].style.top = '0px'
@@ -44,6 +44,21 @@ let redCross = createElement(
   'redCross'
 );
 
+function handleOutsideClick(mainWindow){
+  setTimeout(function () {
+    window.onclick = function (e) {
+      if (mainWindow.contains(e.target)) {
+        //alert("Clicked in Box");         
+      } else {
+        //alert("Clicked outside Box");
+        redCross.classList.add('blinkingIcon');
+        setTimeout(() => {
+          redCross.classList.remove('blinkingIcon')
+        }, 3000);
+      }
+    }
+  }, 10);
+}
 
 
 
@@ -51,5 +66,4 @@ let redCross = createElement(
 
 
 
-
-export {createElement, closeMenu, redCross};
+export { createElement, closeMenu, redCross, handleOutsideClick };

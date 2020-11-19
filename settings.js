@@ -189,7 +189,7 @@ let [again, good, easy] = ["again", "good", "easy"].map((el) => {
 containerLower.append(editContainerLower)
 
 let [changeNameofDeckInput1,changeNameofDeckInput2,changeNameofDeckInput3,changeNameofDeckInput4,changeNameofDeckInput5,changeNameofDeckInput6] = [...Array(3).fill('28%'), ...Array(3).fill('20%')].map(width=>{
-  return createElement('input', '', {width});
+  return createElement('input', '', {width},'settingsButtonStyling');
 })
 
 let reviewAndStudy = createElement(
@@ -249,47 +249,47 @@ editToStudy.onclick = function () {
 
 
 editContainerUpper.onclick = function () {
+
+  [
+    {
+      container: upperLeftContainer,
+      input: changeNameofDeckInput1,
+      div: upperLeftZero,
+      smaller: upperLeftSmaller
+    },
+    {
+      container: upperMiddleContainer,
+      input: changeNameofDeckInput2,
+      div: upperMiddleZero,
+      smaller: upperMiddleSmaller
+    },
+    {
+      container: upperRightContainer,
+      input: changeNameofDeckInput3,
+      div: upperRightZero,
+      smaller: upperRightSmaller
+    },
+  ].forEach(item=>{
+    item.container.replaceChild(item.input, item.div);
+    item.input.value = upperLeftZero.innerText;  
+    item.input.style.width = '47%';
+    item.input.style.marginRight = '3px';
+    item.smaller.style.display = 'none'
+  })
  
-  upperLeftContainer.replaceChild(changeNameofDeckInput1, upperLeftZero);
-  changeNameofDeckInput1.value = upperLeftZero.innerText;  
-  changeNameofDeckInput1.className = 'settingsButtonStyling';
-  changeNameofDeckInput1.style.width = '47%';
-  changeNameofDeckInput1.style.marginRight = '3px';
-  upperLeftSmaller.style.display = 'none'
- 
-
-  upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
-  changeNameofDeckInput2.value = upperMiddleZero.innerText; 
-  changeNameofDeckInput2.className = 'settingsButtonStyling';
-  changeNameofDeckInput2.style.width = '47%';
-  changeNameofDeckInput2.style.marginRight = '3px';
-  upperMiddleSmaller.style.display = 'none';
-  
-  upperRightContainer.replaceChild(changeNameofDeckInput3, upperRightZero);
-  changeNameofDeckInput3.value = upperRightZero.innerText;  
-  changeNameofDeckInput3.className = 'settingsButtonStyling';
-  changeNameofDeckInput3.style.width = '47%';
-  changeNameofDeckInput3.style.marginRight = '3px';
-
-  upperRightSmaller.style.display = 'none'
-
-
 
 };
 
 editContainerLower.onclick = function () {
   containerLower.replaceChild(changeNameofDeckInput4, again);
   changeNameofDeckInput4.value = again.innerText;
-  changeNameofDeckInput4.className = 'settingsButtonStyling';
   //changeNameofDeckInput4.focus();
 
   containerLower.replaceChild(changeNameofDeckInput5, good);
   changeNameofDeckInput5.value = good.innerText;
-  changeNameofDeckInput5.className = 'settingsButtonStyling';
   
   containerLower.replaceChild(changeNameofDeckInput6, easy);
   changeNameofDeckInput6.value = easy.innerText;
-  changeNameofDeckInput6.className = 'settingsButtonStyling';
   
 }
 
