@@ -77,10 +77,6 @@ export default function settings() {
   border: '1px black solid',
   borderBottom: '0px'});
 
-changeRepetitionIntervalContainer.append(containerUpper);
-
-
-
 let containerLower = createElement(
   'div',
   '',
@@ -93,19 +89,19 @@ borderTop: '0px'
 }, 'flexSpaceAroundAlignCenter');
 
 
-
-
 // let [containerLower, containerUpper] = ['', ''].map((el) =>{
 //   let div = document.createElement('div');
 //   div.style.width = '100%';
 //   div.style.height = '50%';
 //   div.style.position = 'relative';
+//   div.className = 'flexSpaceAroundAlignCenter';
+//   return div
 
 // })
 
+
+changeRepetitionIntervalContainer.append(containerUpper);
 changeRepetitionIntervalContainer.append(containerLower);
-
-
 
 
 
@@ -135,7 +131,7 @@ containerUpper.append(upperLeftContainer);
 
 
 let upperMiddleContainer = createElement('div', '', {
-  width: '23%',
+  width: '17%',
   border: '1px black solid',
   
 }, 'flexSpaceBetween');
@@ -268,11 +264,12 @@ editContainerUpper.onclick = function () {
 
   upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
   changeNameofDeckInput2.value = upperMiddleZero.innerText; 
-  changeNameofDeckInput2.className = 'settingsButtonStyling'
+  changeNameofDeckInput2.className = 'settingsButtonStyling';
+  changeNameofDeckInput2.style.width = '23%';
   
   upperRightContainer.replaceChild(changeNameofDeckInput3, upperRightZero);
   changeNameofDeckInput3.value = upperRightZero.innerText;  
-  changeNameofDeckInput3.className = 'settingsButtonStyling'
+  changeNameofDeckInput3.className = 'settingsButtonStyling';
 
 
 };
@@ -280,16 +277,16 @@ editContainerUpper.onclick = function () {
 editContainerLower.onclick = function () {
   containerLower.replaceChild(changeNameofDeckInput4, again);
   changeNameofDeckInput4.value = again.innerText;
-  changeNameofDeckInput4.className = 'settingsButtonStyling'
+  changeNameofDeckInput4.className = 'settingsButtonStyling';
   //changeNameofDeckInput4.focus();
 
   containerLower.replaceChild(changeNameofDeckInput5, good);
   changeNameofDeckInput5.value = good.innerText;
-  changeNameofDeckInput5.className = 'settingsButtonStyling'
+  changeNameofDeckInput5.className = 'settingsButtonStyling';
   
   containerLower.replaceChild(changeNameofDeckInput6, easy);
   changeNameofDeckInput6.value = easy.innerText;
-  changeNameofDeckInput6.className = 'settingsButtonStyling'
+  changeNameofDeckInput6.className = 'settingsButtonStyling';
   
 }
 
