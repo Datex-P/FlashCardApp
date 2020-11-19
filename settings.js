@@ -64,20 +64,32 @@ export default function settings() {
 
   mainWindow.append(changeRepetitionIntervalContainer);
 
-  let containerUpper = createElement(
-    'div',
-    '',
-    {
-  width: '100%',
-  height: '50%',
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  border: '1px black solid',
-  borderBottom: '0px'});
+//   let containerUpper = createElement(
+//     'div',
+//     '',
+//     {
+//   width: '100%',
+//   height: '50%',
+//   position: 'relative',
+//   display: 'flex',
+//   justifyContent: 'space-around',
+//   alignItems: 'center',
+//   border: '1px black solid',
+//   borderBottom: '0px'});
 
-let containerLower = createElement(
+// let containerLower = createElement(
+//   'div',
+//   '',
+//   { 
+// position: 'relative',
+// width: '100%',
+// height: '50%',
+// border: '1px black solid',
+// borderTop: '0px'
+// }, 'flexSpaceAroundAlignCenter');
+
+
+let [containerUpper,containerLower] = ['', ''].map((el) =>createElement(
   'div',
   '',
   { 
@@ -86,92 +98,77 @@ width: '100%',
 height: '50%',
 border: '1px black solid',
 borderTop: '0px'
-}, 'flexSpaceAroundAlignCenter');
+}, 'flexSpaceAroundAlignCenter','',changeRepetitionIntervalContainer))
 
 
-// let [containerLower, containerUpper] = ['', ''].map((el) =>{
-//   let div = document.createElement('div');
-//   div.style.width = '100%';
-//   div.style.height = '50%';
-//   div.style.position = 'relative';
-//   div.className = 'flexSpaceAroundAlignCenter';
-//   return div
-
-// })
+// changeRepetitionIntervalContainer.append(containerUpper);
+// changeRepetitionIntervalContainer.append(containerLower);
 
 
-changeRepetitionIntervalContainer.append(containerUpper);
-changeRepetitionIntervalContainer.append(containerLower);
-
-
-
-
-let upperLeftContainer = createElement('div', '', {
-  width: '23%', 
+let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['23%','17%','23%'].map(width=>createElement('div', '', {
+  width, 
    border: '1px black solid'
-}, 'flexSpaceBetween');
+}, 'flexSpaceBetween'))
 
 
+let [upperLeftZero,upperMiddleZero,upperRightZero] = [upperLeftContainer,upperMiddleContainer,upperRightContainer].map(container=>
+  ["<", '0', 'min'].map((el) => {
+    let input = document.createElement("div");
+    input.innerText = el;
+    //input.className = "noBorders";
+    input.style.height = '30%'
+    input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+  
+  
+    container.append(input)
+    return input;
+  
+  })[1]
+)
 
-let [upperLeftsmallerThan, upperLeftZero, upperLeftMin] = ["<", '0', 'min'].map((el) => {
-  let input = document.createElement("div");
-  input.innerText = el;
-  //input.className = "noBorders";
-  input.style.height = '30%'
-  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+// let [upperLeftsmallerThan, upperLeftZero, upperLeftMin] = ["<", '0', 'min'].map((el) => {
+//   let input = document.createElement("div");
+//   input.innerText = el;
+//   //input.className = "noBorders";
+//   input.style.height = '30%'
+//   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-  upperLeftContainer.append(input)
-  return input;
+//   upperLeftContainer.append(input)
+//   return input;
 
-});
+// });
 containerUpper.append(upperLeftContainer);
 
 
 
-
-let upperMiddleContainer = createElement('div', '', {
-  width: '17%',
-  border: '1px black solid',
-  
-}, 'flexSpaceBetween');
-
-
-let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'].map((el) => {
-  let input = document.createElement("div");
-  input.innerText = el;
-  //input.className = "noBorders";
-  input.style.height = '30%'
-  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+// let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'].map((el) => {
+//   let input = document.createElement("div");
+//   input.innerText = el;
+//   //input.className = "noBorders";
+//   input.style.height = '30%'
+//   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-  upperMiddleContainer.append(input)
-  return input;
+//   upperMiddleContainer.append(input)
+//   return input;
 
-});
+// });
 
  containerUpper.append(upperMiddleContainer)
 
+// let [upperRightSmallerThan, upperRightZero, upperRightMin] = ["<", '0', 'min'].map((el) => {
+//   let input = document.createElement("div");
+//   input.innerText = el;
+//   //input.className = "noBorders";
+//  // input.style.width = '20%';
+//   input.style.height = '30%'
+//   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
-let upperRightContainer = createElement('div', '', {
-  width: '23%',
- border: '1px black solid',
-  
-}, 'flexSpaceBetween');
+//   upperRightContainer.append(input)
+//   return input;
 
-let [upperRightSmallerThan, upperRightZero, upperRightMin] = ["<", '0', 'min'].map((el) => {
-  let input = document.createElement("div");
-  input.innerText = el;
-  //input.className = "noBorders";
- // input.style.width = '20%';
-  input.style.height = '30%'
-  input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
-
-  upperRightContainer.append(input)
-  return input;
-
-});
-
+// });
 
 containerUpper.append(upperRightContainer)
 
@@ -265,7 +262,7 @@ editContainerUpper.onclick = function () {
   upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
   changeNameofDeckInput2.value = upperMiddleZero.innerText; 
   changeNameofDeckInput2.className = 'settingsButtonStyling';
-  changeNameofDeckInput2.style.width = '23%';
+  upperMiddleContainer.style.width = '23%';
   
   upperRightContainer.replaceChild(changeNameofDeckInput3, upperRightZero);
   changeNameofDeckInput3.value = upperRightZero.innerText;  
