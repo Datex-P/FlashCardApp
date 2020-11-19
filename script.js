@@ -100,19 +100,7 @@ document.getElementById('paintbrush').onclick = function () {
   }
   
   
-  // document.querySelector('.orangeCircle').onmouseenter = function () {
-  //   this.id = 'picker';
-  //   //var colorPicker = new iro.ColorPicker('#picker');
-  //   var colorPicker = new iro.ColorPicker("#picker", {
-  //     // Set the size of the color picker
-  //     width: 320,
-  //     // Set the initial color to pure red
-  //     color: "#f00"
-  //   });
-  //   this.append(colorPicker);
-  // }
-
-  }
+ 
 
 
 

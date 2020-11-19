@@ -1,10 +1,9 @@
 import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
-import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 import {createElement} from './exportFunctions.js'
-
+import {redCross} from './exportFunctions.js'
 
 
 function generateTextarea(inner, style = {}) {
@@ -78,12 +77,12 @@ export default function questAnswerTrainOverv(item) {
   );
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
-  let redCross = createElement(
-    'div',
-    redCrossIcon,
-    {},
-    'redCross'
-  );
+  // let redCross = createElement(
+  //   'div',
+  //   redCrossIcon,
+  //   {},
+  //   'redCross'
+  // );
 
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);

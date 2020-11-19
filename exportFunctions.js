@@ -1,4 +1,4 @@
-
+import { redCross as redCrossIcon} from "./svgs.js";
 
 
  function closeMenu(){
@@ -36,4 +36,20 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
 
 };
 
-export {createElement, closeMenu};
+
+let redCross = createElement(
+  'div',
+  redCrossIcon,
+  {},
+  'redCross'
+);
+
+
+
+
+
+
+
+
+
+export {createElement, closeMenu, redCross};

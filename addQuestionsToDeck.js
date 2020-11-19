@@ -1,7 +1,7 @@
 import {dataBase} from './dataBase.js'
-import {redCross as redCrossIcon} from './svgs.js';
 import createDom from './createDom.js';
 import {createElement} from './exportFunctions.js';
+import {redCross} from './exportFunctions.js'
 
 
 export default function addQuestionsToDeck (item) {
@@ -25,7 +25,7 @@ export default function addQuestionsToDeck (item) {
 
   let theWordDeck = createElement('div', 'Deck', {fontWeight: 'bold'});
 
-  let redCross = createElement('div', redCrossIcon, {}, 'redCross');
+
      
   let header = createElement('div', {display: 'flex'});
 

@@ -4,7 +4,7 @@ import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 import { edit, save, trash} from './svgs.js';
-import {createElement, closeMenu} from './exportFunctions.js'
+import {createElement, closeMenu, redCross} from './exportFunctions.js'
 
 export default function settings() {
   
@@ -32,12 +32,7 @@ export default function settings() {
   );
   settingsAndRedCrossContainer.append(theWordSettings);
 
-  let redCross = createElement(
-    'div',
-    redCrossIcon,
-    {},
-    'redCross'
-  );
+ 
 
   let changeTimeIntervall = createElement(
     'div', 'Change Repetition Interval', {});
@@ -49,6 +44,18 @@ export default function settings() {
   let [editContainerLower, editContainerUpper] = ['', ''].map(el=>{
     return createElement('div', edit, {})
   });
+
+
+  // let [modalLeft,modalMiddle, modalRight] = ['', '', ''].map((el) =>createElement(
+  //   'div',
+  //   '',
+  //   { 
+  // //position: 'relative',
+  // width: '30px',
+  // height: '40px',
+  // border: '1px black solid',
+  // backgroundColor: 'white'
+  // }))
 
 
 
@@ -64,29 +71,6 @@ export default function settings() {
 
   mainWindow.append(changeRepetitionIntervalContainer);
 
-//   let containerUpper = createElement(
-//     'div',
-//     '',
-//     {
-//   width: '100%',
-//   height: '50%',
-//   position: 'relative',
-//   display: 'flex',
-//   justifyContent: 'space-around',
-//   alignItems: 'center',
-//   border: '1px black solid',
-//   borderBottom: '0px'});
-
-// let containerLower = createElement(
-//   'div',
-//   '',
-//   { 
-// position: 'relative',
-// width: '100%',
-// height: '50%',
-// border: '1px black solid',
-// borderTop: '0px'
-// }, 'flexSpaceAroundAlignCenter');
 
 
 let [containerUpper,containerLower] = ['', ''].map((el) =>createElement(
@@ -101,76 +85,84 @@ borderTop: '0px'
 }, 'flexSpaceAroundAlignCenter','',changeRepetitionIntervalContainer))
 
 
-// changeRepetitionIntervalContainer.append(containerUpper);
-// changeRepetitionIntervalContainer.append(containerLower);
+
+let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['63px','63px','63px'].map(width=>createElement('div', '', {
+  width, 
+   border: '1px black solid'
+}, 'flexCenter'))
+
+containerUpper.append(upperLeftContainerContainer);
+containerUpper.append(upperMiddleContainerContainer);
+containerUpper.append(upperRightContainerContainer);
 
 
-let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['23%','17%','23%'].map(width=>createElement('div', '', {
+let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['56px','56px','56px'].map(width=>createElement('div', '', {
   width, 
    border: '1px black solid'
 }, 'flexSpaceBetween'))
 
+upperLeftContainerContainer.append(upperLeftContainer);
+upperMiddleContainerContainer.append(upperMiddleContainer)
+upperRightContainerContainer.append(upperRightContainer)
 
-let [upperLeftZero,upperMiddleZero,upperRightZero] = [upperLeftContainer,upperMiddleContainer,upperRightContainer].map(container=>
-  ["<", '0', 'min'].map((el) => {
+
+
+
+
+
+let [upperLeftSmaller,upperMiddleSmaller,upperRightSmaller] = [upperLeftContainer,upperMiddleContainer,upperRightContainer].map(container=>
+  ["<"].map((el) => {
     let input = document.createElement("div");
     input.innerText = el;
     //input.className = "noBorders";
-    input.style.height = '30%'
+    //input.style.height = '30%'
     input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
   
   
     container.append(input)
     return input;
   
-  })[1]
+  })[0]
 )
 
-// let [upperLeftsmallerThan, upperLeftZero, upperLeftMin] = ["<", '0', 'min'].map((el) => {
-//   let input = document.createElement("div");
-//   input.innerText = el;
-//   //input.className = "noBorders";
-//   input.style.height = '30%'
-//   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+let [upperLeftZero,upperMiddleZero,upperRightZero] = [upperLeftContainer,upperMiddleContainer,upperRightContainer].map(container=>
+  ["0"].map((el) => {
+    let input = document.createElement("div");
+    input.innerText = el;
+    //input.className = "noBorders";
+    //input.style.height = '30%'
+    input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+  
+  
+    container.append(input)
+    return input;
+  
+  })[0]
+)
 
 
-//   upperLeftContainer.append(input)
-//   return input;
+let [upperLeftMin,upperMiddleMin,upperRightMin] = [upperLeftContainer,upperMiddleContainer,upperRightContainer].map(container=>
+  ["min" ].map((el) => {
+    let input = document.createElement("div");
+    input.innerText = el;
+    //input.className = "noBorders";
+    //input.style.height = '30%'
+    input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+  
+  
+    container.append(input)
+    return input;
+  
+  })[0]
+)
 
-// });
-containerUpper.append(upperLeftContainer);
 
 
 
-// let [upperMiddlesmallerThan, upperMiddleZero, upperMiddleMin] = ["<", '0', 'min'].map((el) => {
-//   let input = document.createElement("div");
-//   input.innerText = el;
-//   //input.className = "noBorders";
-//   input.style.height = '30%'
-//   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-//   upperMiddleContainer.append(input)
-//   return input;
 
-// });
 
- containerUpper.append(upperMiddleContainer)
-
-// let [upperRightSmallerThan, upperRightZero, upperRightMin] = ["<", '0', 'min'].map((el) => {
-//   let input = document.createElement("div");
-//   input.innerText = el;
-//   //input.className = "noBorders";
-//  // input.style.width = '20%';
-//   input.style.height = '30%'
-//   input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
-
-//   upperRightContainer.append(input)
-//   return input;
-
-// });
-
-containerUpper.append(upperRightContainer)
 
 
 containerUpper.append(editContainerUpper)
@@ -208,7 +200,7 @@ mainWindow.append(reviewAndStudy)
 
 
   let [studyContainer, reviewContainer] = [ '', ''].map(el=>{
-    return createElement('div', '', {border: '1px black solid', display: 'flex', width: '200px', justifyContent: 'space-around', alignItems: 'center', marginTop: '10px'})
+    return createElement('div', '', {border: '1px black solid', display: 'flex', width: '160px', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px'})
   })
 
 
@@ -221,6 +213,11 @@ let studyCards = createElement(
 let [studyText, studyInput, editToStudy, editToReview, reviewText, reviewInput, reviewCards] =  ['To study', '', edit, edit, 'To review', '', 'cards'].map(el=>{
   return createElement('div', el, {})
 });
+
+studyText.style.border = '1px black solid';
+studyText.style.width = '63px';
+reviewText.style.border = '1px black solid';
+reviewText.style.widt = '63px';
 
 
 
@@ -255,18 +252,27 @@ editContainerUpper.onclick = function () {
  
   upperLeftContainer.replaceChild(changeNameofDeckInput1, upperLeftZero);
   changeNameofDeckInput1.value = upperLeftZero.innerText;  
-  changeNameofDeckInput1.className = 'settingsButtonStyling'
-  
-
+  changeNameofDeckInput1.className = 'settingsButtonStyling';
+  changeNameofDeckInput1.style.width = '47%';
+  changeNameofDeckInput1.style.marginRight = '3px';
+  upperLeftSmaller.style.display = 'none'
+ 
 
   upperMiddleContainer.replaceChild(changeNameofDeckInput2, upperMiddleZero);
   changeNameofDeckInput2.value = upperMiddleZero.innerText; 
   changeNameofDeckInput2.className = 'settingsButtonStyling';
-  upperMiddleContainer.style.width = '23%';
+  changeNameofDeckInput2.style.width = '47%';
+  changeNameofDeckInput2.style.marginRight = '3px';
+  upperMiddleSmaller.style.display = 'none';
   
   upperRightContainer.replaceChild(changeNameofDeckInput3, upperRightZero);
   changeNameofDeckInput3.value = upperRightZero.innerText;  
   changeNameofDeckInput3.className = 'settingsButtonStyling';
+  changeNameofDeckInput3.style.width = '47%';
+  changeNameofDeckInput3.style.marginRight = '3px';
+
+  upperRightSmaller.style.display = 'none'
+
 
 
 };
@@ -293,12 +299,11 @@ editContainerLower.onclick = function () {
 
 
 
-
-
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
   }
+
   redCross.onclick = close
 
   setTimeout(function () {
@@ -315,13 +320,13 @@ editContainerLower.onclick = function () {
     };
   }, 10);
 
+ 
+
  redCross.addEventListener('click', closeMenu());
 
 
 
   settingsAndRedCrossContainer.append(redCross);
-
-  
 
 closeMenu()
 
