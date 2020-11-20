@@ -109,8 +109,8 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-  let  deleteContainerFrame = createElement('div', '', {display: 'none', width: '411px', height: '731px', backgroundColor: 'rgba(0, 0, 0, 0.6)'})
-  let deleteContainerInner = createElement('div', '', {display: 'none', width: '100px', height: '100px', backgroundColor: 'white'})
+  let  deleteContainerFrame = createElement('div', '', {display: 'none', width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.6)',position:'absolute',top:'0',borderRadius:'18px',alignItems:'center', justifyContent:'center'})
+  let deleteContainerInner = createElement('div', '', {width: '100px', height: '100px', backgroundColor: 'white'})
 
   mainWindow.append(deleteContainerFrame)
   deleteContainerFrame.append(deleteContainerInner)
@@ -297,7 +297,7 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
 
 
 let [trashIconContainer, editIconContainer] = ['', ''].map(el=>{
-  return createElement('div', '', {width: '40px', height: '30px', display: 'flex', border: '1px black solid'}, 'trashIconContainer')}
+  return createElement('div', '', {width: 'fit-content', height: '30px', display: 'flex', border: '1px black solid', alignItems: 'center'}, 'trashIconContainer')}
 );
 
 littleModalWindow.append(editIconContainer);
@@ -308,12 +308,24 @@ let [editIcon, trashIcon] = [edit, trash].map(el=>{
   return createElement('div', el, {width: '20px', height: '20px'})});
 
   let [editIconText, trashIconText] = ['card', 'card'].map(el=>{
-    return createElement('div', el, {width: '20px', height: '20px', border: '1px black solid'} ) } );
+    return createElement('div', el, {width: 'fit-content', fontSize: '16px'} ) } );
 
 editIconContainer.append(editIcon);
 editIconContainer.append(editIconText);
 trashIconContainer.append(trashIcon);
 trashIconContainer.append(trashIconText);
+
+
+trashIconContainer.onclick = function () {
+
+   deleteContainerFrame.style.display = 'flex'
+
+// let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
+
+// mainWindow.append(deleteContainer)
+
+
+}
 
 
 
@@ -368,17 +380,7 @@ discardButton.onclick = function () {
 }
 
 
-// deleteIconContainer.onclick = function () {
 
-//    deleteContainerFrame.style.display = 'block'
-//    deleteContainerInner.style.display = 'block'
-
-// // let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
-
-// // mainWindow.append(deleteContainer)
-
-
-// }
 
 
 

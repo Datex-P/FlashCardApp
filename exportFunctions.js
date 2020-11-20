@@ -48,7 +48,8 @@ function handleOutsideClick(mainWindow){
   setTimeout(function () {
     window.onclick = function (e) {
       if (mainWindow.contains(e.target)) {
-        //alert("Clicked in Box");         
+        //alert("Clicked in Box");
+        window.onclick = ''         
       } else {
         //alert("Clicked outside Box");
         redCross.classList.add('blinkingIcon');
