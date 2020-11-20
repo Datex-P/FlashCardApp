@@ -62,8 +62,11 @@ function handleOutsideClick(mainWindow){
 
 
 
+function close() {
+  mainWindow.parentNode.removeChild(mainWindow);
+  anchorElement.style.display = "none";
+}
 
 
 
-
-export { createElement, closeMenu, redCross, handleOutsideClick };
+export { createElement, close, closeMenu, redCross, handleOutsideClick };

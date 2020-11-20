@@ -35,7 +35,6 @@ export default function createNewDeck() {
 
   let mainWindow = createElement('div', '', {
       height: '160px',
-      // zIndex: '4',
       justifyContent: 'center',
       width: '280px',
       backgroundColor: 'rgba(200, 168, 115,0.95)',
@@ -65,7 +64,6 @@ export default function createNewDeck() {
 
   let buttonContainer = createElement('div', '', {
     width: '47%',
-    // border: '1px black solid'
   }, 'flexSpaceBetween');
   mainWindow.append(buttonContainer);
 

@@ -4,7 +4,7 @@ import { redCross as redCrossIcon } from "./svgs.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 import { edit, save, trash, reset } from './svgs.js';
-import { createElement, closeMenu, redCross, handleOutsideClick } from './exportFunctions.js'
+import { createElement, closeMenu, close, redCross, handleOutsideClick } from './exportFunctions.js'
 
 export default function settings() {
 
@@ -136,9 +136,6 @@ export default function settings() {
       //input.style.height = '30%'
       input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
-
-      
-      
       switch(el){
         case 'min':
           upperLeftContainer.append(input)
@@ -153,8 +150,6 @@ export default function settings() {
       return input;
 
     })
-
-  
 
 
   containerUpper.append(editContainerUpper)
@@ -317,7 +312,7 @@ export default function settings() {
   }
 
 
-
+//close()
 
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);

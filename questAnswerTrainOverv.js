@@ -2,8 +2,7 @@ import shuffle from "./shuffleButton.js";
 import { startTimer, timer } from "./timer.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
-import {createElement} from './exportFunctions.js'
-import {redCross} from './exportFunctions.js'
+import {createElement, handleOutsideClick, redCross} from './exportFunctions.js'
 
 
 function generateTextarea(inner, style = {}) {
@@ -29,7 +28,6 @@ function generateTextarea(inner, style = {}) {
   container.appendChild(textarea)
   return [container, textarea]
 };
-
 
 
 export default function questAnswerTrainOverv(item) {
@@ -77,12 +75,7 @@ export default function questAnswerTrainOverv(item) {
   );
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
-  // let redCross = createElement(
-  //   'div',
-  //   redCrossIcon,
-  //   {},
-  //   'redCross'
-  // );
+
 
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);
@@ -95,19 +88,11 @@ export default function questAnswerTrainOverv(item) {
 
   // startTimer(item, index);
 
-  setTimeout(function () {
-    window.onclick = function handleOutsideClick(e) {
-      if (mainWindow.contains(e.target)) {
-        //alert("Clicked in Box");
-      } else {
-        //alert("Clicked outside Box");
-        redCross.classList.add("blinkingIcon");
-        setTimeout(() => {
-          redCross.classList.remove("blinkingIcon");
-        }, 4500);
-      }
-    };
-  }, 10);
+
+
+  handleOutsideClick(mainWindow)
+
+
 
 
   theNameOftheDeckAndRedCrossContainer.append(redCross);
@@ -187,7 +172,7 @@ export default function questAnswerTrainOverv(item) {
     '',
     {
       margin: '0 auto',
-      border: '1px black solid',
+     // border: '1px black solid',
       width: '90%'
     }, 'flexSpaceBetween'
   );
@@ -253,9 +238,10 @@ export default function questAnswerTrainOverv(item) {
       fontWeight: 'bold',
       position: 'absolute',
       cursor: 'pointer',
-      top: '0',
+      top: '-2px',
       right: '0',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      fontSize: '22px'
     }
   );
 
