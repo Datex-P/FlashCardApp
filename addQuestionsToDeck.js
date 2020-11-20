@@ -19,13 +19,13 @@ export default function addQuestionsToDeck(item) {
     marginLeft: '8px', cursor: 'pointer'
   });
 
-  let insideFlashCardsContainer = createElement('div', '', { marginTop: '30px' });
+  let insideFlashCardsContainer = createElement('div', '', { marginTop: '20px' });
 
   let theWordFlashCardsAndRedCrossContainer = createElement('div', '', { width: '247px', marginLeft: '8px' }, 'flexSpaceBetween')
 
   let theNameOfTheDeck = createElement('div', `&#160${item}`, {});
 
-  let theWordDeck = createElement('div', 'Deck', { fontWeight: 'bold' });
+  let theWordDeck = createElement('div', 'Deck:', {});
 
 
 
