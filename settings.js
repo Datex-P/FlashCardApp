@@ -312,14 +312,7 @@ export default function settings() {
   }
 
 
-//close()
-
-  function close() {
-    mainWindow.parentNode.removeChild(mainWindow);
-    anchorElement.style.display = "none";
-  }
-
-  redCross.onclick = close
+  redCross.onclick =()=>close(mainWindow, anchorElement)
 
   handleOutsideClick(mainWindow)
 

@@ -62,7 +62,7 @@ function handleOutsideClick(mainWindow){
 
 
 
-function close() {
+function close(mainWindow, anchorElement) {
   mainWindow.parentNode.removeChild(mainWindow);
   anchorElement.style.display = "none";
 }
