@@ -3,6 +3,7 @@ import { startTimer, timer } from "./timer.js";
 import { dataBase } from './dataBase.js';
 import createDom from './createDom.js';
 import {createElement, handleOutsideClick, redCross} from './exportFunctions.js'
+import { edit, trash } from './svgs.js';
 
 
 function generateTextarea(inner, style = {}) {
@@ -107,20 +108,29 @@ export default function questAnswerTrainOverv(item) {
   )
   mainWindow.appendChild(questionContainer);
 
+
+
+
+  let  deleteContainerFrame = createElement('div', '', {display: 'none', width: '411px', height: '731px', backgroundColor: 'rgba(0, 0, 0, 0.6)'})
+  let deleteContainerInner = createElement('div', '', {display: 'none', width: '100px', height: '100px', backgroundColor: 'white'})
+
+  mainWindow.append(deleteContainerFrame)
+  deleteContainerFrame.append(deleteContainerInner)
+  
+
+
+
+
+
   let buttonContainer = createElement(
     'div',
     '',
-    {
-      textAlign: 'left',
-      width: '90%'
-    }
-  )
+    {textAlign: 'left', width: '90%'});
+
   let showAnswerButton = createElement(
     'button',
     'Show Answer',
-    {
-      cursor: 'pointer'
-    },
+    {  cursor: 'pointer'},
     '',
     'showAnswerButton'
   );
@@ -134,6 +144,7 @@ export default function questAnswerTrainOverv(item) {
     {
       display: 'none',
       width: 'calc(90% - 2px)',
+      height: '94px',
       padding: '20px',
       borderRadius: '5px',
       border: '1px solid grey',
@@ -153,12 +164,33 @@ export default function questAnswerTrainOverv(item) {
     }
   )
   mainWindow.appendChild(answerContainer)
+
+
+
+
+  let saveAndDiscardContainer = createElement('div', '', {display: 'none', width: '166px', height: '71px', top: '388px', position: 'absolute', backgroundColor: 'blue'})
+
+  let saveButton = createElement('div', 'Save', {textAlign: 'center', padding: '1px'}, 'generalButtonStyling');
+  let discardButton = createElement('div', 'Discard', {textAlign: 'center', padding: '1px'}, 'generalButtonStyling');
+
+   mainWindow.append(saveAndDiscardContainer);
+   saveAndDiscardContainer.append(discardButton);
+   saveAndDiscardContainer.append(saveButton);
+
+
+
+
+
+
+
+
   let [question, answer, index] = shuffleLogic()
 
   showAnswerButton.onclick = function () {
     this.style.display = 'none';
     answerContainer.style.display = 'block';
-    showAnswerButtonContainer.style.display = 'block';
+     showAnswerButtonContainer.style.display = 'block';
+    // showAnswerButtonContainer.style.justifyContent = 'center';
   };
 
   let containerForAgainGoodEasyButtons = createElement(
@@ -180,6 +212,7 @@ export default function questAnswerTrainOverv(item) {
   );
 
   showAnswerButtonContainer.append(containerForTimeButtons);
+
 
   
 
@@ -235,21 +268,12 @@ export default function questAnswerTrainOverv(item) {
 
   let settingsIconContainer = createElement(
     'div', '...',
-    {
-      transform: 'rotate(90deg)',
-      fontWeight: 'bold',
-      position: 'absolute',
-      cursor: 'pointer',
-      top: '-2px',
-      right: '0',
-      fontWeight: 'bold',
-      fontSize: '22px'
+    {transform: 'rotate(90deg)', fontWeight: 'bold', position: 'absolute',
+      cursor: 'pointer', top: '15px', right: '66px', fontSize: '25px'
     }
   );
 
-
-
-  answerContainer.appendChild(settingsIconContainer)
+  theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
 
 
   let opened = false;
@@ -264,106 +288,222 @@ export default function questAnswerTrainOverv(item) {
     'div',
     '',
     {
-      transform: 'rotate(-90deg)'
+      display: 'flex',
+      flexDirection: 'column',
+      transform: 'rotate(-90deg)',
+      top: '17px',
+      left: '10px',
+      borderRadius: '5px'
     },
     'littleModalWindow'
   )
 
+  settingsIconContainer.append(littleModalWindow);
 
-  settingsIconContainer.appendChild(littleModalWindow);
 
+
+
+let [trashIconContainer, editIconContainer] = ['', ''].map(el=>{
+  return createElement('div', '', {width: '40px', height: '30px', display: 'flex', border: '1px black solid'}, 'trashIconContainer')}
+);
+
+littleModalWindow.append(editIconContainer);
+littleModalWindow.append(trashIconContainer);
+
+
+let [editIcon, trashIcon] = [edit, trash].map(el=>{
+  return createElement('div', el, {width: '20px', height: '20px'})});
+
+  let [editIconText, trashIconText] = ['card', 'card'].map(el=>{
+    return createElement('div', el, {width: '20px', height: '20px', border: '1px black solid'} ) } );
+
+editIconContainer.append(editIcon);
+editIconContainer.append(editIconText);
+trashIconContainer.append(trashIcon);
+trashIconContainer.append(trashIconText);
+
+
+
+editIconContainer.onclick =  function () {
+
+
+ // showAnswerButtonContainer.style.display = 'flex';
+         showAnswerButtonContainer.style.justifyContent = 'center';
+
+         answerContainer.style.display = 'block'
+         answerFieldTextArea.style.display = 'block';
+         answerFieldTextArea.focus();
+         answerFieldTextArea.removeAttribute("disabled");
+         questionFieldTextArea.removeAttribute("disabled");
+         questionFieldTextArea.focus();
+         answerFieldTextArea.focus();
+         saveAndDiscardContainer.style.display = 'flex';
+         saveAndDiscardContainer.style.justifyContent = 'space-around';
+
+
+
+          showAnswerButton.style.display = 'none';
+          showAnswerButtonContainer.removeChild(containerForTimeButtons);  
+          showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
+          mainWindow.removeChild(showAnswerButtonContainer);
+};
+
+
+
+saveButton.onclick = function () {
+
+  answerFieldTextArea.style.border = 'none';
+      questionFieldTextArea.style.border = 'none';
+      answerFieldTextArea.style.outline = 'none';
+      questionFieldTextArea.style.border = 'none';
+
+      mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
+      showAnswerButtonContainer.append(containerForTimeButtons);  
+      showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);   
+      showAnswerButtonContainer.style.display = 'block';
+      saveAndDiscardContainer.style.display = 'none';
+}
+
+
+discardButton.onclick = function () {
+
+  answerFieldTextArea.style.border = 'none';
+      questionFieldTextArea.style.border = 'none';
+      answerFieldTextArea.style.outline = 'none';
+      questionFieldTextArea.style.border = 'none';
+
+      mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
+      showAnswerButtonContainer.append(containerForTimeButtons);  
+      showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);   
+      showAnswerButtonContainer.style.display = 'block';
+      saveAndDiscardContainer.style.display = 'none';
+}
+
+
+// deleteIconContainer.onclick = function () {
+
+//    deleteContainerFrame.style.display = 'block'
+//    deleteContainerInner.style.display = 'block'
+
+// // let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
+
+// // mainWindow.append(deleteContainer)
+
+
+// }
+
+
+
+
+// let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
+
+// mainWindow.append(deleteContainer)
+
+
+
+
+
+
+
+
+
+}
+
+
+// [edit, trash].forEach((el) => {
+
+//   let button = createElement("div", el, {
+//     innerText: 'Trash',
+//     width: '100px',
+//     marginTop: '10px',
+//     marginLeft: '8px',
+//    },
+//     'generalButtonStyling'
+//   )
   
-
-["edit", "delete"].forEach((el) => {
-
-  let button = createElement("button", el, {
-    width: '100px',
-    marginTop: '10px',
-    marginLeft: '8px',
-   },
-    'generalButtonStyling'
-  )
-  
-  littleModalWindow.append(button);
+//   littleModalWindow.append(button);
 
 
-   button.onclick = function () {
+//    button.onclick = function () {
 
 
-    if (el === 'edit') {
+//     if (el === 'edit') {
+
+//        showAnswerButtonContainer.style.display = 'flex';
+//        showAnswerButtonContainer.style.justifyContent = 'center';
 
 
 
-       answerFieldTextArea.removeAttribute("disabled");
-       questionFieldTextArea.removeAttribute("disabled");
-       questionFieldTextArea.focus();
+//        answerFieldTextArea.removeAttribute("disabled");
+//        questionFieldTextArea.removeAttribute("disabled");
+//        questionFieldTextArea.focus();
      
 
-        showAnswerButtonContainer.removeChild(containerForTimeButtons);  
-        showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
+//         showAnswerButtonContainer.removeChild(containerForTimeButtons);  
+//         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
 
 
 
-    let discardAndSaveContainer = createElement(
-      'div',
-      '',
-    {
-     border: '1px black solid',
-     width: '60%',
-    }, 'flexSpaceBetween'
-  );
+//     let discardAndSaveContainer = createElement(
+//       'div',
+//       '',
+//     {
+//      border: '1px black solid',
+//      width: '60%',
+//     }, 'flexSpaceBetween'
+//   );
 
 
 
-        showAnswerButtonContainer.append(discardAndSaveContainer);
+//         showAnswerButtonContainer.append(discardAndSaveContainer);
      
-        ["discard", "save"].forEach((el) => {
+//         ["discard", "save"].forEach((el) => {
 
-          let button = createElement("button", el, {
-          }, 'generalButtonStyling'
-        )
-        discardAndSaveContainer.append(button);
+//           let button = createElement("button", el, {
+//           }, 'generalButtonStyling'
+//         )
+//         discardAndSaveContainer.append(button);
       
 
-      button.onclick = function () {
-        if (el === 'discard') {
-          showAnswerButtonContainer.removeChild(discardAndSaveContainer);
-          showAnswerButtonContainer.append(containerForTimeButtons);
-          showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+//       button.onclick = function () {
+//         if (el === 'discard') {
+//           showAnswerButtonContainer.removeChild(discardAndSaveContainer);
+//           showAnswerButtonContainer.append(containerForTimeButtons);
+//           showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
 
-          showAnswerButtonContainer.style.display = 'block';
-        }
+//           showAnswerButtonContainer.style.display = 'block';
+//         }
  
-        if (el === 'save') {
+//         if (el === 'save') {
 
-            //   question = questionFieldTextArea.value;
-            //  answer = answerFieldTextArea.value;
-            answerFieldTextArea.setAttribute("disabled", 'true');
-            questionFieldTextArea.setAttribute("disabled", 'true');          
+//             //   question = questionFieldTextArea.value;
+//             //  answer = answerFieldTextArea.value;
+//             answerFieldTextArea.setAttribute("disabled", 'true');
+//             questionFieldTextArea.setAttribute("disabled", 'true');          
 
-          showAnswerButtonContainer.removeChild(discardAndSaveContainer);
-          showAnswerButtonContainer.append(containerForTimeButtons);
-          showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+//           showAnswerButtonContainer.removeChild(discardAndSaveContainer);
+//           showAnswerButtonContainer.append(containerForTimeButtons);
+//           showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
 
-          showAnswerButtonContainer.style.display = 'block';
-        }
-      }
+//           showAnswerButtonContainer.style.display = 'block';
+//         }
+//       }
 
-    }
- );
+//     }
+//  );
       
           
 
 
-   }
-  }
+//    }
+//   }
 
 
-});
+// });
   
 
 
-}
+// }
 
 
   

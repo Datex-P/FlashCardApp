@@ -117,10 +117,9 @@ export default function createDom(obj) {
       border: '1px black solid',
       padding: '1px',
       borderTop: '0px'
-    }, 'flexSpaceAround');
+    }, 'flexSpaceAround trashIconContainer');
 
-    trashIconContainer.classList.add('trashIconContainer');
-
+    
     let trashIcon = createElement('div', trash, { right: '5px' });
 
     let trashIconText = createElement('div', 'deck', {});
@@ -151,7 +150,7 @@ export default function createDom(obj) {
     let editIconContainer = createElement('div', '', {
       border: '1px black solid',
       padding: '1px'
-    }, 'editIconContainer, flexSpaceAround');
+    }, 'editIconContainer flexSpaceAround');
 
 
     let editIconText = createElement('div', 'name', {});
