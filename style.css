@@ -267,6 +267,22 @@ textarea {
   justify-content: center;
 }
 
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexColumnCenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
 .flexSpaceAround {
   display: flex;
   justify-content: space-around;
@@ -284,10 +300,11 @@ textarea {
   align-items: center;
 }
 
-
-
-
-
+.flexCenterAlignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 #paintbrush {
   width: 25px; 
@@ -298,24 +315,6 @@ textarea {
   position: absolute;
 }
 
-
-
-.flexColumn {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.flexColumnCenter {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.flexSpaceBetween {
-  display: flex;
-  justify-content: space-between;
-}
 .newDeckContainer{
   height: 168px;
   width: 307px;
@@ -536,8 +535,6 @@ textarea {
   text-align: center;
   color: white;
 }
-
-
 
 .level {
   width: 10px;

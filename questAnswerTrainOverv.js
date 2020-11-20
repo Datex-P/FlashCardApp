@@ -95,8 +95,6 @@ export default function questAnswerTrainOverv(item) {
   handleOutsideClick(mainWindow)
 
 
-
-
   theNameOftheDeckAndRedCrossContainer.append(redCross);
   //header
   let [questionContainer, questionFieldTextArea] = generateTextarea(
@@ -166,22 +164,20 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.appendChild(answerContainer)
 
 
-
-
   let saveAndDiscardContainer = createElement('div', '', {display: 'none', width: '166px', height: '71px', top: '388px', position: 'absolute', backgroundColor: 'blue'})
 
-  let saveButton = createElement('div', 'Save', {textAlign: 'center', padding: '1px'}, 'generalButtonStyling');
-  let discardButton = createElement('div', 'Discard', {textAlign: 'center', padding: '1px'}, 'generalButtonStyling');
+ 
+let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
+  return createElement('div', el, {}, 'generalButtonStyling flexCenterAlignCenter')
+})
+
 
    mainWindow.append(saveAndDiscardContainer);
    saveAndDiscardContainer.append(discardButton);
    saveAndDiscardContainer.append(saveButton);
 
 
-
-
-
-
+ 
 
 
   let [question, answer, index] = shuffleLogic()
@@ -190,7 +186,6 @@ export default function questAnswerTrainOverv(item) {
     this.style.display = 'none';
     answerContainer.style.display = 'block';
      showAnswerButtonContainer.style.display = 'block';
-    // showAnswerButtonContainer.style.justifyContent = 'center';
   };
 
   let containerForAgainGoodEasyButtons = createElement(
@@ -288,14 +283,12 @@ export default function questAnswerTrainOverv(item) {
     'div',
     '',
     {
-      display: 'flex',
-      flexDirection: 'column',
       transform: 'rotate(-90deg)',
       top: '17px',
       left: '10px',
       borderRadius: '5px'
     },
-    'littleModalWindow'
+    'littleModalWindow flexColumn'
   )
 
   settingsIconContainer.append(littleModalWindow);
@@ -326,10 +319,7 @@ trashIconContainer.append(trashIconText);
 
 editIconContainer.onclick =  function () {
 
-
- // showAnswerButtonContainer.style.display = 'flex';
          showAnswerButtonContainer.style.justifyContent = 'center';
-
          answerContainer.style.display = 'block'
          answerFieldTextArea.style.display = 'block';
          answerFieldTextArea.focus();
@@ -339,8 +329,6 @@ editIconContainer.onclick =  function () {
          answerFieldTextArea.focus();
          saveAndDiscardContainer.style.display = 'flex';
          saveAndDiscardContainer.style.justifyContent = 'space-around';
-
-
 
           showAnswerButton.style.display = 'none';
           showAnswerButtonContainer.removeChild(containerForTimeButtons);  
