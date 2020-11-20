@@ -38,7 +38,7 @@ export default function createNewDeck() {
       justifyContent: 'center',
       width: '280px',
       backgroundColor: 'rgba(200, 168, 115,0.95)',
-      top: '100px',
+      top: '166px',
       position: 'absolute',
       borderRadius: '5px'
     },

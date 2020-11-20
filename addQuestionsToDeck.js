@@ -15,7 +15,7 @@ export default function addQuestionsToDeck(item) {
   let innerWindow = createElement('div', '', { marginTop: '20px', marginLeft: '30px' });
 
   let addToDeck = createElement('button', 'Add to Deck', {
-    backgroundColor: '#545863', color: '#FFE3E3', width: '70%', marginTop: '10px',
+    backgroundColor: '#545863', color: '#FFE3E3', width: '45%', height: '21px', marginTop: '10px',
     marginLeft: '8px', cursor: 'pointer'
   });
 
@@ -46,7 +46,7 @@ export default function addQuestionsToDeck(item) {
     let theWordQuestionAndAnswer = document.createElement('div');
     theWordQuestionAndAnswer.innerText = el;
     theWordQuestionAndAnswer.style.fontWeight = 'bold';
-    theWordQuestionAndAnswer.style.marginBottom = '10px';
+    theWordQuestionAndAnswer.style.marginBottom = '20px';
     theWordQuestionAndAnswer.style.marginLeft = '8px';
 
     insideFlashCardsContainer.append(theWordQuestionAndAnswer)

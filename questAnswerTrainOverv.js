@@ -11,7 +11,8 @@ function generateTextarea(inner, style = {}) {
     'label',
     inner,
     {
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      marginLeft: '7px'
     }
   );
 
@@ -63,7 +64,7 @@ export default function questAnswerTrainOverv(item) {
     'div',
     '',
     {
-      width: "265px"
+      width: "89%"
     },
     'flexSpaceBetween'
   );
@@ -132,9 +133,10 @@ export default function questAnswerTrainOverv(item) {
     '',
     {
       display: 'none',
-      width: '90%',
+      width: 'calc(90% - 2px)',
       padding: '20px',
-      border: '1px black solid',
+      borderRadius: '5px',
+      border: '1px solid grey',
       boxSizing: 'border-box',
       marginTop: '10px'
     }
