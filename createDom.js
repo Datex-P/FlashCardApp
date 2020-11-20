@@ -263,9 +263,10 @@ export default function createDom(obj) {
     let addToDeckIcon = createElement('div', '', {
     }, 'orangeCircle');
 
-     if (index === 0 ) {
+     if (index ===  arr.length-1) {
       addToDeckIcon.style.display = 'flex';
       newDeckContainer.style.zIndex = 2
+      newDeckContainer.style.transform = 'rotate(0deg)'
     }
 
     addToDeckIcon.onclick = function () {
@@ -340,4 +341,6 @@ export default function createDom(obj) {
 
    // console.log(event.target.scrollTop, index)
   }
+
+  // document.querySelector("#scrollable").scrollTo(0,860);
 }
