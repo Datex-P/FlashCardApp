@@ -59,9 +59,8 @@ document.querySelector('.menu').onclick = function () {
 
 let colorContainer = createElement('div', '', {
   position: 'absolute',
-  top: 0,
-  right: 0,
-  display: 'block'
+  display: 'block',
+  zIndex: 3
 }, '', '', document.body)
 // let colorInput = createElement('input')
 //       colorInput.type = 'color'
@@ -73,8 +72,12 @@ document.getElementById('paintbrush').onclick = function () {
       document.body.style.cursor = "url('brush.svg') 10 20, auto";
       // document.body.style.cursor = "url(`${brush}`) 10 20, auto";
 
+      let colorInput = createElement('input')
+      document.body.addEventListener('mousemove',otherStaffListener)
 
-      document.body.onmousemove = function (event) {
+      document.body.addEventListener('mousemove',changePositionOfColorContainer)
+
+      function otherStaffListener(event){
         function componentToHex(c) {
           let num = +c
           var hex = num.toString(16);
@@ -84,7 +87,7 @@ document.getElementById('paintbrush').onclick = function () {
         function rgbToHex(r, g, b) {
           return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
-        let colorInput = createElement('input')
+        
         colorInput.type = 'color'
         let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
         let params = color.match(/([0-9]{3})/g) || [0, 0, 0]
@@ -94,10 +97,24 @@ document.getElementById('paintbrush').onclick = function () {
         colorContainer.innerHTML = ''
         colorContainer.appendChild(colorInput)
         colorContainer.style.display = 'block'
+      }
+      function changePositionOfColorContainer(event){
+        colorContainer.style.top = `${event.clientY+10}px`
+        colorContainer.style.left = `${event.clientX+10}px`
+      }
 
+      document.body.ondblclick = function (event) {
         // event.target.style.backgroundColor = 'red'
 
-
+        // let {x,y} = colorContainer.getBoundingClientRect()
+        // colorContainer.style.top
+        document.body.removeEventListener('mousemove',changePositionOfColorContainer)
+        document.body.removeEventListener('mousemove',otherStaffListener)
+        colorInput.oninput = function(){
+          event.target.style.backgroundColor = this.value
+          document.body.addEventListener('mousemove',otherStaffListener)
+          document.body.addEventListener('mousemove',changePositionOfColorContainer)
+        }
       }
 
     } else {

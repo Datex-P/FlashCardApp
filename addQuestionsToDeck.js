@@ -29,7 +29,7 @@ export default function addQuestionsToDeck(item) {
 
 
 
-  let header = createElement('div', { display: 'flex' });
+  let header = createElement('div', '',{ display: 'flex' });
 
   header.appendChild(theWordDeck);
   header.appendChild(theNameOfTheDeck);
