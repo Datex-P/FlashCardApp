@@ -26,16 +26,16 @@ function generateTextarea(inner, style = {}) {
   const label = createElement(
     'label',
     inner, {
-      fontWeight: 'bold',
-      marginLeft: '7px'
-    }
+    fontWeight: 'bold',
+    marginLeft: '7px'
+  }
   );
 
   let textarea = createElement(
     "textarea", '', {
-      backgroundColor: "white",
-      marginTop: '10px'
-    }
+    backgroundColor: "white",
+    marginTop: '10px'
+  }
   );
   textarea.setAttribute("disabled", "true");
 
@@ -77,9 +77,9 @@ export default function questAnswerTrainOverv(item) {
   let theNameOftheDeckAndRedCrossContainer = createElement(
     'div',
     '', {
-      width: "89%",
-      marginBottom: '6px'
-    },
+    width: "89%",
+    marginBottom: '6px'
+  },
     'flexSpaceBetween'
   );
   mainWindow.append(theNameOftheDeckAndRedCrossContainer);
@@ -103,7 +103,7 @@ export default function questAnswerTrainOverv(item) {
 
   // startTimer(item, index);
 
-let threeDotsOpen = false;
+  let threeDotsOpen = false;
 
   handleOutsideClick(mainWindow)
 
@@ -112,9 +112,9 @@ let threeDotsOpen = false;
   //header
   let [questionContainer, questionFieldTextArea] = generateTextarea(
     'Question', {
-      marginBottom: '20px',
-      marginTop: '20px',
-    }
+    marginBottom: '20px',
+    marginTop: '20px',
+  }
   )
   mainWindow.appendChild(questionContainer);
 
@@ -149,7 +149,6 @@ let threeDotsOpen = false;
     width: '60px',
     height: '35px',
     //backgroundColor: 'white',
-    backgroundColor: 'rgb(45, 106, 79)',
     position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
@@ -169,7 +168,6 @@ let threeDotsOpen = false;
     justifyContent: 'center',
     alignItems: 'center',
     //backgroundColor: 'white',
-    backgroundColor: 'rgb(119, 46, 37)',
     position: 'absolute',
     top: '135px',
     left: '-18px',
@@ -182,7 +180,7 @@ let threeDotsOpen = false;
 
   let arrowDown = createElement('div', '', {
     width: '0',
-    height: '0', 
+    height: '0',
     borderLeft: '20px solid transparent',
     borderRight: '20px solid transparent',
     borderTop: '31px solid white',
@@ -193,10 +191,10 @@ let threeDotsOpen = false;
     position: 'absolute'
   });
 
-  let questionMark1 = createElement('div', questionMark, {position: 'absolute', top: '-34px', right: '-30px'});
+  let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-30px' });
 
 
-deleteContainerInner.append(arrowDown);
+  deleteContainerInner.append(arrowDown);
 
 
 
@@ -214,15 +212,15 @@ deleteContainerInner.append(arrowDown);
   let buttonContainer = createElement(
     'div',
     '', {
-      textAlign: 'left',
-      width: '90%'
-    });
+    textAlign: 'left',
+    width: '90%'
+  });
 
   let showAnswerButton = createElement(
     'button',
     'Show Answer', {
-      cursor: 'pointer'
-    },
+    cursor: 'pointer'
+  },
     '',
     'showAnswerButton'
   );
@@ -233,25 +231,24 @@ deleteContainerInner.append(arrowDown);
   let showAnswerButtonContainer = createElement(
     'div',
     '', {
-      display: 'none',
-      width: 'calc(90% - 2px)',
-      height: '94px',
-      padding: '20px',
-      borderRadius: '5px',
-      border: '1px solid grey',
-      boxSizing: 'border-box',
-      marginTop: '10px'
-    }
+    display: 'none',
+    width: 'calc(90% - 2px)',
+    height: '94px',
+    padding: '20px',
+    borderRadius: '5px',
+    border: '1px solid grey',
+    boxSizing: 'border-box',
+    marginTop: '10px'
+  }
   )
 
   mainWindow.append(showAnswerButtonContainer);
 
   let [answerContainer, answerFieldTextArea] = generateTextarea(
     'Answer', {
-      marginTop: '20px',
-      display: 'none',
-      position: 'relative'
-    }
+    marginTop: '20px',
+    display: 'none',
+  }
   )
   mainWindow.appendChild(answerContainer)
 
@@ -274,9 +271,9 @@ deleteContainerInner.append(arrowDown);
     }, 'generalButtonStyling flexCenterAlignCenter')
   })
 
-saveButton.style.backgroundColor = '#2d6a4f';
-//discardButton.style.backgroundColor = '#c44536';
-discardButton.style.backgroundColor = '#772e25';
+  saveButton.style.backgroundColor = '#2d6a4f';
+  //discardButton.style.backgroundColor = '#c44536';
+  discardButton.style.backgroundColor = '#772e25';
 
 
 
@@ -301,17 +298,17 @@ discardButton.style.backgroundColor = '#772e25';
   let containerForAgainGoodEasyButtons = createElement(
     'div',
     '', {
-      margin: '5px 0'
-    }, 'flexSpaceBetween'
+    margin: '5px 0'
+  }, 'flexSpaceBetween'
   );
 
   let containerForTimeButtons = createElement(
     'div',
     '', {
-      margin: '0 auto',
-      // border: '1px black solid',
-      width: '90%'
-    }, 'flexSpaceBetween'
+    margin: '0 auto',
+    // border: '1px black solid',
+    width: '90%'
+  }, 'flexSpaceBetween'
   );
 
   showAnswerButtonContainer.append(containerForTimeButtons);
@@ -345,8 +342,8 @@ discardButton.style.backgroundColor = '#772e25';
   function display() {
     answerFieldTextArea.style.display = 'none';
     answerContainer.style.display = 'none'
-     showAnswerButton.style.display = 'block';
-     showAnswerButtonContainer.style.display = 'none'
+    showAnswerButton.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'none'
   }
 
 
@@ -358,8 +355,8 @@ discardButton.style.backgroundColor = '#772e25';
     let button = createElement(
       "button",
       el, {
-        pointer: 'cursor'
-      },
+      pointer: 'cursor'
+    },
       "generalButtonStyling"
     );
 
@@ -370,18 +367,18 @@ discardButton.style.backgroundColor = '#772e25';
 
         let randomNum = Math.floor(Math.random() * 10);
 
-          dataBase.queue.push({
-            question,
-            answer,
-            index,
-            timeLeft: randomNum * 1000
-          })
-        
+        dataBase.queue.push({
+          question,
+          answer,
+          index,
+          timeLeft: randomNum * 1000
+        })
+
       }
 
       if (el == 'good') {
 
-        let randomNum = (Math.floor(Math.random() * (100-60+1) + 60));
+        let randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
 
         dataBase.queue.push({
           question,
@@ -410,14 +407,14 @@ discardButton.style.backgroundColor = '#772e25';
 
   let settingsIconContainer = createElement(
     'div', '...', {
-      transform: 'rotate(90deg)',
-      fontWeight: 'bold',
-      position: 'absolute',
-      cursor: 'pointer',
-      top: '15px',
-      right: '66px',
-      fontSize: '25px'
-    }
+    transform: 'rotate(90deg)',
+    fontWeight: 'bold',
+    position: 'absolute',
+    cursor: 'pointer',
+    top: '15px',
+    right: '66px',
+    fontSize: '25px'
+  }
   );
 
   settingsIconContainer.title = 'Edit question and answer or delete card';
@@ -430,19 +427,19 @@ discardButton.style.backgroundColor = '#772e25';
 
     if (threeDotsOpen === false) {
 
-    littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
+      littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 
-    if (littleModalWindow.style.display === 'block') {
-      setTimeout(function () {
-        window.onclick = function (event) {
-          if (!littleModalWindow.contains(event.target)) {
-            littleModalWindow.style.display = 'none';
-            window.onclick = ''
-          }
-        };
-      }, 10);
+      if (littleModalWindow.style.display === 'block') {
+        setTimeout(function () {
+          window.onclick = function (event) {
+            if (!littleModalWindow.contains(event.target)) {
+              littleModalWindow.style.display = 'none';
+              window.onclick = ''
+            }
+          };
+        }, 10);
+      }
     }
-  }  
   };
 
 
@@ -450,12 +447,12 @@ discardButton.style.backgroundColor = '#772e25';
   let littleModalWindow = createElement(
     'div',
     '', {
-      transform: 'rotate(-90deg)',
-      top: '-56px',
-      left: '-6px',
-      border: '1px black solid',
-      borderRadius: '5px'
-    },
+    transform: 'rotate(-90deg)',
+    top: '-56px',
+    left: '-6px',
+    border: '1px black solid',
+    borderRadius: '5px'
+  },
     'littleModalWindow flexColumn'
   )
 
@@ -501,13 +498,14 @@ discardButton.style.backgroundColor = '#772e25';
 
     deleteContainerFrame.style.display = 'flex'
 
-  
+
   }
 
 
 
   editIconContainer.onclick = function () {
     threeDotsOpen = true;
+    littleModalWindow.style.display = "none";
 
     showAnswerButtonContainer.style.justifyContent = 'center';
     answerContainer.style.display = 'block'
@@ -529,7 +527,7 @@ discardButton.style.backgroundColor = '#772e25';
       window.onclick = function (e) {
         if (!settingsIconContainer.contains(e.target)) {
           //alert("Clicked in Box");
-          window.onclick = ''         
+          window.onclick = ''
         } else {
           //alert("Clicked outside Box");
           saveAndDiscardContainer.classList.add('blinkingIcon');
@@ -545,9 +543,9 @@ discardButton.style.backgroundColor = '#772e25';
 
 
   saveButton.onclick = function () {
-     threeDotsOpen = false;
+    threeDotsOpen = false;
 
-
+    littleModalWindow.style.display = "none";
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
     answerFieldTextArea.style.outline = 'none';
@@ -567,7 +565,7 @@ discardButton.style.backgroundColor = '#772e25';
 
 
   discardButton.onclick = function () {
-     threeDotsOpen = false;
+    threeDotsOpen = false;
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';

@@ -176,7 +176,12 @@ textarea {
   /* background-color:#dcc9b6; */
   background-color: #a39171;
 }
-
+.deleteContainerYe {
+  background-color: rgb(45, 106, 79)
+}
+.deleteContainerN {
+  background-color: rgb(119, 46, 37)
+}
 .deleteContainerYe:hover, .deleteContainerN:hover {
   background-color: blue
 }
