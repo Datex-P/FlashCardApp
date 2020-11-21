@@ -46,25 +46,13 @@ export default function settings() {
   });
 
 
-  // let [modalLeft,modalMiddle, modalRight] = ['', '', ''].map((el) =>createElement(
-  //   'div',
-  //   '',
-  //   { 
-  // //position: 'relative',
-  // width: '30px',
-  // height: '40px',
-  // border: '1px black solid',
-  // backgroundColor: 'white'
-  // }))
-
-
 
   let changeRepetitionIntervalContainer = createElement(
     'div',
     '',
     {
       width: '290px',
-      height: '68px',
+      height: '75px',
       border: '1px black solid',
       marginTop: '10px',
       borderRadius: '5px'
@@ -111,7 +99,7 @@ export default function settings() {
 
   let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
     width,
-    border: '2px black solid',
+    border: '1px black solid',
     borderRadius: '5px'
   }, 'flexCenter'))
 
@@ -122,7 +110,7 @@ export default function settings() {
 
   let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
     width,
-    //border: '1px black solid'
+    padding: '3px',
   }, 'flexSpaceBetween'))
 
   upperLeftContainerContainer.append(upperLeftContainer);
@@ -190,7 +178,7 @@ export default function settings() {
     let input = createElement('div', el, {
       width: '68px',
       textAlign: 'center',
-      height: '21px',
+      height: '27px',
       backgroundColor: 'grey',
       color: 'white',
       borderRadius: '5px'
@@ -212,82 +200,78 @@ export default function settings() {
   mainWindow.append(reviewAndStudy)
 
 
-  let [studyContainer, reviewContainer] = ['', ''].map(el => {
-    return createElement('div', '', { border: '1px black solid', borderRadius: '5px', display: 'flex', width: '160px', flexDirection: 'column', marginTop: '10px' })
+  let [studyAndReviewContainerOuter] = [''].map(el => {
+    return createElement('div', '', { border: '1px black solid', borderRadius: '5px', display: 'flex', width: '200px', height: '150px',
+     flexDirection: 'column', marginTop: '10px' })
   })
 
-  let studyContainerUpper = createElement('div', '', {});
-  let studyContainerLower = createElement('div', '', {})
 
-  let theWordResetConfigurations = createElement(
-    'div', 'Reset Configurations', {
-    border: '1px black solid',
-    marginTop: '20px',
-    marginBottom: '10px'
-  }
-  );
+
+  // let theWordResetConfigurations = createElement(
+  //   'div', 'Reset Configurations', {
+  //   border: '1px black solid',
+  //   marginTop: '20px',
+  //   fontWeight: 'bold',
+  //   marginBottom: '10px'
+  // }
+  // );
 
   let resetColorSchemeContainer = createElement(
     'div', '', {
     width: '154px',
     border: '1px black solid',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: '20px'
   }
   );
 
   let resetColor = createElement(
-    'div', 'Reset Colorscheme', {}
+    'div', 'Reset Colorscheme', {fontWeight: 'bold'}
   );
 
   let resetColorIcon = createElement(
     'div', reset, {}
   );
 
-
-
-
-
   let studyCards = createElement(
     'div', 'cards', { width: '30px' }
   );
 
+  let reviewCards = createElement(
+    'div', 'cards', {width: '30px'}
+  )
 
-  let [studyText, studyInput, editToStudy, editToReview, reviewText, reviewInput, reviewCards] = ['To study', '', edit, edit, 'To review', '', 'cards'].map(el => {
-    return createElement('div', el, {})
+
+  let [studyText, studyInput, editToStudy, editToReview, reviewText, reviewInput] = ['To study', '', edit, edit, 'To review', ''].map(el => {
+    return createElement('div', el, {width: '65px'})
   });
 
 
-let [studyAndReviewContainerUpper, studyAndReviewContainerLower] = ['', ''].map(el=>{
-  return createElement('div', el, {width: '160px'})
+let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el=>{
+  return createElement('div', el, {width: '160px', height: '40px', display: 'flex',border: '1px solid black', justifyContent: 'space-between'})
 });
 
 
-
-
   studyText.style.border = '1px black solid';
-  studyText.style.width = '63px';
   reviewText.style.border = '1px black solid';
-  reviewText.style.width = '63px';
 
 
 
-  mainWindow.append(studyContainer);
-  studyContainer.append(studyandReviewContainerUpper)
-  studyandReviewContainerLower.append()
+  mainWindow.append(studyAndReviewContainerOuter);
+  studyAndReviewContainerOuter.append(studyAndReviewUpper);
+  studyAndReviewContainerOuter.append(studyAndReviewLower);
 
-  studyAndReviewContainerUpper.append(studyText);
-  studyAndReviewContainerUpper.append(studyInput);
-  studyAndReviewContainerUpper.append(studyCards)
-  //studyandReviewContainerLower.append(editToStudy);
+  studyAndReviewUpper.append(studyText);
+  studyAndReviewUpper.append(studyInput);
+  studyAndReviewUpper.append(studyCards)
+ 
+  studyAndReviewLower.append(reviewText);
+  studyAndReviewLower.append(reviewInput);
+  studyAndReviewLower.append(reviewCards);
+  studyAndReviewContainerOuter.append(editToReview);
 
-  //mainWindow.append(reviewContainer);
-  studyAndReviewContainerLower.append(reviewText);
-  studyAndReviewContainerLower.append(reviewInput);
-  studyAndReviewContainerLower.append(reviewCards);
-  studyAndReviewContainerLower.append(editToReview);
-
-  mainWindow.append(theWordResetConfigurations)
+  //mainWindow.append(theWordResetConfigurations)
   mainWindow.append(resetColorSchemeContainer);
   resetColorSchemeContainer.append(resetColor);
   resetColorSchemeContainer.append(resetColorIcon);
@@ -336,20 +320,16 @@ let [studyAndReviewContainerUpper, studyAndReviewContainerLower] = ['', ''].map(
       item.smaller.style.display = 'none'
     })
 
-  };
+    containerLower.replaceChild(changeNameofDeckInput4, again);
+    changeNameofDeckInput4.value = again.innerText;
+  
+    containerLower.replaceChild(changeNameofDeckInput5, good);
+    changeNameofDeckInput5.value = good.innerText;
 
-  // editContainerLower.onclick = function () {
-  //   containerLower.replaceChild(changeNameofDeckInput4, again);
-  //   changeNameofDeckInput4.value = again.innerText;
-  //   //changeNameofDeckInput4.focus();
+    containerLower.replaceChild(changeNameofDeckInput6, easy);
+    changeNameofDeckInput6.value = easy.innerText;
 
-  //   containerLower.replaceChild(changeNameofDeckInput5, good);
-  //   changeNameofDeckInput5.value = good.innerText;
-
-  //   containerLower.replaceChild(changeNameofDeckInput6, easy);
-  //   changeNameofDeckInput6.value = easy.innerText;
-
-  // }
+  }
 
 
   redCross.onclick =()=>close(mainWindow, anchorElement)

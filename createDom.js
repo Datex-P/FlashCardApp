@@ -59,7 +59,7 @@ export default function createDom(obj) {
         height: '128px',
         marginTop: '20px',
         left: '77px',
-        border: '1px black solid',
+        //border: '1px black solid',
         zIndex: '3',
         position: 'absolute'
       }, 
@@ -98,16 +98,16 @@ export default function createDom(obj) {
 
 
 
-    //   for (let i = 0; i<8; i++) {
+      for (let i = 0; i<8; i++) {
 
 
-    //   let blackLines = createElement('div', {
-    //     width: '99%',
-    //     marginTop: '15px',
-    //     border: '0.5px #eee4e1 solid'
-    //   });
-    //   newDeckContainer.append(blackLines)
-    // }
+      let blackLines = createElement('div', '', {
+        width: '99%',
+        marginTop: '15px',
+        border: '0.5px #eee4e1 solid'
+      });
+      newDeckContainer.append(blackLines)
+    }
 
 
 

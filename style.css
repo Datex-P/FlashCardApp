@@ -177,6 +177,10 @@ textarea {
   background-color: #a39171;
 }
 
+.deleteContainerYe:hover, .deleteContainerN:hover {
+  background-color: blue
+}
+
 .transPlus {
   transform: rotate(135deg);  
 }

@@ -103,7 +103,7 @@ export default function questAnswerTrainOverv(item) {
 
   // startTimer(item, index);
 
-
+let threeDotsOpen = false;
 
   handleOutsideClick(mainWindow)
 
@@ -133,7 +133,7 @@ export default function questAnswerTrainOverv(item) {
     justifyContent: 'center'
   })
   let deleteContainerInner = createElement('div', 'Do you want to delete this card?', {
-    width: '140px',
+    width: '176px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -141,13 +141,15 @@ export default function questAnswerTrainOverv(item) {
     backgroundColor: 'white',
     position: 'absolute',
     top: '114px',
-    borderRadius: '40px'
+    borderRadius: '40px',
+    border: '2px solid black'
   })
 
   let deleteContainerYes = createElement('div', 'Yes', {
     width: '60px',
     height: '35px',
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
+    backgroundColor: 'rgb(45, 106, 79)',
     position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
@@ -157,6 +159,8 @@ export default function questAnswerTrainOverv(item) {
     borderRadius: '12px'
   })
 
+  deleteContainerYes.className = 'deleteContainerYe';
+
 
   let deleteContainerNo = createElement('div', 'No', {
     width: '60px',
@@ -164,12 +168,15 @@ export default function questAnswerTrainOverv(item) {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
+    backgroundColor: 'rgb(119, 46, 37)',
     position: 'absolute',
     top: '135px',
     left: '-18px',
     borderRadius: '12px'
   })
+
+  deleteContainerNo.className = 'deleteContainerN';
 
 
 
@@ -179,13 +186,14 @@ export default function questAnswerTrainOverv(item) {
     borderLeft: '20px solid transparent',
     borderRight: '20px solid transparent',
     borderTop: '31px solid white',
-    top: '81px',
-    left: '-3px',
-    transform: 'rotate(39deg)',
+    top: '-12px',
+    left: '141px',
+    right: '45px',
+    transform: 'rotate(102deg)',
     position: 'absolute'
   });
 
-  let questionMark1 = createElement('div', questionMark, {position: 'absolute', top: '-29px', right: '-20px'});
+  let questionMark1 = createElement('div', questionMark, {position: 'absolute', top: '-34px', right: '-30px'});
 
 
 deleteContainerInner.append(arrowDown);
@@ -420,6 +428,8 @@ discardButton.style.backgroundColor = '#772e25';
 
   settingsIconContainer.onclick = function () {
 
+    if (threeDotsOpen === false) {
+
     littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 
     if (littleModalWindow.style.display === 'block') {
@@ -432,6 +442,7 @@ discardButton.style.backgroundColor = '#772e25';
         };
       }, 10);
     }
+  }  
   };
 
 
@@ -496,6 +507,7 @@ discardButton.style.backgroundColor = '#772e25';
 
 
   editIconContainer.onclick = function () {
+    threeDotsOpen = true;
 
     showAnswerButtonContainer.style.justifyContent = 'center';
     answerContainer.style.display = 'block'
@@ -511,11 +523,30 @@ discardButton.style.backgroundColor = '#772e25';
     showAnswerButtonContainer.removeChild(containerForTimeButtons);
     showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
+
+
+    setTimeout(function () {
+      window.onclick = function (e) {
+        if (!settingsIconContainer.contains(e.target)) {
+          //alert("Clicked in Box");
+          window.onclick = ''         
+        } else {
+          //alert("Clicked outside Box");
+          saveAndDiscardContainer.classList.add('blinkingIcon');
+          setTimeout(() => {
+            saveAndDiscardContainer.classList.remove('blinkingIcon')
+          }, 3000);
+        }
+      }
+    }, 10);
+
   };
 
 
 
   saveButton.onclick = function () {
+     threeDotsOpen = false;
+
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
@@ -536,6 +567,7 @@ discardButton.style.backgroundColor = '#772e25';
 
 
   discardButton.onclick = function () {
+     threeDotsOpen = false;
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
