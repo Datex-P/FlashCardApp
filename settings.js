@@ -35,7 +35,7 @@ export default function settings() {
 
 
   let changeTimeIntervall = createElement(
-    'div', 'Change Repetition Interval', {});
+    'div', 'Change Repetition Interval', {fontWeight: 'bold'});
 
   mainWindow.append(changeTimeIntervall);
 
@@ -180,7 +180,7 @@ export default function settings() {
   })
 
   let reviewAndStudy = createElement(
-    'div', 'Review and Study Interval', { marginTop: "20px" }
+    'div', 'Review and Study Interval', { marginTop: "20px", fontWeight: 'bold'}
   );
 
   mainWindow.append(reviewAndStudy)

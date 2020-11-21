@@ -232,7 +232,7 @@ export default function createDom(obj) {
 
 
     let littleModalWindow = createElement(
-      'div', '', { display: 'none' }, 'littleModalWindow2');
+      'div', '', { display: 'none', border: '1px solid black' }, 'littleModalWindow2');
 
 
     // let opened = false;

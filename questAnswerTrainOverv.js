@@ -1,25 +1,38 @@
 import shuffle from "./shuffleButton.js";
-import { startTimer, timer } from "./timer.js";
-import { dataBase } from './dataBase.js';
+import {
+  startTimer,
+  timer
+} from "./timer.js";
+import {
+  dataBase
+} from './dataBase.js';
 import createDom from './createDom.js';
-import {createElement, handleOutsideClick, redCross} from './exportFunctions.js'
-import { edit, trash } from './svgs.js';
+import {
+  createElement,
+  handleOutsideClick,
+  redCross
+} from './exportFunctions.js'
+import {
+  edit,
+  trash
+} from './svgs.js';
 
 
 function generateTextarea(inner, style = {}) {
-  let container = createElement('div', '', { ...style, width: '90%' });
+  let container = createElement('div', '', {
+    ...style,
+    width: '90%'
+  });
   const label = createElement(
     'label',
-    inner,
-    {
+    inner, {
       fontWeight: 'bold',
       marginLeft: '7px'
     }
   );
 
   let textarea = createElement(
-    "textarea", '',
-    {
+    "textarea", '', {
       backgroundColor: "white",
       marginTop: '10px'
     }
@@ -33,17 +46,17 @@ function generateTextarea(inner, style = {}) {
 
 
 export default function questAnswerTrainOverv(item) {
-  let decrementTimer = setInterval(()=>{
-    dataBase.queue.forEach((card,index)=>{
-      if(dataBase.queue[index].timeLeft>=1000){
-        dataBase.queue[index].timeLeft-=1000
-      }else{
+  let decrementTimer = setInterval(() => {
+    dataBase.queue.forEach((card, index) => {
+      if (dataBase.queue[index].timeLeft >= 1000) {
+        dataBase.queue[index].timeLeft -= 1000
+      } else {
         dataBase.queue[index].timeLeft = 0
       }
       console.log(dataBase.queue[index].timeLeft)
     })
-    
-  },1000)
+
+  }, 1000)
 
 
   function shuffleLogic() {
@@ -63,9 +76,9 @@ export default function questAnswerTrainOverv(item) {
   //header
   let theNameOftheDeckAndRedCrossContainer = createElement(
     'div',
-    '',
-    {
-      width: "89%"
+    '', {
+      width: "89%",
+      marginBottom: '6px'
     },
     'flexSpaceBetween'
   );
@@ -82,7 +95,7 @@ export default function questAnswerTrainOverv(item) {
   function close() {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
-    clearInterval(timer);  //not implemented yet
+    clearInterval(timer); //not implemented yet
     clearInterval(decrementTimer);
   }
   redCross.onclick = close
@@ -98,8 +111,7 @@ export default function questAnswerTrainOverv(item) {
   theNameOftheDeckAndRedCrossContainer.append(redCross);
   //header
   let [questionContainer, questionFieldTextArea] = generateTextarea(
-    'Question',
-    {
+    'Question', {
       marginBottom: '20px',
       marginTop: '20px',
     }
@@ -109,12 +121,26 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-  let  deleteContainerFrame = createElement('div', '', {display: 'none', width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.6)',position:'absolute',top:'0',borderRadius:'18px',alignItems:'center', justifyContent:'center'})
-  let deleteContainerInner = createElement('div', '', {width: '100px', height: '100px', backgroundColor: 'white'})
+  let deleteContainerFrame = createElement('div', '', {
+    display: 'none',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    position: 'absolute',
+    top: '0',
+    borderRadius: '18px',
+    alignItems: 'center',
+    justifyContent: 'center'
+  })
+  let deleteContainerInner = createElement('div', '', {
+    width: '100px',
+    height: '100px',
+    backgroundColor: 'white'
+  })
 
   mainWindow.append(deleteContainerFrame)
   deleteContainerFrame.append(deleteContainerInner)
-  
+
 
 
 
@@ -122,13 +148,16 @@ export default function questAnswerTrainOverv(item) {
 
   let buttonContainer = createElement(
     'div',
-    '',
-    {textAlign: 'left', width: '90%'});
+    '', {
+      textAlign: 'left',
+      width: '90%'
+    });
 
   let showAnswerButton = createElement(
     'button',
-    'Show Answer',
-    {  cursor: 'pointer'},
+    'Show Answer', {
+      cursor: 'pointer'
+    },
     '',
     'showAnswerButton'
   );
@@ -138,8 +167,7 @@ export default function questAnswerTrainOverv(item) {
 
   let showAnswerButtonContainer = createElement(
     'div',
-    '',
-    {
+    '', {
       display: 'none',
       width: 'calc(90% - 2px)',
       height: '94px',
@@ -154,8 +182,7 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.append(showAnswerButtonContainer);
 
   let [answerContainer, answerFieldTextArea] = generateTextarea(
-    'Answer',
-    {
+    'Answer', {
       marginTop: '20px',
       display: 'none',
       position: 'relative'
@@ -164,20 +191,28 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.appendChild(answerContainer)
 
 
-  let saveAndDiscardContainer = createElement('div', '', {display: 'none', width: '166px', height: '71px', top: '388px', position: 'absolute', backgroundColor: 'blue'})
-
- 
-let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
-  return createElement('div', el, {}, 'generalButtonStyling flexCenterAlignCenter')
-})
-
-
-   mainWindow.append(saveAndDiscardContainer);
-   saveAndDiscardContainer.append(discardButton);
-   saveAndDiscardContainer.append(saveButton);
+  let saveAndDiscardContainer = createElement('div', '', {
+    display: 'none',
+    width: '166px',
+    height: '71px',
+    top: '388px',
+    position: 'absolute'
+  })
 
 
- 
+  let [saveButton, discardButton] = ['Save', 'Discard'].map(el => {
+    return createElement('div', el, {
+      fontSize: '14px'
+    }, 'generalButtonStyling flexCenterAlignCenter')
+  })
+
+
+  mainWindow.append(saveAndDiscardContainer);
+  saveAndDiscardContainer.append(discardButton);
+  saveAndDiscardContainer.append(saveButton);
+
+
+
 
 
   let [question, answer, index] = shuffleLogic()
@@ -185,23 +220,22 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
   showAnswerButton.onclick = function () {
     this.style.display = 'none';
     answerContainer.style.display = 'block';
-     showAnswerButtonContainer.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'block';
+    answerFieldTextArea.style.display = 'block';
   };
 
   let containerForAgainGoodEasyButtons = createElement(
     'div',
-    '',
-    {
+    '', {
       margin: '5px 0'
     }, 'flexSpaceBetween'
   );
 
   let containerForTimeButtons = createElement(
     'div',
-    '',
-    {
+    '', {
       margin: '0 auto',
-     // border: '1px black solid',
+      // border: '1px black solid',
       width: '90%'
     }, 'flexSpaceBetween'
   );
@@ -209,13 +243,20 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
   showAnswerButtonContainer.append(containerForTimeButtons);
 
 
-  
+
 
   [1, 2, 20].forEach(el => {
-    let btn = createElement('div', `< ${el}m`, {fontWeight: 'bold'});
+    let btn = createElement('div', `< ${el}m`, {
+      fontWeight: 'bold'
+    });
     containerForTimeButtons.append(btn);
-    btn.onclick = function(){
-        dataBase.queue.push({question, answer, index,timeLeft: el*6000})
+    btn.onclick = function () {
+      dataBase.queue.push({
+        question,
+        answer,
+        index,
+        timeLeft: el * 6000
+      })
     }
   });
 
@@ -226,13 +267,22 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
   //let randomNum = Math.floor(Math.random() * 2); //again
 
 
+  function display() {
+    answerFieldTextArea.style.display = 'none';
+    answerContainer.style.display = 'none'
+     showAnswerButton.style.display = 'block';
+     showAnswerButtonContainer.style.display = 'none'
+  }
+
+
+
+
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
   ["again", "good", "easy"].forEach((el) => {
 
     let button = createElement(
       "button",
-      el,
-      {
+      el, {
         pointer: 'cursor'
       },
       "generalButtonStyling"
@@ -240,21 +290,59 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
 
     button.addEventListener('click', function () {
 
-      if (el === 'good') {
 
-        //     let randomNum = Math.floor(Math.random() * 4 +2.1);
-        //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+      if (el === 'again') {
+        shuffleLogic(); //different kinds of shuffle logic     
 
+        let randomNum = Math.floor(Math.random() * 10);
+
+        setTimeout(function () {
+
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+
+        }, randomNum * 1000);
+
+        display();
       }
-      if (el === 'easy') {
 
-        //     let randomNum = Math.floor(Math.random() * 10 + 4);
-        //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+      if (el == 'good') {
+        shuffleLogic();
+        display();
 
+        let randomNum = (Math.floor(Math.random() * (100-60+1) + 60));
 
+        //let randomNum = Math.floor(Math.random() * 100);
+
+        setTimeout(function () {
+
+          button.addEventListener('click', function () {
+            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          })
+        }, randomNum * 1000);
       }
-    });
 
+      // if (el === 'easy') {
+      //   shuffleLogic();
+
+
+      //   let randomNum = Math.floor(Math.random() * 3);
+
+      //   setTimeout(function () {
+
+      //     button.addEventListener('click', function () {
+      //       questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+      //       answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+      //     })
+
+      //   }, randomNum * 1000);
+
+      //   display();
+      // };
+    })
     containerForAgainGoodEasyButtons.append(button)
 
   });
@@ -262,30 +350,46 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
 
 
   let settingsIconContainer = createElement(
-    'div', '...',
-    {transform: 'rotate(90deg)', fontWeight: 'bold', position: 'absolute',
-      cursor: 'pointer', top: '15px', right: '66px', fontSize: '25px'
+    'div', '...', {
+      transform: 'rotate(90deg)',
+      fontWeight: 'bold',
+      position: 'absolute',
+      cursor: 'pointer',
+      top: '15px',
+      right: '66px',
+      fontSize: '25px'
     }
   );
 
   theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
 
 
-  let opened = false;
+
   settingsIconContainer.onclick = function () {
-     opened = !opened;
-     littleModalWindow.style.display = opened ? "block" : "none";
+
+    littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
+
+    if (littleModalWindow.style.display === 'block') {
+      setTimeout(function () {
+        window.onclick = function (event) {
+          if (!littleModalWindow.contains(event.target)) {
+            littleModalWindow.style.display = 'none';
+            window.onclick = ''
+          }
+        };
+      }, 10);
+    }
   };
 
 
 
   let littleModalWindow = createElement(
     'div',
-    '',
-    {
+    '', {
       transform: 'rotate(-90deg)',
-      top: '17px',
-      left: '10px',
+      top: '-56px',
+      left: '-6px',
+      border: '1px black solid',
       borderRadius: '5px'
     },
     'littleModalWindow flexColumn'
@@ -296,98 +400,115 @@ let [saveButton, discardButton] = ['Save', 'Discard'].map(el=>{
 
 
 
-let [trashIconContainer, editIconContainer] = ['', ''].map(el=>{
-  return createElement('div', '', {width: 'fit-content', height: '30px', display: 'flex', border: '1px black solid', alignItems: 'center'}, 'trashIconContainer')}
-);
+  let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
+    return createElement('div', '', {
+      width: 'fit-content',
+      height: '25px',
+      display: 'flex',
+      border: '1px black solid',
+      alignItems: 'center'
+    }, 'trashIconContainer')
+  });
 
-littleModalWindow.append(editIconContainer);
-littleModalWindow.append(trashIconContainer);
-
-
-let [editIcon, trashIcon] = [edit, trash].map(el=>{
-  return createElement('div', el, {width: '20px', height: '20px'})});
-
-  let [editIconText, trashIconText] = ['card', 'card'].map(el=>{
-    return createElement('div', el, {width: 'fit-content', fontSize: '16px'} ) } );
-
-editIconContainer.append(editIcon);
-editIconContainer.append(editIconText);
-trashIconContainer.append(trashIcon);
-trashIconContainer.append(trashIconText);
+  littleModalWindow.append(editIconContainer);
+  littleModalWindow.append(trashIconContainer);
 
 
-trashIconContainer.onclick = function () {
+  let [editIcon, trashIcon] = [edit, trash].map(el => {
+    return createElement('div', el, {
+      width: '20px'
+    })
+  });
 
-   deleteContainerFrame.style.display = 'flex'
+  let [editIconText, trashIconText] = ['card', 'card'].map(el => {
+    return createElement('div', el, {
+      width: 'fit-content',
+      fontSize: '16px'
+    })
+  });
 
-// let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
-
-// mainWindow.append(deleteContainer)
-
-
-}
+  editIconContainer.append(editIcon);
+  editIconContainer.append(editIconText);
+  trashIconContainer.append(trashIcon);
+  trashIconContainer.append(trashIconText);
 
 
+  trashIconContainer.onclick = function () {
 
-editIconContainer.onclick =  function () {
+    deleteContainerFrame.style.display = 'flex'
 
-         showAnswerButtonContainer.style.justifyContent = 'center';
-         answerContainer.style.display = 'block'
-         answerFieldTextArea.style.display = 'block';
-         answerFieldTextArea.focus();
-         answerFieldTextArea.removeAttribute("disabled");
-         questionFieldTextArea.removeAttribute("disabled");
-         questionFieldTextArea.focus();
-         answerFieldTextArea.focus();
-         saveAndDiscardContainer.style.display = 'flex';
-         saveAndDiscardContainer.style.justifyContent = 'space-around';
+    // let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
 
-          showAnswerButton.style.display = 'none';
-          showAnswerButtonContainer.removeChild(containerForTimeButtons);  
-          showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
-          mainWindow.removeChild(showAnswerButtonContainer);
-};
+    // mainWindow.append(deleteContainer)
+
+
+  }
 
 
 
-saveButton.onclick = function () {
+  editIconContainer.onclick = function () {
 
-  answerFieldTextArea.style.border = 'none';
-      questionFieldTextArea.style.border = 'none';
-      answerFieldTextArea.style.outline = 'none';
-      questionFieldTextArea.style.border = 'none';
+    showAnswerButtonContainer.style.justifyContent = 'center';
+    answerContainer.style.display = 'block'
+    answerFieldTextArea.style.display = 'block';
+    answerFieldTextArea.removeAttribute("disabled");
+    questionFieldTextArea.removeAttribute("disabled");
+    questionFieldTextArea.focus();
+    answerFieldTextArea.focus();
+    saveAndDiscardContainer.style.display = 'flex';
+    saveAndDiscardContainer.style.justifyContent = 'space-around';
 
-      mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-      showAnswerButtonContainer.append(containerForTimeButtons);  
-      showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);   
-      showAnswerButtonContainer.style.display = 'block';
-      saveAndDiscardContainer.style.display = 'none';
-}
-
-
-discardButton.onclick = function () {
-
-  answerFieldTextArea.style.border = 'none';
-      questionFieldTextArea.style.border = 'none';
-      answerFieldTextArea.style.outline = 'none';
-      questionFieldTextArea.style.border = 'none';
-
-      mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-      showAnswerButtonContainer.append(containerForTimeButtons);  
-      showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);   
-      showAnswerButtonContainer.style.display = 'block';
-      saveAndDiscardContainer.style.display = 'none';
-}
+    showAnswerButton.style.display = 'none';
+    showAnswerButtonContainer.removeChild(containerForTimeButtons);
+    showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
+    mainWindow.removeChild(showAnswerButtonContainer);
+  };
 
 
 
+  saveButton.onclick = function () {
+
+    answerFieldTextArea.style.border = 'none';
+    questionFieldTextArea.style.border = 'none';
+    answerFieldTextArea.style.outline = 'none';
+    questionFieldTextArea.style.border = 'none';
+
+    mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
+    showAnswerButtonContainer.append(containerForTimeButtons);
+    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.style.display = 'block';
+    saveAndDiscardContainer.style.display = 'none';
+
+    question = questionFieldTextArea.value;
+    answer = answerFieldTextArea.value;
+
+
+  }
+
+
+  discardButton.onclick = function () {
+
+    answerFieldTextArea.style.border = 'none';
+    questionFieldTextArea.style.border = 'none';
+    answerFieldTextArea.style.outline = 'none';
+    questionFieldTextArea.style.border = 'none';
+
+    mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
+    showAnswerButtonContainer.append(containerForTimeButtons);
+    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.style.display = 'block';
+    saveAndDiscardContainer.style.display = 'none';
+  }
 
 
 
 
-// let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
 
-// mainWindow.append(deleteContainer)
+
+
+  // let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
+
+  // mainWindow.append(deleteContainer)
 
 
 
@@ -410,7 +531,7 @@ discardButton.onclick = function () {
 //    },
 //     'generalButtonStyling'
 //   )
-  
+
 //   littleModalWindow.append(button);
 
 
@@ -427,7 +548,7 @@ discardButton.onclick = function () {
 //        answerFieldTextArea.removeAttribute("disabled");
 //        questionFieldTextArea.removeAttribute("disabled");
 //        questionFieldTextArea.focus();
-     
+
 
 //         showAnswerButtonContainer.removeChild(containerForTimeButtons);  
 //         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
@@ -446,14 +567,14 @@ discardButton.onclick = function () {
 
 
 //         showAnswerButtonContainer.append(discardAndSaveContainer);
-     
+
 //         ["discard", "save"].forEach((el) => {
 
 //           let button = createElement("button", el, {
 //           }, 'generalButtonStyling'
 //         )
 //         discardAndSaveContainer.append(button);
-      
+
 
 //       button.onclick = function () {
 //         if (el === 'discard') {
@@ -463,7 +584,7 @@ discardButton.onclick = function () {
 
 //           showAnswerButtonContainer.style.display = 'block';
 //         }
- 
+
 //         if (el === 'save') {
 
 //             //   question = questionFieldTextArea.value;
@@ -481,8 +602,8 @@ discardButton.onclick = function () {
 
 //     }
 //  );
-      
-          
+
+
 
 
 //    }
@@ -490,14 +611,14 @@ discardButton.onclick = function () {
 
 
 // });
-  
+
 
 
 // }
 
 
-  
-  
+
+
 //   button.onclick = function () {
 //     if (el === 'discard') {
 
@@ -533,7 +654,7 @@ discardButton.onclick = function () {
 
 //   }
 
-  
+
 // });
 
 
@@ -680,51 +801,51 @@ discardButton.onclick = function () {
 
 
 //     //   button.addEventListener('click', function () {
-      //     //     questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     //   })
+//     //     questionFieldTextArea.value = dataBase.DeckNames[item][index].question
+//     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+//     //   })
 
-      //     // }, randomNum * 1000); //right now card gets shown again after 2 sec, normally the formula is : 2 * 60 * 10000
+//     // }, randomNum * 1000); //right now card gets shown again after 2 sec, normally the formula is : 2 * 60 * 10000
 
-      //     // display();
-      //   }
+//     // display();
+//   }
 
-      //   if (el == 'good') {
-      //     shuffleLogic();
-      //     showAnswerButton.style.display = 'block';
+//   if (el == 'good') {
+//     shuffleLogic();
+//     showAnswerButton.style.display = 'block';
 
-      //     let randomNum = Math.floor(Math.random() * 3);
+//     let randomNum = Math.floor(Math.random() * 3);
 
-      //    // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2*60);
-      //     //var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-      //     //https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+//    // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2*60);
+//     //var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+//     //https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
 
-      //     // setTimeout(function() {
+//     // setTimeout(function() {
 
-      //     //   button.addEventListener('click', function () {
-      //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     //   })
-
-
-
-      //     // }, randomNum * 1000);
-
-      //   }
-
-      //   if (el === 'easy') {
-      //     shuffleLogic();
-      //     showAnswerButton.style.display = 'block';
+//     //   button.addEventListener('click', function () {
+//     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+//     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+//     //   })
 
 
-      //     let randomNum = Math.floor(Math.random() * 4);
-      //       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
 
-      //     // setTimeout(function() {
+//     // }, randomNum * 1000);
 
-      //     //   button.addEventListener('click', function () {
-      //     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-      //     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     //   })
+//   }
 
-      //     // }, randomNum * 1000);
+//   if (el === 'easy') {
+//     shuffleLogic();
+//     showAnswerButton.style.display = 'block';
+
+
+//     let randomNum = Math.floor(Math.random() * 4);
+//       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
+
+//     // setTimeout(function() {
+
+//     //   button.addEventListener('click', function () {
+//     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
+//     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+//     //   })
+
+//     // }, randomNum * 1000);
