@@ -14,7 +14,7 @@ import {
 } from './exportFunctions.js'
 import {
   edit,
-  trash
+  trash, questionMark
 } from './svgs.js';
 
 
@@ -132,14 +132,71 @@ export default function questAnswerTrainOverv(item) {
     alignItems: 'center',
     justifyContent: 'center'
   })
-  let deleteContainerInner = createElement('div', '', {
-    width: '100px',
+  let deleteContainerInner = createElement('div', 'Do you want to delete this card?', {
+    width: '140px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: '100px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    position: 'absolute',
+    top: '114px',
+    borderRadius: '40px'
   })
+
+  let deleteContainerYes = createElement('div', 'Yes', {
+    width: '60px',
+    height: '35px',
+    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: '135px',
+    right: '10px',
+    borderRadius: '12px'
+  })
+
+
+  let deleteContainerNo = createElement('div', 'No', {
+    width: '60px',
+    height: '35px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    position: 'absolute',
+    top: '135px',
+    left: '-18px',
+    borderRadius: '12px'
+  })
+
+
+
+  let arrowDown = createElement('div', '', {
+    width: '0',
+    height: '0', 
+    borderLeft: '20px solid transparent',
+    borderRight: '20px solid transparent',
+    borderTop: '31px solid white',
+    top: '81px',
+    left: '-3px',
+    transform: 'rotate(39deg)',
+    position: 'absolute'
+  });
+
+  let questionMark1 = createElement('div', questionMark, {position: 'absolute', top: '-29px', right: '-20px'});
+
+
+deleteContainerInner.append(arrowDown);
+
+
 
   mainWindow.append(deleteContainerFrame)
   deleteContainerFrame.append(deleteContainerInner)
+  deleteContainerInner.append(deleteContainerNo)
+  deleteContainerInner.append(deleteContainerYes)
+  deleteContainerInner.append(questionMark1);
 
 
 
@@ -196,15 +253,24 @@ export default function questAnswerTrainOverv(item) {
     width: '166px',
     height: '71px',
     top: '388px',
-    position: 'absolute'
+    position: 'absolute',
+    border: '1px grey solid',
+    borderRadius: '5px'
   })
 
 
   let [saveButton, discardButton] = ['Save', 'Discard'].map(el => {
     return createElement('div', el, {
-      fontSize: '14px'
+      fontSize: '14px',
+      //backgroundColor: '#81b29a',
     }, 'generalButtonStyling flexCenterAlignCenter')
   })
+
+saveButton.style.backgroundColor = '#2d6a4f';
+//discardButton.style.backgroundColor = '#c44536';
+discardButton.style.backgroundColor = '#772e25';
+
+
 
 
   mainWindow.append(saveAndDiscardContainer);
@@ -258,7 +324,7 @@ export default function questAnswerTrainOverv(item) {
         timeLeft: el * 6000
       })
     }
-    btn.title = `if you click here app will show you the same card in ${el} min`
+    btn.title = `if you click here app will show you the same card in less than ${el} min`
   });
 
   //only count time when window is opened
@@ -346,6 +412,8 @@ export default function questAnswerTrainOverv(item) {
     }
   );
 
+  settingsIconContainer.title = 'Edit question and answer or delete card';
+
   theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
 
 
@@ -422,11 +490,7 @@ export default function questAnswerTrainOverv(item) {
 
     deleteContainerFrame.style.display = 'flex'
 
-    // let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
-
-    // mainWindow.append(deleteContainer)
-
-
+  
   }
 
 
@@ -439,9 +503,9 @@ export default function questAnswerTrainOverv(item) {
     answerFieldTextArea.removeAttribute("disabled");
     questionFieldTextArea.removeAttribute("disabled");
     questionFieldTextArea.focus();
-    answerFieldTextArea.focus();
     saveAndDiscardContainer.style.display = 'flex';
     saveAndDiscardContainer.style.justifyContent = 'space-around';
+    saveAndDiscardContainer.style.alignItems = 'center'
 
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForTimeButtons);

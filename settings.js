@@ -41,8 +41,8 @@ export default function settings() {
 
 
 
-  let [editContainerLower, editContainerUpper] = ['', ''].map(el => {
-    return createElement('div', edit, {})
+  let [editContainerUpper] = [''].map(el => {
+    return createElement('div', edit, { position: 'absolute', left: '299px', top: '103px'})
   });
 
 
@@ -63,14 +63,36 @@ export default function settings() {
     'div',
     '',
     {
-      width: '300px',
+      width: '290px',
       height: '68px',
       border: '1px black solid',
-      marginTop: '10px'
+      marginTop: '10px',
+      borderRadius: '5px'
     }, 'flexColumn'
   );
 
   mainWindow.append(changeRepetitionIntervalContainer);
+
+
+  let changeRepetitionIntervalContainerInner = createElement(
+    'div',
+    '',
+    {
+      width: '260px',
+      height: '68px',
+     // border: '1px black solid',
+      //marginTop: '10px',
+      borderRadius: '5px'
+      //border: '1px black solid'
+    }, 'flexColumn'
+  );
+
+  changeRepetitionIntervalContainer.append(changeRepetitionIntervalContainerInner);
+
+
+
+
+
 
 
 
@@ -81,15 +103,16 @@ export default function settings() {
       position: 'relative',
       width: '100%',
       height: '50%',
-      border: '1px black solid',
-      borderTop: '0px'
-    }, 'flexSpaceAroundAlignCenter', '', changeRepetitionIntervalContainer))
+     // border: '1px black solid',
+      //borderTop: '0px'
+    }, 'flexSpaceAroundAlignCenter', '', changeRepetitionIntervalContainerInner))
 
 
 
   let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
     width,
-    border: '1px black solid'
+    border: '2px black solid',
+    borderRadius: '5px'
   }, 'flexCenter'))
 
   containerUpper.append(upperLeftContainerContainer);
@@ -97,9 +120,9 @@ export default function settings() {
   containerUpper.append(upperRightContainerContainer);
 
 
-  let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['56px', '56px', '56px'].map(width => createElement('div', '', {
+  let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
     width,
-    border: '1px black solid'
+    //border: '1px black solid'
   }, 'flexSpaceBetween'))
 
   upperLeftContainerContainer.append(upperLeftContainer);
@@ -132,6 +155,7 @@ export default function settings() {
     ["min",'hours','days'].map((el) => {
       let input = document.createElement("div");
       input.innerText = el;
+      input.style.fontWeight = 'bold'
       //input.className = "noBorders";
       //input.style.height = '30%'
       input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
@@ -152,7 +176,9 @@ export default function settings() {
     })
 
 
-  containerUpper.append(editContainerUpper)
+    changeRepetitionIntervalContainer.append(editContainerUpper)
+
+
 
 
 
@@ -173,9 +199,9 @@ export default function settings() {
     return input
   });
 
-  containerLower.append(editContainerLower)
+ 
 
-  let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3, changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] = [...Array(3).fill('28%'), ...Array(3).fill('20%')].map(width => {
+  let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3, changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] = [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
     return createElement('input', '', { width }, 'settingsButtonStyling');
   })
 
@@ -187,8 +213,11 @@ export default function settings() {
 
 
   let [studyContainer, reviewContainer] = ['', ''].map(el => {
-    return createElement('div', '', { border: '1px black solid', display: 'flex', width: '160px', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' })
+    return createElement('div', '', { border: '1px black solid', borderRadius: '5px', display: 'flex', width: '160px', flexDirection: 'column', marginTop: '10px' })
   })
+
+  let studyContainerUpper = createElement('div', '', {});
+  let studyContainerLower = createElement('div', '', {})
 
   let theWordResetConfigurations = createElement(
     'div', 'Reset Configurations', {
@@ -228,24 +257,35 @@ export default function settings() {
     return createElement('div', el, {})
   });
 
+
+let [studyAndReviewContainerUpper, studyAndReviewContainerLower] = ['', ''].map(el=>{
+  return createElement('div', el, {width: '160px'})
+});
+
+
+
+
   studyText.style.border = '1px black solid';
   studyText.style.width = '63px';
   reviewText.style.border = '1px black solid';
-  reviewText.style.widt = '63px';
+  reviewText.style.width = '63px';
 
 
 
   mainWindow.append(studyContainer);
-  studyContainer.append(studyText);
-  studyContainer.append(studyInput);
-  studyContainer.append(studyCards)
-  studyContainer.append(editToStudy);
+  studyContainer.append(studyandReviewContainerUpper)
+  studyandReviewContainerLower.append()
 
-  mainWindow.append(reviewContainer);
-  reviewContainer.append(reviewText);
-  reviewContainer.append(reviewInput);
-  reviewContainer.append(reviewCards);
-  reviewContainer.append(editToReview);
+  studyAndReviewContainerUpper.append(studyText);
+  studyAndReviewContainerUpper.append(studyInput);
+  studyAndReviewContainerUpper.append(studyCards)
+  //studyandReviewContainerLower.append(editToStudy);
+
+  //mainWindow.append(reviewContainer);
+  studyAndReviewContainerLower.append(reviewText);
+  studyAndReviewContainerLower.append(reviewInput);
+  studyAndReviewContainerLower.append(reviewCards);
+  studyAndReviewContainerLower.append(editToReview);
 
   mainWindow.append(theWordResetConfigurations)
   mainWindow.append(resetColorSchemeContainer);
@@ -298,18 +338,18 @@ export default function settings() {
 
   };
 
-  editContainerLower.onclick = function () {
-    containerLower.replaceChild(changeNameofDeckInput4, again);
-    changeNameofDeckInput4.value = again.innerText;
-    //changeNameofDeckInput4.focus();
+  // editContainerLower.onclick = function () {
+  //   containerLower.replaceChild(changeNameofDeckInput4, again);
+  //   changeNameofDeckInput4.value = again.innerText;
+  //   //changeNameofDeckInput4.focus();
 
-    containerLower.replaceChild(changeNameofDeckInput5, good);
-    changeNameofDeckInput5.value = good.innerText;
+  //   containerLower.replaceChild(changeNameofDeckInput5, good);
+  //   changeNameofDeckInput5.value = good.innerText;
 
-    containerLower.replaceChild(changeNameofDeckInput6, easy);
-    changeNameofDeckInput6.value = easy.innerText;
+  //   containerLower.replaceChild(changeNameofDeckInput6, easy);
+  //   changeNameofDeckInput6.value = easy.innerText;
 
-  }
+  // }
 
 
   redCross.onclick =()=>close(mainWindow, anchorElement)

@@ -23,7 +23,7 @@ export default function createDom(obj) {
 
     let nameOfNewDeck = createElement("div", item, {
       position: 'absolute',
-      left: '83px'
+      left: '77px'
     })
 
 
@@ -58,7 +58,7 @@ export default function createDom(obj) {
         width: '149px',
         height: '128px',
         marginTop: '20px',
-        left: '84px',
+        left: '77px',
         border: '1px black solid',
         zIndex: '3',
         position: 'absolute'
@@ -215,11 +215,13 @@ export default function createDom(obj) {
 
 
     let threeDotsContainer = createElement('div', '', {
-      left: '227px',
+      left: '223px',
       position: 'absolute',
       top: '4px',
       cursor: 'pointer'
     });
+    threeDotsContainer.title = ' Click and edit deckname or delete deck'
+
 
     let threeDotsIcon = createElement('div', '...', {
       color: 'black',
@@ -260,6 +262,7 @@ export default function createDom(obj) {
 
 
     let addToDeckIcon = createElement('div', '', {
+      cursor: 'pointer'
     }, 'orangeCircle');
 
      if (index ===  arr.length-1) {
@@ -267,10 +270,12 @@ export default function createDom(obj) {
       newDeckContainer.style.zIndex = 2
       newDeckContainer.style.transform = 'rotate(0deg)'
     }
+    addToDeckIcon.title = 'Add Questions to this deck';
 
     addToDeckIcon.onclick = function () {
       addQuestionsToDeck(item)
     }
+
 
 
 
