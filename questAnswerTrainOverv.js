@@ -258,6 +258,7 @@ export default function questAnswerTrainOverv(item) {
         timeLeft: el * 6000
       })
     }
+    btn.title = `if you click here app will show you the same card in ${el} min`
   });
 
   //only count time when window is opened
@@ -292,56 +293,40 @@ export default function questAnswerTrainOverv(item) {
 
 
       if (el === 'again') {
-        shuffleLogic(); //different kinds of shuffle logic     
 
         let randomNum = Math.floor(Math.random() * 10);
 
-        setTimeout(function () {
-
-          button.addEventListener('click', function () {
-            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
+          dataBase.queue.push({
+            question,
+            answer,
+            index,
+            timeLeft: randomNum * 1000
           })
-
-        }, randomNum * 1000);
-
-        display();
+        
       }
 
       if (el == 'good') {
-        shuffleLogic();
-        display();
 
         let randomNum = (Math.floor(Math.random() * (100-60+1) + 60));
 
-        //let randomNum = Math.floor(Math.random() * 100);
-
-        setTimeout(function () {
-
-          button.addEventListener('click', function () {
-            questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-            answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-          })
-        }, randomNum * 1000);
+        dataBase.queue.push({
+          question,
+          answer,
+          index,
+          timeLeft: randomNum * 1000
+        })
       }
 
-      // if (el === 'easy') {
-      //   shuffleLogic();
+      if (el === 'easy') {
+        let randomNum = (Math.floor(Math.random() * 3000));
 
-
-      //   let randomNum = Math.floor(Math.random() * 3);
-
-      //   setTimeout(function () {
-
-      //     button.addEventListener('click', function () {
-      //       questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-      //       answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-      //     })
-
-      //   }, randomNum * 1000);
-
-      //   display();
-      // };
+        dataBase.queue.push({
+          question,
+          answer,
+          index,
+          timeLeft: randomNum * 1000
+        })
+      };
     })
     containerForAgainGoodEasyButtons.append(button)
 
