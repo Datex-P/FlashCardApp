@@ -573,11 +573,11 @@ export default function questAnswerTrainOverv(item) {
     questionFieldTextArea.focus();
 
 
-    saveAndDiscardContainer.style.display = 'flex';
-    saveAndDiscardContainer.style.justifyContent = 'space-around';
-    saveAndDiscardContainer.style.alignItems = 'center'
+    // saveAndDiscardContainer.style.display = 'flex';
+    // saveAndDiscardContainer.style.justifyContent = 'space-around';
+    // saveAndDiscardContainer.style.alignItems = 'center'
 
-    //saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter');
+    saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter');
 
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForTimeButtons);

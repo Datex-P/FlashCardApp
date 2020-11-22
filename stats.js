@@ -97,9 +97,9 @@ let theWordCalendarContainer = createElement('div', '', {}, 'flexColumnAlignCent
   rightAndLeftButtonContainer.style.display = "flex";
 
 
-  let [buttonLeft, buttonRight] = ['<', '>'].map((el=>{
-    return createElement('div'),
-  }
+  // let [buttonLeft, buttonRight] = ['<', '>'].map(el=>{
+  //   return createElement('div')
+  // })
 
 
 
