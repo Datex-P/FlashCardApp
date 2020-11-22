@@ -80,10 +80,6 @@ export default function settings() {
 
 
 
-
-
-
-
   let [containerUpper, containerLower] = ['', ''].map((el) => createElement(
     'div',
     '',
@@ -168,12 +164,6 @@ export default function settings() {
 
 
 
-
-
-
-
-
-
   let [again, good, easy] = ["again", "good", "easy"].map((el) => {
     let input = createElement('div', el, {
       width: '68px',
@@ -207,14 +197,6 @@ export default function settings() {
 
 
 
-  // let theWordResetConfigurations = createElement(
-  //   'div', 'Reset Configurations', {
-  //   border: '1px black solid',
-  //   marginTop: '20px',
-  //   fontWeight: 'bold',
-  //   marginBottom: '10px'
-  // }
-  // );
 
   let resetColorSchemeContainer = createElement(
     'div', '', {
@@ -234,16 +216,13 @@ export default function settings() {
     'div', reset, {}
   );
 
-  let studyCards = createElement(
-    'div', 'cards', { width: '30px' }
-  );
-
-  let reviewCards = createElement(
-    'div', 'cards', {width: '30px'}
-  )
+  let [studyCards, reviewCards] = ['cards', 'cards'].map(el=>{
+    return createElement('div', el, {width: '30px'})
+  });
 
 
-  let [studyText, studyInput, editToStudy, editToReview, reviewText, reviewInput] = ['To study', '', edit, edit, 'To review', ''].map(el => {
+
+  let [studyText, studyInput, reviewText, reviewInput] = ['To study', '', 'To review', ''].map(el => {
     return createElement('div', el, {width: '65px'})
   });
 
@@ -252,6 +231,7 @@ let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el=>{
   return createElement('div', el, {width: '160px', height: '40px', display: 'flex',border: '1px solid black', justifyContent: 'space-between'})
 });
 
+let editToReview = createElement('div', edit, {width: '50px', position: 'absolute', width: '65px', top: '233px', right: '34px'});
 
   studyText.style.border = '1px black solid';
   reviewText.style.border = '1px black solid';
@@ -271,7 +251,6 @@ let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el=>{
   studyAndReviewLower.append(reviewCards);
   studyAndReviewContainerOuter.append(editToReview);
 
-  //mainWindow.append(theWordResetConfigurations)
   mainWindow.append(resetColorSchemeContainer);
   resetColorSchemeContainer.append(resetColor);
   resetColorSchemeContainer.append(resetColorIcon);
@@ -282,13 +261,11 @@ let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el=>{
 
 
 
-  editToReview.onclick = function () {
-    reviewContainer.replaceChild(reviewCardInput, reviewInput)
+editToReview.onclick = function () {
+  studyAndReviewLower.replaceChild(reviewCardInput, reviewInput);
+  studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
   }
 
-  editToStudy.onclick = function () {
-    studyContainer.replaceChild(studyCardInput, studyInput)
-  }
 
 
   editContainerUpper.onclick = function () {
