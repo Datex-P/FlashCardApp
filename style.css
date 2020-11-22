@@ -25,6 +25,12 @@ button {
   font-size: 12px;
 }
 
+.studyAndReviewInputStyling {
+  width: 23px;
+  height:25px;
+  background-color: grey;
+}
+
 .noBorders {
   border-right: none;
   border-left: none;
@@ -290,6 +296,12 @@ textarea {
 .flexColumn {
   display: flex;
   flex-direction: column;
+}
+
+.flexColumnSpaceAround {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .flexColumnCenter {

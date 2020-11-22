@@ -8,7 +8,6 @@ import { createElement, closeMenu, close, redCross, handleOutsideClick } from '.
 
 export default function settings() {
 
-
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
@@ -116,8 +115,6 @@ export default function settings() {
 
 
 
-
-
   let [[upperLeftSmaller,upperLeftZero], [upperMiddleSmaller,upperMiddleZero], [upperRightSmaller,upperRightZero]] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container =>
     ["<","0"].map((el) => {
       let input = document.createElement("div");
@@ -162,8 +159,6 @@ export default function settings() {
 
     changeRepetitionIntervalContainer.append(editContainerUpper)
 
-
-
   let [again, good, easy] = ["again", "good", "easy"].map((el) => {
     let input = createElement('div', el, {
       width: '68px',
@@ -191,21 +186,16 @@ export default function settings() {
 
 
   let [studyAndReviewContainerOuter] = [''].map(el => {
-    return createElement('div', '', { border: '1px black solid', borderRadius: '5px', display: 'flex', width: '200px', height: '150px',
-     flexDirection: 'column', marginTop: '10px' })
+    return createElement('div', '', { border: '1px black solid', borderRadius: '5px', width: '225px', height: '70px', marginTop: '10px' }, 'flexColumnSpaceAround')
   })
-
-
 
 
   let resetColorSchemeContainer = createElement(
     'div', '', {
     width: '154px',
     border: '1px black solid',
-    display: 'flex',
-    justifyContent: 'space-between',
     marginTop: '20px'
-  }
+  }, 'flexSpaceBetween'
   );
 
   let resetColor = createElement(
@@ -217,24 +207,25 @@ export default function settings() {
   );
 
   let [studyCards, reviewCards] = ['cards', 'cards'].map(el=>{
-    return createElement('div', el, {width: '30px'})
+    return createElement('div', el, {width: '30px'}, 'flexCenterAlignCenter')
+  });
+
+  let [studyInput, reviewInput] = ['10', '11'].map(el => {
+    return createElement('div', el, {width: '50px'}, 'flexCenterAlignCenter')
   });
 
 
-
-  let [studyText, studyInput, reviewText, reviewInput] = ['To study', '', 'To review', ''].map(el => {
-    return createElement('div', el, {width: '65px'})
+  let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
+    return createElement('div', el, {width: '75px'}, 'flexCenterAlignCenter')
   });
+
 
 
 let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el=>{
-  return createElement('div', el, {width: '160px', height: '40px', display: 'flex',border: '1px solid black', justifyContent: 'space-between'})
+  return createElement('div', el, {width: '145px', height: '40px'}, 'flexSpaceAroundAlignCenter')
 });
 
-let editToReview = createElement('div', edit, {width: '50px', position: 'absolute', width: '65px', top: '233px', right: '34px'});
-
-  studyText.style.border = '1px black solid';
-  reviewText.style.border = '1px black solid';
+let editToReview = createElement('div', edit, {width: '50px', position: 'absolute', width: '65px', top: '230px', right: '27px'});
 
 
 
@@ -257,7 +248,7 @@ let editToReview = createElement('div', edit, {width: '50px', position: 'absolut
 
 
 
-  let [studyCardInput, reviewCardInput] = Array(2).fill('23px').map(width => createElement('input', '', { width }))
+  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '18px'}, 'studyAndReviewInputStyling'))
 
 
 
