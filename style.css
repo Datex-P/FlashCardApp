@@ -4,6 +4,17 @@ textarea {
   outline: none;
 }
 
+:root{
+  --backgroundColor: #5aaa95
+}
+.light{
+  --backgroundColor: #86a873
+}
+
+.dark{
+  --backgroundColor: red
+}
+
 button,
 input,
 textarea {
@@ -477,7 +488,7 @@ textarea {
 }
 
 #mainMenu {
-  background-color: #86a873;
+  background-color: var(--backgroundColor);
   width: 411px;
   height: 731px;
   border-radius: 5px;

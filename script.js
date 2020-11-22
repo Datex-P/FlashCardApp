@@ -15,6 +15,12 @@ import {
 
 createDom(dataBase.DeckNames);
 
+dataBase.userStylePreferences.forEach(item=>{
+  item.element.style.backgroundColor = item.backgroundColor
+})
+
+
+
 let opened = false;
 
 function handleOutsideClick(e) {
@@ -114,6 +120,8 @@ document.getElementById('paintbrush').onclick = function () {
           event.target.style.backgroundColor = this.value
           document.body.addEventListener('mousemove',otherStaffListener)
           document.body.addEventListener('mousemove',changePositionOfColorContainer)
+          dataBase.userStylePreferences.push({element:event.target,backgroundColor:this.value})
+          console.log(JSON.stringify(dataBase.userStylePreferences))
         }
       }
 
