@@ -5,6 +5,10 @@ import {
   redCross as redCrossIcon
 } from "./svgs.js";
 
+import {
+  createElement  
+} from './exportFunctions.js'
+
 export default function stats() {
 
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
@@ -13,19 +17,24 @@ export default function stats() {
   let mainWindow = document.createElement("div");
   mainWindow.className = "addQuestionsToDeck";
 
-  let innerWindow = document.createElement("div");
-  innerWindow.style.marginTop = "20px";
-  innerWindow.style.marginLeft = "30px";
-  innerWindow.style.marginRight = '3px';
-  innerWindow.style.marginBottom = '20px';
-  innerWindow.style.overflow = 'scroll';
-  innerWindow.style.overflowX = 'hidden';
 
-  let redCrossAndStatsContainer = document.createElement("div");
-  redCrossAndStatsContainer.className = 'flexSpaceBetween';
-  redCrossAndStatsContainer.style.height = "20px";
-  redCrossAndStatsContainer.style.width = "290px";
-  redCrossAndStatsContainer.style.border = "1px black solid";
+  let innerWindow = createElement('div', '', {marginTop: '20px', marginLeft: '30px', marginRight: '3px',marginBottom: '20px', overflow: 'scroll', overflowX: 'hidden'})
+
+  // let innerWindow = document.createElement("div");
+  // innerWindow.style.marginTop = "20px";
+  // innerWindow.style.marginLeft = "30px";
+  // innerWindow.style.marginRight = '3px';
+  // innerWindow.style.marginBottom = '20px';
+  // innerWindow.style.overflow = 'scroll';
+  // innerWindow.style.overflowX = 'hidden';
+
+ let redCrossAndStatsContainer = createElement('div', '', {height: '20px', width: '290px', border: '1px black solid'}, 'flexSpaceBetween');
+
+  // let redCrossAndStatsContainer = document.createElement("div");
+  // redCrossAndStatsContainer.className = 'flexSpaceBetween';
+  // redCrossAndStatsContainer.style.height = "20px";
+  // redCrossAndStatsContainer.style.width = "290px";
+  // redCrossAndStatsContainer.style.border = "1px black solid";
 
   let redCross = document.createElement("div");
   redCross.innerHTML = redCrossIcon;
@@ -35,43 +44,71 @@ export default function stats() {
   theWordStats.innerHTML = "Stats";
   theWordStats.style.fontWeight = "bold";
 
-  let todayAndCardsStudiedContainer = document.createElement("div");
-  todayAndCardsStudiedContainer.style.marginTop = "30px";
-  todayAndCardsStudiedContainer.className = 'flexColumnAlignCenter';
+  let todayAndCardsStudiedContainer = createElement('div', '', {marginTop: '30px'}, 'flexColumnAlignCenter');
 
-  let cardsStudied = document.createElement("div");
-  cardsStudied.className = 'flexCenter'
-  //cardsStudied.style.border = '1px solid black';
-  cardsStudied.style.width = "240px";
-  cardsStudied.style.maxHeight = '100px'
-  cardsStudied.style.height = 'fit-content'
-  cardsStudied.style.overflow = 'scroll';
-  cardsStudied.style.overflowX = 'hidden';
-  cardsStudied.style.marginBottom = '5px';
-  cardsStudied.style.flexDirection = 'column';
+  // let todayAndCardsStudiedContainer = document.createElement("div");
+  // todayAndCardsStudiedContainer.style.marginTop = "30px";
+  // todayAndCardsStudiedContainer.className = 'flexColumnAlignCenter';
+
+  // let cardsStudied = document.createElement("div");
+  // cardsStudied.className = 'flexCenter'
+  // //cardsStudied.style.border = '1px solid black';
+  // cardsStudied.style.width = "240px";
+  // cardsStudied.style.maxHeight = '100px'
+  // cardsStudied.style.height = 'fit-content'
+  // cardsStudied.style.overflow = 'scroll';
+  // cardsStudied.style.overflowX = 'hidden';
+  // cardsStudied.style.marginBottom = '5px';
+  // cardsStudied.style.flexDirection = 'column';
 
 
-  let theWordTodayContainer = document.createElement("div");
-  theWordTodayContainer.className = 'flexColumnAlignCenter';
-  theWordTodayContainer.style.marginBottom = "10px";
+  let cardsStudied = createElement('div', '', {width: '240px', maxHeight: '100px', height: 'fit-content', 
+  overflow:'scroll', overflowX:'hidden', marginBottom: '5px', flexDirection: 'column'}, 'flexCenter')
 
-  let theWordToday = document.createElement("div");
-  theWordToday.innerHTML = "Today";
-  theWordToday.style.fontWeight = "bold";
-  theWordToday.style.marginBottom = '5px';
 
-  let theWordCalendarContainer = document.createElement("div");
-  theWordCalendarContainer.className = 'flexColumnAlignCenter';
 
-  let theWordCalendar = document.createElement("div");
-  theWordCalendar.style.marginTop = "10px";
-  theWordCalendar.style.marginBottom = '5px';
-  theWordCalendar.innerHTML = "Calendar";
-  theWordCalendar.style.fontWeight = "bold";
+  // let theWordTodayContainer = document.createElement("div");
+  // theWordTodayContainer.className = 'flexColumnAlignCenter';
+  // theWordTodayContainer.style.marginBottom = "10px";
+
+let theWordTodayContainer = createElement('div', '', {marginBottom: '10px'}, 'flexColumnAlignCenter')
+
+let theWordToday = createElement('div', 'Today', {fontWeight: 'bold', marginBottom: '5px'})
+
+let theWordCalendarContainer = createElement('div', '', {}, 'flexColumnAlignCenter')
+
+  // let theWordToday = document.createElement("div");
+  // theWordToday.innerHTML = "Today";
+  // theWordToday.style.fontWeight = "bold";
+  // theWordToday.style.marginBottom = '5px';
+
+  // let theWordCalendarContainer = document.createElement("div");
+  // theWordCalendarContainer.className = 'flexColumnAlignCenter';
+
+  let theWordCalendar = createElement('div', 'Calendar', {marginTop: '10px', marginBottom: '5px', fontWeight: 'bold'})
+
+  // let theWordCalendar = document.createElement("div");
+  // theWordCalendar.style.marginTop = "10px";
+  // theWordCalendar.style.marginBottom = '5px';
+  // theWordCalendar.innerHTML = "Calendar";
+  // theWordCalendar.style.fontWeight = "bold";
 
   let rightAndLeftButtonContainer = document.createElement("div");
   rightAndLeftButtonContainer.style.display = "flex";
 
+
+  let [buttonLeft, buttonRight] = ['<', '>'].map((el=>{
+    return createElement('div'),
+  }
+
+
+
+
+
+
+  let [studyInput, reviewInput] = ['10', '11'].map(el => {
+    return createElement('div', el, {width: '50px'}, 'flexCenterAlignCenter')
+  });
 
   let buttonLeft = document.createElement("button");
   buttonLeft.className = "calendarButtons";
