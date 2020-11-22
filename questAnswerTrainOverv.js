@@ -14,7 +14,7 @@ import {
 } from './exportFunctions.js'
 import {
   edit,
-  trash, questionMark
+  trash, questionMark, speechBubble
 } from './svgs.js';
 
 
@@ -130,79 +130,137 @@ export default function questAnswerTrainOverv(item) {
     top: '0',
     borderRadius: '18px',
     alignItems: 'center',
-    justifyContent: 'center'
-  })
-  let deleteContainerInner = createElement('div', 'Do you want to delete this card?', {
-    width: '176px',
-    display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    height: '100px',
-    backgroundColor: 'white',
+    flexDirection: 'column'
+  });
+
+  let deleteContainerInner = createElement('div', speechBubble, {
+   // backgroundColor: 'white',
     position: 'absolute',
     top: '114px',
-    borderRadius: '40px',
-    border: '2px solid black'
-  })
+    height: '65px'
+    //border: '2px solid black'
+  }, 'flexCenterAlignCenter')
 
   let deleteContainerYes = createElement('div', 'Yes', {
     width: '60px',
     height: '35px',
-    //backgroundColor: 'white',
     position: 'absolute',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: '135px',
-    right: '10px',
+    color: 'white',
+   // top: '135px',
+    //right: '20px',
     borderRadius: '12px'
-  })
-
-  deleteContainerYes.className = 'deleteContainerYe';
+  }, 'flexCenterAlignCenter deleteContainerYes')
 
 
   let deleteContainerNo = createElement('div', 'No', {
     width: '60px',
     height: '35px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    //backgroundColor: 'white',
     position: 'absolute',
-    top: '135px',
-    left: '-18px',
+    color: 'white',
+    //top: '135px',
+    //left: '-18px',
     borderRadius: '12px'
-  })
+  }, 'flexCenterAlignCenter deleteContainerNo')
 
-  deleteContainerNo.className = 'deleteContainerN';
+  let deleteYesAndNoContainer = createElement('div', '', {display: 'flex', justifyContent: 'space-around', width: '300px', height: '50px', border: '1px black solid'});
+  let dontShowMessageAgainContainer = createElement('div', '', {width: '300px', height: '60px', display: 'flex', justifyContent: 'center'});
+  let dontShowMessageText = createElement('div', "Don't show message again", {width: '200px', color: 'white', border: '1px black solid'});
+  
 
-
-
-  let arrowDown = createElement('div', '', {
-    width: '0',
-    height: '0',
-    borderLeft: '20px solid transparent',
-    borderRight: '20px solid transparent',
-    borderTop: '31px solid white',
-    top: '-12px',
-    left: '141px',
-    right: '45px',
-    transform: 'rotate(102deg)',
-    position: 'absolute'
-  });
-
-  let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-30px' });
-
-
-  deleteContainerInner.append(arrowDown);
+  let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
+  let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
+  let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
+  
+  let checkBoxContainer = createElement('div', '', {}, 'checkBoxContainer');
+  let checkmark = createElement('input', '', {}, 'checkmark');
 
 
 
-  mainWindow.append(deleteContainerFrame)
-  deleteContainerFrame.append(deleteContainerInner)
-  deleteContainerInner.append(deleteContainerNo)
-  deleteContainerInner.append(deleteContainerYes)
+
+  mainWindow.append(deleteContainerFrame);
+  deleteContainerFrame.append(deleteContainerInner);
+  deleteContainerFrame.append(deleteYesAndNoContainer);
+  deleteYesAndNoContainer.append(deleteContainerNo);
+  deleteYesAndNoContainer.append(deleteContainerYes);
+  //deleteContainerInner.append(deleteContainerNo)
+  //deleteContainerInner.append(deleteContainerYes)
   deleteContainerInner.append(questionMark1);
+  deleteContainerInner.append(questionMark2);
+  deleteContainerInner.append(questionMark3);
+  deleteContainerFrame.append(dontShowMessageAgainContainer);
+  dontShowMessageAgainContainer.append(checkBoxContainer)
+  checkBoxContainer.append(checkmark)
+  dontShowMessageAgainContainer.append(dontShowMessageText);
+
+  let dontShow = false;
+
+  //   function popUp() {
+  //     if (!dontShow) {
+  //       let popUpWindowContainer = createElement(
+  //         'div',
+  //         '',
+  //         {
+  //           display: 'flex',
+  //           flexDirection: column,
+  //           width: '200px',
+  //           height: '55px',
+  //           backgroundColor: 'white',
+  //           zIndex: '2',
+  //           position: 'absolute',
+  //           top: '120px',
+  //           border: '1px black solid',
+  //           justifyContent: 'space-between',
+  //           borderRadius: '5px',
+  //           marginLeft: '10%'
+  
+  //         }
+  //       );
+  
+  //       let checkbox = createElement(
+  //         'input',
+  //         '',
+  //         {});
+  //       checkbox.setAttribute('type', 'checkbox');
+  
+  //       let dontShowInfo = createElement(
+  //         'div',
+  //         `Don't show message again`,
+  //         {});
+  
+  //       let cardRemovedInfo = createElement(
+  //         'div',
+  //         'Card was removed from deck',
+  //         {}
+  //       );
+  
+  //       let dontShowAndCheckboxContainer = createElement(
+  //         'div',
+  //         '',
+  //         {
+  //           display: 'flex'
+  //         }
+  //       )
+  
+  
+  //       checkbox.onclick = function () {
+  //         dontShow = true;
+  //         popUpWindowContainer.style.display = 'none';
+  //       }
+  
+  
+  //     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -513,9 +571,13 @@ export default function questAnswerTrainOverv(item) {
     answerFieldTextArea.removeAttribute("disabled");
     questionFieldTextArea.removeAttribute("disabled");
     questionFieldTextArea.focus();
+
+
     saveAndDiscardContainer.style.display = 'flex';
     saveAndDiscardContainer.style.justifyContent = 'space-around';
     saveAndDiscardContainer.style.alignItems = 'center'
+
+    //saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter');
 
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForTimeButtons);
@@ -578,17 +640,6 @@ export default function questAnswerTrainOverv(item) {
     showAnswerButtonContainer.style.display = 'block';
     saveAndDiscardContainer.style.display = 'none';
   }
-
-
-
-
-
-
-
-  // let  deleteContainer = createElement('div', '', {width: '200px', backgroundColor: 'blue', height: '40px'})
-
-  // mainWindow.append(deleteContainer)
-
 
 
 
@@ -738,63 +789,7 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-//   let dontShow = false;
-
-//   function popUp() {
-//     if (!dontShow) {
-//       let popUpWindowContainer = createElement(
-//         'div',
-//         '',
-//         {
-//           display: 'flex',
-//           flexDirection: column,
-//           width: '200px',
-//           height: '55px',
-//           backgroundColor: 'white',
-//           zIndex: '2',
-//           position: 'absolute',
-//           top: '120px',
-//           border: '1px black solid',
-//           justifyContent: 'space-between',
-//           borderRadius: '5px',
-//           marginLeft: '10%'
-
-//         }
-//       );
-
-//       let checkbox = createElement(
-//         'input',
-//         '',
-//         {});
-//       checkbox.setAttribute('type', 'checkbox');
-
-//       let dontShowInfo = createElement(
-//         'div',
-//         `Don't show message again`,
-//         {});
-
-//       let cardRemovedInfo = createElement(
-//         'div',
-//         'Card was removed from deck',
-//         {}
-//       );
-
-//       let dontShowAndCheckboxContainer = createElement(
-//         'div',
-//         '',
-//         {
-//           display: 'flex'
-//         }
-//       )
-
-
-//       checkbox.onclick = function () {
-//         dontShow = true;
-//         popUpWindowContainer.style.display = 'none';
-//       }
-
-
-//     }
+//   
 
 
 //   }
