@@ -34,14 +34,14 @@ export default function settings() {
 
 
   let changeTimeIntervall = createElement(
-    'div', 'Change Repetition Interval', {fontWeight: 'bold'});
+    'div', 'Change Repetition Interval', { fontWeight: 'bold' });
 
   mainWindow.append(changeTimeIntervall);
 
 
 
   let [editContainerUpper] = [''].map(el => {
-    return createElement('div', edit, { position: 'absolute', left: '299px', top: '103px'})
+    return createElement('div', edit, { position: 'absolute', left: '299px', top: '103px' })
   });
 
 
@@ -67,7 +67,7 @@ export default function settings() {
     {
       width: '260px',
       height: '68px',
-     // border: '1px black solid',
+      // border: '1px black solid',
       //marginTop: '10px',
       borderRadius: '5px'
       //border: '1px black solid'
@@ -86,7 +86,7 @@ export default function settings() {
       position: 'relative',
       width: '100%',
       height: '50%',
-     // border: '1px black solid',
+      // border: '1px black solid',
       //borderTop: '0px'
     }, 'flexSpaceAroundAlignCenter', '', changeRepetitionIntervalContainerInner))
 
@@ -115,8 +115,8 @@ export default function settings() {
 
 
 
-  let [[upperLeftSmaller,upperLeftZero], [upperMiddleSmaller,upperMiddleZero], [upperRightSmaller,upperRightZero]] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container =>
-    ["<","0"].map((el) => {
+  let [[upperLeftSmaller, upperLeftZero], [upperMiddleSmaller, upperMiddleZero], [upperRightSmaller, upperRightZero]] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container =>
+    ["<", "0"].map((el) => {
       let input = document.createElement("div");
       input.innerText = el;
       //input.className = "noBorders";
@@ -132,8 +132,8 @@ export default function settings() {
 
 
 
-  let [upperLeftMin, upperMiddleMin, upperRightMin] = 
-    ["min",'hours','days'].map((el) => {
+  let [upperLeftMin, upperMiddleMin, upperRightMin] =
+    ["min", 'hours', 'days'].map((el) => {
       let input = document.createElement("div");
       input.innerText = el;
       input.style.fontWeight = 'bold'
@@ -141,7 +141,7 @@ export default function settings() {
       //input.style.height = '30%'
       input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
-      switch(el){
+      switch (el) {
         case 'min':
           upperLeftContainer.append(input)
           break
@@ -157,7 +157,7 @@ export default function settings() {
     })
 
 
-    changeRepetitionIntervalContainer.append(editContainerUpper)
+  changeRepetitionIntervalContainer.append(editContainerUpper)
 
   let [again, good, easy] = ["again", "good", "easy"].map((el) => {
     let input = createElement('div', el, {
@@ -172,14 +172,14 @@ export default function settings() {
     return input
   });
 
- 
+
 
   let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3, changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] = [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
     return createElement('input', '', { width }, 'settingsButtonStyling');
   })
 
   let reviewAndStudy = createElement(
-    'div', 'Review and Study Interval', { marginTop: "20px", fontWeight: 'bold'}
+    'div', 'Review and Study Interval', { marginTop: "20px", fontWeight: 'bold' }
   );
 
   mainWindow.append(reviewAndStudy)
@@ -199,44 +199,70 @@ export default function settings() {
   );
 
   let resetColor = createElement(
-    'div', 'Reset Colorscheme', {fontWeight: 'bold'}
+    'div', 'Reset Colorscheme', { fontWeight: 'bold' }
   );
 
   let resetColorIcon = createElement(
     'div', reset, {}
   );
 
-  let [studyCards, reviewCards] = ['cards', 'cards'].map(el=>{
-    return createElement('div', el, {width: '30px'}, 'flexCenterAlignCenter')
+  let [studyCards, reviewCards] = ['cards', 'cards'].map(el => {
+    return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
   });
 
   let [studyInput, reviewInput] = ['10', '11'].map(el => {
-    return createElement('div', el, {width: '50px'}, 'flexCenterAlignCenter')
+    return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
   });
 
 
   let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
-    return createElement('div', el, {width: '75px'}, 'flexCenterAlignCenter')
+    return createElement('div', el, { width: '75px',marginLeft:'5px' }, '')
   });
 
 
 
-let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el=>{
-  return createElement('div', el, {width: '145px', height: '40px'}, 'flexSpaceAroundAlignCenter')
-});
+  let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el => {
+    return createElement('div', el, { width: '163px', height: '40px',display:'flex',alignItems:'center' }, '')
+  });
 
-let editToReview = createElement('div', edit, {width: '50px', position: 'absolute', width: '65px', top: '230px', right: '27px'});
+  let editToReview = createElement('div', edit, { width: '50px', position: 'absolute', width: '65px', top: '230px', right: '27px' });
 
 
 
   mainWindow.append(studyAndReviewContainerOuter);
+
+
+
+  let themeRadiosContainer = createElement('div','',{marginTop:'10px'},'','',mainWindow);
+
+
+  let [light,dark] = ['light','dark'].map(radio=>
+    createElement('input','',{},'','',themeRadiosContainer)
+  );
+
+
+  [light,dark].forEach(radio => {
+    radio.name = 'theme'
+    radio.type = 'radio'
+    radio.onchange = function(){
+      document.body.classList.toggle(this.value)
+    }
+
+  })
+
+  light.value = 'light'
+  dark.value = 'dark'
+
+
+
+
   studyAndReviewContainerOuter.append(studyAndReviewUpper);
   studyAndReviewContainerOuter.append(studyAndReviewLower);
 
   studyAndReviewUpper.append(studyText);
   studyAndReviewUpper.append(studyInput);
   studyAndReviewUpper.append(studyCards)
- 
+
   studyAndReviewLower.append(reviewText);
   studyAndReviewLower.append(reviewInput);
   studyAndReviewLower.append(reviewCards);
@@ -248,13 +274,13 @@ let editToReview = createElement('div', edit, {width: '50px', position: 'absolut
 
 
 
-  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '18px'}, 'studyAndReviewInputStyling'))
+  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '18px',margin:'0 10px' }, 'studyAndReviewInputStyling'))
 
 
 
-editToReview.onclick = function () {
-  studyAndReviewLower.replaceChild(reviewCardInput, reviewInput);
-  studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
+  editToReview.onclick = function () {
+    studyAndReviewLower.replaceChild(reviewCardInput, reviewInput);
+    studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
   }
 
 
@@ -290,7 +316,7 @@ editToReview.onclick = function () {
 
     containerLower.replaceChild(changeNameofDeckInput4, again);
     changeNameofDeckInput4.value = again.innerText;
-  
+
     containerLower.replaceChild(changeNameofDeckInput5, good);
     changeNameofDeckInput5.value = good.innerText;
 
@@ -300,20 +326,14 @@ editToReview.onclick = function () {
   }
 
 
-  redCross.onclick =()=>close(mainWindow, anchorElement)
+  redCross.onclick = () => close(mainWindow, anchorElement)
 
   handleOutsideClick(mainWindow)
 
-
-
   redCross.addEventListener('click', closeMenu());
-
-
-
   settingsAndRedCrossContainer.append(redCross);
 
   closeMenu()
-
 
 }
 

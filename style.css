@@ -10,9 +10,8 @@ textarea {
 .light{
   --backgroundColor: #86a873
 }
-
 .dark{
-  --backgroundColor: red
+  --backgroundColor: #5aaaff
 }
 
 button,
