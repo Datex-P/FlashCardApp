@@ -6,7 +6,7 @@ import {
 } from "./svgs.js";
 
 import {
-  createElement, handleOutsideClick, closeMenu  
+  createElement, handleOutsideClick, closeMenu, redCross
 } from './exportFunctions.js'
 
 export default function stats() {
@@ -21,7 +21,7 @@ let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
 
  let redCrossAndStatsContainer = createElement('div', '', {height: '20px', width: '290px', marginLeft: '24px', border: '1px black solid'}, 'flexSpaceBetween');
 
- let redCross = createElement('div', redCrossIcon, {}, 'redCross')
+//  let redCross = createElement('div', redCrossIcon, {}, 'redCross')
 
 let theWordStats = createElement('div', 'Stats', {fontWeight: 'bold'});
 
@@ -99,7 +99,11 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
 
   for (let i = 0; i < 24; i+=2) {
     let time = document.createElement('div');
-    time.innerText = `${i} - ${i+2}`;
+    time.innerHTML = `
+      <div>${i}</div>
+      <div style='line-height:5px'>-</div>
+      <div>${i+2}</div>
+    `;
     time.classList.add('hourAmount')
     usageChartCaption.append(time)
 
