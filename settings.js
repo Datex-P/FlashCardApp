@@ -195,18 +195,14 @@ export default function settings() {
     width: '154px',
     border: '1px black solid',
     marginTop: '20px',
-    // display: 'flex',
-    // alignItems: 'center',
-    // justifyContent: 'space-between'
-  }, 'flexAlignSpaceBetween');
+   
+  }, '');
 
   let colorscheme = createElement(
-    'div', 'Colorscheme', { fontWeight: 'bold' }
+    'div', 'Colorscheme', { fontWeight: 'bold', textAlign: 'center'}
   );
 
-  // let resetColorIcon = createElement(
-  //   'div', reset, {}
-  // );
+ 
 
   let [studyCards, reviewCards] = ['cards', 'cards'].map(el => {
     return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
@@ -227,7 +223,7 @@ export default function settings() {
     return createElement('div', el, { width: '163px', height: '40px',display:'flex',alignItems:'center' }, '')
   });
 
-  let editToReview = createElement('div', edit, { width: '50px', position: 'absolute', width: '65px', top: '230px', right: '27px' });
+  let editToReview = createElement('div', edit, { width: '50px', position: 'absolute', width: '65px', top: '246px', right: '27px' });
 
 
 

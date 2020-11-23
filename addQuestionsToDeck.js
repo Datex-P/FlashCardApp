@@ -21,7 +21,7 @@ export default function addQuestionsToDeck(item) {
 
   let insideFlashCardsContainer = createElement('div', '', { marginTop: '20px' });
 
-  let theWordFlashCardsAndRedCrossContainer = createElement('div', '', { width: '89%'}, 'flexSpaceBetween')
+  let theWordFlashCardsAndRedCrossContainer = createElement('div', '', { width: '97%'}, 'flexSpaceBetween')
 
   let theNameOfTheDeck = createElement('div', `&#160${item}`, {});
 
@@ -41,7 +41,7 @@ export default function addQuestionsToDeck(item) {
   ['Question', 'Answer'].forEach(el => {
 
     let textarea = document.createElement('textarea');
-    textarea.className = 'textareaStyling';
+    //textarea.className = 'textareaStyling';
 
     let theWordQuestionAndAnswer = document.createElement('div');
     theWordQuestionAndAnswer.innerText = el;

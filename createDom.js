@@ -159,7 +159,11 @@ export default function createDom(obj) {
     let changeNameofDeckInput = createElement('input', '', {
       width: '30%',
       position: 'absolute',
-      left: '83px'
+      left: '76px',
+      // borderLeft: 'none',
+      // borderRight: 'none',
+      // borderTop: 'none',
+      // borderBottom: '2px solid black'
     });
 
 
@@ -187,7 +191,7 @@ export default function createDom(obj) {
 
       if (!edited) {
 
-        this.innerHTML = save;
+        this.innerHTML = `${save} name`;
 
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;

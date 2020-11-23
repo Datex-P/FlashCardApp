@@ -16,12 +16,11 @@ export default function stats() {
 
 let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
 
- let innerWindow = createElement('div', '', {marginLeft: '20px', /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow: 'scroll', overflowX: 'hidden'})
+ let innerWindow = createElement('div', '', { /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow: 'scroll', overflowX: 'hidden'})
 
 
  let redCrossAndStatsContainer = createElement('div', '', {height: '20px', width: '290px', marginLeft: '24px', border: '1px black solid'}, 'flexSpaceBetween');
 
-//  let redCross = createElement('div', redCrossIcon, {}, 'redCross')
 
 let theWordStats = createElement('div', 'Stats', {fontWeight: 'bold'});
 
@@ -93,30 +92,66 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
   });
 
 
-  let usageChartCaption = createElement('div', '', {display: 'flex', border: '1px solid black', height: '190px', overflowY: 'scroll'});
+  let diagramHourlyBreakDownContainer = createElement('div', '', {width: '260px', border: '1px solid black', height: '190px'}, 'flexColumnSpaceAround');
 
 
 
-  for (let i = 0; i < 24; i+=2) {
+  for (let i = 5; i <= 25; i+=4) {
+
     let time = document.createElement('div');
-    time.innerHTML = `
-      <div>${i}</div>
-      <div style='line-height:5px'>-</div>
-      <div>${i+2}</div>
-    `;
-    time.classList.add('hourAmount')
-    usageChartCaption.append(time)
+     time.style.marginLeft = '10px';  
 
-    let chartBar = document.createElement('div');
-    chartBar.classList.add('hourLevel')
-    let j = i % 2 ? 3 : 4
-    for (let i = 1; i <= j; i++) {
-      let level = document.createElement('div');
-      level.classList.add('level')
-      chartBar.appendChild(level)
-    }
-    time.append(chartBar)
+     let progress = document.createElement('div', '', {}, 'progress');
+     let progressValue = createElement('div', '', {}, 'progress-value');
+
+
+     if (i ===5 || i === 9) {
+       time.style.marginLeft = '17px';
+
+ time.append(progress);
+ progress.append(progressValue);
+
+     }
+  
+     if (i === 21) {
+      time.innerHTML = `
+        <div>${21} - ${24}</div>
+      `; 
+     }
+    
+    if (i === 25) {
+     
+      time.innerHTML = `
+        <div>${24} - ${5}</div>
+      `;
+ } else {
+    time.innerHTML = `
+      <div>${i} - ${i+4}</div>
+    `;
+}
+    // time.classList.add('hourAmount')
+     diagramHourlyBreakDownContainer.append(time)
+
+
+//  time.append(progress);
+//  progress.append(progressValue);
+
+    // let chartBar = document.createElement('div');
+    // chartBar.classList.add('hourLevel')
+    // //let j = i % 2 ? 3 : 4
+    // for (let i = 1; i <= 4; i++) {
+    //   let level = document.createElement('div');
+    //   level.classList.add('level')
+    //   chartBar.appendChild(level)
+    // }
+    // time.append(chartBar)
+
+   
   }
+
+
+
+
 
 
   let yearOfStudy = new Date();
@@ -311,7 +346,7 @@ cardsStudied.append(resultContainer);
 
 
   hourlyBreakdownContainer.append(radioButtonContainer);
-  hourlyBreakdownContainer.append(usageChartCaption);
+  hourlyBreakdownContainer.append(diagramHourlyBreakDownContainer);
 
 
   todayAndCardsStudiedContainer.appendChild(theWordCalendarContainer);
@@ -329,19 +364,7 @@ cardsStudied.append(resultContainer);
 
   handleOutsideClick(mainWindow)
 
-  // setTimeout(function () {
-  //   window.onclick = function handleOutsideClick(e) {
-  //     if (mainWindow.contains(e.target)) {
-  //       //alert("Clicked in Box");
-  //     } else {
-  //       //alert("Clicked outside Box");
-  //       redCross.classList.add("blinkingIcon");
-  //       setTimeout(() => {
-  //         redCross.classList.remove("blinkingIcon");
-  //       }, 3000);
-  //     }
-  //   };
-  // }, 10);
+
 
   redCross.onclick = function () {
     mainWindow.parentNode.removeChild(mainWindow);

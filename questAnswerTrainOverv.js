@@ -170,7 +170,7 @@ export default function questAnswerTrainOverv(item) {
     deleteContainerFrame.style.display = 'none'
   }
 
-  
+
 
   let deleteYesAndNoContainer = createElement('div', '', {width: '300px', height: '50px', border: '1px black solid'}, 'flexSpaceAround');
   let dontShowMessageAgainContainer = createElement('div', '', {width: '300px', height: '60px', display: 'flex', justifyContent: 'center'}, 'flexCenter');
@@ -184,17 +184,18 @@ export default function questAnswerTrainOverv(item) {
   let checkBoxContainer = createElement('div', '', {width: '100px'}, 'checkBoxContainer');
   let checkbox = createElement('input', '', {width: '100px'});
       checkbox.setAttribute('type', 'checkbox');
-    
 
-
+      checkbox.onclick = function() {
+        showDeleteFrame = false;
+      }
+      
+  
 
   mainWindow.append(deleteContainerFrame);
   deleteContainerFrame.append(deleteContainerInner);
   deleteContainerFrame.append(deleteYesAndNoContainer);
   deleteYesAndNoContainer.append(deleteContainerNo);
   deleteYesAndNoContainer.append(deleteContainerYes);
-  //deleteContainerInner.append(deleteContainerNo)
-  //deleteContainerInner.append(deleteContainerYes)
   deleteContainerInner.append(questionMark1);
   deleteContainerInner.append(questionMark2);
   deleteContainerInner.append(questionMark3);
@@ -559,10 +560,23 @@ export default function questAnswerTrainOverv(item) {
   trashIconContainer.append(trashIcon);
   trashIconContainer.append(trashIconText);
 
+  let showDeleteFrame = true;
 
   trashIconContainer.onclick = function () {
 
-    deleteContainerFrame.style.display = 'flex'
+    // if (showDeleteFrame) {
+
+    // deleteContainerFrame.style.display = 'flex'}
+
+    // dataBase.DeckNames[item].splice(index, 1);
+    // createDom(dataBase.DeckNames)
+
+    // if (dataBase.DeckNames[item].length) {
+    //   shuffleLogic();
+    // } else {
+    //   close()
+    // }
+    // popUp();
 
   }
 

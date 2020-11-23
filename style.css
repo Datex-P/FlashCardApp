@@ -316,6 +316,13 @@ textarea {
   justify-content: space-between;
 }
 
+.flexColumnSpaceBetween {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
 .flexSpaceAround {
   display: flex;
   justify-content: space-around;
@@ -552,13 +559,10 @@ textarea {
   height: 10px;
   position: relative;
   overflow: visible;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .hourLevel {
   position: absolute;
-  top: 20px;
+  top: -10px;
   width: 10px;
   display: flex;
   flex-direction: column;
@@ -575,7 +579,7 @@ textarea {
 
 .level {
   width: 10px;
-  height: 40px;
+  height: 30px;
   background-color: blue;
   margin: 1px 0;
 }
@@ -610,8 +614,28 @@ textarea:enabled {
   border: 3px solid grey;
 }
 
-/* 
-body{
-  cursor: url('pencil.svg'), auto;
+.progress {
+  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 40px;
+  width: 500px;
+}
 
-} */
+.progress-value {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #fff;
+  height: 30px;
+  width: 0;
+}
+
+@keyframes load {
+  0% { width: 0; }
+  100% { width: 10%; }
+}
