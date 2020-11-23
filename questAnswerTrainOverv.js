@@ -163,10 +163,12 @@ export default function questAnswerTrainOverv(item) {
 
 
   deleteContainerYes.onclick = function () {
+    threeDotsOpen = false
     deleteContainerFrame.style.display = 'none'
   }
 
   deleteContainerNo.onclick = function () {
+    threeDotsOpen = false
     deleteContainerFrame.style.display = 'none'
   }
 
@@ -187,8 +189,8 @@ export default function questAnswerTrainOverv(item) {
   let checkbox = createElement('input', '', {width: '45px'});
       checkbox.setAttribute('type', 'checkbox');
 
-      checkbox.onclick = function() {
-        showDeleteFrame = false;
+      checkbox.onchange = function(e) {
+        dataBase.showDeleteFrame = !e.target.checked;
       }
       
   
@@ -563,15 +565,19 @@ export default function questAnswerTrainOverv(item) {
   trashIconContainer.append(trashIcon);
   trashIconContainer.append(trashIconText);
 
-  let showDeleteFrame = true;
 
-  trashIconContainer.onclick = function () {
+  trashIconContainer.onclick = function (e) {
 
-    if (showDeleteFrame) {
-
-    deleteContainerFrame.style.display = 'flex'
-  }
-
+    if (dataBase.showDeleteFrame) {
+      threeDotsOpen = true;
+      deleteContainerFrame.style.display = 'flex'
+    }else{
+      e.stopPropagation()
+      threeDotsOpen = false;
+      littleModalWindow.style.display = "none";
+    }
+    
+    
     // dataBase.DeckNames[item].splice(index, 1);
     // createDom(dataBase.DeckNames)
 

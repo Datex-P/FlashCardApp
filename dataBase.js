@@ -1,7 +1,8 @@
 export let dataBase = {
   DeckNames: {},
   queue: [],
-  userStylePreferences:[]
+  userStylePreferences:[],
+  showDeleteFrame: true
 };
 
 
