@@ -97,21 +97,21 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
 
 
 
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 24; i+=2) {
     let time = document.createElement('div');
-    time.innerText = `${i} - ${i+1}`;
+    time.innerText = `${i} - ${i+2}`;
     time.classList.add('hourAmount')
     usageChartCaption.append(time)
 
     let chartBar = document.createElement('div');
     chartBar.classList.add('hourLevel')
     let j = i % 2 ? 3 : 4
-    // for (let i = 1; i <= j; i++) {
-    //   let level = document.createElement('div');
-    //   level.classList.add('level')
-    //   chartBar.appendChild(level)
-    // }
-    // time.append(chartBar)
+    for (let i = 1; i <= j; i++) {
+      let level = document.createElement('div');
+      level.classList.add('level')
+      chartBar.appendChild(level)
+    }
+    time.append(chartBar)
   }
 
 
