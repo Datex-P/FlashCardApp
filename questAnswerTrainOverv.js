@@ -14,7 +14,7 @@ import {
 } from './exportFunctions.js'
 import {
   edit,
-  trash, questionMark, speechBubble
+  trash, questionMark, bubble
 } from './svgs.js';
 
 
@@ -134,7 +134,7 @@ export default function questAnswerTrainOverv(item) {
     flexDirection: 'column'
   });
 
-  let deleteContainerInner = createElement('div', speechBubble, {
+  let deleteContainerInner = createElement('div', bubble, {
    // backgroundColor: 'white',
     position: 'absolute',
     top: '114px',
@@ -145,7 +145,6 @@ export default function questAnswerTrainOverv(item) {
   let deleteContainerYes = createElement('div', 'Yes', {
     width: '60px',
     height: '35px',
-    position: 'absolute',
     color: 'white',
    // top: '135px',
     //right: '20px',
@@ -156,15 +155,25 @@ export default function questAnswerTrainOverv(item) {
   let deleteContainerNo = createElement('div', 'No', {
     width: '60px',
     height: '35px',
-    position: 'absolute',
     color: 'white',
     //top: '135px',
     //left: '-18px',
     borderRadius: '12px'
-  }, 'flexCenterAlignCenter deleteContainerNo')
+  }, 'flexCenterAlignCenter deleteContainerNo');
 
-  let deleteYesAndNoContainer = createElement('div', '', {display: 'flex', justifyContent: 'space-around', width: '300px', height: '50px', border: '1px black solid'});
-  let dontShowMessageAgainContainer = createElement('div', '', {width: '300px', height: '60px', display: 'flex', justifyContent: 'center'});
+
+  deleteContainerYes.onclick = function () {
+    deleteContainerFrame.style.display = 'none'
+  }
+
+  deleteContainerNo.onclick = function () {
+    deleteContainerFrame.style.display = 'none'
+  }
+
+  
+
+  let deleteYesAndNoContainer = createElement('div', '', {width: '300px', height: '50px', border: '1px black solid'}, 'flexSpaceAround');
+  let dontShowMessageAgainContainer = createElement('div', '', {width: '300px', height: '60px', display: 'flex', justifyContent: 'center'}, 'flexCenter');
   let dontShowMessageText = createElement('div', "Don't show message again", {width: '200px', color: 'white', border: '1px black solid'});
   
 
@@ -172,9 +181,10 @@ export default function questAnswerTrainOverv(item) {
   let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
   let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
   
-  let checkBoxContainer = createElement('div', '', {}, 'checkBoxContainer');
-  let checkmark = createElement('input', '', {}, 'checkmark');
-
+  let checkBoxContainer = createElement('div', '', {width: '100px'}, 'checkBoxContainer');
+  let checkbox = createElement('input', '', {width: '100px'});
+      checkbox.setAttribute('type', 'checkbox');
+    
 
 
 
@@ -190,7 +200,7 @@ export default function questAnswerTrainOverv(item) {
   deleteContainerInner.append(questionMark3);
   deleteContainerFrame.append(dontShowMessageAgainContainer);
   dontShowMessageAgainContainer.append(checkBoxContainer)
-  checkBoxContainer.append(checkmark)
+  checkBoxContainer.append(checkbox)
   dontShowMessageAgainContainer.append(dontShowMessageText);
 
   let dontShow = false;
@@ -523,10 +533,8 @@ export default function questAnswerTrainOverv(item) {
     return createElement('div', '', {
       width: 'fit-content',
       height: '25px',
-      display: 'flex',
       border: '1px black solid',
-      alignItems: 'center'
-    }, 'trashIconContainer')
+    }, 'flexCenter trashIconContainer')
   });
 
   littleModalWindow.append(editIconContainer);
@@ -556,7 +564,6 @@ export default function questAnswerTrainOverv(item) {
 
     deleteContainerFrame.style.display = 'flex'
 
-
   }
 
 
@@ -571,14 +578,9 @@ export default function questAnswerTrainOverv(item) {
     answerFieldTextArea.removeAttribute("disabled");
     questionFieldTextArea.removeAttribute("disabled");
     questionFieldTextArea.focus();
-
-
-    // saveAndDiscardContainer.style.display = 'flex';
-    // saveAndDiscardContainer.style.justifyContent = 'space-around';
-    // saveAndDiscardContainer.style.alignItems = 'center'
-
-    saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter');
-
+    saveAndDiscardContainer.style.display = 'flex';
+    saveAndDiscardContainer.style.justifyContent = 'space-around';
+    saveAndDiscardContainer.style.alignItems = 'center'
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForTimeButtons);
     showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);

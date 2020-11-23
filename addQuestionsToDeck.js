@@ -12,7 +12,7 @@ export default function addQuestionsToDeck(item) {
 
   let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck');
 
-  let innerWindow = createElement('div', '', { marginTop: '20px', marginLeft: '30px' });
+  let innerWindow = createElement('div', '', { marginTop: '20px' });
 
   let addToDeck = createElement('button', 'Add to Deck', {
     backgroundColor: '#545863', color: '#FFE3E3', width: '45%', height: '21px', marginTop: '10px',
@@ -21,7 +21,7 @@ export default function addQuestionsToDeck(item) {
 
   let insideFlashCardsContainer = createElement('div', '', { marginTop: '20px' });
 
-  let theWordFlashCardsAndRedCrossContainer = createElement('div', '', { width: '247px', marginLeft: '8px' }, 'flexSpaceBetween')
+  let theWordFlashCardsAndRedCrossContainer = createElement('div', '', { width: '89%'}, 'flexSpaceBetween')
 
   let theNameOfTheDeck = createElement('div', `&#160${item}`, {});
 
@@ -46,12 +46,14 @@ export default function addQuestionsToDeck(item) {
     let theWordQuestionAndAnswer = document.createElement('div');
     theWordQuestionAndAnswer.innerText = el;
     theWordQuestionAndAnswer.style.fontWeight = 'bold';
-    theWordQuestionAndAnswer.style.marginBottom = '20px';
+    theWordQuestionAndAnswer.style.marginBottom = '14px';
     theWordQuestionAndAnswer.style.marginLeft = '8px';
 
     insideFlashCardsContainer.append(theWordQuestionAndAnswer)
     insideFlashCardsContainer.append(textarea)
   });
+
+  insideFlashCardsContainer.childNodes[2].style.marginTop = '25px';
 
 
 

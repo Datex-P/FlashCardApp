@@ -18,7 +18,7 @@ export default function settings() {
 
   //header
   let settingsAndRedCrossContainer = createElement(
-    'div', '', { width: "265px", marginBottom: '10px' }, 'flexSpaceBetween'
+    'div', '', { width: "265px", marginBottom: '20px' }, 'flexSpaceBetween'
   );
 
 
@@ -53,7 +53,7 @@ export default function settings() {
       width: '290px',
       height: '75px',
       border: '1px black solid',
-      marginTop: '10px',
+      marginTop: '15px',
       borderRadius: '5px'
     }, 'flexColumn'
   );
@@ -133,7 +133,7 @@ export default function settings() {
 
 
   let [upperLeftMin, upperMiddleMin, upperRightMin] =
-    ["min", 'hours', 'days'].map((el) => {
+    ["min", 'hrs', 'days'].map((el) => {
       let input = document.createElement("div");
       input.innerText = el;
       input.style.fontWeight = 'bold'
@@ -145,7 +145,7 @@ export default function settings() {
         case 'min':
           upperLeftContainer.append(input)
           break
-        case 'hours':
+        case 'hrs':
           upperMiddleContainer.append(input)
           break
         case 'days':
@@ -194,17 +194,19 @@ export default function settings() {
     'div', '', {
     width: '154px',
     border: '1px black solid',
-    marginTop: '20px'
-  }, 'flexSpaceBetween'
+    marginTop: '20px',
+    // display: 'flex',
+    // alignItems: 'center',
+    // justifyContent: 'space-between'
+  }, 'flexAlignSpaceBetween');
+
+  let colorscheme = createElement(
+    'div', 'Colorscheme', { fontWeight: 'bold' }
   );
 
-  let resetColor = createElement(
-    'div', 'Reset Colorscheme', { fontWeight: 'bold' }
-  );
-
-  let resetColorIcon = createElement(
-    'div', reset, {}
-  );
+  // let resetColorIcon = createElement(
+  //   'div', reset, {}
+  // );
 
   let [studyCards, reviewCards] = ['cards', 'cards'].map(el => {
     return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
@@ -216,7 +218,7 @@ export default function settings() {
 
 
   let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
-    return createElement('div', el, { width: '75px',marginLeft:'5px' }, '')
+    return createElement('div', el, { width: '69px',marginLeft:'9px' }, '')
   });
 
 
@@ -232,26 +234,6 @@ export default function settings() {
   mainWindow.append(studyAndReviewContainerOuter);
 
 
-
-  let themeRadiosContainer = createElement('div','',{marginTop:'10px'},'','',mainWindow);
-
-
-  let [light,dark] = ['light','dark'].map(radio=>
-    createElement('input','',{},'','',themeRadiosContainer)
-  );
-
-
-  [light,dark].forEach(radio => {
-    radio.name = 'theme'
-    radio.type = 'radio'
-    radio.onchange = function(){
-      document.body.classList.toggle(this.value)
-    }
-
-  })
-
-  light.value = 'light'
-  dark.value = 'dark'
 
 
 
@@ -269,8 +251,8 @@ export default function settings() {
   studyAndReviewContainerOuter.append(editToReview);
 
   mainWindow.append(resetColorSchemeContainer);
-  resetColorSchemeContainer.append(resetColor);
-  resetColorSchemeContainer.append(resetColorIcon);
+  resetColorSchemeContainer.append(colorscheme);
+  //resetColorSchemeContainer.append(resetColorIcon);
 
 
 
@@ -335,5 +317,28 @@ export default function settings() {
 
   closeMenu()
 
-}
 
+
+
+
+let themeRadiosContainer = createElement('div','',{marginTop:'10px'},'','',mainWindow);
+
+
+let [light,dark] = ['light','dark'].map(radio=>
+  createElement('input','',{},'','',themeRadiosContainer)
+);
+
+
+[light,dark].forEach(radio => {
+  radio.name = 'theme'
+  radio.type = 'radio'
+  radio.onchange = function(){
+    document.body.classList.toggle(this.value)
+  }
+
+})
+
+light.value = 'light'
+dark.value = 'dark'
+
+}

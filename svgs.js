@@ -61,7 +61,7 @@ export let redCross = `<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-n
 </svg>
 `;
 
-export let statsIcon =  `
+export let statsIcon = `
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width='25px' height='25px' xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 494.938 494.938" style="enable-background:new 0 0 494.938 494.938;" xml:space="preserve">
 <g>
@@ -113,7 +113,7 @@ export let settingsIcon = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
 </svg>
 `
 
-export let menuIcon =  `<?xml version="1.0" encoding="utf-8"?>
+export let menuIcon = `<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="24px" height="24px" viewBox="0 0 92 92" enable-background="new 0 0 92 92" xml:space="preserve">
@@ -139,9 +139,9 @@ xml:space="preserve"><g><path d="M22.7812366,79.1270218c-0.6308212,0.1043701-1.2
    font-size="5px" font-weight="bold" </svg>`
 
 
-   export let brush = `<svg enable-background="new 0 0 24 24" height="24px" id="Layer_1" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M7.286,15.417c-1.547-0.275-3.072,0.705-4.091,3.146C2.176,21.008,0.354,21.985,0,21.926c1.9,0.688,7.698,2.446,9.138-4.25   C8.526,16.071,7.286,15.417,7.286,15.417z"/><path d="M9.481,12.774c-0.457,0.503-0.57,0.863-1.166,1.809c0.385,0.27,1.127,0.893,1.643,1.966   c1.029-0.589,1.508-0.68,2.053-1.139c3.563-2.999,12.28-13.746,11.981-14.057C23.674,1.024,12.614,9.335,9.481,12.774z"/></g></svg>`;
+export let brush = `<svg enable-background="new 0 0 24 24" height="24px" id="Layer_1" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M7.286,15.417c-1.547-0.275-3.072,0.705-4.091,3.146C2.176,21.008,0.354,21.985,0,21.926c1.9,0.688,7.698,2.446,9.138-4.25   C8.526,16.071,7.286,15.417,7.286,15.417z"/><path d="M9.481,12.774c-0.457,0.503-0.57,0.863-1.166,1.809c0.385,0.27,1.127,0.893,1.643,1.966   c1.029-0.589,1.508-0.68,2.053-1.139c3.563-2.999,12.28-13.746,11.981-14.057C23.674,1.024,12.614,9.335,9.481,12.774z"/></g></svg>`;
 
-   export let reset = `
+export let reset = `
    <svg width='22px' height='22px'
       xmlns:dc="http://purl.org/dc/elements/1.1/"
       xmlns:cc="http://creativecommons.org/ns#"
@@ -240,6 +240,48 @@ xml:space="preserve"><g><path d="M22.7812366,79.1270218c-0.6308212,0.1043701-1.2
    </svg>
    `
 
-   export let questionMark = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="24" viewBox="0 0 512 512" fill='white' width="24" xmlns="http://www.w3.org/2000/svg"><g><circle cx="256" cy="452" r="60"/><path d="m256 0c-86.019 0-156 69.981-156 156v15h120v-15c0-19.851 16.149-36 36-36s36 16.149 36 36c0 10.578-4.643 20.59-12.74 27.471l-83.26 70.787v107.742h120v-52.258l40.976-34.837c34.968-29.714 55.024-73.052 55.024-118.905 0-86.019-69.981-156-156-156z"/></g></svg>`
+export let questionMark = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="24" viewBox="0 0 512 512" fill='white' width="24" xmlns="http://www.w3.org/2000/svg"><g><circle cx="256" cy="452" r="60"/><path d="m256 0c-86.019 0-156 69.981-156 156v15h120v-15c0-19.851 16.149-36 36-36s36 16.149 36 36c0 10.578-4.643 20.59-12.74 27.471l-83.26 70.787v107.742h120v-52.258l40.976-34.837c34.968-29.714 55.024-73.052 55.024-118.905 0-86.019-69.981-156-156-156z"/></g></svg>`
 
-   export let speechBubble = `<svg xmlns="http://www.w3.org/2000/svg"  width="200" height="200" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 3.532 10 7.874 0 4.162-3.627 6.72-7.893 7.721l-2.107 2.958-2.107-2.958c-4.304-1.011-7.893-3.617-7.893-7.721 0-4.342 4.486-7.874 10-7.874zm0-2c-6.627 0-12 4.42-12 9.874 0 4.512 3.678 8.317 8.701 9.496l3.299 4.63 3.299-4.63c5.023-1.18 8.701-4.985 8.701-9.496 0-5.454-5.373-9.874-12-9.874z"/></svg>`
+export let bubble = `<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 67.429 67.429" style="enable-background:new 0 0 67.429 67.429;" xml:space="preserve">
+<g>
+	<path d="M33.468,67.184C15.014,67.184,0,52.17,0,33.715S15.014,0.246,33.468,0.246c18.455,0,33.469,15.014,33.469,33.469
+		c0,5.621-1.421,11.161-4.116,16.076l4.608,17.2L50.58,62.475C45.408,65.559,39.511,67.184,33.468,67.184z M33.468,4.246
+		C17.219,4.246,4,17.466,4,33.715s13.219,29.469,29.468,29.469c5.582,0,11.021-1.574,15.729-4.554l0.74-0.468l11.835,3.171
+		l-3.243-12.1l0.419-0.72c2.609-4.484,3.988-9.602,3.988-14.799C62.936,17.466,49.717,4.246,33.468,4.246z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>`
+
+
