@@ -177,12 +177,14 @@ export default function questAnswerTrainOverv(item) {
   let dontShowMessageText = createElement('div', "Don't show message again", {width: '200px', color: 'white', border: '1px black solid'});
   
 
+  let doYouWantToDelete = createElement('div', 'Do you want to <br> delete this card?', {width:'200px', height: '100px', position: 'absolute', right:'-80px', top: '-15px', zIndex: '2'});
+
   let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
   let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
   let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
   
-  let checkBoxContainer = createElement('div', '', {width: '100px'}, 'checkBoxContainer');
-  let checkbox = createElement('input', '', {width: '100px'});
+  let checkBoxContainer = createElement('div', '', {width: '40px'}, 'checkBoxContainer');
+  let checkbox = createElement('input', '', {width: '45px'});
       checkbox.setAttribute('type', 'checkbox');
 
       checkbox.onclick = function() {
@@ -193,6 +195,7 @@ export default function questAnswerTrainOverv(item) {
 
   mainWindow.append(deleteContainerFrame);
   deleteContainerFrame.append(deleteContainerInner);
+  deleteContainerInner.append(doYouWantToDelete)
   deleteContainerFrame.append(deleteYesAndNoContainer);
   deleteYesAndNoContainer.append(deleteContainerNo);
   deleteYesAndNoContainer.append(deleteContainerYes);

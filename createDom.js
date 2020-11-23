@@ -22,9 +22,10 @@ export default function createDom(obj) {
 
 
     let nameOfNewDeck = createElement("div", item, {
-      position: 'absolute',
-      left: '77px'
+      position: 'absolute', left: '77px'
     })
+
+    nameOfNewDeck.title = 'Click to open this deck'
 
 
     nameOfNewDeck.onmouseover = function () {
@@ -94,9 +95,6 @@ export default function createDom(obj) {
     let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].length}`, {
       backgroundColor: 'white'
     });
-
-
-
 
       for (let i = 0; i<8; i++) {
 
@@ -242,10 +240,8 @@ export default function createDom(obj) {
       'div', '', { display: 'none', border: '1px solid black' }, 'littleModalWindow2');
 
 
-    // let opened = false;
-
     threeDotsContainer.onclick = function () {
-      // opened = !opened;
+
       littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 
       if (littleModalWindow.style.display === 'block') {
