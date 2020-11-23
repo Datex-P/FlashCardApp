@@ -188,7 +188,7 @@ export default function createDom(obj) {
 
       window.addEventListener('click', clickOutsideHandle)
       event.stopPropagation()
-
+      this.innerHTML = ''
       if (!edited) {
 
         this.innerHTML = `${save} name`;
@@ -202,6 +202,7 @@ export default function createDom(obj) {
 
         editIconContainer.append(editIcon)
         editIconContainer.append(editIconText)
+        
 
         //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);

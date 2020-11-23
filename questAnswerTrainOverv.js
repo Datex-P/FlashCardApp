@@ -564,9 +564,10 @@ export default function questAnswerTrainOverv(item) {
 
   trashIconContainer.onclick = function () {
 
-    // if (showDeleteFrame) {
+    if (showDeleteFrame) {
 
-    // deleteContainerFrame.style.display = 'flex'}
+    deleteContainerFrame.style.display = 'flex'
+  }
 
     // dataBase.DeckNames[item].splice(index, 1);
     // createDom(dataBase.DeckNames)
@@ -576,7 +577,7 @@ export default function questAnswerTrainOverv(item) {
     // } else {
     //   close()
     // }
-    // popUp();
+    //popUp();
 
   }
 

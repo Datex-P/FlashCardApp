@@ -14,66 +14,69 @@ export default function stats() {
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
-let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
+  let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
 
- let innerWindow = createElement('div', '', { /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow: 'scroll', overflowX: 'hidden'})
-
-
- let redCrossAndStatsContainer = createElement('div', '', {height: '20px', width: '290px', marginLeft: '24px', border: '1px black solid'}, 'flexSpaceBetween');
+  let innerWindow = createElement('div', '', { /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow: 'scroll', overflowX: 'hidden' })
 
 
-let theWordStats = createElement('div', 'Stats', {fontWeight: 'bold'});
-
-let todayAndCardsStudiedContainer = createElement('div', '', {marginTop: '30px'}, 'flexColumnAlignCenter');
+  let redCrossAndStatsContainer = createElement('div', '', { height: '20px', width: '290px', marginLeft: '24px', border: '1px black solid' }, 'flexSpaceBetween');
 
 
-let cardsStudied = createElement('div', '', {width: '240px', maxHeight: '100px', height: 'fit-content', 
-  overflow:'scroll', overflowX:'hidden', marginBottom: '5px'}, 'flexColumnCenter')
+  let theWordStats = createElement('div', 'Stats', { fontWeight: 'bold' });
+
+  let todayAndCardsStudiedContainer = createElement('div', '', { marginTop: '30px' }, 'flexColumnAlignCenter');
+
+
+  let cardsStudied = createElement('div', '', {
+    width: '240px', maxHeight: '100px', height: 'fit-content',
+    overflow: 'scroll', overflowX: 'hidden', marginBottom: '5px'
+  }, 'flexColumnCenter')
 
 
 
-let theWordTodayContainer = createElement('div', '', {marginBottom: '10px', border: '1px black solid'}, 'flexColumnAlignCenter')
+  let theWordTodayContainer = createElement('div', '', { marginBottom: '10px', border: '1px black solid' }, 'flexColumnAlignCenter')
 
-let theWordToday = createElement('div', 'Today', {fontWeight: 'bold', marginBottom: '5px'})
+  let theWordToday = createElement('div', 'Today', { fontWeight: 'bold', marginBottom: '5px' })
 
-let theWordCalendarContainer = createElement('div', '', {}, 'flexColumnAlignCenter')
-
-
-let theWordCalendar = createElement('div', 'Calendar', {marginTop: '10px', marginBottom: '5px', fontWeight: 'bold'})
+  let theWordCalendarContainer = createElement('div', '', {}, 'flexColumnAlignCenter')
 
 
-let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
+  let theWordCalendar = createElement('div', 'Calendar', { marginTop: '10px', marginBottom: '5px', fontWeight: 'bold' })
 
-   let [buttonLeft, buttonRight] = ['<', '>'].map(el=>{
-     return createElement('div', el, {cursor: 'pointer', marginBottom: '5px'}, 'calendarButtons flexCenter'
-   )});
 
-    buttonLeft.style.marginRight = "5px";
-    buttonRight.style.marginLeft = "5px";
+  let rightAndLeftButtonContainer = createElement('div', '', { display: 'flex' });
+
+  let [buttonLeft, buttonRight] = ['<', '>'].map(el => {
+    return createElement('div', el, { cursor: 'pointer', marginBottom: '5px' }, 'calendarButtons flexCenter'
+    )
+  });
+
+  buttonLeft.style.marginRight = "5px";
+  buttonRight.style.marginLeft = "5px";
 
 
   let [studyInput, reviewInput] = ['10', '11'].map(el => {
-    return createElement('div', el, {width: '50px'}, 'flexCenterAlignCenter')
+    return createElement('div', el, { width: '50px' }, 'flexCenterAlignCenter')
   });
 
- 
-//  let container = createElement('div', {templateRows: '30px', templateColumns: '20px'});
+
+  //  let container = createElement('div', {templateRows: '30px', templateColumns: '20px'});
 
 
-  let yearBoxContainer = createElement('div', '', {display: 'flex', flexWrap: 'wrap', width: '270px', height: '210px'});
+  let yearBoxContainer = createElement('div', '', { display: 'flex', flexWrap: 'wrap', width: '270px', height: '210px' });
 
 
-  let hourlyBreakdownContainer = createElement('div', '', {marginTop: '20px', width: '330px'}, 'flexColumnAlignCenter');
+  let hourlyBreakdownContainer = createElement('div', '', { marginTop: '20px', width: '330px' }, 'flexColumnAlignCenter');
 
-  let theWordhourlyBreakdown = createElement('div', 'Hourly Breakdown', {margingTop: '10px', fontWeight: 'bold'});
+  let theWordhourlyBreakdown = createElement('div', 'Hourly Breakdown', { margingTop: '10px', fontWeight: 'bold' });
 
-  let radioButtonContainer = createElement('div', '', {display: 'flex', border: '1px black solid', marginTop: '10px', marginBottom: '20px'});
+  let radioButtonContainer = createElement('div', '', { display: 'flex', border: '1px black solid', marginTop: '10px', marginBottom: '20px' });
 
 
 
   ['1 month', '3 month', '12 month'].forEach(radio => {
-    
-    let radioBtn = createElement('input', '', {cursor: 'pointer'})
+
+    let radioBtn = createElement('input', '', { cursor: 'pointer' })
     let label = createElement('label', radio, {});
     //label.innerText = radio;
     radioBtn.value = radio;
@@ -92,49 +95,47 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
   });
 
 
-  let diagramHourlyBreakDownContainer = createElement('div', '', {width: '260px', border: '1px solid black', height: '190px'}, 'flexColumnSpaceAround');
+  let diagramHourlyBreakDownContainer = createElement('div', '', { width: '260px', border: '1px solid black', height: '190px' }, 'flexColumnSpaceAround');
 
 
 
-  for (let i = 5; i <= 25; i+=4) {
+  for (let i = 5; i <= 25; i += 4) {
 
     let time = document.createElement('div');
-     time.style.marginLeft = '10px';  
+    time.style.marginLeft = '10px';
 
-     let progress = document.createElement('div', '', {}, 'progress');
-     let progressValue = createElement('div', '', {}, 'progress-value');
+    let progress = document.createElement('div', '', {}, 'progress');
+    let progressValue = createElement('div', '', {}, 'progress-value');
 
 
-     if (i ===5 || i === 9) {
-       time.style.marginLeft = '17px';
+    if (i === 5 || i === 9) {
+      time.style.marginLeft = '17px';
 
- time.append(progress);
- progress.append(progressValue);
+      time.append(progress);
+      progress.append(progressValue);
 
-     }
-  
-     if (i === 21) {
+    }
+
+    if (i === 21) {
       time.innerHTML = `
         <div>${21} - ${24}</div>
-      `; 
-     }
-    
-    if (i === 25) {
-     
+      `;
+    }else if (i === 25) {
+
       time.innerHTML = `
         <div>${24} - ${5}</div>
       `;
- } else {
-    time.innerHTML = `
-      <div>${i} - ${i+4}</div>
+    } else {
+      time.innerHTML = `
+      <div>${i} - ${i + 4}</div>
     `;
-}
+    }
     // time.classList.add('hourAmount')
-     diagramHourlyBreakDownContainer.append(time)
+    diagramHourlyBreakDownContainer.append(time)
 
 
-//  time.append(progress);
-//  progress.append(progressValue);
+    //  time.append(progress);
+    //  progress.append(progressValue);
 
     // let chartBar = document.createElement('div');
     // chartBar.classList.add('hourLevel')
@@ -146,7 +147,7 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
     // }
     // time.append(chartBar)
 
-   
+
   }
 
 
@@ -199,13 +200,13 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
       let date = thisYear.toDateString();
 
       for (let deck in dataBase.DeckNames) {
-        dataBase.DeckNames[deck].forEach(card=>{
-          card.openHistory && card.openHistory.forEach(openTime=>{
+        dataBase.DeckNames[deck].forEach(card => {
+          card.openHistory && card.openHistory.forEach(openTime => {
             if (date === openTime.toDateString()) {
               counter++;
             }
           })
-        })        
+        })
       }
 
       for (let deck in dataBase.DeckNames) {
@@ -218,7 +219,7 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
             yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
             let dayInner = document.createElement('div');
             let time = Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)
-            dayInner.innerText = `${date} Time: ${time.toString().padStart(3,'⠀')} min \n Review: ${counter} cards`;
+            dayInner.innerText = `${date} Time: ${time.toString().padStart(3, '⠀')} min \n Review: ${counter} cards`;
             console.log(counter);
             day.append(dayInner)
           }
@@ -226,11 +227,11 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
       }
 
 
-/*
-      let dayToday = new Date();
-      let threeMonthsAgo = new Date();
-      threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-*/
+      /*
+            let dayToday = new Date();
+            let threeMonthsAgo = new Date();
+            threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+      */
       // for (let deck in dataBase.DeckNames[deck].openHistory) {
       //   if (deck.getMonth() + 3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
 
@@ -250,10 +251,10 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
   }
 
   function removePopUpwindow() {
-    yearBoxContainer.querySelectorAll('div').forEach(div=>div.innerHTML = '')
+    yearBoxContainer.querySelectorAll('div').forEach(div => div.innerHTML = '')
   }
   mainWindow.onclick = removePopUpwindow
-  
+
 
 
 
@@ -264,20 +265,20 @@ let rightAndLeftButtonContainer = createElement('div', '', {display: 'flex'});
 
   let date = new Date();
 
-/*
+  /*
+    for (let deck in dataBase.DeckNames) {
+      if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
+  */
+
+
+  let resultContainer = createElement('div', '', { border: '1px solid black' }, 'flexColumnSpaceBetween')
+
+  cardsStudied.append(resultContainer);
   for (let deck in dataBase.DeckNames) {
-    if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
-*/
-
-
-let resultContainer = createElement('div', '', {border: '1px solid black'}, 'flexColumnSpaceBetween')
-
-cardsStudied.append(resultContainer);
-  for (let deck in dataBase.DeckNames) {
-    dataBase.DeckNames[deck].forEach(card=>{
+    dataBase.DeckNames[deck].forEach(card => {
       let child1 = createElement('div', `Deck ${deck}:`, {});
       let child2 = createElement('div', `${counterTwo} cards studied`, {});
-      card.openHistory && card.openHistory.forEach(openTime=>{
+      card.openHistory && card.openHistory.forEach(openTime => {
         if (date.toDateString() === openTime.toDateString()) {
           counterTwo++;
         }
@@ -287,7 +288,7 @@ cardsStudied.append(resultContainer);
       cardsStudied.append(resultContainer);
       resultContainer.append(child1);
       resultContainer.append(child2);
-    })        
+    })
   }
 
   console.log(counterTwo + ' counterTwo')
@@ -383,7 +384,7 @@ cardsStudied.append(resultContainer);
   //   document.getElementById('menuIcon2').style.display = 'block';
   // }
 
-closeMenu()
+  closeMenu()
 
 
 

@@ -242,10 +242,9 @@ export let reset = `
 
 export let questionMark = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="24" viewBox="0 0 512 512" fill='white' width="24" xmlns="http://www.w3.org/2000/svg"><g><circle cx="256" cy="452" r="60"/><path d="m256 0c-86.019 0-156 69.981-156 156v15h120v-15c0-19.851 16.149-36 36-36s36 16.149 36 36c0 10.578-4.643 20.59-12.74 27.471l-83.26 70.787v107.742h120v-52.258l40.976-34.837c34.968-29.714 55.024-73.052 55.024-118.905 0-86.019-69.981-156-156-156z"/></g></svg>`
 
-export let bubble = `<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+export let bubble = `
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 67.429 67.429" style="enable-background:new 0 0 67.429 67.429;" xml:space="preserve">
+	 viewBox="0 0 67.429 67.429" style="height: 100px;enable-background:new 0 0 67.429 67.429;" xmlns:space="preserve">
 <g>
 	<path d="M33.468,67.184C15.014,67.184,0,52.17,0,33.715S15.014,0.246,33.468,0.246c18.455,0,33.469,15.014,33.469,33.469
 		c0,5.621-1.421,11.161-4.116,16.076l4.608,17.2L50.58,62.475C45.408,65.559,39.511,67.184,33.468,67.184z M33.468,4.246
