@@ -154,18 +154,69 @@ export default function stats() {
     "flexColumnSpaceAround"
   );
 
+
+
+
+// let blackBox = createElement('div', '', {width: '200px', height: '160px', backgroundColor: 'black'});
+
+
+  let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
+    let time = createElement("div",'Study Goal',{marginLeft:'10px', border: '1px solid black', width: '82px'});
+    let progressbar = createElement('div', '', {backgroundColor: 'black', marginLeft: '10px', borderRadius: '13px', padding:'3px', height: '10px', width: '145px'})
+    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', width: '40%', height: '10px', borderRadius: '10px'});
+
+
+  // diagramHourlyBreakDownContainer.append(blackBox);
+  diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
+    timeAndProgressContainer.append(time)
+    timeAndProgressContainer.append(progressbar);
+      progressbar.append(innerprogress);
+
+
+
+
+
+
+
+
   for (let i = 5; i <= 25; i += 4) {
-    let time = createElement("div",'',{display:'flex', marginLeft:'10px'});
 
-    let progress = createElement("div", "", {}, "progress");
-    let progressValue = createElement("div", "", {}, "progress-value");
+    let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
 
-    if (i === 5 || i === 9) {
-      time.style.marginLeft = "17px";
 
-      // time.append(progress);
-      // progress.append(progressValue);
+    let time = createElement("div",'',{marginLeft:'10px', border: '1px solid black', width: '50px'});
+
+    let progressbar = createElement('div', '', {backgroundColor: 'rgba(200, 168, 115, 0.95', borderRadius: '13px', padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
+    let innerprogress = createElement('div',  '', {backgroundColor: 'black', width: '40%', height: '10px', borderRadius: '10px'});
+
+
+
+
+
+    // if (i === 5 || i === 9) {
+    //   time.style.marginLeft = "17px";
+
+    
+    // }
+
+    if (i ===5) {
+     
     }
+    else if (i === 9) {
+     
+    }
+    else if (i === 13) {
+      // progressbar.style.marginLeft = '40px';
+      // innerprogress.style.width = '150px-40px';
+      // innerprogress.style.width = '20%';
+      // diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
+      // timeAndProgressContainer.append(time)
+      // timeAndProgressContainer.append(progressbar);
+      //   progressbar.append(innerprogress);
+    }
+
+
+
 
     if (i === 21) {
       time.innerHTML = `
@@ -181,11 +232,16 @@ export default function stats() {
     `;
     }
     // time.classList.add('hourAmount')
-    diagramHourlyBreakDownContainer.append(time);
 
-    time.append(progress);
-    progress.append(progressValue);
-    progressValue.style.width = '50%'
+    diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
+
+    timeAndProgressContainer.append(time)
+
+
+
+
+    timeAndProgressContainer.append(progressbar);
+      progressbar.append(innerprogress);
 
     // let chartBar = document.createElement('div');
     // chartBar.classList.add('hourLevel')
