@@ -525,7 +525,8 @@ export default function questAnswerTrainOverv(item) {
     top: '-56px',
     left: '-6px',
     border: '1px black solid',
-    borderRadius: '5px'
+    borderRadius: '5px', 
+    position: 'absolute'
   },
     'littleModalWindow flexColumn'
   )
@@ -540,7 +541,7 @@ export default function questAnswerTrainOverv(item) {
       width: 'fit-content',
       height: '25px',
       border: '1px black solid',
-    }, 'flexCenter trashIconContainer')
+    }, 'flexCenterAlignCenter trashIconContainer')
   });
 
   littleModalWindow.append(editIconContainer);
