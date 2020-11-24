@@ -158,12 +158,18 @@ export default function stats() {
 
 
 // let blackBox = createElement('div', '', {width: '200px', height: '160px', backgroundColor: 'black'});
+let studyGoal = 40
+  let timeObj = {
+    5: 5,
+    9: 20,
+    17: 4
+  }
 
 
   let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
     let time = createElement("div",'Study Goal',{marginLeft:'10px', border: '1px solid black', width: '82px'});
     let progressbar = createElement('div', '', {backgroundColor: 'black', marginLeft: '10px', borderRadius: '13px', padding:'3px', height: '10px', width: '145px'})
-    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', width: '40%', height: '10px', borderRadius: '10px'});
+    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', width: `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`, height: '10px', borderRadius: '10px 0 0 10px'});
 
 
   // diagramHourlyBreakDownContainer.append(blackBox);
@@ -177,7 +183,7 @@ export default function stats() {
 
 
 
-
+    
 
   for (let i = 5; i <= 25; i += 4) {
 
@@ -187,7 +193,7 @@ export default function stats() {
     let time = createElement("div",'',{marginLeft:'10px', border: '1px solid black', width: '50px'});
 
     let progressbar = createElement('div', '', {backgroundColor: 'black', borderRadius: '13px', padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
-    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', width: '40%', height: '10px', borderRadius: '10px'});
+    let innerprogress = createElement('div',  '', {marginLeft: `${i/4}px`,backgroundColor: 'orange', width: `${(timeObj[i]||0)/studyGoal *100}%`, height: '10px', borderRadius: '10px 0 0 10px'});
 
 
 
