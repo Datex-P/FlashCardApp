@@ -498,7 +498,7 @@ export default function questAnswerTrainOverv(item) {
 
 
   settingsIconContainer.onclick = function () {
-
+    console.log('I was clicked')
     if (threeDotsOpen === false) {
 
       littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";

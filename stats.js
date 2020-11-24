@@ -1,127 +1,177 @@
-import {
-  dataBase
-} from "./dataBase.js";
-import {
-  redCross as redCrossIcon
-} from "./svgs.js";
+import { dataBase } from "./dataBase.js";
+import { redCross as redCrossIcon } from "./svgs.js";
 
 import {
-  createElement, handleOutsideClick, closeMenu, redCross
-} from './exportFunctions.js'
+  createElement,
+  handleOutsideClick,
+  closeMenu,
+  redCross,
+} from "./exportFunctions.js";
 
 export default function stats() {
-
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
-  let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
+  let mainWindow = createElement("div", "", {}, "addQuestionsToDeck");
 
-  let innerWindow = createElement('div', '', { /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow: 'scroll', overflowX: 'hidden' })
+  let innerWindow = createElement("div", "", {
+    /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow:
+      "scroll",
+    overflowX: "hidden",
+  });
 
+  let redCrossAndStatsContainer = createElement(
+    "div",
+    "",
+    {
+      height: "20px",
+      width: "290px",
+      marginLeft: "24px",
+      border: "1px black solid",
+    },
+    "flexSpaceBetween"
+  );
 
-  let redCrossAndStatsContainer = createElement('div', '', { height: '20px', width: '290px', marginLeft: '24px', border: '1px black solid' }, 'flexSpaceBetween');
+  let theWordStats = createElement("div", "Stats", { fontWeight: "bold" });
 
+  let todayAndCardsStudiedContainer = createElement(
+    "div",
+    "",
+    { marginTop: "30px" },
+    "flexColumnAlignCenter"
+  );
 
-  let theWordStats = createElement('div', 'Stats', { fontWeight: 'bold' });
+  let cardsStudied = createElement(
+    "div",
+    "",
+    {
+      width: "240px",
+      maxHeight: "100px",
+      height: "fit-content",
+      overflow: "scroll",
+      overflowX: "hidden",
+      marginBottom: "5px",
+    },
+    "flexColumnCenter"
+  );
 
-  let todayAndCardsStudiedContainer = createElement('div', '', { marginTop: '30px' }, 'flexColumnAlignCenter');
+  let theWordTodayContainer = createElement(
+    "div",
+    "",
+    { marginBottom: "10px", border: "1px black solid" },
+    "flexColumnAlignCenter"
+  );
 
+  let theWordToday = createElement("div", "Today", {
+    fontWeight: "bold",
+    marginBottom: "5px",
+  });
 
-  let cardsStudied = createElement('div', '', {
-    width: '240px', maxHeight: '100px', height: 'fit-content',
-    overflow: 'scroll', overflowX: 'hidden', marginBottom: '5px'
-  }, 'flexColumnCenter')
+  let theWordCalendarContainer = createElement(
+    "div",
+    "",
+    {},
+    "flexColumnAlignCenter"
+  );
 
+  let theWordCalendar = createElement("div", "Calendar", {
+    marginTop: "10px",
+    marginBottom: "5px",
+    fontWeight: "bold",
+  });
 
+  let rightAndLeftButtonContainer = createElement("div", "", {
+    display: "flex",
+  });
 
-  let theWordTodayContainer = createElement('div', '', { marginBottom: '10px', border: '1px black solid' }, 'flexColumnAlignCenter')
-
-  let theWordToday = createElement('div', 'Today', { fontWeight: 'bold', marginBottom: '5px' })
-
-  let theWordCalendarContainer = createElement('div', '', {}, 'flexColumnAlignCenter')
-
-
-  let theWordCalendar = createElement('div', 'Calendar', { marginTop: '10px', marginBottom: '5px', fontWeight: 'bold' })
-
-
-  let rightAndLeftButtonContainer = createElement('div', '', { display: 'flex' });
-
-  let [buttonLeft, buttonRight] = ['<', '>'].map(el => {
-    return createElement('div', el, { cursor: 'pointer', marginBottom: '5px' }, 'calendarButtons flexCenter'
-    )
+  let [buttonLeft, buttonRight] = ["<", ">"].map((el) => {
+    return createElement(
+      "div",
+      el,
+      { cursor: "pointer", marginBottom: "5px" },
+      "calendarButtons flexCenter"
+    );
   });
 
   buttonLeft.style.marginRight = "5px";
   buttonRight.style.marginLeft = "5px";
 
-
-  let [studyInput, reviewInput] = ['10', '11'].map(el => {
-    return createElement('div', el, { width: '50px' }, 'flexCenterAlignCenter')
+  let [studyInput, reviewInput] = ["10", "11"].map((el) => {
+    return createElement("div", el, { width: "50px" }, "flexCenterAlignCenter");
   });
-
 
   //  let container = createElement('div', {templateRows: '30px', templateColumns: '20px'});
 
+  let yearBoxContainer = createElement("div", "", {
+    display: "flex",
+    flexWrap: "wrap",
+    width: "270px",
+    height: "210px",
+  });
 
-  let yearBoxContainer = createElement('div', '', { display: 'flex', flexWrap: 'wrap', width: '270px', height: '210px' });
+  let hourlyBreakdownContainer = createElement(
+    "div",
+    "",
+    { marginTop: "20px", width: "330px" },
+    "flexColumnAlignCenter"
+  );
 
+  let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {
+    margingTop: "10px",
+    fontWeight: "bold",
+  });
 
-  let hourlyBreakdownContainer = createElement('div', '', { marginTop: '20px', width: '330px' }, 'flexColumnAlignCenter');
+  let radioButtonContainer = createElement("div", "", {
+    display: "flex",
+    border: "1px black solid",
+    marginTop: "10px",
+    marginBottom: "20px",
+  });
 
-  let theWordhourlyBreakdown = createElement('div', 'Hourly Breakdown', { margingTop: '10px', fontWeight: 'bold' });
-
-  let radioButtonContainer = createElement('div', '', { display: 'flex', border: '1px black solid', marginTop: '10px', marginBottom: '20px' });
-
-
-
-  ['1 month', '3 month', '12 month'].forEach(radio => {
-
-    let radioBtn = createElement('input', '', { cursor: 'pointer' })
-    let label = createElement('label', radio, {});
+  ["1 month", "3 month", "12 month"].forEach((radio) => {
+    let radioBtn = createElement("input", "", { cursor: "pointer" });
+    let label = createElement("label", radio, {});
     //label.innerText = radio;
     radioBtn.value = radio;
-    radioBtn.setAttribute('type', 'radio');
-    radioBtn.name = 'month'
+    radioBtn.setAttribute("type", "radio");
+    radioBtn.name = "month";
     radioBtn.onchange = function (event) {
-      let { value } = event.target
+      let { value } = event.target;
       console.log(value);
-    }
+    };
     // radioBtn.onmouseover = function (event){
     //   let {name,checked, value} = event.target
     //   console.log(name,checked, value)
     // }
     radioButtonContainer.appendChild(radioBtn);
-    radioButtonContainer.appendChild(label)
+    radioButtonContainer.appendChild(label);
   });
 
-
-  let diagramHourlyBreakDownContainer = createElement('div', '', { width: '260px', border: '1px solid black', height: '190px' }, 'flexColumnSpaceAround');
-
-
+  let diagramHourlyBreakDownContainer = createElement(
+    "div",
+    "",
+    { width: "260px", border: "1px solid black", height: "190px" },
+    "flexColumnSpaceAround"
+  );
 
   for (let i = 5; i <= 25; i += 4) {
+    let time = createElement("div",'',{display:'flex', marginLeft:'10px'});
 
-    let time = document.createElement('div');
-    time.style.marginLeft = '10px';
-
-    let progress = document.createElement('div', '', {}, 'progress');
-    let progressValue = createElement('div', '', {}, 'progress-value');
-
+    let progress = createElement("div", "", {}, "progress");
+    let progressValue = createElement("div", "", {}, "progress-value");
 
     if (i === 5 || i === 9) {
-      time.style.marginLeft = '17px';
+      time.style.marginLeft = "17px";
 
-      time.append(progress);
-      progress.append(progressValue);
-
+      // time.append(progress);
+      // progress.append(progressValue);
     }
 
     if (i === 21) {
       time.innerHTML = `
         <div>${21} - ${24}</div>
       `;
-    }else if (i === 25) {
-
+    } else if (i === 25) {
       time.innerHTML = `
         <div>${24} - ${5}</div>
       `;
@@ -131,11 +181,11 @@ export default function stats() {
     `;
     }
     // time.classList.add('hourAmount')
-    diagramHourlyBreakDownContainer.append(time)
+    diagramHourlyBreakDownContainer.append(time);
 
-
-    //  time.append(progress);
-    //  progress.append(progressValue);
+    time.append(progress);
+    progress.append(progressValue);
+    progressValue.style.width = '50%'
 
     // let chartBar = document.createElement('div');
     // chartBar.classList.add('hourLevel')
@@ -146,14 +196,7 @@ export default function stats() {
     //   chartBar.appendChild(level)
     // }
     // time.append(chartBar)
-
-
   }
-
-
-
-
-
 
   let yearOfStudy = new Date();
   let year = document.createElement("div");
@@ -163,69 +206,79 @@ export default function stats() {
 
   function change(dec) {
     let yearN = yearOfStudy.getFullYear() + dec;
-    year.innerText = yearN
-    renderDays(yearN)
-  };
-
+    year.innerText = yearN;
+    renderDays(yearN);
+  }
 
   buttonLeft.onclick = function () {
-    dec -= 1
+    dec -= 1;
     change(dec);
-
   };
 
   buttonRight.onclick = function () {
-    dec += 1
+    dec += 1;
     change(dec);
-
   };
 
   // let chart1 = createElement('div', '', {backgroundColor: 'blue'});
   // let chart2 = createElement('div', '', {backgroundColor: 'green'});
-
-
-
 
   let counter = 0;
 
   renderDays(2020);
 
   function renderDays(year) {
-    yearBoxContainer.innerHTML = '';
+    yearBoxContainer.innerHTML = "";
     let thisYear = new Date(`January 1, ${+year}`);
 
-    while (thisYear.getMonth() != 0 || thisYear.getDate() != 1 || thisYear.getFullYear() == +year) {
-      let day = document.createElement('div');
-      day.classList.add('day');
+    while (
+      thisYear.getMonth() != 0 ||
+      thisYear.getDate() != 1 ||
+      thisYear.getFullYear() == +year
+    ) {
+      let day = document.createElement("div");
+      day.classList.add("day");
       let date = thisYear.toDateString();
 
       for (let deck in dataBase.DeckNames) {
-        dataBase.DeckNames[deck].forEach(card => {
-          card.openHistory && card.openHistory.forEach(openTime => {
-            if (date === openTime.toDateString()) {
-              counter++;
-            }
-          })
-        })
+        dataBase.DeckNames[deck].forEach((card) => {
+          card.openHistory &&
+            card.openHistory.forEach((openTime) => {
+              if (date === openTime.toDateString()) {
+                counter++;
+              }
+            });
+        });
       }
 
       for (let deck in dataBase.DeckNames) {
-        if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
-          day.style.backgroundColor = 'red';
-          day.style.cursor = 'pointer';
+        if (
+          dataBase.DeckNames[deck].find(
+            (item) => new Date(item.lastOpen).toDateString() == date
+          )
+        ) {
+          day.style.backgroundColor = "red";
+          day.style.cursor = "pointer";
 
           day.onclick = function (event) {
-            event.stopPropagation()
-            yearBoxContainer.querySelectorAll('.day').forEach(day => day.innerHTML = '');
-            let dayInner = document.createElement('div');
-            let time = Math.round(Object.values(dataBase.studyTime).reduce((acc, cur) => acc + cur) / 60)
-            dayInner.innerText = `${date} Time: ${time.toString().padStart(3, '⠀')} min \n Review: ${counter} cards`;
+            event.stopPropagation();
+            yearBoxContainer
+              .querySelectorAll(".day")
+              .forEach((day) => (day.innerHTML = ""));
+            let dayInner = document.createElement("div");
+            let time = Math.round(
+              Object.values(dataBase.studyTime).reduce(
+                (acc, cur) => acc + cur
+              ) / 60
+            );
+            dayInner.innerText = `${date} Time: ${time
+              .toString()
+              .padStart(3, "⠀")} min \n Review: ${counter} cards`;
             console.log(counter);
-            day.append(dayInner)
-          }
+            day.append(dayInner);
+          };
         }
       }
-
 
       /*
             let dayToday = new Date();
@@ -235,29 +288,24 @@ export default function stats() {
       // for (let deck in dataBase.DeckNames[deck].openHistory) {
       //   if (deck.getMonth() + 3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
 
-
       //   }
       // }
 
-
-
-      thisYear.setDate(thisYear.getDate() + 1)
+      thisYear.setDate(thisYear.getDate() + 1);
 
       yearBoxContainer.appendChild(day);
       yearBoxContainer.onclick = function (event) {
-        alert('you do not have training in this day')
-      }
+        alert("you do not have training in this day");
+      };
     }
   }
 
   function removePopUpwindow() {
-    yearBoxContainer.querySelectorAll('div').forEach(div => div.innerHTML = '')
+    yearBoxContainer
+      .querySelectorAll("div")
+      .forEach((div) => (div.innerHTML = ""));
   }
-  mainWindow.onclick = removePopUpwindow
-
-
-
-
+  mainWindow.onclick = removePopUpwindow;
 
   /*when deck is deleted it should also be deleted out of stats*/
 
@@ -270,39 +318,44 @@ export default function stats() {
       if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
   */
 
-
-  let resultContainer = createElement('div', '', { border: '1px solid black' }, 'flexColumnSpaceBetween')
+  let resultContainer = createElement(
+    "div",
+    "",
+    { border: "1px solid black" },
+    "flexColumnSpaceBetween"
+  );
 
   cardsStudied.append(resultContainer);
   for (let deck in dataBase.DeckNames) {
-    dataBase.DeckNames[deck].forEach(card => {
-      let child1 = createElement('div', `Deck ${deck}:`, {});
-      let child2 = createElement('div', `${counterTwo} cards studied`, {});
-      card.openHistory && card.openHistory.forEach(openTime => {
-        if (date.toDateString() === openTime.toDateString()) {
-          counterTwo++;
-        }
-      })
+    dataBase.DeckNames[deck].forEach((card) => {
+      let child1 = createElement("div", `Deck ${deck}:`, {});
+      let child2 = createElement("div", `${counterTwo} cards studied`, {});
+      card.openHistory &&
+        card.openHistory.forEach((openTime) => {
+          if (date.toDateString() === openTime.toDateString()) {
+            counterTwo++;
+          }
+        });
       // child1.innerText = `Deck ${deck}:`;
       // child2.innerText = `${counterTwo} cards studied`;
       cardsStudied.append(resultContainer);
       resultContainer.append(child1);
       resultContainer.append(child2);
-    })
+    });
   }
 
-  console.log(counterTwo + ' counterTwo')
+  console.log(counterTwo + " counterTwo");
 
   if (counterTwo === 0) {
-    cardsStudied.style.textAlign = 'center';
+    cardsStudied.style.textAlign = "center";
     cardsStudied.innerHTML = "No cards studied today";
-    cardsStudied.style.removeProperty('border');
-    cardsStudied.style.removeProperty('overflow');
+    cardsStudied.style.removeProperty("border");
+    cardsStudied.style.removeProperty("overflow");
   }
 
   if (counterTwo < 7) {
-    cardsStudied.style.removeProperty('border');
-    cardsStudied.style.removeProperty('overflow');
+    cardsStudied.style.removeProperty("border");
+    cardsStudied.style.removeProperty("overflow");
   }
 
   /*not sure if it does anything*/
@@ -310,7 +363,6 @@ export default function stats() {
 
   //   card.openHistory && card.openHistory.forEach(openTime=> {
   //     if (date.toDateString() === openTime.toDateString()) {
-
 
   //   let container = document.createElement('div');
   //   container.style.border = '1px black solid'
@@ -344,11 +396,8 @@ export default function stats() {
 
   hourlyBreakdownContainer.append(theWordhourlyBreakdown);
 
-
-
   hourlyBreakdownContainer.append(radioButtonContainer);
   hourlyBreakdownContainer.append(diagramHourlyBreakDownContainer);
-
 
   todayAndCardsStudiedContainer.appendChild(theWordCalendarContainer);
   todayAndCardsStudiedContainer.append(hourlyBreakdownContainer);
@@ -361,11 +410,7 @@ export default function stats() {
   mainWindow.append(innerWindow);
   anchorElement.appendChild(mainWindow);
 
-
-
-  handleOutsideClick(mainWindow)
-
-
+  handleOutsideClick(mainWindow);
 
   redCross.onclick = function () {
     mainWindow.parentNode.removeChild(mainWindow);
@@ -384,8 +429,5 @@ export default function stats() {
   //   document.getElementById('menuIcon2').style.display = 'block';
   // }
 
-  closeMenu()
-
-
-
-};
+  closeMenu();
+}
