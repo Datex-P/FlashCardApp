@@ -150,15 +150,15 @@ export default function stats() {
   let diagramHourlyBreakDownContainer = createElement(
     "div",
     "",
-    { width: "260px", border: "1px solid black", height: "190px" },
+    { width: "260px", border: "1px solid black", height: "190px", position: 'relative'},
     "flexColumnSpaceAround"
   );
 
 
 
 
-// let blackBox = createElement('div', '', {width: '200px', height: '160px', backgroundColor: 'black'});
-let studyGoal = 40
+
+let studyGoal = 60
   let timeObj = {
     5: 5,
     9: 20,
@@ -168,62 +168,73 @@ let studyGoal = 40
 
   let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
     let time = createElement("div",'Study Goal',{marginLeft:'10px', border: '1px solid black', width: '82px'});
-    let progressbar = createElement('div', '', {backgroundColor: 'black', marginLeft: '10px', borderRadius: '13px', padding:'3px', height: '10px', width: '145px'})
-    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', width: `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`, height: '10px', borderRadius: '10px 0 0 10px'});
+
+    let progressbar = createElement('div', '', {backgroundColor: 'black', marginLeft: '6px', /*borderRadius: '13px',*/ 
+    padding:'3px', height: '10px', width: '145px'})
+
+    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', color: 'black',
+    width: `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`, height: '10px'/*, borderRadius: '10px 0 0 10px'*/});
+
+    //console.log( `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`)
+
+    let widthAdjusted = parseFloat(35.5 - (((Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100)/145)*66.7)).toFixed(1);
+    // console.log(widthAdjusted)
+    // console.log(typeof(widthAdjusted))
+
+    console.log((((Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100)/145)*125))
+
+    let progressNumber = createElement('div',  `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`, {
+      position: 'absolute', top: '0px', right: `${widthAdjusted}px`, fontSize: '13px'
+    })
+
+    
 
 
-  // diagramHourlyBreakDownContainer.append(blackBox);
+
+
   diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
     timeAndProgressContainer.append(time)
     timeAndProgressContainer.append(progressbar);
       progressbar.append(innerprogress);
+      timeAndProgressContainer.append(progressNumber)
 
 
 
-
-
-
-    
+      let arr = [];
+      let widthVar = 0;
 
   for (let i = 5; i <= 25; i += 4) {
 
-    let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
+   
+    if (i in timeObj)  {
 
+     
+      arr.push(i)
+      //console.log(arr)
+    let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
+ 
+
+    if (i !== arr[0]) {
+    
+    widthVar +=  (1.42*((timeObj[i]*100)/(studyGoal)))
+    console.log((timeObj[i]*100)/(studyGoal) + 'study')
+    //console.log(widthVar + 'widthVar')
+  }
+  console.log(widthVar + '-'+i+ 'widthVar')
 
     let time = createElement("div",'',{marginLeft:'10px', border: '1px solid black', width: '50px'});
 
-    let progressbar = createElement('div', '', {backgroundColor: 'black', borderRadius: '13px', padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
-    let innerprogress = createElement('div',  '', {marginLeft: `${i/4}px`,backgroundColor: 'orange', width: `${(timeObj[i]||0)/studyGoal *100}%`, height: '10px', borderRadius: '10px 0 0 10px'});
+    let progressbar = createElement('div', '', {backgroundColor: 'black', /*borderRadius: '13px',*/ padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
+    let innerprogress = createElement('div',  '', {marginLeft: `${widthVar}px`,backgroundColor: 'orange', width: `${(timeObj[i]||0)/studyGoal *100}%`, height: '10px', /*borderRadius: '10px 0 0 10px'*/});
 
 
 
+     if (i === 5 || i === 9) {
+       time.style.marginLeft = "17px";    
+       progressbar.style.marginLeft = '30px';
+     }
 
-
-    // if (i === 5 || i === 9) {
-    //   time.style.marginLeft = "17px";
-
-    
-    // }
-
-    if (i ===5) {
-     
-    }
-    else if (i === 9) {
-     
-    }
-    else if (i === 13) {
-      // progressbar.style.marginLeft = '40px';
-      // innerprogress.style.width = '150px-40px';
-      // innerprogress.style.width = '20%';
-      // diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-      // timeAndProgressContainer.append(time)
-      // timeAndProgressContainer.append(progressbar);
-      //   progressbar.append(innerprogress);
-    }
-
-
-
-
+  
     if (i === 21) {
       time.innerHTML = `
         <div>${21} - ${24}</div>
@@ -236,29 +247,16 @@ let studyGoal = 40
       time.innerHTML = `
       <div>${i} - ${i + 4}</div>
     `;
+
     }
-    // time.classList.add('hourAmount')
 
     diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-
     timeAndProgressContainer.append(time)
-
-
-
-
     timeAndProgressContainer.append(progressbar);
-      progressbar.append(innerprogress);
-
-    // let chartBar = document.createElement('div');
-    // chartBar.classList.add('hourLevel')
-    // //let j = i % 2 ? 3 : 4
-    // for (let i = 1; i <= 4; i++) {
-    //   let level = document.createElement('div');
-    //   level.classList.add('level')
-    //   chartBar.appendChild(level)
-    // }
-    // time.append(chartBar)
-  }
+    progressbar.append(innerprogress);
+    
+    } }
+  
 
   let yearOfStudy = new Date();
   let year = document.createElement("div");
@@ -478,18 +476,6 @@ let studyGoal = 40
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
   };
-
-  // function closeMenu(){
-  //   let all = document.querySelectorAll('.menuContainer>div')
-  //   document.querySelector('.menuBox').style.display = 'none';
-  //  // opened = false;
-  //   window.onclick = '';
-  //   all[0].classList.remove('transPlus');
-  //   all[0].style.top = '0px'
-  //   all[2].classList.remove('transMinus');
-  //   all[2].style.top = '16px'
-  //   document.getElementById('menuIcon2').style.display = 'block';
-  // }
 
   closeMenu();
 }
