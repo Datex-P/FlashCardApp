@@ -186,8 +186,8 @@ export default function stats() {
 
     let time = createElement("div",'',{marginLeft:'10px', border: '1px solid black', width: '50px'});
 
-    let progressbar = createElement('div', '', {backgroundColor: 'rgba(200, 168, 115, 0.95', borderRadius: '13px', padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
-    let innerprogress = createElement('div',  '', {backgroundColor: 'black', width: '40%', height: '10px', borderRadius: '10px'});
+    let progressbar = createElement('div', '', {backgroundColor: 'black', borderRadius: '13px', padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
+    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', width: '40%', height: '10px', borderRadius: '10px'});
 
 
 
