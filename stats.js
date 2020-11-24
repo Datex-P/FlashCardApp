@@ -150,7 +150,7 @@ export default function stats() {
   let diagramHourlyBreakDownContainer = createElement(
     "div",
     "",
-    { width: "260px", border: "1px solid black", height: "190px", position: 'relative'},
+    { width: "260px", border: "1px solid black", height: "190px", position: 'relative' },
     "flexColumnSpaceAround"
   );
 
@@ -158,105 +158,109 @@ export default function stats() {
 
 
 
-let studyGoal = 60
+  let studyGoal = 80
   let timeObj = {
-    5: 5,
+    5: 15,
     9: 20,
-    17: 4
+    17: 14
   }
 
 
-  let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
-    let time = createElement("div",'Study Goal',{marginLeft:'10px', border: '1px solid black', width: '82px'});
+  let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
+  let time = createElement("div", 'Study Goal', { marginLeft: '10px', border: '1px solid black', width: '82px' });
 
-    let progressbar = createElement('div', '', {backgroundColor: 'black', marginLeft: '6px', /*borderRadius: '13px',*/ 
-    padding:'3px', height: '10px', width: '145px'})
+  let progressbar = createElement('div', '', {
+    backgroundColor: 'black', marginLeft: '6px', /*borderRadius: '13px',*/
+    padding: '3px', height: '10px', width: '145px'
+  })
 
-    let innerprogress = createElement('div',  '', {backgroundColor: 'orange', color: 'black',
-    width: `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`, height: '10px'/*, borderRadius: '10px 0 0 10px'*/});
+  let innerprogress = createElement('div', '', {
+    backgroundColor: 'orange', color: 'black',
+    width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`, height: '10px'/*, borderRadius: '10px 0 0 10px'*/
+  });
 
-    //console.log( `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`)
+  //console.log( `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`)
+  let currentProgress = Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100
+  let widthAdjusted = Math.round(currentProgress) + 120
+  // console.log(widthAdjusted)
+  // console.log(typeof(widthAdjusted))
 
-    let widthAdjusted = parseFloat(35.5 - (((Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100)/145)*66.7)).toFixed(1);
-    // console.log(widthAdjusted)
-    // console.log(typeof(widthAdjusted))
+  console.log((((Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100) / 145) * 125))
 
-    console.log((((Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100)/145)*125))
 
-    let progressNumber = createElement('div',  `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`, {
-      position: 'absolute', top: '0px', right: `${widthAdjusted}px`, fontSize: '13px'
-    })
+  let progressNumber = createElement('div', `${currentProgress.toFixed(2)}%`, {
+    position: 'absolute', top: '0px', left: `${widthAdjusted}px`, fontSize: '13px'
+  })
 
-    
+
 
 
 
 
   diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-    timeAndProgressContainer.append(time)
-    timeAndProgressContainer.append(progressbar);
-      progressbar.append(innerprogress);
-      timeAndProgressContainer.append(progressNumber)
+  timeAndProgressContainer.append(time)
+  timeAndProgressContainer.append(progressbar);
+  progressbar.append(innerprogress);
+  timeAndProgressContainer.append(progressNumber)
 
 
 
-      let arr = [];
-      let widthVar = 0;
+  let arr = [];
+  let previousWidthVar = 0
 
   for (let i = 5; i <= 25; i += 4) {
 
-   
-    if (i in timeObj)  {
 
-     
+    if (i in timeObj) {
+
+
       arr.push(i)
       //console.log(arr)
-    let timeAndProgressContainer = createElement('div', '', {display: 'flex'});
- 
-
-    if (i !== arr[0]) {
-    
-    widthVar +=  (1.42*((timeObj[i]*100)/(studyGoal)))
-    console.log((timeObj[i]*100)/(studyGoal) + 'study')
-    //console.log(widthVar + 'widthVar')
-  }
-  console.log(widthVar + '-'+i+ 'widthVar')
-
-    let time = createElement("div",'',{marginLeft:'10px', border: '1px solid black', width: '50px'});
-
-    let progressbar = createElement('div', '', {backgroundColor: 'black', /*borderRadius: '13px',*/ padding:'3px', height: '10px', width: '146px', marginLeft: '37px'})
-    let innerprogress = createElement('div',  '', {marginLeft: `${widthVar}px`,backgroundColor: 'orange', width: `${(timeObj[i]||0)/studyGoal *100}%`, height: '10px', /*borderRadius: '10px 0 0 10px'*/});
+      let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
 
 
 
-     if (i === 5 || i === 9) {
-       time.style.marginLeft = "17px";    
-       progressbar.style.marginLeft = '30px';
-     }
+      let widthVar = (timeObj[i] || 0) / studyGoal * 100
 
-  
-    if (i === 21) {
-      time.innerHTML = `
+      console.log(widthVar + '-' + i + 'widthVar')
+
+      let time = createElement("div", '', { marginLeft: '10px', border: '1px solid black', width: '50px' });
+
+      let progressbar = createElement('div', '', { backgroundColor: 'black', /*borderRadius: '13px',*/ padding: '3px', height: '10px', width: '146px', marginLeft: '37px' })
+      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px', /*borderRadius: '10px 0 0 10px'*/ });
+
+      previousWidthVar+=widthVar
+
+
+      if (i === 5 || i === 9) {
+        time.style.marginLeft = "17px";
+        progressbar.style.marginLeft = '30px';
+      }
+
+
+      if (i === 21) {
+        time.innerHTML = `
         <div>${21} - ${24}</div>
       `;
-    } else if (i === 25) {
-      time.innerHTML = `
+      } else if (i === 25) {
+        time.innerHTML = `
         <div>${24} - ${5}</div>
       `;
-    } else {
-      time.innerHTML = `
+      } else {
+        time.innerHTML = `
       <div>${i} - ${i + 4}</div>
     `;
 
-    }
+      }
 
-    diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-    timeAndProgressContainer.append(time)
-    timeAndProgressContainer.append(progressbar);
-    progressbar.append(innerprogress);
-    
-    } }
-  
+      diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
+      timeAndProgressContainer.append(time)
+      timeAndProgressContainer.append(progressbar);
+      progressbar.append(innerprogress);
+
+    }
+  }
+
 
   let yearOfStudy = new Date();
   let year = document.createElement("div");
