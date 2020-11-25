@@ -418,7 +418,7 @@ export default function stats() {
 
       let childContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', alignItems: 'center'})
 
-      let line1 = createElement('div', '-----', {position: 'absolute', right:'0xp', top: '60px'});
+      let line1 = createElement('div', '', {position: 'absolute', right:'0xp', top: '60px', width: '60px', border: '2px black solid'});
 
       circle.append(middlepoint)
       middlepoint.append(line1)
