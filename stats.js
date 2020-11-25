@@ -44,7 +44,7 @@ export default function stats() {
     "",
     {
       width: "240px",
-      maxHeight: "100px",
+      maxHeight: "140px",
       height: "fit-content",
       overflow: "scroll",
       overflowX: "hidden",
@@ -224,13 +224,6 @@ export default function stats() {
 
       previousWidthVar+=widthVar
 
-
-      if (i === 5 || i === 9) {
-        time.style.marginLeft = "17px";
-        progressbar.style.marginLeft = '30px';
-      }
-
-
       if (i === 21) {
         time.innerHTML = `
         <div>${21} - ${24}</div>
@@ -239,12 +232,21 @@ export default function stats() {
         time.innerHTML = `
         <div>${24} - ${5}</div>
       `;
-      } else {
+      } else if (i <= 9) {
+        time.innerHTML = `
+      <div>${'0'+i} - ${'0'+(i + 4)}</div>
+    `;
+        if (i<=9 && i+4 >9) {
+          time.innerHTML = `
+          <div>${'0'+i} - ${(i + 4)}</div>`
+        }
+      }
+      else {
         time.innerHTML = `
       <div>${i} - ${i + 4}</div>
     `;
-
       }
+
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
       timeAndProgressContainer.append(time)
@@ -380,7 +382,7 @@ export default function stats() {
     "flexColumnSpaceBetween"
   );
 
-  cardsStudied.append(resultContainer);
+  // cardsStudied.append(resultContainer);
 
   let counterOne = 0
   for (let deck in dataBase.DeckNames) {
@@ -403,12 +405,49 @@ export default function stats() {
     });
     if(counterTwo){
       counterOne++
-      let child1 = createElement("div", `Deck ${deck}:`, {});
-      let child2 = createElement("div", `${counterTwo} cards studied`, {});
+     // let child1 = createElement("div", `Deck ${deck}:`, {});
+     let child1 = createElement("div", `${deck}`, {});
+
+
+      let circle = createElement('div', '', {borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '120px', height: '120px', position: 'relative', border: '1px solid black'});
+      let middlepoint = createElement('div', '.', {width: '8px', fontWeight: 'bold', height:'8px', color: 'black'})
+
+      let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
       let innerContainer = createElement('div', '', {display: 'flex', /*flexDirection: 'column',*/ marginBottom: '10px'})
-      resultContainer.append(innerContainer)
-      innerContainer.append(child1);
-      innerContainer.append(child2);
+      cardsStudied.append(circle)
+
+      let childContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', alignItems: 'center'})
+
+      let line1 = createElement('div', '-----', {position: 'absolute', right:'0xp', top: '60px'});
+
+      circle.append(middlepoint)
+      middlepoint.append(line1)
+
+      if (counterOne === 1) {
+   
+        // circle.append(childContainer)
+        // childContainer.append(child1)
+        // child1.style.color = 'white';
+        // circle.style.backgroundColor = 'blue';
+        // childContainer.append(child2)
+      }
+      else if (counterOne >= 2) {
+
+
+
+
+
+
+
+      }
+
+
+      //circle.append(middlepoint)
+      // innerContainer.append(child1);
+
+     // innerContainer.append(circle)
+
+      // innerContainer.append(child2);
     }
     
   }
