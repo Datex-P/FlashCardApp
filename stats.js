@@ -364,7 +364,7 @@ export default function stats() {
 
   /*when deck is deleted it should also be deleted out of stats*/
 
-  let counterTwo = 0;
+  
 
   let date = new Date();
 
@@ -381,49 +381,48 @@ export default function stats() {
   );
 
   cardsStudied.append(resultContainer);
+
+  let counterOne = 0
   for (let deck in dataBase.DeckNames) {
+    let counterTwo = 0;
     dataBase.DeckNames[deck].forEach((card) => {
-      let child1 = createElement("div", `Deck ${deck}:`, {});
-      let child2 = createElement("div", `${counterTwo} cards studied`, {});
+      
       card.openHistory &&
         card.openHistory.forEach((openTime) => {
           if (date.toDateString() === openTime.toDateString()) {
+            console.log(deck)
             counterTwo++;
           }
         });
 
-        let innerContainer = createElement('div', '', {display: 'flex', /*flexDirection: 'column',*/ marginBottom: '10px'})
+        
       // child1.innerText = `Deck ${deck}:`;
       // child2.innerText = `${counterTwo} cards studied`;
-      cardsStudied.append(resultContainer);
+      
+      
+    });
+    if(counterTwo){
+      counterOne++
+      let child1 = createElement("div", `Deck ${deck}:`, {});
+      let child2 = createElement("div", `${counterTwo} cards studied`, {});
+      let innerContainer = createElement('div', '', {display: 'flex', /*flexDirection: 'column',*/ marginBottom: '10px'})
       resultContainer.append(innerContainer)
       innerContainer.append(child1);
       innerContainer.append(child2);
-
-
-
-
-
-
-
-
-
-
-
-      
-    });
+    }
+    
   }
 
-  console.log(counterTwo + " counterTwo");
+  // console.log(counterTwo + " counterTwo");
 
-  if (counterTwo === 0) {
+  if (counterOne === 0) {
     cardsStudied.style.textAlign = "center";
     cardsStudied.innerHTML = "No cards studied today";
     cardsStudied.style.removeProperty("border");
     cardsStudied.style.removeProperty("overflow");
   }
 
-  if (counterTwo < 7) {
+  if (counterOne <= 7) {
     cardsStudied.style.removeProperty("border");
     cardsStudied.style.removeProperty("overflow");
   }

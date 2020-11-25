@@ -2,7 +2,7 @@ import {dataBase} from "./dataBase.js";
 
 export default function shuffle(item,index=null) {
  
-
+  //console.log(item)
 
 
   function questionNumber(random) {
