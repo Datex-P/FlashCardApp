@@ -466,6 +466,17 @@ export default function stats() {
     cardsStudied.style.removeProperty("overflow");
   }
 
+
+
+
+
+
+
+
+
+
+
+
   /*not sure if it does anything*/
   // for (let deck in dataBase.DeckNames) {
 

@@ -322,6 +322,12 @@ textarea {
   justify-content: space-between;
 }
 
+.hexagonStyling {
+  width:16px; 
+  height: 16px; 
+  transform: rotate(90deg);
+}
+
 
 .flexSpaceAround {
   display: flex;

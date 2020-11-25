@@ -1,4 +1,4 @@
-import { edit, save, trash } from './svgs.js';
+import { edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
@@ -262,6 +262,7 @@ export default function createDom(obj) {
 
 
 
+
     let addToDeckIcon = createElement('div', '', {
       cursor: 'pointer'
     }, 'orangeCircle');
@@ -278,6 +279,7 @@ export default function createDom(obj) {
     }
 
 
+   
 
 
     newDeckContainer.append(nameOfNewDeck);
