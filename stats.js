@@ -5,6 +5,7 @@ import {
   createElement,
   handleOutsideClick,
   closeMenu,
+  close,
   redCross,
 } from "./exportFunctions.js";
 
@@ -15,10 +16,7 @@ export default function stats() {
   let mainWindow = createElement("div", "", {}, "addQuestionsToDeck");
 
   let innerWindow = createElement("div", "", {
-    /*marginLeft: '30px', marginRight: '3px',marginBottom: '20px','*/ overflow:
-      "scroll",
-    overflowX: "hidden",
-  });
+     overflow: "scroll", overflowX: "hidden"});
 
   let redCrossAndStatsContainer = createElement(
     "div",
@@ -62,7 +60,7 @@ export default function stats() {
     "flexColumnAlignCenter"
   );
 
-  let theWordToday = createElement("div", "Today", {
+  let theWordToday = createElement("div", "Today's study breakdown", {
     fontWeight: "bold",
     marginBottom: "5px",
   });
@@ -170,25 +168,23 @@ export default function stats() {
   let time = createElement("div", 'Study Goal', { marginLeft: '10px', border: '1px solid black', width: '82px' });
 
   let progressbar = createElement('div', '', {
-    backgroundColor: 'black', marginLeft: '6px', /*borderRadius: '13px',*/
+    backgroundColor: 'black', marginLeft: '6px', 
     padding: '3px', height: '10px', width: '145px'
   })
 
   let innerprogress = createElement('div', '', {
     backgroundColor: 'orange', color: 'black',
-    width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`, height: '10px'/*, borderRadius: '10px 0 0 10px'*/
+    width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`, height: '10px'
   });
 
-  //console.log( `${Object.values(timeObj).reduce((sum,i)=>sum+=i,0)/studyGoal *100}%`)
   let currentProgress = Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100
   let widthAdjusted = Math.round(currentProgress) + 120
-  // console.log(widthAdjusted)
-  // console.log(typeof(widthAdjusted))
+
 
   console.log((((Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100) / 145) * 125))
 
 
-  let progressNumber = createElement('div', `${currentProgress.toFixed(2)}%`, {
+  let progressNumber = createElement('div', `${currentProgress.toFixed(0)}%`, {
     position: 'absolute', top: '0px', left: `${widthAdjusted}px`, fontSize: '13px'
   })
 
@@ -215,19 +211,16 @@ export default function stats() {
 
 
       arr.push(i)
-      //console.log(arr)
       let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
 
 
 
       let widthVar = (timeObj[i] || 0) / studyGoal * 100
 
-      console.log(widthVar + '-' + i + 'widthVar')
-
       let time = createElement("div", '', { marginLeft: '10px', border: '1px solid black', width: '50px' });
 
-      let progressbar = createElement('div', '', { backgroundColor: 'black', /*borderRadius: '13px',*/ padding: '3px', height: '10px', width: '146px', marginLeft: '37px' })
-      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px', /*borderRadius: '10px 0 0 10px'*/ });
+      let progressbar = createElement('div', '', { backgroundColor: 'black', padding: '3px', height: '10px', width: '146px', marginLeft: '37px' })
+      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px'});
 
       previousWidthVar+=widthVar
 
@@ -284,8 +277,6 @@ export default function stats() {
     change(dec);
   };
 
-  // let chart1 = createElement('div', '', {backgroundColor: 'blue'});
-  // let chart2 = createElement('div', '', {backgroundColor: 'green'});
 
   let counter = 0;
 
@@ -385,7 +376,7 @@ export default function stats() {
   let resultContainer = createElement(
     "div",
     "",
-    { border: "1px solid black" },
+    { border: "1px solid black"},
     "flexColumnSpaceBetween"
   );
 
@@ -400,11 +391,26 @@ export default function stats() {
             counterTwo++;
           }
         });
+
+        let innerContainer = createElement('div', '', {display: 'flex', /*flexDirection: 'column',*/ marginBottom: '10px'})
       // child1.innerText = `Deck ${deck}:`;
       // child2.innerText = `${counterTwo} cards studied`;
       cardsStudied.append(resultContainer);
-      resultContainer.append(child1);
-      resultContainer.append(child2);
+      resultContainer.append(innerContainer)
+      innerContainer.append(child1);
+      innerContainer.append(child2);
+
+
+
+
+
+
+
+
+
+
+
+      
     });
   }
 
@@ -474,12 +480,9 @@ export default function stats() {
   mainWindow.append(innerWindow);
   anchorElement.appendChild(mainWindow);
 
-  handleOutsideClick(mainWindow);
 
-  redCross.onclick = function () {
-    mainWindow.parentNode.removeChild(mainWindow);
-    anchorElement.style.display = "none";
-  };
+  handleOutsideClick(mainWindow);
+  redCross.onclick = () => close(mainWindow, anchorElement)
 
   closeMenu();
 }
