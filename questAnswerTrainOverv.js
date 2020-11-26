@@ -211,78 +211,6 @@ export default function questAnswerTrainOverv(item) {
   checkBoxContainer.append(checkbox)
   dontShowMessageAgainContainer.append(dontShowMessageText);
 
-  let dontShow = false;
-
-  //   function popUp() {
-  //     if (!dontShow) {
-  //       let popUpWindowContainer = createElement(
-  //         'div',
-  //         '',
-  //         {
-  //           display: 'flex',
-  //           flexDirection: column,
-  //           width: '200px',
-  //           height: '55px',
-  //           backgroundColor: 'white',
-  //           zIndex: '2',
-  //           position: 'absolute',
-  //           top: '120px',
-  //           border: '1px black solid',
-  //           justifyContent: 'space-between',
-  //           borderRadius: '5px',
-  //           marginLeft: '10%'
-  
-  //         }
-  //       );
-  
-  //       let checkbox = createElement(
-  //         'input',
-  //         '',
-  //         {});
-  //       checkbox.setAttribute('type', 'checkbox');
-  
-  //       let dontShowInfo = createElement(
-  //         'div',
-  //         `Don't show message again`,
-  //         {});
-  
-  //       let cardRemovedInfo = createElement(
-  //         'div',
-  //         'Card was removed from deck',
-  //         {}
-  //       );
-  
-  //       let dontShowAndCheckboxContainer = createElement(
-  //         'div',
-  //         '',
-  //         {
-  //           display: 'flex'
-  //         }
-  //       )
-  
-  
-  //       checkbox.onclick = function () {
-  //         dontShow = true;
-  //         popUpWindowContainer.style.display = 'none';
-  //       }
-  
-  
-  //     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   let buttonContainer = createElement(
@@ -307,15 +235,15 @@ export default function questAnswerTrainOverv(item) {
   let showAnswerButtonContainer = createElement(
     'div',
     '', {
-    display: 'none',
-    width: 'calc(90% - 2px)',
-    height: '94px',
-    padding: '20px',
-    borderRadius: '5px',
-    border: '1px solid grey',
-    boxSizing: 'border-box',
-    marginTop: '10px'
-  }
+    // display: 'none',
+    // width: 'calc(90% - 2px)',
+    // height: '94px',
+    // padding: '20px',
+    // borderRadius: '5px',
+    // border: '1px solid grey',
+    // boxSizing: 'border-box',
+    // marginTop: '10px'
+  }, 'showAnswerButtonContainer'
   )
 
   mainWindow.append(showAnswerButtonContainer);
@@ -677,167 +605,9 @@ export default function questAnswerTrainOverv(item) {
 
 
 
+
+
 }
-
-
-// [edit, trash].forEach((el) => {
-
-//   let button = createElement("div", el, {
-//     innerText: 'Trash',
-//     width: '100px',
-//     marginTop: '10px',
-//     marginLeft: '8px',
-//    },
-//     'generalButtonStyling'
-//   )
-
-//   littleModalWindow.append(button);
-
-
-//    button.onclick = function () {
-
-
-//     if (el === 'edit') {
-
-//        showAnswerButtonContainer.style.display = 'flex';
-//        showAnswerButtonContainer.style.justifyContent = 'center';
-
-
-
-//        answerFieldTextArea.removeAttribute("disabled");
-//        questionFieldTextArea.removeAttribute("disabled");
-//        questionFieldTextArea.focus();
-
-
-//         showAnswerButtonContainer.removeChild(containerForTimeButtons);  
-//         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);   
-
-
-
-//     let discardAndSaveContainer = createElement(
-//       'div',
-//       '',
-//     {
-//      border: '1px black solid',
-//      width: '60%',
-//     }, 'flexSpaceBetween'
-//   );
-
-
-
-//         showAnswerButtonContainer.append(discardAndSaveContainer);
-
-//         ["discard", "save"].forEach((el) => {
-
-//           let button = createElement("button", el, {
-//           }, 'generalButtonStyling'
-//         )
-//         discardAndSaveContainer.append(button);
-
-
-//       button.onclick = function () {
-//         if (el === 'discard') {
-//           showAnswerButtonContainer.removeChild(discardAndSaveContainer);
-//           showAnswerButtonContainer.append(containerForTimeButtons);
-//           showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-
-//           showAnswerButtonContainer.style.display = 'block';
-//         }
-
-//         if (el === 'save') {
-
-//             //   question = questionFieldTextArea.value;
-//             //  answer = answerFieldTextArea.value;
-//             answerFieldTextArea.setAttribute("disabled", 'true');
-//             questionFieldTextArea.setAttribute("disabled", 'true');          
-
-//           showAnswerButtonContainer.removeChild(discardAndSaveContainer);
-//           showAnswerButtonContainer.append(containerForTimeButtons);
-//           showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-
-//           showAnswerButtonContainer.style.display = 'block';
-//         }
-//       }
-
-//     }
-//  );
-
-
-
-
-//    }
-//   }
-
-
-// });
-
-
-
-// }
-
-
-
-
-//   button.onclick = function () {
-//     if (el === 'discard') {
-
-
-//       answerFieldTextArea.style.border = 'none';
-//       questionFieldTextArea.style.border = 'none';
-//       answerFieldTextArea.style.outline = 'none';
-//       questionFieldTextArea.style.border = 'none';
-
-//       containerForButtons.style.marginRight = '55px';
-
-//       containerForsmallerTwoMinutesEtc.append(containerForText1DayEtc);
-//       containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
-//       buttonContainer.parentNode.removeChild(buttonContainer);
-
-//       answerFieldTextArea.setAttribute("disabled", 'true');
-//       questionFieldTextArea.setAttribute("disabled", 'true');
-
-//     }
-//     if (el === 'save') {
-
-//    //   question = questionFieldTextArea.value;
-//     //  answer = answerFieldTextArea.value;
-//     answerFieldTextArea.setAttribute("disabled", 'true');
-//     questionFieldTextArea.setAttribute("disabled", 'true');
-
-//       containerForsmallerTwoMinutesEtc.append(containerForAgainGoodEasyButtons);
-//       buttonContainer.parentNode.removeChild(buttonContainer);
-//       shuffleLogic();
-
-
-//     }
-
-//   }
-
-
-// });
-
-
-
-//   
-
-
-//   }
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

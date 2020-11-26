@@ -20,6 +20,15 @@ dataBase.userStylePreferences.forEach(item=>{
 })
 
 
+// document.querySelector('.weekOverview').onclick = function () {
+//   document.getElementById('popUpWeeklyGoal').style.display = 'block';
+// }
+
+// document.querySelector('.closePopUpContainer ').onclick = function () {
+//   document.querySelector('.weekOverview').style.display = 'none';
+// }
+
+
 
 let opened = false;
 
@@ -45,7 +54,7 @@ document.querySelector('.menu').onclick = function () {
   all.forEach(item => item.style.top = '8px')
   // document.querySelectorAll('.menuContainer>div').removeProperty('margin-bottom');
 
-
+  // document.getElementById('menuBanner').style.display = 'block'
 
   document.getElementById('menuIcon2').style.display = 'none';
 
@@ -72,63 +81,63 @@ let colorContainer = createElement('div', '', {
 //       colorInput.type = 'color'
 //       colorContainer.appendChild(colorInput)
 
-document.getElementById('paintbrush').onclick = function () {
+// document.getElementById('paintbrush').onclick = function () {
 
-    if (document.body.style.cursor == 'default') {
-      document.body.style.cursor = "url('brush.svg') 10 20, auto";
-      // document.body.style.cursor = "url(`${brush}`) 10 20, auto";
+//     if (document.body.style.cursor == 'default') {
+//       document.body.style.cursor = "url('brush.svg') 10 20, auto";
+//       // document.body.style.cursor = "url(`${brush}`) 10 20, auto";
 
-      let colorInput = createElement('input')
-      document.body.addEventListener('mousemove',otherStaffListener)
+//       let colorInput = createElement('input')
+//       document.body.addEventListener('mousemove',otherStaffListener)
 
-      document.body.addEventListener('mousemove',changePositionOfColorContainer)
+//       document.body.addEventListener('mousemove',changePositionOfColorContainer)
 
-      function otherStaffListener(event){
-        function componentToHex(c) {
-          let num = +c
-          var hex = num.toString(16);
-          return hex.length == 1 ? "0" + hex : hex;
-        }
+//       function otherStaffListener(event){
+//         function componentToHex(c) {
+//           let num = +c
+//           var hex = num.toString(16);
+//           return hex.length == 1 ? "0" + hex : hex;
+//         }
 
-        function rgbToHex(r, g, b) {
-          return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-        }
+//         function rgbToHex(r, g, b) {
+//           return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+//         }
         
-        colorInput.type = 'color'
-        let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
-        let params = color.match(/([0-9]{3})/g) || [0, 0, 0]
-        colorInput.value = rgbToHex(...params);
-        // console.log(color)
-        // console.log(event.target.style.backgroundColor)
-        colorContainer.innerHTML = ''
-        colorContainer.appendChild(colorInput)
-        colorContainer.style.display = 'block'
-      }
-      function changePositionOfColorContainer(event){
-        colorContainer.style.top = `${event.clientY+10}px`
-        colorContainer.style.left = `${event.clientX+10}px`
-      }
+//         colorInput.type = 'color'
+//         let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
+//         let params = color.match(/([0-9]{3})/g) || [0, 0, 0]
+//         colorInput.value = rgbToHex(...params);
+//         // console.log(color)
+//         // console.log(event.target.style.backgroundColor)
+//         colorContainer.innerHTML = ''
+//         colorContainer.appendChild(colorInput)
+//         colorContainer.style.display = 'block'
+//       }
+//       function changePositionOfColorContainer(event){
+//         colorContainer.style.top = `${event.clientY+10}px`
+//         colorContainer.style.left = `${event.clientX+10}px`
+//       }
 
-      document.body.ondblclick = function (event) {
-        // event.target.style.backgroundColor = 'red'
+//       document.body.ondblclick = function (event) {
+//         // event.target.style.backgroundColor = 'red'
 
-        // let {x,y} = colorContainer.getBoundingClientRect()
-        // colorContainer.style.top
-        document.body.removeEventListener('mousemove',changePositionOfColorContainer)
-        document.body.removeEventListener('mousemove',otherStaffListener)
-        colorInput.oninput = function(){
-          event.target.style.backgroundColor = this.value
-          document.body.addEventListener('mousemove',otherStaffListener)
-          document.body.addEventListener('mousemove',changePositionOfColorContainer)
-          dataBase.userStylePreferences.push({element:event.target,backgroundColor:this.value})
-          console.log(JSON.stringify(dataBase.userStylePreferences))
-        }
-      }
+//         // let {x,y} = colorContainer.getBoundingClientRect()
+//         // colorContainer.style.top
+//         document.body.removeEventListener('mousemove',changePositionOfColorContainer)
+//         document.body.removeEventListener('mousemove',otherStaffListener)
+//         colorInput.oninput = function(){
+//           event.target.style.backgroundColor = this.value
+//           document.body.addEventListener('mousemove',otherStaffListener)
+//           document.body.addEventListener('mousemove',changePositionOfColorContainer)
+//           dataBase.userStylePreferences.push({element:event.target,backgroundColor:this.value})
+//           console.log(JSON.stringify(dataBase.userStylePreferences))
+//         }
+//       }
 
-    } else {
-      document.body.style.cursor = 'default'
-    }
-  }
+//     } else {
+//       document.body.style.cursor = 'default'
+//     }
+//   }
 
 
 

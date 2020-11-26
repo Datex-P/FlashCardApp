@@ -215,7 +215,7 @@ textarea {
 } 
 
 
-.deleteContainerFrame {
+.deleteContainerFr {
   display: none;
   width: 100%;
   height: 100%;
@@ -607,6 +607,18 @@ textarea {
   margin: 1px 0;
 }
 
+.showAnswerButtonContainer {
+  display: none;
+  width: calc(90% - 2px);
+  height: 94px;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+
 .littleModalWindow {
   position: absolute;
   top: 20px;
@@ -644,5 +656,48 @@ textarea:enabled {
   display:flex; 
   flex-direction: column; 
   position: absolute; 
-  right: 25px
+  right: 25px;
+  background-color: rgba(221, 161, 94, 0.7);
+  width: 166px;
+  height: 60px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+#closePopUp {
+  font-size: 8px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 3px;
+}
+
+.closePopUpContainer {
+  border-radius: 50%; 
+  width: 16px;
+  height: 16px; 
+  background-color: rgba(221, 161, 94, 0.7);
+  position: absolute; 
+  right: -18px;
+}
+
+.weekOverview:hover {
+  background-color: rgba(221, 161, 94, 0.9);
+  /*background-color: blue;*/
+}
+
+
+#popUpWeeklyGoal {
+
+  display: none;
+  width: 140px;
+  height: 80px;
+  padding: 5px;
+  background-color: rgba(221, 161, 94, 0.7);
+  position: absolute;
+  top: 78px;
+  right: 20px;
+  border-radius: 8px;
+  font-size: 12px;
 }

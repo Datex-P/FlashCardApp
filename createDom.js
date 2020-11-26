@@ -75,6 +75,9 @@ export default function createDom(obj) {
     });
 
 
+    // let [toStudy, toReview, toReviewContainer]
+
+
     let toStudy = createElement('div', 'To Study:', {
       backgroundColor: 'white'
     });

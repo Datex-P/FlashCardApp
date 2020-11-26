@@ -61,6 +61,14 @@ function handleOutsideClick(mainWindow){
   }, 10);
 }
 
+function dataBaseQueue(randomNum){
+dataBase.queue.push({
+  question,
+  answer,
+  index,
+  timeLeft: randomNum * 1000
+})
+}
 
 
 function close(mainWindow, anchorElement) {
@@ -70,4 +78,4 @@ function close(mainWindow, anchorElement) {
 
 
 
-export { createElement, close, closeMenu, redCross, handleOutsideClick };
+export { createElement, close, closeMenu, redCross, handleOutsideClick, dataBaseQueue};

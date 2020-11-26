@@ -311,7 +311,8 @@ export default function stats() {
       for (let deck in dataBase.DeckNames) {
         if (
           dataBase.DeckNames[deck].find(
-            (item) => new Date(item.lastOpen).toDateString() == date
+            // (item) => new Date(item.lastOpen).toDateString() == date
+            (item) => new Date(item.openHistory).toDateString() == date
           )
         ) {
           day.style.backgroundColor = "red";
@@ -337,16 +338,7 @@ export default function stats() {
         }
       }
 
-      /*
-            let dayToday = new Date();
-            let threeMonthsAgo = new Date();
-            threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-      */
-      // for (let deck in dataBase.DeckNames[deck].openHistory) {
-      //   if (deck.getMonth() + 3 >= dayToday.getMonth() && deck.getDate() >= dayToday.getMonth()) {
-
-      //   }
-      // }
+   
 
       thisYear.setDate(thisYear.getDate() + 1);
 
