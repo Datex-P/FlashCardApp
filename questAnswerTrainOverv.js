@@ -14,7 +14,7 @@ import {
 } from './exportFunctions.js'
 import {
   edit,
-  trash, questionMark, bubble
+  trash, questionMark
 } from './svgs.js';
 
 
@@ -134,11 +134,15 @@ export default function questAnswerTrainOverv(item) {
     flexDirection: 'column'
   });
 
-  let deleteContainerInner = createElement('div', bubble, {
+  let deleteContainerInner = createElement('div', '', {
    // backgroundColor: 'white',
     position: 'absolute',
-    top: '114px',
-    height: '65px'
+    top: '60px',
+    height: '65px',
+    width: '220px',
+    height: '200px',
+    backgroundColor: 'white',
+    borderRadius: '10px'
     //border: '2px solid black'
   }, 'flexCenterAlignCenter')
 
@@ -152,7 +156,7 @@ export default function questAnswerTrainOverv(item) {
   }, 'flexCenterAlignCenter deleteContainerYes')
 
 
-  let deleteContainerNo = createElement('div', 'No', {
+  let deleteContainerNo = createElement('div', 'Cancel', {
     width: '60px',
     height: '35px',
     color: 'white',
@@ -172,14 +176,16 @@ export default function questAnswerTrainOverv(item) {
     deleteContainerFrame.style.display = 'none'
   }
 
+  let deleteHeader = createElement('div', '', {width: '100%', position: 'absolute', top: '0px', backgroundColor: 'rgba(200, 168, 115, 0.95)', height: '33px', borderRadius: '10px 10px 0px 0px'})
 
+  let messageDeleteCard = createElement('div', 'Delete Card', {height: '28px', color: 'white'}, 'flexCenterAlignCenter')
 
-  let deleteYesAndNoContainer = createElement('div', '', {width: '300px', height: '50px', border: '1px black solid'}, 'flexSpaceAround');
+  let deleteYesAndNoContainer = createElement('div', '', {width: '245px', zIndex: '2', height: '50px', border: '1px black solid'}, 'flexSpaceAround');
   let dontShowMessageAgainContainer = createElement('div', '', {width: '300px', height: '60px', display: 'flex', justifyContent: 'center'}, 'flexCenter');
   let dontShowMessageText = createElement('div', "Don't show message again", {width: '200px', color: 'white', border: '1px black solid'});
   
 
-  let doYouWantToDelete = createElement('div', 'Do you want to <br> delete this card?', {width:'200px', height: '100px', position: 'absolute', right:'-80px', top: '-15px', zIndex: '2'});
+  let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {position: 'absolute', right:'4px', top: '59px', zIndex: '2'});
 
   let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
   let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
@@ -198,6 +204,11 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.append(deleteContainerFrame);
   deleteContainerFrame.append(deleteContainerInner);
   deleteContainerInner.append(doYouWantToDelete)
+  
+  deleteContainerInner.append(deleteHeader)
+  deleteHeader.append(messageDeleteCard)
+
+
   deleteContainerFrame.append(deleteYesAndNoContainer);
   deleteYesAndNoContainer.append(deleteContainerNo);
   deleteYesAndNoContainer.append(deleteContainerYes);

@@ -321,18 +321,50 @@ let themeRadiosContainer = createElement('div','',{marginTop:'10px'},'','',mainW
 
 
 let [light,dark] = ['light','dark'].map(radio=>
-  createElement('input','',{},'','',themeRadiosContainer)
+  createElement('input', '',{},'','',themeRadiosContainer)
 );
 
 
 [light,dark].forEach(radio => {
-  radio.name = 'theme'
-  radio.type = 'radio'
+  radio.name = 'theme';
+
+  let label = createElement("label", radio, {});
+
+  radio.type = 'radio';
   radio.onchange = function(){
     document.body.classList.toggle(this.value)
   }
 
 })
+
+
+
+
+// ["1 month", "3 month", "12 month"].forEach((radio) => {
+//   let radioBtn = createElement("input", "", { cursor: "pointer" });
+//   let label = createElement("label", radio, {});
+//   //label.innerText = radio;
+//   radioBtn.value = radio;
+//   radioBtn.setAttribute("type", "radio");
+//   radioBtn.name = "month";
+//   radioBtn.onchange = function (event) {
+//     let { value } = event.target;
+//     console.log(value);
+//   };
+//   // radioBtn.onmouseover = function (event){
+//   //   let {name,checked, value} = event.target
+//   //   console.log(name,checked, value)
+//   // }
+//   radioButtonContainer.appendChild(radioBtn);
+//   radioButtonContainer.appendChild(label);
+// });
+
+
+
+
+
+
+
 
 light.value = 'light'
 dark.value = 'dark'
