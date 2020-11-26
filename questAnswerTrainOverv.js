@@ -10,7 +10,8 @@ import createDom from './createDom.js';
 import {
   createElement,
   handleOutsideClick,
-  redCross
+  redCross,
+  dataBaseQueue
 } from './exportFunctions.js'
 import {
   edit,
@@ -371,12 +372,14 @@ export default function questAnswerTrainOverv(item) {
 
         let randomNum = Math.floor(Math.random() * 10);
 
-        dataBase.queue.push({
-          question,
-          answer,
-          index,
-          timeLeft: randomNum * 1000
-        })
+        // dataBase.queue.push({
+        //   question,
+        //   answer,
+        //   index,
+        //   timeLeft: randomNum * 1000
+        // })
+
+        dataBaseQueue(randomNum)
 
       }
 
@@ -384,23 +387,28 @@ export default function questAnswerTrainOverv(item) {
 
         let randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
 
-        dataBase.queue.push({
-          question,
-          answer,
-          index,
-          timeLeft: randomNum * 1000
-        })
+        // dataBase.queue.push({
+        //   question,
+        //   answer,
+        //   index,
+        //   timeLeft: randomNum * 1000
+        // })
+        
+        dataBaseQueue(randomNum)
+
       }
 
       if (el === 'easy') {
         let randomNum = (Math.floor(Math.random() * 3000));
 
-        dataBase.queue.push({
-          question,
-          answer,
-          index,
-          timeLeft: randomNum * 1000
-        })
+        // dataBase.queue.push({
+        //   question,
+        //   answer,
+        //   index,
+        //   timeLeft: randomNum * 1000
+        // })
+        dataBaseQueue(randomNum)
+
       };
     })
     containerForAgainGoodEasyButtons.append(button)
