@@ -122,17 +122,8 @@ export default function questAnswerTrainOverv(item) {
 
 
   let deleteContainerFrame = createElement('div', '', {
-    display: 'none',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    position: 'absolute',
-    top: '0',
-    borderRadius: '18px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  });
+ 
+  }, 'deleteContainerFr');
 
   let deleteContainerInner = createElement('div', '', {
    // backgroundColor: 'white',
