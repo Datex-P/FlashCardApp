@@ -320,23 +320,39 @@ export default function settings() {
 let themeRadiosContainer = createElement('div','',{marginTop:'10px'},'','',mainWindow);
 
 
-let [light,dark] = ['light','dark'].map(radio=>
-  createElement('input', '',{},'','',themeRadiosContainer)
-);
+['light','dark','default'].map(comp=>{
+  let inputContainer = createElement('div', '',{},'','',themeRadiosContainer)
 
-
-[light,dark].forEach(radio => {
+  let radio = createElement('input', '',{},'','',inputContainer)
   radio.name = 'theme';
-
-  let label = createElement("label", radio, {});
-
   radio.type = 'radio';
+  radio.value = comp;
   radio.onchange = function(){
-    document.body.classList.toggle(this.value)
+    if(comp==='default'){
+      document.body.className = ''
+    }else{
+      document.body.className = this.value
+    }
   }
+  if(comp==='default'){
+    radio.checked =true
+  }
+  createElement("label", comp, {},'','',inputContainer);
+});
 
-})
-
+let checkbox = createElement('input', '',{},'','',themeRadiosContainer)
+checkbox.type = 'checkbox';
+checkbox.checked = true
+checkbox.onchange = function(e){
+  let weekOverview = document.querySelector('#weekOverview')
+  if(e.target.checked){
+    weekOverview.classList.remove('none')
+    weekOverview.classList.add('weekOverview')
+  }else{
+    weekOverview.classList.add('none')
+    weekOverview.classList.remove('weekOverview')
+  }
+}
 
 
 
@@ -365,8 +381,5 @@ let [light,dark] = ['light','dark'].map(radio=>
 
 
 
-
-light.value = 'light'
-dark.value = 'dark'
 
 }
