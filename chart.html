@@ -125,15 +125,21 @@
 
 
   <script>
-    let arr=[55,28,21];
-    let colors = ['red','blue','green']
+    let arr=[
+      {size:70,color:'red'},
+      {size:20,color:'blue'},
+      {size:30,color:'green'},
+      {size:30,color:'yellow'}
+    ];
     let pieContainer = document.querySelector('.pieContainer')
     let rotate = 0
+    let point = 360/(arr.reduce((acc, cur) =>acc +cur.size,0))
+    let half = (arr.reduce((acc, cur) =>acc +cur.size,0))/2
     arr.forEach((i,k)=>{
 
-      if (i<= (arr.reduce((acc, cur) =>acc +cur)*0.5)) {
+      // if (i<= (arr.reduce((acc, cur) =>acc +cur.size)*0.5)) {
 
-
+      
 
       let hold = document.createElement('div')
       hold.className = 'hold'
@@ -141,32 +147,56 @@
       pie.className = 'pie'
       pieContainer.appendChild(hold)
       hold.appendChild(pie)
-      pie.style.transform = `rotate(${360/(arr.reduce((acc, cur) =>acc +cur))*i}deg)`;
-      hold.style.transform = `rotate(${rotate}deg)`;
-      rotate+=360/(arr.reduce((acc, cur) =>acc +cur))*i;
-      pie.style.backgroundColor = colors[k];
+      if(i.size >  half){
+        let littlePiece = i.size - half
 
+        pie.style.transform = `rotate(${point*half}deg)`;
+        hold.style.transform = `rotate(${rotate}deg)`;
+        rotate+=point*half;
+        pie.style.backgroundColor = i.color;
+
+        let littlehold = document.createElement('div')
+        littlehold.className = 'hold'
+        let littlepie = document.createElement('div')
+        littlepie.className = 'pie'
+        pieContainer.appendChild(littlehold)
+        littlehold.appendChild(littlepie)
+        littlepie.style.transform = `rotate(${point*littlePiece}deg)`;
+        littlehold.style.transform = `rotate(${rotate}deg)`;
+        rotate+=point*littlePiece;
+        littlepie.style.backgroundColor = i.color;
+
+      }else{
+        pie.style.transform = `rotate(${point*i.size}deg)`;
+        hold.style.transform = `rotate(${rotate}deg)`;
+        rotate+=point*i.size;
+        pie.style.backgroundColor = i.color;
       }
-      else if (i> (arr.reduce((acc, cur) =>acc +cur)*0.5)) {
-        let hold = document.createElement('div')
-      hold.className = 'hold'
-      let pie = document.createElement('div')
-      let pie2 = document.createElement('div')
-      pie.className = 'pie'
-      pieContainer.appendChild(hold)
-      hold.appendChild(pie)
-      hold.appendChild(pie2)
-      pie.style.transform = `rotate(${360/(arr.reduce((acc, cur) =>acc +cur))*i}deg)`;
-      hold.style.transform = `rotate(${rotate}deg)`;
-      rotate+=360/(arr.reduce((acc, cur) =>acc +cur))*i;
-      pie.style.backgroundColor = colors[k];
+      
+
+      
+
+      // }
+      // else if (i> (arr.reduce((acc, cur) =>acc +cur)*0.5)) {
+      //   let hold = document.createElement('div')
+      // hold.className = 'hold'
+      // let pie = document.createElement('div')
+      // let pie2 = document.createElement('div')
+      // pie.className = 'pie'
+      // pieContainer.appendChild(hold)
+      // hold.appendChild(pie)
+      // hold.appendChild(pie2)
+      // pie.style.transform = `rotate(${360/(arr.reduce((acc, cur) =>acc +cur))*i}deg)`;
+      // hold.style.transform = `rotate(${rotate}deg)`;
+      // rotate+=360/(arr.reduce((acc, cur) =>acc +cur))*i;
+      // pie.style.backgroundColor = colors[k];
 
 
 
 
 
 
-      }
+      // }
 
 
 

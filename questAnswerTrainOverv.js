@@ -179,7 +179,7 @@ export default function questAnswerTrainOverv(item) {
 
 
   let leaveXContainer = createElement('div', '', {width: '20px', height: '20px', backgroundColor: 'rgba(200, 168, 115, 0.95)', borderRadius: '50%', position: 'absolute', right: '-5px', top:'-5px', padding: '1px'})
-  let leaveXsign = createElement('div', 'X', {width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px', display: 'flex', justifyContent: 'center', alignItems: 'center'})
+  let leaveXsign = createElement('div', '&#10006;', {width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px', display: 'flex', justifyContent: 'center', alignItems: 'center'})
 
 
   let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {position: 'absolute', top: '67px', zIndex: '2'});
