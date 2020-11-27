@@ -246,16 +246,7 @@ export default function questAnswerTrainOverv(item) {
 
   let showAnswerButtonContainer = createElement(
     'div',
-    '', {
-    // display: 'none',
-    // width: 'calc(90% - 2px)',
-    // height: '94px',
-    // padding: '20px',
-    // borderRadius: '5px',
-    // border: '1px solid grey',
-    // boxSizing: 'border-box',
-    // marginTop: '10px'
-  }, 'showAnswerButtonContainer'
+    '', {}, 'showAnswerButtonContainer'
   )
 
   mainWindow.append(showAnswerButtonContainer);
