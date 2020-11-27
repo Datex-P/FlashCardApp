@@ -53,7 +53,8 @@ document.querySelector('.weekOverview').onclick = function () {
   document.getElementById('popUpWeeklyGoal').style.display = 'block';
 }
 
-document.querySelector('.closePopUpContainer ').onclick = function () {
+document.querySelector('.closePopUpContainer ').onclick = function (e) {
+  e.stopPropagation()
   document.querySelector('.weekOverview').style.display = 'none';
   document.getElementById('popUpWeeklyGoal').style.display = 'none';
 }

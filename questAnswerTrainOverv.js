@@ -47,6 +47,7 @@ function generateTextarea(inner, style = {}) {
 
 
 export default function questAnswerTrainOverv(item) {
+  console.log(item)
   let decrementTimer = setInterval(() => {
     dataBase.queue.forEach((card, index) => {
       if (dataBase.queue[index].timeLeft >= 1000) {
@@ -120,98 +121,97 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.appendChild(questionContainer);
 
 
-function deleteCardQuestionBox() {
+  function deleteCardQuestionBox(deck,index) {
 
-  let deleteContainerFrame = createElement('div', '', {
- 
-  }, 'deleteContainerFr');
+    let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
-  let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
+    let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
 
-  let deleteContainerYes = createElement('div', 'Yes', {
-    width: '60px',
-    height: '35px',
-    borderRadius: '12px'
-  }, 'flexCenterAlignCenter deleteContainerYes')
+    let deleteContainerYes = createElement('div', 'Yes', {
+      width: '60px',
+      height: '35px',
+      borderRadius: '12px'
+    }, 'flexCenterAlignCenter deleteContainerYes')
 
 
-  let deleteContainerNo = createElement('div', 'Cancel', {
-    width: '60px',
-    height: '35px',
-    borderRadius: '12px'
-  }, 'flexCenterAlignCenter deleteContainerNo');
+    let deleteContainerNo = createElement('div', 'Cancel', {
+      width: '60px',
+      height: '35px',
+      borderRadius: '12px'
+    }, 'flexCenterAlignCenter deleteContainerNo');
 
 
-  deleteContainerYes.onclick = function () {
-    threeDotsOpen = false
-    //some delete card logic needed here
-    deleteContainerFrame.style.display = 'none'
-  }
-
-  deleteContainerNo.onclick = function () {
-    threeDotsOpen = false
-    deleteContainerFrame.style.display = 'none'
-  }
-
-  let deleteHeader = createElement('div', '', {}, 'deleteHeader')
-
-  let messageDeleteCard = createElement('div', 'Delete Card', {height: '28px', color: 'white', fontSize: '20px', fontWeight: 'bold'}, 'flexCenterAlignCenter')
-
-  let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
-  let dontShowMessageAgainContainer = createElement('div', '', {marginTop: '-30px', width: '300px', height: '60px'}, 'flexCenter');
-  let dontShowMessageText = createElement('div', "Don't show message again", {width: '200px', color: 'white'});
-  
-  let flashcard = createElement('div', flashcards, {width: '29px', height: '29px', position: 'absolute', top: '-1px', right: '197px'});
-
-
-  let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
-  let leaveXsign = createElement('div', '&#10006;', {width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px'}, 'flexCenterAlignCenter')
-
-
-  let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {position: 'absolute', top: '67px', zIndex: '2'});
-
-  let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
-  let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
-  let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
-  
-  let checkBoxContainer = createElement('div', '', {width: '40px'}, 'checkBoxContainer');
-  let checkbox = createElement('input', '', {width: '45px'});
-      checkbox.setAttribute('type', 'checkbox');
-
-      checkbox.onchange = function(e) {
-        dataBase.showDeleteFrame = !e.target.checked;
-      }
-      
-  
-
-  mainWindow.append(deleteContainerFrame);
-  deleteContainerFrame.append(deleteContainerInner);
-  deleteContainerInner.append(doYouWantToDelete)
-  
-  deleteContainerInner.append(deleteHeader)
-  deleteHeader.append(messageDeleteCard)
-
-  deleteContainerInner.append(flashcard)
-
-  deleteContainerInner.append(leaveXContainer)
-  leaveXContainer.append(leaveXsign)
-
-
-
-  deleteContainerInner.append(deleteYesAndNoContainer)
-  deleteYesAndNoContainer.append(deleteContainerNo);
-  deleteYesAndNoContainer.append(deleteContainerYes);
-  deleteContainerInner.append(questionMark1);
-  deleteContainerInner.append(questionMark2);
-  deleteContainerInner.append(questionMark3);
-  deleteContainerFrame.append(dontShowMessageAgainContainer);
-  dontShowMessageAgainContainer.append(checkBoxContainer)
-  checkBoxContainer.append(checkbox)
-  dontShowMessageAgainContainer.append(dontShowMessageText);
-
+    deleteContainerYes.onclick = function () {
+      threeDotsOpen = false
+      //some delete card logic needed here
+      dataBase.DeckNames[deck].splice(index,1)
+      deleteContainerFrame.style.display = 'none'
     }
 
-   // deleteCardQuestionBox()
+    deleteContainerNo.onclick = function () {
+      threeDotsOpen = false
+      deleteContainerFrame.style.display = 'none'
+    }
+
+    let deleteHeader = createElement('div', '', {}, 'deleteHeader')
+
+    let messageDeleteCard = createElement('div', 'Delete Card', { height: '28px', color: 'white', fontSize: '20px', fontWeight: 'bold' }, 'flexCenterAlignCenter')
+
+    let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
+    let dontShowMessageAgainContainer = createElement('div', '', { marginTop: '-30px', width: '300px', height: '60px' }, 'flexCenter');
+    let dontShowMessageText = createElement('div', "Don't show message again", { width: '200px', color: 'white' });
+
+    let flashcard = createElement('div', flashcards, { width: '29px', height: '29px', position: 'absolute', top: '-1px', right: '197px' });
+
+
+    let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
+    let leaveXsign = createElement('div', '&#10006;', { width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px' }, 'flexCenterAlignCenter')
+
+
+    let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', { position: 'absolute', top: '67px', zIndex: '2' });
+
+    let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
+    let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
+    let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
+
+    let checkBoxContainer = createElement('div', '', { width: '40px' }, 'checkBoxContainer');
+    let checkbox = createElement('input', '', { width: '45px' });
+    checkbox.setAttribute('type', 'checkbox');
+
+    checkbox.onchange = function (e) {
+      dataBase.showDeleteFrame = !e.target.checked;
+    }
+
+
+
+    mainWindow.append(deleteContainerFrame);
+    deleteContainerFrame.append(deleteContainerInner);
+    deleteContainerInner.append(doYouWantToDelete)
+
+    deleteContainerInner.append(deleteHeader)
+    deleteHeader.append(messageDeleteCard)
+
+    deleteContainerInner.append(flashcard)
+
+    deleteContainerInner.append(leaveXContainer)
+    leaveXContainer.append(leaveXsign)
+
+
+
+    deleteContainerInner.append(deleteYesAndNoContainer)
+    deleteYesAndNoContainer.append(deleteContainerNo);
+    deleteYesAndNoContainer.append(deleteContainerYes);
+    deleteContainerInner.append(questionMark1);
+    deleteContainerInner.append(questionMark2);
+    deleteContainerInner.append(questionMark3);
+    deleteContainerFrame.append(dontShowMessageAgainContainer);
+    dontShowMessageAgainContainer.append(checkBoxContainer)
+    checkBoxContainer.append(checkbox)
+    dontShowMessageAgainContainer.append(dontShowMessageText);
+
+  }
+
+  // deleteCardQuestionBox()
 
 
 
@@ -344,14 +344,14 @@ function deleteCardQuestionBox() {
     showAnswerButtonContainer.style.display = 'none'
   }
 
-  function dataBaseQueue(randomNum){
+  function dataBaseQueue(randomNum) {
     dataBase.queue.push({
       question,
       answer,
       index,
       timeLeft: randomNum * 1000
     })
-    }
+  }
 
 
 
@@ -394,7 +394,7 @@ function deleteCardQuestionBox() {
         //   index,
         //   timeLeft: randomNum * 1000
         // })
-        
+
         dataBaseQueue(randomNum)
 
       }
@@ -415,8 +415,8 @@ function deleteCardQuestionBox() {
     containerForAgainGoodEasyButtons.append(button)
 
   });
-  
- // theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
+
+  // theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
 
 
 
@@ -424,155 +424,155 @@ function deleteCardQuestionBox() {
 
   function threeDots() {
 
-  let settingsIconContainer = createElement(
-    'div', '...', {
-    transform: 'rotate(90deg)',
-    fontWeight: 'bold',
-    position: 'absolute',
-    cursor: 'pointer',
-    top: '15px',
-    right: '66px',
-    fontSize: '25px'
-  }
-  );
-
-  settingsIconContainer.title = 'Edit question and answer or delete card';
-
-  settingsIconContainer.onclick = function () {
-    console.log('I was clicked')
-    if (threeDotsOpen === false) {
-
-      littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
-
-      if (littleModalWindow.style.display === 'block') {
-        setTimeout(function () {
-          window.onclick = function (event) {
-            if (!littleModalWindow.contains(event.target)) {
-              littleModalWindow.style.display = 'none';
-              window.onclick = ''
-            }
-          };
-        }, 10);
-      }
+    let settingsIconContainer = createElement(
+      'div', '...', {
+      transform: 'rotate(90deg)',
+      fontWeight: 'bold',
+      position: 'absolute',
+      cursor: 'pointer',
+      top: '15px',
+      right: '66px',
+      fontSize: '25px'
     }
-  };
+    );
 
-  let littleModalWindow = createElement(
-    'div',
-    '', {
-    transform: 'rotate(-90deg)',
-    top: '-56px',
-    left: '-6px',
-    border: '1px black solid',
-    borderRadius: '5px', 
-    position: 'absolute'
-  },
-    'littleModalWindow flexColumn'
-  )
+    settingsIconContainer.title = 'Edit question and answer or delete card';
 
-  settingsIconContainer.append(littleModalWindow);
+    settingsIconContainer.onclick = function () {
+      console.log('I was clicked')
+      if (threeDotsOpen === false) {
 
-  let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
-    return createElement('div', '', {
-      width: 'fit-content',
-      height: '25px',
-      border: '1px black solid',
-    }, 'flexCenterAlignCenter trashIconContainer')
-  });
+        littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 
-  littleModalWindow.append(editIconContainer);
-  littleModalWindow.append(trashIconContainer);
-
-
-  let [editIcon, trashIcon] = [edit, trash].map(el => {
-    return createElement('div', el, {
-      width: '20px'
-    })
-  });
-
-  let [editIconText, trashIconText] = ['card', 'card'].map(el => {
-    return createElement('div', el, {
-      width: 'fit-content',
-      fontSize: '16px'
-    })
-  });
-
-  editIconContainer.append(editIcon);
-  editIconContainer.append(editIconText);
-  trashIconContainer.append(trashIcon);
-  trashIconContainer.append(trashIconText);
-
-
-  trashIconContainer.onclick = function (e) {
-
-    if (dataBase.showDeleteFrame) {
-      threeDotsOpen = true;
-      //deleteContainerFrame.style.display = 'flex'
-
-      deleteCardQuestionBox()
-    }else{
-      e.stopPropagation()
-      threeDotsOpen = false;
-      littleModalWindow.style.display = "none";
-    }
-    
-    
-    // dataBase.DeckNames[item].splice(index, 1);
-    // createDom(dataBase.DeckNames)
-
-    // if (dataBase.DeckNames[item].length) {
-    //   shuffleLogic();
-    // } else {
-    //   close()
-    // }
-    //popUp();
-
-  }
-  theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
-
-
-
-
-
-  editIconContainer.onclick = function () {
-    threeDotsOpen = true;
-    littleModalWindow.style.display = "none";
-
-    showAnswerButtonContainer.style.justifyContent = 'center';
-    answerContainer.style.display = 'block'
-    answerFieldTextArea.style.display = 'block';
-    answerFieldTextArea.removeAttribute("disabled");
-    questionFieldTextArea.removeAttribute("disabled");
-    questionFieldTextArea.focus();
-    saveAndDiscardContainer.style.display = 'flex';
-    saveAndDiscardContainer.style.justifyContent = 'space-around';
-    saveAndDiscardContainer.style.alignItems = 'center'
-    showAnswerButton.style.display = 'none';
-    showAnswerButtonContainer.removeChild(containerForTimeButtons);
-    showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
-    mainWindow.removeChild(showAnswerButtonContainer);
-
-
-    setTimeout(function () {
-      window.onclick = function (e) {
-        if (!settingsIconContainer.contains(e.target)) {
-          //alert("Clicked in Box");
-          window.onclick = ''
-        } else {
-          //alert("Clicked outside Box");
-          saveAndDiscardContainer.classList.add('blinkingIcon');
-          setTimeout(() => {
-            saveAndDiscardContainer.classList.remove('blinkingIcon')
-          }, 3000);
+        if (littleModalWindow.style.display === 'block') {
+          setTimeout(function () {
+            window.onclick = function (event) {
+              if (!littleModalWindow.contains(event.target)) {
+                littleModalWindow.style.display = 'none';
+                window.onclick = ''
+              }
+            };
+          }, 10);
         }
       }
-    }, 10);
+    };
 
-  };
+    let littleModalWindow = createElement(
+      'div',
+      '', {
+      transform: 'rotate(-90deg)',
+      top: '-56px',
+      left: '-6px',
+      border: '1px black solid',
+      borderRadius: '5px',
+      position: 'absolute'
+    },
+      'littleModalWindow flexColumn'
+    )
 
-}
+    settingsIconContainer.append(littleModalWindow);
 
-threeDots()
+    let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
+      return createElement('div', '', {
+        width: 'fit-content',
+        height: '25px',
+        border: '1px black solid',
+      }, 'flexCenterAlignCenter trashIconContainer')
+    });
+
+    littleModalWindow.append(editIconContainer);
+    littleModalWindow.append(trashIconContainer);
+
+
+    let [editIcon, trashIcon] = [edit, trash].map(el => {
+      return createElement('div', el, {
+        width: '20px'
+      })
+    });
+
+    let [editIconText, trashIconText] = ['card', 'card'].map(el => {
+      return createElement('div', el, {
+        width: 'fit-content',
+        fontSize: '16px'
+      })
+    });
+
+    editIconContainer.append(editIcon);
+    editIconContainer.append(editIconText);
+    trashIconContainer.append(trashIcon);
+    trashIconContainer.append(trashIconText);
+
+
+    trashIconContainer.onclick = function (e) {
+
+      if (dataBase.showDeleteFrame) {
+        threeDotsOpen = true;
+        //deleteContainerFrame.style.display = 'flex'
+
+        deleteCardQuestionBox(item,index)
+      } else {
+        e.stopPropagation()
+        threeDotsOpen = false;
+        littleModalWindow.style.display = "none";
+      }
+
+
+      // dataBase.DeckNames[item].splice(index, 1);
+      // createDom(dataBase.DeckNames)
+
+      // if (dataBase.DeckNames[item].length) {
+      //   shuffleLogic();
+      // } else {
+      //   close()
+      // }
+      //popUp();
+
+    }
+    theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
+
+
+
+
+
+    editIconContainer.onclick = function () {
+      threeDotsOpen = true;
+      littleModalWindow.style.display = "none";
+
+      showAnswerButtonContainer.style.justifyContent = 'center';
+      answerContainer.style.display = 'block'
+      answerFieldTextArea.style.display = 'block';
+      answerFieldTextArea.removeAttribute("disabled");
+      questionFieldTextArea.removeAttribute("disabled");
+      questionFieldTextArea.focus();
+      saveAndDiscardContainer.style.display = 'flex';
+      saveAndDiscardContainer.style.justifyContent = 'space-around';
+      saveAndDiscardContainer.style.alignItems = 'center'
+      showAnswerButton.style.display = 'none';
+      showAnswerButtonContainer.removeChild(containerForTimeButtons);
+      showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
+      mainWindow.removeChild(showAnswerButtonContainer);
+
+
+      setTimeout(function () {
+        window.onclick = function (e) {
+          if (!settingsIconContainer.contains(e.target)) {
+            //alert("Clicked in Box");
+            window.onclick = ''
+          } else {
+            //alert("Clicked outside Box");
+            saveAndDiscardContainer.classList.add('blinkingIcon');
+            setTimeout(() => {
+              saveAndDiscardContainer.classList.remove('blinkingIcon')
+            }, 3000);
+          }
+        }
+      }, 10);
+
+    };
+
+  }
+
+  threeDots()
 
 
 

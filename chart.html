@@ -33,7 +33,10 @@
       height: 150px;
       border-radius: 100%;
       clip: rect(0px, 150px, 150px, 75px);
+      transition: 1s all ;
     }
+
+
    
     
     .innerCircle {
@@ -46,6 +49,7 @@
       left: 15px; 
       box-shadow: 0px 0px 8px rgba(0,0,0,0.5) inset;
       color: white;
+      z-index: 10;
     }
     .innerCircle .content {
       position: absolute;
@@ -56,12 +60,18 @@
       text-align: center;
       font-size: 14px;
     }
+    .flex-center{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
   </style>
 </head>
 <body>
 
 
-
+<div class='flex-center'>
   <div class="pieContainer">
     <div class="pieBackground"></div>
     <!-- <div id="pieSlice1" class="hold"><div class="pie"></div></div>
@@ -73,14 +83,14 @@
     <div class="innerCircle"><div class="content"><b>Data</b><br>from 16<sup>th</sup> April, 2014</div></div>
   </div>
   
-
+</div>
 
   <script>
     let arr=[
-      {size:70,color:'red'},
-      {size:20,color:'blue'},
-      {size:30,color:'green'},
-      {size:30,color:'yellow'}
+      {size:2,color:'red'},
+      {size:2,color:'blue'},
+      {size:1,color:'green'},
+      {size:3,color:'yellow'}
     ];
     let pieContainer = document.querySelector('.pieContainer')
     let rotate = 0
@@ -95,6 +105,7 @@
       pie.className = 'pie'
       pieContainer.appendChild(hold)
       hold.appendChild(pie)
+      
       if(i.size >  half){
         let littlePiece = i.size - half
 
@@ -117,6 +128,14 @@
       }else{
         pie.style.transform = `rotate(${point*i.size}deg)`;
         hold.style.transform = `rotate(${rotate}deg)`;
+        let rotatePos = hold.style.transform
+        hold.onmouseenter = function(){
+          
+          this.style.transform = `${rotatePos} scale(3)`;
+        }
+        hold.onmouseleave = function(){
+          this.style.transform = rotatePos;
+        }
         rotate+=point*i.size;
         pie.style.backgroundColor = i.color;
       }
