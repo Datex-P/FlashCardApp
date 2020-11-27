@@ -20,13 +20,13 @@ dataBase.userStylePreferences.forEach(item=>{
 })
 
 
-// document.querySelector('.weekOverview').onclick = function () {
-//   document.getElementById('popUpWeeklyGoal').style.display = 'block';
-// }
+document.querySelector('.weekOverview').onclick = function () {
+  document.getElementById('popUpWeeklyGoal').style.display = 'block';
+}
 
-// document.querySelector('.closePopUpContainer ').onclick = function () {
-//   document.querySelector('.weekOverview').style.display = 'none';
-// }
+document.querySelector('.closePopUpContainer ').onclick = function () {
+  document.querySelector('.weekOverview').style.display = 'none';
+}
 
 
 

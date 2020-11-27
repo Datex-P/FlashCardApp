@@ -1,5 +1,7 @@
 import { redCross as redCrossIcon } from "./svgs.js";
-
+import {
+  dataBase
+} from './dataBase.js';
 
 function closeMenu() {
   let all = document.querySelectorAll('.menuContainer>div')
