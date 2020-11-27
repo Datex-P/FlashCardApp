@@ -1,7 +1,5 @@
 import { redCross as redCrossIcon } from "./svgs.js";
-import {
-  dataBase
-} from './dataBase.js';
+
 
 function closeMenu() {
   let all = document.querySelectorAll('.menuContainer>div')
@@ -63,15 +61,6 @@ function handleOutsideClick(mainWindow){
   }, 10);
 }
 
-function dataBaseQueue(randomNum){
-dataBase.queue.push({
-  question,
-  answer,
-  index,
-  timeLeft: randomNum * 1000
-})
-}
-
 
 function close(mainWindow, anchorElement) {
   mainWindow.parentNode.removeChild(mainWindow);
@@ -80,4 +69,4 @@ function close(mainWindow, anchorElement) {
 
 
 
-export { createElement, close, closeMenu, redCross, handleOutsideClick, dataBaseQueue};
+export { createElement, close, closeMenu, redCross, handleOutsideClick};

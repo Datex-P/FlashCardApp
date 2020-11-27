@@ -34,56 +34,7 @@
       border-radius: 100%;
       clip: rect(0px, 150px, 150px, 75px);
     }
-    
-    /* #pieSlice1 .pie {
-      background-color: #1b458b;
-      transform:rotate(60deg);
-    } */
-    
-    /* #pieSlice2 {
-      transform: rotate(30deg);
-    }
-    
-    #pieSlice2 .pie {
-      background-color: #0a0;
-      transform: rotate(60deg);
-    } */
-    
-    /* #pieSlice3 {
-      transform: rotate(90deg);
-    }
-    
-    #pieSlice3 .pie {
-      background-color: #f80;
-      transform: rotate(180deg);
-    }
-    
-    #pieSlice4 {
-      transform: rotate(210deg);
-    }
-    
-    #pieSlice4 .pie {
-      background-color: #08f;
-      transform: rotate(180deg);
-    }
-    
-    #pieSlice5 {
-      transform: rotate(220deg);
-    }
-    
-    #pieSlice5 .pie {
-      background-color: #a04;
-      transform: rotate(10deg);
-    }
-    
-    #pieSlice6 {
-      transform: rotate(290deg);
-    }
-    
-    #pieSlice6 .pie {
-      background-color: #ffd700;
-      transform: rotate(10deg);
-    } */
+   
     
     .innerCircle {
       position: absolute;
@@ -119,7 +70,7 @@
     <div id="pieSlice4" class="hold"><div class="pie"></div></div>
     <div id="pieSlice5" class="hold"><div class="pie"></div></div>
     <div id="pieSlice6" class="hold"><div class="pie"></div></div> -->
-    <!-- <div class="innerCircle"><div class="content"><b>Data</b><br>from 16<sup>th</sup> April, 2014</div></div> -->
+    <div class="innerCircle"><div class="content"><b>Data</b><br>from 16<sup>th</sup> April, 2014</div></div>
   </div>
   
 
@@ -137,10 +88,7 @@
     let half = (arr.reduce((acc, cur) =>acc +cur.size,0))/2
     arr.forEach((i,k)=>{
 
-      // if (i<= (arr.reduce((acc, cur) =>acc +cur.size)*0.5)) {
-
-      
-
+ 
       let hold = document.createElement('div')
       hold.className = 'hold'
       let pie = document.createElement('div')
@@ -173,35 +121,6 @@
         pie.style.backgroundColor = i.color;
       }
       
-
-      
-
-      // }
-      // else if (i> (arr.reduce((acc, cur) =>acc +cur)*0.5)) {
-      //   let hold = document.createElement('div')
-      // hold.className = 'hold'
-      // let pie = document.createElement('div')
-      // let pie2 = document.createElement('div')
-      // pie.className = 'pie'
-      // pieContainer.appendChild(hold)
-      // hold.appendChild(pie)
-      // hold.appendChild(pie2)
-      // pie.style.transform = `rotate(${360/(arr.reduce((acc, cur) =>acc +cur))*i}deg)`;
-      // hold.style.transform = `rotate(${rotate}deg)`;
-      // rotate+=360/(arr.reduce((acc, cur) =>acc +cur))*i;
-      // pie.style.backgroundColor = colors[k];
-
-
-
-
-
-
-      // }
-
-
-
-
-
     })
 
 

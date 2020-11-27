@@ -15,6 +15,35 @@ import {
 
 createDom(dataBase.DeckNames);
 
+
+document.getElementById('numDaysUp').onclick = function () {
+  let num = document.getElementById('numDays').innerHTML
+
+  if (num <7) {
+  num++;
+  document.getElementById('numDays').innerHTML = num
+  }
+
+}
+
+document.getElementById('numDaysDown').onclick = function () {
+  let num = document.getElementById('numDays').innerHTML
+
+  if (num >1) {
+  num--;
+  document.getElementById('numDays').innerHTML = num
+  }
+}
+
+
+
+
+
+document.getElementById('editMainscreen').onclick = function () {
+  document.getElementById('innerPopUp').style.display ='none';
+  document.getElementById('clicked').style.display = 'block';
+}
+
 dataBase.userStylePreferences.forEach(item=>{
   item.element.style.backgroundColor = item.backgroundColor
 })
@@ -26,6 +55,7 @@ document.querySelector('.weekOverview').onclick = function () {
 
 document.querySelector('.closePopUpContainer ').onclick = function () {
   document.querySelector('.weekOverview').style.display = 'none';
+  document.getElementById('popUpWeeklyGoal').style.display = 'none';
 }
 
 
@@ -43,8 +73,6 @@ function handleOutsideClick(e) {
     opened = false;
   }
 }
-
-// closeMenu();
 
 document.querySelector('.menu').onclick = function () {
 
@@ -142,8 +170,6 @@ let colorContainer = createElement('div', '', {
 
 
 
-
-
     let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
     boxesInMenu.forEach(button => {
       button.onclick = function () {
@@ -158,13 +184,7 @@ let colorContainer = createElement('div', '', {
       }
     });
 
-    // for (let i=0; i<boxesInMenu.length; i++) {
-    //   boxesInMenu[i].onmouseover = function (e) {
-    //     e.target.style.backgroundColor = 'blue';
-    //   }
-    // }
-
-
+  
 
     document.getElementById("createDeckButton").onclick = function () {
       createNewDeck()

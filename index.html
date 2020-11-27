@@ -135,7 +135,7 @@
         <div class='weekOverview'>
 
           <div class='closePopUpContainer flexCenter'>
-            <div id = 'closePopUp'>X</div>
+            <div id = 'closePopUp'>&#10006;</div>
           </div>
 
           <div
@@ -180,21 +180,37 @@
             </div>
         </div>
         <div id='popUpWeeklyGoal' style="width: 140px">
-          <div style='display: flex; flex-direction: column; justify-content: space-around'>
-          <div style = "display: flex; justify-content: space-around">
-              <div>Weekly Target</div><div style='color: blue'>Edit</div>
+          <div class="flexColumnSpaceAround" id ="innerPopUp">
+
+          <div class='flexSpaceAround'>
+              <div>Weekly Target</div><div id='editMainscreen'>Edit</div>
           </div>
+
           <div style='margin-left: 15px'>
           <div style='font-weight: bold;'> 0 days</div>
-          <div style='margin-top: 5px'>Target Met</div>
+          <div style='margin-top: 10px'>Target Met</div>
           <div style="display: flex">
-              <div style='font-weight:bold'>0 &nbsp;</div><div> weeks</div>
+              <div style='font-weight:bold'>0 &nbsp;</div><div style='font-weight:bold'> weeks</div>
               <div>&nbsp; in a row</div>
             </div>
           </div>
           </div>
+
+          <div style ='display: none' id='clicked'>
+          
+          <div style='display: flex; align-items: center'>
+          <div style='height: 42px' class='flexColumnSpaceAround'>
+              <button class='settingsButtonStyling' id='numDaysUp'><div style="transform:rotate(90deg)"><</div></button>
+              <button class='settingsButtonStyling' id='numDaysDown'><div style="transform:rotate(-90deg)"><</div></button>
           </div>
-        </div>
+          <div style='margin-left: 5px' id='numDays'>0</div>
+          <div style='margin-left: 5px'>days per week</div>
+          </div>
+          <button style='margin-top: 13px; padding: 4px' class='settingsButtonStyling'>Update Weekly Target</button>
+          </div>
+
+          </div>
+        
 
 
 

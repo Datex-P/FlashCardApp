@@ -10,8 +10,7 @@ import createDom from './createDom.js';
 import {
   createElement,
   handleOutsideClick,
-  redCross,
-  dataBaseQueue
+  redCross
 } from './exportFunctions.js'
 import {
   edit,
@@ -121,29 +120,17 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.appendChild(questionContainer);
 
 
-
+function deleteCardQuestionBox() {
 
   let deleteContainerFrame = createElement('div', '', {
  
   }, 'deleteContainerFr');
 
-  let deleteContainerInner = createElement('div', '', {
-   // backgroundColor: 'white',
-    position: 'absolute',
-    top: '60px',
-    height: '206px',
-    width: '252px',
-    height: '160px',
-    backgroundColor: 'white',
-    borderRadius: '10px'
-    //border: '2px solid black'
-  }, 'flexCenterAlignCenter')
+  let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
 
   let deleteContainerYes = createElement('div', 'Yes', {
     width: '60px',
     height: '35px',
-   // top: '135px',
-    //right: '20px',
     borderRadius: '12px'
   }, 'flexCenterAlignCenter deleteContainerYes')
 
@@ -151,14 +138,13 @@ export default function questAnswerTrainOverv(item) {
   let deleteContainerNo = createElement('div', 'Cancel', {
     width: '60px',
     height: '35px',
-    //top: '135px',
-    //left: '-18px',
     borderRadius: '12px'
   }, 'flexCenterAlignCenter deleteContainerNo');
 
 
   deleteContainerYes.onclick = function () {
     threeDotsOpen = false
+    //some delete card logic needed here
     deleteContainerFrame.style.display = 'none'
   }
 
@@ -167,19 +153,19 @@ export default function questAnswerTrainOverv(item) {
     deleteContainerFrame.style.display = 'none'
   }
 
-  let deleteHeader = createElement('div', '', {width: '100%', position: 'absolute', top: '0px', backgroundColor: 'rgba(200, 168, 115, 0.95)', height: '35px', borderRadius: '10px 10px 0px 0px'})
+  let deleteHeader = createElement('div', '', {}, 'deleteHeader')
 
   let messageDeleteCard = createElement('div', 'Delete Card', {height: '28px', color: 'white', fontSize: '20px', fontWeight: 'bold'}, 'flexCenterAlignCenter')
 
-  let deleteYesAndNoContainer = createElement('div', '', {width: '245px', zIndex: '2', height: '50px', position: 'absolute', top: '115px'/*border: '1px black solid'*/}, 'flexSpaceAround');
-  let dontShowMessageAgainContainer = createElement('div', '', {marginTop: '-30px', width: '300px', height: '60px', display: 'flex', justifyContent: 'center'}, 'flexCenter');
+  let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
+  let dontShowMessageAgainContainer = createElement('div', '', {marginTop: '-30px', width: '300px', height: '60px'}, 'flexCenter');
   let dontShowMessageText = createElement('div', "Don't show message again", {width: '200px', color: 'white'});
   
   let flashcard = createElement('div', flashcards, {width: '29px', height: '29px', position: 'absolute', top: '-1px', right: '197px'});
 
 
-  let leaveXContainer = createElement('div', '', {width: '20px', height: '20px', backgroundColor: 'rgba(200, 168, 115, 0.95)', borderRadius: '50%', position: 'absolute', right: '-5px', top:'-5px', padding: '1px'})
-  let leaveXsign = createElement('div', '&#10006;', {width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px', display: 'flex', justifyContent: 'center', alignItems: 'center'})
+  let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
+  let leaveXsign = createElement('div', '&#10006;', {width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px'}, 'flexCenterAlignCenter')
 
 
   let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {position: 'absolute', top: '67px', zIndex: '2'});
@@ -222,6 +208,12 @@ export default function questAnswerTrainOverv(item) {
   dontShowMessageAgainContainer.append(checkBoxContainer)
   checkBoxContainer.append(checkbox)
   dontShowMessageAgainContainer.append(dontShowMessageText);
+
+    }
+
+   // deleteCardQuestionBox()
+
+
 
 
 
@@ -274,7 +266,6 @@ export default function questAnswerTrainOverv(item) {
   let [saveButton, discardButton] = ['Save', 'Discard'].map(el => {
     return createElement('div', el, {
       fontSize: '14px',
-      //backgroundColor: '#81b29a',
     }, 'generalButtonStyling flexCenterAlignCenter')
   })
 
@@ -516,7 +507,9 @@ export default function questAnswerTrainOverv(item) {
 
     if (dataBase.showDeleteFrame) {
       threeDotsOpen = true;
-      deleteContainerFrame.style.display = 'flex'
+      //deleteContainerFrame.style.display = 'flex'
+
+      deleteCardQuestionBox()
     }else{
       e.stopPropagation()
       threeDotsOpen = false;
