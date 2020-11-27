@@ -194,16 +194,17 @@ textarea {
 }
 .deleteContainerYes {
   /* background-color: rgb(45, 106, 79) */
-  border: 1px solid grey;
+  border: 2px solid grey;
   color: grey; 
 }
 .deleteContainerNo {
   /* background-color: rgb(119, 46, 37) */
-  border: 1px solid grey; 
+  border: 2px solid grey; 
   color: grey;
 }
 .deleteContainerYes:hover, .deleteContainerNo:hover {
-  background-color: blue
+  background-color: grey;
+  color: white;
 }
 
 .transPlus {
