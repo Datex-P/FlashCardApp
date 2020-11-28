@@ -10,7 +10,7 @@ import createDom from './createDom.js';
 import {
   createElement,
   handleOutsideClick,
-  redCross, deleteCardQuestionBox
+  redCross, deleteCardQuestionBox,threeDotsOpen,setThreeDotsOpen
 } from './exportFunctions.js'
 import {
   edit,
@@ -104,7 +104,7 @@ export default function questAnswerTrainOverv(item) {
 
   // startTimer(item, index);
 
-  let threeDotsOpen = false;
+  
 
   handleOutsideClick(mainWindow)
 
@@ -483,13 +483,13 @@ export default function questAnswerTrainOverv(item) {
     trashIconContainer.onclick = function (e) {
 
       if (dataBase.showDeleteFrame) {
-        threeDotsOpen = true;
+        setThreeDotsOpen(true);
         //deleteContainerFrame.style.display = 'flex'
 
-        deleteCardQuestionBox(item,index)
+        deleteCardQuestionBox(item,index,threeDotsOpen)
       } else {
         e.stopPropagation()
-        threeDotsOpen = false;
+        setThreeDotsOpen(false);
         littleModalWindow.style.display = "none";
       }
 
@@ -512,7 +512,7 @@ export default function questAnswerTrainOverv(item) {
 
 
     editIconContainer.onclick = function () {
-      threeDotsOpen = true;
+      setThreeDotsOpen(true);
       littleModalWindow.style.display = "none";
 
       showAnswerButtonContainer.style.justifyContent = 'center';
@@ -554,7 +554,7 @@ export default function questAnswerTrainOverv(item) {
 
 
   saveButton.onclick = function () {
-    threeDotsOpen = false;
+    setThreeDotsOpen(false);
 
     littleModalWindow.style.display = "none";
     answerFieldTextArea.style.border = 'none';
@@ -576,7 +576,7 @@ export default function questAnswerTrainOverv(item) {
 
 
   discardButton.onclick = function () {
-    threeDotsOpen = false;
+    setThreeDotsOpen(false);
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';

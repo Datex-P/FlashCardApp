@@ -1,5 +1,10 @@
 import { redCross as redCrossIcon, flashcards, questionMark } from "./svgs.js";
 
+let threeDotsOpen = false;
+
+function setThreeDotsOpen(cond){
+  threeDotsOpen = cond
+}
 
 function closeMenu() {
   let all = document.querySelectorAll('.menuContainer>div')
@@ -85,14 +90,14 @@ function deleteCardQuestionBox(deck,index) {
 
 
   deleteContainerYes.onclick = function () {
-    threeDotsOpen = false
+    setThreeDotsOpen(false)
     //some delete card logic needed here
     dataBase.DeckNames[deck].splice(index,1)
     deleteContainerFrame.style.display = 'none'
   }
 
   deleteContainerNo.onclick = function () {
-    threeDotsOpen = false
+    setThreeDotsOpen(false)
     deleteContainerFrame.style.display = 'none'
   }
 
@@ -128,7 +133,7 @@ function deleteCardQuestionBox(deck,index) {
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
-  let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
+  let mainWindow = document.querySelector('.addQuestionsToDeck')
   anchorElement.appendChild(mainWindow);
 
 
@@ -170,4 +175,4 @@ function deleteCardQuestionBox(deck,index) {
 
 
 
-export { createElement, close, closeMenu, redCross, handleOutsideClick, deleteCardQuestionBox};
+export { createElement, close, closeMenu, redCross, handleOutsideClick, deleteCardQuestionBox,setThreeDotsOpen,threeDotsOpen};
