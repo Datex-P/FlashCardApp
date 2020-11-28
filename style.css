@@ -450,6 +450,7 @@ textarea {
   width:16px; 
   height: 16px; 
   transform: rotate(90deg);
+  display: none;
 }
 
 #paintbrush {
@@ -686,7 +687,7 @@ textarea {
 
 
 .settingsButtonStyling {
-  background-color: grey;
+  background-color: #545863;
   text-align: center;
   color: white;
 }
@@ -800,6 +801,16 @@ textarea:enabled {
   font-size: 14px;
 }
 
+.addEditDeleteContainer {
+  width: 149px;
+  height: 128px;
+  margin-top: 20px;
+  left: 77px;
+  /*border: 1px black solid;*/
+  z-index: 3;
+  position: absolute;
+}
+
 .progressBar {
   background-color: black; 
   padding: 3px; 
@@ -844,4 +855,47 @@ textarea:enabled {
 
 input[type="checkbox"] { /* change "blue" browser chrome to yellow */
   filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+}
+
+.radioButtonContainer {
+  display: flex;
+  border: 1px black solid;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.studyAndReviewContainerOuter {
+  border: 1px black solid;
+  border-radius: 5px;
+  width: 225px; 
+  height: 70px;
+   margin-top: 10px;
+}
+
+.yearBoxContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 270px;
+  height: 210px;
+}
+
+.theWordCalendar {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.time {
+  margin-left: 10px ;
+  border: 1px solid black;
+  width: 50px;
+}
+
+.changeRepetitionIntervalContainerInner {
+  width: 260px;
+  height: 68px;
+  border: 1px black solid;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px black solid;
 }

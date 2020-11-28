@@ -23,7 +23,15 @@ document.getElementById('numDaysUp').onclick = function () {
     num++;
     document.getElementById('numDays').innerHTML = num;
     document.getElementById('daysPerWeek').innerHTML = 'days per week';
-    document.getElementById('changedStudyDays').innerHTML = num;
+    document.getElementById('changedStudyDays').innerHTML = `${num} days per week`;
+
+
+
+    var elements = document.getElementsByClassName('hexagonStyling');
+   console.log(elements)
+    //  elements.slice(0,num).style.display = 'block'
+
+
   }
 }
 
@@ -34,7 +42,7 @@ document.getElementById('numDaysDown').onclick = function () {
   if (num > 1) {
     num--;
     document.getElementById('numDays').innerHTML = num
-    document.getElementById('changedStudyDays').innerHTML = num;
+    document.getElementById('changedStudyDays').innerHTML = `${num} days per week`;
   }
   if (num === 1) {
     document.getElementById('daysPerWeek').innerHTML = 'day per week';

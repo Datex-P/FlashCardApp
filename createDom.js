@@ -52,35 +52,19 @@ export default function createDom(obj) {
     }
 
     let addEditDeleteContainer = createElement(
-      'div', 
-      '', 
-      {
-        width: '149px',
-        height: '128px',
-        marginTop: '20px',
-        left: '77px',
-        //border: '1px black solid',
-        zIndex: '3',
-        position: 'absolute'
-      }, 
-      'flexColumnSpaceAround',
-      '',
-      newDeckContainer
+      'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
 
  
     let [toStudy, toReview] = ['To Study', 'To Review'].map(el=>{
       return createElement('div', el, {backgroundColor: 'white'})
-    })
-
+    });
 
     let [toStudyContainer, toReviewContainer] = ['', ''].map(el=>{
       return createElement('div', el, {border: '1px black solid'})
-    })
+    });
 
-
-  
 
     let decksizeContainer = createElement('div', '', {
       border: '1px black solid',
@@ -118,7 +102,7 @@ export default function createDom(obj) {
     trashIconContainer.onclick = () => {
      
 
-      deleteCardQuestionBox()
+      deleteCardQuestionBox(item,index)
 
 
 
@@ -272,24 +256,21 @@ export default function createDom(obj) {
 
 
 
-    newDeckContainer.append(nameOfNewDeck);
+    newDeckContainer.append(nameOfNewDeck, threeDotsContainer)
 
-    newDeckContainer.append(threeDotsContainer);
     threeDotsContainer.append(littleModalWindow);
 
     littleModalWindow.append(editIconContainer)
     threeDotsContainer.append(threeDotsIcon);
     
-    addEditDeleteContainer.append(toStudyContainer);
-    addEditDeleteContainer.append(toStudy);
+    addEditDeleteContainer.append(toStudyContainer, toStudy);
 
 
-    editIconContainer.append(editIcon)
-    editIconContainer.append(editIconText)
 
+     editIconContainer.append(editIcon, editIconText)
+ 
     littleModalWindow.append(trashIconContainer)
-    trashIconContainer.append(trashIcon)
-    trashIconContainer.append(trashIconText)
+    trashIconContainer.append(trashIcon, trashIconText)
 
 
     toStudyContainer.append(toStudy)

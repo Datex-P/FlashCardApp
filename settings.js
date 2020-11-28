@@ -55,14 +55,7 @@ export default function settings() {
   let changeRepetitionIntervalContainerInner = createElement(
     'div',
     '',
-    {
-      width: '260px',
-      height: '68px',
-      // border: '1px black solid',
-      //marginTop: '10px',
-      borderRadius: '5px'
-      //border: '1px black solid'
-    }, 'flexColumn'
+    { }, 'flexColumn changeRepetitionIntervalContainerInner'
   );
 
   changeRepetitionIntervalContainer.append(changeRepetitionIntervalContainerInner);
@@ -177,7 +170,7 @@ export default function settings() {
 
 
   let [studyAndReviewContainerOuter] = [''].map(el => {
-    return createElement('div', '', { border: '1px black solid', borderRadius: '5px', width: '225px', height: '70px', marginTop: '10px' }, 'flexColumnSpaceAround')
+    return createElement('div', '', {}, 'flexColumnSpaceAround studyAndReviewContainerOuter')
   })
 
 
@@ -238,14 +231,62 @@ export default function settings() {
 
 
 
-  editToReview.onclick = function () {
-    studyAndReviewLower.replaceChild(reviewCardInput, reviewInput);
-    studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
+
+  function clickOutsideHandle() {
+    //alert("Clicked out Box")
+    editToReview.classList.add('blinkingIcon')
+    setTimeout(() => {
+      editToReview.classList.remove('blinkingIcon')
+    }, 3000)
   }
 
 
 
-  editContainerUpper.onclick = function () {
+
+   let editedLower = false;
+
+  editToReview.onclick = function (event) {
+
+
+      window.addEventListener('click', clickOutsideHandle)
+    event.stopPropagation()
+  //  this.innerHTML = ''
+    if (!editedLower) {
+
+    studyAndReviewLower.replaceChild(reviewCardInput, reviewInput);
+    studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
+
+    reviewCardInput.value =  reviewInput.innerText;
+    edited = true;
+  }
+  else {
+
+    studyAndReviewLower.replaceChild(reviewInput, reviewCardInput);
+    studyAndReviewUpper.replaceChild(studyInput, studyCardInput);
+
+      window.removeEventListener('click', clickOutsideHandle)
+       edited = false;
+  //     //send fetch=>saveToDataBase
+  //     // if ok
+  //     nameOfNewDeck.innerText = changeNameofDeckInput.value;
+
+  }
+
+  }
+
+
+
+
+  let editedUpper = false;
+
+
+  editContainerUpper.onclick = function (event) {
+
+    // window.addEventListener('click', clickOutsideHandle)
+    // event.stopPropagation()
+
+
+
 
     [
       {

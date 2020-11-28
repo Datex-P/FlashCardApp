@@ -32,10 +32,7 @@ export default function stats() {
   );
 
   let cardsStudied = createElement(
-    "div",
-    "",
-    {},
-    "flexColumnCenter cardsStudied"
+    "div", "", {}, "flexColumnCenter cardsStudied"
   );
 
   let theWordTodayContainer = createElement(
@@ -50,18 +47,10 @@ export default function stats() {
     marginBottom: "5px",
   });
 
-  let theWordCalendarContainer = createElement(
-    "div",
-    "",
-    {},
-    "flexColumnAlignCenter"
+  let theWordCalendarContainer = createElement("div", "",{}, "flexColumnAlignCenter"
   );
 
-  let theWordCalendar = createElement("div", "Calendar", {
-    marginTop: "10px",
-    marginBottom: "5px",
-    fontWeight: "bold",
-  });
+  let theWordCalendar = createElement("div", "Calendar", {}, 'theWordCalendar');
 
   let rightAndLeftButtonContainer = createElement("div", "", {
     display: "flex",
@@ -84,12 +73,8 @@ export default function stats() {
   });
 
 
-  let yearBoxContainer = createElement("div", "", {
-    display: "flex",
-    flexWrap: "wrap",
-    width: "270px",
-    height: "210px",
-  });
+  let yearBoxContainer = createElement("div", "", {}, 'yearBoxContainer'
+  );
 
   let hourlyBreakdownContainer = createElement(
     "div",
@@ -104,11 +89,8 @@ export default function stats() {
   });
 
   let radioButtonContainer = createElement("div", "", {
-    display: "flex",
-    border: "1px black solid",
-    marginTop: "10px",
-    marginBottom: "20px",
-  });
+  
+  }, 'radioButtonContainer');
 
   ["1 month", "3 month", "12 month"].forEach((radio) => {
     let radioBtn = createElement("input", "", { cursor: "pointer" });
@@ -200,7 +182,7 @@ export default function stats() {
 
       let widthVar = (timeObj[i] || 0) / studyGoal * 100
 
-      let time = createElement("div", '', { marginLeft: '10px', border: '1px solid black', width: '50px' });
+      let time = createElement("div", '', {}, 'time');
 
       let progressBar = createElement('div', '', {}, 'progressBar')
       let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px'});
@@ -383,20 +365,11 @@ export default function stats() {
      // let child1 = createElement("div", `Deck ${deck}:`, {});
      let child1 = createElement("div", `${deck}`, {});
 
-
-      let circle = createElement('div', '', {borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '120px', height: '120px', position: 'relative', border: '1px solid black'});
-      let middlepoint = createElement('div', '.', {width: '8px', fontWeight: 'bold', height:'8px', color: 'black'})
+      
 
       let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
-      let innerContainer = createElement('div', '', {display: 'flex', /*flexDirection: 'column',*/ marginBottom: '10px'})
-      cardsStudied.append(circle)
 
-      let childContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', alignItems: 'center'})
-
-      let line1 = createElement('div', '', {position: 'absolute', right:'0xp', top: '60px', width: '60px', border: '2px black solid'});
-
-      circle.append(middlepoint)
-      middlepoint.append(line1)
+     
 
       if (counterOne === 1) {
    
@@ -411,7 +384,6 @@ export default function stats() {
     
   }
 
-  // console.log(counterTwo + " counterTwo");
 
   if (counterOne === 0) {
     cardsStudied.style.textAlign = "center";
@@ -453,8 +425,8 @@ export default function stats() {
 
   /*<----*/
 
-  theWordTodayContainer.append(theWordToday);
-  theWordTodayContainer.appendChild(cardsStudied);
+  theWordTodayContainer.append(theWordToday, cardsStudied);
+
 
   todayAndCardsStudiedContainer.appendChild(theWordTodayContainer);
 
@@ -476,8 +448,7 @@ export default function stats() {
   redCrossAndStatsContainer.appendChild(theWordStats);
   redCrossAndStatsContainer.appendChild(redCross);
 
-  innerWindow.appendChild(redCrossAndStatsContainer);
-  innerWindow.appendChild(todayAndCardsStudiedContainer);
+  innerWindow.appendChild(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
 
   mainWindow.append(innerWindow);
   anchorElement.appendChild(mainWindow);
