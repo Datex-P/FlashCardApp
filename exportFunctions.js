@@ -79,7 +79,7 @@ function setThreeDotsOpen(cond){
   threeDotsOpen = cond
 }
 
-function deleteCardQuestionBox(deck,index) {
+function deleteCardQuestionBox(deck,index,refresh) {
 
   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
@@ -99,7 +99,7 @@ function deleteCardQuestionBox(deck,index) {
     //some delete card logic needed here
     dataBase.DeckNames[deck].splice(index,1)
     deleteContainerFrame.style.display = 'none'
-
+    refresh()
    // shuffleLogic()
   }
 

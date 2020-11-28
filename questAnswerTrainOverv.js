@@ -399,7 +399,7 @@ export default function questAnswerTrainOverv(item) {
         setThreeDotsOpen(true);
         //deleteContainerFrame.style.display = 'flex'
 
-        deleteCardQuestionBox(item,index,threeDotsOpen)
+        deleteCardQuestionBox(item,index,()=>questAnswerTrainOverv(item))
       } else {
         e.stopPropagation()
         setThreeDotsOpen(false);
