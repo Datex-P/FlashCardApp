@@ -175,9 +175,10 @@
               <div><img src="hexagon.svg" class="hexagonStyling"></div>
             </div>
           </div>
-            <div style='display: flex; justify-content: flex-end;'>
+            <div style='display: flex; justify-content: flex-end;' id='studyDays'>
               <div style='font-weight: bold'>2</div><div>/3days</div>
             </div>
+            <div style='display: none; justify-content: flex-end' id='changedStudyDays'>hello</div>
         </div>
         <div id='popUpWeeklyGoal' style="width: 140px">
           <div class="flexColumnSpaceAround" id ="innerPopUp">
@@ -203,8 +204,8 @@
               <button class='settingsButtonStyling' id='numDaysUp'><div style="transform:rotate(90deg)"><</div></button>
               <button class='settingsButtonStyling' id='numDaysDown'><div style="transform:rotate(-90deg)"><</div></button>
           </div>
-          <div style='margin-left: 5px' id='numDays'>0</div>
-          <div style='margin-left: 5px'>days per week</div>
+          <div style='margin-left: 5px' id='numDays'>1</div>
+          <div style='margin-left: 5px' id='daysPerWeek'>day per week</div>
           </div>
           <button style='margin-top: 13px; padding: 4px' class='settingsButtonStyling'>Update Weekly Target</button>
           </div>
@@ -230,8 +231,7 @@
             <div class="arrowDown"></div>
           </div>
           <div id="listOfDecks"></div>
-          <div id='scrollable'
-            style='height: 140px;position: absolute; overflow: scroll; overflow-x: hidden; width:100%; top: 303px; left: -3px'>
+          <div id='scrollable'>
 
 
             <div style='height: 1000px;position: absolute; top:0; width: 100%'></div>

@@ -19,19 +19,25 @@ createDom(dataBase.DeckNames);
 document.getElementById('numDaysUp').onclick = function () {
   let num = document.getElementById('numDays').innerHTML
 
-  if (num <7) {
-  num++;
-  document.getElementById('numDays').innerHTML = num
+  if (num < 7) {
+    num++;
+    document.getElementById('numDays').innerHTML = num;
+    document.getElementById('daysPerWeek').innerHTML = 'days per week';
+    document.getElementById('changedStudyDays').innerHTML = num;
   }
-
 }
+
 
 document.getElementById('numDaysDown').onclick = function () {
   let num = document.getElementById('numDays').innerHTML
 
-  if (num >1) {
-  num--;
-  document.getElementById('numDays').innerHTML = num
+  if (num > 1) {
+    num--;
+    document.getElementById('numDays').innerHTML = num
+    document.getElementById('changedStudyDays').innerHTML = num;
+  }
+  if (num === 1) {
+    document.getElementById('daysPerWeek').innerHTML = 'day per week';
   }
 }
 
@@ -40,11 +46,19 @@ document.getElementById('numDaysDown').onclick = function () {
 
 
 document.getElementById('editMainscreen').onclick = function () {
-  document.getElementById('innerPopUp').style.display ='none';
+  document.getElementById('innerPopUp').style.display = 'none';
   document.getElementById('clicked').style.display = 'block';
+  document.getElementById('studyDays').style.display = 'none';
+  document.getElementById('changedStudyDays').style.display = 'flex';
+
+
+  let num = document.getElementById('numDays').innerHTML
+  document.getElementById('changedStudyDays').innerHTML = num;
+
+
 }
 
-dataBase.userStylePreferences.forEach(item=>{
+dataBase.userStylePreferences.forEach(item => {
   item.element.style.backgroundColor = item.backgroundColor
 })
 
@@ -131,7 +145,7 @@ let colorContainer = createElement('div', '', {
 //         function rgbToHex(r, g, b) {
 //           return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 //         }
-        
+
 //         colorInput.type = 'color'
 //         let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
 //         let params = color.match(/([0-9]{3})/g) || [0, 0, 0]
@@ -171,24 +185,24 @@ let colorContainer = createElement('div', '', {
 
 
 
-    let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
-    boxesInMenu.forEach(button => {
-      button.onclick = function () {
-        if (button.innerText === 'Stats') {
-          stats();
-          document.querySelector('.menuBox').style.display = 'none';
-        }
-        if (button.innerText === 'Settings') {
-          settings();
-          document.querySelector('.menuBox').style.display = 'none';
-        }
-      }
-    });
+let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
+boxesInMenu.forEach(button => {
+  button.onclick = function () {
+    if (button.innerText === 'Stats') {
+      stats();
+      document.querySelector('.menuBox').style.display = 'none';
+    }
+    if (button.innerText === 'Settings') {
+      settings();
+      document.querySelector('.menuBox').style.display = 'none';
+    }
+  }
+});
 
-  
 
-    document.getElementById("createDeckButton").onclick = function () {
-      createNewDeck()
 
-      document.querySelector(".arrowDown").style.display = "none";
-    };
+document.getElementById("createDeckButton").onclick = function () {
+  createNewDeck()
+
+  document.querySelector(".arrowDown").style.display = "none";
+};

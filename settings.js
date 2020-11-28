@@ -22,11 +22,13 @@ export default function settings() {
   );
 
 
+
+
   mainWindow.append(settingsAndRedCrossContainer);
 
   let theWordSettings = createElement(
     "div",
-    `Settings`,
+    'Settings',
     { fontWeight: 'bold' }
   );
   settingsAndRedCrossContainer.append(theWordSettings);
@@ -38,8 +40,6 @@ export default function settings() {
 
   mainWindow.append(changeTimeIntervall);
 
-
-
   let [editContainerUpper] = [''].map(el => {
     return createElement('div', edit, { position: 'absolute', left: '299px', top: '103px' })
   });
@@ -47,18 +47,9 @@ export default function settings() {
 
 
   let changeRepetitionIntervalContainer = createElement(
-    'div',
-    '',
-    {
-      width: '290px',
-      height: '75px',
-      border: '1px black solid',
-      marginTop: '15px',
-      borderRadius: '5px'
-    }, 'flexColumn'
-  );
+    'div', '',{}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
+    );
 
-  mainWindow.append(changeRepetitionIntervalContainer);
 
 
   let changeRepetitionIntervalContainerInner = createElement(
@@ -204,13 +195,10 @@ export default function settings() {
 
  
 
-  let [studyCards, reviewCards] = ['cards', 'cards'].map(el => {
+  let [studyCards, reviewCards, studyInput, reviewInput] = ['cards', 'cards', '10', '11'].map(el => {
     return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
   });
 
-  let [studyInput, reviewInput] = ['10', '11'].map(el => {
-    return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
-  });
 
 
   let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
@@ -223,14 +211,11 @@ export default function settings() {
     return createElement('div', el, { width: '163px', height: '40px',display:'flex',alignItems:'center' }, '')
   });
 
-  let editToReview = createElement('div', edit, { width: '50px', position: 'absolute', width: '65px', top: '246px', right: '27px' });
+  let editToReview = createElement('div', edit, { }, 'editToReview');
 
 
 
   mainWindow.append(studyAndReviewContainerOuter);
-
-
-
 
 
 
@@ -248,9 +233,6 @@ export default function settings() {
 
   mainWindow.append(resetColorSchemeContainer);
   resetColorSchemeContainer.append(colorscheme);
-  //resetColorSchemeContainer.append(resetColorIcon);
-
-
 
   let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '18px',margin:'0 10px' }, 'studyAndReviewInputStyling'))
 
@@ -353,31 +335,6 @@ checkbox.onchange = function(e){
     weekOverview.classList.remove('weekOverview')
   }
 }
-
-
-
-// ["1 month", "3 month", "12 month"].forEach((radio) => {
-//   let radioBtn = createElement("input", "", { cursor: "pointer" });
-//   let label = createElement("label", radio, {});
-//   //label.innerText = radio;
-//   radioBtn.value = radio;
-//   radioBtn.setAttribute("type", "radio");
-//   radioBtn.name = "month";
-//   radioBtn.onchange = function (event) {
-//     let { value } = event.target;
-//     console.log(value);
-//   };
-//   // radioBtn.onmouseover = function (event){
-//   //   let {name,checked, value} = event.target
-//   //   console.log(name,checked, value)
-//   // }
-//   radioButtonContainer.appendChild(radioBtn);
-//   radioButtonContainer.appendChild(label);
-// });
-
-
-
-
 
 
 

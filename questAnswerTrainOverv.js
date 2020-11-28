@@ -10,12 +10,11 @@ import createDom from './createDom.js';
 import {
   createElement,
   handleOutsideClick,
-  redCross
+  redCross, deleteCardQuestionBox
 } from './exportFunctions.js'
 import {
   edit,
-  flashcards,
-  trash, questionMark
+  trash
 } from './svgs.js';
 
 
@@ -121,97 +120,92 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.appendChild(questionContainer);
 
 
-  function deleteCardQuestionBox(deck,index) {
+  // function deleteCardQuestionBox(deck,index) {
 
-    let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
+  //   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
-    let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
+  //   let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
 
-    let deleteContainerYes = createElement('div', 'Yes', {
-      width: '60px',
-      height: '35px',
-      borderRadius: '12px'
-    }, 'flexCenterAlignCenter deleteContainerYes')
+  //   let [deleteContainerYes, deleteContainerNo] = ['Yes', 'No'].map(el=>{
 
-
-    let deleteContainerNo = createElement('div', 'Cancel', {
-      width: '60px',
-      height: '35px',
-      borderRadius: '12px'
-    }, 'flexCenterAlignCenter deleteContainerNo');
-
-
-    deleteContainerYes.onclick = function () {
-      threeDotsOpen = false
-      //some delete card logic needed here
-      dataBase.DeckNames[deck].splice(index,1)
-      deleteContainerFrame.style.display = 'none'
-    }
-
-    deleteContainerNo.onclick = function () {
-      threeDotsOpen = false
-      deleteContainerFrame.style.display = 'none'
-    }
-
-    let deleteHeader = createElement('div', '', {}, 'deleteHeader')
-
-    let messageDeleteCard = createElement('div', 'Delete Card', { height: '28px', color: 'white', fontSize: '20px', fontWeight: 'bold' }, 'flexCenterAlignCenter')
-
-    let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
-    let dontShowMessageAgainContainer = createElement('div', '', { marginTop: '-30px', width: '300px', height: '60px' }, 'flexCenter');
-    let dontShowMessageText = createElement('div', "Don't show message again", { width: '200px', color: 'white' });
-
-    let flashcard = createElement('div', flashcards, { width: '29px', height: '29px', position: 'absolute', top: '-1px', right: '197px' });
-
-
-    let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
-    let leaveXsign = createElement('div', '&#10006;', { width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px' }, 'flexCenterAlignCenter')
-
-
-    let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', { position: 'absolute', top: '67px', zIndex: '2' });
-
-    let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
-    let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
-    let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
-
-    let checkBoxContainer = createElement('div', '', { width: '40px' }, 'checkBoxContainer');
-    let checkbox = createElement('input', '', { width: '45px' });
-    checkbox.setAttribute('type', 'checkbox');
-
-    checkbox.onchange = function (e) {
-      dataBase.showDeleteFrame = !e.target.checked;
-    }
+  //     return createElement('div', el, {
+      
+  //     }, 'flexCenterAlignCenter deleteContainerNoAndYes')
+  //   })
 
 
 
-    mainWindow.append(deleteContainerFrame);
-    deleteContainerFrame.append(deleteContainerInner);
-    deleteContainerInner.append(doYouWantToDelete)
+  //   deleteContainerYes.onclick = function () {
+  //     threeDotsOpen = false
+  //     //some delete card logic needed here
+  //     dataBase.DeckNames[deck].splice(index,1)
+  //     deleteContainerFrame.style.display = 'none'
+  //   }
 
-    deleteContainerInner.append(deleteHeader)
-    deleteHeader.append(messageDeleteCard)
+  //   deleteContainerNo.onclick = function () {
+  //     threeDotsOpen = false
+  //     deleteContainerFrame.style.display = 'none'
+  //   }
 
-    deleteContainerInner.append(flashcard)
+  //   let deleteHeader = createElement('div', '', {}, 'deleteHeader')
 
-    deleteContainerInner.append(leaveXContainer)
-    leaveXContainer.append(leaveXsign)
+  //   let messageDeleteCard = createElement('div', 'Delete Card', {}, 'flexCenterAlignCenter messageDeleteCard')
+
+  //   let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
+  //   let dontShowMessageAgainContainer = createElement('div', '', { marginTop: '-30px', width: '300px', height: '60px' }, 'flexCenter');
+  //   let dontShowMessageText = createElement('div', "Don't show message again", { width: '200px', color: 'white' });
+
+  //   let flashcardIcon = createElement('div', flashcards, {}, 'flashcardIcon');
+
+
+  //   let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
+  //   let leaveXsign = createElement('div', '&#10006;', { width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px' }, 'flexCenterAlignCenter')
+
+
+  //   let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', { position: 'absolute', top: '67px', zIndex: '2' });
+
+  //   let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
+  //   let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
+  //   let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
+
+  //   let checkBoxContainer = createElement('div', '', { width: '40px' }, 'checkBoxContainer');
+  //   let checkbox = createElement('input', '', { width: '45px' });
+  //   checkbox.setAttribute('type', 'checkbox');
+
+  //   checkbox.onchange = function (e) {
+  //     dataBase.showDeleteFrame = !e.target.checked;
+  //   }
 
 
 
-    deleteContainerInner.append(deleteYesAndNoContainer)
-    deleteYesAndNoContainer.append(deleteContainerNo);
-    deleteYesAndNoContainer.append(deleteContainerYes);
-    deleteContainerInner.append(questionMark1);
-    deleteContainerInner.append(questionMark2);
-    deleteContainerInner.append(questionMark3);
-    deleteContainerFrame.append(dontShowMessageAgainContainer);
-    dontShowMessageAgainContainer.append(checkBoxContainer)
-    checkBoxContainer.append(checkbox)
-    dontShowMessageAgainContainer.append(dontShowMessageText);
+  //   mainWindow.append(deleteContainerFrame);
+  //   deleteContainerFrame.append(deleteContainerInner);
+  //   deleteContainerInner.append(doYouWantToDelete)
 
-  }
+  //   deleteContainerInner.append(deleteHeader)
+  //   deleteHeader.append(messageDeleteCard)
 
-  // deleteCardQuestionBox()
+  //   deleteContainerInner.append(flashcardIcon)
+
+  //   deleteContainerInner.append(leaveXContainer)
+  //   leaveXContainer.append(leaveXsign)
+
+
+
+  //   deleteContainerInner.append(deleteYesAndNoContainer)
+  //   deleteYesAndNoContainer.append(deleteContainerNo);
+  //   deleteYesAndNoContainer.append(deleteContainerYes);
+  //   deleteContainerInner.append(questionMark1);
+  //   deleteContainerInner.append(questionMark2);
+  //   deleteContainerInner.append(questionMark3);
+  //   deleteContainerFrame.append(dontShowMessageAgainContainer);
+  //   dontShowMessageAgainContainer.append(checkBoxContainer)
+  //   checkBoxContainer.append(checkbox)
+  //   dontShowMessageAgainContainer.append(dontShowMessageText);
+
+  // }
+
+
 
 
 
@@ -252,15 +246,8 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.appendChild(answerContainer)
 
 
-  let saveAndDiscardContainer = createElement('div', '', {
-    display: 'none',
-    width: '166px',
-    height: '71px',
-    top: '388px',
-    position: 'absolute',
-    border: '1px grey solid',
-    borderRadius: '5px'
-  })
+  let saveAndDiscardContainer = createElement('div', '', {}, 'saveAndDiscardContainer'
+  )
 
 
   let [saveButton, discardButton] = ['Save', 'Discard'].map(el => {
@@ -416,24 +403,14 @@ export default function questAnswerTrainOverv(item) {
 
   });
 
-  // theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
-
-
-
+ 
 
 
   function threeDots() {
 
     let settingsIconContainer = createElement(
       'div', '...', {
-      transform: 'rotate(90deg)',
-      fontWeight: 'bold',
-      position: 'absolute',
-      cursor: 'pointer',
-      top: '15px',
-      right: '66px',
-      fontSize: '25px'
-    }
+    }, 'settingsIconContainer'
     );
 
     settingsIconContainer.title = 'Edit question and answer or delete card';
@@ -626,61 +603,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
-
-// 
-// let dontShow = false;
-// function popUp() {
-//   if (!dontShow) {
-
-//     let popUpWindowContainer = document.createElement('div');
-//     popUpWindowContainer.style.display = 'flex';
-//     popUpWindowContainer.style.flexDirection = 'column';
-//     popUpWindowContainer.style.width = '200px';
-//     popUpWindowContainer.style.height = '55px';
-//     popUpWindowContainer.style.backgroundColor = 'white';
-//     popUpWindowContainer.style.zIndex = '2';
-//     popUpWindowContainer.style.position = 'absolute';
-//     popUpWindowContainer.style.top = '120px';
-//     popUpWindowContainer.style.border = '1px black solid';
-//     popUpWindowContainer.style.justifyContent = 'space-between';
-//     popUpWindowContainer.style.borderRadius = '5px';
-//     popUpWindowContainer.style.marginLeft = '10%';
-
-//     let checkbox = document.createElement('input');
-//     checkbox.setAttribute('type', 'checkbox');
-
-//     let dontShowInfo = document.createElement('div');
-//     dontShowInfo.innerHTML = `Don't show message again`;
-
-//     let cardRemovedInfo = document.createElement('div');
-//     cardRemovedInfo.innerHTML = 'Card was removed from deck';
-
-//     let dontShowAndCheckboxContainer = document.createElement('div');
-//     dontShowAndCheckboxContainer.style.display = 'flex';
-
-//     dontShowAndCheckboxContainer.append(checkbox);
-//     dontShowAndCheckboxContainer.append(dontShowInfo);
-
-//     popUpWindowContainer.append(cardRemovedInfo);
-//     popUpWindowContainer.append(dontShowAndCheckboxContainer);
-//     insideNameofDeckContainer.append(popUpWindowContainer);
-
-//     checkbox.onclick = function () {
-//       dontShow = true;
-//       popUpWindowContainer.style.display = 'none'
-//     }
-
-//     setTimeout(function () {
-//       popUpWindowContainer.style.display = 'none'
-
-//     }, 500000);
-
-//   }
-// }
-
-
-// }
 
 
 

@@ -2,7 +2,7 @@ import { edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
-import {createElement} from './exportFunctions.js'
+import {createElement, deleteCardQuestionBox} from './exportFunctions.js'
 
 
 export default function createDom(obj) {
@@ -55,7 +55,6 @@ export default function createDom(obj) {
       'div', 
       '', 
       {
-        justifyContent: 'space-around',
         width: '149px',
         height: '128px',
         marginTop: '20px',
@@ -64,36 +63,30 @@ export default function createDom(obj) {
         zIndex: '3',
         position: 'absolute'
       }, 
-      'flexColumn',
+      'flexColumnSpaceAround',
       '',
       newDeckContainer
     )
 
 
-    let toStudyContainer = createElement('div', '', {
-      border: '1px black solid'
-    });
+ 
+    let [toStudy, toReview] = ['To Study', 'To Review'].map(el=>{
+      return createElement('div', el, {backgroundColor: 'white'})
+    })
 
 
-    // let [toStudy, toReview, toReviewContainer]
+    let [toStudyContainer, toReviewContainer] = ['', ''].map(el=>{
+      return createElement('div', el, {border: '1px black solid'})
+    })
 
 
-    let toStudy = createElement('div', 'To Study:', {
-      backgroundColor: 'white'
-    });
-
-
-    let toReviewContainer = createElement('div', '', {
-      border: '1px black solid'
-    });
-
-    let toReview = createElement('div', 'To Review:', {
-      backgroundColor: 'white'
-    });
+  
 
     let decksizeContainer = createElement('div', '', {
       border: '1px black solid',
     });
+
+
 
     let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].length}`, {
       backgroundColor: 'white'
@@ -101,13 +94,9 @@ export default function createDom(obj) {
 
       for (let i = 0; i<8; i++) {
 
+      let whiteLines = createElement('div', '', {}, 'whiteLines');
 
-      let blackLines = createElement('div', '', {
-        width: '99%',
-        marginTop: '15px',
-        border: '0.5px #eee4e1 solid'
-      });
-      newDeckContainer.append(blackLines)
+      newDeckContainer.append(whiteLines)
     }
 
 
@@ -127,25 +116,20 @@ export default function createDom(obj) {
 
 
     trashIconContainer.onclick = () => {
-      // newDeckContainer.parentNode.removeChild(newDeckContainer);
+     
 
-      // let all = listOfDecks.querySelectorAll('.newDeckContainer')
-
-      // let lastIndex  = all.length - 1 
-      // all[lastIndex].style.zIndex = 2;
-      // all[lastIndex].querySelector('.threeDotsIcon').style.opacity = 1;
-      // all[lastIndex].style.transform = 'rotate(0deg)';
-      // all[lastIndex].querySelector('.orangeCircle').style.display = 'flex'
+      deleteCardQuestionBox()
 
 
-      delete dataBase.DeckNames[item];
-      createDom(dataBase.DeckNames)
-      if (!Object.keys(dataBase.DeckNames).length) {
-        let arrowDown = document.querySelector(".arrowDown");
-        arrowDown.style.display = "block";
-        document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
 
-      }
+      // delete dataBase.DeckNames[item];
+      // createDom(dataBase.DeckNames)
+      // if (!Object.keys(dataBase.DeckNames).length) {
+      //   let arrowDown = document.querySelector(".arrowDown");
+      //   arrowDown.style.display = "block";
+      //   document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
+
+      
     };
 
     let editIconContainer = createElement('div', '', {
@@ -179,6 +163,9 @@ export default function createDom(obj) {
         editIcon.classList.remove('blinkingIcon')
       }, 3000)
     }
+
+
+
 
     let editIcon = createElement('div', edit, {});
 
@@ -282,7 +269,7 @@ export default function createDom(obj) {
     }
 
 
-   
+
 
 
     newDeckContainer.append(nameOfNewDeck);
@@ -292,8 +279,6 @@ export default function createDom(obj) {
 
     littleModalWindow.append(editIconContainer)
     threeDotsContainer.append(threeDotsIcon);
-
-
     
     addEditDeleteContainer.append(toStudyContainer);
     addEditDeleteContainer.append(toStudy);
@@ -305,9 +290,6 @@ export default function createDom(obj) {
     littleModalWindow.append(trashIconContainer)
     trashIconContainer.append(trashIcon)
     trashIconContainer.append(trashIconText)
-
-
-
 
 
     toStudyContainer.append(toStudy)

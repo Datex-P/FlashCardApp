@@ -19,15 +19,7 @@ export default function stats() {
      overflow: "scroll", overflowX: "hidden"});
 
   let redCrossAndStatsContainer = createElement(
-    "div",
-    "",
-    {
-      height: "20px",
-      width: "290px",
-      marginLeft: "24px",
-      border: "1px black solid",
-    },
-    "flexSpaceBetween"
+    "div", "", {},"flexSpaceBetween redCrossAndStatsContainer"
   );
 
   let theWordStats = createElement("div", "Stats", { fontWeight: "bold" });
@@ -42,15 +34,8 @@ export default function stats() {
   let cardsStudied = createElement(
     "div",
     "",
-    {
-      width: "240px",
-      maxHeight: "140px",
-      height: "fit-content",
-      overflow: "scroll",
-      overflowX: "hidden",
-      marginBottom: "5px",
-    },
-    "flexColumnCenter"
+    {},
+    "flexColumnCenter cardsStudied"
   );
 
   let theWordTodayContainer = createElement(
@@ -98,7 +83,6 @@ export default function stats() {
     return createElement("div", el, { width: "50px" }, "flexCenterAlignCenter");
   });
 
-  //  let container = createElement('div', {templateRows: '30px', templateColumns: '20px'});
 
   let yearBoxContainer = createElement("div", "", {
     display: "flex",
@@ -167,10 +151,12 @@ export default function stats() {
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
   let time = createElement("div", 'Study Goal', { marginLeft: '10px', border: '1px solid black', width: '82px' });
 
-  let progressbar = createElement('div', '', {
-    backgroundColor: 'black', marginLeft: '6px', 
-    padding: '3px', height: '10px', width: '145px'
-  })
+  let progressBar = createElement('div', '', {}, 'progressBar');
+
+  progressBar.style.marginLeft = '6px'
+
+
+
 
   let innerprogress = createElement('div', '', {
     backgroundColor: 'orange', color: 'black',
@@ -190,13 +176,10 @@ export default function stats() {
 
 
 
-
-
-
   diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
   timeAndProgressContainer.append(time)
-  timeAndProgressContainer.append(progressbar);
-  progressbar.append(innerprogress);
+  timeAndProgressContainer.append(progressBar);
+  progressBar.append(innerprogress);
   timeAndProgressContainer.append(progressNumber)
 
 
@@ -219,7 +202,7 @@ export default function stats() {
 
       let time = createElement("div", '', { marginLeft: '10px', border: '1px solid black', width: '50px' });
 
-      let progressbar = createElement('div', '', { backgroundColor: 'black', padding: '3px', height: '10px', width: '146px', marginLeft: '37px' })
+      let progressBar = createElement('div', '', {}, 'progressBar')
       let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px'});
 
       previousWidthVar+=widthVar
@@ -250,8 +233,8 @@ export default function stats() {
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
       timeAndProgressContainer.append(time)
-      timeAndProgressContainer.append(progressbar);
-      progressbar.append(innerprogress);
+      timeAndProgressContainer.append(progressBar);
+      progressBar.append(innerprogress);
 
     }
   }
@@ -367,12 +350,12 @@ export default function stats() {
       if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
   */
 
-  let resultContainer = createElement(
-    "div",
-    "",
-    { border: "1px solid black"},
-    "flexColumnSpaceBetween"
-  );
+  // let resultContainer = createElement(
+  //   "div",
+  //   "",
+  //   { border: "1px solid black"},
+  //   "flexColumnSpaceBetween"
+  // );
 
   // cardsStudied.append(resultContainer);
 
@@ -417,29 +400,13 @@ export default function stats() {
 
       if (counterOne === 1) {
    
-        // circle.append(childContainer)
-        // childContainer.append(child1)
-        // child1.style.color = 'white';
-        // circle.style.backgroundColor = 'blue';
-        // childContainer.append(child2)
+    
       }
       else if (counterOne >= 2) {
 
 
-
-
-
-
-
       }
 
-
-      //circle.append(middlepoint)
-      // innerContainer.append(child1);
-
-     // innerContainer.append(circle)
-
-      // innerContainer.append(child2);
     }
     
   }
@@ -457,12 +424,6 @@ export default function stats() {
     cardsStudied.style.removeProperty("border");
     cardsStudied.style.removeProperty("overflow");
   }
-
-
-
-
-
-
 
 
 

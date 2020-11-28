@@ -107,6 +107,70 @@ textarea {
   font-weight: bold;
 }
 
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexColumnSpaceAround {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.flexColumnCenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flexColumnSpaceBetween {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flexColumnAlignCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexSpaceAround {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flexSpaceAroundAlignCenter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/* 
+.flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.flexCenterAlignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 .menuBox {
   background-color: #b0c4b1;
   color: black;
@@ -192,17 +256,54 @@ textarea {
   /* background-color:#dcc9b6; */
   background-color: #a39171;
 }
-.deleteContainerYes {
-  /* background-color: rgb(45, 106, 79) */
-  border: 2px solid grey;
-  color: grey; 
+
+.messageDeleteCard {
+  height: 28px;
+  color: white; 
+  font-size: 20px; 
+  font-weight: bold;
 }
-.deleteContainerNo {
+
+.flashcardIcon {
+  width: 29px; 
+  height: 29px; 
+  position: absolute;
+  top: -1px; 
+  right: 197px 
+}
+
+.settingsIconContainer {
+  transform: rotate(90deg);
+  font-weight: bold;
+  position: absolute;
+  cursor: pointer;
+  top: 15px;
+  right: 66px;
+  font-size: 25px;
+}
+
+.saveAndDiscardContainer {
+  display: none;
+  width: 166px;
+  height: 71px;
+  top: 388px;
+  position: absolute;
+  border: 1px grey solid;
+  border-radius: 5px;
+}
+
+
+.deleteContainerNoAndYes {
   /* background-color: rgb(119, 46, 37) */
   border: 2px solid grey; 
   color: grey;
+  width: 60px;
+  height: 35px;
+  border-radius: 12px;
 }
-.deleteContainerYes:hover, .deleteContainerNo:hover {
+
+
+.deleteContainerNoAndYes:hover {
   background-color: grey;
   color: white;
 }
@@ -345,72 +446,10 @@ textarea {
   cursor: pointer;
 }
 
-.flexCenter {
-  display: flex;
-  justify-content: center;
-}
-
-.flexColumn {
-  display: flex;
-  flex-direction: column;
-}
-
-.flexColumnSpaceAround {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.flexColumnCenter {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.flexSpaceBetween {
-  display: flex;
-  justify-content: space-between;
-}
-
-.flexSpaceAround {
-  display: flex;
-  justify-content: space-around;
-}
-
-.flexColumnSpaceBetween {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .hexagonStyling {
   width:16px; 
   height: 16px; 
   transform: rotate(90deg);
-}
-
-
-.flexSpaceAround {
-  display: flex;
-  justify-content: space-around;
-}
-
-.flexSpaceAroundAlignCenter {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.flexSpaceBetween {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.flexCenterAlignCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #paintbrush {
@@ -504,11 +543,7 @@ textarea {
   width: 20px;
 }
 
-.flexColumnAlignCenter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 #questAnswerTrainOverv {
   width: 411px;
@@ -520,6 +555,12 @@ textarea {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   top:0;
+}
+
+.whiteLines {
+  width: 99%;
+  margin-top: 15px;
+  border: 0.5px #eee4e1 solid;
 }
 
 .theWordQuestionAndAnswer {
@@ -734,9 +775,16 @@ textarea:enabled {
 
 .weekOverview:hover {
   background-color: rgba(221, 161, 94, 0.9);
-  /*background-color: blue;*/
 }
 
+
+.changeRepetitionIntervalContainer {
+  width: 290px;
+  height: 75px;
+  border: 1px black solid;
+  margin-top: 15px;
+  border-radius: 5px;
+}
 
 #popUpWeeklyGoal {
 
@@ -750,4 +798,46 @@ textarea:enabled {
   right: 20px;
   border-radius: 8px;
   font-size: 14px;
+}
+
+.progressBar {
+  background-color: black; 
+  padding: 3px; 
+  height: 10px; 
+  width: 146px; 
+  margin-left: 37px; 
+}
+
+#scrollable {
+  height: 140px;
+  position: absolute; 
+  overflow: scroll; 
+  overflow-x: hidden; 
+  width:100%; 
+  top: 303px; 
+  left: -3px;
+}
+
+.editToReview {
+  width: 50px; 
+  position: absolute; 
+  width: 65px; 
+  top: 246px; 
+  right: 27px; 
+}
+
+.redCrossAndStatsContainer {
+  height: 20px;
+  width: 290px;
+  margin-left: 24px;
+  border: 1px black solid;
+}
+
+.cardsStudied {
+  width: 240px;
+  max-height: 140px;
+  height: fit-content;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-bottom: 5px;
 }
