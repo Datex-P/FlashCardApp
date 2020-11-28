@@ -135,7 +135,7 @@ function deleteCardQuestionBox(deck,index,refresh) {
   let messageDeleteCard = createElement('div', 'Delete Card', {}, 'flexCenterAlignCenter messageDeleteCard')
 
   let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
-  let dontShowMessageAgainContainer = createElement('div', '', { marginTop: '-30px', width: '300px', height: '60px' }, 'flexCenter');
+  let dontShowMessageAgainContainer = createElement('div', '', {  }, 'flexCenter');
   let dontShowMessageText = createElement('div', "Don't show message again", { width: '200px', color: 'white' });
 
   let flashcardIcon = createElement('div', flashcards, {}, 'flashcardIcon');
