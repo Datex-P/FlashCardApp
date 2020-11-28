@@ -29,7 +29,7 @@ document.getElementById('numDaysUp').onclick = function () {
 
     var elements = document.getElementsByClassName('hexagonStyling');
    console.log(elements)
-    //  elements.slice(0,num).style.display = 'block'
+     elements.slice(0,num).style.display = 'block'
 
 
   }
