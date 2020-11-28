@@ -41,7 +41,7 @@ export default function addQuestionsToDeck(item) {
   ['Question', 'Answer'].forEach(el => {
 
     let textarea = document.createElement('textarea');
-    //textarea.className = 'textareaStyling';
+  
 
     let theWordQuestionAndAnswer = document.createElement('div');
     theWordQuestionAndAnswer.innerText = el;
