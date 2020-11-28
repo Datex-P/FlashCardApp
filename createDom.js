@@ -102,7 +102,7 @@ export default function createDom(obj) {
     trashIconContainer.onclick = () => {
      
 
-      deleteCardQuestionBox(item,index)
+      deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)})
 
 
 

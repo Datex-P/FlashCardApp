@@ -401,7 +401,7 @@ export default function questAnswerTrainOverv(item) {
         setThreeDotsOpen(true);
         //deleteContainerFrame.style.display = 'flex'
 
-        deleteCardQuestionBox(item,index,()=>questAnswerTrainOverv(item))
+        deleteCardQuestionBox(()=>dataBase.DeckNames[item].splice(index,1),()=>questAnswerTrainOverv(item))
       } else {
         e.stopPropagation()
         setThreeDotsOpen(false);

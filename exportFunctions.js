@@ -51,23 +51,24 @@ let redCross = createElement(
   'redCross'
 );
 
-function addPadding () {this.style.background = 'grey'; 
-this.style.borderRadius = '50%'; this.style.padding = '3px'};
+// function addPadding () {
+//   this.style.background = 'grey'; 
+// this.style.borderRadius = '50%'; this.style.padding = '3px'};
 
-function addLightPadding () {this.style.background = 'yellow'; 
-this.style.borderRadius = '50%'; this.style.padding = '3px'};
-
-
-redCross.addEventListener('mouseenter', addLightPadding)
+// function addLightPadding () {this.style.background = 'yellow'; 
+// this.style.borderRadius = '50%'; this.style.padding = '3px'};
 
 
-redCross.addEventListener('mouseleave', function() {
-this.removeEventListener('mouseenter', addLightPadding)
-});
+// redCross.addEventListener('mouseenter', addLightPadding)
 
-redCross.addEventListener('mousedown', addPadding)
 
-redCross.removeEventListener('mouseup', addPadding)
+// redCross.addEventListener('mouseleave', function() {
+// this.removeEventListener('mouseenter', addLightPadding)
+// });
+
+// redCross.addEventListener('mousedown', addPadding)
+
+// redCross.removeEventListener('mouseup', addPadding)
 
 
 
@@ -101,8 +102,8 @@ function setThreeDotsOpen(cond){
   threeDotsOpen = cond
 }
 
-function deleteCardQuestionBox(deck,index,refresh) {
-
+function deleteCardQuestionBox(remove,refresh) {
+  let anchorElement = document.getElementById("mainMenu");
   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
   let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
@@ -119,15 +120,15 @@ function deleteCardQuestionBox(deck,index,refresh) {
   deleteContainerYes.onclick = function () {
     setThreeDotsOpen(false)
     //some delete card logic needed here
-    dataBase.DeckNames[deck].splice(index,1)
-    deleteContainerFrame.style.display = 'none'
+    remove()
+    anchorElement.removeChild(deleteContainerFrame)
     refresh()
    
   }
 
   deleteContainerNo.onclick = function () {
     setThreeDotsOpen(false)
-    deleteContainerFrame.style.display = 'none'
+    anchorElement.removeChild(deleteContainerFrame)
   }
 
   let deleteHeader = createElement('div', '', {}, 'deleteHeader')
@@ -159,28 +160,29 @@ function deleteCardQuestionBox(deck,index,refresh) {
     dataBase.showDeleteFrame = !e.target.checked;
   }
 
-  let anchorElement = document.getElementById("questAnswerTrainOverv");
+  
 
 
  // let anchorElement = document.getElementById("mainMenu");
 
 
-  anchorElement.style.display = "flex";
+  // anchorElement.style.display = "flex";
 
- let mainWindow = document.querySelector('.addQuestionsToDeck')
-
- //let mainWindow = document.querySelector('.listOfDecks')
-
-
-  anchorElement.append(mainWindow);
+  // let mainWindow = document.querySelector('.addQuestionsToDeck')
+  // if(!mainWindow){
+  //   mainWindow = createElement('div','',{},'addQuestionsToDeck')
+  // }
 
 
-
+  anchorElement.append(deleteContainerFrame);
 
 
 
 
-  mainWindow.append(deleteContainerFrame);
+
+
+
+  // mainWindow.append(deleteContainerFrame);
   deleteContainerFrame.append(deleteContainerInner, dontShowMessageAgainContainer);
   deleteContainerInner.append(doYouWantToDelete, deleteHeader, deleteYesAndNoContainer)
 

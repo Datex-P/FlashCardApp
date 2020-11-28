@@ -328,11 +328,12 @@ textarea {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 3;
 }
 
 .deleteContainerInner {
   position: absolute;
-  top: 60px;
+  top: 188px;
   height: 206px;
   width: 252px;
   height: 160px;
@@ -444,6 +445,17 @@ textarea {
   height: 20px;
   width: 20px;
   cursor: pointer;
+}
+
+.redCross:hover{
+  background: grey; 
+  border-radius: 50%;
+  padding: 3px;
+}
+.redCross:active{
+  background: yellow; 
+  border-radius: 50%;
+  padding: 3px;
 }
 
 .hexagonStyling {
