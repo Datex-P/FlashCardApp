@@ -16,14 +16,16 @@ import {
 createDom(dataBase.DeckNames);
 
 
+
+
 document.getElementById('numDaysUp').onclick = function () {
   let num = document.getElementById('numDays').innerHTML
 
   if (num < 7) {
     num++;
     document.getElementById('numDays').innerHTML = num;
-    document.getElementById('daysPerWeek').innerHTML = 'days per week';
-    document.getElementById('changedStudyDays').innerHTML = `${num} days per week`;
+    document.getElementById('daysPerWeek').innerHTML = 'days/week';
+    document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
 
 
 
@@ -31,8 +33,8 @@ document.getElementById('numDaysUp').onclick = function () {
     elements.forEach(el=>el.style.display = 'none')
     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
 
-
   }
+  document.getElementById('studyDays').innerHTML = `${num} days`;
 }
 
 
@@ -42,14 +44,15 @@ document.getElementById('numDaysDown').onclick = function () {
   if (num > 1) {
     num--;
     document.getElementById('numDays').innerHTML = num
-    document.getElementById('changedStudyDays').innerHTML = `${num} days per week`;
+    document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
     var elements = document.querySelectorAll('.hexagonStyling');
     elements.forEach(el=>el.style.display = 'none')
     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
   }
   if (num === 1) {
-    document.getElementById('daysPerWeek').innerHTML = 'day per week';
+    document.getElementById('daysPerWeek').innerHTML = 'day/week';
   }
+  document.getElementById('studyDays').innerHTML = `${num} days`;
 }
 
 
@@ -61,13 +64,27 @@ document.getElementById('editMainscreen').onclick = function () {
   document.getElementById('clicked').style.display = 'block';
   document.getElementById('studyDays').style.display = 'none';
   document.getElementById('changedStudyDays').style.display = 'flex';
-
+  document.getElementById('buttonWeeklyTarget').style.display = 'flex';
 
   let num = document.getElementById('numDays').innerHTML
   document.getElementById('changedStudyDays').innerHTML = num;
 
 
 }
+
+document.getElementById('buttonWeeklyTarget').onclick = function () {
+
+document.getElementById('popUpWeeklyGoal').style.display = 'none';
+document.getElementById('innerPopUp').style.display = 'flex';
+this.style.display = 'none';
+document.getElementById('clicked').style.display = 'none';
+document.getElementById('changedStudyDays').style.display = 'none';
+document.getElementById('studyDays').style.display = 'flex';
+document.getElementById('weeklyStudyDays').style.display = 'flex';
+document.getElementById('studyDaysSoFar').style.display = 'flex';
+}
+
+
 
 dataBase.userStylePreferences.forEach(item => {
   item.element.style.backgroundColor = item.backgroundColor

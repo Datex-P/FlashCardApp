@@ -39,8 +39,7 @@ function generateTextarea(inner, style = {}) {
   );
   textarea.setAttribute("disabled", "true");
 
-  container.appendChild(label)
-  container.appendChild(textarea)
+  container.append(label, textarea)
   return [container, textarea]
 };
 
@@ -68,6 +67,7 @@ export default function questAnswerTrainOverv(item) {
     answerContainer.style.display = 'none'
     return [question, answer, index]
   }
+
 
 
   let anchorElement = document.getElementById("questAnswerTrainOverv");
@@ -102,6 +102,14 @@ export default function questAnswerTrainOverv(item) {
     clearInterval(decrementTimer);
   }
   redCross.onclick = close
+
+
+
+
+
+
+
+
 
 
   // startTimer(item, index);
@@ -148,7 +156,7 @@ export default function questAnswerTrainOverv(item) {
     '', {}, 'showAnswerButtonContainer'
   )
 
-  mainWindow.append(showAnswerButtonContainer);
+
 
   let [answerContainer, answerFieldTextArea] = generateTextarea(
     'Answer', {
@@ -156,7 +164,7 @@ export default function questAnswerTrainOverv(item) {
     display: 'none',
   }
   )
-  mainWindow.appendChild(answerContainer)
+
 
 
   let saveAndDiscardContainer = createElement('div', '', {}, 'saveAndDiscardContainer'
@@ -174,11 +182,8 @@ export default function questAnswerTrainOverv(item) {
   discardButton.style.backgroundColor = '#772e25';
 
 
-
-
-  mainWindow.append(saveAndDiscardContainer);
-  saveAndDiscardContainer.append(discardButton);
-  saveAndDiscardContainer.append(saveButton);
+  mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
+  saveAndDiscardContainer.append(discardButton, saveButton);
 
 
 
@@ -370,8 +375,7 @@ export default function questAnswerTrainOverv(item) {
       }, 'flexCenterAlignCenter trashIconContainer')
     });
 
-    littleModalWindow.append(editIconContainer);
-    littleModalWindow.append(trashIconContainer);
+    littleModalWindow.append(editIconContainer, trashIconContainer);
 
 
     let [editIcon, trashIcon] = [edit, trash].map(el => {
@@ -387,10 +391,8 @@ export default function questAnswerTrainOverv(item) {
       })
     });
 
-    editIconContainer.append(editIcon);
-    editIconContainer.append(editIconText);
-    trashIconContainer.append(trashIcon);
-    trashIconContainer.append(trashIconText);
+    editIconContainer.append(editIcon, editIconText);
+    trashIconContainer.append(trashIcon, trashIconText);
 
 
     trashIconContainer.onclick = function (e) {
@@ -438,8 +440,7 @@ export default function questAnswerTrainOverv(item) {
       saveAndDiscardContainer.style.justifyContent = 'space-around';
       saveAndDiscardContainer.style.alignItems = 'center'
       showAnswerButton.style.display = 'none';
-      showAnswerButtonContainer.removeChild(containerForTimeButtons);
-      showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
+      showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
       mainWindow.removeChild(showAnswerButtonContainer);
 
 
@@ -476,8 +477,7 @@ export default function questAnswerTrainOverv(item) {
     questionFieldTextArea.style.border = 'none';
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-    showAnswerButtonContainer.append(containerForTimeButtons);
-    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.append(containerForTimeButtons, containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'block';
     saveAndDiscardContainer.style.display = 'none';
 
@@ -497,14 +497,13 @@ export default function questAnswerTrainOverv(item) {
     questionFieldTextArea.style.border = 'none';
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-    showAnswerButtonContainer.append(containerForTimeButtons);
-    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.append(containerForTimeButtons, containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'block';
     saveAndDiscardContainer.style.display = 'none';
   };
 
 
-  //export {shuffleLogic}
+  
 }
 
 

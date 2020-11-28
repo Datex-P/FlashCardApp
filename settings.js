@@ -1,9 +1,5 @@
-import shuffle from "./shuffleButton.js";
-import { startTimer, timer } from "./timer.js";
-import { redCross as redCrossIcon } from "./svgs.js";
-import { dataBase } from './dataBase.js';
-import createDom from './createDom.js';
-import { edit, save, trash, reset } from './svgs.js';
+
+import { edit} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick } from './exportFunctions.js'
 
 export default function settings() {
@@ -16,15 +12,16 @@ export default function settings() {
   }, 'addQuestionsToDeck flexColumnCenter')
   anchorElement.appendChild(mainWindow);
 
-  //header
+
   let settingsAndRedCrossContainer = createElement(
     'div', '', { width: "265px", marginBottom: '20px' }, 'flexSpaceBetween'
   );
 
+  let changeTimeIntervall = createElement(
+    'div', 'Change Repetition Interval', { fontWeight: 'bold' });
 
 
-
-  mainWindow.append(settingsAndRedCrossContainer);
+  mainWindow.append(settingsAndRedCrossContainer, changeTimeIntervall);
 
   let theWordSettings = createElement(
     "div",
@@ -35,10 +32,8 @@ export default function settings() {
 
 
 
-  let changeTimeIntervall = createElement(
-    'div', 'Change Repetition Interval', { fontWeight: 'bold' });
 
-  mainWindow.append(changeTimeIntervall);
+
 
   let [editContainerUpper] = [''].map(el => {
     return createElement('div', edit, { position: 'absolute', left: '299px', top: '103px' })
@@ -82,9 +77,7 @@ export default function settings() {
     borderRadius: '5px'
   }, 'flexCenter'))
 
-  containerUpper.append(upperLeftContainerContainer);
-  containerUpper.append(upperMiddleContainerContainer);
-  containerUpper.append(upperRightContainerContainer);
+  containerUpper.append(upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer);
 
 
   let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
@@ -212,16 +205,13 @@ export default function settings() {
 
 
 
-  studyAndReviewContainerOuter.append(studyAndReviewUpper);
-  studyAndReviewContainerOuter.append(studyAndReviewLower);
+  studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower);
 
-  studyAndReviewUpper.append(studyText);
-  studyAndReviewUpper.append(studyInput);
-  studyAndReviewUpper.append(studyCards)
+  studyAndReviewUpper.append(studyText, studyInput, studyCards);
+  
 
-  studyAndReviewLower.append(reviewText);
-  studyAndReviewLower.append(reviewInput);
-  studyAndReviewLower.append(reviewCards);
+  studyAndReviewLower.append(reviewText, reviewInput, reviewCards)
+
   studyAndReviewContainerOuter.append(editToReview);
 
   mainWindow.append(resetColorSchemeContainer);
@@ -337,6 +327,7 @@ export default function settings() {
   closeMenu()
 
 
+  
 
 
 

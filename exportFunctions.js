@@ -3,7 +3,7 @@ import {
   dataBase
 } from './dataBase.js';
 
-//import {shuffleLogic} from './questAnswerTrainOverv.js'
+
 
 
 
@@ -43,12 +43,34 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
 };
 
 
+
 let redCross = createElement(
   'div',
   redCrossIcon,
   {},
   'redCross'
 );
+
+function addPadding () {this.style.background = 'grey'; 
+this.style.borderRadius = '50%'; this.style.padding = '3px'};
+
+function addLightPadding () {this.style.background = 'yellow'; 
+this.style.borderRadius = '50%'; this.style.padding = '3px'};
+
+
+redCross.addEventListener('mouseenter', addLightPadding)
+
+
+redCross.addEventListener('mouseleave', function() {
+this.removeEventListener('mouseenter', addLightPadding)
+});
+
+redCross.addEventListener('mousedown', addPadding)
+
+redCross.removeEventListener('mouseup', addPadding)
+
+
+
 
 function handleOutsideClick(mainWindow){
   setTimeout(function () {
@@ -100,7 +122,7 @@ function deleteCardQuestionBox(deck,index,refresh) {
     dataBase.DeckNames[deck].splice(index,1)
     deleteContainerFrame.style.display = 'none'
     refresh()
-   // shuffleLogic()
+   
   }
 
   deleteContainerNo.onclick = function () {
@@ -120,10 +142,10 @@ function deleteCardQuestionBox(deck,index,refresh) {
 
 
   let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
-  let leaveXsign = createElement('div', '&#10006;', { width: '20px', height: '20px', color: 'white', right: '-3px', fontSize: '11px' }, 'flexCenterAlignCenter')
+  let leaveXsign = createElement('div', '&#10006;', { }, 'flexCenterAlignCenter leaveXsign')
 
 
-  let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', { position: 'absolute', top: '67px', zIndex: '2' });
+  let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {}, 'doYouWantToDelete');
 
   let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
   let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
@@ -150,7 +172,7 @@ function deleteCardQuestionBox(deck,index,refresh) {
  //let mainWindow = document.querySelector('.listOfDecks')
 
 
-  anchorElement.appendChild(mainWindow);
+  anchorElement.append(mainWindow);
 
 
 
@@ -159,29 +181,19 @@ function deleteCardQuestionBox(deck,index,refresh) {
 
 
   mainWindow.append(deleteContainerFrame);
-  deleteContainerFrame.append(deleteContainerInner);
-  deleteContainerInner.append(doYouWantToDelete)
+  deleteContainerFrame.append(deleteContainerInner, dontShowMessageAgainContainer);
+  deleteContainerInner.append(doYouWantToDelete, deleteHeader, deleteYesAndNoContainer)
 
-  deleteContainerInner.append(deleteHeader)
   deleteHeader.append(messageDeleteCard)
 
-  deleteContainerInner.append(flashcardIcon)
+  deleteContainerInner.append(flashcardIcon, leaveXContainer, questionMark1, questionMark2, questionMark3)
 
-  deleteContainerInner.append(leaveXContainer)
   leaveXContainer.append(leaveXsign)
 
+  deleteYesAndNoContainer.append(deleteContainerNo, deleteContainerYes);
 
-
-  deleteContainerInner.append(deleteYesAndNoContainer)
-  deleteYesAndNoContainer.append(deleteContainerNo);
-  deleteYesAndNoContainer.append(deleteContainerYes);
-  deleteContainerInner.append(questionMark1);
-  deleteContainerInner.append(questionMark2);
-  deleteContainerInner.append(questionMark3);
-  deleteContainerFrame.append(dontShowMessageAgainContainer);
-  dontShowMessageAgainContainer.append(checkBoxContainer)
+  dontShowMessageAgainContainer.append(checkBoxContainer, dontShowMessageText)
   checkBoxContainer.append(checkbox)
-  dontShowMessageAgainContainer.append(dontShowMessageText);
 
 }
 

@@ -256,15 +256,15 @@ export default function createDom(obj) {
 
 
 
-    newDeckContainer.append(nameOfNewDeck, threeDotsContainer)
+    newDeckContainer.append(nameOfNewDeck, threeDotsContainer, addToDeckIcon)
 
     threeDotsContainer.append(littleModalWindow);
 
     littleModalWindow.append(editIconContainer)
     threeDotsContainer.append(threeDotsIcon);
     
-    addEditDeleteContainer.append(toStudyContainer, toStudy);
-
+  
+    addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer)
 
 
      editIconContainer.append(editIcon, editIconText)
@@ -274,12 +274,10 @@ export default function createDom(obj) {
 
 
     toStudyContainer.append(toStudy)
-    addEditDeleteContainer.append(toReviewContainer)
     toReviewContainer.append(toReview)
-    addEditDeleteContainer.append(decksizeContainer)
     decksizeContainer.append(decksize)
 
-    newDeckContainer.append(addToDeckIcon)
+   
     addToDeckIcon.append(plusIcon);
 
 

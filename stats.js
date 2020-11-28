@@ -1,5 +1,4 @@
 import { dataBase } from "./dataBase.js";
-import { redCross as redCrossIcon } from "./svgs.js";
 
 import {
   createElement,
@@ -107,8 +106,7 @@ export default function stats() {
     //   let {name,checked, value} = event.target
     //   console.log(name,checked, value)
     // }
-    radioButtonContainer.appendChild(radioBtn);
-    radioButtonContainer.appendChild(label);
+    radioButtonContainer.append(radioBtn, label);
   });
 
   let diagramHourlyBreakDownContainer = createElement(
@@ -159,10 +157,8 @@ export default function stats() {
 
 
   diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-  timeAndProgressContainer.append(time)
-  timeAndProgressContainer.append(progressBar);
+  timeAndProgressContainer.append(time, progressBar, progressNumber)
   progressBar.append(innerprogress);
-  timeAndProgressContainer.append(progressNumber)
 
 
 
@@ -214,8 +210,7 @@ export default function stats() {
 
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-      timeAndProgressContainer.append(time)
-      timeAndProgressContainer.append(progressBar);
+      timeAndProgressContainer.append(time, progressBar)
       progressBar.append(innerprogress);
 
     }
@@ -428,27 +423,19 @@ export default function stats() {
   theWordTodayContainer.append(theWordToday, cardsStudied);
 
 
-  todayAndCardsStudiedContainer.appendChild(theWordTodayContainer);
+  todayAndCardsStudiedContainer.append(theWordTodayContainer);
 
-  theWordCalendarContainer.appendChild(theWordCalendar);
-  rightAndLeftButtonContainer.appendChild(buttonLeft);
-  rightAndLeftButtonContainer.appendChild(year);
-  rightAndLeftButtonContainer.appendChild(buttonRight);
+  theWordCalendarContainer.append(theWordCalendar);
+  rightAndLeftButtonContainer.append(buttonLeft, year, buttonRight);
 
-  theWordCalendarContainer.append(rightAndLeftButtonContainer);
-  theWordCalendarContainer.append(yearBoxContainer);
+  theWordCalendarContainer.append(rightAndLeftButtonContainer, yearBoxContainer);
 
-  hourlyBreakdownContainer.append(theWordhourlyBreakdown);
+  hourlyBreakdownContainer.append(theWordhourlyBreakdown, radioButtonContainer, diagramHourlyBreakDownContainer);
 
-  hourlyBreakdownContainer.append(radioButtonContainer);
-  hourlyBreakdownContainer.append(diagramHourlyBreakDownContainer);
+  todayAndCardsStudiedContainer.append(theWordCalendarContainer, hourlyBreakdownContainer);
+  redCrossAndStatsContainer.append(theWordStats, redCross);
 
-  todayAndCardsStudiedContainer.appendChild(theWordCalendarContainer);
-  todayAndCardsStudiedContainer.append(hourlyBreakdownContainer);
-  redCrossAndStatsContainer.appendChild(theWordStats);
-  redCrossAndStatsContainer.appendChild(redCross);
-
-  innerWindow.appendChild(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
+  innerWindow.append(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
 
   mainWindow.append(innerWindow);
   anchorElement.appendChild(mainWindow);
