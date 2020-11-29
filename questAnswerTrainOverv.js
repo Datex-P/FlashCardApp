@@ -445,20 +445,24 @@ export default function questAnswerTrainOverv(item) {
       mainWindow.removeChild(showAnswerButtonContainer);
 
 
-      setTimeout(function () {
-        window.onclick = function (e) {
-          if (!settingsIconContainer.contains(e.target)) {
-            //alert("Clicked in Box");
-            window.onclick = ''
-          } else {
-            //alert("Clicked outside Box");
-            saveAndDiscardContainer.classList.add('blinkingIcon');
-            setTimeout(() => {
-              saveAndDiscardContainer.classList.remove('blinkingIcon')
-            }, 3000);
-          }
-        }
-      }, 10);
+      // setTimeout(function () {
+      //   window.onclick = function (e) {
+      //     if (!settingsIconContainer.contains(e.target)) {
+      //       //alert("Clicked in Box");
+      //       window.onclick = ''
+      //     } else {
+      //       //alert("Clicked outside Box");
+      //       saveAndDiscardContainer.classList.add('blinkingIcon');
+      //       setTimeout(() => {
+      //         saveAndDiscardContainer.classList.remove('blinkingIcon')
+      //       }, 3000);
+      //     }
+      //   }
+      // }, 10);
+
+      handleOutsideClick(settingsIconContainer, saveAndDiscardContainer)
+
+
 
     };
 

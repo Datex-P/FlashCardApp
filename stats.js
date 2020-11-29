@@ -110,14 +110,8 @@ export default function stats() {
   });
 
   let diagramHourlyBreakDownContainer = createElement(
-    "div",
-    "",
-    { width: "260px", border: "1px solid black", height: "190px", position: 'relative' },
-    "flexColumnSpaceAround"
+    "div", "", {}, "flexColumnSpaceAround diagramHourlyBreakDownContainer"
   );
-
-
-
 
 
   let studyGoal = 80
@@ -423,16 +417,13 @@ export default function stats() {
   theWordTodayContainer.append(theWordToday, cardsStudied);
 
 
-  todayAndCardsStudiedContainer.append(theWordTodayContainer);
-
-  theWordCalendarContainer.append(theWordCalendar);
+  todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
   rightAndLeftButtonContainer.append(buttonLeft, year, buttonRight);
 
-  theWordCalendarContainer.append(rightAndLeftButtonContainer, yearBoxContainer);
+  theWordCalendarContainer.append(theWordCalendar, rightAndLeftButtonContainer, yearBoxContainer);
 
   hourlyBreakdownContainer.append(theWordhourlyBreakdown, radioButtonContainer, diagramHourlyBreakDownContainer);
 
-  todayAndCardsStudiedContainer.append(theWordCalendarContainer, hourlyBreakdownContainer);
   redCrossAndStatsContainer.append(theWordStats, redCross);
 
   innerWindow.append(redCrossAndStatsContainer, todayAndCardsStudiedContainer);

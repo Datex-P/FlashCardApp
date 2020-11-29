@@ -1,6 +1,6 @@
 
-import { edit } from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick } from './exportFunctions.js'
+import { edit, save } from './svgs.js';
+import { createElement, closeMenu, close, redCross } from './exportFunctions.js'
 
 export default function settings() {
 
@@ -181,7 +181,7 @@ export default function settings() {
 
 
 
-  let [studyCards, reviewCards, studyInput, reviewInput] = ['cards', 'cards', '10', '11'].map(el => {
+  let [studyCards, reviewCards, studyInputUnchanged, reviewInputUnchanged] = ['cards', 'cards', '10', '11'].map(el => {
     return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
   });
 
@@ -207,10 +207,10 @@ export default function settings() {
 
   studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower);
 
-  studyAndReviewUpper.append(studyText, studyInput, studyCards);
+  studyAndReviewUpper.append(studyText, studyInputUnchanged, studyCards);
 
 
-  studyAndReviewLower.append(reviewText, reviewInput, reviewCards)
+  studyAndReviewLower.append(reviewText, reviewInputUnchanged, reviewCards)
 
   studyAndReviewContainerOuter.append(editToReview);
 
@@ -222,14 +222,29 @@ export default function settings() {
 
 
 
-  // function clickOutsideHandle(x) {
-  //   //alert("Clicked out Box")
-  //   x.classList.add('blinkingIcon')
-  //   setTimeout(() => {
-  //     x.classList.remove('blinkingIcon')
-  //   }, 3000)
-  // }
 
+  // function handleOutsideClick(mainWindow, target = redCross, upper= null, lower = null){
+  //   setTimeout(function () {
+  //     window.onclick = function (e) {
+
+  //       if (upper !== undefined) {
+  //       if (mainWindow.contains(e.target) || upper.contains(e.target) || lower.contains(e.target)) {
+  //         //alert("Clicked in Box");
+  //         //window.onclick = ''         
+  //       } else {
+  //         //alert("Clicked outside Box");
+  //         target.classList.add('blinkingIcon');
+  //         setTimeout(() => {
+  //           target.classList.remove('blinkingIcon')
+  //         }, 3000);
+  //       }
+
+  //     }
+
+  //     }
+  //   }, 10);
+  
+  // }
 
 
 
@@ -244,19 +259,23 @@ export default function settings() {
     //  this.innerHTML = ''
     if (!editedLower) {
 
-      studyAndReviewLower.replaceChild(reviewCardInput, reviewInput);
-      studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
+      studyAndReviewLower.replaceChild(reviewCardInput, reviewInputUnchanged);
+      studyAndReviewUpper.replaceChild(studyCardInput, studyInputUnchanged);
 
-      reviewCardInput.value = reviewInput.innerText;
+      reviewCardInput.value = reviewInputUnchanged.innerText;
       editedLower = true;
+      editToReview.innerHTML = save
       console.log(1)
-      handleOutsideClick(studyAndReviewContainerOuter,editToReview)
+      //handleOutsideClick(studyAndReviewContainerOuter,editToReview)
+      handleOutsideClick(editToReview, reviewCardInput, studyCardInput, editToReview)
+
       // window.addEventListener('click', clickOutsideHandle.call(null,editToReview))
       
     } else {
+      editToReview.innerHTML = edit
       console.log(2)
-      studyAndReviewLower.replaceChild(reviewInput, reviewCardInput);
-      studyAndReviewUpper.replaceChild(studyInput, studyCardInput);
+      studyAndReviewLower.replaceChild(reviewInputUnchanged, reviewCardInput);
+      studyAndReviewUpper.replaceChild(studyInputUnchanged, studyCardInput);
       window.onclick = ''
       editedLower = false;
       // window.removeEventListener('click', clickOutsideHandle.call(null,editToReview))
@@ -306,15 +325,15 @@ export default function settings() {
       },
     ].forEach(item => {
 
-      if (!editedUpper) {
+       if (!editedUpper) {
 
         item.container.replaceChild(item.input, item.div);
         item.input.value = upperLeftZero.innerText;
         item.input.style.width = '47%';
         item.input.style.marginRight = '3px';
         item.smaller.style.display = 'none'
-      }
-      else {
+       }
+       else {
         item.container.replaceChild(item.div, item.input);
         item.input.value = upperLeftZero.innerText;
         item.input.style.width = '47%';
@@ -323,17 +342,18 @@ export default function settings() {
       }
     })
 
-    if (!editedUpper) {
+    // if (!editedUpper) {
 
-      containerLower.replaceChild(changeNameofDeckInput4, again);
-      changeNameofDeckInput4.value = again.innerText;
+    //   containerLower.replaceChild(changeNameofDeckInput4, again);
+    //   changeNameofDeckInput4.value = again.innerText;
 
-      containerLower.replaceChild(changeNameofDeckInput5, good);
-      changeNameofDeckInput5.value = good.innerText;
+    //   containerLower.replaceChild(changeNameofDeckInput5, good);
+    //   changeNameofDeckInput5.value = good.innerText;
 
-      containerLower.replaceChild(changeNameofDeckInput6, easy);
-      changeNameofDeckInput6.value = easy.innerText;
-    }
+    //   containerLower.replaceChild(changeNameofDeckInput6, easy);
+    //   changeNameofDeckInput6.value = easy.innerText;
+    // }
+    
 
 
 
@@ -342,7 +362,7 @@ export default function settings() {
 
   redCross.onclick = () => close(mainWindow, anchorElement)
 
-  handleOutsideClick(mainWindow)
+  // handleOutsideClick(mainWindow)
 
   redCross.addEventListener('click', closeMenu());
   settingsAndRedCrossContainer.append(redCross);

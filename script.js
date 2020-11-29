@@ -97,6 +97,9 @@ document.getElementById('changedStudyDays').style.display = 'none';
 document.getElementById('studyDays').style.display = 'flex';
 document.getElementById('weeklyStudyDays').style.display = 'flex';
 document.getElementById('studyDaysSoFar').style.display = 'flex';
+
+var elements = document.querySelectorAll('.hexagonStyling');
+elements.forEach(el=>el.style.display = 'none')
 }
 
 

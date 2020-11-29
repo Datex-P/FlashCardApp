@@ -51,35 +51,45 @@ let redCross = createElement(
   'redCross'
 );
 
-// function addPadding () {
-//   this.style.background = 'grey'; 
-// this.style.borderRadius = '50%'; this.style.padding = '3px'};
-
-// function addLightPadding () {this.style.background = 'yellow'; 
-// this.style.borderRadius = '50%'; this.style.padding = '3px'};
-
-
-// redCross.addEventListener('mouseenter', addLightPadding)
-
-
-// redCross.addEventListener('mouseleave', function() {
-// this.removeEventListener('mouseenter', addLightPadding)
-// });
-
-// redCross.addEventListener('mousedown', addPadding)
-
-// redCross.removeEventListener('mouseup', addPadding)
-
 
 
 
 function handleOutsideClick(mainWindow,target = redCross){
+  
+//   if (mainWindow === settingIconContainer) {
+  
+//   setTimeout(function () {
+//     window.onclick = function (e) {
+    
+//       if (!mainWindow.contains(e.target)) {
+//         //alert("Clicked in Box");
+//         //window.onclick = ''         
+//       } 
+      
+//       else {
+//         //alert("Clicked outside Box");
+//         target.classList.add('blinkingIcon');
+//         setTimeout(() => {
+//           target.classList.remove('blinkingIcon')
+//         }, 3000);
+//       }
+//     }
+//   }, 10);
+    
+  
+
+//   }
+// else {
+
   setTimeout(function () {
     window.onclick = function (e) {
+    
       if (mainWindow.contains(e.target)) {
         //alert("Clicked in Box");
         //window.onclick = ''         
-      } else {
+      } 
+      
+      else {
         //alert("Clicked outside Box");
         target.classList.add('blinkingIcon');
         setTimeout(() => {
@@ -88,7 +98,22 @@ function handleOutsideClick(mainWindow,target = redCross){
       }
     }
   }, 10);
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function close(mainWindow, anchorElement) {

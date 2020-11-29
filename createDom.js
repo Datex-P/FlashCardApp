@@ -260,7 +260,7 @@ export default function createDom(obj) {
 
     threeDotsContainer.append(littleModalWindow);
 
-    littleModalWindow.append(editIconContainer)
+    littleModalWindow.append(editIconContainer, trashIconContainer)
     threeDotsContainer.append(threeDotsIcon);
     
   
@@ -269,7 +269,7 @@ export default function createDom(obj) {
 
      editIconContainer.append(editIcon, editIconText)
  
-    littleModalWindow.append(trashIconContainer)
+    //littleModalWindow.append(trashIconContainer)
     trashIconContainer.append(trashIcon, trashIconText)
 
 

@@ -864,6 +864,13 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
   filter: invert(100%) hue-rotate(18deg) brightness(1.7);
 }
 
+.diagramHourlyBreakDownContainer {
+  width: 260px; 
+  border: 1px solid black; 
+  height: 190px; 
+  position: relative ;
+}
+
 .radioButtonContainer {
   display: flex;
   border: 1px black solid;
