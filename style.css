@@ -728,6 +728,12 @@ textarea {
   display: none;
   padding: 5px;
   background-color: white;
+  transform: rotate(-90deg);
+  top: -56px;
+  left: -6px;
+  border: 1px black solid;
+  border-radius: 5px;
+  position: absolute;
 }
 
 
@@ -841,7 +847,7 @@ textarea:enabled {
 
 .editToReview {
   position: absolute; 
-  right: 27px; 
+  right: 16px; 
 }
 
 .redCrossAndStatsContainer {

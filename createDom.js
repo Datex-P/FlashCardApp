@@ -2,7 +2,7 @@ import { edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
-import {createElement, deleteCardQuestionBox} from './exportFunctions.js'
+import {createElement, deleteCardQuestionBox, threeDots} from './exportFunctions.js'
 
 
 export default function createDom(obj) {
@@ -216,18 +216,20 @@ export default function createDom(obj) {
 
     threeDotsContainer.onclick = function () {
 
-      littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
+      threeDots()
 
-      if (littleModalWindow.style.display === 'block') {
-        setTimeout(function () {
-          window.onclick = function (event) {
-            if (!littleModalWindow.contains(event.target)) {
-              littleModalWindow.style.display = 'none';
-              window.onclick = ''
-            }
-          };
-        }, 10);
-      }
+      // littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
+
+      // if (littleModalWindow.style.display === 'block') {
+      //   setTimeout(function () {
+      //     window.onclick = function (event) {
+      //       if (!littleModalWindow.contains(event.target)) {
+      //         littleModalWindow.style.display = 'none';
+      //         window.onclick = ''
+      //       }
+      //     };
+      //   }, 10);
+      // }
     };
 
     let plusIcon = createElement('div', '+', {
@@ -269,7 +271,7 @@ export default function createDom(obj) {
 
      editIconContainer.append(editIcon, editIconText)
  
-    //littleModalWindow.append(trashIconContainer)
+
     trashIconContainer.append(trashIcon, trashIconText)
 
 

@@ -1,6 +1,6 @@
 
 import { edit, save } from './svgs.js';
-import { createElement, closeMenu, close, redCross } from './exportFunctions.js'
+import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
 
 export default function settings() {
 
@@ -36,13 +36,13 @@ export default function settings() {
 
 
   let [editContainerUpper] = [''].map(el => {
-    return createElement('div', edit, { position: 'absolute', left: '299px', top: '103px' })
+    return createElement('div', edit, { position: 'absolute', right: '8px', top: '24px' })
   });
 
 
 
   let changeRepetitionIntervalContainer = createElement(
-    'div', '', {}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
+    'div', '', {position: 'relative'}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
   );
 
 
@@ -71,7 +71,7 @@ export default function settings() {
 
 
 
-  let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
+  let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['70px', '70px', '70px'].map(width => createElement('div', '', {
     width,
     border: '1px black solid',
     borderRadius: '5px'
@@ -83,6 +83,7 @@ export default function settings() {
   let [upperLeftContainer, upperMiddleContainer, upperRightContainer] = ['63px', '63px', '63px'].map(width => createElement('div', '', {
     width,
     padding: '3px',
+    height: '19px'
   }, 'flexSpaceBetween'))
 
   upperLeftContainerContainer.append(upperLeftContainer);
@@ -139,12 +140,12 @@ export default function settings() {
   let [again, good, easy] = ["again", "good", "easy"].map((el) => {
     let input = createElement('div', el, {
       width: '68px',
-      textAlign: 'center',
       height: '27px',
       backgroundColor: 'grey',
       color: 'white',
+      position: 'relative',
       borderRadius: '5px'
-    })
+    }, 'flexCenterAlignCenter')
     containerLower.append(input)
     return input
   });
@@ -194,8 +195,11 @@ export default function settings() {
 
 
   let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el => {
-    return createElement('div', el, { width: '163px', height: '40px', display: 'flex', alignItems: 'center' }, '')
+    return createElement('div', el, { width: '169px', height: '24px', left: '6px', position: 'absolute', display: 'flex', alignItems: 'center', border: '1px solid black', borderRadius: '5px'}, '')
   });
+
+  studyAndReviewUpper.style.top = '6px';
+  studyAndReviewLower.style.top =  '38px';
 
   let editToReview = createElement('div', edit, {}, 'editToReview');
 
@@ -205,45 +209,22 @@ export default function settings() {
 
 
 
-  studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower);
+  studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower, editToReview);
 
   studyAndReviewUpper.append(studyText, studyInputUnchanged, studyCards);
 
 
   studyAndReviewLower.append(reviewText, reviewInputUnchanged, reviewCards)
 
-  studyAndReviewContainerOuter.append(editToReview);
+
 
   mainWindow.append(resetColorSchemeContainer);
   resetColorSchemeContainer.append(colorscheme);
 
-  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '18px', margin: '0 10px' }, 'studyAndReviewInputStyling'))
+  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '15px', margin: '0 10px' }, 'studyAndReviewInputStyling'))
 
 
 
-
-
-  function handleOutsideClick(mainWindow, target = redCross, upper= null, lower = null){
-    setTimeout(function () {
-      window.onclick = function (e) {
-
-        if (mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) ) {
-          //alert("Clicked in Box");
-          //window.onclick = ''         
-        } else {
-          //alert("Clicked outside Box");
-          target.classList.add('blinkingIcon');
-          setTimeout(() => {
-            target.classList.remove('blinkingIcon')
-          }, 3000);
-        }
-
-      
-
-      }
-    }, 10);
-  
-  }
 
 
 
@@ -264,11 +245,10 @@ export default function settings() {
       reviewCardInput.value = reviewInputUnchanged.innerText;
       editedLower = true;
       editToReview.innerHTML = save
-      console.log(1)
-      //handleOutsideClick(studyAndReviewContainerOuter,editToReview)
+  
       handleOutsideClick(editToReview, editToReview, reviewCardInput, studyCardInput)
 
-      // window.addEventListener('click', clickOutsideHandle.call(null,editToReview))
+      
       
     } else {
       editToReview.innerHTML = edit
@@ -277,16 +257,8 @@ export default function settings() {
       studyAndReviewUpper.replaceChild(studyInputUnchanged, studyCardInput);
       window.onclick = ''
       editedLower = false;
-      // window.removeEventListener('click', clickOutsideHandle.call(null,editToReview))
-      
-      //     //send fetch=>saveToDataBase
-      //     // if ok
-      //     nameOfNewDeck.innerText = changeNameofDeckInput.value;
-
+     
     }
-
-
-
   }
 
 
@@ -320,88 +292,39 @@ export default function settings() {
        if (!cond) {
 
         item.container.replaceChild(item.input, item.div);
-        item.input.value = upperLeftZero.innerText;
+        item.input.value = item.div.innerText 
         item.input.style.width = '47%';
         item.input.style.marginRight = '3px';
         item.smaller.style.display = 'none'
-       }else {
+        editContainerUpper.innerHTML = save;
+       } else {
         item.container.replaceChild(item.div, item.input);
-        item.input.value = upperLeftZero.innerText;
+        item.div.innerText = item.input.value 
         item.input.style.width = '47%';
         item.input.style.marginRight = '3px';
-        item.smaller.style.display = 'none'
+        item.smaller.style.display = 'block'
+        editContainerUpper.innerHTML = edit;
       }
     })
+
+  //   if (!cond) {
+  //     containerLower.replaceChild(again, changeNameofDeckInput6)
+  //   }
+  // }
   }
 
-
-  editContainerUpper.onclick = function (event) {
+  editContainerUpper.onclick = function () {
     editContainerUpperClickHandler(editedUpper)
     editedUpper = !editedUpper
-    // window.addEventListener('click', clickOutsideHandle)
-    // event.stopPropagation()
-
-
-
-
-    // [
-    //   {
-    //     container: upperLeftContainer,
-    //     input: changeNameofDeckInput1,
-    //     div: upperLeftZero,
-    //     smaller: upperLeftSmaller
-    //   },
-    //   {
-    //     container: upperMiddleContainer,
-    //     input: changeNameofDeckInput2,
-    //     div: upperMiddleZero,
-    //     smaller: upperMiddleSmaller
-    //   },
-    //   {
-    //     container: upperRightContainer,
-    //     input: changeNameofDeckInput3,
-    //     div: upperRightZero,
-    //     smaller: upperRightSmaller
-    //   },
-    // ].forEach(item => {
-
-    //    if (!editedUpper) {
-
-    //     item.container.replaceChild(item.input, item.div);
-    //     item.input.value = upperLeftZero.innerText;
-    //     item.input.style.width = '47%';
-    //     item.input.style.marginRight = '3px';
-    //     item.smaller.style.display = 'none'
-    //    }else {
-    //     item.container.replaceChild(item.div, item.input);
-    //     item.input.value = upperLeftZero.innerText;
-    //     item.input.style.width = '47%';
-    //     item.input.style.marginRight = '3px';
-    //     item.smaller.style.display = 'none'
-    //   }
-    // })
-
-    // if (!editedUpper) {
-
-    //   containerLower.replaceChild(changeNameofDeckInput4, again);
-    //   changeNameofDeckInput4.value = again.innerText;
-
-    //   containerLower.replaceChild(changeNameofDeckInput5, good);
-    //   changeNameofDeckInput5.value = good.innerText;
-
-    //   containerLower.replaceChild(changeNameofDeckInput6, easy);
-    //   changeNameofDeckInput6.value = easy.innerText;
-    // }
-    
-
-
-
   }
+
+
+
+
 
 
   redCross.onclick = () => close(mainWindow, anchorElement)
 
-  // handleOutsideClick(mainWindow)
 
   redCross.addEventListener('click', closeMenu());
   settingsAndRedCrossContainer.append(redCross);

@@ -1,4 +1,4 @@
-import { redCross as redCrossIcon, flashcards, questionMark } from "./svgs.js";
+import { redCross as redCrossIcon, flashcards, questionMark, edit, trash } from "./svgs.js";
 import {
   dataBase
 } from './dataBase.js';
@@ -54,52 +54,159 @@ let redCross = createElement(
 
 
 
-function handleOutsideClick(mainWindow,target = redCross){
-  
-//   if (mainWindow === settingIconContainer) {
-  
-//   setTimeout(function () {
-//     window.onclick = function (e) {
-    
-//       if (!mainWindow.contains(e.target)) {
-//         //alert("Clicked in Box");
-//         //window.onclick = ''         
-//       } 
-      
-//       else {
-//         //alert("Clicked outside Box");
-//         target.classList.add('blinkingIcon');
-//         setTimeout(() => {
-//           target.classList.remove('blinkingIcon')
-//         }, 3000);
-//       }
-//     }
-//   }, 10);
-    
-  
 
-//   }
-// else {
-
+function handleOutsideClick(mainWindow, target = redCross, upper= null, lower = null, questionFieldTextArea = null, answerFieldTextArea = null){
   setTimeout(function () {
     window.onclick = function (e) {
-    
-      if (mainWindow.contains(e.target)) {
+
+      if ( mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) || 
+      (questionFieldTextArea && questionFieldTextArea.contains(e.target)) || (answerFieldTextArea && answerFieldTextArea.contains(e.target))) 
+      {
         //alert("Clicked in Box");
         //window.onclick = ''         
-      } 
-      
-      else {
+      } else {
         //alert("Clicked outside Box");
         target.classList.add('blinkingIcon');
         setTimeout(() => {
           target.classList.remove('blinkingIcon')
         }, 3000);
       }
+
+    
+
     }
   }, 10);
 
 }
+
+
+
+function threeDots() {
+
+  let settingsIconContainer = createElement(
+    'div', '...', {
+  }, 'settingsIconContainer'
+  );
+
+  settingsIconContainer.title = 'Edit question and answer or delete card';
+
+  settingsIconContainer.onclick = function () {
+    console.log('I was clicked')
+    if (threeDotsOpen === false) {
+
+      littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
+
+      if (littleModalWindow.style.display === 'block') {
+        setTimeout(function () {
+          window.onclick = function (event) {
+            if (!littleModalWindow.contains(event.target)) {
+              littleModalWindow.style.display = 'none';
+              window.onclick = ''
+            }
+          };
+        }, 10);
+      }
+    }
+  };
+
+  let littleModalWindow = createElement(
+    'div',
+    '', {
+  
+  },
+    'littleModalWindow flexColumn'
+  )
+
+
+  let threeDotsContainer = createElement('div', '', {})
+
+  threeDotsContainer.append(littleModalWindow)
+ // settingsIconContainer.append(littleModalWindow);
+
+  let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
+    return createElement('div', '', {
+      width: 'fit-content',
+      height: '25px',
+      border: '1px black solid',
+    }, 'flexCenterAlignCenter trashIconContainer')
+  });
+
+  littleModalWindow.append(editIconContainer, trashIconContainer);
+
+
+  let [editIcon, trashIcon] = [edit, trash].map(el => {
+    return createElement('div', el, {
+      width: '20px'
+    })
+  });
+
+  let [editIconText, trashIconText] = ['card', 'card'].map(el => {
+    return createElement('div', el, {
+      width: 'fit-content',
+      fontSize: '16px'
+    })
+  });
+
+  editIconContainer.append(editIcon, editIconText);
+  trashIconContainer.append(trashIcon, trashIconText);
+
+
+  trashIconContainer.onclick = function (e) {
+
+    if (dataBase.showDeleteFrame) {
+      setThreeDotsOpen(true);
+      //deleteContainerFrame.style.display = 'flex'
+
+      deleteCardQuestionBox(()=>dataBase.DeckNames[item].splice(index,1),()=>questAnswerTrainOverv(item))
+    } else {
+      e.stopPropagation()
+      setThreeDotsOpen(false);
+      littleModalWindow.style.display = "none";
+    }
+
+
+    // dataBase.DeckNames[item].splice(index, 1);
+    // createDom(dataBase.DeckNames)
+
+    // if (dataBase.DeckNames[item].length) {
+    //   shuffleLogic();
+    // } else {
+    //   close()
+    // }
+    //popUp();
+
+  }
+  //theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
+
+
+
+  editIconContainer.onclick = function () {
+    setThreeDotsOpen(true);
+    littleModalWindow.style.display = "none";
+
+    showAnswerButtonContainer.style.justifyContent = 'center';
+    answerContainer.style.display = 'block'
+    answerFieldTextArea.style.display = 'block';
+    answerFieldTextArea.removeAttribute("disabled");
+    questionFieldTextArea.removeAttribute("disabled");
+    questionFieldTextArea.focus();
+    saveAndDiscardContainer.style.display = 'flex';
+    saveAndDiscardContainer.style.justifyContent = 'space-around';
+    saveAndDiscardContainer.style.alignItems = 'center'
+    showAnswerButton.style.display = 'none';
+    showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
+    mainWindow.removeChild(showAnswerButtonContainer);
+
+
+    handleOutsideClick(settingsIconContainer, saveAndDiscardContainer, null, null, questionFieldTextArea, answerFieldTextArea);
+  };
+}
+
+
+
+
+
+
 
 
 
@@ -235,4 +342,4 @@ function deleteCardQuestionBox(remove,refresh) {
 
 
 
-export { createElement, close, closeMenu, redCross, handleOutsideClick, deleteCardQuestionBox,setThreeDotsOpen,threeDotsOpen};
+export { createElement, close, closeMenu, redCross, handleOutsideClick, threeDots, deleteCardQuestionBox,setThreeDotsOpen,threeDotsOpen};
