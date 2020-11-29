@@ -81,9 +81,10 @@ export default function questAnswerTrainOverv(item) {
     'div',
     '', {
     width: "89%",
-    marginBottom: '6px'
+    marginBottom: '6px',
+    height: '24px'
   },
-    'flexSpaceBetween'
+    'flexSpaceBetweenAlignCenter'
   );
   mainWindow.append(theNameOftheDeckAndRedCrossContainer);
 

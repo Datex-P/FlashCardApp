@@ -49,10 +49,12 @@ document.getElementById('numDaysDown').onclick = function () {
     elements.forEach(el=>el.style.display = 'none')
     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
   }
+
   if (num === 1) {
     document.getElementById('daysPerWeek').innerHTML = 'day/week';
+    document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
   }
-  document.getElementById('studyDays').innerHTML = `${num} days`;
+  document.getElementById('studyDays').innerHTML = `${num} day`;
 }
 
 
@@ -60,14 +62,27 @@ document.getElementById('numDaysDown').onclick = function () {
 
 
 document.getElementById('editMainscreen').onclick = function () {
+  let num = document.getElementById('numDays').innerHTML
+
+  document.getElementById('numDays').innerHTML = num;
+    document.getElementById('daysPerWeek').innerHTML = 'day/week';
+    document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
+
+
+
+    var elements = document.querySelectorAll('.hexagonStyling');
+    elements.forEach(el=>el.style.display = 'none')
+    Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
+
+
+
   document.getElementById('innerPopUp').style.display = 'none';
   document.getElementById('clicked').style.display = 'block';
   document.getElementById('studyDays').style.display = 'none';
   document.getElementById('changedStudyDays').style.display = 'flex';
   document.getElementById('buttonWeeklyTarget').style.display = 'flex';
 
-  let num = document.getElementById('numDays').innerHTML
-  document.getElementById('changedStudyDays').innerHTML = num;
+
 
 
 }

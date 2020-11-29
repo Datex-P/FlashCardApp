@@ -156,12 +156,12 @@ textarea {
   justify-content: space-around;
   align-items: center;
 }
-/* 
-.flexSpaceBetween {
+ 
+.flexSpaceBetweenAlignCenter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-} */
+} 
 
 .flexCenterAlignCenter {
   display: flex;
@@ -213,9 +213,6 @@ textarea {
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: absolute;
   cursor: pointer;
   left: 20px;
@@ -230,7 +227,6 @@ textarea {
   margin-bottom: 3px;
   border-radius: 12px;
   position: absolute;
-  /* top: 8px; */
   transition: 1s all;
 }
 
@@ -448,12 +444,13 @@ textarea {
 }
 
 .redCross:hover{
-  background: grey; 
+  background: #c38e70;
   border-radius: 50%;
   padding: 3px;
 }
 .redCross:active{
-  background: yellow; 
+  /*background: #9d6b53;*/
+  background: #b07d62;
   border-radius: 50%;
   padding: 3px;
 }
@@ -906,10 +903,10 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
 .changeRepetitionIntervalContainerInner {
   width: 260px;
   height: 68px;
-  border: 1px black solid;
-  margin-top: 10px;
+  /*border: 1px black solid;*/
+  margin-top: 3px;
   border-radius: 5px;
-  border: 1px black solid;
+ 
 }
 
 #buttonWeeklyTarget {

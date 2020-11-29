@@ -1,6 +1,6 @@
 
 import { edit} from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick } from './exportFunctions.js'
+import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
 
 export default function settings() {
 
@@ -14,7 +14,7 @@ export default function settings() {
 
 
   let settingsAndRedCrossContainer = createElement(
-    'div', '', { width: "265px", marginBottom: '20px' }, 'flexSpaceBetween'
+    'div', '', { width: "265px", marginBottom: '20px', height: '24px'}, 'flexSpaceBetween'
   );
 
   let changeTimeIntervall = createElement(
@@ -170,7 +170,7 @@ export default function settings() {
   let resetColorSchemeContainer = createElement(
     'div', '', {
     width: '154px',
-    border: '1px black solid',
+    // border: '1px black solid',
     marginTop: '20px',
    
   }, '');
@@ -222,23 +222,24 @@ export default function settings() {
 
 
 
-  function clickOutsideHandle() {
+  function clickOutsideHandle(x) {
     //alert("Clicked out Box")
-    editToReview.classList.add('blinkingIcon')
+    x.classList.add('blinkingIcon')
     setTimeout(() => {
-      editToReview.classList.remove('blinkingIcon')
+      x.classList.remove('blinkingIcon')
     }, 3000)
   }
 
 
 
 
+
    let editedLower = false;
+
 
   editToReview.onclick = function (event) {
 
-
-      window.addEventListener('click', clickOutsideHandle)
+      window.addEventListener('click', ()=> clickOutsideHandle(editToReview))
     event.stopPropagation()
   //  this.innerHTML = ''
     if (!editedLower) {
@@ -247,20 +248,21 @@ export default function settings() {
     studyAndReviewUpper.replaceChild(studyCardInput, studyInput);
 
     reviewCardInput.value =  reviewInput.innerText;
-    edited = true;
-  }
-  else {
+    editedLower = true;
+  
+  } else {
 
     studyAndReviewLower.replaceChild(reviewInput, reviewCardInput);
     studyAndReviewUpper.replaceChild(studyInput, studyCardInput);
 
-      window.removeEventListener('click', clickOutsideHandle)
-       edited = false;
+       editedLower = false;
   //     //send fetch=>saveToDataBase
   //     // if ok
   //     nameOfNewDeck.innerText = changeNameofDeckInput.value;
 
   }
+
+  window.removeEventListener('click', ()=> clickOutsideHandle(editToReview))
 
   }
 
@@ -298,12 +300,25 @@ export default function settings() {
         smaller: upperRightSmaller
       },
     ].forEach(item => {
+
+      if (!editedUpper) {
+
       item.container.replaceChild(item.input, item.div);
       item.input.value = upperLeftZero.innerText;
       item.input.style.width = '47%';
       item.input.style.marginRight = '3px';
       item.smaller.style.display = 'none'
+      }
+      else {
+        item.container.replaceChild(item.div, item.input);
+        item.input.value = upperLeftZero.innerText;
+        item.input.style.width = '47%';
+        item.input.style.marginRight = '3px';
+        item.smaller.style.display = 'none'
+      }
     })
+
+    if (!editedUpper) {
 
     containerLower.replaceChild(changeNameofDeckInput4, again);
     changeNameofDeckInput4.value = again.innerText;
@@ -313,6 +328,9 @@ export default function settings() {
 
     containerLower.replaceChild(changeNameofDeckInput6, easy);
     changeNameofDeckInput6.value = easy.innerText;
+    }
+
+
 
   }
 
