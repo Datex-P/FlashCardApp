@@ -73,17 +73,17 @@ let redCross = createElement(
 
 
 
-function handleOutsideClick(mainWindow){
+function handleOutsideClick(mainWindow,target = redCross){
   setTimeout(function () {
     window.onclick = function (e) {
       if (mainWindow.contains(e.target)) {
         //alert("Clicked in Box");
-        window.onclick = ''         
+        //window.onclick = ''         
       } else {
         //alert("Clicked outside Box");
-        redCross.classList.add('blinkingIcon');
+        target.classList.add('blinkingIcon');
         setTimeout(() => {
-          redCross.classList.remove('blinkingIcon')
+          target.classList.remove('blinkingIcon')
         }, 3000);
       }
     }
