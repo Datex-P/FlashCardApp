@@ -223,28 +223,27 @@ export default function settings() {
 
 
 
-  // function handleOutsideClick(mainWindow, target = redCross, upper= null, lower = null){
-  //   setTimeout(function () {
-  //     window.onclick = function (e) {
+  function handleOutsideClick(mainWindow, target = redCross, upper= null, lower = null){
+    setTimeout(function () {
+      window.onclick = function (e) {
 
-  //       if (upper !== undefined) {
-  //       if (mainWindow.contains(e.target) || upper.contains(e.target) || lower.contains(e.target)) {
-  //         //alert("Clicked in Box");
-  //         //window.onclick = ''         
-  //       } else {
-  //         //alert("Clicked outside Box");
-  //         target.classList.add('blinkingIcon');
-  //         setTimeout(() => {
-  //           target.classList.remove('blinkingIcon')
-  //         }, 3000);
-  //       }
+        if (mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) ) {
+          //alert("Clicked in Box");
+          //window.onclick = ''         
+        } else {
+          //alert("Clicked outside Box");
+          target.classList.add('blinkingIcon');
+          setTimeout(() => {
+            target.classList.remove('blinkingIcon')
+          }, 3000);
+        }
 
-  //     }
+      
 
-  //     }
-  //   }, 10);
+      }
+    }, 10);
   
-  // }
+  }
 
 
 
@@ -267,7 +266,7 @@ export default function settings() {
       editToReview.innerHTML = save
       console.log(1)
       //handleOutsideClick(studyAndReviewContainerOuter,editToReview)
-      handleOutsideClick(editToReview, reviewCardInput, studyCardInput, editToReview)
+      handleOutsideClick(editToReview, editToReview, reviewCardInput, studyCardInput)
 
       // window.addEventListener('click', clickOutsideHandle.call(null,editToReview))
       
@@ -296,15 +295,8 @@ export default function settings() {
   let editedUpper = false;
 
 
-  editContainerUpper.onclick = function (event) {
-
-    // window.addEventListener('click', clickOutsideHandle)
-    // event.stopPropagation()
-
-
-
-
-    [
+  function editContainerUpperClickHandler(cond){
+        [
       {
         container: upperLeftContainer,
         input: changeNameofDeckInput1,
@@ -325,15 +317,14 @@ export default function settings() {
       },
     ].forEach(item => {
 
-       if (!editedUpper) {
+       if (!cond) {
 
         item.container.replaceChild(item.input, item.div);
         item.input.value = upperLeftZero.innerText;
         item.input.style.width = '47%';
         item.input.style.marginRight = '3px';
         item.smaller.style.display = 'none'
-       }
-       else {
+       }else {
         item.container.replaceChild(item.div, item.input);
         item.input.value = upperLeftZero.innerText;
         item.input.style.width = '47%';
@@ -341,6 +332,54 @@ export default function settings() {
         item.smaller.style.display = 'none'
       }
     })
+  }
+
+
+  editContainerUpper.onclick = function (event) {
+    editContainerUpperClickHandler(editedUpper)
+    editedUpper = !editedUpper
+    // window.addEventListener('click', clickOutsideHandle)
+    // event.stopPropagation()
+
+
+
+
+    // [
+    //   {
+    //     container: upperLeftContainer,
+    //     input: changeNameofDeckInput1,
+    //     div: upperLeftZero,
+    //     smaller: upperLeftSmaller
+    //   },
+    //   {
+    //     container: upperMiddleContainer,
+    //     input: changeNameofDeckInput2,
+    //     div: upperMiddleZero,
+    //     smaller: upperMiddleSmaller
+    //   },
+    //   {
+    //     container: upperRightContainer,
+    //     input: changeNameofDeckInput3,
+    //     div: upperRightZero,
+    //     smaller: upperRightSmaller
+    //   },
+    // ].forEach(item => {
+
+    //    if (!editedUpper) {
+
+    //     item.container.replaceChild(item.input, item.div);
+    //     item.input.value = upperLeftZero.innerText;
+    //     item.input.style.width = '47%';
+    //     item.input.style.marginRight = '3px';
+    //     item.smaller.style.display = 'none'
+    //    }else {
+    //     item.container.replaceChild(item.div, item.input);
+    //     item.input.value = upperLeftZero.innerText;
+    //     item.input.style.width = '47%';
+    //     item.input.style.marginRight = '3px';
+    //     item.smaller.style.display = 'none'
+    //   }
+    // })
 
     // if (!editedUpper) {
 
