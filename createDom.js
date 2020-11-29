@@ -156,67 +156,65 @@ export default function createDom(obj) {
     let edited = false;
 
 
-    editIconContainer.onclick = function (event) {
+    // editIconContainer.onclick = function (event) {
 
-      window.addEventListener('click', clickOutsideHandle)
-      event.stopPropagation()
-      this.innerHTML = ''
-      if (!edited) {
+    //   window.addEventListener('click', clickOutsideHandle)
+    //   event.stopPropagation()
+    //   this.innerHTML = ''
+    //   if (!edited) {
 
-        this.innerHTML = `${save} name`;
+    //     this.innerHTML = `${save} name`;
 
-        newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
-        changeNameofDeckInput.value = nameOfNewDeck.innerText;
-        edited = true;
+    //     newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
+    //     changeNameofDeckInput.value = nameOfNewDeck.innerText;
+    //     edited = true;
 
-        console.log('click like a edit')
-      } else {
+    //     console.log('click like a edit')
+    //   } else {
 
-        editIconContainer.append(editIcon)
-        editIconContainer.append(editIconText)
+    //     editIconContainer.append(editIcon)
+    //     editIconContainer.append(editIconText)
         
 
-        //console.log('click like a save')
-        newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-        window.removeEventListener('click', clickOutsideHandle)
-        edited = false;
-        //send fetch=>saveToDataBase
-        // if ok
-        nameOfNewDeck.innerText = changeNameofDeckInput.value;
-      }
-    };
+    //     //console.log('click like a save')
+    //     newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+    //     window.removeEventListener('click', clickOutsideHandle)
+    //     edited = false;
+    //     //send fetch=>saveToDataBase
+    //     // if ok
+    //     nameOfNewDeck.innerText = changeNameofDeckInput.value;
+    //   }
+    // };
 
 
 
-    [trashIcon, editIcon].forEach((el) => { el.style.cursor = 'pointer'; });
+    // [trashIcon, editIcon].forEach((el) => { el.style.cursor = 'pointer'; });
 
 
-    let threeDotsContainer = createElement('div', '', {
-      left: '223px',
-      position: 'absolute',
-      top: '4px',
-      cursor: 'pointer'
-    });
-    threeDotsContainer.title = ' Click and edit deckname or delete deck'
+    // let threeDotsContainer = createElement('div', '', {
+    //   left: '223px',
+    //   position: 'absolute',
+    //   top: '4px',
+    //   cursor: 'pointer'
+    // });
+    // threeDotsContainer.title = ' Click and edit deckname or delete deck'
 
 
-    let threeDotsIcon = createElement('div', '...', {
-      color: 'black',
-      fontWeight: 'bold',
-      transform: 'rotate(90deg)',
-      fontSize: '24px',
+    // let threeDotsIcon = createElement('div', '...', {
+    //   color: 'black',
+    //   fontWeight: 'bold',
+    //   transform: 'rotate(90deg)',
+    //   fontSize: '24px',
 
-    }, 'threeDotsIcon');
-
-
-
-    let littleModalWindow = createElement(
-      'div', '', { display: 'none', border: '1px solid black' }, 'littleModalWindow2');
+    // }, 'threeDotsIcon');
 
 
-    threeDotsContainer.onclick = function () {
 
-      threeDots()
+    // let littleModalWindow = createElement(
+    //   'div', '', { display: 'none', border: '1px solid black' }, 'littleModalWindow2');
+
+
+  let threeDotsContainer = threeDots()
 
       // littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 
@@ -230,7 +228,7 @@ export default function createDom(obj) {
       //     };
       //   }, 10);
       // }
-    };
+    // };
 
     let plusIcon = createElement('div', '+', {
       color: 'white', cursor: 'pointer'
@@ -260,19 +258,19 @@ export default function createDom(obj) {
 
     newDeckContainer.append(nameOfNewDeck, threeDotsContainer, addToDeckIcon)
 
-    threeDotsContainer.append(littleModalWindow);
+    // threeDotsContainer.append(littleModalWindow);
 
-    littleModalWindow.append(editIconContainer, trashIconContainer)
-    threeDotsContainer.append(threeDotsIcon);
+    // littleModalWindow.append(editIconContainer, trashIconContainer)
+    // threeDotsContainer.append(threeDotsIcon);
     
   
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer)
 
 
-     editIconContainer.append(editIcon, editIconText)
+    //  editIconContainer.append(editIcon, editIconText)
  
 
-    trashIconContainer.append(trashIcon, trashIconText)
+    // trashIconContainer.append(trashIcon, trashIconText)
 
 
     toStudyContainer.append(toStudy)

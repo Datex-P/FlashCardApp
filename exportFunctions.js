@@ -116,9 +116,9 @@ function threeDots() {
   },
     'littleModalWindow flexColumn'
   )
-
-
-  let threeDotsContainer = createElement('div', '', {})
+let threeDotsContainer = createElement('div', '', {})
+  threeDotsContainer.append(settingsIconContainer)
+  
 
   threeDotsContainer.append(littleModalWindow)
  // settingsIconContainer.append(littleModalWindow);
@@ -200,6 +200,8 @@ function threeDots() {
 
     handleOutsideClick(settingsIconContainer, saveAndDiscardContainer, null, null, questionFieldTextArea, answerFieldTextArea);
   };
+
+  return threeDotsContainer
 }
 
 
