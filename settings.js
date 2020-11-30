@@ -258,6 +258,20 @@ export default function settings() {
 
 
   editToReview.onclick = function (event) {
+    
+    var reg = new RegExp('^[0-9]+$');
+
+
+     if (!reg.test(reviewCardInput.value || studyCardInput.value || reviewInputUnchanged.innerText || studyInputUnchanged.innerText)) {
+       alert('not a number')
+     }
+
+
+    //console.log(reg.test(studyInputUnchanged.innerText))
+
+    //console.log(typeof(reviewCardInput.value))
+    //console.log(typeof(Number(studyInputUnchanged.innerText)))
+
 
 
     event.stopPropagation()
@@ -268,6 +282,7 @@ export default function settings() {
       studyAndReviewUpper.replaceChild(studyCardInput, studyInputUnchanged);
 
       reviewCardInput.value = reviewInputUnchanged.innerText;
+      studyCardInput.value = studyInputUnchanged.innerText;
       editedLower = true;
       editToReview.innerHTML = save
   
@@ -280,6 +295,13 @@ export default function settings() {
       console.log(2)
       studyAndReviewLower.replaceChild(reviewInputUnchanged, reviewCardInput);
       studyAndReviewUpper.replaceChild(studyInputUnchanged, studyCardInput);
+
+      reviewInputUnchanged.innerText =  reviewCardInput.value;
+      studyInputUnchanged.innerText = studyCardInput.value;
+
+
+
+
       window.onclick = ''
       editedLower = false;
      

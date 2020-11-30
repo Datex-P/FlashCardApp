@@ -188,16 +188,16 @@ function threeDots(){
       if (mainscreen) {
 
         document.querySelector('.showAnswerButtonContainer').style.justifyContent = 'center';
-        answerContainer.style.display = 'block'
-        answerFieldTextArea.style.display = 'block';
-        answerFieldTextArea.removeAttribute("disabled");
-        questionFieldTextArea.removeAttribute("disabled");
-        questionFieldTextArea.focus();
-        saveAndDiscardContainer.style.display = 'flex';
-        saveAndDiscardContainer.style.justifyContent = 'space-around';
-        saveAndDiscardContainer.style.alignItems = 'center'
-        showAnswerButton.style.display = 'none';
-        showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
+       // document.querySelector('.answerContainer').style.display = 'block'
+        document.querySelector('.answerFieldTextArea').style.display = 'block';
+        document.querySelector('.answerFieldTextArea').removeAttribute("disabled");
+        document.querySelector('.questionFieldTextArea').removeAttribute("disabled");
+        document.querySelector('.questionFieldTextArea').focus();
+        document.querySelector('.saveAndDiscardContainer').style.display = 'flex';
+        document.querySelector('.saveAndDiscardContainer').style.justifyContent = 'space-around';
+        document.querySelector('.saveAndDiscardContainer').style.alignItems = 'center'
+        document.querySelector('.showAnswerButton').style.display = 'none';
+        document.querySelector('showAnswerButtonContainer').removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
         mainWindow.removeChild(showAnswerButtonContainer);
 
       }
