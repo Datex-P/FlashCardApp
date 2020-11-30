@@ -986,11 +986,7 @@ input[type=number] {
 }
 
 
-/* width: '169px', 
-height: '24px', 
-left: '6px', 
-position: 'absolute', 
-display: 'flex', 
-alignItems: 'center', 
-border: '1px solid black', 
-borderRadius: '5px' */
+*::selection{
+  background: transparent;
+  
+}

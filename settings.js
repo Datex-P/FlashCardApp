@@ -103,11 +103,9 @@ export default function settings() {
       return input;
 
     })
-  )
-
-
-  let [upperLeftMin, upperMiddleMin, upperRightMin] =
-    ["min", 'hrs', 'days'].map((el) => {
+  );
+    
+  ["min", 'hrs', 'days'].map((el) => {
       let input = document.createElement("div");
       input.innerText = el;
       input.style.fontWeight = 'bold'
