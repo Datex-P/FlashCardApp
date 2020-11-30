@@ -221,8 +221,10 @@ export default function settings() {
   mainWindow.append(resetColorSchemeContainer);
   resetColorSchemeContainer.append(colorscheme);
 
-  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '15px', margin: '0 10px' }, 'studyAndReviewInputStyling'))
+  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '15px', margin: '0 10px'}, 'studyAndReviewInputStyling'))
 
+  studyCardInput.type = 'number'
+  reviewCardInput.type = 'number'
 
 
 

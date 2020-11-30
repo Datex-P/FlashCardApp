@@ -124,6 +124,11 @@ export default function questAnswerTrainOverv(item) {
     marginTop: '20px',
   }
   )
+  
+  questionContainer.id  = 'questionContainer'
+  questionFieldTextArea.id = 'questionFieldTextArea'
+
+
   mainWindow.appendChild(questionContainer);
 
 
@@ -159,7 +164,7 @@ export default function questAnswerTrainOverv(item) {
     'Answer', {
     marginTop: '20px',
     display: 'none',
-  }
+  },
   )
 
 
