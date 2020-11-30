@@ -201,7 +201,49 @@ export default function questAnswerTrainOverv(item) {
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
-   })
+   
+  
+    trashIconContainer.onclick = function (e) {
+
+      if (dataBase.showDeleteFrame) {
+        threeDotsOpen = true;
+        //deleteContainerFrame.style.display = 'flex'
+
+        deleteCardQuestionBox(() => dataBase.DeckNames[card].splice(index, 1), () => questAnswerTrainOverv(card))
+      } else {
+        e.stopPropagation()
+        threeDotsOpen = false;
+        littleModalWindow.style.display = "none";
+      }
+
+
+      // dataBase.DeckNames[item].splice(index, 1);
+      // createDom(dataBase.DeckNames)
+
+      // if (dataBase.DeckNames[item].length) {
+      //   shuffleLogic();
+      // } else {
+      //   close()
+      // }
+      //popUp();
+
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  })
   
   
    mainWindow.append(anchorThreeDots)

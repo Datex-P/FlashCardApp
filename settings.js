@@ -1,5 +1,5 @@
 
-import { edit, save } from './svgs.js';
+import { edit, save, reset} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
 
 export default function settings() {
@@ -92,7 +92,6 @@ export default function settings() {
 
 
 
-
   let [[upperLeftSmaller, upperLeftZero], [upperMiddleSmaller, upperMiddleZero], [upperRightSmaller, upperRightZero]] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container =>
     ["<", "0"].map((el) => {
       let input = document.createElement("div");
@@ -107,7 +106,6 @@ export default function settings() {
 
     })
   )
-
 
 
   let [upperLeftMin, upperMiddleMin, upperRightMin] =
@@ -156,6 +154,11 @@ export default function settings() {
     return createElement('input', '', { width }, 'settingsButtonStyling');
   })
 
+changeNameofDeckInput1.type = 'number';
+changeNameofDeckInput2.type = 'number';
+changeNameofDeckInput3.type = 'number';
+
+
   let reviewAndStudy = createElement(
     'div', 'Review and Study Interval', { marginTop: "20px", fontWeight: 'bold' }
   );
@@ -163,7 +166,7 @@ export default function settings() {
   mainWindow.append(reviewAndStudy)
 
 
-  let [studyAndReviewContainerOuter] = [''].map(el => {
+  let [studyAndReviewContainerOuter, resetContainerOuter] = ['', ''].map(el => {
     return createElement('div', '', {}, 'flexColumnSpaceAround studyAndReviewContainerOuter')
   })
 
@@ -188,24 +191,48 @@ export default function settings() {
 
 
 
-  let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
+  let [studyText, reviewText, resetCalendarText, resetHourlyBreakdownText] = ['To study:', 'To review:', 'Reset Calendar', 'Reset Hourly Breakdown'].map(el => {
     return createElement('div', el, { width: '69px', marginLeft: '9px' }, '')
   });
 
+  resetCalendarText.style.width = '102px';
+  resetHourlyBreakdownText.style.width = '172px';
 
 
-  let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el => {
+  let [studyAndReviewUpper, studyAndReviewLower, resetCalendar, resetHourlyBreakdown] = ['', '', '', ''].map(el => {
     return createElement('div', el, { width: '169px', height: '24px', left: '6px', position: 'absolute', display: 'flex', alignItems: 'center', border: '1px solid black', borderRadius: '5px'}, '')
   });
 
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top =  '38px';
+  
+  
+  resetCalendar.style.width = '175px'
+  resetCalendar.style.top = '6px';
+  resetHourlyBreakdown.style.top = '38px';
+  resetHourlyBreakdown.style.width = '175px';
+
+  let resetIcon = createElement('div', reset, {position: 'absolute', right: '11px', top: '20px'});
+
+
+
+
+
 
   let editToReview = createElement('div', edit, {}, 'editToReview');
 
 
 
-  mainWindow.append(studyAndReviewContainerOuter);
+  mainWindow.append(studyAndReviewContainerOuter, resetContainerOuter);
+
+
+
+  resetContainerOuter.append(resetCalendar, resetHourlyBreakdown, resetIcon)
+  resetCalendar.append(resetCalendarText);
+  resetHourlyBreakdown.append(resetHourlyBreakdownText);
+
+
+
 
 
 
@@ -236,22 +263,20 @@ export default function settings() {
       containerLower.replaceChild(changeNameofDeckInput5, good)
       containerLower.replaceChild(changeNameofDeckInput6, easy)
 
-      changeNameofDeckInput4.value = again.value;
-      changeNameofDeckInput5.value = good.value;
-      changeNameofDeckInput6.value = easy.value;
+      changeNameofDeckInput4.value = again.innerText;
+      changeNameofDeckInput5.value = good.innerText
+      changeNameofDeckInput6.value = easy.innerText;
 
     } else {
       containerLower.replaceChild(again, changeNameofDeckInput4)
       containerLower.replaceChild(good, changeNameofDeckInput5)
       containerLower.replaceChild(easy, changeNameofDeckInput6)
 
-      again.value = changeNameofDeckInput4.value;
-      good.value = changeNameofDeckInput5.value;
-      easy.value = changeNameofDeckInput6.value;
+      again.innerText = changeNameofDeckInput4.value;
+      good.innerText = changeNameofDeckInput5.value;
+      easy.innerText = changeNameofDeckInput6.value;
     }
   }
-
-
 
 
 
@@ -261,21 +286,6 @@ export default function settings() {
 
   editToReview.onclick = function (event) {
     
-    var reg = new RegExp('^[0-9]+$');
-
-
-     if (!reg.test(reviewCardInput.value || studyCardInput.value || reviewInputUnchanged.innerText || studyInputUnchanged.innerText)) {
-       alert('not a number')
-     }
-
-
-    //console.log(reg.test(studyInputUnchanged.innerText))
-
-    //console.log(typeof(reviewCardInput.value))
-    //console.log(typeof(Number(studyInputUnchanged.innerText)))
-
-
-
     event.stopPropagation()
     //  this.innerHTML = ''
     if (!editedLower) {
@@ -368,9 +378,6 @@ export default function settings() {
 
 
 
-
-
-
   redCross.onclick = () => close(mainWindow, anchorElement)
 
 
@@ -378,8 +385,6 @@ export default function settings() {
   settingsAndRedCrossContainer.append(redCross);
 
   closeMenu()
-
-
 
 
 

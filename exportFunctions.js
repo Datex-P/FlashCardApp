@@ -155,18 +155,18 @@ function threeDots(){
     trashIconContainer.append(trashIcon, trashIconText);
 
 
-    trashIconContainer.onclick = function (e) {
+    // trashIconContainer.onclick = function (e) {
 
-      if (dataBase.showDeleteFrame) {
-        threeDotsOpen = true;
-        //deleteContainerFrame.style.display = 'flex'
+    //   if (dataBase.showDeleteFrame) {
+    //     threeDotsOpen = true;
+    //     //deleteContainerFrame.style.display = 'flex'
 
-        deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item))
-      } else {
-        e.stopPropagation()
-        threeDotsOpen = false;
-        littleModalWindow.style.display = "none";
-      }
+    //     deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item))
+    //   } else {
+    //     e.stopPropagation()
+    //     threeDotsOpen = false;
+    //     littleModalWindow.style.display = "none";
+    //   }
 
 
       // dataBase.DeckNames[item].splice(index, 1);
@@ -179,7 +179,7 @@ function threeDots(){
       // }
       //popUp();
 
-    }
+    // }
     //theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
 
 
