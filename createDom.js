@@ -99,22 +99,22 @@ export default function createDom(obj) {
     let trashIconText = createElement('div', 'deck', {});
 
 
-    trashIconContainer.onclick = () => {
+    // trashIconContainer.onclick = () => {
      
 
-      deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)})
+    //   deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)})
 
 
 
-      // delete dataBase.DeckNames[item];
-      // createDom(dataBase.DeckNames)
-      // if (!Object.keys(dataBase.DeckNames).length) {
-      //   let arrowDown = document.querySelector(".arrowDown");
-      //   arrowDown.style.display = "block";
-      //   document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
+    //   // delete dataBase.DeckNames[item];
+    //   // createDom(dataBase.DeckNames)
+    //   // if (!Object.keys(dataBase.DeckNames).length) {
+    //   //   let arrowDown = document.querySelector(".arrowDown");
+    //   //   arrowDown.style.display = "block";
+    //   //   document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
 
       
-    };
+    // };
 
     let editIconContainer = createElement('div', '', {
       border: '1px black solid',
@@ -215,25 +215,22 @@ export default function createDom(obj) {
 
     let mainThreeDots = threeDots()
 
-  let threeDotsContainer = mainThreeDots((event)=>{
+  let threeDotsContainer = mainThreeDots((event,that,editIcon)=>{
     window.addEventListener('click', clickOutsideHandle)
       event.stopPropagation()
-      event.target.innerHTML = ''
+      that.innerHTML = ''
       if (!edited) {
-
-        event.target.innerHTML = `${save} name`;
-
+        let saveIcon = createElement('div',save)
+        that.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
 
         console.log('click like a edit')
       } else {
-
-        editIconContainer.append(editIcon)
-        editIconContainer.append(editIconText)
-        
-
+        // event.target.innerHTML = '';
+        // event.target.append(editIcon,editIconText)
+        that.replaceChild(editIcon ,saveIcon)
         //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
         window.removeEventListener('click', clickOutsideHandle)
@@ -242,6 +239,10 @@ export default function createDom(obj) {
         // if ok
         nameOfNewDeck.innerText = changeNameofDeckInput.value;
       }
+  },
+  ()=>{
+    deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)})
+
   })
 
       // littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";

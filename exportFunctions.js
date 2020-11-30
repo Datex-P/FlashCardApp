@@ -82,11 +82,10 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 function threeDots(){
   let threeDotsOpen = false
-  return function (editHandler) {
+  return function (editHandler,deleteHandler) {
 
     let settingsIconContainer = createElement(
-      'div', '...', {
-    }, 'settingsIconContainer'
+      'div', '...', {}, 'settingsIconContainer'
     );
 
     settingsIconContainer.title = 'Edit question and answer or delete card';
@@ -97,7 +96,6 @@ function threeDots(){
         threeDotsOpen = true
         littleModalWindow.style.display ="block" ;
 
-        // if (littleModalWindow.style.display === 'block') {
           setTimeout(function () {
             window.onclick = function (event) {
               if (!littleModalWindow.contains(event.target)) {
@@ -106,7 +104,6 @@ function threeDots(){
               }
             };
           }, 10);
-        // }
       }else{
         threeDotsOpen = false
         littleModalWindow.style.display ="none" ;
@@ -115,17 +112,13 @@ function threeDots(){
 
     let littleModalWindow = createElement(
       'div',
-      '', {
-
-    },
+      '', {},
       'littleModalWindow flexColumn'
     )
     let threeDotsContainer = createElement('div', '', {})
     threeDotsContainer.append(settingsIconContainer)
 
-
     threeDotsContainer.append(littleModalWindow)
-    // settingsIconContainer.append(littleModalWindow);
 
     let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
       return createElement('div', '', {
@@ -154,63 +147,23 @@ function threeDots(){
     editIconContainer.append(editIcon, editIconText);
     trashIconContainer.append(trashIcon, trashIconText);
 
+    trashIconContainer.onclick = function (e) {
 
-    // trashIconContainer.onclick = function (e) {
-
-    //   if (dataBase.showDeleteFrame) {
-    //     threeDotsOpen = true;
-    //     //deleteContainerFrame.style.display = 'flex'
-
-    //     deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item))
-    //   } else {
-    //     e.stopPropagation()
-    //     threeDotsOpen = false;
-    //     littleModalWindow.style.display = "none";
-    //   }
-
-
-      // dataBase.DeckNames[item].splice(index, 1);
-      // createDom(dataBase.DeckNames)
-
-      // if (dataBase.DeckNames[item].length) {
-      //   shuffleLogic();
-      // } else {
-      //   close()
-      // }
-      //popUp();
-
-    // }
-    //theNameOftheDeckAndRedCrossContainer.appendChild(settingsIconContainer)
-
-
+      if (dataBase.showDeleteFrame) {
+        threeDotsOpen = true;
+        deleteHandler()
+        
+      } else {
+        e.stopPropagation()
+        threeDotsOpen = false;
+        littleModalWindow.style.display = "none";
+      }
+    }
 
     editIconContainer.onclick = function (event) {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";
-
-        editHandler(event)
-
-      //   document.querySelector('.showAnswerButtonContainer').style.justifyContent = 'center';
-      //  // document.querySelector('.answerContainer').style.display = 'block'
-      //   document.querySelector('.answerFieldTextArea').style.display = 'block';
-      //   document.querySelector('.answerFieldTextArea').removeAttribute("disabled");
-      //   document.querySelector('.questionFieldTextArea').removeAttribute("disabled");
-      //   document.querySelector('.questionFieldTextArea').focus();
-      //   document.querySelector('.saveAndDiscardContainer').style.display = 'flex';
-      //   document.querySelector('.saveAndDiscardContainer').style.justifyContent = 'space-around';
-      //   document.querySelector('.saveAndDiscardContainer').style.alignItems = 'center'
-      //   document.querySelector('.showAnswerButton').style.display = 'none';
-      //   document.querySelector('showAnswerButtonContainer').removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
-      //   mainWindow.removeChild(showAnswerButtonContainer);
-
-      // }
-
-      // else {
-      //   console.log('hello')
-      // }
-
-
-      //handleOutsideClick(settingsIconContainer, saveAndDiscardContainer, null, null, questionFieldTextArea, answerFieldTextArea);
+      editHandler(event,editIconContainer,editIcon)
     };
 
     return threeDotsContainer
