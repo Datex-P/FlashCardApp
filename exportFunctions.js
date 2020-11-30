@@ -81,7 +81,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper= null, lower = 
 
 
 
-function threeDots() {
+function threeDots(mainscreen = null) {
 
   let settingsIconContainer = createElement(
     'div', '...', {
@@ -184,6 +184,8 @@ let threeDotsContainer = createElement('div', '', {})
     setThreeDotsOpen(true);
     littleModalWindow.style.display = "none";
 
+    if (mainscreen) {
+
     showAnswerButtonContainer.style.justifyContent = 'center';
     answerContainer.style.display = 'block'
     answerFieldTextArea.style.display = 'block';
@@ -197,8 +199,14 @@ let threeDotsContainer = createElement('div', '', {})
     showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
 
+    }
 
-    handleOutsideClick(settingsIconContainer, saveAndDiscardContainer, null, null, questionFieldTextArea, answerFieldTextArea);
+    else {
+      console.log('hello')
+    }
+
+
+    //handleOutsideClick(settingsIconContainer, saveAndDiscardContainer, null, null, questionFieldTextArea, answerFieldTextArea);
   };
 
   return threeDotsContainer

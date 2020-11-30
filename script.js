@@ -129,10 +129,11 @@ function handleOutsideClick(e) {
     // document.querySelector('.menuBox').style.display = 'none';
     // opened = false;
     console.log('window handler still alive')
-    window.onclick = ''
+    //window.onclick = ''
     closeMenu()
     opened = false;
   }
+  window.onclick = ''
 }
 
 document.querySelector('.menu').onclick = function () {

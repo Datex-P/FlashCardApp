@@ -226,6 +226,31 @@ export default function settings() {
 
 
 
+   function editContainerUpperLowerRow (cond) {
+
+    if (!cond) {
+
+      containerLower.replaceChild(changeNameofDeckInput4, again)
+      containerLower.replaceChild(changeNameofDeckInput5, good)
+      containerLower.replaceChild(changeNameofDeckInput6, easy)
+
+      changeNameofDeckInput4.value = again.value;
+      changeNameofDeckInput5.value = good.value;
+      changeNameofDeckInput6.value = easy.value;
+
+    } else {
+      containerLower.replaceChild(again, changeNameofDeckInput4)
+      containerLower.replaceChild(good, changeNameofDeckInput5)
+      containerLower.replaceChild(easy, changeNameofDeckInput6)
+
+      again.value = changeNameofDeckInput4.value;
+      good.value = changeNameofDeckInput5.value;
+      easy.value = changeNameofDeckInput6.value;
+    }
+  }
+
+
+
 
 
 
@@ -307,14 +332,13 @@ export default function settings() {
       }
     })
 
-  //   if (!cond) {
-  //     containerLower.replaceChild(again, changeNameofDeckInput6)
-  //   }
-  // }
+  
   }
 
   editContainerUpper.onclick = function () {
     editContainerUpperClickHandler(editedUpper)
+
+    editContainerUpperLowerRow (editedUpper)
     editedUpper = !editedUpper
   }
 

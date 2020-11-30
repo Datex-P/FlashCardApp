@@ -10,7 +10,7 @@ import createDom from './createDom.js';
 import {
   createElement,
   handleOutsideClick,
-  redCross, deleteCardQuestionBox,threeDotsOpen,setThreeDotsOpen
+  redCross, deleteCardQuestionBox,threeDotsOpen,setThreeDotsOpen, threeDots
 } from './exportFunctions.js'
 import {
   edit,
@@ -180,8 +180,12 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
   saveAndDiscardContainer.append(discardButton, saveButton);
 
+  let mainscreen;
 
-
+   let anchorThreeDots = threeDots(mainscreen)
+  
+  
+   mainWindow.append(anchorThreeDots)
 
 
   let [question, answer, index] = shuffleLogic()
