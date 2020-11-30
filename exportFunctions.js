@@ -148,7 +148,8 @@ function threeDots() {
       })
     });
 
-    editIconContainer.append(editIcon, editIconText);
+    editIconContainer.appendChild(editIcon);
+    editIconContainer.appendChild(editIconText)
     trashIconContainer.append(trashIcon, trashIconText);
 
     trashIconContainer.onclick = function (e) {
@@ -167,7 +168,12 @@ function threeDots() {
     editIconContainer.onclick = function (event) {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";
-      editHandler(event, editIconContainer, editIcon)
+      editHandler(event, editIconContainer, editIcon, saveIcon,(event)=>{
+          if (!littleModalWindow.contains(event.target)) {
+            littleModalWindow.style.display = 'none';
+            window.onclick = ''
+          }
+      },littleModalWindow)
     };
 
     return threeDotsContainer

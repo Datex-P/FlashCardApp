@@ -87,16 +87,16 @@ export default function createDom(obj) {
 
 
 
-    let trashIconContainer = createElement('div', '', {
-      border: '1px black solid',
-      padding: '1px',
-      borderTop: '0px'
-    }, 'flexSpaceAround trashIconContainer');
+    // let trashIconContainer = createElement('div', '', {
+    //   border: '1px black solid',
+    //   padding: '1px',
+    //   borderTop: '0px'
+    // }, 'flexSpaceAround trashIconContainer');
 
     
-    let trashIcon = createElement('div', trash, { right: '5px' });
+    // let trashIcon = createElement('div', trash, { right: '5px' });
 
-    let trashIconText = createElement('div', 'deck', {});
+    // let trashIconText = createElement('div', 'deck', {});
 
 
     // trashIconContainer.onclick = () => {
@@ -116,13 +116,13 @@ export default function createDom(obj) {
       
     // };
 
-    let editIconContainer = createElement('div', '', {
-      border: '1px black solid',
-      padding: '1px'
-    }, 'editIconContainer flexSpaceAround');
+    // let editIconContainer = createElement('div', '', {
+    //   border: '1px black solid',
+    //   padding: '1px'
+    // }, 'editIconContainer flexSpaceAround');
 
 
-    let editIconText = createElement('div', 'name', {});
+    // let editIconText = createElement('div', 'name', {});
 
 
     let changeNameofDeckInput = createElement('input', '', {
@@ -140,18 +140,18 @@ export default function createDom(obj) {
       event.stopPropagation()
     }
 
-    function clickOutsideHandle() {
+    function clickOutsideHandle(el) {
       //alert("Clicked out Box")
-      editIcon.classList.add('blinkingIcon')
+      el.classList.add('blinkingIcon')
       setTimeout(() => {
-        editIcon.classList.remove('blinkingIcon')
+        el.classList.remove('blinkingIcon')
       }, 3000)
     }
 
 
 
 
-    let editIcon = createElement('div', edit, {});
+    // let editIcon = createElement('div', edit, {});
 
     let edited = false;
 
@@ -159,30 +159,38 @@ export default function createDom(obj) {
   
     let mainThreeDots = threeDots()
 
-  let threeDotsContainer = mainThreeDots((event,that,editIcon)=>{
-    window.addEventListener('click', clickOutsideHandle)
+  let threeDotsContainer = mainThreeDots((event,that,editIcon,saveIcon,outsideClickClosehandler,littleModalWindow)=>{
+    window.addEventListener('click', ()=>clickOutsideHandle(editIcon))
       event.stopPropagation()
-      that.innerHTML = ''
-      let saveIcon = createElement('div',save, {})
+      // console.log(that,editIcon)
+      // let saveIcon = createElement('div',save, {})
       if (!edited) {
         //let saveIcon = createElement('div',save, {})
+        window.removeEventListener('click', ()=>clickOutsideHandle(editIcon))
+        window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
         that.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
-
+        window.onclick = ''
+        littleModalWindow.style.display = 'block'
         console.log('click like a edit')
+        // littleModalWindow.style.display = 'none'
       } else {
         // event.target.innerHTML = '';
         // event.target.append(editIcon,editIconText)
         that.replaceChild(editIcon ,saveIcon)
         //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-        window.removeEventListener('click', clickOutsideHandle)
+        window.removeEventListener('click', ()=>clickOutsideHandle(saveIcon))
         edited = false;
         //send fetch=>saveToDataBase
         // if ok
         nameOfNewDeck.innerText = changeNameofDeckInput.value;
+        setTimeout(function () {
+          window.onclick = outsideClickClosehandler
+        }, 10);
+        
       }
   },
   ()=>{
