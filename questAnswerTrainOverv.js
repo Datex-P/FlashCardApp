@@ -188,7 +188,20 @@ export default function questAnswerTrainOverv(item) {
   // let mainscreen;
   let cardThreeDots = threeDots()
 
-   let anchorThreeDots = cardThreeDots(true)
+   let anchorThreeDots = cardThreeDots(()=>{
+    showAnswerButtonContainer.style.justifyContent = 'center';
+    answerContainer.style.display = 'block'
+    answerFieldTextArea.style.display = 'block';
+    answerFieldTextArea.removeAttribute("disabled");
+    questionFieldTextArea.removeAttribute("disabled");
+    questionFieldTextArea.focus();
+    saveAndDiscardContainer.style.display = 'flex';
+    saveAndDiscardContainer.style.justifyContent = 'space-around';
+    saveAndDiscardContainer.style.alignItems = 'center'
+    showAnswerButton.style.display = 'none';
+    showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
+    mainWindow.removeChild(showAnswerButtonContainer);
+   })
   
   
    mainWindow.append(anchorThreeDots)

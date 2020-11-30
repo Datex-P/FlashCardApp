@@ -215,7 +215,34 @@ export default function createDom(obj) {
 
     let mainThreeDots = threeDots()
 
-  let threeDotsContainer = mainThreeDots()
+  let threeDotsContainer = mainThreeDots((event)=>{
+    window.addEventListener('click', clickOutsideHandle)
+      event.stopPropagation()
+      event.target.innerHTML = ''
+      if (!edited) {
+
+        event.target.innerHTML = `${save} name`;
+
+        newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
+        changeNameofDeckInput.value = nameOfNewDeck.innerText;
+        edited = true;
+
+        console.log('click like a edit')
+      } else {
+
+        editIconContainer.append(editIcon)
+        editIconContainer.append(editIconText)
+        
+
+        //console.log('click like a save')
+        newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+        window.removeEventListener('click', clickOutsideHandle)
+        edited = false;
+        //send fetch=>saveToDataBase
+        // if ok
+        nameOfNewDeck.innerText = changeNameofDeckInput.value;
+      }
+  })
 
       // littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 

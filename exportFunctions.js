@@ -82,7 +82,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 function threeDots(){
   let threeDotsOpen = false
-  return function (mainscreen = null) {
+  return function (editHandler) {
 
     let settingsIconContainer = createElement(
       'div', '...', {
@@ -94,10 +94,10 @@ function threeDots(){
     settingsIconContainer.onclick = function () {
       console.log('I was clicked')
       if (threeDotsOpen === false) {
+        threeDotsOpen = true
+        littleModalWindow.style.display ="block" ;
 
-        littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
-
-        if (littleModalWindow.style.display === 'block') {
+        // if (littleModalWindow.style.display === 'block') {
           setTimeout(function () {
             window.onclick = function (event) {
               if (!littleModalWindow.contains(event.target)) {
@@ -106,7 +106,10 @@ function threeDots(){
               }
             };
           }, 10);
-        }
+        // }
+      }else{
+        threeDotsOpen = false
+        littleModalWindow.style.display ="none" ;
       }
     };
 
@@ -155,13 +158,13 @@ function threeDots(){
     trashIconContainer.onclick = function (e) {
 
       if (dataBase.showDeleteFrame) {
-        setThreeDotsOpen(true);
+        threeDotsOpen = true;
         //deleteContainerFrame.style.display = 'flex'
 
         deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item))
       } else {
         e.stopPropagation()
-        setThreeDotsOpen(false);
+        threeDotsOpen = false;
         littleModalWindow.style.display = "none";
       }
 
@@ -181,30 +184,30 @@ function threeDots(){
 
 
 
-    editIconContainer.onclick = function () {
-      setThreeDotsOpen(true);
+    editIconContainer.onclick = function (event) {
+      threeDotsOpen = true;
       littleModalWindow.style.display = "none";
 
-      if (mainscreen) {
+        editHandler(event)
 
-        document.querySelector('.showAnswerButtonContainer').style.justifyContent = 'center';
-       // document.querySelector('.answerContainer').style.display = 'block'
-        document.querySelector('.answerFieldTextArea').style.display = 'block';
-        document.querySelector('.answerFieldTextArea').removeAttribute("disabled");
-        document.querySelector('.questionFieldTextArea').removeAttribute("disabled");
-        document.querySelector('.questionFieldTextArea').focus();
-        document.querySelector('.saveAndDiscardContainer').style.display = 'flex';
-        document.querySelector('.saveAndDiscardContainer').style.justifyContent = 'space-around';
-        document.querySelector('.saveAndDiscardContainer').style.alignItems = 'center'
-        document.querySelector('.showAnswerButton').style.display = 'none';
-        document.querySelector('showAnswerButtonContainer').removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
-        mainWindow.removeChild(showAnswerButtonContainer);
+      //   document.querySelector('.showAnswerButtonContainer').style.justifyContent = 'center';
+      //  // document.querySelector('.answerContainer').style.display = 'block'
+      //   document.querySelector('.answerFieldTextArea').style.display = 'block';
+      //   document.querySelector('.answerFieldTextArea').removeAttribute("disabled");
+      //   document.querySelector('.questionFieldTextArea').removeAttribute("disabled");
+      //   document.querySelector('.questionFieldTextArea').focus();
+      //   document.querySelector('.saveAndDiscardContainer').style.display = 'flex';
+      //   document.querySelector('.saveAndDiscardContainer').style.justifyContent = 'space-around';
+      //   document.querySelector('.saveAndDiscardContainer').style.alignItems = 'center'
+      //   document.querySelector('.showAnswerButton').style.display = 'none';
+      //   document.querySelector('showAnswerButtonContainer').removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
+      //   mainWindow.removeChild(showAnswerButtonContainer);
 
-      }
+      // }
 
-      else {
-        console.log('hello')
-      }
+      // else {
+      //   console.log('hello')
+      // }
 
 
       //handleOutsideClick(settingsIconContainer, saveAndDiscardContainer, null, null, questionFieldTextArea, answerFieldTextArea);
