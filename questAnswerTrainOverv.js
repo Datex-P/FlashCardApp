@@ -180,9 +180,10 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
   saveAndDiscardContainer.append(discardButton, saveButton);
 
-  let mainscreen;
+  // let mainscreen;
+  let cardThreeDots = threeDots()
 
-   let anchorThreeDots = threeDots(mainscreen)
+   let anchorThreeDots = cardThreeDots(true)
   
   
    mainWindow.append(anchorThreeDots)

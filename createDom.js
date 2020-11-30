@@ -213,8 +213,9 @@ export default function createDom(obj) {
     // let littleModalWindow = createElement(
     //   'div', '', { display: 'none', border: '1px solid black' }, 'littleModalWindow2');
 
+    let mainThreeDots = threeDots()
 
-  let threeDotsContainer = threeDots()
+  let threeDotsContainer = mainThreeDots()
 
       // littleModalWindow.style.display = littleModalWindow.style.display === "none" ? "block" : "none";
 
