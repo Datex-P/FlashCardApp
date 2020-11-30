@@ -1,4 +1,11 @@
-import { redCross as redCrossIcon, flashcards, questionMark, edit, trash } from "./svgs.js";
+import {
+  redCross as redCrossIcon,
+  flashcards,
+  questionMark,
+  edit,
+  trash,
+  save
+} from "./svgs.js";
 import {
   dataBase
 } from './dataBase.js';
@@ -46,12 +53,9 @@ function createElement(tag = 'div', inner = '', style = {}, className = null, id
 
 let redCross = createElement(
   'div',
-  redCrossIcon,
-  {},
+  redCrossIcon, {},
   'redCross'
 );
-
-
 
 
 
@@ -80,9 +84,9 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 
 
-function threeDots(){
+function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler,deleteHandler) {
+  return function (editHandler, deleteHandler) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -94,19 +98,19 @@ function threeDots(){
       console.log('I was clicked')
       if (threeDotsOpen === false) {
         threeDotsOpen = true
-        littleModalWindow.style.display ="block" ;
+        littleModalWindow.style.display = "block";
 
-          setTimeout(function () {
-            window.onclick = function (event) {
-              if (!littleModalWindow.contains(event.target)) {
-                littleModalWindow.style.display = 'none';
-                window.onclick = ''
-              }
-            };
-          }, 10);
-      }else{
+        setTimeout(function () {
+          window.onclick = function (event) {
+            if (!littleModalWindow.contains(event.target)) {
+              littleModalWindow.style.display = 'none';
+              window.onclick = ''
+            }
+          };
+        }, 10);
+      } else {
         threeDotsOpen = false
-        littleModalWindow.style.display ="none" ;
+        littleModalWindow.style.display = "none";
       }
     };
 
@@ -131,7 +135,7 @@ function threeDots(){
     littleModalWindow.append(editIconContainer, trashIconContainer);
 
 
-    let [editIcon, trashIcon] = [edit, trash].map(el => {
+    let [editIcon, trashIcon, saveIcon] = [edit, trash, save].map(el => {
       return createElement('div', el, {
         width: '20px'
       })
@@ -152,7 +156,7 @@ function threeDots(){
       if (dataBase.showDeleteFrame) {
         threeDotsOpen = true;
         deleteHandler()
-        
+
       } else {
         e.stopPropagation()
         threeDotsOpen = false;
@@ -163,23 +167,13 @@ function threeDots(){
     editIconContainer.onclick = function (event) {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";
-      editHandler(event,editIconContainer,editIcon)
+      editHandler(event, editIconContainer, editIcon)
     };
 
     return threeDotsContainer
   }
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -236,7 +230,10 @@ function deleteCardQuestionBox(remove, refresh) {
 
   let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
   let dontShowMessageAgainContainer = createElement('div', '', {}, 'flexCenter');
-  let dontShowMessageText = createElement('div', "Don't show message again", { width: '200px', color: 'white' });
+  let dontShowMessageText = createElement('div', "Don't show message again", {
+    width: '200px',
+    color: 'white'
+  });
 
   let flashcardIcon = createElement('div', flashcards, {}, 'flashcardIcon');
 
@@ -247,12 +244,28 @@ function deleteCardQuestionBox(remove, refresh) {
 
   let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {}, 'doYouWantToDelete');
 
-  let questionMark1 = createElement('div', questionMark, { position: 'absolute', top: '-34px', right: '-36px' });
-  let questionMark2 = createElement('div', questionMark, { position: 'absolute', top: '-24px', right: '-20px' });
-  let questionMark3 = createElement('div', questionMark, { position: 'absolute', top: '-68px', right: '-20px' });
+  let questionMark1 = createElement('div', questionMark, {
+    position: 'absolute',
+    top: '-34px',
+    right: '-36px'
+  });
+  let questionMark2 = createElement('div', questionMark, {
+    position: 'absolute',
+    top: '-24px',
+    right: '-20px'
+  });
+  let questionMark3 = createElement('div', questionMark, {
+    position: 'absolute',
+    top: '-68px',
+    right: '-20px'
+  });
 
-  let checkBoxContainer = createElement('div', '', { width: '40px' }, 'checkBoxContainer');
-  let checkbox = createElement('input', '', { width: '45px' });
+  let checkBoxContainer = createElement('div', '', {
+    width: '40px'
+  }, 'checkBoxContainer');
+  let checkbox = createElement('input', '', {
+    width: '45px'
+  });
   checkbox.setAttribute('type', 'checkbox');
 
   checkbox.onchange = function (e) {
@@ -262,26 +275,12 @@ function deleteCardQuestionBox(remove, refresh) {
 
 
 
-  // let anchorElement = document.getElementById("mainMenu");
-
-
-  // anchorElement.style.display = "flex";
-
-  // let mainWindow = document.querySelector('.addQuestionsToDeck')
-  // if(!mainWindow){
-  //   mainWindow = createElement('div','',{},'addQuestionsToDeck')
-  // }
-
-
   anchorElement.append(deleteContainerFrame);
 
 
 
 
 
-
-
-  // mainWindow.append(deleteContainerFrame);
   deleteContainerFrame.append(deleteContainerInner, dontShowMessageAgainContainer);
   deleteContainerInner.append(doYouWantToDelete, deleteHeader, deleteYesAndNoContainer)
 
@@ -309,4 +308,14 @@ function deleteCardQuestionBox(remove, refresh) {
 
 
 
-export { createElement, close, closeMenu, redCross, handleOutsideClick, threeDots, deleteCardQuestionBox, setThreeDotsOpen, threeDotsOpen };
+export {
+  createElement,
+  close,
+  closeMenu,
+  redCross,
+  handleOutsideClick,
+  threeDots,
+  deleteCardQuestionBox,
+  setThreeDotsOpen,
+  threeDotsOpen
+};

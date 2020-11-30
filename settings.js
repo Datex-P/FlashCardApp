@@ -36,7 +36,7 @@ export default function settings() {
 
 
   let [editContainerUpper] = [''].map(el => {
-    return createElement('div', edit, { position: 'absolute', right: '8px', top: '24px' })
+    return createElement('div', edit, {  position: 'absolute', right: '8px', top: '24px', cursor: 'pointer'})
   });
 
 
@@ -48,9 +48,7 @@ export default function settings() {
 
 
   let changeRepetitionIntervalContainerInner = createElement(
-    'div',
-    '',
-    {}, 'flexColumn changeRepetitionIntervalContainerInner'
+    'div', '', {}, 'flexColumn changeRepetitionIntervalContainerInner'
   );
 
   changeRepetitionIntervalContainer.append(changeRepetitionIntervalContainerInner);
@@ -170,6 +168,8 @@ changeNameofDeckInput3.type = 'number';
     return createElement('div', '', {}, 'flexColumnSpaceAround studyAndReviewContainerOuter')
   })
 
+  resetContainerOuter.style.marginTop = '0px';
+
 
   let resetColorSchemeContainer = createElement(
     'div', '', {
@@ -200,7 +200,7 @@ changeNameofDeckInput3.type = 'number';
 
 
   let [studyAndReviewUpper, studyAndReviewLower, resetCalendar, resetHourlyBreakdown] = ['', '', '', ''].map(el => {
-    return createElement('div', el, { width: '169px', height: '24px', left: '6px', position: 'absolute', display: 'flex', alignItems: 'center', border: '1px solid black', borderRadius: '5px'}, '')
+    return createElement('div', el, {}, 'studyAndReset')
   });
 
   studyAndReviewUpper.style.top = '6px';
@@ -212,9 +212,10 @@ changeNameofDeckInput3.type = 'number';
   resetHourlyBreakdown.style.top = '38px';
   resetHourlyBreakdown.style.width = '175px';
 
-  let resetIcon = createElement('div', reset, {position: 'absolute', right: '11px', top: '20px'});
+  let resetIcon = createElement('div', reset, {}, 'resetIcon');
 
-
+  let resetProgress = createElement('div', 'Reset Current Progress', {fontWeight: 'bold', textAlign: 'center', margin: '20px 0 10px'}
+  )
 
 
 
@@ -223,7 +224,7 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  mainWindow.append(studyAndReviewContainerOuter, resetContainerOuter);
+  mainWindow.append(studyAndReviewContainerOuter, resetProgress, resetContainerOuter);
 
 
 
@@ -352,15 +353,13 @@ changeNameofDeckInput3.type = 'number';
 
         item.container.replaceChild(item.input, item.div);
         item.input.value = item.div.innerText 
-        item.input.style.width = '47%';
-        item.input.style.marginRight = '3px';
         item.smaller.style.display = 'none'
         editContainerUpper.innerHTML = save;
+
        } else {
+
         item.container.replaceChild(item.div, item.input);
         item.div.innerText = item.input.value 
-        item.input.style.width = '47%';
-        item.input.style.marginRight = '3px';
         item.smaller.style.display = 'block'
         editContainerUpper.innerHTML = edit;
       }
@@ -380,7 +379,6 @@ changeNameofDeckInput3.type = 'number';
 
   redCross.onclick = () => close(mainWindow, anchorElement)
 
-
   redCross.addEventListener('click', closeMenu());
   settingsAndRedCrossContainer.append(redCross);
 
@@ -389,13 +387,13 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  let themeRadiosContainer = createElement('div', '', { marginTop: '10px' }, '', '', mainWindow);
+  let themeRadiosContainer = createElement('div', '', { }, 'themeRadiosContainer flexSpaceAround', '', mainWindow);
 
 
   ['light', 'dark', 'default'].map(comp => {
     let inputContainer = createElement('div', '', {}, '', '', themeRadiosContainer)
 
-    let radio = createElement('input', '', {}, '', '', inputContainer)
+    let radio = createElement('input', '', {cursor: 'pointer'}, '', '', inputContainer)
     radio.name = 'theme';
     radio.type = 'radio';
     radio.value = comp;
@@ -412,19 +410,19 @@ changeNameofDeckInput3.type = 'number';
     createElement("label", comp, {}, '', '', inputContainer);
   });
 
-  let checkbox = createElement('input', '', {}, '', '', themeRadiosContainer)
-  checkbox.type = 'checkbox';
-  checkbox.checked = true
-  checkbox.onchange = function (e) {
-    let weekOverview = document.querySelector('#weekOverview')
-    if (e.target.checked) {
-      weekOverview.classList.remove('none')
-      weekOverview.classList.add('weekOverview')
-    } else {
-      weekOverview.classList.add('none')
-      weekOverview.classList.remove('weekOverview')
-    }
-  }
+  // let checkbox = createElement('input', '', {}, '', '', themeRadiosContainer)
+  // checkbox.type = 'checkbox';
+  // checkbox.checked = true
+  // checkbox.onchange = function (e) {
+  //   let weekOverview = document.querySelector('#weekOverview')
+  //   if (e.target.checked) {
+  //     weekOverview.classList.remove('none')
+  //     weekOverview.classList.add('weekOverview')
+  //   } else {
+  //     weekOverview.classList.add('none')
+  //     weekOverview.classList.remove('weekOverview')
+  //   }
+  // }
 
 
 
