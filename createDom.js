@@ -86,16 +86,6 @@ export default function createDom(obj) {
 
 
 
-
-    // let trashIconContainer = createElement('div', '', {
-    //   border: '1px black solid',
-    //   padding: '1px',
-    //   borderTop: '0px'
-    // }, 'flexSpaceAround trashIconContainer');
-
-    
-    // let trashIcon = createElement('div', trash, { right: '5px' });
-
     // let trashIconText = createElement('div', 'deck', {});
 
 
@@ -116,13 +106,6 @@ export default function createDom(obj) {
       
     // };
 
-    // let editIconContainer = createElement('div', '', {
-    //   border: '1px black solid',
-    //   padding: '1px'
-    // }, 'editIconContainer flexSpaceAround');
-
-
-    // let editIconText = createElement('div', 'name', {});
 
 
     let changeNameofDeckInput = createElement('input', '', {
@@ -151,7 +134,7 @@ export default function createDom(obj) {
 
 
 
-    // let editIcon = createElement('div', edit, {});
+  
 
     let edited = false;
 
@@ -160,14 +143,16 @@ export default function createDom(obj) {
     let mainThreeDots = threeDots()
 
   let threeDotsContainer = mainThreeDots((event,that,editIcon,saveIcon,outsideClickClosehandler,littleModalWindow)=>{
-    window.addEventListener('click', ()=>clickOutsideHandle(editIcon))
+   // window.addEventListener('click', ()=>clickOutsideHandle(editIcon))
       event.stopPropagation()
-      // console.log(that,editIcon)
-      // let saveIcon = createElement('div',save, {})
+
       if (!edited) {
-        //let saveIcon = createElement('div',save, {})
+     
+         window.addEventListener('click', ()=>clickOutsideHandle(editIcon))
         window.removeEventListener('click', ()=>clickOutsideHandle(editIcon))
         window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
+        
+        
         that.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
@@ -175,17 +160,19 @@ export default function createDom(obj) {
         window.onclick = ''
         littleModalWindow.style.display = 'block'
         console.log('click like a edit')
-        // littleModalWindow.style.display = 'none'
+ 
       } else {
-        // event.target.innerHTML = '';
-        // event.target.append(editIcon,editIconText)
+
         that.replaceChild(editIcon ,saveIcon)
-        //console.log('click like a save')
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
         window.removeEventListener('click', ()=>clickOutsideHandle(saveIcon))
+
+
+        window.removeEventListener('click', ()=>clickOutsideHandle(editIcon))
+
+
+
         edited = false;
-        //send fetch=>saveToDataBase
-        // if ok
         nameOfNewDeck.innerText = changeNameofDeckInput.value;
         setTimeout(function () {
           window.onclick = outsideClickClosehandler
@@ -230,15 +217,11 @@ export default function createDom(obj) {
 
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer)
 
-
     toStudyContainer.append(toStudy)
     toReviewContainer.append(toReview)
     decksizeContainer.append(decksize)
 
-   
     addToDeckIcon.append(plusIcon);
-
-
 
     listOfDecks.prepend(newDeckContainer);
 

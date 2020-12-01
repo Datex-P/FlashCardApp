@@ -240,7 +240,6 @@ textarea {
 }
 
 .menuBoxesStyling {
-  /*background-color: #abc4ab;*/
   background-color: #dcc9b6;
   border: 2px black solid; 
   width: 33%;
@@ -248,9 +247,15 @@ textarea {
   display: flex;
   justify-content: space-around;
 }
+
 .menuBoxesStyling:hover, .trashIconContainer:hover, .editIconContainer:hover {
-  /* background-color:#dcc9b6; */
   background-color: #a39171;
+}
+
+.trashIconContainer {
+  width: fit-content;
+  height: 25px;
+  border: 1px black solid;
 }
 
 .messageDeleteCard {
@@ -273,7 +278,7 @@ textarea {
   font-weight: bold;
   position: absolute;
   cursor: pointer;
-  top: 17px;
+  top: 10px;
   right: 84px;
   font-size: 25px;
 }
@@ -290,7 +295,6 @@ textarea {
 
 
 .deleteContainerNoAndYes {
-  /* background-color: rgb(119, 46, 37) */
   border: 2px solid grey; 
   color: grey;
   width: 60px;
@@ -475,17 +479,12 @@ textarea {
 .newDeckContainer{
   height: 168px;
   width: 307px;
-  /* width: 100%; */
   padding: 10px 0px 0px 0px;
   margin: 10px 0 0 20px;
   /*border: 1px solid black;*/
   display: flex;
   flex-direction: column;
- 
-  /* justify-content: space-around; */
-  /*align-items: center;*/
   margin-bottom: -80px;
-  /* background-color: white; */
   background-color: #dcc9b6;
   /*transition: all 1s; */
   position: absolute;
@@ -583,16 +582,10 @@ textarea {
 #listOfDecks {
   width: 80%;
   height: 300px;
-  /* overflow: auto; */
   margin-left: 20px;
   margin-top: 10px;
   position: absolute;
   top: 200px;
-  /* top: 0;  */
-  /* overflow: scroll; */
-  /* display: flex;
-  flex-direction: column;
-  position: relative */
   padding: 20px;
   
 }
@@ -646,7 +639,6 @@ textarea {
 .orangeCircle {
   width: 50px;
   height: 50px;
-  /* cursor: pointer; */
   border-radius: 50%;
   justify-content: center;
   align-items: center;
@@ -728,9 +720,6 @@ textarea {
   display: none;
   padding: 5px;
   background-color: white;
-  /* transform: rotate(-90deg); */
-  /* top: -56px; */
-  /* left: -6px; */
   border: 1px black solid;
   border-radius: 5px;
 }
@@ -743,7 +732,6 @@ textarea {
   height: 47px;
   width: 55px;
   border-radius: 5px;
-  /* display: none; */
   padding: 5px;
   background-color: white;
 }

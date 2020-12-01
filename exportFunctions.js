@@ -120,18 +120,16 @@ function threeDots() {
       'littleModalWindow flexColumn'
     )
     let threeDotsContainer = createElement('div', '', {})
-    threeDotsContainer.append(settingsIconContainer)
-
-    threeDotsContainer.append(littleModalWindow)
-
+    
+    
     let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
       return createElement('div', '', {
-        width: 'fit-content',
-        height: '25px',
-        border: '1px black solid',
+   
       }, 'flexCenterAlignCenter trashIconContainer')
     });
+    
 
+    threeDotsContainer.append(settingsIconContainer, littleModalWindow);
     littleModalWindow.append(editIconContainer, trashIconContainer);
 
 
@@ -148,8 +146,7 @@ function threeDots() {
       })
     });
 
-    editIconContainer.appendChild(editIcon);
-    editIconContainer.appendChild(editIconText)
+    editIconContainer.append(editIcon, editIconText);
     trashIconContainer.append(trashIcon, trashIconText);
 
     trashIconContainer.onclick = function (e) {
@@ -218,7 +215,6 @@ function deleteCardQuestionBox(remove, refresh) {
 
   deleteContainerYes.onclick = function () {
     setThreeDotsOpen(false)
-    //some delete card logic needed here
     remove()
     anchorElement.removeChild(deleteContainerFrame)
     refresh()
@@ -283,10 +279,6 @@ function deleteCardQuestionBox(remove, refresh) {
 
   anchorElement.append(deleteContainerFrame);
 
-
-
-
-
   deleteContainerFrame.append(deleteContainerInner, dontShowMessageAgainContainer);
   deleteContainerInner.append(doYouWantToDelete, deleteHeader, deleteYesAndNoContainer)
 
@@ -302,15 +294,6 @@ function deleteCardQuestionBox(remove, refresh) {
   checkBoxContainer.append(checkbox)
 
 }
-
-
-
-
-
-
-
-
-
 
 
 

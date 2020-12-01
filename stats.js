@@ -94,7 +94,6 @@ export default function stats() {
   ["1 month", "3 month", "12 month"].forEach((radio) => {
     let radioBtn = createElement("input", "", { cursor: "pointer" });
     let label = createElement("label", radio, {});
-    //label.innerText = radio;
     radioBtn.value = radio;
     radioBtn.setAttribute("type", "radio");
     radioBtn.name = "month";
@@ -265,7 +264,6 @@ export default function stats() {
       for (let deck in dataBase.DeckNames) {
         if (
           dataBase.DeckNames[deck].find(
-            // (item) => new Date(item.lastOpen).toDateString() == date
             (item) => new Date(item.openHistory).toDateString() == date
           )
         ) {
