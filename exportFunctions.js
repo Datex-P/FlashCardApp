@@ -165,6 +165,11 @@ function threeDots() {
     editIconContainer.onclick = function (event) {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";
+
+
+     // function editHandler(event, editIconContainer, editIcon, saveIcon)
+
+
       editHandler(event, editIconContainer, editIcon, saveIcon,(event)=>{
           if (!littleModalWindow.contains(event.target)) {
             littleModalWindow.style.display = 'none';

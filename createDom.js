@@ -84,11 +84,6 @@ export default function createDom(obj) {
     }
 
 
-
-
-    // let trashIconText = createElement('div', 'deck', {});
-
-
     // trashIconContainer.onclick = () => {
      
 
@@ -132,44 +127,33 @@ export default function createDom(obj) {
     }
 
 
-
-
   
 
     let edited = false;
-
-
   
     let mainThreeDots = threeDots()
 
-  let threeDotsContainer = mainThreeDots((event,that,editIcon,saveIcon,outsideClickClosehandler,littleModalWindow)=>{
-   // window.addEventListener('click', ()=>clickOutsideHandle(editIcon))
+  let threeDotsContainer = mainThreeDots((event,editIconContainer,editIcon,saveIcon,outsideClickClosehandler,littleModalWindow)=>{
       event.stopPropagation()
 
       if (!edited) {
-     
-         window.addEventListener('click', ()=>clickOutsideHandle(editIcon))
-        window.removeEventListener('click', ()=>clickOutsideHandle(editIcon))
+ 
         window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
         
         
-        that.replaceChild(saveIcon, editIcon)
+        editIconContainer.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
-        window.onclick = ''
+       window.onclick = ''
         littleModalWindow.style.display = 'block'
         console.log('click like a edit')
  
       } else {
 
-        that.replaceChild(editIcon ,saveIcon)
+        editIconContainer.replaceChild(editIcon ,saveIcon)
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-        window.removeEventListener('click', ()=>clickOutsideHandle(saveIcon))
-
-
-        window.removeEventListener('click', ()=>clickOutsideHandle(editIcon))
-
+      // window.onclick = ''
 
 
         edited = false;
@@ -192,8 +176,6 @@ export default function createDom(obj) {
     });
 
 
-
-
     let addToDeckIcon = createElement('div', '', {
       cursor: 'pointer'
     }, 'orangeCircle');
@@ -210,9 +192,6 @@ export default function createDom(obj) {
     }
 
 
-
-
-
     newDeckContainer.append(nameOfNewDeck, threeDotsContainer, addToDeckIcon)
 
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer)
@@ -226,8 +205,6 @@ export default function createDom(obj) {
     listOfDecks.prepend(newDeckContainer);
 
   });
-
-
 
   document.querySelector("#scrollable").onscroll = function (event) {
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
@@ -249,8 +226,5 @@ export default function createDom(obj) {
     all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
 
-
   }
-
-
 }
