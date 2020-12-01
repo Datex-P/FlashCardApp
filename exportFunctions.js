@@ -167,7 +167,6 @@ function threeDots() {
       littleModalWindow.style.display = "none";
 
 
-     // function editHandler(event, editIconContainer, editIcon, saveIcon)
 
 
       editHandler(event, editIconContainer, editIcon, saveIcon,(event)=>{
@@ -251,21 +250,27 @@ function deleteCardQuestionBox(remove, refresh) {
 
   let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {}, 'doYouWantToDelete');
 
-  let questionMark1 = createElement('div', questionMark, {
-    position: 'absolute',
-    top: '-34px',
-    right: '-36px'
-  });
-  let questionMark2 = createElement('div', questionMark, {
-    position: 'absolute',
-    top: '-24px',
-    right: '-20px'
-  });
-  let questionMark3 = createElement('div', questionMark, {
-    position: 'absolute',
-    top: '-68px',
-    right: '-20px'
-  });
+
+
+let [questionMark1, questionMark2, questionMark3] = [questionMark, questionMark, questionMark].map(el=>{
+  return createElement('div', el, {position: 'absolute'})
+})
+
+questionMark1.style.top = '-34px';
+questionMark1.style.right = '-36px';
+
+questionMark2.style.top = '-24px';
+questionMark2.style.right = '-20px';
+
+questionMark3.style.top = '-68px';
+questionMark3.style.right = '-20px';
+
+
+
+
+
+
+
 
   let checkBoxContainer = createElement('div', '', {
     width: '40px'
