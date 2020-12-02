@@ -199,7 +199,7 @@ export default function questAnswerTrainOverv(item) {
     mainWindow.removeChild(showAnswerButtonContainer);
   },
   ()=>{
-    deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item), mainscreen)
+    deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item), 'card')
   })
   
   anchorThreeDots.style.position = 'absolute'
