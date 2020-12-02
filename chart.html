@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+
     .pieContainer {
       height: 150px;
       position: relative;
@@ -35,8 +36,6 @@
       clip: rect(0px, 150px, 150px, 75px);
       transition: 1s all ;
     }
-
-
    
     
     .innerCircle {
@@ -51,6 +50,7 @@
       color: white;
       z-index: 10;
     }
+
     .innerCircle .content {
       position: absolute;
       display: block;
@@ -60,6 +60,7 @@
       text-align: center;
       font-size: 14px;
     }
+    
     .flex-center{
       display: flex;
       align-items: center;
@@ -74,13 +75,11 @@
 <div class='flex-center'>
   <div class="pieContainer">
     <div class="pieBackground"></div>
-    <!-- <div id="pieSlice1" class="hold"><div class="pie"></div></div>
-    <div id="pieSlice2" class="hold"><div class="pie"></div></div> -->
-    <!-- <div id="pieSlice3" class="hold"><div class="pie"></div></div>
-    <div id="pieSlice4" class="hold"><div class="pie"></div></div>
-    <div id="pieSlice5" class="hold"><div class="pie"></div></div>
-    <div id="pieSlice6" class="hold"><div class="pie"></div></div> -->
-    <div class="innerCircle"><div class="content"><b>Data</b><br>from 16<sup>th</sup> April, 2014</div></div>
+  
+    <div class="innerCircle">
+      <div class="content">
+      <b>Data</b><br>from 16<sup>th</sup> April, 2014</div>
+    </div>
   </div>
   
 </div>

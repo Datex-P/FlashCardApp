@@ -6,16 +6,12 @@ import {
 import {
   dataBase
 } from './dataBase.js';
-import createDom from './createDom.js';
 import {
   createElement,
   handleOutsideClick,
-  redCross, deleteCardQuestionBox,threeDotsOpen,setThreeDotsOpen, threeDots
+  redCross, deleteCardQuestionBox,setThreeDotsOpen, threeDots
 } from './exportFunctions.js'
-import {
-  edit,
-  trash
-} from './svgs.js';
+
 
 
 function generateTextarea(inner, style = {}) {
@@ -206,9 +202,15 @@ export default function questAnswerTrainOverv(item) {
     deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item), mainscreen)
   })
   
-  
-   mainWindow.append(anchorThreeDots)
+  anchorThreeDots.style.position = 'absolute'
+  anchorThreeDots.style.right = '2px'
+  anchorThreeDots.style.top = '10px'
+ // littleModalWindow.style.position = 'absolute'
 
+
+
+   //mainWindow.append(anchorThreeDots)
+  theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
   let [question, answer, index] = shuffleLogic()
 
@@ -240,21 +242,20 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-  [1, 2, 20].forEach(el => {
-    let btn = createElement('div', `< ${el}m`, {
+  let [leftTimeValue, middleTimeValue, rightTimeValue] = ['1min', '2hrs', '20days'].map(el => {
+    return createElement('div', `< ${el}`, {
       fontWeight: 'bold'
     });
     containerForTimeButtons.append(btn);
-    btn.onclick = function () {
-      dataBase.queue.push({
-        question,
-        answer,
-        index,
-        timeLeft: el * 6000
-      })
-    }
     btn.title = `if you click here app will show you the same card in less than ${el} min`
   });
+
+  containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
+
+  
+
+
+
 
   //only count time when window is opened
 
@@ -270,12 +271,13 @@ export default function questAnswerTrainOverv(item) {
     showAnswerButtonContainer.style.display = 'none'
   }
 
-  function dataBaseQueue(randomNum) {
+  function dataBaseQueue(randomNum, item) {
     dataBase.queue.push({
       question,
       answer,
       index,
-      timeLeft: randomNum * 1000
+      timeLeft: randomNum * 1000,
+      item: item
     })
   }
 
@@ -299,14 +301,7 @@ export default function questAnswerTrainOverv(item) {
 
         let randomNum = Math.floor(Math.random() * 10);
 
-        // dataBase.queue.push({
-        //   question,
-        //   answer,
-        //   index,
-        //   timeLeft: randomNum * 1000
-        // })
-
-         dataBaseQueue(randomNum)
+         dataBaseQueue(randomNum, item)
         display()
         shuffleLogic()
 
@@ -316,12 +311,6 @@ export default function questAnswerTrainOverv(item) {
 
         let randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
 
-        // dataBase.queue.push({
-        //   question,
-        //   answer,
-        //   index,
-        //   timeLeft: randomNum * 1000
-        // })
 
         dataBaseQueue(randomNum)
         display()
@@ -330,14 +319,9 @@ export default function questAnswerTrainOverv(item) {
       }
 
       if (el === 'easy') {
+
         let randomNum = (Math.floor(Math.random() * 3000));
 
-        // dataBase.queue.push({
-        //   question,
-        //   answer,
-        //   index,
-        //   timeLeft: randomNum * 1000
-        // })
         dataBaseQueue(randomNum)
 
       };
@@ -347,7 +331,6 @@ export default function questAnswerTrainOverv(item) {
   });
 
  
-
 
 
   saveButton.onclick = function () {
@@ -389,61 +372,10 @@ export default function questAnswerTrainOverv(item) {
   
 }
 
+//export {leftTimeValue, middleTimeValue, rightTimeValue}
 
 
 
 
 
 
-
-
-
-//     //   button.addEventListener('click', function () {
-//     //     questionFieldTextArea.value = dataBase.DeckNames[item][index].question
-//     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-//     //   })
-
-//     // }, randomNum * 1000); //right now card gets shown again after 2 sec, normally the formula is : 2 * 60 * 10000
-
-//     // display();
-//   }
-
-//   if (el == 'good') {
-//     shuffleLogic();
-//     showAnswerButton.style.display = 'block';
-
-//     let randomNum = Math.floor(Math.random() * 3);
-
-//    // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2*60);
-//     //var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-//     //https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
-
-//     // setTimeout(function() {
-
-//     //   button.addEventListener('click', function () {
-//     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-//     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-//     //   })
-
-
-
-//     // }, randomNum * 1000);
-
-//   }
-
-//   if (el === 'easy') {
-//     shuffleLogic();
-//     showAnswerButton.style.display = 'block';
-
-
-//     let randomNum = Math.floor(Math.random() * 4);
-//       // let randomNum = (Math.floor(Math.random() * (10-2.1+1)*60) + 2.1*60);
-
-//     // setTimeout(function() {
-
-//     //   button.addEventListener('click', function () {
-//     //     questionFieldTextArea.value =  dataBase.DeckNames[item][index].question
-//     //     answerFieldTextArea.value = dataBase.DeckNames[item][index].answer
-//     //   })
-
-//     // }, randomNum * 1000);

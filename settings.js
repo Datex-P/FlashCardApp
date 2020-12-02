@@ -1,6 +1,7 @@
 
-import { edit, save, reset} from './svgs.js';
+import { edit, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
+//import {leftTimeValue, middleTimeValue, rightTimeValue} from './questAnswerTrainOverv.js'
 
 export default function settings() {
 
@@ -167,6 +168,7 @@ changeNameofDeckInput3.type = 'number';
   })
 
   resetContainerOuter.style.marginTop = '0px';
+  resetContainerOuter.style.width = '142px';
 
 
   let resetColorSchemeContainer = createElement(
@@ -189,12 +191,20 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  let [studyText, reviewText, resetCalendarText, resetHourlyBreakdownText] = ['To study:', 'To review:', 'Reset Calendar', 'Reset Hourly Breakdown'].map(el => {
+  let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
     return createElement('div', el, { width: '69px', marginLeft: '9px' }, '')
+  });
+
+
+
+  let [ resetCalendarText, resetHourlyBreakdownText] = ['Reset Calendar', 'Reset Breakdown'].map(el => {
+    return createElement('div', el, {color: 'white', marginLeft: '9px', cursor: 'pointer'}, '')
   });
 
   resetCalendarText.style.width = '102px';
   resetHourlyBreakdownText.style.width = '172px';
+
+
 
 
   let [studyAndReviewUpper, studyAndReviewLower, resetCalendar, resetHourlyBreakdown] = ['', '', '', ''].map(el => {
@@ -204,17 +214,23 @@ changeNameofDeckInput3.type = 'number';
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top =  '38px';
   
-  
-  resetCalendar.style.width = '175px'
+
+  resetCalendar.style.backgroundColor = 'grey';
+  resetHourlyBreakdown.style.backgroundColor = 'grey'
+
+
+
+  resetCalendar.style.width = '127px'
   resetCalendar.style.top = '6px';
   resetHourlyBreakdown.style.top = '38px';
-  resetHourlyBreakdown.style.width = '175px';
+  resetHourlyBreakdown.style.width = '127px';
 
-  let resetIcon = createElement('div', reset, {}, 'resetIcon');
+
 
   let resetProgress = createElement('div', 'Reset Current Progress', {fontWeight: 'bold', textAlign: 'center', margin: '20px 0 10px'}
   )
 
+ 
 
 
 
@@ -226,7 +242,7 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  resetContainerOuter.append(resetCalendar, resetHourlyBreakdown, resetIcon)
+  resetContainerOuter.append(resetCalendar, resetHourlyBreakdown)
   resetCalendar.append(resetCalendarText);
   resetHourlyBreakdown.append(resetHourlyBreakdownText);
 

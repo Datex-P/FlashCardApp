@@ -7,24 +7,7 @@ import {createElement} from './exportFunctions.js'
 
 export default function createNewDeck() {
   document.querySelector('#listOfDecks').style.display= 'none'
-  // let all = listOfDecks.querySelectorAll('.newDeckContainer')
-
-  // let selectedIndex = 0
-
-  
-  // Array.from(all).reverse().forEach((item,index) => {
-    
-  //   if(!!(+item.style.zIndex)){
-  //     selectedIndex = index
-  //     console.log(item.style.zIndex,index)
-  //   }
-  //   item.style.zIndex = 0
-  //   // item.querySelector('.orangeCircle').style.display = 'none'
-  //   item.querySelector('.threeDotsIcon').style.opacity = 0;
-  //   // console.log(all[index])
-  // })
-
-  // console.log(selectedIndex)
+ 
     
 
 

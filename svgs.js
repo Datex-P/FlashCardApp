@@ -19,8 +19,7 @@ export let redCross = `<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-n
   </g>
   <metadata>
     <rdf:RDF>
-      <cc:Work>
-        <dc:format>image/svg+xml</dc:format>
+      <cc:Work <dc:format>image/svg+xml</dc:format>
         <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
         <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
         <dc:publisher>
@@ -35,8 +34,7 @@ export let redCross = `<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-n
         <dc:creator>
           <cc:Agent>
             <dc:title>milker</dc:title>
-          </cc:Agent>
-        </dc:creator>
+          </cc:Agent>/dc:creator>
         <dc:subject>
           <rdf:Bag>
             <rdf:li>clip art</rdf:li>
@@ -141,106 +139,90 @@ xml:space="preserve"><g><path d="M22.7812366,79.1270218c-0.6308212,0.1043701-1.2
 
 export let brush = `<svg enable-background="new 0 0 24 24" height="24px" id="Layer_1" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M7.286,15.417c-1.547-0.275-3.072,0.705-4.091,3.146C2.176,21.008,0.354,21.985,0,21.926c1.9,0.688,7.698,2.446,9.138-4.25   C8.526,16.071,7.286,15.417,7.286,15.417z"/><path d="M9.481,12.774c-0.457,0.503-0.57,0.863-1.166,1.809c0.385,0.27,1.127,0.893,1.643,1.966   c1.029-0.589,1.508-0.68,2.053-1.139c3.563-2.999,12.28-13.746,11.981-14.057C23.674,1.024,12.614,9.335,9.481,12.774z"/></g></svg>`;
 
-export let reset = `
-   <svg width='17px' height='17px'
-      xmlns:dc="http://purl.org/dc/elements/1.1/"
-      xmlns:cc="http://creativecommons.org/ns#"
-      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-      xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-      width="16.482828mm"
-      height="14.68959mm"
-      viewBox="0 0 16.482828 14.68959"
-      version="1.1"
-      id="svg8634"
-      inkscape:version="0.92.1 r15371"
-      sodipodi:docname="reset.svg">
-     <defs
-        id="defs8628" />
-     <sodipodi:namedview
-        id="base"
-        pagecolor="#ffffff"
-        bordercolor="#666666"
-        borderopacity="1.0"
-        inkscape:pageopacity="0.0"
-        inkscape:pageshadow="2"
-        inkscape:zoom="5.6"
-        inkscape:cx="25.830107"
-        inkscape:cy="-9.4549997"
-        inkscape:document-units="mm"
-        inkscape:current-layer="layer1"
-        showgrid="false"
-        fit-margin-top="0"
-        fit-margin-left="0"
-        fit-margin-right="0"
-        fit-margin-bottom="0"
-        inkscape:window-width="1920"
-        inkscape:window-height="1017"
-        inkscape:window-x="-8"
-        inkscape:window-y="-8"
-        inkscape:window-maximized="1" />
-     <metadata
-        id="metadata8631">
-       <rdf:RDF>
-         <cc:Work
-            rdf:about="">
-           <dc:format>image/svg+xml</dc:format>
-           <dc:type
-              rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-           <dc:title></dc:title>
-         </cc:Work>
-       </rdf:RDF>
-     </metadata>
-     <g
-        inkscape:label="Layer 1"
-        inkscape:groupmode="layer"
-        id="layer1"
-        transform="translate(-3.0978698,-4.6612284)">
-       <g
-          transform="matrix(1.2809155,0,0,1.2374188,103.99112,-1219.3652)"
-          id="g4667">
-         <path
-            inkscape:connector-curvature="0"
-            id="path4640"
-            d="m -72.695687,1000.9938 c -1.972631,-0.2257 -3.790181,-1.49518 -4.687846,-3.27432 -0.175341,-0.34752 -0.468403,-1.12381 -0.468403,-1.24073 0,-0.0266 0.375731,-0.048 0.834956,-0.0476 l 0.834965,7.2e-4 0.163557,0.4041 c 0.519646,1.28389 1.615359,2.24396 2.994703,2.62398 0.49589,0.13662 1.63139,0.13421 2.144474,-0.005 0.522244,-0.14124 1.250991,-0.50448 1.653619,-0.82424 0.687488,-0.546 1.31115,-1.49718 1.539,-2.34722 0.146128,-0.54518 0.177544,-1.43846 0.07041,-2.00269 -0.178809,-0.94189 -0.54809,-1.63735 -1.241568,-2.33827 -0.844669,-0.85372 -1.728666,-1.24944 -2.900391,-1.29837 -0.550547,-0.023 -0.767325,-0.006 -1.18485,0.0941 -1.415428,0.33867 -2.632012,1.39775 -3.122259,2.71804 l -0.103341,0.27832 h -0.842765 -0.842766 l 0.03834,-0.16113 c 0.08466,-0.35604 0.444253,-1.16597 0.699534,-1.57555 0.354919,-0.56944 1.084444,-1.33426 1.637166,-1.71635 3.344531,-2.31207 7.975171,-0.83571 9.268415,2.95499 1.2168,3.56666 -1.256634,7.33132 -5.098284,7.75962 -0.62535,0.07 -0.754641,0.069 -1.386656,0 z"
-            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.05859375;stroke-opacity:1" />
-         <g
-            id="g4592-5-0"
-            transform="matrix(0.77578717,0,0,0.61178065,-35.477186,373.83106)">
-           <rect
-              style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.04824853"
-              id="rect3717-9-8-2"
-              width="4.4458065"
-              height="1.1666708"
-              x="-55.705212"
-              y="1017.3687" />
-           <path
-              sodipodi:type="star"
-              style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.93749994"
-              id="path3783-0-6"
-              sodipodi:sides="3"
-              sodipodi:cx="-109.71203"
-              sodipodi:cy="1025.7628"
-              sodipodi:r1="8.7855453"
-              sodipodi:r2="6.0797644"
-              sodipodi:arg1="0.43833656"
-              sodipodi:arg2="1.4855341"
-              inkscape:flatsided="true"
-              inkscape:rounded="0"
-              inkscape:randomized="0"
-              d="m -101.75708,1029.4917 -15.16173,1.2959 6.45861,-13.7784 z"
-              inkscape:transform-center-x="-0.034756175"
-              inkscape:transform-center-y="0.58213244"
-              transform="matrix(-0.30321012,-0.03553367,0.03028113,-0.35580483,-117.82847,1375.3296)" />
-         </g>
-       </g>
-     </g>
-   </svg>
-   `
+
 
 export let questionMark = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="24" viewBox="0 0 512 512" fill='white' width="24" xmlns="http://www.w3.org/2000/svg"><g><circle cx="256" cy="452" r="60"/><path d="m256 0c-86.019 0-156 69.981-156 156v15h120v-15c0-19.851 16.149-36 36-36s36 16.149 36 36c0 10.578-4.643 20.59-12.74 27.471l-83.26 70.787v107.742h120v-52.258l40.976-34.837c34.968-29.714 55.024-73.052 55.024-118.905 0-86.019-69.981-156-156-156z"/></g></svg>`
 
 export let flashcards = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><path d="M22.7812366,79.1270218c-0.6308212,0.1043701-1.2727947,0.1572723-1.9081192,0.1572723   c-5.704196,0-10.5212536-4.0898438-11.453722-9.7248764l-1.048811-6.3381882v14.1958771   c0,5.029068,4.0768538,9.1059265,9.1059227,9.1059265h61.6682968c5.029068,0,9.1059189-4.0768585,9.1059189-9.1059265v-9.2003708   c-0.4101028,0.1154251-0.8283997,0.2136536-1.2582626,0.2847672L22.7812366,79.1270218z"/><path d="M96.3572617,53.8293152l-5.0588455-30.5724583c-0.8316803-5.0252838-5.1259689-8.6728916-10.2126465-8.6728916   c-0.5681,0-1.1394653,0.0474777-1.702652,0.1407957L15.1709671,25.3499756   c-5.6375847,0.9323673-9.4652805,6.2785358-8.5320959,11.9161186l5.0588465,30.5708199   c0.830862,5.0261078,5.1259708,8.6737137,10.2118301,8.6737137c0.5672779,0,1.1402855-0.0474777,1.7042904-0.1407928   l64.2105103-10.6252213c2.7324295-0.4518585,5.1226959-1.9400406,6.7353058-4.191143   C96.1706238,59.3023643,96.8091202,56.5584717,96.3572617,53.8293152z M21.1087685,51.0446968   c-0.1890926-1.141922,0.5836487-2.2208138,1.7255726-2.4099083l21.8512707-3.6165009   c1.1329193-0.1890945,2.2208176,0.5844688,2.4099083,1.7255745c0.1890945,1.141922-0.5836487,2.2208176-1.7255745,2.4099083   l-21.8512669,3.6165009c-0.1154213,0.0196457-0.2308407,0.027832-0.3446255,0.027832   C22.1671963,52.7981033,21.2790337,52.0712013,21.1087685,51.0446968z M56.2571068,59.5808868L25.4890079,64.674118   c-0.1154194,0.0196457-0.2308407,0.0278244-0.3446236,0.0278244c-1.0068569,0-1.8950214-0.7268982-2.0652866-1.7534027   c-0.1890926-1.1411057,0.5836506-2.2199974,1.7255745-2.4099083l30.7681007-5.0932274   c1.1345558-0.1899109,2.2199974,0.5828323,2.4099083,1.7255745C58.1709557,58.3120842,57.3982124,59.390976,56.2571068,59.5808868z    M60.3058205,34.4520111l-38.757473,6.4160576c-0.1154213,0.0188255-0.2308407,0.027832-0.3446236,0.027832   c-1.0068588,0-1.8950214-0.7277222-2.0652866-1.7534065c-0.1890926-1.1419258,0.5836506-2.2208176,1.7255745-2.4099083   l38.7574768-6.4160595c1.1394691-0.1825447,2.2199974,0.5836506,2.4099083,1.7255726   C62.2196693,33.1840248,61.4469261,34.2629166,60.3058205,34.4520111z"/></g></svg>`
 
+export let pause = `<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 47.607 47.607" style="enable-background:new 0 0 47.607 47.607;" xml:space="preserve" width='16px' height='16px'> 
+<g>
+	<path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0
+		l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z"/>
+	<path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631
+		C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g><g>
+</g>
+<g>
+</g>
+<g>
+</g><g></g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+`
+
+export let play = `<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="163.861px" height="163.861px" viewBox="0 0 163.861 163.861" style="enable-background:new 0 0 163.861 163.861;"
+	 xml:space="preserve">
+<g>
+	<path d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
+		c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>`;

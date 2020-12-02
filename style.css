@@ -249,8 +249,10 @@ textarea {
   justify-content: space-around;
 }
 
-.menuBoxesStyling:hover, .trashIconContainer:hover, .editIconContainer:hover {
+.menuBoxesStyling:hover, .trashIconContainer:hover, .editIconContainer:hover,
+pauseIconContainer:hover {
   background-color: #a39171;
+  cursor: pointer;
 }
 
 .trashIconContainer {

@@ -4,7 +4,7 @@ import {
   questionMark,
   edit,
   trash,
-  save
+  save, pause, play
 } from "./svgs.js";
 import {
   dataBase
@@ -66,7 +66,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
       if (mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) ||
         (questionFieldTextArea && questionFieldTextArea.contains(e.target)) || (answerFieldTextArea && answerFieldTextArea.contains(e.target))) {
         //alert("Clicked in Box");
-        //window.onclick = ''         
+        window.onclick = ''         
       } else {
         //alert("Clicked outside Box");
         target.classList.add('blinkingIcon');
@@ -74,9 +74,6 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
           target.classList.remove('blinkingIcon')
         }, 3000);
       }
-
-
-
     }
   }, 10);
 
@@ -86,7 +83,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler) {
+  return function (editHandler, deleteHandler, pauseHandler) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -122,7 +119,7 @@ function threeDots() {
     let threeDotsContainer = createElement('div', '', {})
     
     
-    let [trashIconContainer, editIconContainer] = ['', ''].map(el => {
+    let [trashIconContainer, editIconContainer, pauseIconContainer] = ['', '', ''].map(el => {
       return createElement('div', '', {
    
       }, 'flexCenterAlignCenter trashIconContainer')
@@ -130,16 +127,16 @@ function threeDots() {
     
 
     threeDotsContainer.append(settingsIconContainer, littleModalWindow);
-    littleModalWindow.append(editIconContainer, trashIconContainer);
+    littleModalWindow.append(editIconContainer, pauseIconContainer, trashIconContainer);
 
 
-    let [editIcon, trashIcon, saveIcon] = [edit, trash, save].map(el => {
+    let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon] = [edit, trash, save, pause, play].map(el => {
       return createElement('div', el, {
         width: '20px'
       })
     });
 
-    let [editIconText, trashIconText] = ['card', 'card'].map(el => {
+    let [editIconText, trashIconText, pauseIconText, playIconText] = ['card', 'card', 'card'].map(el => {
       return createElement('div', el, {
         width: 'fit-content',
         fontSize: '16px'
@@ -148,11 +145,14 @@ function threeDots() {
 
     editIconContainer.append(editIcon, editIconText);
     trashIconContainer.append(trashIcon, trashIconText);
+    pauseIconContainer.append(pauseIcon, pauseIconText);
+
 
     trashIconContainer.onclick = function (e) {
 
       if (dataBase.showDeleteFrame) {
-        threeDotsOpen = true;
+        e.stopPropagation()
+        threeDotsOpen = false;
         deleteHandler()
 
       } else {
@@ -160,12 +160,37 @@ function threeDots() {
         threeDotsOpen = false;
         littleModalWindow.style.display = "none";
       }
-    }
+    };
+
+    // pauseIconContainer.onclick = function(event) {
+
+
+    // }
+
+    pauseIconContainer.onclick = function (event) {
+      threeDotsOpen = true;
+      littleModalWindow.style.display = "none";
+
+
+
+      pauseHandler(event, pauseIconContainer, pauseIcon, playIcon,(event)=>{
+          if (!littleModalWindow.contains(event.target)) {
+            littleModalWindow.style.display = 'none';
+            window.onclick = ''
+          }
+      },littleModalWindow)
+    };
+
+
+
+
+
+
+
 
     editIconContainer.onclick = function (event) {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";
-
 
 
 
@@ -181,14 +206,6 @@ function threeDots() {
   }
 
 }
-
-
-
-
-
-
-
-
 
 
 function close(mainWindow, anchorElement) {
@@ -211,6 +228,7 @@ function deleteCardQuestionBox(remove, refresh, mainscreen = null) {
   let [deleteContainerYes, deleteContainerNo] = ['Yes', 'No'].map(el => {
 
     return createElement('div', el, {
+      cursor: 'pointer'
 
     }, 'flexCenterAlignCenter deleteContainerNoAndYes')
   })
@@ -272,10 +290,6 @@ questionMark2.style.right = '-20px';
 
 questionMark3.style.top = '-68px';
 questionMark3.style.right = '-20px';
-
-
-
-
 
 
 

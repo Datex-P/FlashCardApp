@@ -1,4 +1,3 @@
-import { edit, save, trash} from './svgs.js';
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
@@ -55,9 +54,9 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-      
+
  
-    let [toStudy, toReview] = ['To Study', `To Review: ${dataBase.queue.length || 0}`].map(el=>{
+    let [toStudy, toReview] = ['To Study', `To Review: ${/*dataBase.queue.item[item] ||*/ 0}`].map(el=>{
       return createElement('div', el, {backgroundColor: 'white'})
     });
 
@@ -133,16 +132,18 @@ export default function createDom(obj) {
   
     let mainThreeDots = threeDots()
 
-  let threeDotsContainer = mainThreeDots((event,editIconContainer,editIcon,saveIcon,outsideClickClosehandler,littleModalWindow)=>{
+  let threeDotsContainer = mainThreeDots((event,editIconContainer,editIcon,saveIcon,
+    outsideClickClosehandler,littleModalWindow)=>{
       event.stopPropagation()
 
-      //settingsIconContainer.style.top = '20px'
+      
 
       if (!edited) {
  
         window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
         
-        
+        pauseIconContainer.replaceChild(playIcon, pauseIcon)
+
         editIconContainer.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
@@ -217,14 +218,11 @@ export default function createDom(obj) {
     
     Array.from(all).reverse().forEach((item, index) => {
       item.style.zIndex = 0
-      item.querySelector('.threeDotsIcon').style.opacity = 0;
-     // console.log(all[index])
-
+  
       item.querySelector('.orangeCircle').style.display = 'none'
       item.style.transform = `rotate(${(index * -2)||-2}deg)`;
     })
     all[index].style.zIndex = 2;
-    all[index].querySelector('.threeDotsIcon').style.opacity = 1;
     all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
 
