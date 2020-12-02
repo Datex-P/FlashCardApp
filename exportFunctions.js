@@ -116,7 +116,7 @@ function threeDots() {
       '', {},
       'littleModalWindow flexColumn'
     )
-    let threeDotsContainer = createElement('div', '', {})
+    let threeDotsContainer = createElement('div', '', {position:'relative',width:'fit-content'},'')
     
     
     let [trashIconContainer, editIconContainer, pauseIconContainer] = ['', '', ''].map(el => {

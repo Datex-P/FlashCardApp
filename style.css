@@ -281,8 +281,8 @@ pauseIconContainer:hover {
   font-weight: bold;
   position: absolute;
   cursor: pointer;
-  top: 10px;
-  right: 84px;
+  top: 0px;
+  right: 0px;
   font-size: 25px;
 }
 
@@ -718,8 +718,8 @@ pauseIconContainer:hover {
 
 .littleModalWindow {
   position: absolute;
-  top: 37px;
-  left: 243px;
+  top: 20px;
+  left: 0px;
   display: none;
   padding: 5px;
   background-color: white;
