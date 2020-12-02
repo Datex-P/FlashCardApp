@@ -203,7 +203,7 @@ export default function questAnswerTrainOverv(item) {
     mainWindow.removeChild(showAnswerButtonContainer);
   },
   ()=>{
-    deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item))
+    deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item), mainscreen)
   })
   
   
@@ -306,7 +306,9 @@ export default function questAnswerTrainOverv(item) {
         //   timeLeft: randomNum * 1000
         // })
 
-        dataBaseQueue(randomNum)
+         dataBaseQueue(randomNum)
+        display()
+        shuffleLogic()
 
       }
 
@@ -322,6 +324,8 @@ export default function questAnswerTrainOverv(item) {
         // })
 
         dataBaseQueue(randomNum)
+        display()
+        shuffleLogic()
 
       }
 

@@ -55,9 +55,9 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-
+      
  
-    let [toStudy, toReview] = ['To Study', 'To Review'].map(el=>{
+    let [toStudy, toReview] = ['To Study', `To Review: ${dataBase.queue.length || 0}`].map(el=>{
       return createElement('div', el, {backgroundColor: 'white'})
     });
 
@@ -136,6 +136,8 @@ export default function createDom(obj) {
   let threeDotsContainer = mainThreeDots((event,editIconContainer,editIcon,saveIcon,outsideClickClosehandler,littleModalWindow)=>{
       event.stopPropagation()
 
+      //settingsIconContainer.style.top = '20px'
+
       if (!edited) {
  
         window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
@@ -153,7 +155,7 @@ export default function createDom(obj) {
 
         editIconContainer.replaceChild(editIcon ,saveIcon)
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-      // window.onclick = ''
+  
 
 
         edited = false;

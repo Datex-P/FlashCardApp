@@ -228,6 +228,7 @@ textarea {
   border-radius: 12px;
   position: absolute;
   transition: 1s all;
+  background-color: black;
 }
 
 .generalButtonStyling {

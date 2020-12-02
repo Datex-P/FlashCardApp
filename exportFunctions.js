@@ -202,7 +202,7 @@ function setThreeDotsOpen(cond) {
   threeDotsOpen = cond
 }
 
-function deleteCardQuestionBox(remove, refresh) {
+function deleteCardQuestionBox(remove, refresh, mainscreen = null) {
   let anchorElement = document.getElementById("mainMenu");
   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
@@ -247,9 +247,17 @@ function deleteCardQuestionBox(remove, refresh) {
   let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
   let leaveXsign = createElement('div', '&#10006;', {}, 'flexCenterAlignCenter leaveXsign')
 
-
   let doYouWantToDelete = createElement('div', 'Do you want to delete this card?', {}, 'doYouWantToDelete');
 
+if (mainscreen) {
+
+  doYouWantToDelete.innerHTML = 'Do you want to delete this card?'
+
+}
+else {
+  doYouWantToDelete.innerHTML = 'Do you want to delete this deck?'
+   
+}
 
 
 let [questionMark1, questionMark2, questionMark3] = [questionMark, questionMark, questionMark].map(el=>{
