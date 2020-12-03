@@ -107,7 +107,10 @@ export default function settings() {
 
     })
   );
-
+  let {left,middle,right} = dataBase.timeValues
+  upperLeftZero.innerText = left
+  upperMiddleZero.innerText = middle
+  upperRightZero.innerText = right;
   //upperLeftZero.innerText = dataBase.timeValues.left;
   //console.log(dataBase.timeValues.left)
     

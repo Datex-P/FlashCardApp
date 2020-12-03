@@ -196,8 +196,8 @@ export default function createDom(obj) {
 
     threeDotsContainer.style.position = 'absolute'
 
-    threeDotsContainer.style.top = '10px'
-    threeDotsContainer.style.right = '30px'
+    threeDotsContainer.style.top = '6px'
+    threeDotsContainer.style.right = '85px'
 
 
     let plusIcon = createElement('div', '+', {

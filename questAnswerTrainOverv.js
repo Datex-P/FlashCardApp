@@ -212,8 +212,8 @@ export default function questAnswerTrainOverv(item) {
     })
 
   anchorThreeDots.style.position = 'absolute'
-  anchorThreeDots.style.right = '2px'
-  anchorThreeDots.style.top = '10px'
+  anchorThreeDots.style.right = '86px'
+  anchorThreeDots.style.top = '18px'
 
 
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
@@ -246,9 +246,9 @@ export default function questAnswerTrainOverv(item) {
   showAnswerButtonContainer.append(containerForTimeButtons);
 
 
+  let {left,middle,right} = dataBase.timeValues
 
-
-  let [leftTimeValue, middleTimeValue, rightTimeValue] = ['1min', '2hrs', '20days'].map(el => {
+  let [leftTimeValue, middleTimeValue, rightTimeValue] = [`${left}min`, `${middle}hrs`, `${right}days`].map(el => {
     return createElement('div', `< ${el}`, {
       fontWeight: 'bold'
     });
