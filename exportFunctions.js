@@ -231,8 +231,9 @@ function deleteCardQuestionBox(remove, refresh, header) {
   deleteContainerYes.onclick = function () {
     setThreeDotsOpen(false)
     remove()
+    refresh(dataBase.DeckNames)
     anchorElement.removeChild(deleteContainerFrame)
-    refresh()
+    
 
   }
 

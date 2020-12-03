@@ -9,8 +9,9 @@ import {
 import {
   createElement,
   handleOutsideClick,
-  redCross, deleteCardQuestionBox,setThreeDotsOpen, threeDots
+  redCross, deleteCardQuestionBox, setThreeDotsOpen, threeDots
 } from './exportFunctions.js'
+import createDom from "./createDom.js";
 
 
 
@@ -72,7 +73,7 @@ export default function questAnswerTrainOverv(item) {
   let mainWindow = createElement('div', '', {}, 'addQuestionsToDeck')
   anchorElement.appendChild(mainWindow);
 
-  
+
   let theNameOftheDeckAndRedCrossContainer = createElement(
     'div',
     '', {
@@ -107,7 +108,7 @@ export default function questAnswerTrainOverv(item) {
 
   // startTimer(item, index);
 
-  
+
 
   handleOutsideClick(mainWindow)
 
@@ -120,8 +121,8 @@ export default function questAnswerTrainOverv(item) {
     marginTop: '20px',
   }
   )
-  
-  questionContainer.id  = 'questionContainer'
+
+  questionContainer.id = 'questionContainer'
   questionFieldTextArea.id = 'questionFieldTextArea'
 
 
@@ -181,10 +182,10 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
   saveAndDiscardContainer.append(discardButton, saveButton);
 
-  
+
   let cardThreeDots = threeDots()
 
-   let anchorThreeDots = cardThreeDots(()=>{
+  let anchorThreeDots = cardThreeDots(() => {
     showAnswerButtonContainer.style.justifyContent = 'center';
     answerContainer.style.display = 'block'
     answerFieldTextArea.style.display = 'block';
@@ -199,17 +200,17 @@ export default function questAnswerTrainOverv(item) {
     mainWindow.removeChild(showAnswerButtonContainer);
 
 
-  //   threeDotsContainer.style.position = 'absolute'
+    //   threeDotsContainer.style.position = 'absolute'
 
-  // threeDotsContainer.style.top = '10px'
-  // threeDotsContainer.style.right = '300px'
+    // threeDotsContainer.style.top = '10px'
+    // threeDotsContainer.style.right = '300px'
 
 
   },
-  ()=>{
-    deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item), 'card')
-  })
-  
+    () => {
+      deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
+    })
+
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '2px'
   anchorThreeDots.style.top = '10px'
@@ -259,12 +260,12 @@ export default function questAnswerTrainOverv(item) {
 
 
   // console.log(leftTimeValue.innerText.split('<'))
-  
+
   // var leftTimeasNum = leftTimeValue.innerText.match(/[a-z]+|[^a-z]+/gi);
 
 
 
- 
+
 
 
 
@@ -305,42 +306,26 @@ export default function questAnswerTrainOverv(item) {
     );
 
     button.addEventListener('click', function () {
-
-
+      let randomNum = 0
       if (el === 'again') {
-
-        let randomNum = Math.floor(Math.random() * 10);
-
-         dataBaseQueue(randomNum, item)
-        display()
-        shuffleLogic()
-
+        randomNum = Math.floor(Math.random() * 10);
       }
-
       if (el == 'good') {
-
-        let randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
-
-
-        dataBaseQueue(randomNum)
-        display()
-        shuffleLogic()
-
+        randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
       }
-
       if (el === 'easy') {
-
-        let randomNum = (Math.floor(Math.random() * 3000));
-
-        dataBaseQueue(randomNum)
-
+        randomNum = (Math.floor(Math.random() * 3000));
       };
+      dataBaseQueue(randomNum, item)
+      display()
+      shuffleLogic()
+      createDom(dataBase.DeckNames)
     })
     containerForAgainGoodEasyButtons.append(button)
 
   });
 
- 
+
 
 
   saveButton.onclick = function () {
@@ -379,7 +364,7 @@ export default function questAnswerTrainOverv(item) {
   };
 
 
-  
+
 }
 
 
