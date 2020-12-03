@@ -116,6 +116,11 @@ function threeDots() {
       '', {},
       'littleModalWindow flexColumn'
     )
+
+      // if (questAnswerTrain)
+
+
+
     let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content' }, '')
 
 
@@ -250,7 +255,14 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
 
   let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
-  let leaveXsign = createElement('div', '&#10006;', {}, 'flexCenterAlignCenter leaveXsign')
+  let leaveXsign = createElement('div', '&#10006;', {cursor: 'pointer'}, 'flexCenterAlignCenter leaveXsign')
+
+  leaveXsign.onclick = function () {
+    setThreeDotsOpen(false)
+    anchorElement.removeChild(deleteContainerFrame)
+  }
+
+
 
   let doYouWantToDelete = createElement('div', `Do you want to delete this ${header}?`, {}, 'doYouWantToDelete');
 
@@ -282,6 +294,7 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
   checkbox.onchange = function (e) {
     dataBase.showDeleteFrame = !e.target.checked;
+    console.log('still alive and well')
   }
 
 

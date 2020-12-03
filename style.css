@@ -769,6 +769,7 @@ textarea:enabled {
   justify-content: center; 
   align-items: center; 
   padding: 3px;
+  color: #772e25;
 }
 
 .closePopUpContainer {
@@ -922,7 +923,10 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
 .leaveXsign {
   width: 20px; 
   height: 20px; 
-  color: white; 
+  /*color: white; */
+  /*color: red;*/
+  /*color:#b07d62;*/
+  color: #772e25;
   right: -3px; 
   font-size: 11px;
 }

@@ -330,19 +330,19 @@ export default function stats() {
 
 
   //let counterOne = 0
-  for (let deck in dataBase.DeckNames) {
-    let counterTwo = 0;
-    dataBase.DeckNames[deck].forEach((card) => {
+  // for (let deck in dataBase.DeckNames) {
+  //   let counterTwo = 0;
+  //   dataBase.DeckNames[deck].forEach((card) => {
       
-      card.openHistory &&
-        card.openHistory.forEach((openTime) => {
-          if (date.toDateString() === openTime.toDateString()) {
-            console.log(deck)
-            counterTwo++;
-          }
-        });
-      })
-    }
+  //     card.openHistory &&
+  //       card.openHistory.forEach((openTime) => {
+  //         if (date.toDateString() === openTime.toDateString()) {
+  //           console.log(deck)
+  //           counterTwo++;
+  //         }
+  //       });
+  //     })
+  //   }
 
         
       // child1.innerText = `Deck ${deck}:`;

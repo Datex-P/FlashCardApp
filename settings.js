@@ -1,8 +1,7 @@
 
 import { edit, save} from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
+import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
-import {deleteCardQuestionBox, threeDots} from './exportFunctions.js'
 
 
 export default function settings() {
@@ -204,9 +203,7 @@ changeNameofDeckInput3.type = 'number';
   dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
 
 
-  //console.log(typeof(studyInputUnchanged.innerText))
-
-  //console.log(Number(studyInputUnchanged.innerText))
+  
 
 
 
@@ -248,7 +245,21 @@ changeNameofDeckInput3.type = 'number';
 
   resetCalendar.onclick = function () {
    //((mainThreeDots(somepara)
-  }
+   let anchor = mainThreeDots(
+
+    () => {
+      deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
+    })
+
+    resetCalendar.append(anchor)
+
+
+   }
+   
+   
+   
+   
+  
 
   resetHourlyBreakdown.onclick = function () {
     //mainThreeDots(somepara)

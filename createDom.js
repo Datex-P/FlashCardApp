@@ -141,7 +141,6 @@ export default function createDom(obj) {
 
         window.addEventListener('click', () => clickOutsideHandle(saveIcon))
 
-        // pauseIconContainer.replaceChild(playIcon, pauseIcon)
 
         editIconContainer.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
@@ -190,7 +189,8 @@ export default function createDom(obj) {
         }
         return edited
       }
-    )
+      )
+  
 
 
 
