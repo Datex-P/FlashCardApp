@@ -2,6 +2,7 @@
 import { edit, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
+import {deleteCardQuestionBox, threeDots} from './exportFunctions.js'
 
 
 export default function settings() {
@@ -235,6 +236,15 @@ changeNameofDeckInput3.type = 'number';
   resetHourlyBreakdown.style.top = '38px';
   resetHourlyBreakdown.style.width = '127px';
 
+  let mainThreeDots = threeDots()
+
+  resetCalendar.onclick = function () {
+   //((mainThreeDots(somepara)
+  }
+
+  resetHourlyBreakdown.onclick = function () {
+    //mainThreeDots(somepara)
+  }
 
 
   let resetProgress = createElement('div', 'Reset Current Progress', {fontWeight: 'bold', textAlign: 'center', margin: '20px 0 10px'}

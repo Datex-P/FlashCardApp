@@ -100,8 +100,6 @@ export default function createDom(obj) {
       
     // };
 
-
-
     let changeNameofDeckInput = createElement('input', '', {
       width: '30%',
       position: 'absolute',
@@ -142,7 +140,7 @@ export default function createDom(obj) {
  
         window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
         
-        pauseIconContainer.replaceChild(playIcon, pauseIcon)
+       // pauseIconContainer.replaceChild(playIcon, pauseIcon)
 
         editIconContainer.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
@@ -172,8 +170,22 @@ export default function createDom(obj) {
 
   }
   
- // ,()=>{pauseHandler(()=>{})}
-  )
+ ,()=>{
+
+  if (!edited) {
+  pauseIconContainer.replaceChild(playIcon, pauseIcon)
+  window.onclick = ''
+  edited = true;
+  }
+  else {
+
+    pauseIconContainer.replaceChild(pauseIcon, playIcon)
+    edited = false;
+    item.style.backgroundColor = 'blue'
+  }
+})
+
+  
 
   threeDotsContainer.style.position = 'absolute'
 

@@ -312,23 +312,24 @@ export default function stats() {
 
   
 
-  let date = new Date();
+  // let date = new Date();
 
-  /*
-    for (let deck in dataBase.DeckNames) {
-      if (dataBase.DeckNames[deck].find(item => new Date(item.lastOpen).toDateString() == date)) {
-  */
+  // console.log(date.getMonth()-3)
 
-  // let resultContainer = createElement(
-  //   "div",
-  //   "",
-  //   { border: "1px solid black"},
-  //   "flexColumnSpaceBetween"
-  // );
 
-  // cardsStudied.append(resultContainer);
+  // if (date.getMonth() >= 3) {
 
-  let counterOne = 0
+  //   all openTime.toDateString().getMonth()-2
+  // }
+
+
+
+
+
+
+
+
+  //let counterOne = 0
   for (let deck in dataBase.DeckNames) {
     let counterTwo = 0;
     dataBase.DeckNames[deck].forEach((card) => {
@@ -340,49 +341,52 @@ export default function stats() {
             counterTwo++;
           }
         });
+      })
+    }
 
         
       // child1.innerText = `Deck ${deck}:`;
       // child2.innerText = `${counterTwo} cards studied`;
       
       
-    });
-    if(counterTwo){
-      counterOne++
+    // });
+    // if(counterTwo){
+    //   counterOne++
      // let child1 = createElement("div", `Deck ${deck}:`, {});
-     let child1 = createElement("div", `${deck}`, {});
+    //  let child1 = createElement("div", `${deck}`, {});
 
       
 
-      let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
+    //   let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
 
      
 
-      if (counterOne === 1) {
+    //   if (counterOne === 1) {
    
     
-      }
-      else if (counterOne >= 2) {
+    //   }
+    //   else if (counterOne >= 2) {
 
 
-      }
+    //   }
 
-    }
+    // }
     
-  }
+  
 
 
-  if (counterOne === 0) {
-    cardsStudied.style.textAlign = "center";
-    cardsStudied.innerHTML = "No cards studied today";
-    cardsStudied.style.removeProperty("border");
-    cardsStudied.style.removeProperty("overflow");
-  }
 
-  if (counterOne <= 7) {
-    cardsStudied.style.removeProperty("border");
-    cardsStudied.style.removeProperty("overflow");
-  }
+  // if (counterOne === 0) {
+  //   cardsStudied.style.textAlign = "center";
+  //   cardsStudied.innerHTML = "No cards studied today";
+  //   cardsStudied.style.removeProperty("border");
+  //   cardsStudied.style.removeProperty("overflow");
+  // }
+
+  // if (counterOne <= 7) {
+  //   cardsStudied.style.removeProperty("border");
+  //   cardsStudied.style.removeProperty("overflow");
+  // }
 
 
 
