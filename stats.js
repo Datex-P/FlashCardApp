@@ -312,7 +312,7 @@ export default function stats() {
 
   
 
-  // let date = new Date();
+  let time = new Date();
 
   // console.log(date.getMonth()-3)
 
@@ -321,6 +321,8 @@ export default function stats() {
 
   //   all openTime.toDateString().getMonth()-2
   // }
+
+  if(openTime>time.setMonth(time.getMonth()-3))
 
 
 

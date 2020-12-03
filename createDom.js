@@ -188,7 +188,7 @@ export default function createDom(obj) {
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      }
+      },{ top: '0',left:'20px'}
       )
   
 

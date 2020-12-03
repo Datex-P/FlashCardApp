@@ -206,7 +206,7 @@ export default function questAnswerTrainOverv(item) {
   },
     () => {
       deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
-    })
+    },{ top: '-8px',left:'6px'})
 
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '86px'

@@ -83,7 +83,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler, pauseHandler) {
+  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStlyes={}) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -113,9 +113,15 @@ function threeDots() {
 
     let littleModalWindow = createElement(
       'div',
-      '', {},
+      '', littleModalWindowStlyes,
       'littleModalWindow flexColumn'
     )
+
+    // if(littleModalWindowStlyes){
+    //   for(let style in littleModalWindowStlyes){
+    //     littleModalWindow.style[style] = littleModalWindowStlyes[style]
+    //   }
+    // }
 
       // if (questAnswerTrain)
 

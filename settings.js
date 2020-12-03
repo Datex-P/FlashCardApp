@@ -244,15 +244,8 @@ changeNameofDeckInput3.type = 'number';
   let mainThreeDots = threeDots()
 
   resetCalendar.onclick = function () {
-   //((mainThreeDots(somepara)
-   let anchor = mainThreeDots(
-
-    () => {
-      deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
-    })
-
-    resetCalendar.append(anchor)
-
+ 
+      deleteCardQuestionBox(() => {alert('calendar is reseted')}, () => {}, 'reset calendar')
 
    }
    
