@@ -18,6 +18,8 @@ export default function createDom(obj) {
       transform: `rotate(${index * -2}deg)`
     }, 'newDeckContainer');
 
+    dataBase.DeckNames[item].colorPlay = colors[index % 5];
+    dataBase.DeckNames[item].deckPauseActive = false;
 
 
     let nameOfNewDeck = createElement("div", item, {
@@ -54,7 +56,7 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-    //console.log(dataBase.queue.item['Literature'])
+   
 
     let [toStudy, toReview] = ['To Study', `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
       return createElement('div', el, { backgroundColor: 'white' })
@@ -68,7 +70,6 @@ export default function createDom(obj) {
     let decksizeContainer = createElement('div', '', {
       border: '1px black solid',
     });
-
 
 
     let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].length}`, {
@@ -175,11 +176,17 @@ export default function createDom(obj) {
           container.replaceChild(playIcon, pauseIcon)
           window.onclick = ''
           edited = true;
-          newDeckContainer.style.border = '1px solid red'
+
+          newDeckContainer.style.backgroundColor = 'grey'
+          dataBase.DeckNames[item].deckPauseActive = true;
+
         }else {
           container.replaceChild(pauseIcon, playIcon)
           edited = false;
-          newDeckContainer.style.border = 'none'
+          newDeckContainer.style.border = 'none';
+          
+          newDeckContainer.style.backgroundColor =  dataBase.DeckNames[item].colorPlay;
+          dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
       }

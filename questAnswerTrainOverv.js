@@ -259,6 +259,44 @@ export default function questAnswerTrainOverv(item) {
   containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
 
 
+
+
+//   function myGeeks() { 
+
+//     let arr = [leftTimeValue, middleTimeValue, rightTimeValue];
+
+//     for (let i = 0; i<arr.length; i++) {
+//     //var str = "jhkj7682834"; 
+//     let str = arr[i].innerHTML;
+//     let matches = str.match(/(\d+)/); 
+//       console.log(str)
+//     if (matches) { 
+
+//       //let newKid =matches[0] + 'matches')
+
+//       let newKid = createElement('div', '', {});
+
+//       newKid.innerHTML = leftTimeValue.replace('')
+
+
+//       containerForTimeButtons.replaceChild(newKid, leftTimeValue)
+
+//      // dataBase.DeckNames[item].timeValues.push({i: matches[0]})
+      
+//       //console.log(matches[0])
+  
+//     } 
+//   }
+// } 
+
+// myGeeks()
+
+
+
+
+
+
+
   // console.log(leftTimeValue.innerText.split('<'))
 
   // var leftTimeasNum = leftTimeValue.innerText.match(/[a-z]+|[^a-z]+/gi);

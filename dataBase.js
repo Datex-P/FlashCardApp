@@ -3,11 +3,9 @@ export let dataBase = {
   queue: [],
   userStylePreferences:[],
   showDeleteFrame: true,
-  leftTimeValue : null,
-  middleTimeValue: null,
-  rightTimeValue : null,
   toStudyGoal: 0,
-  toReviewGoal: 0
+  toReviewGoal: 0,
+  timeValues: [{left: 2, middle: 5, right: 10}]
 
 };
 
@@ -15,9 +13,9 @@ export let dataBase = {
 
 
 
-for (let i = 0; i<7; i++){
+for (let i = 1; i<7; i++){
   let arr = [];
-  for (let i = 0; i<100; i++){
+  for (let i = 1; i<10; i++){
     arr.push({
       question: `question${i}`,
       answer: `answer${i}`

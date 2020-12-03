@@ -136,7 +136,7 @@ function threeDots() {
       })
     });
 
-    let [editIconText, trashIconText, pauseIconText, playIconText] = ['card', 'card', 'card'].map(el => {
+    let [editIconText, trashIconText, pauseIconText, playIconText] = ['card', 'card', 'card', 'card'].map(el => {
       return createElement('div', el, {
         width: 'fit-content',
         fontSize: '16px'
@@ -167,9 +167,7 @@ function threeDots() {
     let paused = false
     pauseIconContainer.onclick = function (event) {
       threeDotsOpen = true;
-      littleModalWindow.style.display = "none";
-
-      
+      littleModalWindow.style.display = "none";  
 
       paused = pauseHandler(pauseIconContainer, playIcon,pauseIcon, paused)
     };

@@ -107,6 +107,9 @@ export default function settings() {
 
     })
   );
+
+  //upperLeftZero.innerText = dataBase.timeValues.left;
+  //console.log(dataBase.timeValues.left)
     
   ["min", 'hrs', 'days'].map((el) => {
       let input = document.createElement("div");
@@ -130,6 +133,8 @@ export default function settings() {
       return input;
 
     })
+
+  
 
 
   changeRepetitionIntervalContainer.append(editContainerUpper)
