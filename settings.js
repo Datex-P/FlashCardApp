@@ -1,7 +1,8 @@
 
 import { edit, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
-//import {leftTimeValue, middleTimeValue, rightTimeValue} from './questAnswerTrainOverv.js'
+import { dataBase } from './dataBase.js';
+
 
 export default function settings() {
 
@@ -190,6 +191,15 @@ changeNameofDeckInput3.type = 'number';
   });
 
 
+  dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
+  dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
+
+
+  //console.log(typeof(studyInputUnchanged.innerText))
+
+  //console.log(Number(studyInputUnchanged.innerText))
+
+
 
   let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
     return createElement('div', el, { width: '69px', marginLeft: '9px' }, '')
@@ -326,7 +336,8 @@ changeNameofDeckInput3.type = 'number';
       reviewInputUnchanged.innerText =  reviewCardInput.value;
       studyInputUnchanged.innerText = studyCardInput.value;
 
-
+      // dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
+      // dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
 
 
       window.onclick = ''

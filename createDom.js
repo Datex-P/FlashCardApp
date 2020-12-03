@@ -54,9 +54,9 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-
+//console.log(dataBase.queue.item['Literature'])
  
-    let [toStudy, toReview] = ['To Study', `To Review: ${/*dataBase.queue.item[item] ||*/ 0}`].map(el=>{
+    let [toStudy, toReview] = ['To Study', `To Review: ${/*dataBase.queue.filter((obj) => obj.item === nameOfDeck.innerText).length|| */0}`].map(el=>{
       return createElement('div', el, {backgroundColor: 'white'})
     });
 
@@ -170,7 +170,10 @@ export default function createDom(obj) {
   ()=>{
     deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)}, 'deck')
 
-  })
+  }
+  
+ // ,()=>{pauseHandler(()=>{})}
+  )
 
   threeDotsContainer.style.position = 'absolute'
 

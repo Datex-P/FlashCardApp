@@ -197,6 +197,17 @@ export default function questAnswerTrainOverv(item) {
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
+
+
+    threeDotsContainer.style.position = 'absolute'
+
+  threeDotsContainer.style.top = '10px'
+  threeDotsContainer.style.right = '300px'
+
+
+
+
+
   },
   ()=>{
     deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => questAnswerTrainOverv(item), 'card')
@@ -252,7 +263,16 @@ export default function questAnswerTrainOverv(item) {
 
   containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
 
+
+  console.log(leftTimeValue.innerText.split('<'))
   
+  var leftTimeasNum = leftTimeValue.innerText.match(/[a-z]+|[^a-z]+/gi);
+
+
+
+ 
+
+
 
 
 
@@ -371,9 +391,6 @@ export default function questAnswerTrainOverv(item) {
 
   
 }
-
-//export {leftTimeValue, middleTimeValue, rightTimeValue}
-
 
 
 

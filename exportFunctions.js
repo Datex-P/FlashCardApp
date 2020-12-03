@@ -154,6 +154,7 @@ function threeDots() {
         e.stopPropagation()
         threeDotsOpen = false;
         deleteHandler()
+        littleModalWindow.style.display = "none";
 
       } else {
         e.stopPropagation()
@@ -162,10 +163,7 @@ function threeDots() {
       }
     };
 
-    // pauseIconContainer.onclick = function(event) {
 
-
-    // }
 
     pauseIconContainer.onclick = function (event) {
       threeDotsOpen = true;
@@ -180,11 +178,6 @@ function threeDots() {
           }
       },littleModalWindow)
     };
-
-
-
-
-
 
 
 
@@ -267,15 +260,6 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
   let doYouWantToDelete = createElement('div', `Do you want to delete this ${header}?`, {}, 'doYouWantToDelete');
 
-// if (mainscreen) {
-
-//   doYouWantToDelete.innerHTML = 'Do you want to delete this card?'
-
-// }
-// else {
-//   doYouWantToDelete.innerHTML = 'Do you want to delete this deck?'
-   
-// }
 
 
 let [questionMark1, questionMark2, questionMark3] = [questionMark, questionMark, questionMark].map(el=>{

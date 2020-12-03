@@ -2,7 +2,13 @@ export let dataBase = {
   DeckNames: {},
   queue: [],
   userStylePreferences:[],
-  showDeleteFrame: true
+  showDeleteFrame: true,
+  leftTimeValue : null,
+  middleTimeValue: null,
+  rightTimeValue : null,
+  toStudyGoal: 0,
+  toReviewGoal: 0
+
 };
 
 
