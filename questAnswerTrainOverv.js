@@ -199,13 +199,10 @@ export default function questAnswerTrainOverv(item) {
     mainWindow.removeChild(showAnswerButtonContainer);
 
 
-    threeDotsContainer.style.position = 'absolute'
+  //   threeDotsContainer.style.position = 'absolute'
 
-  threeDotsContainer.style.top = '10px'
-  threeDotsContainer.style.right = '300px'
-
-
-
+  // threeDotsContainer.style.top = '10px'
+  // threeDotsContainer.style.right = '300px'
 
 
   },
@@ -216,11 +213,8 @@ export default function questAnswerTrainOverv(item) {
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '2px'
   anchorThreeDots.style.top = '10px'
- // littleModalWindow.style.position = 'absolute'
 
 
-
-   //mainWindow.append(anchorThreeDots)
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
   let [question, answer, index] = shuffleLogic()
@@ -264,9 +258,9 @@ export default function questAnswerTrainOverv(item) {
   containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
 
 
-  console.log(leftTimeValue.innerText.split('<'))
+  // console.log(leftTimeValue.innerText.split('<'))
   
-  var leftTimeasNum = leftTimeValue.innerText.match(/[a-z]+|[^a-z]+/gi);
+  // var leftTimeasNum = leftTimeValue.innerText.match(/[a-z]+|[^a-z]+/gi);
 
 
 
@@ -274,10 +268,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
-
-
-  //only count time when window is opened
 
   //let randomNum = Math.floor(Math.random() * 10 + 4); //good
   //let randomNum = Math.floor(Math.random() * 4 +2.1); //easy
