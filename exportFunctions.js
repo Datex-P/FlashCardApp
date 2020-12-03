@@ -66,7 +66,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
       if (mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) ||
         (questionFieldTextArea && questionFieldTextArea.contains(e.target)) || (answerFieldTextArea && answerFieldTextArea.contains(e.target))) {
         //alert("Clicked in Box");
-        window.onclick = ''         
+        window.onclick = ''
       } else {
         //alert("Clicked outside Box");
         target.classList.add('blinkingIcon');
@@ -116,15 +116,15 @@ function threeDots() {
       '', {},
       'littleModalWindow flexColumn'
     )
-    let threeDotsContainer = createElement('div', '', {position:'relative',width:'fit-content'},'')
-    
-    
+    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content' }, '')
+
+
     let [trashIconContainer, editIconContainer, pauseIconContainer] = ['', '', ''].map(el => {
       return createElement('div', '', {
-   
+
       }, 'flexCenterAlignCenter trashIconContainer')
     });
-    
+
 
     threeDotsContainer.append(settingsIconContainer, littleModalWindow);
     littleModalWindow.append(editIconContainer, pauseIconContainer, trashIconContainer);
@@ -164,19 +164,14 @@ function threeDots() {
     };
 
 
-
+    let paused = false
     pauseIconContainer.onclick = function (event) {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";
 
+      
 
-
-      pauseHandler(event, pauseIconContainer, pauseIcon, playIcon,(event)=>{
-          if (!littleModalWindow.contains(event.target)) {
-            littleModalWindow.style.display = 'none';
-            window.onclick = ''
-          }
-      },littleModalWindow)
+      paused = pauseHandler(pauseIconContainer, playIcon,pauseIcon, paused)
     };
 
 
@@ -187,12 +182,12 @@ function threeDots() {
 
 
 
-      editHandler(event, editIconContainer, editIcon, saveIcon,(event)=>{
-          if (!littleModalWindow.contains(event.target)) {
-            littleModalWindow.style.display = 'none';
-            window.onclick = ''
-          }
-      },littleModalWindow)
+      editHandler(event, editIconContainer, editIcon, saveIcon, (event) => {
+        if (!littleModalWindow.contains(event.target)) {
+          littleModalWindow.style.display = 'none';
+          window.onclick = ''
+        }
+      }, littleModalWindow)
     };
 
     return threeDotsContainer
@@ -233,7 +228,7 @@ function deleteCardQuestionBox(remove, refresh, header) {
     remove()
     refresh(dataBase.DeckNames)
     anchorElement.removeChild(deleteContainerFrame)
-    
+
 
   }
 
@@ -263,18 +258,18 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
 
 
-let [questionMark1, questionMark2, questionMark3] = [questionMark, questionMark, questionMark].map(el=>{
-  return createElement('div', el, {position: 'absolute'})
-})
+  let [questionMark1, questionMark2, questionMark3] = [questionMark, questionMark, questionMark].map(el => {
+    return createElement('div', el, { position: 'absolute' })
+  })
 
-questionMark1.style.top = '-34px';
-questionMark1.style.right = '-36px';
+  questionMark1.style.top = '-34px';
+  questionMark1.style.right = '-36px';
 
-questionMark2.style.top = '-24px';
-questionMark2.style.right = '-20px';
+  questionMark2.style.top = '-24px';
+  questionMark2.style.right = '-20px';
 
-questionMark3.style.top = '-68px';
-questionMark3.style.right = '-20px';
+  questionMark3.style.top = '-68px';
+  questionMark3.style.right = '-20px';
 
 
 

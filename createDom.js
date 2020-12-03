@@ -1,7 +1,7 @@
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
-import {createElement, deleteCardQuestionBox, threeDots} from './exportFunctions.js'
+import { createElement, deleteCardQuestionBox, threeDots } from './exportFunctions.js'
 
 
 export default function createDom(obj) {
@@ -54,14 +54,14 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-//console.log(dataBase.queue.item['Literature'])
- 
-    let [toStudy, toReview] = ['To Study', `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el=>{
-      return createElement('div', el, {backgroundColor: 'white'})
+    //console.log(dataBase.queue.item['Literature'])
+
+    let [toStudy, toReview] = ['To Study', `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
+      return createElement('div', el, { backgroundColor: 'white' })
     });
 
-    let [toStudyContainer, toReviewContainer] = ['', ''].map(el=>{
-      return createElement('div', el, {border: '1px black solid'})
+    let [toStudyContainer, toReviewContainer] = ['', ''].map(el => {
+      return createElement('div', el, { border: '1px black solid' })
     });
 
 
@@ -75,7 +75,7 @@ export default function createDom(obj) {
       backgroundColor: 'white'
     });
 
-      for (let i = 0; i<8; i++) {
+    for (let i = 0; i < 8; i++) {
 
       let whiteLines = createElement('div', '', {}, 'whiteLines');
 
@@ -84,7 +84,7 @@ export default function createDom(obj) {
 
 
     // trashIconContainer.onclick = () => {
-     
+
 
     //   deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)})
 
@@ -97,7 +97,7 @@ export default function createDom(obj) {
     //   //   arrowDown.style.display = "block";
     //   //   document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
 
-      
+
     // };
 
     let changeNameofDeckInput = createElement('input', '', {
@@ -124,37 +124,37 @@ export default function createDom(obj) {
     }
 
 
-  
+
 
     let edited = false;
-  
+
     let mainThreeDots = threeDots()
 
-  let threeDotsContainer = mainThreeDots((event,editIconContainer,editIcon,saveIcon,
-    outsideClickClosehandler,littleModalWindow)=>{
+    let threeDotsContainer = mainThreeDots((event, editIconContainer, editIcon, saveIcon,
+      outsideClickClosehandler, littleModalWindow) => {
       event.stopPropagation()
 
-      
+
 
       if (!edited) {
- 
-        window.addEventListener('click', ()=>clickOutsideHandle(saveIcon))
-        
-       // pauseIconContainer.replaceChild(playIcon, pauseIcon)
+
+        window.addEventListener('click', () => clickOutsideHandle(saveIcon))
+
+        // pauseIconContainer.replaceChild(playIcon, pauseIcon)
 
         editIconContainer.replaceChild(saveIcon, editIcon)
         newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
         changeNameofDeckInput.value = nameOfNewDeck.innerText;
         edited = true;
-       window.onclick = ''
+        window.onclick = ''
         littleModalWindow.style.display = 'block'
         console.log('click like a edit')
- 
+
       } else {
 
-        editIconContainer.replaceChild(editIcon ,saveIcon)
+        editIconContainer.replaceChild(editIcon, saveIcon)
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-  
+
 
 
         edited = false;
@@ -162,36 +162,36 @@ export default function createDom(obj) {
         setTimeout(function () {
           window.onclick = outsideClickClosehandler
         }, 10);
-        
+
       }
-  },
-  ()=>{
-    deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},createDom, 'deck')
+    },
+      () => {
+        deleteCardQuestionBox(() => { delete dataBase.DeckNames[item] }, createDom, 'deck')
 
-  }
-  
- ,()=>{
+      }
 
-  if (!edited) {
-  pauseIconContainer.replaceChild(playIcon, pauseIcon)
-  window.onclick = ''
-  edited = true;
-  }
-  else {
+      ,(container,playIcon,pauseIcon,edited) => {
+        if (!edited) {
+          container.replaceChild(playIcon, pauseIcon)
+          window.onclick = ''
+          edited = true;
+          newDeckContainer.style.border = '1px solid red'
+        }else {
+          container.replaceChild(pauseIcon, playIcon)
+          edited = false;
+          newDeckContainer.style.border = 'none'
+        }
+        return edited
+      }
+    )
 
-    pauseIconContainer.replaceChild(pauseIcon, playIcon)
-    edited = false;
-    item.style.backgroundColor = 'blue'
-  }
-})
 
-  
 
-  threeDotsContainer.style.position = 'absolute'
+    threeDotsContainer.style.position = 'absolute'
 
-  threeDotsContainer.style.top = '10px'
-  threeDotsContainer.style.right = '30px'
-   
+    threeDotsContainer.style.top = '10px'
+    threeDotsContainer.style.right = '30px'
+
 
     let plusIcon = createElement('div', '+', {
       color: 'white', cursor: 'pointer'
@@ -202,7 +202,7 @@ export default function createDom(obj) {
       cursor: 'pointer'
     }, 'orangeCircle');
 
-     if (index ===  arr.length-1) {
+    if (index === arr.length - 1) {
       addToDeckIcon.style.display = 'flex';
       newDeckContainer.style.zIndex = 2
       newDeckContainer.style.transform = 'rotate(0deg)'
@@ -234,12 +234,12 @@ export default function createDom(obj) {
     let index = Math.floor(event.target.scrollTop / step)
     // index = (index > arr.length-1) ? arr.length-1 : index
 
-    
+
     Array.from(all).reverse().forEach((item, index) => {
       item.style.zIndex = 0
-  
+
       item.querySelector('.orangeCircle').style.display = 'none'
-      item.style.transform = `rotate(${(index * -2)||-2}deg)`;
+      item.style.transform = `rotate(${(index * -2) || -2}deg)`;
     })
     all[index].style.zIndex = 2;
     all[index].style.transform = 'rotate(0deg)';
