@@ -312,24 +312,34 @@ export default function stats() {
 
   
 
-  let time = new Date();
+  let timeToday = new Date();
+  let cardsOpenLastThree = 0;
+  let cardsOpenLastTwelve = 0;
+  let cardsOpenLastOne = 0;
 
-  // console.log(date.getMonth()-3)
+ for (let deck in dataBase.DeckNames) {
+ 
+  dataBase.DeckNames[deck].forEach( (card) => {
 
+    card.openHistory && card.openHistory.forEach((openTime) => {
 
-  // if (date.getMonth() >= 3) {
+      if(openTime>timeToday.setMonth(timeToday.getMonth() - 3)) {
+        cardsOpenLastThree++;
+      }       
+      else if(openTime>timeToday.setMonth(timeToday.getMonth() - 1)) {
 
-  //   all openTime.toDateString().getMonth()-2
-  // }
+        cardsOpenLastOne++;
+      }  
+      else if (openTime>timeToday.setMonth(timeToday.getMonth() - 12)) {
 
-  if(openTime>time.setMonth(time.getMonth()-3))
+        cardsOpenLastTwelve++;
+      }
+  }
+  )
+ }
+  )
 
-
-
-
-
-
-
+ }
 
   //let counterOne = 0
   // for (let deck in dataBase.DeckNames) {

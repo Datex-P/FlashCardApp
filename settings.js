@@ -2,6 +2,7 @@
 import { edit, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
+//import {agai, goo, eas} from './questAnswerTrainOverv.js';
 
 
 export default function settings() {
@@ -141,7 +142,7 @@ export default function settings() {
 
   changeRepetitionIntervalContainer.append(editContainerUpper)
 
-  let [again, good, easy] = ["again", "good", "easy"].map((el) => {
+  let [again, good, easy] = [`${agai}`, `${goo}`, `${eas}`].map((el) => {
     let input = createElement('div', el, {
       width: '68px',
       height: '27px',

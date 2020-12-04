@@ -44,7 +44,7 @@ function generateTextarea(inner, style = {}) {
 export default function questAnswerTrainOverv(item) {
   console.log(item)
   let decrementTimer = setInterval(() => {
-    dataBase.queue.forEach((card, index) => {
+    dataBase.queue.forEach((item, index) => {
       if (dataBase.queue[index].timeLeft >= 1000) {
         dataBase.queue[index].timeLeft -= 1000
       } else {
@@ -106,7 +106,7 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-  // startTimer(item, index);
+ // startTimer(item, index);
 
 
 
@@ -289,10 +289,14 @@ export default function questAnswerTrainOverv(item) {
     })
   }
 
+  let agai = 'hi';
+  let goo = 'how';
+  let eas = 'going';
+
 
 
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-  ["again", "good", "easy"].forEach((el) => {
+  [`${agai}`, `${goo}`, `${eas}`].forEach((el) => {
 
     let button = createElement(
       "button",
@@ -304,13 +308,13 @@ export default function questAnswerTrainOverv(item) {
 
     button.addEventListener('click', function () {
       let randomNum = 0
-      if (el === 'again') {
+      if (el === `${agai}`) {
         randomNum = Math.floor(Math.random() * 10);
       }
-      if (el == 'good') {
+      if (el === `${goo}`) {
         randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
       }
-      if (el === 'easy') {
+      if (el === `${eas}`) {
         randomNum = (Math.floor(Math.random() * 3000));
       };
       dataBaseQueue(randomNum, item)
@@ -364,6 +368,7 @@ export default function questAnswerTrainOverv(item) {
 
 }
 
+//export {agai, goo, eas}
 
 
 

@@ -60,17 +60,18 @@ export default function createNewDeck() {
       'generalButtonStyling'
     )
 
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
       // Array.from(all).reverse()[selectedIndex].style.zIndex = 2;
       // Array.from(all).reverse()[selectedIndex].querySelector('.threeDotsIcon').style.opacity = 1;
       // Array.from(all).reverse()[selectedIndex].style.transform = 'rotate(0deg)';
       // Array.from(all).reverse()[selectedIndex].querySelector('.orangeCircle').style.display = 'flex'
 
-      document.querySelector('#listOfDecks').style.display= 'block'
+      //document.querySelector('#listOfDecks').style.display= 'block'
 
       if (el === 'Cancel') {
         mainWindow.style.display = 'none';
         anchorElement.style.display = 'none';
+        document.querySelector('#listOfDecks').style.display= 'block'
 
 
         // if (!Object.keys(dataBase.DeckNames).length) {
@@ -81,11 +82,23 @@ export default function createNewDeck() {
 
       } else if (el === 'Ok') {
         if (Object.keys(dataBase.DeckNames).includes(inputField.value)) {
+          
+          //event.stopPropagation();
           alert('Name of Deck already exists')
           inputField.value = ''
+
+
+          //document.querySelector('#listOfDecks').style.display= 'block'
+
         } else if (!inputField.value) {
           alert('Input needed')
+
+
+
         } else {
+
+          document.querySelector('#listOfDecks').style.display= 'block'
+
           dataBase.DeckNames[inputField.value] = [];
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
