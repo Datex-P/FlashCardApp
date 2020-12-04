@@ -5,7 +5,9 @@ export let dataBase = {
   showDeleteFrame: true,
   toStudyGoal: 0,
   toReviewGoal: 0,
-  timeValues: { left: 2, middle: 5, right: 10 }
+  timeValues: { left: 2, middle: 5, right: 10 },
+  nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
+  studyTime : 0
 
 };
 

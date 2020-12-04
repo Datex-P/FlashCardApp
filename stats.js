@@ -101,10 +101,7 @@ export default function stats() {
       let { value } = event.target;
       console.log(value);
     };
-    // radioBtn.onmouseover = function (event){
-    //   let {name,checked, value} = event.target
-    //   console.log(name,checked, value)
-    // }
+ 
     radioButtonContainer.append(radioBtn, label);
   });
 

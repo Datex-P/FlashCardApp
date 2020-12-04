@@ -55,6 +55,15 @@ export default function questAnswerTrainOverv(item) {
 
   }, 1000)
 
+let incrementTimer = setInterval(() =>{
+
+dataBase.studyTime += 1
+
+}, 1000)
+
+
+
+
 
   function shuffleLogic() {
     let [question, answer, index] = shuffle(item);
@@ -98,6 +107,7 @@ export default function questAnswerTrainOverv(item) {
     anchorElement.style.display = "none";
     clearInterval(timer); //not implemented yet
     clearInterval(decrementTimer);
+    clearInterval(incrementTimer)
   }
   redCross.onclick = close
 
@@ -204,9 +214,50 @@ export default function questAnswerTrainOverv(item) {
 
 
   },
+    // () => {
+    //   deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
+    // },{ top: '-8px',left:'6px'})
     () => {
-      deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
-    },{ top: '-8px',left:'6px'})
+        deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
+      },
+      (container,playIcon,pauseIcon,edited) => {
+        if (!edited) {
+          container.replaceChild(playIcon, pauseIcon)
+          window.onclick = ''
+          edited = true;
+
+          newDeckContainer.style.backgroundColor = 'grey'
+          dataBase.DeckNames[item].deckPauseActive = true;
+
+        }else {
+          container.replaceChild(pauseIcon, playIcon)
+          edited = false;
+          newDeckContainer.style.border = 'none';
+          
+          newDeckContainer.style.backgroundColor =  dataBase.DeckNames[item].colorPlay;
+          dataBase.DeckNames[item].deckPauseActive = false;
+        }
+        return edited
+      },{ top: '500',left:'20px'}
+      )
+      
+      
+      
+      
+      // { top: '-8px',left:'6px'})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '86px'
@@ -251,7 +302,8 @@ export default function questAnswerTrainOverv(item) {
 
   let [leftTimeValue, middleTimeValue, rightTimeValue] = [`${left}min`, `${middle}hrs`, `${right}days`].map(el => {
     return createElement('div', `< ${el}`, {
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      fontSize: '14px'
     });
     containerForTimeButtons.append(btn);
     btn.title = `if you click here app will show you the same card in less than ${el} min`
@@ -289,14 +341,12 @@ export default function questAnswerTrainOverv(item) {
     })
   }
 
-  let agai = 'hi';
-  let goo = 'how';
-  let eas = 'going';
+  let {leftName,middleName,rightName} = dataBase.nameValues
 
 
 
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-  [`${agai}`, `${goo}`, `${eas}`].forEach((el) => {
+  [`${leftName}`, `${middleName}`, `${rightName}`].forEach((el) => {
 
     let button = createElement(
       "button",
@@ -308,13 +358,13 @@ export default function questAnswerTrainOverv(item) {
 
     button.addEventListener('click', function () {
       let randomNum = 0
-      if (el === `${agai}`) {
+      if (el === `${leftName}`) {
         randomNum = Math.floor(Math.random() * 10);
       }
-      if (el === `${goo}`) {
+      if (el === `${middleName}`) {
         randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
       }
-      if (el === `${eas}`) {
+      if (el === `${rightName}`) {
         randomNum = (Math.floor(Math.random() * 3000));
       };
       dataBaseQueue(randomNum, item)
@@ -368,7 +418,7 @@ export default function questAnswerTrainOverv(item) {
 
 }
 
-//export {agai, goo, eas}
+
 
 
 

@@ -2,7 +2,7 @@
 import { edit, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
-//import {agai, goo, eas} from './questAnswerTrainOverv.js';
+
 
 
 export default function settings() {
@@ -142,7 +142,12 @@ export default function settings() {
 
   changeRepetitionIntervalContainer.append(editContainerUpper)
 
-  let [again, good, easy] = [`${agai}`, `${goo}`, `${eas}`].map((el) => {
+
+  let {leftName,middleName,rightName} = dataBase.nameValues
+
+
+
+  let [again, good, easy] = [`${leftName}`, `${middleName}`, `${rightName}`].map((el) => {
     let input = createElement('div', el, {
       width: '68px',
       height: '27px',
@@ -246,7 +251,7 @@ changeNameofDeckInput3.type = 'number';
 
   resetCalendar.onclick = function () {
  
-      deleteCardQuestionBox(() => {alert('calendar is reseted')}, () => {}, 'reset calendar')
+      deleteCardQuestionBox(() => {alert('calendar is reseted')}, () => {}, 'Reset calendar', 'reset the calendar')
 
    }
    
@@ -256,7 +261,7 @@ changeNameofDeckInput3.type = 'number';
   
 
   resetHourlyBreakdown.onclick = function () {
-    //mainThreeDots(somepara)
+    deleteCardQuestionBox(() => {alert('Hourly breakdown is reseted')}, () => {}, 'Reset Breakdown', 'reset the hourly breakdown')
   }
 
 
@@ -323,6 +328,11 @@ changeNameofDeckInput3.type = 'number';
       again.innerText = changeNameofDeckInput4.value;
       good.innerText = changeNameofDeckInput5.value;
       easy.innerText = changeNameofDeckInput6.value;
+
+      dataBase.nameValues.leftName = again.innerText;
+      dataBase.nameValues.middleName = good.innerText;
+      dataBase.nameValues.rightName = easy.innerText
+
     }
   }
 
@@ -395,7 +405,7 @@ changeNameofDeckInput3.type = 'number';
         div: upperRightZero,
         smaller: upperRightSmaller
       },
-    ].forEach(item => {
+    ].forEach( (item,idx) => {
 
        if (!cond) {
 
@@ -410,10 +420,20 @@ changeNameofDeckInput3.type = 'number';
         item.div.innerText = item.input.value 
         item.smaller.style.display = 'block'
         editContainerUpper.innerHTML = edit;
-      }
-    })
 
-  
+        if (idx === 0) {
+
+        dataBase.timeValues.left = Number(item.div.innerText)
+      }
+        else if (idx === 1) {
+        dataBase.timeValues.middle = Number(item.div.innerText)
+        }
+        else if (idx === 2) {
+        dataBase.timeValues.right = Number(item.div.innerText)
+      }
+    }
+  }
+    )
   }
 
   editContainerUpper.onclick = function () {

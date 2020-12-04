@@ -20,7 +20,7 @@
     } 
     
     .pie {
-      transition: all 1s;
+      transition: all 0.4s;
       position: absolute;
       width: 150px;
       height: 150px;
@@ -128,12 +128,13 @@
         pie.style.transform = `rotate(${point*i.size}deg)`;
         hold.style.transform = `rotate(${rotate}deg)`;
         let rotatePos = hold.style.transform
-        hold.onmouseenter = function(){
-          
-          this.style.transform = `${rotatePos} scale(1.5)`;
+        pie.onmouseenter = function(e){
+          hold.style.cursor = 'pointer'
+          hold.style.transform = `${rotatePos} scale(1.2)`;
+          document.getElementsByClassName('content')[0].innerHTML =  e.target
         }
-        hold.onmouseleave = function(){
-          this.style.transform = rotatePos;
+        pie.onmouseleave = function(){
+          hold.style.transform = rotatePos;
         }
         rotate+=point*i.size;
         pie.style.backgroundColor = i.color;

@@ -166,7 +166,7 @@ export default function createDom(obj) {
       }
     },
       () => {
-        deleteCardQuestionBox(() => { delete dataBase.DeckNames[item] }, createDom, 'deck')
+        deleteCardQuestionBox(() => { delete dataBase.DeckNames[item] }, createDom, 'Delete deck', 'delete this deck')
 
       }
 

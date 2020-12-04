@@ -216,7 +216,7 @@ function setThreeDotsOpen(cond) {
   threeDotsOpen = cond
 }
 
-function deleteCardQuestionBox(remove, refresh, header) {
+function deleteCardQuestionBox(remove, refresh, header, body) {
   let anchorElement = document.getElementById("mainMenu");
   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
@@ -248,7 +248,7 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
   let deleteHeader = createElement('div', '', {}, 'deleteHeader')
 
-  let messageDeleteCard = createElement('div', `Delete ${header}`, {}, 'flexCenterAlignCenter messageDeleteCard')
+  let messageDeleteCard = createElement('div', `${header}`, {marginLeft: '10px'}, 'flexCenterAlignCenter messageDeleteCard')
 
   let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
   let dontShowMessageAgainContainer = createElement('div', '', {}, 'flexCenter');
@@ -270,7 +270,7 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
 
 
-  let doYouWantToDelete = createElement('div', `Do you want to delete this ${header}?`, {}, 'doYouWantToDelete');
+  let doYouWantToDelete = createElement('div', `Do you want to ${body}?`, {}, 'doYouWantToDelete');
 
 
 
@@ -286,7 +286,6 @@ function deleteCardQuestionBox(remove, refresh, header) {
 
   questionMark3.style.top = '-68px';
   questionMark3.style.right = '-20px';
-
 
 
 

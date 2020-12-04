@@ -8,9 +8,6 @@ import {createElement} from './exportFunctions.js'
 export default function createNewDeck() {
   document.querySelector('#listOfDecks').style.display= 'none'
  
-    
-
-
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
   anchorElement.style.display = 'flex'
@@ -60,13 +57,11 @@ export default function createNewDeck() {
       'generalButtonStyling'
     )
 
-    button.addEventListener('click', function (event) {
+    button.addEventListener('click', function () {
       // Array.from(all).reverse()[selectedIndex].style.zIndex = 2;
       // Array.from(all).reverse()[selectedIndex].querySelector('.threeDotsIcon').style.opacity = 1;
       // Array.from(all).reverse()[selectedIndex].style.transform = 'rotate(0deg)';
       // Array.from(all).reverse()[selectedIndex].querySelector('.orangeCircle').style.display = 'flex'
-
-      //document.querySelector('#listOfDecks').style.display= 'block'
 
       if (el === 'Cancel') {
         mainWindow.style.display = 'none';
@@ -81,14 +76,11 @@ export default function createNewDeck() {
         //   //       }
 
       } else if (el === 'Ok') {
+
         if (Object.keys(dataBase.DeckNames).includes(inputField.value)) {
           
-          //event.stopPropagation();
           alert('Name of Deck already exists')
           inputField.value = ''
-
-
-          //document.querySelector('#listOfDecks').style.display= 'block'
 
         } else if (!inputField.value) {
           alert('Input needed')
