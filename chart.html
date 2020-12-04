@@ -95,6 +95,9 @@
     let rotate = 0;
     let point = 360/(arr.reduce((acc, cur) =>acc + cur.size,0))
     let half = (arr.reduce((acc, cur) =>acc + cur.size,0))/2
+
+    let firstHold = null;
+
     arr.forEach((i,k)=>{
 
  
@@ -105,6 +108,11 @@
       pieContainer.appendChild(hold)
       hold.appendChild(pie)
       
+
+      if (k === 0 ) {
+        firstHold = hold;
+      }
+
       if(i.size >  half){
         let littlePiece = i.size - half
 
@@ -124,22 +132,30 @@
         rotate+=point*littlePiece;
         littlepie.style.backgroundColor = i.color;
 
+
       }else{
         pie.style.transform = `rotate(${point*i.size}deg)`;
         hold.style.transform = `rotate(${rotate}deg)`;
         let rotatePos = hold.style.transform
-        pie.onmouseenter = function(e){
+        pie.onmouseenter = function(){
+
+          if (k !== 1) {
+          
+          firstHold.style.zIndex = 3
+          }
           hold.style.cursor = 'pointer'
           hold.style.transform = `${rotatePos} scale(1.2)`;
-          document.getElementsByClassName('content')[0].innerHTML =  e.target
+          document.getElementsByClassName('content')[0].innerHTML =  i.size
         }
         pie.onmouseleave = function(){
           hold.style.transform = rotatePos;
+          firstHold.style.zIndex = 0;
         }
         rotate+=point*i.size;
         pie.style.backgroundColor = i.color;
       }
       
+
     })
 
 
