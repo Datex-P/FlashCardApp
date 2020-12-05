@@ -17,7 +17,7 @@ export default function settings() {
 
 
   let settingsAndRedCrossContainer = createElement(
-    'div', '', { width: "265px", marginBottom: '20px', height: '24px' }, 'flexSpaceBetween'
+    'div', '', { width: "265px", marginBottom: '20px', height: '24px' }, 'flexSpaceBetweenAlignCenter'
   );
 
   let changeTimeIntervall = createElement(

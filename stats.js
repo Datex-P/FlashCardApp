@@ -18,7 +18,7 @@ export default function stats() {
      overflow: "scroll", overflowX: "hidden"});
 
   let redCrossAndStatsContainer = createElement(
-    "div", "", {},"flexSpaceBetween redCrossAndStatsContainer"
+    "div", "", {},"flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
   );
 
   let theWordStats = createElement("div", "Stats", { fontWeight: "bold" });
@@ -66,10 +66,6 @@ export default function stats() {
 
   buttonLeft.style.marginRight = "5px";
   buttonRight.style.marginLeft = "5px";
-
-  let [studyInput, reviewInput] = ["10", "11"].map((el) => {
-    return createElement("div", el, { width: "50px" }, "flexCenterAlignCenter");
-  });
 
 
   let yearBoxContainer = createElement("div", "", {}, 'yearBoxContainer'
@@ -266,6 +262,7 @@ export default function stats() {
         ) {
           day.style.backgroundColor = "red";
           day.style.cursor = "pointer";
+          day.title = 'Click to see the study stats of this date'
 
           day.onclick = function (event) {
             event.stopPropagation();
@@ -273,14 +270,20 @@ export default function stats() {
               .querySelectorAll(".day")
               .forEach((day) => (day.innerHTML = ""));
             let dayInner = document.createElement("div");
-            let time = Math.round(
-              Object.values(dataBase.studyTime).reduce(
-                (acc, cur) => acc + cur
-              ) / 60
-            );
+            // let time = Math.round(
+            //   Object.values(dataBase.studyTime).reduce(
+            //     (acc, cur) => acc + cur, 0
+            //   ) / 60
+            // );
+
+
+            //let time = Math.round(dataBase.studyTime/60)
+
+            
+           // counter === 1 ? `${review}` =  'Review' :  `${review}` =  'Reviews';
             dayInner.innerText = `${date} Time: ${time
               .toString()
-              .padStart(3, "⠀")} min \n Review: ${counter} cards`;
+              .padStart(5, "⠀")} min \n  Reviews: ${counter} cards`; /*${review}*/
             console.log(counter);
             day.append(dayInner);
           };
@@ -320,10 +323,10 @@ export default function stats() {
 
     card.openHistory && card.openHistory.forEach((openTime) => {
 
-      if(openTime>timeToday.setMonth(timeToday.getMonth() - 3)) {
+      if(openTime>timeToday.setMonth(timeToday.getMonth() - 1)) {
         cardsOpenLastThree++;
       }       
-      else if(openTime>timeToday.setMonth(timeToday.getMonth() - 1)) {
+      else if(openTime>timeToday.setMonth(timeToday.getMonth() - 3)) {
 
         cardsOpenLastOne++;
       }  
@@ -337,6 +340,35 @@ export default function stats() {
   )
 
  }
+
+
+  theWordTodayContainer.append(theWordToday, cardsStudied);
+
+
+  todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
+  rightAndLeftButtonContainer.append(buttonLeft, year, buttonRight);
+
+  theWordCalendarContainer.append(theWordCalendar, rightAndLeftButtonContainer, yearBoxContainer);
+
+  hourlyBreakdownContainer.append(theWordhourlyBreakdown, radioButtonContainer, diagramHourlyBreakDownContainer);
+
+  redCrossAndStatsContainer.append(theWordStats, redCross);
+
+  innerWindow.append(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
+
+  mainWindow.append(innerWindow);
+  anchorElement.appendChild(mainWindow);
+
+
+  handleOutsideClick(mainWindow);
+  redCross.onclick = () => close(mainWindow, anchorElement)
+
+  closeMenu();
+}
+
+
+
+
 
   //let counterOne = 0
   // for (let deck in dataBase.DeckNames) {
@@ -424,27 +456,3 @@ export default function stats() {
   // };
 
   /*<----*/
-
-  theWordTodayContainer.append(theWordToday, cardsStudied);
-
-
-  todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
-  rightAndLeftButtonContainer.append(buttonLeft, year, buttonRight);
-
-  theWordCalendarContainer.append(theWordCalendar, rightAndLeftButtonContainer, yearBoxContainer);
-
-  hourlyBreakdownContainer.append(theWordhourlyBreakdown, radioButtonContainer, diagramHourlyBreakDownContainer);
-
-  redCrossAndStatsContainer.append(theWordStats, redCross);
-
-  innerWindow.append(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
-
-  mainWindow.append(innerWindow);
-  anchorElement.appendChild(mainWindow);
-
-
-  handleOutsideClick(mainWindow);
-  redCross.onclick = () => close(mainWindow, anchorElement)
-
-  closeMenu();
-}
