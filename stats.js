@@ -244,7 +244,7 @@ export default function stats() {
       let date = thisYear.toDateString();
 
       for (let deck in dataBase.DeckNames) {
-        dataBase.DeckNames[deck].forEach((card) => {
+        dataBase.DeckNames[deck].data.forEach((card) => {
           card.openHistory &&
             card.openHistory.forEach((openTime) => {
               if (date === openTime.toDateString()) {
@@ -256,7 +256,7 @@ export default function stats() {
 
       for (let deck in dataBase.DeckNames) {
         if (
-          dataBase.DeckNames[deck].find(
+          dataBase.DeckNames[deck].data.find(
             (item) => new Date(item.openHistory).toDateString() == date
           )
         ) {
@@ -319,16 +319,16 @@ export default function stats() {
 
  for (let deck in dataBase.DeckNames) {
  
-  dataBase.DeckNames[deck].forEach( (card) => {
+  dataBase.DeckNames[deck].data.forEach( (card) => {
 
     card.openHistory && card.openHistory.forEach((openTime) => {
 
       if(openTime>timeToday.setMonth(timeToday.getMonth() - 1)) {
-        cardsOpenLastThree++;
+        cardsOpenLastOne++;
       }       
       else if(openTime>timeToday.setMonth(timeToday.getMonth() - 3)) {
 
-        cardsOpenLastOne++;
+        cardsOpenLastThree++;
       }  
       else if (openTime>timeToday.setMonth(timeToday.getMonth() - 12)) {
 
@@ -340,6 +340,8 @@ export default function stats() {
   )
 
  }
+
+ console.log(cardsOpenLastOne)
 
 
   theWordTodayContainer.append(theWordToday, cardsStudied);

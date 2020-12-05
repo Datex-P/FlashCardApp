@@ -20,7 +20,7 @@ export default function createDom(obj) {
 
     dataBase.DeckNames[item].colorPlay = colors[index % 5];
     dataBase.DeckNames[item].deckPauseActive = false;
-    dataBase.DeckNames[item].toStudyGoal = 20;
+
 
 
     let nameOfNewDeck = createElement("div", item, {
@@ -39,7 +39,7 @@ export default function createDom(obj) {
       nameOfNewDeck.style.color = "black";
     });
 
-    if (!dataBase.DeckNames[item].length) {
+    if (!dataBase.DeckNames[item].data.length) {
       nameOfNewDeck.onclick = function () {
         plusIcon.classList.remove('blinkingIcon');
         alert('Click on the blinking add icon');
@@ -57,15 +57,29 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-   //dataBase.Decknames[nameOfNewDeck].toStudyGoal
+    let hi  = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
 
-    let [toStudy, toReview] = [`To Study: ${0} / ${dataBase.DeckNames[item].toStudyGoal}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
+    let [toStudy, toReview] = [`To Study: ${hi(obj)}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
       return createElement('div', el, { backgroundColor: 'white', padding: '1px', width: '100%'})
     });
 
-    let buttonUpAndDownContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', position: 'absolute', right: '-18px', top:'-8px'});
-    let buttonUp = createElement('button', '<', {display: 'flex', alignItems: 'center', width:'5px', transform: 'rotate(90deg)'});
-    let buttonDown = createElement('button', '<', {display: 'flex', alignItems: 'center', width:'5px', transform: 'rotate(-90deg)'})
+    let buttonUpAndDownContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', position: 'absolute', right: '-18px', top:'7px'});
+    let buttonUp = createElement('button', '<', {display: 'flex', justifyContent: 'center', width:'5px', transform: 'rotate(90deg)'});
+    let buttonDown = createElement('button', '<', {display: 'flex', justifyContent: 'center', width:'5px', transform: 'rotate(-90deg)'})
+
+
+    buttonUp.onclick = function () {
+      dataBase.DeckNames[item].toStudyGoal++
+     // hi()
+      console.log('appendChild')
+      createDom(dataBase.DeckNames)
+    }
+
+    buttonDown.onclick = function () {
+     dataBase.DeckNames[item].toStudyGoal--
+     createDom(dataBase.DeckNames)
+    }
+
 
 
     let [toStudyContainer, toReviewContainer] = ['', ''].map(el => {
@@ -78,7 +92,7 @@ export default function createDom(obj) {
     });
 
 
-    let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].length}`, {
+    let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].data.length}`, {
       backgroundColor: 'white'
     });
 

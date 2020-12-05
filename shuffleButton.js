@@ -6,23 +6,23 @@ export default function shuffle(item,index=null) {
 
 
   function questionNumber(random) {
-    return dataBase.DeckNames[item][random].question;
+    return dataBase.DeckNames[item].data[random].question;
   }
   let randomInScope = index || random();
-  if(!dataBase.DeckNames[item][randomInScope]?.openHistory){
-    dataBase.DeckNames[item][randomInScope].openHistory = [];
+  if(!dataBase.DeckNames[item].data[randomInScope]?.openHistory){
+    dataBase.DeckNames[item].data[randomInScope].openHistory = [];
   }
-  dataBase.DeckNames[item][randomInScope].openHistory.push(new Date());
+  dataBase.DeckNames[item].data[randomInScope].openHistory.push(new Date());
   console.log(dataBase)
 
 
   function answerNumber(random) {
-    return  dataBase.DeckNames[item][random].answer;
+    return  dataBase.DeckNames[item].data[random].answer;
   }
 
   function random() {
     return Math.floor(
-      Math.random() * dataBase.DeckNames[item].length
+      Math.random() * dataBase.DeckNames[item].data.length
     );
   }
 

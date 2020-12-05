@@ -347,9 +347,9 @@ dataBase.studyTime += 1
 
     button.addEventListener('click', function () {
 
-      //if (/*dataBase.DeckNames[item].cardsToday || dataBase.DeckNames[item].cardsToday: 0*/) {
-      //dataBase.DeckNames[item].cardsToday++
-      //}
+    
+      dataBase.DeckNames[item].cardsToday++
+      
 
       let randomNum = 0
       if (el === `${leftName}`) {

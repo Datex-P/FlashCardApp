@@ -1,5 +1,5 @@
 export let dataBase = {
-  DeckNames: {},
+DeckNames: { /*deckname:[]*/   },
   queue: [],
   userStylePreferences: [],
   showDeleteFrame: true,
@@ -8,7 +8,6 @@ export let dataBase = {
   timeValues: { left: 2, middle: 5, right: 10 },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
   studyTime : 0,
-  //cardsToday : 0
 
 };
 
@@ -24,7 +23,9 @@ for (let i = 1; i < 7; i++) {
       answer: `answer${i}`
     })
   };
-  dataBase.DeckNames[`Literature${i}`] = arr
+  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, cardsToday:0}
+  //dataBase.DeckNames[`Literature${i}`].cardsToday = 0;
+  //dataBase.DeckNames[`Literature${i}`].toStudyGoal = 20;
 };
 
 
