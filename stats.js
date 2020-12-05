@@ -226,7 +226,7 @@ export default function stats() {
   };
 
 
-  let counter = 0;
+  let cardsStudiedCounter = 0;
 
   renderDays(2020);
 
@@ -248,7 +248,7 @@ export default function stats() {
           card.openHistory &&
             card.openHistory.forEach((openTime) => {
               if (date === openTime.toDateString()) {
-                counter++;
+                cardsStudiedCounter++;
               }
             });
         });
@@ -269,7 +269,7 @@ export default function stats() {
             yearBoxContainer
               .querySelectorAll(".day")
               .forEach((day) => (day.innerHTML = ""));
-            let dayInner = document.createElement("div");
+            let dayInner = createElement('div', '', {lineHeight: '22px', width: '110px'})
             // let time = Math.round(
             //   Object.values(dataBase.studyTime).reduce(
             //     (acc, cur) => acc + cur, 0
@@ -277,14 +277,14 @@ export default function stats() {
             // );
 
 
-            //let time = Math.round(dataBase.studyTime/60)
-
+            let time = Math.floor(dataBase.studyTime/60)
+            console.log(cardsStudiedCounter)
             
-           // counter === 1 ? `${review}` =  'Review' :  `${review}` =  'Reviews';
+       
             dayInner.innerText = `${date} Time: ${time
               .toString()
-              .padStart(5, "⠀")} min \n  Reviews: ${counter} cards`; /*${review}*/
-            console.log(counter);
+              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`; 
+            console.log(cardsStudiedCounter);
             day.append(dayInner);
           };
         }
@@ -295,7 +295,7 @@ export default function stats() {
       thisYear.setDate(thisYear.getDate() + 1);
 
       yearBoxContainer.appendChild(day);
-      yearBoxContainer.onclick = function (event) {
+      yearBoxContainer.onclick = function () {
         alert("you do not have training in this day");
       };
     }

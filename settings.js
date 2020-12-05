@@ -205,8 +205,6 @@ changeNameofDeckInput3.type = 'number';
   });
 
 
-  dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
-  dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
 
 
   
@@ -369,8 +367,8 @@ changeNameofDeckInput3.type = 'number';
       reviewInputUnchanged.innerText =  reviewCardInput.value;
       studyInputUnchanged.innerText = studyCardInput.value;
 
-      // dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
-      // dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
+     dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
+       dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
 
 
       window.onclick = ''

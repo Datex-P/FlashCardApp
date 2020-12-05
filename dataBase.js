@@ -3,11 +3,12 @@ export let dataBase = {
   queue: [],
   userStylePreferences: [],
   showDeleteFrame: true,
-  toStudyGoal: 0,
+  toStudyGoal: 20,
   toReviewGoal: 0,
   timeValues: { left: 2, middle: 5, right: 10 },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
-  studyTime : 0
+  studyTime : 0,
+  //cardsToday : 0
 
 };
 

@@ -20,6 +20,7 @@ export default function createDom(obj) {
 
     dataBase.DeckNames[item].colorPlay = colors[index % 5];
     dataBase.DeckNames[item].deckPauseActive = false;
+    dataBase.DeckNames[item].toStudyGoal = 20;
 
 
     let nameOfNewDeck = createElement("div", item, {
@@ -56,14 +57,19 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAround addEditDeleteContainer', '', newDeckContainer
     )
 
-   
+   //dataBase.Decknames[nameOfNewDeck].toStudyGoal
 
-    let [toStudy, toReview] = ['To Study', `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
-      return createElement('div', el, { backgroundColor: 'white' })
+    let [toStudy, toReview] = [`To Study: ${0} / ${dataBase.DeckNames[item].toStudyGoal}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
+      return createElement('div', el, { backgroundColor: 'white', padding: '1px', width: '100%'})
     });
 
+    let buttonUpAndDownContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', position: 'absolute', right: '-18px', top:'-8px'});
+    let buttonUp = createElement('button', '<', {display: 'flex', alignItems: 'center', width:'5px', transform: 'rotate(90deg)'});
+    let buttonDown = createElement('button', '<', {display: 'flex', alignItems: 'center', width:'5px', transform: 'rotate(-90deg)'})
+
+
     let [toStudyContainer, toReviewContainer] = ['', ''].map(el => {
-      return createElement('div', el, { border: '1px black solid' })
+      return createElement('div', el, { border: '1px black solid', display: 'flex'})
     });
 
 
@@ -188,7 +194,7 @@ export default function createDom(obj) {
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '0',left:'20px'}
+      },{ top: '0',left:'20px'}, 'deck'
       )
   
 
@@ -225,9 +231,14 @@ export default function createDom(obj) {
 
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer)
 
-    toStudyContainer.append(toStudy)
-    toReviewContainer.append(toReview)
-    decksizeContainer.append(decksize)
+    toStudyContainer.append(toStudy);
+    addEditDeleteContainer.append(buttonUpAndDownContainer);
+    buttonUpAndDownContainer.append(buttonUp)
+    buttonUpAndDownContainer.append(buttonDown)
+//    toStudyContainer.append(buttonUp);
+  //  toStudyContainer.append(buttonDown);
+    toReviewContainer.append(toReview);
+    decksizeContainer.append(decksize);
 
     addToDeckIcon.append(plusIcon);
 

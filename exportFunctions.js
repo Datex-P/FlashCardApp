@@ -83,7 +83,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStlyes={}) {
+  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -113,7 +113,7 @@ function threeDots() {
 
     let littleModalWindow = createElement(
       'div',
-      '', littleModalWindowStlyes,
+      '', littleModalWindowStyles,
       'littleModalWindow flexColumn'
     )
 
@@ -143,14 +143,16 @@ function threeDots() {
 
     let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon] = [edit, trash, save, pause, play].map(el => {
       return createElement('div', el, {
-        width: '20px'
+        width: '20px',
+        paddingLeft: '1px'
       })
     });
 
-    let [editIconText, trashIconText, pauseIconText, playIconText] = ['card', 'card', 'card', 'card'].map(el => {
+    let [editIconText, trashIconText, pauseIconText, playIconText] = [`${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`].map(el => {
       return createElement('div', el, {
         width: 'fit-content',
-        fontSize: '16px'
+        fontSize: '16px',
+        paddingRight: '1px'
       })
     });
 
@@ -176,7 +178,7 @@ function threeDots() {
 
 
     let paused = false
-    pauseIconContainer.onclick = function (event) {
+    pauseIconContainer.onclick = function () {
       threeDotsOpen = true;
       littleModalWindow.style.display = "none";  
 
@@ -198,10 +200,8 @@ function threeDots() {
         }
       }, littleModalWindow)
     };
-
     return threeDotsContainer
   }
-
 }
 
 
@@ -226,7 +226,6 @@ function deleteCardQuestionBox(remove, refresh, header, body) {
 
     return createElement('div', el, {
       cursor: 'pointer'
-
     }, 'flexCenterAlignCenter deleteContainerNoAndYes')
   })
 

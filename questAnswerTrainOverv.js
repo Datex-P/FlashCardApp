@@ -238,23 +238,12 @@ dataBase.studyTime += 1
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '500',left:'20px'}
+      },{ top: '500',left:'20px'}, 'card'
       )
       
       
       
-      
-      // { top: '-8px',left:'6px'})
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -357,6 +346,11 @@ dataBase.studyTime += 1
     );
 
     button.addEventListener('click', function () {
+
+      //if (/*dataBase.DeckNames[item].cardsToday || dataBase.DeckNames[item].cardsToday: 0*/) {
+      //dataBase.DeckNames[item].cardsToday++
+      //}
+
       let randomNum = 0
       if (el === `${leftName}`) {
         randomNum = Math.floor(Math.random() * 10);
