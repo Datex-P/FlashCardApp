@@ -248,6 +248,7 @@ export default function stats() {
 
         //if  (dataBase.DeckNames.calendarReset !== false) {
 
+        //let date = dataBase.DeckNames.calendarReset.value()
         //don t use dates before this date
         //}
 

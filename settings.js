@@ -42,6 +42,8 @@ export default function settings() {
     return createElement('div', edit, {  position: 'absolute', right: '8px', top: '24px', cursor: 'pointer'})
   });
 
+  editContainerUpper.title = 'Click and change name buttons and repetition intervals for all decks.'
+
 
 
   let changeRepetitionIntervalContainer = createElement(
@@ -218,7 +220,7 @@ changeNameofDeckInput3.type = 'number';
 
 
   let [ resetCalendarText, resetHourlyBreakdownText] = ['Reset Calendar', 'Reset Breakdown'].map(el => {
-    return createElement('div', el, {color: 'white', marginLeft: '9px', cursor: 'pointer'}, '')
+    return createElement('div', el, {marginLeft: '9px', color: 'black'}, '')
   });
 
   resetCalendarText.style.width = '102px';
@@ -234,9 +236,6 @@ changeNameofDeckInput3.type = 'number';
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top =  '38px';
   
-
-  resetCalendar.style.backgroundColor = 'grey';
-  resetHourlyBreakdown.style.backgroundColor = 'grey'
 
 
 

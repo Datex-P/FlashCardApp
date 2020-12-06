@@ -162,7 +162,7 @@ dataBase.studyTime += 1
 
   let showAnswerButtonContainer = createElement(
     'div',
-    '', {}, 'showAnswerButtonContainer'
+    '', {display: 'flex'}, 'showAnswerButtonContainer'
   )
 
 
@@ -251,7 +251,7 @@ dataBase.studyTime += 1
   showAnswerButton.onclick = function () {
     this.style.display = 'none';
     answerContainer.style.display = 'block';
-    showAnswerButtonContainer.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'flex';
     answerFieldTextArea.style.display = 'block';
   };
 
@@ -262,16 +262,54 @@ dataBase.studyTime += 1
   }, 'flexSpaceBetween'
   );
 
-  let containerForTimeButtons = createElement(
+  // let containerForTimeButtons = createElement(
+  //   'div',
+  //   '', {
+  //   margin: '0 auto',
+  //   // border: '1px black solid',
+  //   width: '90%'
+  // }, 'flexSpaceBetween'
+  // );
+
+
+  let containerForLeft = createElement(
     'div',
     '', {
     margin: '0 auto',
     // border: '1px black solid',
     width: '90%'
-  }, 'flexSpaceBetween'
+  }, 'flexColumnAlignCenter'
   );
 
-  showAnswerButtonContainer.append(containerForTimeButtons);
+
+  let containerForMiddle = createElement(
+    'div',
+    '', {
+    margin: '0 auto',
+    // border: '1px black solid',
+    width: '90%'
+  }, 'flexColumnAlignCenter'
+  );
+
+
+
+  let containerForRight = createElement(
+    'div',
+    '', {
+    margin: '0 auto',
+    // border: '1px black solid',
+    width: '90%'
+  }, 'flexColumnAlignCenter'
+  );
+
+
+
+
+  //showAnswerButtonContainer.append(containerForTimeButtons);
+
+
+showAnswerButtonContainer.append(containerForLeft, containerForMiddle, containerForRight)
+
 
 
   let {left,middle,right} = dataBase.timeValues
@@ -285,9 +323,11 @@ dataBase.studyTime += 1
     btn.title = `if you click here app will show you the same card in less than ${el} min`
   });
 
-  containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
+  //containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
 
-
+containerForLeft.append(leftTimeValue);
+containerForMiddle.append(middleTimeValue);
+containerForRight.append(rightTimeValue);
 
 
 
@@ -322,7 +362,7 @@ dataBase.studyTime += 1
 
 
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-  [`${leftName}`, `${middleName}`, `${rightName}`].forEach((el) => {
+  [`${leftName}`, `${middleName}`, `${rightName}`].forEach((el, idx) => {
 
     let button = createElement(
       "button",
@@ -353,7 +393,21 @@ dataBase.studyTime += 1
       shuffleLogic()
       createDom(dataBase.DeckNames)
     })
-    containerForAgainGoodEasyButtons.append(button)
+    //containerForAgainGoodEasyButtons.append(button)
+
+    if (idx ===0) {
+
+      containerForLeft.append(button);}
+    
+      else if (idx === 1) {
+    
+        containerForMiddle.append(button);
+    }
+   
+    else if (idx === 2) {
+   
+      containerForRight.append(button);
+    }
 
   });
 
@@ -371,7 +425,7 @@ dataBase.studyTime += 1
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
     showAnswerButtonContainer.append(containerForTimeButtons, containerForAgainGoodEasyButtons);
-    showAnswerButtonContainer.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
 
     question = questionFieldTextArea.value;
@@ -391,7 +445,7 @@ dataBase.studyTime += 1
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
     showAnswerButtonContainer.append(containerForTimeButtons, containerForAgainGoodEasyButtons);
-    showAnswerButtonContainer.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
   };
 

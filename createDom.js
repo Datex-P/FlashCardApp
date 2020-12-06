@@ -64,18 +64,21 @@ export default function createDom(obj) {
     });
 
     let buttonUpAndDownContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', position: 'absolute', right: '-18px', top:'7px'});
-    let buttonUp = createElement('button', '<', {display: 'flex', justifyContent: 'center', width:'5px', transform: 'rotate(90deg)'});
-    let buttonDown = createElement('button', '<', {display: 'flex', justifyContent: 'center', width:'5px', transform: 'rotate(-90deg)'})
+    let buttonUp = createElement('button', '<', { transform: 'rotate(90deg)'}, 'flexCenter buttonUpAndDownStyling');
+    let buttonDown = createElement('button', '<', {transform: 'rotate(-90deg)'}, 'flexCenter buttonUpAndDownStyling');
 
+    buttonDown.title = 'Click and decrease your study goal.';
+    buttonUp.title = 'Click and increase your study goal.';
 
     buttonUp.onclick = function () {
-      dataBase.DeckNames[item].toStudyGoal++
-      createDom(dataBase.DeckNames)
+      dataBase.DeckNames[item].toStudyGoal++;
+      createDom(dataBase.DeckNames);
     }
 
     buttonDown.onclick = function () {
-     dataBase.DeckNames[item].toStudyGoal--
-     createDom(dataBase.DeckNames)
+     dataBase.DeckNames[item].toStudyGoal--;
+     createDom(dataBase.DeckNames);
+  
     }
 
 
@@ -89,10 +92,13 @@ export default function createDom(obj) {
       border: '1px black solid',
     });
 
+    let Decksize = 'Decksize';
 
-    let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].data.length}`, {
+    let decksize = createElement('div', `${Decksize.padEnd(18)}: ${dataBase.DeckNames[item].data.length}`, {
       backgroundColor: 'white', padding: '2px', paddingLeft: '3px',
     });
+
+ 
 
     for (let i = 0; i < 8; i++) {
 

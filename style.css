@@ -706,6 +706,7 @@ pauseIconContainer:hover {
 
 .showAnswerButtonContainer {
   display: none;
+  /*justify-content: space-between;*/
   width: calc(90% - 2px);
   height: 94px;
   padding: 20px;
@@ -978,8 +979,22 @@ input[type=number] {
   border-radius: 5px;
 }
 
+.studyAndReset:hover {
+  background-color: grey;
+  cursor: pointer;
+  color: white;
+}
+
 
 *::selection{
   background: transparent;
   
+}
+
+.buttonUpAndDownStyling {
+  display: flex; 
+  justify-content: center; 
+  cursor: pointer;
+  border: 1px solid black;
+  width: 5px;
 }
