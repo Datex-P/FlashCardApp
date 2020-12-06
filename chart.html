@@ -98,6 +98,44 @@
 
     let firstHold = null;
 
+    function overHandler(event,i,hold,rotatePos,pie,firstHold){
+      
+      if(pie.parentNode == hold){
+        console.log(pie)
+        
+        pie.onmouseover = function(e){
+          // e.stopPropagation()
+          if(pie.contains(e.target)){
+            console.log('ok')
+            hold.style.cursor = 'pointer'
+            hold.style.transform = `${rotatePos} scale(1.2)`;
+            document.getElementsByClassName('content')[0].innerHTML =  i.size
+          }
+        }
+        hold.onmouseover = function(e){
+          console.log('hello')
+          // firstHold.style.cursor = 'pointer'
+          console.log(firstHold)
+          firstHold.style.display = `${0} scale(1.2)`;
+          // document.getElementsByClassName('content')[0].innerHTML =  i.size
+        }
+        hold.onmouseleave = function(e){
+          // console.log('hello')
+          // firstHold.style.cursor = 'pointer'
+          // console.log(firstHold)
+          firstHold.style.display = `${0} scale(1)`;
+          // document.getElementsByClassName('content')[0].innerHTML =  i.size
+        }
+        // if(i!==1){
+        //   firstHold.style.zIndex = 3
+        // }else{
+        //   firstHold.style.zIndex = 0
+        // }
+        // console.log('ok')
+        
+      }
+    }
+
     arr.forEach((i,k)=>{
 
  
@@ -111,6 +149,7 @@
 
       if (k === 0 ) {
         firstHold = hold;
+        // hold.style.zIndex = 3
       }
 
       if(i.size >  half){
@@ -137,20 +176,18 @@
         pie.style.transform = `rotate(${point*i.size}deg)`;
         hold.style.transform = `rotate(${rotate}deg)`;
         let rotatePos = hold.style.transform
-        pie.onmouseenter = function(){
+        hold.onmouseenter = function(e){
 
-          if (k !== 1) {
+          overHandler(e,i,hold,rotatePos,pie,firstHold)
           
-          firstHold.style.zIndex = 3
-          }
-          hold.style.cursor = 'pointer'
-          hold.style.transform = `${rotatePos} scale(1.2)`;
-          document.getElementsByClassName('content')[0].innerHTML =  i.size
+        // firstHold.style.zIndex = k !== 0? 3:0
+          
+          
           
         }
         pie.onmouseleave = function(){
           hold.style.transform = rotatePos;
-          firstHold.style.zIndex = 0;
+          // firstHold.style.zIndex = 0;
         }
         rotate+=point*i.size;
         pie.style.backgroundColor = i.color;
