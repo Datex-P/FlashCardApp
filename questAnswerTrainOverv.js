@@ -214,9 +214,6 @@ dataBase.studyTime += 1
 
 
   },
-    // () => {
-    //   deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'card')
-    // },{ top: '-8px',left:'6px'})
     () => {
         deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
       },
@@ -238,24 +235,14 @@ dataBase.studyTime += 1
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '500',left:'20px'}, 'card'
+      },{ top: '-15px',left:'13px'}, 'card'
       )
       
-      
-      
-  
-
-
 
 
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '86px'
   anchorThreeDots.style.top = '18px'
-
-  // littleModalWindow.style.top = '-15px';
-  // littleModalWindow.style.left = '10px';
-  //littleModalWindow.stye
-
 
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 

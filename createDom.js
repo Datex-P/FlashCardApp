@@ -60,7 +60,7 @@ export default function createDom(obj) {
     let hi  = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
 
     let [toStudy, toReview] = [`To Study: ${hi(obj)}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
-      return createElement('div', el, { backgroundColor: 'white', padding: '1px', width: '100%'})
+      return createElement('div', el, { backgroundColor: 'white', padding: '2px', paddingLeft: '3px', width: '100%'})
     });
 
     let buttonUpAndDownContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', position: 'absolute', right: '-18px', top:'7px'});
@@ -70,8 +70,6 @@ export default function createDom(obj) {
 
     buttonUp.onclick = function () {
       dataBase.DeckNames[item].toStudyGoal++
-     // hi()
-      console.log('appendChild')
       createDom(dataBase.DeckNames)
     }
 
@@ -93,7 +91,7 @@ export default function createDom(obj) {
 
 
     let decksize = createElement('div', `Decksize: ${dataBase.DeckNames[item].data.length}`, {
-      backgroundColor: 'white'
+      backgroundColor: 'white', padding: '2px', paddingLeft: '3px',
     });
 
     for (let i = 0; i < 8; i++) {
@@ -169,11 +167,15 @@ export default function createDom(obj) {
         window.onclick = ''
         littleModalWindow.style.display = 'block'
         console.log('click like a edit')
+       // buttonUpAndDownContainer.style.display = 'none';
+       
 
       } else {
 
         editIconContainer.replaceChild(editIcon, saveIcon)
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+       // buttonUpAndDownContainer.style.display = 'block';
+
 
 
 
@@ -208,7 +210,7 @@ export default function createDom(obj) {
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '0',left:'20px'}, 'deck'
+      },{ top: '3px',left:'13px'}, 'deck'
       )
   
 
@@ -249,8 +251,6 @@ export default function createDom(obj) {
     addEditDeleteContainer.append(buttonUpAndDownContainer);
     buttonUpAndDownContainer.append(buttonUp)
     buttonUpAndDownContainer.append(buttonDown)
-//    toStudyContainer.append(buttonUp);
-  //  toStudyContainer.append(buttonDown);
     toReviewContainer.append(toReview);
     decksizeContainer.append(decksize);
 

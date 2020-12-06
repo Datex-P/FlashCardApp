@@ -8,6 +8,7 @@ DeckNames: { /*deckname:[]*/   },
   timeValues: { left: 2, middle: 5, right: 10 },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
   studyTime : 0,
+  calendarReset: false
 
 };
 

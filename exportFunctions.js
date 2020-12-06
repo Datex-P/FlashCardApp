@@ -97,6 +97,8 @@ function threeDots() {
         threeDotsOpen = true
         littleModalWindow.style.display = "block";
 
+        //buttonUpAndDownContainer.style.display = 'none';
+
         setTimeout(function () {
           window.onclick = function (event) {
             if (!littleModalWindow.contains(event.target)) {

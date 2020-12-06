@@ -244,6 +244,15 @@ export default function stats() {
       let date = thisYear.toDateString();
 
       for (let deck in dataBase.DeckNames) {
+
+
+        //if  (dataBase.DeckNames.calendarReset !== false) {
+
+        //don t use dates before this date
+        //}
+
+
+
         dataBase.DeckNames[deck].data.forEach((card) => {
           card.openHistory &&
             card.openHistory.forEach((openTime) => {

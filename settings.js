@@ -249,9 +249,26 @@ changeNameofDeckInput3.type = 'number';
 
   resetCalendar.onclick = function () {
  
-      deleteCardQuestionBox(() => {alert('calendar is reseted')}, () => {}, 'Reset calendar', 'reset the calendar')
+      deleteCardQuestionBox(() => {
+        
+        let date = new Date();
+        dataBase.DeckNames.calendarReset = date;
+        
+        }, () => {
 
-   }
+
+
+
+
+
+
+
+
+
+
+      }, 'Reset calendar', 'reset the calendar')
+
+   };
    
    
    
@@ -281,6 +298,9 @@ changeNameofDeckInput3.type = 'number';
   resetContainerOuter.append(resetCalendar, resetHourlyBreakdown)
   resetCalendar.append(resetCalendarText);
   resetHourlyBreakdown.append(resetHourlyBreakdownText);
+
+
+ 
 
 
 
@@ -476,6 +496,19 @@ changeNameofDeckInput3.type = 'number';
     createElement("label", comp, {}, '', '', inputContainer);
   });
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
   // let checkbox = createElement('input', '', {}, '', '', themeRadiosContainer)
   // checkbox.type = 'checkbox';
   // checkbox.checked = true
@@ -489,8 +522,3 @@ changeNameofDeckInput3.type = 'number';
   //     weekOverview.classList.remove('weekOverview')
   //   }
   // }
-
-
-
-
-}
