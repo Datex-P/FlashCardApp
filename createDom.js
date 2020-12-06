@@ -94,7 +94,7 @@ export default function createDom(obj) {
 
     let Decksize = 'Decksize';
 
-    let decksize = createElement('div', `${Decksize.padEnd(18)}: ${dataBase.DeckNames[item].data.length}`, {
+    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')}: ${dataBase.DeckNames[item].data.length}`, {
       backgroundColor: 'white', padding: '2px', paddingLeft: '3px',
     });
 
