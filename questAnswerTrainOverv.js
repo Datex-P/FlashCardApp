@@ -193,7 +193,7 @@ dataBase.studyTime += 1
 
   mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
   saveAndDiscardContainer.append(discardButton, saveButton);
-
+  let [question, answer, index] = shuffleLogic()
 
   let cardThreeDots = threeDots()
 
@@ -248,7 +248,6 @@ dataBase.studyTime += 1
 
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
-  let [question, answer, index] = shuffleLogic()
 
   showAnswerButton.onclick = function () {
     this.style.display = 'none';
@@ -399,6 +398,8 @@ containerForRight.append(rightTimeValue);
 
     question = questionFieldTextArea.value;
     answer = answerFieldTextArea.value;
+    dataBase.DeckNames[item].data[index].question = question
+    dataBase.DeckNames[item].data[index].answer = answer
 
     display();
     shuffleLogic();
