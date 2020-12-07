@@ -60,7 +60,9 @@ export default function createDom(obj) {
     let hi  = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
     let toStud = 'To Study:'
 
-    //toStud.style.backgroundColor = 'blue'
+ // let bla = `<input type= 'number' value="20" style="width: 23px"/>`
+
+  //<!--${hi(obj)}-->
 
     let [toStudy, toReview] = [`${toStud.padEnd(10, '⠀')} ${hi(obj)}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
       return createElement('div', el, { backgroundColor: 'white', padding: '2px', paddingLeft: '3px', width: '100%'})

@@ -185,7 +185,8 @@ changeNameofDeckInput3.type = 'number';
   })
 
   resetContainerOuter.style.marginTop = '0px';
-  resetContainerOuter.style.width = '142px';
+  resetContainerOuter.style.width = '182px';
+  resetContainerOuter.style.height = '52px';
 
 
   let resetColorSchemeContainer = createElement(
@@ -209,25 +210,16 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  
-
-
-
-  let [studyText, reviewText] = ['To study:', 'To review:'].map(el => {
-    return createElement('div', el, { width: '69px', marginLeft: '9px' }, '')
+  let [studyText, reviewText] = ['To Study:', 'To Review:'].map(el => {
+    return createElement('div', el, { width: '74px', marginLeft: '9px' }, '')
   });
 
 
-
-  let [ resetProgressCurr] = ['Reset Progress'].map(el => {
-    return createElement('div', el, {marginLeft: '9px', color: 'black'}, '')
+  let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el => {
+    return createElement('div', el, {}, 'studyAndReset flexAlignCenter')
   });
 
-
-
-  let [studyAndReviewUpper, studyAndReviewLower, resetInner] = ['', '', ''].map(el => {
-    return createElement('div', el, {}, 'studyAndReset')
-  });
+let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner flexAlignCenter')
 
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top =  '38px';
@@ -235,44 +227,34 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  // resetCalendar.style.width = '127px'
-  // resetCalendar.style.top = '6px';
-  // resetHourlyBreakdown.style.top = '38px';
-  // resetHourlyBreakdown.style.width = '127px';
+  let mainThreeDots = threeDots()
 
-  // let mainThreeDots = threeDots()
-
-  // resetCalendar.onclick = function () {
+  resetInner.onclick = function () {
  
-  //     deleteCardQuestionBox(() => {
+      deleteCardQuestionBox(() => {
         
-  //       let date = new Date();
-  //       dataBase.DeckNames.calendarReset = date;
+     
+        for (let deck in dataBase.DeckNames) {
+
+          dataBase.DeckNames[deck].data.forEach((card) => {
+           
+                if (card.openHistory) {
+                  delete card.openHistory
+                }
+        } ) } }
         
-  //       }, () => {
+        //breakdown has to be resetted as well
+        , () => {
 
+      }, 'Reset current progress', 'reset the calendar and the hourly breakdown', {marginLeft: '40px', fontSize: '18px'})
 
-
-
-
-
-
-
-
-
-
-  //     }, 'Reset calendar', 'reset the calendar')
-
-  //  };
+   };
    
    
    
    
   
 
-  // resetHourlyBreakdown.onclick = function () {
-  //   deleteCardQuestionBox(() => {alert('Hourly breakdown is reseted')}, () => {}, 'Reset Breakdown', 'reset the hourly breakdown')
-  // }
 
 
   let resetProgress = createElement('div', 'Reset Current Progress', {fontWeight: 'bold', textAlign: 'center', margin: '20px 0 10px'}
@@ -284,11 +266,12 @@ changeNameofDeckInput3.type = 'number';
 
   let editToReview = createElement('div', edit, {}, 'editToReview');
 
+  editToReview.title = 'change study and review intervals for all decks';
 
 
-  mainWindow.append(studyAndReviewContainerOuter, resetProgress, resetContainerOuter);
+  mainWindow.append(studyAndReviewContainerOuter, resetProgress, resetContainerOuter, resetColorSchemeContainer);
 
-
+  resetContainerOuter.append(resetInner)
 
 
 
@@ -299,9 +282,6 @@ changeNameofDeckInput3.type = 'number';
 
   studyAndReviewLower.append(reviewText, reviewInputUnchanged, reviewCards)
 
-
-
-  mainWindow.append(resetColorSchemeContainer);
   resetColorSchemeContainer.append(colorscheme);
 
   let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '15px', margin: '0 10px'}, 'studyAndReviewInputStyling'))
@@ -468,6 +448,7 @@ changeNameofDeckInput3.type = 'number';
     radio.name = 'theme';
     radio.type = 'radio';
     radio.value = comp;
+    radio.title = `Change background color of main menu to ${comp}.`
     radio.onchange = function () {
       if (comp === 'default') {
         document.body.className = ''

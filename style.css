@@ -169,6 +169,11 @@ textarea {
   align-items: center;
 }
 
+.flexAlignCenter {
+  display: flex;
+  align-items: center;
+}
+
 
 
 .menuBox {
@@ -266,6 +271,7 @@ pauseIconContainer:hover {
   color: white; 
   font-size: 20px; 
   font-weight: bold;
+  margin-left: 10px;
 }
 
 .flashcardIcon {
@@ -376,11 +382,8 @@ pauseIconContainer:hover {
 
 .menuContainer {
   width: 100%;
-  margin-bottom: 5px;
+  margin-top: 1px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 20px;
 }
 
@@ -931,9 +934,11 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
 
 .doYouWantToDelete {
   position: absolute; 
-  top: 67px; 
+  top: 55px; 
   z-index: 2;
   text-align: center;
+  line-height: 22px;
+  padding-left: 10px;
 }
 
 .dontShowMessageAgainContainer {
@@ -942,17 +947,26 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
   height: 60px;
 }
 
-input::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button:not(#listOfDecks),
 input::-webkit-inner-spin-button {
 
     -webkit-appearance: none;
     margin: 0; 
 }
 
-input[type=number] {
+input[type=number]  {
     -moz-appearance:textfield; 
     text-align: center;
+
 }
+
+
+#listOfDecks input::-webkit-outer-spin-button,
+#listOfDecks input::-webkit-inner-spin-button {
+
+  opacity: 1;
+}
+
 
 .themeRadiosContainer {
   border: 1px solid black;
@@ -973,16 +987,8 @@ input[type=number] {
   height: 24px; 
   left: 6px; 
   position: absolute;
-  display: flex;
-  align-Items: center;
   border: 1px solid black;
   border-radius: 5px;
-}
-
-.studyAndReset:hover {
-  background-color: grey;
-  cursor: pointer;
-  color: white;
 }
 
 
@@ -997,4 +1003,22 @@ input[type=number] {
   cursor: pointer;
   border: 1px solid black;
   width: 5px;
+}
+
+.resetInner {
+  left: 6px; 
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 171px;
+  padding-left:9px;
+  height: 34px;
+  cursor: pointer;
+
+}
+
+.resetInner:hover {
+  background-color: grey;
+  color: white;
 }
