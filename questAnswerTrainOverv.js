@@ -397,8 +397,8 @@ containerForRight.append(rightTimeValue);
     // dataBase.DeckNames[item].data.
 
 
-    // question = questionFieldTextArea.value;
-    // answer = answerFieldTextArea.value;
+    question = questionFieldTextArea.value;
+    answer = answerFieldTextArea.value;
 
     display();
     shuffleLogic();
