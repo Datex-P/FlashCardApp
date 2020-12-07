@@ -21,7 +21,7 @@ export default function stats() {
     "div", "", {},"flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
   );
 
-  let theWordStats = createElement("div", "Stats", { fontWeight: "bold" });
+  let theWordStats = createElement("div", "Stats", { fontWeight: "bold", fontSize: '22px' });
 
   let todayAndCardsStudiedContainer = createElement(
     "div",
@@ -49,7 +49,7 @@ export default function stats() {
   let theWordCalendarContainer = createElement("div", "",{}, "flexColumnAlignCenter"
   );
 
-  let theWordCalendar = createElement("div", "Calendar", {}, 'theWordCalendar');
+  let theWordCalendar = createElement("div", "Calendar", {fontSize: '18px'}, 'theWordCalendar');
 
   let rightAndLeftButtonContainer = createElement("div", "", {
     display: "flex",
@@ -81,6 +81,7 @@ export default function stats() {
   let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {
     margingTop: "10px",
     fontWeight: "bold",
+    fontSize: '18px'
   });
 
   let radioButtonContainer = createElement("div", "", {
@@ -279,7 +280,7 @@ export default function stats() {
             yearBoxContainer
               .querySelectorAll(".day")
               .forEach((day) => (day.innerHTML = ""));
-            let dayInner = createElement('div', '', {lineHeight: '22px', width: '110px'})
+            let dayInner = createElement('div', '', {lineHeight: '22px', width: '120px'})
             // let time = Math.round(
             //   Object.values(dataBase.studyTime).reduce(
             //     (acc, cur) => acc + cur, 0

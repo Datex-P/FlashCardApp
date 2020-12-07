@@ -17,11 +17,11 @@ export default function settings() {
 
 
   let settingsAndRedCrossContainer = createElement(
-    'div', '', { width: "265px", marginBottom: '20px', height: '24px' }, 'flexSpaceBetweenAlignCenter'
+    'div', '', { width: "291px", marginBottom: '20px', height: '24px' }, 'flexSpaceBetweenAlignCenter'
   );
 
   let changeTimeIntervall = createElement(
-    'div', 'Change Repetition Interval', { fontWeight: 'bold' });
+    'div', 'Change Repetition Interval', { fontWeight: 'bold', fontSize: '17px'});
 
 
   mainWindow.append(settingsAndRedCrossContainer, changeTimeIntervall);
@@ -29,7 +29,7 @@ export default function settings() {
   let theWordSettings = createElement(
     "div",
     'Settings',
-    { fontWeight: 'bold' }
+    { fontWeight: 'bold', fontSize: '22px' }
   );
   settingsAndRedCrossContainer.append(theWordSettings);
 
@@ -49,6 +49,8 @@ export default function settings() {
   let changeRepetitionIntervalContainer = createElement(
     'div', '', {position: 'relative'}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
   );
+
+  changeRepetitionIntervalContainer.style.marginTop = '10px';
 
 
 
@@ -113,8 +115,8 @@ export default function settings() {
   upperLeftZero.innerText = left
   upperMiddleZero.innerText = middle
   upperRightZero.innerText = right;
-  //upperLeftZero.innerText = dataBase.timeValues.left;
-  //console.log(dataBase.timeValues.left)
+
+
     
   ["min", 'hrs', 'days'].map((el) => {
       let input = document.createElement("div");
@@ -174,7 +176,7 @@ changeNameofDeckInput3.type = 'number';
 
 
   let reviewAndStudy = createElement(
-    'div', 'Review and Study Interval', { marginTop: "20px", fontWeight: 'bold' }
+    'div', 'Review and Study Interval', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px'}
   );
 
   mainWindow.append(reviewAndStudy)
@@ -198,7 +200,7 @@ changeNameofDeckInput3.type = 'number';
   }, '');
 
   let colorscheme = createElement(
-    'div', 'Colorscheme', { fontWeight: 'bold', textAlign: 'center' }
+    'div', 'Colorscheme', { fontWeight: 'bold', textAlign: 'center', fontSize: '17px'}
   );
 
 
@@ -257,7 +259,7 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
 
 
-  let resetProgress = createElement('div', 'Reset Current Progress', {fontWeight: 'bold', textAlign: 'center', margin: '20px 0 10px'}
+  let resetProgress = createElement('div', 'Reset Current Progress', {}, 'resetProgress'
   )
 
  

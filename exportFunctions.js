@@ -97,9 +97,6 @@ function threeDots() {
         threeDotsOpen = true
         littleModalWindow.style.display = "block";
 
-
-        buttonUpAndDownContainer.style.display = 'none';
-
         setTimeout(function () {
           window.onclick = function (event) {
             if (!littleModalWindow.contains(event.target)) {
@@ -111,9 +108,10 @@ function threeDots() {
       } else {
         threeDotsOpen = false
         littleModalWindow.style.display = "none";
-        buttonUpAndDownContainer.style.display = 'block';
       }
     };
+
+    
 
     let littleModalWindow = createElement(
       'div',
@@ -131,7 +129,7 @@ function threeDots() {
 
 
 
-    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content' }, '')
+    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '94px', top: '6px'}, '')
 
 
     let [trashIconContainer, editIconContainer, pauseIconContainer] = ['', '', ''].map(el => {

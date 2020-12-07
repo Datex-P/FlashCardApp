@@ -86,9 +86,10 @@ dataBase.studyTime += 1
   let theNameOftheDeckAndRedCrossContainer = createElement(
     'div',
     '', {
-    width: "89%",
+    width: "88%",
     marginBottom: '6px',
-    height: '24px'
+    height: '24px',
+    marginLeft: '5px'
   },
     'flexSpaceBetweenAlignCenter'
   );
@@ -96,7 +97,8 @@ dataBase.studyTime += 1
 
   let theNameofTheDeck = createElement(
     "div",
-    `Deck: ${item}`
+    `Deck: ${item}`,
+    {fontSize: '17px'}
   );
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
@@ -157,8 +159,8 @@ dataBase.studyTime += 1
     'showAnswerButton'
   );
 
-  buttonContainer.appendChild(showAnswerButton)
-  mainWindow.appendChild(buttonContainer)
+  buttonContainer.append(showAnswerButton)
+  mainWindow.append(buttonContainer)
 
   let showAnswerButtonContainer = createElement(
     'div',
@@ -169,7 +171,7 @@ dataBase.studyTime += 1
 
   let [answerContainer, answerFieldTextArea] = generateTextarea(
     'Answer', {
-    marginTop: '20px',
+    marginTop: '26px',
     display: 'none',
   },
   )
@@ -206,7 +208,7 @@ dataBase.studyTime += 1
     saveAndDiscardContainer.style.justifyContent = 'space-around';
     saveAndDiscardContainer.style.alignItems = 'center'
     showAnswerButton.style.display = 'none';
-    showAnswerButtonContainer.removeChild(containerForTimeButtons, containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
 
 
@@ -262,50 +264,13 @@ dataBase.studyTime += 1
   }, 'flexSpaceBetween'
   );
 
-  // let containerForTimeButtons = createElement(
-  //   'div',
-  //   '', {
-  //   margin: '0 auto',
-  //   // border: '1px black solid',
-  //   width: '90%'
-  // }, 'flexSpaceBetween'
-  // );
 
-
-  let containerForLeft = createElement(
-    'div',
-    '', {
+  let [containerForLeft, containerForMiddle, containerForRight] = ['', '', ''].map(el=> {
+    return createElement('div', el, {
     margin: '0 auto',
-    // border: '1px black solid',
     width: '90%'
-  }, 'flexColumnAlignCenter'
-  );
-
-
-  let containerForMiddle = createElement(
-    'div',
-    '', {
-    margin: '0 auto',
-    // border: '1px black solid',
-    width: '90%'
-  }, 'flexColumnAlignCenter'
-  );
-
-
-
-  let containerForRight = createElement(
-    'div',
-    '', {
-    margin: '0 auto',
-    // border: '1px black solid',
-    width: '90%'
-  }, 'flexColumnAlignCenter'
-  );
-
-
-
-
-  //showAnswerButtonContainer.append(containerForTimeButtons);
+    }, 'flexColumnAlignCenter')
+  });
 
 
 showAnswerButtonContainer.append(containerForLeft, containerForMiddle, containerForRight)
@@ -322,8 +287,6 @@ showAnswerButtonContainer.append(containerForLeft, containerForMiddle, container
     containerForTimeButtons.append(btn);
     btn.title = `if you click here app will show you the same card in less than ${el} min`
   });
-
-  //containerForTimeButtons.append(leftTimeValue, middleTimeValue, rightTimeValue);
 
 containerForLeft.append(leftTimeValue);
 containerForMiddle.append(middleTimeValue);
@@ -393,7 +356,7 @@ containerForRight.append(rightTimeValue);
       shuffleLogic()
       createDom(dataBase.DeckNames)
     })
-    //containerForAgainGoodEasyButtons.append(button)
+  
 
     if (idx ===0) {
 
@@ -417,22 +380,38 @@ containerForRight.append(rightTimeValue);
   saveButton.onclick = function () {
     setThreeDotsOpen(false);
 
-    littleModalWindow.style.display = "none";
+    //littleModalWindow.style.display = "none";
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
     answerFieldTextArea.style.outline = 'none';
     questionFieldTextArea.style.border = 'none';
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-    showAnswerButtonContainer.append(containerForTimeButtons, containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
 
-    question = questionFieldTextArea.value;
-    answer = answerFieldTextArea.value;
+    //question and answer save does not work correctly
 
+
+    // dataBase.DeckNames[item].data.
+
+
+    // question = questionFieldTextArea.value;
+    // answer = answerFieldTextArea.value;
+
+    display();
+    shuffleLogic();
 
   }
+
+
+
+ 
+
+
+
+
 
 
   discardButton.onclick = function () {
@@ -444,7 +423,7 @@ containerForRight.append(rightTimeValue);
     questionFieldTextArea.style.border = 'none';
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-    showAnswerButtonContainer.append(containerForTimeButtons, containerForAgainGoodEasyButtons);
+    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
   };

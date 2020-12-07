@@ -60,48 +60,33 @@ export default function createDom(obj) {
     let hi  = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
     let toStud = 'To Study:'
 
- // let bla = `<input type= 'number' value="20" style="width: 23px"/>`
+    let input = createElement('input', '', {width:'49px', border:'none'})
+      input.type = 'number';
+      input.value = hi(obj);
 
-  //<!--${hi(obj)}-->
 
-    let [toStudy, toReview] = [`${toStud.padEnd(10, '⠀')} ${hi(obj)}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
-      return createElement('div', el, { backgroundColor: 'white', padding: '2px', paddingLeft: '3px', width: '100%'})
+    let [toStudy, toReview] = [`${toStud.padEnd(9, '⠀')}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
+      return createElement('div', el, {}, 'decksizeStudyRev')
     });
 
-    let buttonUpAndDownContainer = createElement('div', '', {display: 'flex', flexDirection: 'column', position: 'absolute', right: '-18px', top:'7px'});
-    let buttonUp = createElement('button', '<', { transform: 'rotate(90deg)'}, 'flexCenter buttonUpAndDownStyling');
-    let buttonDown = createElement('button', '<', {transform: 'rotate(-90deg)'}, 'flexCenter buttonUpAndDownStyling');
 
-    buttonDown.title = 'Click and decrease your study goal.';
-    buttonUp.title = 'Click and increase your study goal.';
-
-    buttonUp.onclick = function () {
-      dataBase.DeckNames[item].toStudyGoal++;
-      createDom(dataBase.DeckNames);
+    toStudy.append(input)
+    input.oninput = function() {
+      dataBase.DeckNames[item].toStudyGoal = this.value;
     }
 
-    buttonDown.onclick = function () {
-     dataBase.DeckNames[item].toStudyGoal--;
-     createDom(dataBase.DeckNames);
-  
-    }
+   
 
 
 
-    let [toStudyContainer, toReviewContainer] = ['', ''].map(el => {
-      return createElement('div', el, { border: '1px black solid', display: 'flex'})
+    let [toStudyContainer, toReviewContainer, decksizeContainer] = ['', '', ''].map(el => {
+      return createElement('div', el, {}, 'studyReviewDecksize')
     });
 
-
-    let decksizeContainer = createElement('div', '', {
-      border: '1px black solid',
-    });
 
     let Decksize = 'Decksize:';
 
-    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')} ${dataBase.DeckNames[item].data.length}`, {
-      backgroundColor: 'white', padding: '2px', paddingLeft: '3px',
-    });
+    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')} ${dataBase.DeckNames[item].data.length}`, {}, 'decksizeStudyRev');
 
  
 
@@ -185,10 +170,7 @@ export default function createDom(obj) {
 
         editIconContainer.replaceChild(editIcon, saveIcon)
         newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-       // buttonUpAndDownContainer.style.display = 'block';
-
-
-
+       
 
         edited = false;
         nameOfNewDeck.innerText = changeNameofDeckInput.value;
@@ -221,7 +203,7 @@ export default function createDom(obj) {
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '3px',left:'13px'}, 'deck', buttonUpAndDownContainer
+      },{ top: '3px',left:'13px'}, 'deck'
       )
   
 
@@ -234,7 +216,7 @@ export default function createDom(obj) {
 
 
     let plusIcon = createElement('div', '+', {
-      color: 'white', cursor: 'pointer'
+      color: 'white', cursor: 'pointer', fontSize: '18px'
     });
 
 
@@ -259,9 +241,6 @@ export default function createDom(obj) {
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer)
 
     toStudyContainer.append(toStudy);
-    addEditDeleteContainer.append(buttonUpAndDownContainer);
-    buttonUpAndDownContainer.append(buttonUp)
-    buttonUpAndDownContainer.append(buttonDown)
     toReviewContainer.append(toReview);
     decksizeContainer.append(decksize);
 
