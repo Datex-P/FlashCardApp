@@ -58,8 +58,11 @@ export default function createDom(obj) {
     )
 
     let hi  = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
+    let toStud = 'To Study:'
 
-    let [toStudy, toReview] = [`To Study: ${hi(obj)}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
+    //toStud.style.backgroundColor = 'blue'
+
+    let [toStudy, toReview] = [`${toStud.padEnd(10, '⠀')} ${hi(obj)}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
       return createElement('div', el, { backgroundColor: 'white', padding: '2px', paddingLeft: '3px', width: '100%'})
     });
 
@@ -92,9 +95,9 @@ export default function createDom(obj) {
       border: '1px black solid',
     });
 
-    let Decksize = 'Decksize';
+    let Decksize = 'Decksize:';
 
-    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')}: ${dataBase.DeckNames[item].data.length}`, {
+    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')} ${dataBase.DeckNames[item].data.length}`, {
       backgroundColor: 'white', padding: '2px', paddingLeft: '3px',
     });
 
@@ -173,7 +176,7 @@ export default function createDom(obj) {
         window.onclick = ''
         littleModalWindow.style.display = 'block'
         console.log('click like a edit')
-       // buttonUpAndDownContainer.style.display = 'none';
+        
        
 
       } else {
@@ -216,7 +219,7 @@ export default function createDom(obj) {
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '3px',left:'13px'}, 'deck'
+      },{ top: '3px',left:'13px'}, 'deck', buttonUpAndDownContainer
       )
   
 

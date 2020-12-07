@@ -83,7 +83,7 @@ function handleOutsideClick(mainWindow, target = redCross, upper = null, lower =
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck) {
+  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck, buttonUpAndDownContainer) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -97,7 +97,8 @@ function threeDots() {
         threeDotsOpen = true
         littleModalWindow.style.display = "block";
 
-        //buttonUpAndDownContainer.style.display = 'none';
+
+        buttonUpAndDownContainer.style.display = 'none';
 
         setTimeout(function () {
           window.onclick = function (event) {
@@ -110,6 +111,7 @@ function threeDots() {
       } else {
         threeDotsOpen = false
         littleModalWindow.style.display = "none";
+        buttonUpAndDownContainer.style.display = 'block';
       }
     };
 

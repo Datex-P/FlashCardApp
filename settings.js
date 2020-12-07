@@ -219,17 +219,13 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  let [ resetCalendarText, resetHourlyBreakdownText] = ['Reset Calendar', 'Reset Breakdown'].map(el => {
+  let [ resetProgressCurr] = ['Reset Progress'].map(el => {
     return createElement('div', el, {marginLeft: '9px', color: 'black'}, '')
   });
 
-  resetCalendarText.style.width = '102px';
-  resetHourlyBreakdownText.style.width = '172px';
 
 
-
-
-  let [studyAndReviewUpper, studyAndReviewLower, resetCalendar, resetHourlyBreakdown] = ['', '', '', ''].map(el => {
+  let [studyAndReviewUpper, studyAndReviewLower, resetInner] = ['', '', ''].map(el => {
     return createElement('div', el, {}, 'studyAndReset')
   });
 
@@ -239,21 +235,21 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  resetCalendar.style.width = '127px'
-  resetCalendar.style.top = '6px';
-  resetHourlyBreakdown.style.top = '38px';
-  resetHourlyBreakdown.style.width = '127px';
+  // resetCalendar.style.width = '127px'
+  // resetCalendar.style.top = '6px';
+  // resetHourlyBreakdown.style.top = '38px';
+  // resetHourlyBreakdown.style.width = '127px';
 
-  let mainThreeDots = threeDots()
+  // let mainThreeDots = threeDots()
 
-  resetCalendar.onclick = function () {
+  // resetCalendar.onclick = function () {
  
-      deleteCardQuestionBox(() => {
+  //     deleteCardQuestionBox(() => {
         
-        let date = new Date();
-        dataBase.DeckNames.calendarReset = date;
+  //       let date = new Date();
+  //       dataBase.DeckNames.calendarReset = date;
         
-        }, () => {
+  //       }, () => {
 
 
 
@@ -265,18 +261,18 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-      }, 'Reset calendar', 'reset the calendar')
+  //     }, 'Reset calendar', 'reset the calendar')
 
-   };
+  //  };
    
    
    
    
   
 
-  resetHourlyBreakdown.onclick = function () {
-    deleteCardQuestionBox(() => {alert('Hourly breakdown is reseted')}, () => {}, 'Reset Breakdown', 'reset the hourly breakdown')
-  }
+  // resetHourlyBreakdown.onclick = function () {
+  //   deleteCardQuestionBox(() => {alert('Hourly breakdown is reseted')}, () => {}, 'Reset Breakdown', 'reset the hourly breakdown')
+  // }
 
 
   let resetProgress = createElement('div', 'Reset Current Progress', {fontWeight: 'bold', textAlign: 'center', margin: '20px 0 10px'}
@@ -291,16 +287,6 @@ changeNameofDeckInput3.type = 'number';
 
 
   mainWindow.append(studyAndReviewContainerOuter, resetProgress, resetContainerOuter);
-
-
-
-  resetContainerOuter.append(resetCalendar, resetHourlyBreakdown)
-  resetCalendar.append(resetCalendarText);
-  resetHourlyBreakdown.append(resetHourlyBreakdownText);
-
-
- 
-
 
 
 

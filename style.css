@@ -706,14 +706,14 @@ pauseIconContainer:hover {
 
 .showAnswerButtonContainer {
   display: none;
-  /*justify-content: space-between;*/
   width: calc(90% - 2px);
   height: 94px;
-  padding: 20px;
   border-radius: 5px;
   border: 1px solid grey;
   box-sizing: border-box;
   margin-top: 10px;
+  align-items: center;
+  justify-content: space-around;
 }
 
 
