@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      display: flex;
+    }
+    .item{
+      margin: 10px;
+      padding: 10px;
+    }
+    .selected{
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+
+  <script>
+    let container = document.querySelector('body>div');
+    container.className='container'
+
+    let arr = Array(7).fill('1').map((item,k)=>{
+      let div = document.createElement('div')
+      div.innerText = '2'
+      div.className='item'
+      return div
+    })
+
+    arr.forEach((div,k)=>{
+      div.onmouseenter = function(){
+        arr.forEach((newItem,index)=>{
+          if(index<=k){
+            newItem.classList.add('selected')
+          }else{
+            newItem.classList.remove('selected')
+          }
+        })
+      }
+    
+    })
+
+    container.append(...arr);
+
+  </script>
+  
+</body>
+</html>
