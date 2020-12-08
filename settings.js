@@ -1,5 +1,5 @@
 
-import { edit, hexagon, save} from './svgs.js';
+import { edit, hexagon, hexagonGreen, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
 
@@ -185,101 +185,46 @@ changeNameofDeckInput3.type = 'number';
   let star6 = createElement('div', hexagon, {width: '16px', height: '16px'});
   let star7 = createElement('div', hexagon, {width: '16px', height: '16px'});
 
-  let divStar1 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-  let divStar2 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-  let divStar3 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-  let divStar4 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-  let divStar5 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-  let divStar6 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-  let divStar7 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
-
-  divStar1.onmouseenter = function () {
-    //hexagon.style.fill = 'green'
-    console.log('hi')
-
-    this.addEventListener('mousemove', (event) => {
-      console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
-    });
-
-  }
-  
-  goalSettingsBox.onmouseenter = function (event) {
-
-  // let currentPosition = `Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`;
-
-  this.addEventListener('mousemove', (event) => {
-    console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
-
-
-   if (event.clientX <140) {
-    // console.log('hi')   
-    star2.innerHTML = ''
-    star1.innerHTML = 'green'
-   }
-   else if (event.clientX >141 && event.clientX<169) {
-     console.log('hello')
-     star3.innerHTML = ''
-     star1.innerHTML = 'green'
-     star2.innerHTML = 'green'
-     //settings()
-   }
-
-   else if (event.clientX >169 && event.clientX<197) {
-    console.log('hello')
-    star7.innerHTML = '';
-    star6.innerHTML = '';
-    star5.innerHTML = '';
-    star4.innerHTML = '';
-    star1.innerHTML = 'green'
-    star2.innerHTML = 'green'
-    star3.innerHTML = 'green'
-    //settings()
-  }
-
-  else if (event.clientX>197 && event.clientX<225) {
-    star7.innerHTML = '';
-    star6.innerHTML = '';
-    star5.innerHTML = '';
-    star4.innerHTML = 'green'
-    star1.innerHTML = 'green'
-    star2.innerHTML = 'green'
-    star3.innerHTML = 'green'
-  }
-
-  else if (event.clientX>225 && event.clientX<253) {
-    star7.innerHTML = '';
-    star6.innerHTML = '';
-    star5.innerHTML = 'green';
-    star4.innerHTML = 'green'
-    star1.innerHTML = 'green'
-    star2.innerHTML = 'green'
-    star3.innerHTML = 'green'
-  }
-
-  else if (event.clientX>253 && event.clientX<281) {
-    star6.innerHTML = '';
-    star5.innerHTML = 'green';
-    star4.innerHTML = 'green'
-    star1.innerHTML = 'green'
-    star2.innerHTML = 'green'
-    star3.innerHTML = 'green'
-
-  }
-
-  else if (event.clientX>281 && event.clientX<309) {
-    console.log('sers')
-  }
 
 
 
+  let arr = Array(7).fill('1').map((item,k)=>{
+
+    let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
 
 
-
-
+    // let div = document.createElement('div')
+    // div.innerHTML = '3'
+    // div.className='item'
+    return div
   });
+  
+  
+  arr.forEach((div,k)=>{
+    div.onmouseenter = function(){
+      arr.forEach((newItem,index)=>{
+        if(index<=k){
+          //newItem.classList.add('selected')
+          //newItem.style.fill = 'green';
+          //hexagon.style.fill = 'green'
+          div.innerHTML = hexagon;
+        }else{
+          div.innerHTML = hexagonGreen
+          //newItem.classList.remove('selected')
+          //newItem.style.fill = 'gr';
+        }
+      })
+    }
+  
+  })
+
+  goalSettingsBox.append(...arr);
 
 
-  }
+
+
+
+
 
 
 
@@ -288,22 +233,22 @@ changeNameofDeckInput3.type = 'number';
   goalSettings.append(goalSettingsText);
   goalSettings.append(goalSettingsBox)
 //  goalSettingsBox.append(star1);
-  goalSettingsBox.append(divStar1)
-  divStar1.append(star1)
+  //goalSettingsBox.append(divStar1)
+  //divStar1.append(star1)
 
 
-  goalSettingsBox.append(divStar2);
-  divStar2.append(star2)
-  goalSettingsBox.append(divStar3);
-  divStar3.append(star3)
-  goalSettingsBox.append(divStar4);
-  divStar4.append(star4)
-  goalSettingsBox.append(divStar5);
-  divStar5.append(star5)
-  goalSettingsBox.append(divStar6);
-  divStar6.append(star6)
-  goalSettingsBox.append(divStar7);
-  divStar7.append(star7)
+ // goalSettingsBox.append(divStar2);
+  // divStar2.append(star2)
+  // goalSettingsBox.append(divStar3);
+  // divStar3.append(star3)
+  // goalSettingsBox.append(divStar4);
+  // divStar4.append(star4)
+  // goalSettingsBox.append(divStar5);
+  // divStar5.append(star5)
+  // goalSettingsBox.append(divStar6);
+  // divStar6.append(star6)
+  // goalSettingsBox.append(divStar7);
+  // divStar7.append(star7)
   goalSettings.append(goalSettingsButton);
 
 

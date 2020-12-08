@@ -1076,3 +1076,12 @@ margin-left: 5px;
 .pointer {
   cursor: pointer;
 }
+
+.item{
+  margin: 5px;
+  padding: 5px;
+}
+
+.selected {
+  background-color: blue;
+}
