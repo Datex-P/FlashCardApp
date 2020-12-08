@@ -204,13 +204,13 @@ changeNameofDeckInput3.type = 'number';
     div.onmouseenter = function(){
       arr.forEach((newItem,index)=>{
         if(index<=k){
-          //newItem.classList.add('selected')
+          newItem.classList.add('selected')
           //newItem.style.fill = 'green';
           //hexagon.style.fill = 'green'
-          div.innerHTML = hexagon;
+          // div.innerHTML = hexagon;
         }else{
-          div.innerHTML = hexagonGreen
-          //newItem.classList.remove('selected')
+          // div.innerHTML = hexagonGreen
+          newItem.classList.remove('selected')
           //newItem.style.fill = 'gr';
         }
       })

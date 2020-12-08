@@ -1082,6 +1082,6 @@ margin-left: 5px;
   padding: 5px;
 }
 
-.selected {
-  background-color: blue;
+.selected svg{
+  fill: green;
 }

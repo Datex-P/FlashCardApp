@@ -98,34 +98,38 @@
 
     let firstHold = null;
 
-    function overHandler(event,i,hold,rotatePos,pie,firstHold){
+    function overHandler(event,i,hold,rotatePos,pie,firstHold,lastItem){
       
-      if(pie.parentNode == hold){
-        console.log(pie)
+      
         
-        pie.onmouseover = function(e){
-          // e.stopPropagation()
-          if(pie.contains(e.target)){
-            console.log('ok')
+      pie.onmouseover = function(e){
+          e.stopPropagation()
+        // if(pie.parentNode == hold){
+          // console.log(pie)
+          // if(pie.contains(e.target)){
+            // console.log('ok')
             hold.style.cursor = 'pointer'
             hold.style.transform = `${rotatePos} scale(1.2)`;
             document.getElementsByClassName('content')[0].innerHTML =  i.size
-          }
+          // }
+        // }else{
+        //   console.log('hello')
         }
+        if(lastItem){
         hold.onmouseover = function(e){
           console.log('hello')
           // firstHold.style.cursor = 'pointer'
-          console.log(firstHold)
-          firstHold.style.display = `${0} scale(1.2)`;
+          firstHold.style.transform = `rotate(${0}deg) scale(1.2)`;
           // document.getElementsByClassName('content')[0].innerHTML =  i.size
         }
-        hold.onmouseleave = function(e){
-          // console.log('hello')
-          // firstHold.style.cursor = 'pointer'
-          // console.log(firstHold)
-          firstHold.style.display = `${0} scale(1)`;
-          // document.getElementsByClassName('content')[0].innerHTML =  i.size
-        }
+      }
+        // hold.onmouseleave = function(e){
+        //   // console.log('hello')
+        //   // firstHold.style.cursor = 'pointer'
+        //   // console.log(firstHold)
+        //   firstHold.style.display = `rotate(${0}deg) scale(1)`;
+        //   // document.getElementsByClassName('content')[0].innerHTML =  i.size
+        // }
         // if(i!==1){
         //   firstHold.style.zIndex = 3
         // }else{
@@ -133,7 +137,7 @@
         // }
         // console.log('ok')
         
-      }
+      // }
     }
 
     arr.forEach((i,k)=>{
@@ -176,18 +180,39 @@
         pie.style.transform = `rotate(${point*i.size}deg)`;
         hold.style.transform = `rotate(${rotate}deg)`;
         let rotatePos = hold.style.transform
-        hold.onmouseenter = function(e){
-
-          overHandler(e,i,hold,rotatePos,pie,firstHold)
+        let fired = true
+        function resolveStale(x){
+          if(k==arr.length-1 && !x){
+            console.log('hello')
+            // firstHold.style.cursor = 'pointer'
+            firstHold.style.transform = `rotate(${0}deg) scale(1.2)`;
+            // document.getElementsByClassName('content')[0].innerHTML =  i.size
+          }
+        }
+        hold.onmousemove = function(e){
           
+          pie.onmousemove = function(e){
+            hold.style.cursor = 'pointer'
+            hold.style.transform = `${rotatePos} scale(1.2)`;
+            document.getElementsByClassName('content')[0].innerHTML =  i.size
+            fired = pie.contains(e.target) && hold !=firstHold
+            console.log(fired)
+          }
+          // overHandler(e,i,hold,rotatePos,pie,firstHold,k==arr.length-1)
+          resolveStale(fired)
         // firstHold.style.zIndex = k !== 0? 3:0
           
           
           
         }
         pie.onmouseleave = function(){
+          
           hold.style.transform = rotatePos;
-          // firstHold.style.zIndex = 0;
+          if(k==arr.length-1){
+            fired = false
+            firstHold.style.transform = `rotate(${0}deg) scale(1)`;
+          }
+          
         }
         rotate+=point*i.size;
         pie.style.backgroundColor = i.color;
