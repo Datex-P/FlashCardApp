@@ -70,8 +70,7 @@ export default function settings() {
       position: 'relative',
       width: '100%',
       height: '50%',
-      // border: '1px black solid',
-      //borderTop: '0px'
+  
     }, 'flexSpaceAroundAlignCenter', '', changeRepetitionIntervalContainerInner))
 
 
@@ -153,13 +152,8 @@ export default function settings() {
 
   let [again, good, easy] = [`${leftName}`, `${middleName}`, `${rightName}`].map((el) => {
     let input = createElement('div', el, {
-      width: '68px',
-      height: '27px',
-      backgroundColor: 'grey',
-      color: 'white',
-      position: 'relative',
-      borderRadius: '5px'
-    }, 'flexCenterAlignCenter')
+  
+    }, 'flexCenterAlignCenter againGoodEasySettings')
     containerLower.append(input)
     return input
   });
@@ -208,6 +202,9 @@ changeNameofDeckInput3.type = 'number';
   let [studyCards, reviewCards, studyInputUnchanged, reviewInputUnchanged] = ['cards', 'cards', '10', '11'].map(el => {
     return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
   });
+
+  studyInputUnchanged.style.width = '34px';
+  reviewInputUnchanged.style.width = '34px';
 
 
 
@@ -286,10 +283,12 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
   resetColorSchemeContainer.append(colorscheme);
 
-  let [studyCardInput, reviewCardInput] = Array(2).fill('27px').map(width => createElement('input', '', { width, height: '15px', margin: '0 10px'}, 'studyAndReviewInputStyling'))
+  let [studyCardInput, reviewCardInput] = Array(2).fill('22px').map(width => createElement('input', '', { width, height: '15px', margin: '0 6px'}, 'studyAndReviewInputStyling'))
 
-  studyCardInput.type = 'number'
-  reviewCardInput.type = 'number'
+  studyCardInput.type = 'number';
+  reviewCardInput.type = 'number';
+
+  //reviewCardInput.style.margin = '0 6px';
 
 
 

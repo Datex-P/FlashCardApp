@@ -129,7 +129,7 @@ function threeDots() {
 
 
 
-    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '94px', top: '6px'}, '')
+    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px'}, '')
 
 
     let [trashIconContainer, editIconContainer, pauseIconContainer] = ['', '', ''].map(el => {

@@ -78,11 +78,7 @@ export default function stats() {
     "flexColumnAlignCenter"
   );
 
-  let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {
-    margingTop: "10px",
-    fontWeight: "bold",
-    fontSize: '18px'
-  });
+  let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {}, 'theWordhourlyBreakdown');
 
   let radioButtonContainer = createElement("div", "", {
   

@@ -49,7 +49,14 @@ export default function createDom(obj) {
       };
     } else {
       nameOfNewDeck.onclick = function () {
+
+        if (dataBase.DeckNames[item].deckPauseActive !== true)
+        {
         questAnswerTrainOverv(item);
+        //this.style.pointerEvents = 'none'
+        this.removeAttribute = 'title';
+        this.removeAttribute = 'pointer';
+        }
       };
     }
 
@@ -211,7 +218,7 @@ export default function createDom(obj) {
 
     threeDotsContainer.style.position = 'absolute'
     threeDotsContainer.style.top = '6px'
-    threeDotsContainer.style.right = '85px'
+    threeDotsContainer.style.right = '95px'
 
 
     let plusIcon = createElement('div', '+', {

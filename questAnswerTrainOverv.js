@@ -63,8 +63,6 @@ dataBase.studyTime += 1
 
 
 
-
-
   function shuffleLogic() {
     let [question, answer, index] = shuffle(item);
     questionFieldTextArea.value = question;
@@ -86,12 +84,8 @@ dataBase.studyTime += 1
   let theNameOftheDeckAndRedCrossContainer = createElement(
     'div',
     '', {
-    width: "88%",
-    marginBottom: '6px',
-    height: '24px',
-    marginLeft: '5px'
   },
-    'flexSpaceBetweenAlignCenter'
+    'flexSpaceBetweenAlignCenter theNameOftheDeckAndRedCrossContainer'
   );
   mainWindow.append(theNameOftheDeckAndRedCrossContainer);
 
@@ -240,8 +234,6 @@ dataBase.studyTime += 1
       },{ top: '-15px',left:'13px'}, 'card'
       )
       
-
-
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '86px'
   anchorThreeDots.style.top = '18px'
@@ -358,19 +350,14 @@ containerForRight.append(rightTimeValue);
   
 
     if (idx ===0) {
-
-      containerForLeft.append(button);}
+      containerForLeft.append(button);
     
-      else if (idx === 1) {
-    
-        containerForMiddle.append(button);
-    }
-   
-    else if (idx === 2) {
-   
+    } else if (idx === 1) {
+      containerForMiddle.append(button);
+  
+    } else if (idx === 2) { 
       containerForRight.append(button);
     }
-
   });
 
 
@@ -390,11 +377,6 @@ containerForRight.append(rightTimeValue);
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
 
-    //question and answer save does not work correctly
-
-
-    // dataBase.DeckNames[item].data.
-
 
     question = questionFieldTextArea.value;
     answer = answerFieldTextArea.value;
@@ -405,11 +387,6 @@ containerForRight.append(rightTimeValue);
     shuffleLogic();
 
   }
-
-
-
- 
-
 
 
 
