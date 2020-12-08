@@ -246,6 +246,8 @@ boxesInMenu.forEach(button => {
   }
 });
 
+editMainscreen.onclick = function () { settings();}
+
 
 
 document.getElementById("createDeckButton").onclick = function () {

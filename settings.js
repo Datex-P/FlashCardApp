@@ -1,5 +1,5 @@
 
-import { edit, save} from './svgs.js';
+import { edit, hexagon, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
 
@@ -169,14 +169,145 @@ changeNameofDeckInput2.type = 'number';
 changeNameofDeckInput3.type = 'number';
 
 
-  let reviewAndStudy = createElement(
-    'div', 'Review and Study Interval', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px'}
+  let goalSettings = createElement(
+    'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px'}
   );
 
-  mainWindow.append(reviewAndStudy)
+  let goalSettingsText = createElement('div', 'Set a Weekly Target', {fontWeight: 'bold', fontSize: '13px'})
+  let goalSettingsBox = createElement('div', '', {width: '200px', borderRadius: '5px', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around'})
+  let goalSettingsButton = createElement('button', 'Update Weekly Target', {backgroundColor: 'grey', width: '126px', fontSize: '11px', padding: '3px', marginTop: '5px', color: 'white'})
+ 
+  let star1 = createElement('div', hexagon, {width: '16px', height: '16px'});
+  let star2 = createElement('div', hexagon, {width: '16px', height: '16px'});
+  let star3 = createElement('div', hexagon, {width: '16px', height: '16px'});
+  let star4 = createElement('div', hexagon, {width: '16px', height: '16px'});
+  let star5 = createElement('div', hexagon, {width: '16px', height: '16px'});
+  let star6 = createElement('div', hexagon, {width: '16px', height: '16px'});
+  let star7 = createElement('div', hexagon, {width: '16px', height: '16px'});
+
+  let divStar1 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+  let divStar2 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+  let divStar3 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+  let divStar4 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+  let divStar5 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+  let divStar6 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+  let divStar7 = createElement('div', '', {width: '37px', height: '46px', border: '1px solid black'})
+
+  divStar1.onmouseenter = function () {
+    //hexagon.style.fill = 'green'
+    console.log('hi')
+
+    this.addEventListener('mousemove', (event) => {
+      console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
+    });
+
+  }
+  
+  goalSettingsBox.onmouseenter = function (event) {
+
+  // let currentPosition = `Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`;
+
+  this.addEventListener('mousemove', (event) => {
+    console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
 
 
-  let [studyAndReviewContainerOuter, resetContainerOuter] = ['', ''].map(el => {
+   if (event.clientX <140) {
+    // console.log('hi')   
+    star2.innerHTML = ''
+    star1.innerHTML = 'green'
+   }
+   else if (event.clientX >141 && event.clientX<169) {
+     console.log('hello')
+     star3.innerHTML = ''
+     star1.innerHTML = 'green'
+     star2.innerHTML = 'green'
+     //settings()
+   }
+
+   else if (event.clientX >169 && event.clientX<197) {
+    console.log('hello')
+    star7.innerHTML = '';
+    star6.innerHTML = '';
+    star5.innerHTML = '';
+    star4.innerHTML = '';
+    star1.innerHTML = 'green'
+    star2.innerHTML = 'green'
+    star3.innerHTML = 'green'
+    //settings()
+  }
+
+  else if (event.clientX>197 && event.clientX<225) {
+    star7.innerHTML = '';
+    star6.innerHTML = '';
+    star5.innerHTML = '';
+    star4.innerHTML = 'green'
+    star1.innerHTML = 'green'
+    star2.innerHTML = 'green'
+    star3.innerHTML = 'green'
+  }
+
+  else if (event.clientX>225 && event.clientX<253) {
+    star7.innerHTML = '';
+    star6.innerHTML = '';
+    star5.innerHTML = 'green';
+    star4.innerHTML = 'green'
+    star1.innerHTML = 'green'
+    star2.innerHTML = 'green'
+    star3.innerHTML = 'green'
+  }
+
+  else if (event.clientX>253 && event.clientX<281) {
+    star6.innerHTML = '';
+    star5.innerHTML = 'green';
+    star4.innerHTML = 'green'
+    star1.innerHTML = 'green'
+    star2.innerHTML = 'green'
+    star3.innerHTML = 'green'
+
+  }
+
+  else if (event.clientX>281 && event.clientX<309) {
+    console.log('sers')
+  }
+
+
+
+
+
+
+
+  });
+
+
+  }
+
+
+
+
+  mainWindow.append(goalSettings);
+  goalSettings.append(goalSettingsText);
+  goalSettings.append(goalSettingsBox)
+//  goalSettingsBox.append(star1);
+  goalSettingsBox.append(divStar1)
+  divStar1.append(star1)
+
+
+  goalSettingsBox.append(divStar2);
+  divStar2.append(star2)
+  goalSettingsBox.append(divStar3);
+  divStar3.append(star3)
+  goalSettingsBox.append(divStar4);
+  divStar4.append(star4)
+  goalSettingsBox.append(divStar5);
+  divStar5.append(star5)
+  goalSettingsBox.append(divStar6);
+  divStar6.append(star6)
+  goalSettingsBox.append(divStar7);
+  divStar7.append(star7)
+  goalSettings.append(goalSettingsButton);
+
+
+  let [resetContainerOuter] = [''].map(el => {
     return createElement('div', '', {}, 'flexColumnSpaceAround studyAndReviewContainerOuter')
   })
 
@@ -199,12 +330,12 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  let [studyCards, reviewCards, studyInputUnchanged, reviewInputUnchanged] = ['cards', 'cards', '10', '11'].map(el => {
-    return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
-  });
+  // let [studyCards, reviewCards, studyInputUnchanged, reviewInputUnchanged] = ['cards', 'cards', '10', '11'].map(el => {
+  //   return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
+  // });
 
-  studyInputUnchanged.style.width = '34px';
-  reviewInputUnchanged.style.width = '34px';
+  // studyInputUnchanged.style.width = '34px';
+  // reviewInputUnchanged.style.width = '34px';
 
 
 
@@ -268,25 +399,25 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
   editToReview.title = 'change study and review intervals for all decks';
 
 
-  mainWindow.append(studyAndReviewContainerOuter, resetProgress, resetContainerOuter, resetColorSchemeContainer);
+  mainWindow.append(resetProgress, resetContainerOuter, resetColorSchemeContainer);
 
   resetContainerOuter.append(resetInner)
 
 
 
-  studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower, editToReview);
+  //studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower, editToReview);
 
-  studyAndReviewUpper.append(studyText, studyInputUnchanged, studyCards);
+ // studyAndReviewUpper.append(studyText, studyInputUnchanged, studyCards);
 
 
-  studyAndReviewLower.append(reviewText, reviewInputUnchanged, reviewCards)
+  //studyAndReviewLower.append(reviewText, reviewInputUnchanged, reviewCards)
 
   resetColorSchemeContainer.append(colorscheme);
 
-  let [studyCardInput, reviewCardInput] = Array(2).fill('22px').map(width => createElement('input', '', { width, height: '15px', margin: '0 6px'}, 'studyAndReviewInputStyling'))
+  // let [studyCardInput, reviewCardInput] = Array(2).fill('22px').map(width => createElement('input', '', { width, height: '15px', margin: '0 6px'}, 'studyAndReviewInputStyling'))
 
-  studyCardInput.type = 'number';
-  reviewCardInput.type = 'number';
+  // studyCardInput.type = 'number';
+  // reviewCardInput.type = 'number';
 
   //reviewCardInput.style.margin = '0 6px';
 
@@ -320,50 +451,43 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
     }
   }
 
-
-
-
   let editedLower = false;
 
-
-  editToReview.onclick = function (event) {
+  // editToReview.onclick = function (event) {
     
-    event.stopPropagation()
-    //  this.innerHTML = ''
-    if (!editedLower) {
+  //   event.stopPropagation()
+  //   //  this.innerHTML = ''
+  //   if (!editedLower) {
 
-      studyAndReviewLower.replaceChild(reviewCardInput, reviewInputUnchanged);
-      studyAndReviewUpper.replaceChild(studyCardInput, studyInputUnchanged);
+  //     studyAndReviewLower.replaceChild(reviewCardInput, reviewInputUnchanged);
+  //     studyAndReviewUpper.replaceChild(studyCardInput, studyInputUnchanged);
 
-      reviewCardInput.value = reviewInputUnchanged.innerText;
-      studyCardInput.value = studyInputUnchanged.innerText;
-      editedLower = true;
-      editToReview.innerHTML = save
+  //     reviewCardInput.value = reviewInputUnchanged.innerText;
+  //     studyCardInput.value = studyInputUnchanged.innerText;
+  //     editedLower = true;
+  //     editToReview.innerHTML = save
   
-      handleOutsideClick(editToReview, editToReview, reviewCardInput, studyCardInput)
-
+  //     handleOutsideClick(editToReview, editToReview, reviewCardInput, studyCardInput)
+  
       
-      
-    } else {
-      editToReview.innerHTML = edit
-      console.log(2)
-      studyAndReviewLower.replaceChild(reviewInputUnchanged, reviewCardInput);
-      studyAndReviewUpper.replaceChild(studyInputUnchanged, studyCardInput);
+  //   } else {
+  //     editToReview.innerHTML = edit
+  //     console.log(2)
+  //     studyAndReviewLower.replaceChild(reviewInputUnchanged, reviewCardInput);
+  //     studyAndReviewUpper.replaceChild(studyInputUnchanged, studyCardInput);
 
-      reviewInputUnchanged.innerText =  reviewCardInput.value;
-      studyInputUnchanged.innerText = studyCardInput.value;
+  //     reviewInputUnchanged.innerText =  reviewCardInput.value;
+  //     studyInputUnchanged.innerText = studyCardInput.value;
 
-     dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
-       dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
+  //    dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
+  //      dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
 
 
-      window.onclick = ''
-      editedLower = false;
+  //     window.onclick = ''
+  //     editedLower = false;
      
-    }
-  }
-
-
+  //   }
+  // }
 
 
   let editedUpper = false;
@@ -408,11 +532,11 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
         if (idx === 0) {
 
         dataBase.timeValues.left = Number(item.div.innerText)
-      }
-        else if (idx === 1) {
+      
+      } else if (idx === 1) {
         dataBase.timeValues.middle = Number(item.div.innerText)
-        }
-        else if (idx === 2) {
+        
+      } else if (idx === 2) {
         dataBase.timeValues.right = Number(item.div.innerText)
       }
     }
@@ -462,7 +586,7 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
     }
     createElement("label", comp, {}, '', '', inputContainer);
   });
-
+  handleOutsideClick(mainWindow);
 }
 
 
@@ -475,17 +599,3 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
 
 
-
-  // let checkbox = createElement('input', '', {}, '', '', themeRadiosContainer)
-  // checkbox.type = 'checkbox';
-  // checkbox.checked = true
-  // checkbox.onchange = function (e) {
-  //   let weekOverview = document.querySelector('#weekOverview')
-  //   if (e.target.checked) {
-  //     weekOverview.classList.remove('none')
-  //     weekOverview.classList.add('weekOverview')
-  //   } else {
-  //     weekOverview.classList.add('none')
-  //     weekOverview.classList.remove('weekOverview')
-  //   }
-  // }

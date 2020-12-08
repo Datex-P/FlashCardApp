@@ -467,8 +467,8 @@ pauseIconContainer:hover {
 }
 
 .hexagonStyling {
-  width:16px; 
-  height: 16px; 
+  width:14px; 
+  height: 14px; 
   transform: rotate(90deg);
   display: none;
 }
@@ -1071,4 +1071,8 @@ margin-bottom: 6px;
 height: 24px;
 margin-left: 5px;
 
+}
+
+.pointer {
+  cursor: pointer;
 }

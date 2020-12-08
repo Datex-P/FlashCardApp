@@ -26,13 +26,20 @@ export default function createDom(obj) {
     let nameOfNewDeck = createElement("div", item, {
       position: 'absolute', left: '77px'
     })
+    
+    if (dataBase.DeckNames[item].deckPauseActive === true) {
+
+      nameOfNewDeck.classList.add('pointer')
+    }
+    
+    
 
     nameOfNewDeck.title = 'Click to open this deck'
 
 
     nameOfNewDeck.onmouseover = function () {
       nameOfNewDeck.style.color = "rgb(200, 168, 115)";
-      nameOfNewDeck.style.cursor = "pointer";
+  
     };
 
     nameOfNewDeck.addEventListener("mouseleave", () => {
@@ -53,9 +60,6 @@ export default function createDom(obj) {
         if (dataBase.DeckNames[item].deckPauseActive !== true)
         {
         questAnswerTrainOverv(item);
-        //this.style.pointerEvents = 'none'
-        this.removeAttribute = 'title';
-        this.removeAttribute = 'pointer';
         }
       };
     }
@@ -67,7 +71,10 @@ export default function createDom(obj) {
     let hi  = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
     let toStud = 'To Study:'
 
-    let input = createElement('input', '', {width:'49px', border:'none'})
+    let input = createElement('input', '', {
+      width: '49px', 
+      border: 'none'
+    })
       input.type = 'number';
       input.value = hi(obj);
 
@@ -171,8 +178,6 @@ export default function createDom(obj) {
         littleModalWindow.style.display = 'block'
         console.log('click like a edit')
         
-       
-
       } else {
 
         editIconContainer.replaceChild(editIcon, saveIcon)
@@ -201,11 +206,18 @@ export default function createDom(obj) {
           newDeckContainer.style.backgroundColor = 'grey'
           dataBase.DeckNames[item].deckPauseActive = true;
 
+          nameOfNewDeck.classList.remove('pointer')
+          input.disabled = true; 
+
         }else {
           container.replaceChild(pauseIcon, playIcon)
           edited = false;
           newDeckContainer.style.border = 'none';
           
+          nameOfNewDeck.classList.add('pointer')
+          input.disabled = false;
+
+
           newDeckContainer.style.backgroundColor =  dataBase.DeckNames[item].colorPlay;
           dataBase.DeckNames[item].deckPauseActive = false;
         }
