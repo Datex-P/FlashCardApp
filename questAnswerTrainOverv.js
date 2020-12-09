@@ -311,8 +311,13 @@ containerForRight.append(rightTimeValue);
     })
   }
 
-  let {leftName,middleName,rightName} = dataBase.nameValues
+  let {leftName,middleName,rightName} = dataBase.nameValues;
 
+
+  // if studytime is bigger than 5 min 
+
+
+  // if key of days of study is different than date update counter
 
 
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);

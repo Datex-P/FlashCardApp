@@ -9,7 +9,8 @@ DeckNames: { /*deckname:[]*/   },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
   studyTime : 0,
   calendarReset: false,
-  weeklyTarget: 1
+  weeklyTarget: 1,
+  daysOfStudy : {day : 0}
 
 };
 
