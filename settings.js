@@ -1,5 +1,5 @@
 
-import { edit, hexagon, hexagonGreen, save} from './svgs.js';
+import { edit, hexagon, save} from './svgs.js';
 import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
 
@@ -47,10 +47,8 @@ export default function settings() {
 
 
   let changeRepetitionIntervalContainer = createElement(
-    'div', '', {position: 'relative'}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
+    'div', '', {position: 'relative', marginTop: '10px'}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
   );
-
-  changeRepetitionIntervalContainer.style.marginTop = '10px';
 
 
 
@@ -59,8 +57,6 @@ export default function settings() {
   );
 
   changeRepetitionIntervalContainer.append(changeRepetitionIntervalContainerInner);
-
-
 
 
   let [containerUpper, containerLower] = ['', ''].map((el) => createElement(
@@ -173,17 +169,91 @@ changeNameofDeckInput3.type = 'number';
     'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px'}
   );
 
-  let goalSettingsText = createElement('div', 'Set a Weekly Target', {fontWeight: 'bold', fontSize: '13px'})
-  let goalSettingsBox = createElement('div', '', {width: '200px', borderRadius: '5px', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around'})
-  let goalSettingsButton = createElement('button', 'Update Weekly Target', {backgroundColor: 'grey', width: '126px', fontSize: '11px', padding: '3px', marginTop: '5px', color: 'white'})
+  let goalSettingsText = createElement('div', 'Current weekly Target', {fontWeight: 'bold', fontSize: '13px', margin: '6px 0 2px'})
+  let editGoals = createElement('div', edit, {position: 'absolute', right: '-30px', top: '13px'}, 'editToReview');
+
+
+  let goalSettingsBox = createElement('div', '', {width: '200px', borderRadius: '5px', position: 'relative', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around'})
+  let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, {width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal'})
+  
+  let goalSettingsButton = createElement('button', 'Update Weekly Target', {display: 'none', backgroundColor: 'grey', width: '126px', fontSize: '11px', padding: '3px', marginTop: '5px', color: 'white'})
  
-  let star1 = createElement('div', hexagon, {width: '16px', height: '16px'});
-  let star2 = createElement('div', hexagon, {width: '16px', height: '16px'});
-  let star3 = createElement('div', hexagon, {width: '16px', height: '16px'});
-  let star4 = createElement('div', hexagon, {width: '16px', height: '16px'});
-  let star5 = createElement('div', hexagon, {width: '16px', height: '16px'});
-  let star6 = createElement('div', hexagon, {width: '16px', height: '16px'});
-  let star7 = createElement('div', hexagon, {width: '16px', height: '16px'});
+
+let clicked = false;
+let editClicked = false;
+
+editGoals.onclick = function () {
+  if (!clicked) {
+  goalSettingsButton.style.display = 'block';
+  weeklyTarget.style.display = 'none';
+  this.innerHTML = save; 
+  clicked = true;
+  editClicked = true;
+  
+  this.addEventListener('mousemove', function hello () {
+
+    arr.forEach((div,k)=>{
+
+      if (editClicked) {
+  
+      div.onmouseenter = function(){
+        arr.forEach((newItem,index)=>{
+          if(index<=k){
+            newItem.classList.add('selected')
+
+            dataBase.weeklyTarget = k;
+          
+          } else {
+            newItem.classList.remove('selected')
+
+            dataBase.weeklyTarget = index;
+          }
+        })
+      }
+      }
+    })
+  })
+
+
+  }
+  else {
+    this.innerHTML = edit;
+    weeklyTarget.style.display = 'block';
+    goalSettingsButton.style.display = 'none'
+    clicked = false;
+    editClicked = false;
+   
+    //hello()
+
+    this.removeEventListener('mousemove', function hello () {
+
+      arr.forEach((div,k)=>{
+  
+        if (editClicked) {
+    
+        div.onmouseenter = function(){
+          arr.forEach((newItem,index)=>{
+            if(index<=k){
+              newItem.classList.add('selected')
+            
+            } else {
+              newItem.classList.remove('selected')
+            }
+          })
+        }
+    
+     
+    
+        }
+      })
+  
+  
+  
+    })
+
+
+  }
+}
 
 
 
@@ -192,25 +262,33 @@ changeNameofDeckInput3.type = 'number';
 
     let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
 
-
     return div
   });
   
-  
-  arr.forEach((div,k)=>{
-    div.onmouseenter = function(){
-      arr.forEach((newItem,index)=>{
-        if(index<=k){
-          newItem.classList.add('selected')
-        
-        } else {
-          newItem.classList.remove('selected')
-        }
-      })
-    }
-  
-  })
+//   function hello () {
+//   arr.forEach((div,k)=>{
 
+//     if (editClicked) {
+
+//     div.onmouseenter = function(){
+//       arr.forEach((newItem,index)=>{
+//         if(index<=k){
+//           newItem.classList.add('selected')
+        
+//         } else {
+//           newItem.classList.remove('selected')
+//         }
+//       })
+//     }
+
+//     if (editGoals.innerHTML === edit) {
+//       console.log('hello')
+//     }
+
+//     }
+//   })
+
+// }
   goalSettingsBox.append(...arr);
 
 
@@ -219,13 +297,9 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-
-
-
-  mainWindow.append(goalSettings);
-  goalSettings.append(goalSettingsText);
-  goalSettings.append(goalSettingsBox)
-  goalSettings.append(goalSettingsButton);
+mainWindow.append(goalSettings);
+goalSettings.append(goalSettingsText, goalSettingsBox, weeklyTarget, goalSettingsButton);
+goalSettingsBox.append(editGoals)
 
 
   let [resetContainerOuter] = [''].map(el => {
@@ -251,21 +325,6 @@ changeNameofDeckInput3.type = 'number';
 
 
 
-  // let [studyCards, reviewCards, studyInputUnchanged, reviewInputUnchanged] = ['cards', 'cards', '10', '11'].map(el => {
-  //   return createElement('div', el, { width: '30px' }, 'flexCenterAlignCenter')
-  // });
-
-  // studyInputUnchanged.style.width = '34px';
-  // reviewInputUnchanged.style.width = '34px';
-
-
-
-
-  let [studyText, reviewText] = ['To Study:', 'To Review:'].map(el => {
-    return createElement('div', el, { width: '74px', marginLeft: '9px' }, '')
-  });
-
-
   let [studyAndReviewUpper, studyAndReviewLower] = ['', ''].map(el => {
     return createElement('div', el, {}, 'studyAndReset flexAlignCenter')
   });
@@ -275,7 +334,6 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top =  '38px';
   
-
 
 
   let mainThreeDots = threeDots()
@@ -313,8 +371,6 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
  
 
-
-
   let editToReview = createElement('div', edit, {}, 'editToReview');
 
   editToReview.title = 'change study and review intervals for all decks';
@@ -325,23 +381,7 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
   resetContainerOuter.append(resetInner)
 
 
-
-  //studyAndReviewContainerOuter.append(studyAndReviewUpper, studyAndReviewLower, editToReview);
-
- // studyAndReviewUpper.append(studyText, studyInputUnchanged, studyCards);
-
-
-  //studyAndReviewLower.append(reviewText, reviewInputUnchanged, reviewCards)
-
   resetColorSchemeContainer.append(colorscheme);
-
-  // let [studyCardInput, reviewCardInput] = Array(2).fill('22px').map(width => createElement('input', '', { width, height: '15px', margin: '0 6px'}, 'studyAndReviewInputStyling'))
-
-  // studyCardInput.type = 'number';
-  // reviewCardInput.type = 'number';
-
-  //reviewCardInput.style.margin = '0 6px';
-
 
 
    function editContainerUpperLowerRow (cond) {
@@ -371,45 +411,6 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
     }
   }
-
-  let editedLower = false;
-
-  // editToReview.onclick = function (event) {
-    
-  //   event.stopPropagation()
-  //   //  this.innerHTML = ''
-  //   if (!editedLower) {
-
-  //     studyAndReviewLower.replaceChild(reviewCardInput, reviewInputUnchanged);
-  //     studyAndReviewUpper.replaceChild(studyCardInput, studyInputUnchanged);
-
-  //     reviewCardInput.value = reviewInputUnchanged.innerText;
-  //     studyCardInput.value = studyInputUnchanged.innerText;
-  //     editedLower = true;
-  //     editToReview.innerHTML = save
-  
-  //     handleOutsideClick(editToReview, editToReview, reviewCardInput, studyCardInput)
-  
-      
-  //   } else {
-  //     editToReview.innerHTML = edit
-  //     console.log(2)
-  //     studyAndReviewLower.replaceChild(reviewInputUnchanged, reviewCardInput);
-  //     studyAndReviewUpper.replaceChild(studyInputUnchanged, studyCardInput);
-
-  //     reviewInputUnchanged.innerText =  reviewCardInput.value;
-  //     studyInputUnchanged.innerText = studyCardInput.value;
-
-  //    dataBase.toStudyGoal = (Number(studyInputUnchanged.innerText));
-  //      dataBase.toReviewGoal = (Number(reviewInputUnchanged.innerText));
-
-
-  //     window.onclick = ''
-  //     editedLower = false;
-     
-  //   }
-  // }
-
 
   let editedUpper = false;
 
@@ -483,7 +484,6 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
 
 
-
   let themeRadiosContainer = createElement('div', '', { }, 'themeRadiosContainer flexSpaceAround', '', mainWindow);
 
 
@@ -509,14 +509,4 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
   });
   handleOutsideClick(mainWindow);
 }
-
-
-
-
-
-
-
-
-
-
 

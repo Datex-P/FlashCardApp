@@ -18,89 +18,89 @@ createDom(dataBase.DeckNames);
 
 
 
-document.getElementById('numDaysUp').onclick = function () {
-  let num = document.getElementById('numDays').innerHTML
+// document.getElementById('numDaysUp').onclick = function () {
+//   let num = document.getElementById('numDays').innerHTML
 
-  if (num < 7) {
-    num++;
-    document.getElementById('numDays').innerHTML = num;
-    document.getElementById('daysPerWeek').innerHTML = 'days/week';
-    document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
-
-
-
-    var elements = document.querySelectorAll('.hexagonStyling');
-    elements.forEach(el=>el.style.display = 'none')
-    Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
-
-  }
-  document.getElementById('studyDays').innerHTML = `${num} days`;
-}
-
-
-document.getElementById('numDaysDown').onclick = function () {
-  let num = document.getElementById('numDays').innerHTML
-
-  if (num > 1) {
-    num--;
-    document.getElementById('numDays').innerHTML = num
-    document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
-    var elements = document.querySelectorAll('.hexagonStyling');
-    elements.forEach(el=>el.style.display = 'none')
-    Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
-  }
-
-  if (num === 1) {
-    document.getElementById('daysPerWeek').innerHTML = 'day/week';
-    document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
-  }
-  document.getElementById('studyDays').innerHTML = `${num} day`;
-}
+//   if (num < 7) {
+//     num++;
+//     document.getElementById('numDays').innerHTML = num;
+//     document.getElementById('daysPerWeek').innerHTML = 'days/week';
+//     document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
 
 
 
+//     var elements = document.querySelectorAll('.hexagonStyling');
+//     elements.forEach(el=>el.style.display = 'none')
+//     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
+
+//   }
+//   document.getElementById('studyDays').innerHTML = `${num} days`;
+// }
 
 
-document.getElementById('editMainscreen').onclick = function () {
-  let num = document.getElementById('numDays').innerHTML
+// document.getElementById('numDaysDown').onclick = function () {
+//   let num = document.getElementById('numDays').innerHTML
 
-  document.getElementById('numDays').innerHTML = num;
-    document.getElementById('daysPerWeek').innerHTML = 'day/week';
-    document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
+//   if (num > 1) {
+//     num--;
+//     document.getElementById('numDays').innerHTML = num
+//     document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
+//     var elements = document.querySelectorAll('.hexagonStyling');
+//     elements.forEach(el=>el.style.display = 'none')
+//     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
+//   }
 
-
-
-    var elements = document.querySelectorAll('.hexagonStyling');
-    elements.forEach(el=>el.style.display = 'none')
-    Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
-
-
-
-  document.getElementById('innerPopUp').style.display = 'none';
-  document.getElementById('clicked').style.display = 'block';
-  document.getElementById('studyDays').style.display = 'none';
-  document.getElementById('changedStudyDays').style.display = 'flex';
-  document.getElementById('buttonWeeklyTarget').style.display = 'flex';
+//   if (num === 1) {
+//     document.getElementById('daysPerWeek').innerHTML = 'day/week';
+//     document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
+//   }
+//   document.getElementById('studyDays').innerHTML = `${num} day`;
+// }
 
 
 
 
-}
 
-document.getElementById('buttonWeeklyTarget').onclick = function () {
+// document.getElementById('editMainscreen').onclick = function () {
+//   let num = document.getElementById('numDays').innerHTML
 
-document.getElementById('popUpWeeklyGoal').style.display = 'none';
-document.getElementById('innerPopUp').style.display = 'flex';
-this.style.display = 'none';
-document.getElementById('clicked').style.display = 'none';
-document.getElementById('changedStudyDays').style.display = 'none';
-document.getElementById('studyDays').style.display = 'flex';
-document.getElementById('weeklyStudyDays').style.display = 'flex';
-document.getElementById('studyDaysSoFar').style.display = 'flex';
+//   document.getElementById('numDays').innerHTML = num;
+//     document.getElementById('daysPerWeek').innerHTML = 'day/week';
+//     document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
 
-var elements = document.querySelectorAll('.hexagonStyling');
-elements.forEach(el=>el.style.display = 'none')
-}
+
+
+//     var elements = document.querySelectorAll('.hexagonStyling');
+//     elements.forEach(el=>el.style.display = 'none')
+//     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
+
+
+
+//   document.getElementById('innerPopUp').style.display = 'none';
+//   document.getElementById('clicked').style.display = 'block';
+//   document.getElementById('studyDays').style.display = 'none';
+//   document.getElementById('changedStudyDays').style.display = 'flex';
+//   document.getElementById('buttonWeeklyTarget').style.display = 'flex';
+
+
+
+
+// }
+
+// document.getElementById('buttonWeeklyTarget').onclick = function () {
+
+// document.getElementById('popUpWeeklyGoal').style.display = 'none';
+// document.getElementById('innerPopUp').style.display = 'flex';
+// this.style.display = 'none';
+// document.getElementById('clicked').style.display = 'none';
+// document.getElementById('changedStudyDays').style.display = 'none';
+// document.getElementById('studyDays').style.display = 'flex';
+// document.getElementById('weeklyStudyDays').style.display = 'flex';
+// document.getElementById('studyDaysSoFar').style.display = 'flex';
+
+// var elements = document.querySelectorAll('.hexagonStyling');
+// elements.forEach(el=>el.style.display = 'none')
+// }
 
 
 
@@ -109,9 +109,9 @@ dataBase.userStylePreferences.forEach(item => {
 })
 
 
-document.querySelector('.weekOverview').onclick = function () {
-  document.getElementById('popUpWeeklyGoal').style.display = 'block';
-}
+// document.querySelector('.weekOverview').onclick = function () {
+//   document.getElementById('popUpWeeklyGoal').style.display = 'block';
+// }
 
 document.querySelector('.closePopUpContainer ').onclick = function (e) {
   e.stopPropagation()
@@ -246,7 +246,12 @@ boxesInMenu.forEach(button => {
   }
 });
 
-editMainscreen.onclick = function () { settings();}
+
+document.querySelector('.weekOverview').onclick = function () {
+  settings()
+}
+
+// editMainscreen.onclick = function () { settings();}
 
 
 

@@ -20,6 +20,7 @@ export default function createDom(obj) {
 
     dataBase.DeckNames[item].colorPlay = colors[index % 5];
     dataBase.DeckNames[item].deckPauseActive = false;
+    
 
 
 
@@ -267,6 +268,28 @@ export default function createDom(obj) {
     listOfDecks.prepend(newDeckContainer);
 
   });
+
+
+
+
+  let arr = Array(7).fill('M').map((item,k)=>{
+
+    let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
+
+    return div
+  });
+
+
+
+
+
+
+
+
+
+
+
+
 
   document.querySelector("#scrollable").onscroll = function (event) {
     let all = listOfDecks.querySelectorAll('.newDeckContainer')

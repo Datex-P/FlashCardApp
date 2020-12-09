@@ -186,7 +186,7 @@ export let pause = `<?xml version="1.0" encoding="iso-8859-1"?>
 `
 
 export let play = `
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg  x="0px" y="0px"
 	 width="16px" height="16px" viewBox="0 0 163.861 163.861" style="enable-background:new 0 0 163.861 163.861;"
 	 xml:space="preserve">
 <g>
@@ -227,55 +227,13 @@ export let play = `
 
 export let hexagon = `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="transform: scale(3)" xml:space="preserve">
+	 viewBox="0 0 512 512" width="18px", height="18px" xml:space="preserve">
 <g>
 	<g>
 		<path fill='inherit' opacity='40%' d="M511.155,252.305l-102.4-213.333c-1.417-2.953-4.403-4.838-7.689-4.838H110.933c-3.285,0-6.272,1.886-7.689,4.838
 			L0.845,252.305c-1.126,2.338-1.126,5.052,0,7.39l102.4,213.333c1.417,2.953,4.403,4.838,7.689,4.838h290.133
 			c3.285,0,6.272-1.886,7.689-4.838l102.4-213.333C512.282,257.357,512.282,254.643,511.155,252.305z"/>
 	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
-`
-
-export let hexagonGreen = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
-<g>
-<g>
- <path fill='green' d="M511.155,252.305l-102.4-213.333c-1.417-2.953-4.403-4.838-7.689-4.838H110.933c-3.285,0-6.272,1.886-7.689,4.838
-   L0.845,252.305c-1.126,2.338-1.126,5.052,0,7.39l102.4,213.333c1.417,2.953,4.403,4.838,7.689,4.838h290.133
-   c3.285,0,6.272-1.886,7.689-4.838l102.4-213.333C512.282,257.357,512.282,254.643,511.155,252.305z"/>
-</g>
 </g>
 <g>
 </g>
