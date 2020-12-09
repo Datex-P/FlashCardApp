@@ -193,9 +193,6 @@ changeNameofDeckInput3.type = 'number';
     let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
 
 
-    // let div = document.createElement('div')
-    // div.innerHTML = '3'
-    // div.className='item'
     return div
   });
   
@@ -205,13 +202,9 @@ changeNameofDeckInput3.type = 'number';
       arr.forEach((newItem,index)=>{
         if(index<=k){
           newItem.classList.add('selected')
-          //newItem.style.fill = 'green';
-          //hexagon.style.fill = 'green'
-          // div.innerHTML = hexagon;
-        }else{
-          // div.innerHTML = hexagonGreen
+        
+        } else {
           newItem.classList.remove('selected')
-          //newItem.style.fill = 'gr';
         }
       })
     }
@@ -232,23 +225,6 @@ changeNameofDeckInput3.type = 'number';
   mainWindow.append(goalSettings);
   goalSettings.append(goalSettingsText);
   goalSettings.append(goalSettingsBox)
-//  goalSettingsBox.append(star1);
-  //goalSettingsBox.append(divStar1)
-  //divStar1.append(star1)
-
-
- // goalSettingsBox.append(divStar2);
-  // divStar2.append(star2)
-  // goalSettingsBox.append(divStar3);
-  // divStar3.append(star3)
-  // goalSettingsBox.append(divStar4);
-  // divStar4.append(star4)
-  // goalSettingsBox.append(divStar5);
-  // divStar5.append(star5)
-  // goalSettingsBox.append(divStar6);
-  // divStar6.append(star6)
-  // goalSettingsBox.append(divStar7);
-  // divStar7.append(star7)
   goalSettings.append(goalSettingsButton);
 
 

@@ -8,10 +8,10 @@
     .container{
       display: flex;
     }
-    .item{
+    /* .item{
       margin: 10px;
       padding: 10px;
-    }
+    } */
     .selected{
       background-color: yellow;
     }
@@ -23,6 +23,8 @@
   <script>
     let container = document.querySelector('body>div');
     container.className='container'
+
+
 
     let arr = Array(7).fill('1').map((item,k)=>{
       let div = document.createElement('div')
@@ -45,6 +47,21 @@
     })
 
     container.append(...arr);
+
+
+fetch('https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/hello?strictMatch=false', {
+method:'GET',
+header: 
+  {
+  "Accept": "application/json",
+  "app_id": "908a9650",
+  "app_key": "d60519d1add017d107af789dcd05c82b"
+}
+
+})
+.then(res=>res.json())
+.then(data=>document.write(JSON.stringify(data,null, 3)))
+
 
   </script>
   
