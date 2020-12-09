@@ -1,6 +1,6 @@
 
-import { edit, hexagon, save} from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots} from './exportFunctions.js'
+import { edit, hexagon, save } from './svgs.js';
+import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots } from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
 
 
@@ -21,7 +21,7 @@ export default function settings() {
   );
 
   let changeTimeIntervall = createElement(
-    'div', 'Change Repetition Interval', { fontWeight: 'bold', fontSize: '17px'});
+    'div', 'Change Repetition Interval', { fontWeight: 'bold', fontSize: '17px' });
 
 
   mainWindow.append(settingsAndRedCrossContainer, changeTimeIntervall);
@@ -39,7 +39,7 @@ export default function settings() {
 
 
   let [editContainerUpper] = [''].map(el => {
-    return createElement('div', edit, {  position: 'absolute', right: '8px', top: '24px', cursor: 'pointer'})
+    return createElement('div', edit, { position: 'absolute', right: '8px', top: '24px', cursor: 'pointer' })
   });
 
   editContainerUpper.title = 'Click and change name buttons and repetition intervals for all decks.'
@@ -47,7 +47,7 @@ export default function settings() {
 
 
   let changeRepetitionIntervalContainer = createElement(
-    'div', '', {position: 'relative', marginTop: '10px'}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
+    'div', '', { position: 'relative', marginTop: '10px' }, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
   );
 
 
@@ -66,7 +66,7 @@ export default function settings() {
       position: 'relative',
       width: '100%',
       height: '50%',
-  
+
     }, 'flexSpaceAroundAlignCenter', '', changeRepetitionIntervalContainerInner))
 
 
@@ -106,49 +106,49 @@ export default function settings() {
 
     })
   );
-  let {left,middle,right} = dataBase.timeValues
+  let { left, middle, right } = dataBase.timeValues
   upperLeftZero.innerText = left
   upperMiddleZero.innerText = middle
   upperRightZero.innerText = right;
 
 
-    
+
   ["min", 'hrs', 'days'].map((el) => {
-      let input = document.createElement("div");
-      input.innerText = el;
-      input.style.fontWeight = 'bold'
-      //input.className = "noBorders";
-      //input.style.height = '30%'
-      input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+    let input = document.createElement("div");
+    input.innerText = el;
+    input.style.fontWeight = 'bold'
+    //input.className = "noBorders";
+    //input.style.height = '30%'
+    input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
-      switch (el) {
-        case 'min':
-          upperLeftContainer.append(input)
-          break
-        case 'hrs':
-          upperMiddleContainer.append(input)
-          break
-        case 'days':
-          upperRightContainer.append(input)
-          break
-      }
-      return input;
+    switch (el) {
+      case 'min':
+        upperLeftContainer.append(input)
+        break
+      case 'hrs':
+        upperMiddleContainer.append(input)
+        break
+      case 'days':
+        upperRightContainer.append(input)
+        break
+    }
+    return input;
 
-    })
+  })
 
-  
+
 
 
   changeRepetitionIntervalContainer.append(editContainerUpper)
 
 
-  let {leftName,middleName,rightName} = dataBase.nameValues
+  let { leftName, middleName, rightName } = dataBase.nameValues
 
 
 
   let [again, good, easy] = [`${leftName}`, `${middleName}`, `${rightName}`].map((el) => {
     let input = createElement('div', el, {
-  
+
     }, 'flexCenterAlignCenter againGoodEasySettings')
     containerLower.append(input)
     return input
@@ -160,133 +160,137 @@ export default function settings() {
     return createElement('input', '', { width }, 'settingsButtonStyling');
   })
 
-changeNameofDeckInput1.type = 'number';
-changeNameofDeckInput2.type = 'number';
-changeNameofDeckInput3.type = 'number';
+  changeNameofDeckInput1.type = 'number';
+  changeNameofDeckInput2.type = 'number';
+  changeNameofDeckInput3.type = 'number';
 
 
   let goalSettings = createElement(
-    'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px'}
+    'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px' }
   );
 
-  let goalSettingsText = createElement('div', 'Current weekly Target', {fontWeight: 'bold', fontSize: '13px', margin: '6px 0 2px'})
-  let editGoals = createElement('div', edit, {position: 'absolute', right: '-30px', top: '13px'}, 'editToReview');
+  let goalSettingsText = createElement('div', 'Current weekly Target', { fontWeight: 'bold', fontSize: '13px', margin: '6px 0 2px' })
+  let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
 
 
-  let goalSettingsBox = createElement('div', '', {width: '200px', borderRadius: '5px', position: 'relative', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around'})
-  let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, {width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal'})
+  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around' })
+  let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
+
+  let goalSettingsButton = createElement('button', 'Update Weekly Target', { display: 'none', backgroundColor: 'grey', width: '126px', fontSize: '11px', padding: '3px', marginTop: '5px', color: 'white' })
+
+
+  let clicked = false;
+  let editClicked = false;
+  let selected = 0
   
-  let goalSettingsButton = createElement('button', 'Update Weekly Target', {display: 'none', backgroundColor: 'grey', width: '126px', fontSize: '11px', padding: '3px', marginTop: '5px', color: 'white'})
- 
-
-let clicked = false;
-let editClicked = false;
-
-editGoals.onclick = function () {
-  if (!clicked) {
-  goalSettingsButton.style.display = 'block';
-  weeklyTarget.style.display = 'none';
-  this.innerHTML = save; 
-  clicked = true;
-  editClicked = true;
-  
-  this.addEventListener('mousemove', function hello () {
-
-    arr.forEach((div,k)=>{
-
-      if (editClicked) {
-  
-      div.onmouseenter = function(){
-        arr.forEach((newItem,index)=>{
-          if(index<=k){
-            newItem.classList.add('selected')
-
-            dataBase.weeklyTarget = k;
-          
-          } else {
-            newItem.classList.remove('selected')
-
-            dataBase.weeklyTarget = index;
-          }
-        })
-      }
-      }
-    })
-  })
-
-
-  }
-  else {
-    this.innerHTML = edit;
-    weeklyTarget.style.display = 'block';
-    goalSettingsButton.style.display = 'none'
-    clicked = false;
-    editClicked = false;
-   
-    //hello()
-
-    this.removeEventListener('mousemove', function hello () {
-
-      arr.forEach((div,k)=>{
-  
-        if (editClicked) {
+  function editHabdler(editClicked){
     
-        div.onmouseenter = function(){
-          arr.forEach((newItem,index)=>{
-            if(index<=k){
+    arr.forEach((div, k) => {
+
+      if (!editClicked) {
+
+        div.onmouseenter = null
+      }else{
+        div.onmouseenter = function () {
+          selected = k
+          arr.forEach((newItem, index) => {
+            if (index <= k) {
               newItem.classList.add('selected')
-            
+
             } else {
               newItem.classList.remove('selected')
             }
           })
         }
-    
-    
-        }
-      })
-  
-  
+      }
     })
-
-
   }
-}
+
+  editGoals.onclick = function () {
+    editClicked = !editClicked
+    if (!clicked) {
+      goalSettingsButton.style.display = 'block';
+      weeklyTarget.style.display = 'none';
+      this.innerHTML = save;
+      editClicked = true;
+
+      // this.addEventListener('mousemove', function hello() {
+
+      editHabdler(editClicked)
+      // })
+
+      
+    }
+    //else{
+    //   this.innerHTML = edit;
+    //   weeklyTarget.style.display = 'block';
+    //   goalSettingsButton.style.display = 'none'
+    //   editClicked = false;
+
+    //   //hello()
+
+    //   // this.removeEventListener('mousemove', function hello() {
+
+    //     arr.forEach((div, k) => {
+
+    //       if (editClicked) {
+
+    //         div.onmouseenter = function () {
+    //           arr.forEach((newItem, index) => {
+    //             if (index <= k) {
+    //               newItem.classList.add('selected')
+
+    //             } else {
+    //               newItem.classList.remove('selected')
+    //             }
+    //           })
+    //         }
+
+
+    //       }
+    //     })
+
+
+    //   // })
+
+
+    // }
+  }
 
 
 
 
-  let arr = Array(7).fill('1').map((item,k)=>{
+  let arr = Array(7).fill('1').map((item, k) => {
 
-    let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
+    let div = createElement('div', hexagon, { width: '16px', height: '16px' }, 'item');
 
     return div
   });
-  
-//   function hello () {
-//   arr.forEach((div,k)=>{
 
-//     if (editClicked) {
+  //   function hello () {
+  //   arr.forEach((div,k)=>{
 
-//     div.onmouseenter = function(){
-//       arr.forEach((newItem,index)=>{
-//         if(index<=k){
-//           newItem.classList.add('selected')
-        
-//         } else {
-//           newItem.classList.remove('selected')
-//         }
-//       })
-//     }
+  //     if (editClicked) {
 
-//     if (editGoals.innerHTML === edit) {
-//       console.log('hello')
-//     }
+  //     div.onmouseenter = function(){
+  //       arr.forEach((newItem,index)=>{
+  //         if(index<=k){
+  //           newItem.classList.add('selected')
 
-//     }
-//   })
+  //         } else {
+  //           newItem.classList.remove('selected')
+  //         }
+  //       })
+  //     }
 
-// }
+  //     if (editGoals.innerHTML === edit) {
+  //       console.log('hello')
+  //     }
+
+  //     }
+  //   })
+
+  // }
   goalSettingsBox.append(...arr);
 
 
@@ -295,9 +299,9 @@ editGoals.onclick = function () {
 
 
 
-mainWindow.append(goalSettings);
-goalSettings.append(goalSettingsText, goalSettingsBox, weeklyTarget, goalSettingsButton);
-goalSettingsBox.append(editGoals)
+  mainWindow.append(goalSettings);
+  goalSettings.append(goalSettingsText, goalSettingsBox, weeklyTarget, goalSettingsButton);
+  goalSettingsBox.append(editGoals)
 
 
   let [resetContainerOuter] = [''].map(el => {
@@ -318,7 +322,7 @@ goalSettingsBox.append(editGoals)
   }, '');
 
   let colorscheme = createElement(
-    'div', 'Colorscheme', { fontWeight: 'bold', textAlign: 'center', fontSize: '17px'}
+    'div', 'Colorscheme', { fontWeight: 'bold', textAlign: 'center', fontSize: '17px' }
   );
 
 
@@ -327,47 +331,49 @@ goalSettingsBox.append(editGoals)
     return createElement('div', el, {}, 'studyAndReset flexAlignCenter')
   });
 
-let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner flexAlignCenter')
+  let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner flexAlignCenter')
 
   studyAndReviewUpper.style.top = '6px';
-  studyAndReviewLower.style.top =  '38px';
-  
+  studyAndReviewLower.style.top = '38px';
+
 
 
   let mainThreeDots = threeDots()
 
   resetInner.onclick = function () {
- 
-      deleteCardQuestionBox(() => {
-        
-     
-        for (let deck in dataBase.DeckNames) {
 
-          dataBase.DeckNames[deck].data.forEach((card) => {
-           
-                if (card.openHistory) {
-                  delete card.openHistory
-                }
-        } ) } }
-        
-        //breakdown has to be resetted as well
-        , () => {
+    deleteCardQuestionBox(() => {
 
-      }, 'Reset current progress', 'reset the calendar and the hourly breakdown', {marginLeft: '40px', fontSize: '18px'})
 
-   };
-   
-   
-   
-   
-  
+      for (let deck in dataBase.DeckNames) {
+
+        dataBase.DeckNames[deck].data.forEach((card) => {
+
+          if (card.openHistory) {
+            delete card.openHistory
+          }
+        })
+      }
+    }
+
+      //breakdown has to be resetted as well
+      , () => {
+
+      }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
+
+  };
+
+
+
+
+
 
 
 
   let resetProgress = createElement('div', 'Reset Current Progress', {}, 'resetProgress'
   )
 
- 
+
 
   let editToReview = createElement('div', edit, {}, 'editToReview');
 
@@ -382,7 +388,7 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
   resetColorSchemeContainer.append(colorscheme);
 
 
-   function editContainerUpperLowerRow (cond) {
+  function editContainerUpperLowerRow(cond) {
 
     if (!cond) {
 
@@ -413,8 +419,8 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
   let editedUpper = false;
 
 
-  function editContainerUpperClickHandler(cond){
-        [
+  function editContainerUpperClickHandler(cond) {
+    [
       {
         container: upperLeftContainer,
         input: changeNameofDeckInput1,
@@ -433,41 +439,41 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
         div: upperRightZero,
         smaller: upperRightSmaller
       },
-    ].forEach( (item,idx) => {
+    ].forEach((item, idx) => {
 
-       if (!cond) {
+      if (!cond) {
 
         item.container.replaceChild(item.input, item.div);
-        item.input.value = item.div.innerText 
+        item.input.value = item.div.innerText
         item.smaller.style.display = 'none'
         editContainerUpper.innerHTML = save;
 
-       } else {
+      } else {
 
         item.container.replaceChild(item.div, item.input);
-        item.div.innerText = item.input.value 
+        item.div.innerText = item.input.value
         item.smaller.style.display = 'block'
         editContainerUpper.innerHTML = edit;
 
         if (idx === 0) {
 
-        dataBase.timeValues.left = Number(item.div.innerText)
-      
-      } else if (idx === 1) {
-        dataBase.timeValues.middle = Number(item.div.innerText)
-        
-      } else if (idx === 2) {
-        dataBase.timeValues.right = Number(item.div.innerText)
+          dataBase.timeValues.left = Number(item.div.innerText)
+
+        } else if (idx === 1) {
+          dataBase.timeValues.middle = Number(item.div.innerText)
+
+        } else if (idx === 2) {
+          dataBase.timeValues.right = Number(item.div.innerText)
+        }
       }
     }
-  }
     )
   }
 
   editContainerUpper.onclick = function () {
     editContainerUpperClickHandler(editedUpper)
 
-    editContainerUpperLowerRow (editedUpper)
+    editContainerUpperLowerRow(editedUpper)
     editedUpper = !editedUpper
   }
 
@@ -482,13 +488,13 @@ let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner 
 
 
 
-  let themeRadiosContainer = createElement('div', '', { }, 'themeRadiosContainer flexSpaceAround', '', mainWindow);
+  let themeRadiosContainer = createElement('div', '', {}, 'themeRadiosContainer flexSpaceAround', '', mainWindow);
 
 
   ['light', 'dark', 'default'].map(comp => {
     let inputContainer = createElement('div', '', {}, '', '', themeRadiosContainer)
 
-    let radio = createElement('input', '', {cursor: 'pointer'}, '', '', inputContainer)
+    let radio = createElement('input', '', { cursor: 'pointer' }, '', '', inputContainer)
     radio.name = 'theme';
     radio.type = 'radio';
     radio.value = comp;
