@@ -193,6 +193,7 @@ export default function settings() {
       }else{
         div.onmouseenter = function () {
           selected = k
+          console.log(selected)
           arr.forEach((newItem, index) => {
             if (index <= k) {
               newItem.classList.add('selected')
@@ -208,7 +209,7 @@ export default function settings() {
 
   editGoals.onclick = function () {
     editClicked = !editClicked
-    if (!clicked) {
+    if (editClicked) {
       goalSettingsButton.style.display = 'block';
       weeklyTarget.style.display = 'none';
       this.innerHTML = save;
@@ -216,16 +217,17 @@ export default function settings() {
 
       // this.addEventListener('mousemove', function hello() {
 
-      editHabdler(editClicked)
+      
       // })
 
+
+    }else{
+      this.innerHTML = edit;
+      weeklyTarget.style.display = 'block';
+      goalSettingsButton.style.display = 'none'
       
     }
-    //else{
-    //   this.innerHTML = edit;
-    //   weeklyTarget.style.display = 'block';
-    //   goalSettingsButton.style.display = 'none'
-    //   editClicked = false;
+    editHabdler(editClicked)
 
     //   //hello()
 
