@@ -176,21 +176,20 @@ export default function settings() {
   let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around' })
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
 
-  let goalSettingsButton = createElement('button', 'Update Weekly Target', { display: 'none', backgroundColor: 'grey', width: '126px', fontSize: '11px', padding: '3px', marginTop: '5px', color: 'white' })
+  
 
-
-  let clicked = false;
   let editClicked = false;
   let selected = 0
   
-  function editHabdler(editClicked){
-    
+  function editHandler(editClicked){
+
+   
     arr.forEach((div, k) => {
 
       if (!editClicked) {
 
         div.onmouseenter = null
-      }else{
+      } else {
         div.onmouseenter = function () {
           selected = k
           console.log(selected)
@@ -198,8 +197,12 @@ export default function settings() {
             if (index <= k) {
               newItem.classList.add('selected')
 
+              // let hello = createElement('div', '', {width: '10px', height: '10px', backgroundColor: 'blue'})
+              // newItem.append(hello)
+
             } else {
               newItem.classList.remove('selected')
+             // newItem.remove(hello)
             }
           })
         }
@@ -209,100 +212,47 @@ export default function settings() {
 
   editGoals.onclick = function () {
     editClicked = !editClicked
+
     if (editClicked) {
-      goalSettingsButton.style.display = 'block';
-      weeklyTarget.style.display = 'none';
       this.innerHTML = save;
       editClicked = true;
 
-      // this.addEventListener('mousemove', function hello() {
 
-      
-      // })
-
-
-    }else{
+    } else {
       this.innerHTML = edit;
-      weeklyTarget.style.display = 'block';
-      goalSettingsButton.style.display = 'none'
-      
+      dataBase.daysOfStudy.day = selected;
     }
-    editHabdler(editClicked)
 
-    //   //hello()
-
-    //   // this.removeEventListener('mousemove', function hello() {
-
-    //     arr.forEach((div, k) => {
-
-    //       if (editClicked) {
-
-    //         div.onmouseenter = function () {
-    //           arr.forEach((newItem, index) => {
-    //             if (index <= k) {
-    //               newItem.classList.add('selected')
-
-    //             } else {
-    //               newItem.classList.remove('selected')
-    //             }
-    //           })
-    //         }
-
-
-    //       }
-    //     })
-
-
-    //   // })
-
-
-    // }
+    editHandler(editClicked)
   }
 
+  let arr = Array(7).fill('').map(el => {
 
-
-
-  let arr = Array(7).fill('1').map((item, k) => {
-
-    let div = createElement('div', hexagon, { width: '16px', height: '16px' }, 'item');
+    let div = createElement('div', hexagon, { width: '16px', height: '16px'}, 'item');
 
     return div
   });
 
-  //   function hello () {
-  //   arr.forEach((div,k)=>{
-
-  //     if (editClicked) {
-
-  //     div.onmouseenter = function(){
-  //       arr.forEach((newItem,index)=>{
-  //         if(index<=k){
-  //           newItem.classList.add('selected')
-
-  //         } else {
-  //           newItem.classList.remove('selected')
-  //         }
-  //       })
-  //     }
-
-  //     if (editGoals.innerHTML === edit) {
-  //       console.log('hello')
-  //     }
-
-  //     }
-  //   })
-
-  // }
+  
   goalSettingsBox.append(...arr);
 
 
 
+  function renderHexagons() {
+    arr.forEach((newItem, index) => {
+      if (index <= dataBase.daysOfStudy.day) {
+        newItem.classList.add('selected')
+      }
+    })
+    }
 
+    renderHexagons()
+   
 
 
 
   mainWindow.append(goalSettings);
-  goalSettings.append(goalSettingsText, goalSettingsBox, weeklyTarget, goalSettingsButton);
+  goalSettings.append(goalSettingsText, goalSettingsBox, weeklyTarget);
   goalSettingsBox.append(editGoals)
 
 
@@ -369,11 +319,7 @@ export default function settings() {
 
 
 
-
-
-
-  let resetProgress = createElement('div', 'Reset Current Progress', {}, 'resetProgress'
-  )
+  let resetProgress = createElement('div', 'Reset Current Progress', {}, 'resetProgress');
 
 
 

@@ -18,100 +18,13 @@ createDom(dataBase.DeckNames);
 
 
 
-// document.getElementById('numDaysUp').onclick = function () {
-//   let num = document.getElementById('numDays').innerHTML
-
-//   if (num < 7) {
-//     num++;
-//     document.getElementById('numDays').innerHTML = num;
-//     document.getElementById('daysPerWeek').innerHTML = 'days/week';
-//     document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
-
-
-
-//     var elements = document.querySelectorAll('.hexagonStyling');
-//     elements.forEach(el=>el.style.display = 'none')
-//     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
-
-//   }
-//   document.getElementById('studyDays').innerHTML = `${num} days`;
-// }
-
-
-// document.getElementById('numDaysDown').onclick = function () {
-//   let num = document.getElementById('numDays').innerHTML
-
-//   if (num > 1) {
-//     num--;
-//     document.getElementById('numDays').innerHTML = num
-//     document.getElementById('changedStudyDays').innerHTML = `${num} days/week`;
-//     var elements = document.querySelectorAll('.hexagonStyling');
-//     elements.forEach(el=>el.style.display = 'none')
-//     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
-//   }
-
-//   if (num === 1) {
-//     document.getElementById('daysPerWeek').innerHTML = 'day/week';
-//     document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
-//   }
-//   document.getElementById('studyDays').innerHTML = `${num} day`;
-// }
-
-
-
-
-
-// document.getElementById('editMainscreen').onclick = function () {
-//   let num = document.getElementById('numDays').innerHTML
-
-//   document.getElementById('numDays').innerHTML = num;
-//     document.getElementById('daysPerWeek').innerHTML = 'day/week';
-//     document.getElementById('changedStudyDays').innerHTML = `${num} day/week`;
-
-
-
-//     var elements = document.querySelectorAll('.hexagonStyling');
-//     elements.forEach(el=>el.style.display = 'none')
-//     Array.from(elements).slice(0,num).forEach(el=>el.style.display = 'block')
-
-
-
-//   document.getElementById('innerPopUp').style.display = 'none';
-//   document.getElementById('clicked').style.display = 'block';
-//   document.getElementById('studyDays').style.display = 'none';
-//   document.getElementById('changedStudyDays').style.display = 'flex';
-//   document.getElementById('buttonWeeklyTarget').style.display = 'flex';
-
-
-
-
-// }
-
-// document.getElementById('buttonWeeklyTarget').onclick = function () {
-
-// document.getElementById('popUpWeeklyGoal').style.display = 'none';
-// document.getElementById('innerPopUp').style.display = 'flex';
-// this.style.display = 'none';
-// document.getElementById('clicked').style.display = 'none';
-// document.getElementById('changedStudyDays').style.display = 'none';
-// document.getElementById('studyDays').style.display = 'flex';
-// document.getElementById('weeklyStudyDays').style.display = 'flex';
-// document.getElementById('studyDaysSoFar').style.display = 'flex';
-
-// var elements = document.querySelectorAll('.hexagonStyling');
-// elements.forEach(el=>el.style.display = 'none')
-// }
-
-
 
 dataBase.userStylePreferences.forEach(item => {
   item.element.style.backgroundColor = item.backgroundColor
 })
 
 
-// document.querySelector('.weekOverview').onclick = function () {
-//   document.getElementById('popUpWeeklyGoal').style.display = 'block';
-// }
+
 
 document.querySelector('.closePopUpContainer ').onclick = function (e) {
   e.stopPropagation()
@@ -232,6 +145,51 @@ let colorContainer = createElement('div', '', {
 
 
 
+
+
+
+
+
+// let containerCalendar = createElement('div', '', {display: 'flex', justifyContent: 'space-between', width: '165px',
+// color: 'white'})
+
+// let arr = Array(7).fill('').map(el => {
+
+//   let div = createElement('div', hexagon, { width: '16px', height: '16px'}, 'item');
+
+//   return div
+// });
+
+
+// for (let i = 0; i<7) {
+//   <div class='flexColumnAlignCenter'>
+//   <div style='width:25px; display: flex; flex-direction: column; justify-content: center; align-items: center'>M
+//       <img src="hexagon.svg" class="hexagonStyling">
+// </div>
+// }
+
+
+
+
+// <div
+// style="display: flex; width: 165px; justify-content: space-between; color: white">
+// <div class='flexColumnAlignCenter'>
+//   <div style='width:25px; display: flex; flex-direction: column; justify-content: center; align-items: center'>M
+//       <img src="hexagon.svg" class="hexagonStyling">
+// </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
 boxesInMenu.forEach(button => {
   button.onclick = function () {
@@ -250,8 +208,6 @@ boxesInMenu.forEach(button => {
 document.querySelector('.weekOverview').onclick = function () {
   settings()
 }
-
-// editMainscreen.onclick = function () { settings();}
 
 
 

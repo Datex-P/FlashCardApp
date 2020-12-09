@@ -312,7 +312,7 @@ containerForRight.append(rightTimeValue);
   }
 
   let {leftName,middleName,rightName} = dataBase.nameValues;
-jj
+
 
   // if studytime is bigger than 5 min 
 
