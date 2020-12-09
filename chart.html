@@ -182,7 +182,7 @@
         let rotatePos = hold.style.transform
         let fired = true
         function resolveStale(x){
-          if(k==arr.length-1 && !x){
+          if(k==arr.length-1){
             console.log('hello')
             // firstHold.style.cursor = 'pointer'
             firstHold.style.transform = `rotate(${0}deg) scale(1.2)`;
@@ -192,14 +192,16 @@
         hold.onmousemove = function(e){
           
           pie.onmousemove = function(e){
+            e.stopPropagation()
             hold.style.cursor = 'pointer'
             hold.style.transform = `${rotatePos} scale(1.2)`;
             document.getElementsByClassName('content')[0].innerHTML =  i.size
-            fired = pie.contains(e.target) && hold !=firstHold
-            console.log(fired)
+            // fired = pie.contains(e.target) && hold !=firstHold
+            // console.log(fired)
           }
+          // console.log('ok')
           // overHandler(e,i,hold,rotatePos,pie,firstHold,k==arr.length-1)
-          resolveStale(fired)
+          resolveStale()
         // firstHold.style.zIndex = k !== 0? 3:0
           
           
