@@ -272,12 +272,12 @@ export default function createDom(obj) {
 
 
 
-  let arr = Array(7).fill('M').map((item,k)=>{
+  // let arr = Array(7).fill('M').map((item,k)=>{
 
-    let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
+  //   let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
 
-    return div
-  });
+  //   return div
+  // });
 
 
 

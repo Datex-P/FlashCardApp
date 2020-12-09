@@ -242,11 +242,9 @@ editGoals.onclick = function () {
           })
         }
     
-     
     
         }
       })
-  
   
   
     })
