@@ -173,7 +173,7 @@ export default function settings() {
   let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
 
 
-  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '60px', border: '1px black solid', display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
+  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '60px',  display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
 
 
@@ -186,8 +186,8 @@ export default function settings() {
 
     arr.forEach((div, k) => {
       let blackBox = createElement('div', '', {width: '40px', display: 'flex'})
-      let blackArrow = createElement('div', '', { width: '2px', height: '8px', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '25px'})
-      let number = createElement('div', `${k+1} days/week`, {width: '60px'})
+      let blackArrow = createElement('div', '', { width: '2px', height: '13px', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '25px',left:'10px'})
+      let number = createElement('div', `${k+1} days/week`, {width: '90px',position: 'absolute', top: '13px',left: '-32px'})
       if (!editClicked) {
 
         div.onmouseenter = null
@@ -232,7 +232,7 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px', border: '1px solid black',position: 'relative' }, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px',position: 'relative' }, 'item');
 
     return div
   });
