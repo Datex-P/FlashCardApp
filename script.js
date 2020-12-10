@@ -10,7 +10,7 @@ import {
   createElement
 } from './exportFunctions.js';
 import {
-  brush
+  brush, hexagon
 } from "./svgs.js";
 
 createDom(dataBase.DeckNames);
@@ -26,11 +26,11 @@ dataBase.userStylePreferences.forEach(item => {
 
 
 
-document.querySelector('.closePopUpContainer ').onclick = function (e) {
-  e.stopPropagation()
-  document.querySelector('.weekOverview').style.display = 'none';
-  document.getElementById('popUpWeeklyGoal').style.display = 'none';
-}
+// document.querySelector('.closePopUpContainer ').onclick = function (e) {
+//   e.stopPropagation()
+//   document.querySelector('.weekOverview').style.display = 'none';
+//   document.getElementById('popUpWeeklyGoal').style.display = 'none';
+// }
 
 
 
@@ -144,10 +144,79 @@ let colorContainer = createElement('div', '', {
 
 
 
+// if (index <= k) {
+//   newItem.classList.add('selected')
+// } else {
+//   newItem.classList.remove('selected')
+// }
 
 
 
 
+
+function days(){
+	let anchor = document.querySelector('#hello')
+//	anchor.innerHTML = '';
+	
+//	arr.forEach((item,idx)=>{
+    
+		anchor.innerHTML+=`
+    <div
+    style="display: flex; width: 165px; justify-content: space-between; color: white">
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>M
+    
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+  
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>T
+   
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>W
+     
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>T
+    
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>F
+     
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>S
+    
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+
+    <div class='flexColumnAlignCenter'>
+      <div class='daysStyling'>S
+ 
+          <div> ${hexagon}</div>
+    </div>
+    </div>
+		`
+  //}
+ // )
+}
+
+days()
 
 
 // let containerCalendar = createElement('div', '', {display: 'flex', justifyContent: 'space-between', width: '165px',
@@ -205,9 +274,9 @@ boxesInMenu.forEach(button => {
 });
 
 
-document.querySelector('.weekOverview').onclick = function () {
-  settings()
-}
+// document.querySelector('.weekOverview').onclick = function () {
+//   settings()
+// }
 
 
 

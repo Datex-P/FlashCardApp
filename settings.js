@@ -173,7 +173,7 @@ export default function settings() {
   let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
 
 
-  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around' })
+  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '60px', border: '1px black solid', /*display: 'flex', justifyContent: 'space-around'*/ display: 'flex', flexDirection: 'column'})
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
 
 
@@ -185,7 +185,7 @@ export default function settings() {
 
 
     arr.forEach((div, k) => {
-      let blackArrow = createElement('div', k+1, { width: '5px', height: '5px', backgroundColor: 'black' })
+      let blackArrow = createElement('div', k+1, { width: '2px', height: '8px', backgroundColor: 'black', fontSize: '14px' })
       if (!editClicked) {
 
         div.onmouseenter = null
@@ -220,7 +220,7 @@ export default function settings() {
 
     } else {
       this.innerHTML = edit;
-      dataBase.daysOfStudy.day = selected;
+      dataBase.daysOfStudy.day = selected+1;
     }
 
     editHandler(editClicked)
@@ -228,13 +228,29 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '30px', border: '1px solid black' }, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px', border: '1px solid black' }, 'item');
 
     return div
   });
 
+  let arr2 = Array(7).fill('').map(el => {
 
-  goalSettingsBox.append(...arr);
+    let div = createElement('div', '', {display: 'flex', justifyContent: 'center',  alignItems: 'center', width: '16px', height: '30px', border: '1px solid black' }, 'item');
+
+    return div
+  });
+
+  let box2 = createElement('div', '', {width: '100%', height: '50%', border: '1px solid black', display: 'flex', justifyContent: 'space-around'})
+
+  let box3 = createElement('div', '', {width: '100%', height: '50%', border: '1px solid black', display: 'flex', justifyContent: 'space-around'})
+
+  goalSettingsBox.append(box2)
+  goalSettingsBox.append(box3)
+
+  box2.append(...arr);
+
+
+  box3.append(...arr2)
 
 
 
@@ -247,6 +263,12 @@ export default function settings() {
   }
 
   renderHexagons()
+
+
+console.log(selected)
+
+//console.log(dataBase.daysOfStudy.day)
+
 
 
 
