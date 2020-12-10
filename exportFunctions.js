@@ -61,19 +61,26 @@ let redCross = createElement(
 
 function handleOutsideClick(mainWindow, target = redCross, upper = null, lower = null, questionFieldTextArea = null, answerFieldTextArea = null) {
   setTimeout(function () {
-    window.onclick = function (e) {
+    mainWindow.onclick = function(e) {e.stopPropagation()} 
 
-      if (mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) ||
-        (questionFieldTextArea && questionFieldTextArea.contains(e.target)) || (answerFieldTextArea && answerFieldTextArea.contains(e.target))) {
-        //alert("Clicked in Box");
-        window.onclick = ''
-      } else {
+    window.onclick = function (e) {
+      
+      target.classList.add('blinkingIcon');
+      setTimeout(() => {
+        target.classList.remove('blinkingIcon')
+      }, 3000);
+
+
+      // if (!mainWindow.contains(e.target) || (upper && upper.contains(e.target)) || (lower && lower.contains(e.target)) ||
+      // (questionFieldTextArea && questionFieldTextArea.contains(e.target)) || (answerFieldTextArea && answerFieldTextArea.contains(e.target))) {
+        
+        
+          //alert("Clicked in Box");
+        
+      // } else {
+      //   window.onclick = ''
         //alert("Clicked outside Box");
-        target.classList.add('blinkingIcon');
-        setTimeout(() => {
-          target.classList.remove('blinkingIcon')
-        }, 3000);
-      }
+      
     }
   }, 10);
 
@@ -210,6 +217,7 @@ function threeDots() {
 function close(mainWindow, anchorElement) {
   mainWindow.parentNode.removeChild(mainWindow);
   anchorElement.style.display = "none";
+  window.onclick = null
 }
 
 let threeDotsOpen = false;

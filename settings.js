@@ -196,13 +196,29 @@ export default function settings() {
           arr.forEach((newItem, index) => {
             if (index <= k) {
               newItem.classList.add('selected')
+              
+              let blackArrow = createElement('div', '', {width: '5px', height: '5px', backgroundColor: 'black'})
 
-              // let hello = createElement('div', '', {width: '10px', height: '10px', backgroundColor: 'blue'})
-              // newItem.append(hello)
+              div.addEventListener('mouseenter', function add(){
+                newItem.append(blackArrow)
+              } )
+
+              div.removeEventListener('mouseleave', add())
+
+              // div.onmouseenter = function () {
+
+              // newItem.append(blackArrow)
+              // }
+
+              // div.onmouseleave = function () {
+
+              //   newItem.remove(blackArrow)
+             // }
+
 
             } else {
               newItem.classList.remove('selected')
-             // newItem.remove(hello)
+         
             }
           })
         }
@@ -228,7 +244,7 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { width: '16px', height: '16px'}, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '30px', border: '1px solid black'}, 'item');
 
     return div
   });
@@ -427,7 +443,10 @@ export default function settings() {
 
 
 
-  redCross.onclick = () => close(mainWindow, anchorElement)
+  redCross.onclick = () => {close(mainWindow, anchorElement); 
+
+  }
+  handleOutsideClick(mainWindow, redCross)
 
   redCross.addEventListener('click', closeMenu());
   settingsAndRedCrossContainer.append(redCross);
@@ -459,6 +478,6 @@ export default function settings() {
     }
     createElement("label", comp, {}, '', '', inputContainer);
   });
-  handleOutsideClick(mainWindow);
+  
 }
 

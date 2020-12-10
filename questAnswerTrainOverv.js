@@ -104,10 +104,9 @@ dataBase.studyTime += 1
     clearInterval(timer); //not implemented yet
     clearInterval(decrementTimer);
     clearInterval(incrementTimer)
+    window.onclick = null
   }
   redCross.onclick = close
-
-
 
 
 
