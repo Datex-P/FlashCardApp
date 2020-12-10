@@ -185,7 +185,7 @@ export default function settings() {
 
 
     arr.forEach((div, k) => {
-      let blackArrow = createElement('div', k+1, { width: '2px', height: '8px', backgroundColor: 'black', fontSize: '14px' })
+      let blackArrow = createElement('div', k+1, { width: '2px', height: '8px', backgroundColor: 'black', fontSize: '14px', position: 'absolute', top: '25px' })
       if (!editClicked) {
 
         div.onmouseenter = null
@@ -228,7 +228,7 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px', border: '1px solid black' }, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px', border: '1px solid black',position: 'relative' }, 'item');
 
     return div
   });

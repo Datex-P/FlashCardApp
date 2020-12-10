@@ -156,64 +156,23 @@ let colorContainer = createElement('div', '', {
 
 function days(){
 	let anchor = document.querySelector('#hello')
-//	anchor.innerHTML = '';
-	
-//	arr.forEach((item,idx)=>{
-    
-		anchor.innerHTML+=`
-    <div
-    style="display: flex; width: 165px; justify-content: space-between; color: white">
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>M
-    
-          <div> ${hexagon}</div>
-    </div>
-    </div>
+
+  anchor.style.display = 'flex';
+  // ; width: 165px; justify-content: space-between; color: white">`;
   
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>T
-   
-          <div> ${hexagon}</div>
-    </div>
-    </div>
-
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>W
-     
-          <div> ${hexagon}</div>
-    </div>
-    </div>
-
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>T
+  ['M','T','W','T','F','S','S'].forEach(letter=>{
+    anchor.innerHTML += `
+      <div class='flexColumnAlignCenter'>
+        <div class='daysStyling'>
+          ${letter}
+          <div>${hexagon}</div>
+        </div>
+      </div>
+    `
+  })
     
-          <div> ${hexagon}</div>
-    </div>
-    </div>
+	// anchor.innerHTML+='</div>'
 
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>F
-     
-          <div> ${hexagon}</div>
-    </div>
-    </div>
-
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>S
-    
-          <div> ${hexagon}</div>
-    </div>
-    </div>
-
-    <div class='flexColumnAlignCenter'>
-      <div class='daysStyling'>S
- 
-          <div> ${hexagon}</div>
-    </div>
-    </div>
-		`
-  //}
- // )
 }
 
 days()
