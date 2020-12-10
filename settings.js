@@ -176,51 +176,35 @@ export default function settings() {
   let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '40px', border: '1px black solid', display: 'flex', justifyContent: 'space-around' })
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
 
-  
+
 
   let editClicked = false;
   let selected = 0
-  
-  function editHandler(editClicked){
 
-   
+  function editHandler(editClicked) {
+
+
     arr.forEach((div, k) => {
-
+      let blackArrow = createElement('div', k+1, { width: '5px', height: '5px', backgroundColor: 'black' })
       if (!editClicked) {
 
         div.onmouseenter = null
       } else {
         div.onmouseenter = function () {
+          this.append(blackArrow)
+
           selected = k
           console.log(selected)
           arr.forEach((newItem, index) => {
             if (index <= k) {
               newItem.classList.add('selected')
-              
-              let blackArrow = createElement('div', '', {width: '5px', height: '5px', backgroundColor: 'black'})
-
-              div.addEventListener('mouseenter', function add(){
-                newItem.append(blackArrow)
-              } )
-
-              div.removeEventListener('mouseleave', add())
-
-              // div.onmouseenter = function () {
-
-              // newItem.append(blackArrow)
-              // }
-
-              // div.onmouseleave = function () {
-
-              //   newItem.remove(blackArrow)
-             // }
-
-
             } else {
               newItem.classList.remove('selected')
-         
             }
           })
+        }
+        div.onmouseleave = function () {
+          this.removeChild(blackArrow)
         }
       }
     })
@@ -244,12 +228,12 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '30px', border: '1px solid black'}, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '30px', border: '1px solid black' }, 'item');
 
     return div
   });
 
-  
+
   goalSettingsBox.append(...arr);
 
 
@@ -260,10 +244,10 @@ export default function settings() {
         newItem.classList.add('selected')
       }
     })
-    }
+  }
 
-    renderHexagons()
-   
+  renderHexagons()
+
 
 
 
@@ -443,7 +427,8 @@ export default function settings() {
 
 
 
-  redCross.onclick = () => {close(mainWindow, anchorElement); 
+  redCross.onclick = () => {
+    close(mainWindow, anchorElement);
 
   }
   handleOutsideClick(mainWindow, redCross)
@@ -478,6 +463,6 @@ export default function settings() {
     }
     createElement("label", comp, {}, '', '', inputContainer);
   });
-  
+
 }
 
