@@ -173,7 +173,7 @@ export default function settings() {
   let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
 
 
-  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '60px', border: '1px black solid', /*display: 'flex', justifyContent: 'space-around'*/ display: 'flex', flexDirection: 'column'})
+  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '60px', border: '1px black solid', display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
 
 
@@ -185,13 +185,17 @@ export default function settings() {
 
 
     arr.forEach((div, k) => {
-      let blackArrow = createElement('div', k+1, { width: '2px', height: '8px', backgroundColor: 'black', fontSize: '14px', position: 'absolute', top: '25px' })
+      let blackBox = createElement('div', '', {width: '40px', display: 'flex'})
+      let blackArrow = createElement('div', '', { width: '2px', height: '8px', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '25px'})
+      let number = createElement('div', `${k+1} days/week`, {width: '60px'})
       if (!editClicked) {
 
         div.onmouseenter = null
       } else {
         div.onmouseenter = function () {
-          this.append(blackArrow)
+          this.append(blackBox)
+          blackBox.append(blackArrow)
+          blackArrow.append(number)
 
           selected = k
           console.log(selected)
@@ -204,7 +208,7 @@ export default function settings() {
           })
         }
         div.onmouseleave = function () {
-          this.removeChild(blackArrow)
+          this.removeChild(blackBox)
         }
       }
     })
@@ -233,24 +237,11 @@ export default function settings() {
     return div
   });
 
-  let arr2 = Array(7).fill('').map(el => {
-
-    let div = createElement('div', '', {display: 'flex', justifyContent: 'center',  alignItems: 'center', width: '16px', height: '30px', border: '1px solid black' }, 'item');
-
-    return div
-  });
-
-  let box2 = createElement('div', '', {width: '100%', height: '50%', border: '1px solid black', display: 'flex', justifyContent: 'space-around'})
-
-  let box3 = createElement('div', '', {width: '100%', height: '50%', border: '1px solid black', display: 'flex', justifyContent: 'space-around'})
-
-  goalSettingsBox.append(box2)
-  goalSettingsBox.append(box3)
-
-  box2.append(...arr);
+ 
+  goalSettingsBox.append(...arr)
 
 
-  box3.append(...arr2)
+
 
 
 

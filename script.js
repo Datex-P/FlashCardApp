@@ -144,72 +144,53 @@ let colorContainer = createElement('div', '', {
 
 
 
-// if (index <= k) {
-//   newItem.classList.add('selected')
-// } else {
-//   newItem.classList.remove('selected')
-// }
-
-
 
 
 
 function days(){
-	let anchor = document.querySelector('#hello')
+	let anchor = document.querySelector('#daysContainer')
 
   anchor.style.display = 'flex';
-  // ; width: 165px; justify-content: space-between; color: white">`;
+  anchor.style.cursor = 'pointer';
   
-  ['M','T','W','T','F','S','S'].forEach(letter=>{
+  ['M','T','W','T','F','S','S'].forEach((letter, idx)=>{
     anchor.innerHTML += `
       <div class='flexColumnAlignCenter'>
         <div class='daysStyling'>
           ${letter}
-          <div>${hexagon}</div>
+          <div id='${idx}'>${hexagon}</div>
         </div>
       </div>
     `
-  })
-    
-	// anchor.innerHTML+='</div>'
+   
+ let arr= [];
 
+ for( let day  of dataBase.studied) {
+ 
+   if (day.getDay() === 0) {
+     arr.push(day.getDay() = 6)
+   }
+   else {
+   arr.push(day.getDay() - 1)
+ }
+ }
+
+//  if (idx in arr) {
+//    //console.log(true)
+//    //let hi = document.getElementById('${idx}');
+//    document.getElementById('${idx}').classList.add('selected')
+//  }
+//  console.log(arr)
+
+
+
+
+ })
 }
 
+
+
 days()
-
-
-// let containerCalendar = createElement('div', '', {display: 'flex', justifyContent: 'space-between', width: '165px',
-// color: 'white'})
-
-// let arr = Array(7).fill('').map(el => {
-
-//   let div = createElement('div', hexagon, { width: '16px', height: '16px'}, 'item');
-
-//   return div
-// });
-
-
-// for (let i = 0; i<7) {
-//   <div class='flexColumnAlignCenter'>
-//   <div style='width:25px; display: flex; flex-direction: column; justify-content: center; align-items: center'>M
-//       <img src="hexagon.svg" class="hexagonStyling">
-// </div>
-// }
-
-
-
-
-// <div
-// style="display: flex; width: 165px; justify-content: space-between; color: white">
-// <div class='flexColumnAlignCenter'>
-//   <div style='width:25px; display: flex; flex-direction: column; justify-content: center; align-items: center'>M
-//       <img src="hexagon.svg" class="hexagonStyling">
-// </div>
-
-
-
-
-
 
 
 
@@ -232,10 +213,11 @@ boxesInMenu.forEach(button => {
   }
 });
 
+document.querySelector('#daysContainer').onclick = function () {
+  settings()
+}
 
-// document.querySelector('.weekOverview').onclick = function () {
-//   settings()
-// }
+
 
 
 

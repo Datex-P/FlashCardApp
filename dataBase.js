@@ -10,7 +10,8 @@ DeckNames: { /*deckname:[]*/   },
   studyTime : 0,
   calendarReset: false,
   weeklyTarget: 1,
-  daysOfStudy : {day : 4}
+  daysOfStudy : {day : 4},
+  studied: [new Date()]
 
 };
 
