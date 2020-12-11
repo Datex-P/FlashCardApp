@@ -150,7 +150,7 @@ function days(){
       <div class='flexColumnAlignCenter'>
         <div class='daysStyling'>
           ${letter}
-          <div id='${idx}' style='transform: 'rotate(90deg)''>${hexagon}</div>
+          <div id='${idx}' style="transform: rotate(90deg)">${hexagon}</div>
         </div>
       
       </div>

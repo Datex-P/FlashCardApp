@@ -190,7 +190,9 @@ dataBase.studyTime += 1
 
   let cardThreeDots = threeDots()
 
-  let anchorThreeDots = cardThreeDots(() => {
+  let anchorThreeDots = cardThreeDots(
+    {
+      edit: () => {
     showAnswerButtonContainer.style.justifyContent = 'center';
     answerContainer.style.display = 'block'
     answerFieldTextArea.style.display = 'block';
@@ -205,10 +207,11 @@ dataBase.studyTime += 1
     mainWindow.removeChild(showAnswerButtonContainer);
 
   },
-    () => {
+    delete:() => {
         deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
       },
-      (container,playIcon,pauseIcon,edited) => {
+
+      pause: (container,playIcon,pauseIcon,edited) => {
         if (!edited) {
           container.replaceChild(playIcon, pauseIcon)
           window.onclick = ''
@@ -226,7 +229,8 @@ dataBase.studyTime += 1
           dataBase.DeckNames[item].deckPauseActive = false;
         }
         return edited
-      },{ top: '-15px',left:'13px'}, 'card'
+      }
+    },{ top: '-15px',left:'13px'}, 'card'
       )
       
   anchorThreeDots.style.position = 'absolute'

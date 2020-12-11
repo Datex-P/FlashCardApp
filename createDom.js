@@ -160,7 +160,9 @@ export default function createDom(obj) {
 
     let mainThreeDots = threeDots()
 
-    let threeDotsContainer = mainThreeDots((event, editIconContainer, editIcon, saveIcon,
+    let threeDotsContainer = mainThreeDots(
+      {
+        edit: (event, editIconContainer, editIcon, saveIcon,
       outsideClickClosehandler, littleModalWindow) => {
       event.stopPropagation()
 
@@ -192,38 +194,36 @@ export default function createDom(obj) {
         }, 10);
 
       }
+    },pause: (container,playIcon,pauseIcon,edited) => {
+      if (!edited) {
+        container.replaceChild(playIcon, pauseIcon)
+        window.onclick = ''
+        edited = true;
+
+        newDeckContainer.style.backgroundColor = 'grey'
+        dataBase.DeckNames[item].deckPauseActive = true;
+
+        nameOfNewDeck.classList.remove('pointer')
+        input.disabled = true; 
+
+      }else {
+        container.replaceChild(pauseIcon, playIcon)
+        edited = false;
+        newDeckContainer.style.border = 'none';
+        
+        nameOfNewDeck.classList.add('pointer')
+        input.disabled = false;
+
+
+        newDeckContainer.style.backgroundColor =  dataBase.DeckNames[item].colorPlay;
+        dataBase.DeckNames[item].deckPauseActive = false;
+      }
+      return edited
     },
-      () => {
+      delete: () => {
         deleteCardQuestionBox(() => { delete dataBase.DeckNames[item] }, createDom, 'Delete deck', 'delete this deck')
 
-      }
-
-      ,(container,playIcon,pauseIcon,edited) => {
-        if (!edited) {
-          container.replaceChild(playIcon, pauseIcon)
-          window.onclick = ''
-          edited = true;
-
-          newDeckContainer.style.backgroundColor = 'grey'
-          dataBase.DeckNames[item].deckPauseActive = true;
-
-          nameOfNewDeck.classList.remove('pointer')
-          input.disabled = true; 
-
-        }else {
-          container.replaceChild(pauseIcon, playIcon)
-          edited = false;
-          newDeckContainer.style.border = 'none';
-          
-          nameOfNewDeck.classList.add('pointer')
-          input.disabled = false;
-
-
-          newDeckContainer.style.backgroundColor =  dataBase.DeckNames[item].colorPlay;
-          dataBase.DeckNames[item].deckPauseActive = false;
-        }
-        return edited
-      },{ top: '3px',left:'13px'}, 'deck'
+      }},{ top: '3px',left:'13px'}, 'deck'
       )
   
 

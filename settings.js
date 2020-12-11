@@ -177,7 +177,7 @@ export default function settings() {
 
     arr.forEach((div, k) => {
       let blackBox = createElement('div', '', {width: '40px', display: 'flex', border: '1px solid black', left: '30px'})
-      let blackArrow = createElement('div', '', { width: '2px', height: '13px', transform: 'rotate(-90deg)', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '37px',left:'27px'})
+      let blackArrow = createElement('div', '', { width: '2px', height: '13px', transform: 'rotate(-90deg)', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '8px',left:'27px'})
       let number = createElement('div', `${k+1} ${k+1 >1 ? 'days' : 'day'} / <br> week`, {}, 'number')
 
 

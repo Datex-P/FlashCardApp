@@ -58,14 +58,14 @@ let redCross = createElement(
 
 function handleOutsideClick(mainWindow, target = redCross) {
   setTimeout(function () {
-    mainWindow.onclick = function(e) {e.stopPropagation()} 
+    mainWindow.onclick = function (e) { e.stopPropagation() }
 
     window.onclick = function () {
-      
+
       target.classList.add('blinkingIcon');
       setTimeout(() => {
         target.classList.remove('blinkingIcon')
-      }, 3000);      
+      }, 3000);
     }
   }, 10);
 }
@@ -74,7 +74,7 @@ function handleOutsideClick(mainWindow, target = redCross) {
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck, btnList=['', '', '', '']) {
+  return function (btnList, littleModalWindowStyles = {}, cardOrDeck) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -108,26 +108,28 @@ function threeDots() {
       'littleModalWindow flexColumn'
     )
 
+
     // if(littleModalWindowStlyes){
     //   for(let style in littleModalWindowStlyes){
     //     littleModalWindow.style[style] = littleModalWindowStlyes[style]
     //   }
     // }
 
-      // if (questAnswerTrain)
+    // if (questAnswerTrain)
 
-    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px'}, '')
+    let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px' }, '')
+    threeDotsContainer.append(settingsIconContainer, littleModalWindow);
 
-    let [editIconContainer,trashIconContainer, pauseIconContainer, resetIconContainer] = btnList.map(el => {
+
+
+
+    let [editIconContainer, trashIconContainer, pauseIconContainer, resetIconContainer] = ['', '', '', ''].map(el => {
       return createElement('div', '', {
-
       }, 'flexCenterAlignCenter trashIconContainer')
     });
 
 
-    threeDotsContainer.append(settingsIconContainer, littleModalWindow);
-    littleModalWindow.append(editIconContainer);
-    littleModalWindow.append(resetIconContainer)
+
 
 
     let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon, resetIcon] = [edit, trash, save, pause, play, reset].map(el => {
@@ -146,53 +148,66 @@ function threeDots() {
     });
 
     editIconContainer.append(editIcon, editIconText);
-    resetIconContainer && resetIconContainer.append(resetIcon, progressText);
-    if(pauseIconContainer){
-          littleModalWindow.append(pauseIconContainer);
-          pauseIconContainer.append(pauseIcon, pauseIconText);
-          let paused = false;
-          pauseIconContainer.onclick = function () {
-            threeDotsOpen = true;
-            littleModalWindow.style.display = "none";  
+    resetIconContainer.append(resetIcon, progressText);
+    pauseIconContainer.append(pauseIcon, pauseIconText);
+    trashIconContainer.append(trashIcon, trashIconText);
 
-            paused = pauseHandler(pauseIconContainer, playIcon,pauseIcon, paused)
-          };
-        }
-
-    if(trashIconContainer){
-      littleModalWindow.append(trashIconContainer);
-      trashIconContainer.append(trashIcon, trashIconText);
-        trashIconContainer.onclick = function (e) {
-
-        if (dataBase.showDeleteFrame) {
-          e.stopPropagation()
-          threeDotsOpen = false;
-          deleteHandler()
-          littleModalWindow.style.display = "none";
-
-        } else {
-          e.stopPropagation()
-          threeDotsOpen = false;
-          littleModalWindow.style.display = "none";
-        }
-      };
+    let btns = {
+      edit: editIconContainer,
+      reset: resetIconContainer,
+      pause: pauseIconContainer,
+      delete: trashIconContainer
     }
 
-    
-    
+    for (let btn in btnList) {
+      switch (btn) {
+        case 'pause':
+          let paused = false;
+          btns[btn].onclick = function () {
+            threeDotsOpen = true;
+            littleModalWindow.style.display = "none";
 
-    editIconContainer.onclick = function (event) {
-      threeDotsOpen = true;
-      littleModalWindow.style.display = "none";
+            paused = btnList[btn](pauseIconContainer, playIcon, pauseIcon, paused)
+          };
+          littleModalWindow.append(btns[btn])
+          break;
 
+        case 'delete':
+          btns[btn].onclick = function (e) {
+            if (dataBase.showDeleteFrame) {
+              e.stopPropagation()
+              threeDotsOpen = false;
+              btnList[btn]()
+              littleModalWindow.style.display = "none";
+            } else {
+              e.stopPropagation()
+              threeDotsOpen = false;
+              littleModalWindow.style.display = "none";
+            }
+          };
+          littleModalWindow.append(btns[btn])
+          break;
 
-      editHandler(event, editIconContainer, editIcon, saveIcon, (event) => {
-        if (!littleModalWindow.contains(event.target)) {
-          littleModalWindow.style.display = 'none';
-          window.onclick = ''
-        }
-      }, littleModalWindow)
-    };
+        case 'edit':
+          btns[btn].onclick = function (event) {
+            threeDotsOpen = true;
+            littleModalWindow.style.display = "none";
+            btnList[btn](event, editIconContainer, editIcon, saveIcon, (event) => {
+              if (!littleModalWindow.contains(event.target)) {
+                littleModalWindow.style.display = 'none';
+                window.onclick = ''
+              }
+            }, littleModalWindow)
+          };
+          littleModalWindow.append(btns[btn])
+          break;
+        case 'reset':
+          btns[btn].onclick = btnList[btn]
+          littleModalWindow.append(btns[btn])
+          break;
+      }
+    }
+
     return threeDotsContainer
   }
 }
@@ -210,7 +225,7 @@ function setThreeDotsOpen(cond) {
   threeDotsOpen = cond
 }
 
-function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardStyling={}) {
+function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardStyling = {}) {
   let anchorElement = document.getElementById("mainMenu");
   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
@@ -253,7 +268,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
 
   let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
-  let leaveXsign = createElement('div', '&#10006;', {cursor: 'pointer'}, 'flexCenterAlignCenter leaveXsign')
+  let leaveXsign = createElement('div', '&#10006;', { cursor: 'pointer' }, 'flexCenterAlignCenter leaveXsign')
 
   leaveXsign.onclick = function () {
     setThreeDotsOpen(false)
@@ -298,7 +313,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   anchorElement.append(deleteContainerFrame);
 
   deleteContainerFrame.append(deleteContainerInner, dontShowMessageAgainContainer);
-  
+
   deleteContainerInner.append(doYouWantToDelete, deleteHeader, deleteYesAndNoContainer)
   deleteContainerInner.append(flashcardIcon, leaveXContainer, questionMark1, questionMark2, questionMark3)
 

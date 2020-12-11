@@ -72,7 +72,9 @@ export default function stats() {
 
   let cardThreeDots = threeDots()
 
-let mainThreeDots = cardThreeDots(null, null , null, { marginLeft: '40px', fontSize: '18px' }, 'Reset progress',['','','',''].slice(3,4))
+let mainThreeDots = cardThreeDots(
+  {reset: ()=>{alert('your progress is  reseted')}}
+  , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress')
 
 
 
