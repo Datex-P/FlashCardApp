@@ -4,7 +4,7 @@ import {
   questionMark,
   edit,
   trash,
-  save, pause, play
+  save, pause, play, reset
 } from "./svgs.js";
 import {
   dataBase
@@ -74,7 +74,7 @@ function handleOutsideClick(mainWindow, target = redCross) {
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck, btnList=['','','']) {
+  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck, btnList=['', '', '', '']) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -118,7 +118,7 @@ function threeDots() {
 
     let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px'}, '')
 
-    let [editIconContainer,trashIconContainer, pauseIconContainer] = btnList.map(el => {
+    let [editIconContainer,trashIconContainer, pauseIconContainer, resetIconContainer] = btnList.map(el => {
       return createElement('div', '', {
 
       }, 'flexCenterAlignCenter trashIconContainer')
@@ -127,16 +127,17 @@ function threeDots() {
 
     threeDotsContainer.append(settingsIconContainer, littleModalWindow);
     littleModalWindow.append(editIconContainer);
+    littleModalWindow.append(resetIconContainer)
 
 
-    let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon] = [edit, trash, save, pause, play].map(el => {
+    let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon, resetIcon] = [edit, trash, save, pause, play, reset].map(el => {
       return createElement('div', el, {
         width: '20px',
         paddingLeft: '1px'
       })
     });
 
-    let [editIconText, trashIconText, pauseIconText, playIconText] = [`${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`].map(el => {
+    let [editIconText, trashIconText, pauseIconText, playIconText, progressText] = [`${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, 'progress'].map(el => {
       return createElement('div', el, {
         width: 'fit-content',
         fontSize: '16px',
@@ -145,6 +146,7 @@ function threeDots() {
     });
 
     editIconContainer.append(editIcon, editIconText);
+    resetIconContainer && resetIconContainer.append(resetIcon, progressText);
     if(pauseIconContainer){
           littleModalWindow.append(pauseIconContainer);
           pauseIconContainer.append(pauseIcon, pauseIconText);

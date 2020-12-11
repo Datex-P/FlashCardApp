@@ -1007,23 +1007,6 @@ input[type=number]  {
   width: 5px;
 }
 
-.resetInner {
-  left: 6px; 
-  position: absolute;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-sizing: border-box;
-  width: 171px;
-  padding-left:9px;
-  height: 34px;
-  cursor: pointer;
-
-}
-
-.resetInner:hover {
-  background-color: grey;
-  color: white;
-}
 
 .decksizeStudyRev {
   background-color: white;
@@ -1061,7 +1044,6 @@ input[type=number]  {
   position: relative;
   border-radius: 5px;
 }
-
 
 
 .theNameOftheDeckAndRedCrossContainer {
@@ -1102,5 +1084,4 @@ margin-left: 5px;
   left: -32px;
   font-weight: normal; 
   font-size: 14px;
-  white-space: pre-wrap;
 }

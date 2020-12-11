@@ -150,22 +150,23 @@ function days(){
       <div class='flexColumnAlignCenter'>
         <div class='daysStyling'>
           ${letter}
-          <div id='${idx}'>${hexagon}</div>
+          <div id='${idx}' style='transform: 'rotate(90deg)''>${hexagon}</div>
         </div>
+      
       </div>
     `
    
- let arr= [];
+//  let arr= [];
 
- for( let day  of dataBase.studied) {
+//  for( let day  of dataBase.studied) {
  
-   if (day.getDay() === 0) {
-     arr.push(day.getDay() = 6)
-   }
-   else {
-   arr.push(day.getDay() - 1)
- }
- }
+//    if (day.getDay() === 0) {
+//      arr.push(day.getDay() = 6)
+//    }
+//    else {
+//    arr.push(day.getDay() - 1)
+//  }
+//  }
 
 //  if (idx in arr) {
 //    //console.log(true)
@@ -179,7 +180,7 @@ function days(){
 
  })
 }
-
+//anchor.innerHTML +=   '<div>2 out of three days</div>'
 
 
 days()

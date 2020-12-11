@@ -1,6 +1,6 @@
 
 import { edit, hexagon, save } from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick, deleteCardQuestionBox, setThreeDotsOpen, threeDots } from './exportFunctions.js'
+import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
 
 
@@ -176,16 +176,18 @@ export default function settings() {
 
 
     arr.forEach((div, k) => {
-      let blackBox = createElement('div', '', {width: '40px', display: 'flex'})
-      let blackArrow = createElement('div', '', { width: '2px', height: '13px', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '25px',left:'10px'})
-      let number = createElement('div', `${k+1} days/ <br> ⠀week`, {}, 'number')
+      let blackBox = createElement('div', '', {width: '40px', display: 'flex', border: '1px solid black', left: '30px'})
+      let blackArrow = createElement('div', '', { width: '2px', height: '13px', transform: 'rotate(-90deg)', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '37px',left:'27px'})
+      let number = createElement('div', `${k+1} ${k+1 >1 ? 'days' : 'day'} / <br> week`, {}, 'number')
+
+
       if (!editClicked) {
 
         div.onmouseenter = null
       } else {
         div.onmouseenter = function () {
-          this.append(blackBox)
-          blackBox.append(blackArrow)
+         // this.append(blackBox)
+          this.append(blackArrow)
           blackArrow.append(number)
 
           selected = k
@@ -193,13 +195,22 @@ export default function settings() {
           arr.forEach((newItem, index) => {
             if (index <= k) {
               newItem.classList.add('selected')
+              
             } else {
               newItem.classList.remove('selected')
             }
+            newItem.style.cursor = 'pointer';
+            editClicked = !editClicked
+
+            if (!editClicked) {
+              editGoals.innerHTML = edit;
+              //editClicked = true;
+            }
+
           })
         }
         div.onmouseleave = function () {
-          this.removeChild(blackBox)
+          this.removeChild(blackArrow)
         }
       }
     })
@@ -223,7 +234,7 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px',position: 'relative' }, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', transform: 'rotate(90deg)', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px',position: 'relative' }, 'item');
 
     return div
   });

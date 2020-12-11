@@ -72,9 +72,9 @@ export default function stats() {
 
   let cardThreeDots = threeDots()
 
-let mainThreeDots = cardThreeDots(null, null , null, { marginLeft: '40px', fontSize: '18px' }, 'Reset progress',[''])
+let mainThreeDots = cardThreeDots(null, null , null, { marginLeft: '40px', fontSize: '18px' }, 'Reset progress',['','','',''].slice(3,4))
 
-//});
+
 
 
 mainThreeDots.style.height = '29px'
