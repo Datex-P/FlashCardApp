@@ -26,14 +26,6 @@ dataBase.userStylePreferences.forEach(item => {
 
 
 
-// document.querySelector('.closePopUpContainer ').onclick = function (e) {
-//   e.stopPropagation()
-//   document.querySelector('.weekOverview').style.display = 'none';
-//   document.getElementById('popUpWeeklyGoal').style.display = 'none';
-// }
-
-
-
 let opened = false;
 
 function handleOutsideClick(e) {

@@ -187,7 +187,7 @@ export default function settings() {
     arr.forEach((div, k) => {
       let blackBox = createElement('div', '', {width: '40px', display: 'flex'})
       let blackArrow = createElement('div', '', { width: '2px', height: '13px', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '25px',left:'10px'})
-      let number = createElement('div', `${k+1} days/week`, {width: '90px',position: 'absolute', top: '13px',left: '-32px'})
+      let number = createElement('div', `${k+1} days/ <br> ⠀week`, {}, 'number')
       if (!editClicked) {
 
         div.onmouseenter = null
@@ -261,11 +261,13 @@ console.log(selected)
 //console.log(dataBase.daysOfStudy.day)
 
 
+let goalSettingsBox1 = createElement('div', '', { width: '260px', border: '1px solid black', borderRadius: '5px', position: 'relative', height: '60px',  display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
 
 
 
   mainWindow.append(goalSettings);
-  goalSettings.append(goalSettingsText, goalSettingsBox, weeklyTarget);
+  goalSettings.append(goalSettingsText, goalSettingsBox1, weeklyTarget);
+  goalSettingsBox1.append(goalSettingsBox)
   goalSettingsBox.append(editGoals)
 
 
@@ -296,7 +298,7 @@ console.log(selected)
     return createElement('div', el, {}, 'studyAndReset flexAlignCenter')
   });
 
-  let resetInner = createElement('div', 'Reset Cal. + Breakdown', {}, 'resetInner flexAlignCenter')
+  let resetInner = createElement('div', 'Reset', {}, 'resetInner flexAlignCenter')
 
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top = '38px';

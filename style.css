@@ -1094,3 +1094,13 @@ margin-left: 5px;
   align-items: center; 
   color: black
 }
+
+.number {
+  width: 100px;
+  position: absolute; 
+  top: 13px;
+  left: -32px;
+  font-weight: normal; 
+  font-size: 14px;
+  white-space: pre-wrap;
+}
