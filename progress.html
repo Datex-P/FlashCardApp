@@ -19,6 +19,9 @@
   </head>
   <body>
     <div></div>
+    <input placeholder="type some word" />
+    <button>search in Oxford Dick</button>
+    <div id="result"></div>
 
     <script>
       let container = document.querySelector("body>div");
@@ -47,19 +50,40 @@
 
       container.append(...arr);
 
-      fetch(
-        "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/hello?strictMatch=false",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            app_id: "908a9650",
-            app_key: "d60519d1add017d107af789dcd05c82b",
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => document.write(JSON.stringify(data, null, 3)));
+      document.querySelector("button").onclick = function () {
+        let input = document.querySelector("input").value;
+        search(input);
+      };
+
+      function search(search) {
+        fetch(
+          `https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/${search}?strictMatch=false`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              app_id: "908a9650",
+              app_key: "d60519d1add017d107af789dcd05c82b",
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then(
+            (data) =>
+              document.querySelector("#result").innerHTML = `
+                <div>
+                  <h5>${data.word}</h5>
+                  etymologies:<br>
+                  ${data.results[0].lexicalEntries[0].entries[0].etymologies[0]}
+                  <br>
+                  senses:
+                  <ul>
+                    ${data.results[0].lexicalEntries[0].entries[0].senses.map(sense=>`<li>${sense.definitions}</li>`).join('\n')}
+                  </ul>
+                  </div>
+              `
+          )
+      }
     </script>
   </body>
 </html>
