@@ -6,6 +6,7 @@ import {
   closeMenu,
   close,
   redCross,
+  deleteCardQuestionBox, setThreeDotsOpen, threeDots
 } from "./exportFunctions.js";
 
 export default function stats() {
@@ -66,6 +67,44 @@ export default function stats() {
 
   buttonLeft.style.marginRight = "5px";
   buttonRight.style.marginLeft = "5px";
+
+
+
+  let cardThreeDots = threeDots()
+
+let anchorThreeDots = cardThreeDots(() => {
+
+}, {} , () => {
+
+    }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
+
+//});
+
+
+anchorThreeDots.style.position = 'absolute'
+anchorThreeDots.style.right = '86px'
+anchorThreeDots.style.top = '18px'
+
+mainWindow.append(mainThreeDots)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   let yearBoxContainer = createElement("div", "", {}, 'yearBoxContainer'
@@ -374,6 +413,32 @@ export default function stats() {
 
   closeMenu();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

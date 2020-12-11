@@ -36,8 +36,6 @@ export default function settings() {
 
 
 
-
-
   let [editContainerUpper] = [''].map(el => {
     return createElement('div', edit, { position: 'absolute', right: '8px', top: '24px', cursor: 'pointer' })
   });
@@ -45,11 +43,9 @@ export default function settings() {
   editContainerUpper.title = 'Click and change name buttons and repetition intervals for all decks.'
 
 
-
   let changeRepetitionIntervalContainer = createElement(
     'div', '', { position: 'relative', marginTop: '10px' }, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
   );
-
 
 
   let changeRepetitionIntervalContainerInner = createElement(
@@ -137,14 +133,9 @@ export default function settings() {
   })
 
 
-
-
   changeRepetitionIntervalContainer.append(editContainerUpper)
 
-
   let { leftName, middleName, rightName } = dataBase.nameValues
-
-
 
   let [again, good, easy] = [`${leftName}`, `${middleName}`, `${rightName}`].map((el) => {
     let input = createElement('div', el, {
@@ -241,10 +232,6 @@ export default function settings() {
   goalSettingsBox.append(...arr)
 
 
-
-
-
-
   function renderHexagons() {
     arr.forEach((newItem, index) => {
       if (index <= dataBase.daysOfStudy.day) {
@@ -271,15 +258,6 @@ let goalSettingsBox1 = createElement('div', '', { width: '260px', border: '1px s
   goalSettingsBox.append(editGoals)
 
 
-  let [resetContainerOuter] = [''].map(el => {
-    return createElement('div', '', {}, 'flexColumnSpaceAround studyAndReviewContainerOuter')
-  })
-
-  resetContainerOuter.style.marginTop = '0px';
-  resetContainerOuter.style.width = '182px';
-  resetContainerOuter.style.height = '52px';
-
-
   let resetColorSchemeContainer = createElement(
     'div', '', {
     width: '154px',
@@ -298,43 +276,10 @@ let goalSettingsBox1 = createElement('div', '', { width: '260px', border: '1px s
     return createElement('div', el, {}, 'studyAndReset flexAlignCenter')
   });
 
-  let resetInner = createElement('div', 'Reset', {}, 'resetInner flexAlignCenter')
+
 
   studyAndReviewUpper.style.top = '6px';
   studyAndReviewLower.style.top = '38px';
-
-
-
-  let mainThreeDots = threeDots()
-
-  resetInner.onclick = function () {
-
-    deleteCardQuestionBox(() => {
-
-
-      for (let deck in dataBase.DeckNames) {
-
-        dataBase.DeckNames[deck].data.forEach((card) => {
-
-          if (card.openHistory) {
-            delete card.openHistory
-          }
-        })
-      }
-    }
-
-      //breakdown has to be resetted as well
-      , () => {
-
-      }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
-
-  };
-
-
-
-
-
-  let resetProgress = createElement('div', 'Reset Current Progress', {}, 'resetProgress');
 
 
 
@@ -343,10 +288,7 @@ let goalSettingsBox1 = createElement('div', '', { width: '260px', border: '1px s
   editToReview.title = 'change study and review intervals for all decks';
 
 
-  mainWindow.append(resetProgress, resetContainerOuter, resetColorSchemeContainer);
-
-  resetContainerOuter.append(resetInner)
-
+  mainWindow.append(resetColorSchemeContainer);
 
   resetColorSchemeContainer.append(colorscheme);
 

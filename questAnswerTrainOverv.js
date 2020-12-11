@@ -204,10 +204,6 @@ dataBase.studyTime += 1
     showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
 
-
- 
-
-
   },
     () => {
         deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
