@@ -72,20 +72,15 @@ export default function stats() {
 
   let cardThreeDots = threeDots()
 
-let anchorThreeDots = cardThreeDots(() => {
-
-}, {} , () => {
-
-    }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
+let mainThreeDots = cardThreeDots(null, null , null, { marginLeft: '40px', fontSize: '18px' }, 'Reset progress',[''])
 
 //});
 
 
-anchorThreeDots.style.position = 'absolute'
-anchorThreeDots.style.right = '86px'
-anchorThreeDots.style.top = '18px'
+mainThreeDots.style.height = '29px'
+mainThreeDots.style.right = '0px'
+mainThreeDots.style.top = '0px'
 
-mainWindow.append(mainThreeDots)
 
 
 
@@ -400,7 +395,7 @@ mainWindow.append(mainThreeDots)
 
   hourlyBreakdownContainer.append(theWordhourlyBreakdown, radioButtonContainer, diagramHourlyBreakDownContainer);
 
-  redCrossAndStatsContainer.append(theWordStats, redCross);
+  redCrossAndStatsContainer.append(theWordStats, mainThreeDots, redCross);
 
   innerWindow.append(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
 

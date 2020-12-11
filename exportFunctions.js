@@ -74,7 +74,7 @@ function handleOutsideClick(mainWindow, target = redCross) {
 
 function threeDots() {
   let threeDotsOpen = false
-  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck) {
+  return function (editHandler, deleteHandler, pauseHandler,littleModalWindowStyles={}, cardOrDeck, btnList=['','','']) {
 
     let settingsIconContainer = createElement(
       'div', '...', {}, 'settingsIconContainer'
@@ -118,7 +118,7 @@ function threeDots() {
 
     let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px'}, '')
 
-    let [trashIconContainer, editIconContainer, pauseIconContainer] = ['', '', ''].map(el => {
+    let [editIconContainer,trashIconContainer, pauseIconContainer] = btnList.map(el => {
       return createElement('div', '', {
 
       }, 'flexCenterAlignCenter trashIconContainer')
@@ -126,7 +126,7 @@ function threeDots() {
 
 
     threeDotsContainer.append(settingsIconContainer, littleModalWindow);
-    littleModalWindow.append(editIconContainer, pauseIconContainer, trashIconContainer);
+    littleModalWindow.append(editIconContainer);
 
 
     let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon] = [edit, trash, save, pause, play].map(el => {
@@ -145,33 +145,39 @@ function threeDots() {
     });
 
     editIconContainer.append(editIcon, editIconText);
-    trashIconContainer.append(trashIcon, trashIconText);
-    pauseIconContainer.append(pauseIcon, pauseIconText);
+    if(pauseIconContainer){
+          littleModalWindow.append(pauseIconContainer);
+          pauseIconContainer.append(pauseIcon, pauseIconText);
+          let paused = false;
+          pauseIconContainer.onclick = function () {
+            threeDotsOpen = true;
+            littleModalWindow.style.display = "none";  
 
+            paused = pauseHandler(pauseIconContainer, playIcon,pauseIcon, paused)
+          };
+        }
 
-    trashIconContainer.onclick = function (e) {
+    if(trashIconContainer){
+      littleModalWindow.append(trashIconContainer);
+      trashIconContainer.append(trashIcon, trashIconText);
+        trashIconContainer.onclick = function (e) {
 
-      if (dataBase.showDeleteFrame) {
-        e.stopPropagation()
-        threeDotsOpen = false;
-        deleteHandler()
-        littleModalWindow.style.display = "none";
+        if (dataBase.showDeleteFrame) {
+          e.stopPropagation()
+          threeDotsOpen = false;
+          deleteHandler()
+          littleModalWindow.style.display = "none";
 
-      } else {
-        e.stopPropagation()
-        threeDotsOpen = false;
-        littleModalWindow.style.display = "none";
-      }
-    };
+        } else {
+          e.stopPropagation()
+          threeDotsOpen = false;
+          littleModalWindow.style.display = "none";
+        }
+      };
+    }
 
-
-    let paused = false
-    pauseIconContainer.onclick = function () {
-      threeDotsOpen = true;
-      littleModalWindow.style.display = "none";  
-
-      paused = pauseHandler(pauseIconContainer, playIcon,pauseIcon, paused)
-    };
+    
+    
 
     editIconContainer.onclick = function (event) {
       threeDotsOpen = true;
