@@ -426,7 +426,7 @@ pauseIconContainer:hover {
   top: 100px;
   background-color: rgba(200, 168, 115, 0.95);
   position: absolute;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 20px;
   z-index: 2;
   padding: 20px;
@@ -900,7 +900,7 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
 
 .theWordCalendar {
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   font-weight: bold;
 }
 
@@ -975,6 +975,7 @@ input[type=number]  {
   width: 215px;
   border-radius: 5px;
   margin-top: 10px; 
+  padding: 2px;
 }
 
 .resetIcon {
@@ -1080,8 +1081,68 @@ margin-left: 5px;
 .number {
   width: 100px;
   position: absolute; 
-  top: 8px;
+  top: 5px;
   left: -16px;
   font-weight: normal; 
   font-size: 14px;
+}
+
+.blackArrow {
+  width: 2px;
+  height: 5px; 
+  transform: rotate(-90deg);
+  background-color: black;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute; 
+  top: 11px;
+  left: 24px;
+}
+
+.goalSettingsBox1 {
+  width: 198px;
+   padding: 3px;
+   padding-left: 6px; 
+   padding-right: 16px;
+   height: 50px;  
+   border: 1px solid black; 
+   border-radius: 5px;
+   position: relative;  
+}
+
+.goalSettingsBox {
+border-radius: 5px; 
+position: relative;
+width: 198px; 
+padding: 3px 9px; 
+height: 57px;
+}
+
+.colorscheme {
+  font-weight: bold; 
+  text-align: center; 
+  font-size: 17px; 
+}
+
+.weeklyTarget {
+  width: 165px;
+  margin-top: 5px;
+  height: 20px;
+  font-size: 14px; 
+  font-weight: normal;
+}
+
+.goalSettingsText {
+  font-weight: bold; 
+  font-size: 13px; 
+  margin: 6px 0 2px; 
+}
+
+#daysContainer {
+  width: 181px; 
+  height: 40px; 
+  background-color: white; 
+  position: absolute; 
+  top: 10px; 
+  right: 7px'
 }

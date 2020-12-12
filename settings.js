@@ -155,17 +155,20 @@ export default function settings() {
   changeNameofDeckInput2.type = 'number';
   changeNameofDeckInput3.type = 'number';
 
+  let width = createElement('div', '', {width: '40px', height: '3px', backgroundColor: 'black'})
+
+  let width2 = createElement('div', '', {width: '40px', height: '3px', backgroundColor: 'black'})
 
   let goalSettings = createElement(
     'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px' }
   );
 
-  let goalSettingsText = createElement('div', 'Current weekly Target', { fontWeight: 'bold', fontSize: '13px', margin: '6px 0 2px' })
+  let goalSettingsText = createElement('div', 'Current weekly Target', {}, 'goalSettingsText')
   let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
 
 
-  let goalSettingsBox = createElement('div', '', {  borderRadius: '5px', position: 'relative',width: '198px', padding: '3px 7px', height: '57px',  display: 'flex', justifyContent: 'space-around' })
-  let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
+  let goalSettingsBox = createElement('div', '', {}, 'flexSpaceAround')
+  let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, {}, 'weeklyTarget')
 
 
 
@@ -176,7 +179,7 @@ export default function settings() {
 
 
     arr.forEach((div, k) => {
-      let blackArrow = createElement('div', '', { width: '2px', height: '8px', transform: 'rotate(-90deg)', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '8px',left:'25px'})
+      let blackArrow = createElement('div', '', {}, 'blackArrow')
       let number = createElement('div', `<span style='font-weight: bold'>${k+1}</span> ${k+1 >1 ? 'days' : 'day'}`, {}, 'number')
 
 
@@ -206,9 +209,20 @@ export default function settings() {
 
           })
         }
+        
         div.onmouseleave = function () {
           this.removeChild(blackArrow)
         }
+
+          div.onclick = function () {
+            editClicked = false;
+            arr.forEach(newItem => {
+            newItem.onmouseleave = null;
+            newItem.onmouseenter = null;
+            editGoals.click
+        })
+          }
+
       }
     })
   }
@@ -219,7 +233,10 @@ export default function settings() {
     if (editClicked) {
       this.innerHTML = save;
       editClicked = true;
-
+      
+      arr.forEach(newItem => {
+        document.querySelector('.blackArrow').parentNode.parentNode.removeChild(document.querySelector('.blackArrow'))
+      })
 
     } else {
       this.innerHTML = edit;
@@ -251,14 +268,11 @@ export default function settings() {
   renderHexagons()
 
 
-console.log(selected)
 
-//console.log(dataBase.daysOfStudy.day)
-
-
-let goalSettingsBox1 = createElement('div', '', { width: '198px', padding: '3px 7px', height: '55px',  border: '1px solid black', borderRadius: '5px', position: 'relative', height: '60px',  display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
+let goalSettingsBox1 = createElement('div', '', {}, 'goalSettingsBox1 flexSpaceAround')
 
 
+  mainWindow.append(width)
 
   mainWindow.append(goalSettings);
   goalSettings.append(goalSettingsText, goalSettingsBox1, weeklyTarget);
@@ -275,7 +289,7 @@ let goalSettingsBox1 = createElement('div', '', { width: '198px', padding: '3px 
   }, '');
 
   let colorscheme = createElement(
-    'div', 'Colorscheme', { fontWeight: 'bold', textAlign: 'center', fontSize: '17px' }
+    'div', 'Colorscheme', {}, 'colorscheme'
   );
 
 
@@ -295,6 +309,7 @@ let goalSettingsBox1 = createElement('div', '', { width: '198px', padding: '3px 
 
   editToReview.title = 'change study and review intervals for all decks';
 
+  mainWindow.append(width2)
 
   mainWindow.append(resetColorSchemeContainer);
 
