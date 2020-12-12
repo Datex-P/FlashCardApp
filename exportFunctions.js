@@ -139,7 +139,7 @@ function threeDots() {
       })
     });
 
-    let [editIconText, trashIconText, pauseIconText, playIconText, progressText] = [`${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, 'progress'].map(el => {
+    let [editIconText, trashIconText, pauseIconText, playIconText, stats] = [`${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, `${cardOrDeck}`, 'stats'].map(el => {
       return createElement('div', el, {
         width: 'fit-content',
         fontSize: '16px',
@@ -147,8 +147,10 @@ function threeDots() {
       })
     });
 
+    stats.style.padding = '2px'
+
     editIconContainer.append(editIcon, editIconText);
-    resetIconContainer.append(resetIcon, progressText);
+    resetIconContainer.append(resetIcon, stats);
     pauseIconContainer.append(pauseIcon, pauseIconText);
     trashIconContainer.append(trashIcon, trashIconText);
 

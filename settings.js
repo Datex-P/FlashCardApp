@@ -164,7 +164,7 @@ export default function settings() {
   let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
 
 
-  let goalSettingsBox = createElement('div', '', { width: '200px', borderRadius: '5px', position: 'relative', height: '60px',  display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
+  let goalSettingsBox = createElement('div', '', {  borderRadius: '5px', position: 'relative',width: '198px', padding: '3px 7px', height: '57px',  display: 'flex', justifyContent: 'space-around' })
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, { width: '165px', marginTop: '5px', height: '20px', fontSize: '14px', fontWeight: 'normal' })
 
 
@@ -176,9 +176,8 @@ export default function settings() {
 
 
     arr.forEach((div, k) => {
-      let blackBox = createElement('div', '', {width: '40px', display: 'flex', border: '1px solid black', left: '30px'})
-      let blackArrow = createElement('div', '', { width: '2px', height: '13px', transform: 'rotate(-90deg)', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '8px',left:'27px'})
-      let number = createElement('div', `${k+1} ${k+1 >1 ? 'days' : 'day'} / <br> week`, {}, 'number')
+      let blackArrow = createElement('div', '', { width: '2px', height: '8px', transform: 'rotate(-90deg)', backgroundColor: 'black', fontSize: '16px', fontWeight: 'bold', position: 'absolute', top: '8px',left:'25px'})
+      let number = createElement('div', `<span style='font-weight: bold'>${k+1}</span> ${k+1 >1 ? 'days' : 'day'}`, {}, 'number')
 
 
       if (!editClicked) {
@@ -186,7 +185,6 @@ export default function settings() {
         div.onmouseenter = null
       } else {
         div.onmouseenter = function () {
-         // this.append(blackBox)
           this.append(blackArrow)
           blackArrow.append(number)
 
@@ -204,7 +202,6 @@ export default function settings() {
 
             if (!editClicked) {
               editGoals.innerHTML = edit;
-              //editClicked = true;
             }
 
           })
@@ -259,7 +256,7 @@ console.log(selected)
 //console.log(dataBase.daysOfStudy.day)
 
 
-let goalSettingsBox1 = createElement('div', '', { width: '260px', border: '1px solid black', borderRadius: '5px', position: 'relative', height: '60px',  display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
+let goalSettingsBox1 = createElement('div', '', { width: '198px', padding: '3px 7px', height: '55px',  border: '1px solid black', borderRadius: '5px', position: 'relative', height: '60px',  display: 'flex', justifyContent: 'space-around' /*display: 'flex', flexDirection: 'column'*/})
 
 
 

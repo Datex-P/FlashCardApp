@@ -72,16 +72,101 @@ export default function stats() {
 
   let cardThreeDots = threeDots()
 
-let mainThreeDots = cardThreeDots(
-  {reset: ()=>{alert('your progress is  reseted')}}
-  , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress')
+  let anchorThreeDots = cardThreeDots(
+
+
+  //let mainThreeDots = cardThreeDots(
+    {reset: ()=>{
+    
+    
+  deleteCardQuestionBox(() => {
+
+
+    for (let deck in dataBase.DeckNames) {
+
+      dataBase.DeckNames[deck].data.forEach((card) => {
+
+        if (card.openHistory) {
+          delete card.openHistory
+        }
+      })
+    }
+  }
+
+    //breakdown has to be resetted as well
+    , () => {
+
+    }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
+    
+    
+    
+    
+    //)}}
+    , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
+    
+  }}
+    )
+  
 
 
 
 
-mainThreeDots.style.height = '29px'
-mainThreeDots.style.right = '0px'
-mainThreeDots.style.top = '0px'
+
+
+
+
+
+
+
+
+
+  // let cardThreeDots = threeDots()
+
+
+  // let mainThreeDots = cardThreeDots(
+  //   {reset: ()=>{
+    
+  //   deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), 
+  //     createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
+    
+    
+  //   )}}
+  //   , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress')
+
+
+
+
+// let mainThreeDots = cardThreeDots(
+
+//   mainThreeDots.onclick = function (){
+
+  //   {reset: ()=>{
+
+
+  //   for (let deck in dataBase.DeckNames) {
+
+  //     dataBase.DeckNames[deck].data.forEach((card) => {
+
+  //       if (card.openHistory) {
+  //         delete card.openHistory
+  //       }
+  //     })
+  //   }
+  // }
+
+    //breakdown has to be resetted as well
+    // , () => {
+
+    // // }, 'Reset current progress', 'reset the calendar and the hourly breakdown')
+    // }
+
+  // {reset: ()=>{alert('your progress is  reseted')}}
+  // , { marginLeft: '10px', top: '2px', fontSize: '18px' }, 'Reset progress');
+
+
+anchorThreeDots.style.height = '29px'
+anchorThreeDots.style.right = '-68px';
+anchorThreeDots.style.top = '0px'
 
 
 
@@ -397,7 +482,7 @@ mainThreeDots.style.top = '0px'
 
   hourlyBreakdownContainer.append(theWordhourlyBreakdown, radioButtonContainer, diagramHourlyBreakDownContainer);
 
-  redCrossAndStatsContainer.append(theWordStats, mainThreeDots, redCross);
+  redCrossAndStatsContainer.append(theWordStats, anchorThreeDots, redCross);
 
   innerWindow.append(redCrossAndStatsContainer, todayAndCardsStudiedContainer);
 

@@ -154,33 +154,15 @@ function days(){
         </div>
       
       </div>
-    `
+
+      `
+//      anchor.innerHTML +=   '<div>2 out of three days</div>'
    
-//  let arr= [];
-
-//  for( let day  of dataBase.studied) {
- 
-//    if (day.getDay() === 0) {
-//      arr.push(day.getDay() = 6)
-//    }
-//    else {
-//    arr.push(day.getDay() - 1)
-//  }
-//  }
-
-//  if (idx in arr) {
-//    //console.log(true)
-//    //let hi = document.getElementById('${idx}');
-//    document.getElementById('${idx}').classList.add('selected')
-//  }
-//  console.log(arr)
-
-
 
 
  })
 }
-//anchor.innerHTML +=   '<div>2 out of three days</div>'
+document.querySelector('#daysContainer').innerHTML +=   '<div>2 out of three days</div>'
 
 
 days()
