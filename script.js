@@ -162,7 +162,10 @@ function days(){
 
  })
 }
-document.querySelector('#daysContainer').innerHTML +=   '<div>2 out of three days</div>'
+// document.querySelector('#daysContainer').apppend(
+  
+  
+//   innerHTML +=   '<div>2 out of three days</div>'
 
 
 days()
