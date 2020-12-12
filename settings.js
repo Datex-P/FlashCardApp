@@ -243,12 +243,20 @@ export default function settings() {
         div.onmouseenter = null
       } else {
         div.onmouseenter = function () {
-          this.append(blackArrow)
+
+          
           blackArrow.append(number)
 
           selected = k
           console.log(selected)
           arr.forEach((newItem, index) => {
+            //remove previous arrows
+            let arrow = newItem.querySelector('.blackArrow')
+            newItem.classList.remove('selected')
+            if (arrow) {
+              newItem.removeChild(arrow)
+            }
+
             if (index <= k) {
               newItem.classList.add('selected')
 
@@ -258,24 +266,24 @@ export default function settings() {
             newItem.style.cursor = 'pointer';
             editClicked = !editClicked
 
-            if (!editClicked) {
-              editGoals.innerHTML = edit;
-            }
+           
 
           })
+          this.append(blackArrow)
         }
 
-        div.onmouseleave = function () {
-          this.removeChild(blackArrow)
-        }
+        // div.onmouseleave = function () {
+        //   this.removeChild(blackArrow)
+        // }
 
         div.onclick = function () {
-          editClicked = false;
-          editGoals.click
+          // editGoals.innerHTML = edit;
+          // editClicked = false;
+          editGoals.click()
           arr.forEach(newItem => {
             newItem.onmouseleave = null;
             newItem.onmouseenter = null;
-
+            newItem.onclick = null;
           })
         }
 
@@ -290,13 +298,13 @@ export default function settings() {
       this.innerHTML = save;
       editClicked = true;
 
-      arr.forEach(newItem => {
-        let arrow = newItem.querySelector('.blackArrow')
-        if (arrow) {
-          newItem.removeChild(arrow)
-        }
+      // arr.forEach(newItem => {
+      //   let arrow = newItem.querySelector('.blackArrow')
+      //   if (arrow) {
+      //     newItem.removeChild(arrow)
+      //   }
 
-      })
+      // })
 
     } else {
       this.innerHTML = edit;
