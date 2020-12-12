@@ -1,6 +1,6 @@
 
 import { edit, hexagon, save } from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick} from './exportFunctions.js'
+import { createElement, closeMenu, close, redCross, handleOutsideClick } from './exportFunctions.js'
 import { dataBase } from './dataBase.js';
 
 
@@ -155,9 +155,9 @@ export default function settings() {
   changeNameofDeckInput2.type = 'number';
   changeNameofDeckInput3.type = 'number';
 
-  let width = createElement('div', '', {width: '40px', height: '3px', backgroundColor: 'black'})
+  let width = createElement('div', '', { width: '40px', height: '3px', backgroundColor: 'black' })
 
-  let width2 = createElement('div', '', {width: '40px', height: '3px', backgroundColor: 'black'})
+  let width2 = createElement('div', '', { width: '40px', height: '3px', backgroundColor: 'black' })
 
   let goalSettings = createElement(
     'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px' }
@@ -180,7 +180,7 @@ export default function settings() {
 
     arr.forEach((div, k) => {
       let blackArrow = createElement('div', '', {}, 'blackArrow')
-      let number = createElement('div', `<span style='font-weight: bold'>${k+1}</span> ${k+1 >1 ? 'days' : 'day'}`, {}, 'number')
+      let number = createElement('div', `<span style='font-weight: bold'>${k + 1}</span> ${k + 1 > 1 ? 'days' : 'day'}`, {}, 'number')
 
 
       if (!editClicked) {
@@ -196,7 +196,7 @@ export default function settings() {
           arr.forEach((newItem, index) => {
             if (index <= k) {
               newItem.classList.add('selected')
-              
+
             } else {
               newItem.classList.remove('selected')
             }
@@ -209,19 +209,20 @@ export default function settings() {
 
           })
         }
-        
+
         div.onmouseleave = function () {
           this.removeChild(blackArrow)
         }
 
-          div.onclick = function () {
-            editClicked = false;
-            arr.forEach(newItem => {
+        div.onclick = function () {
+          editClicked = false;
+          editGoals.click
+          arr.forEach(newItem => {
             newItem.onmouseleave = null;
             newItem.onmouseenter = null;
-            editGoals.click
-        })
-          }
+
+          })
+        }
 
       }
     })
@@ -233,14 +234,18 @@ export default function settings() {
     if (editClicked) {
       this.innerHTML = save;
       editClicked = true;
-      
+
       arr.forEach(newItem => {
-        document.querySelector('.blackArrow').parentNode.parentNode.removeChild(document.querySelector('.blackArrow'))
+        let arrow = newItem.querySelector('.blackArrow')
+        if (arrow) {
+          newItem.removeChild(arrow)
+        }
+
       })
 
     } else {
       this.innerHTML = edit;
-      dataBase.daysOfStudy.day = selected+1;
+      dataBase.daysOfStudy.day = selected + 1;
     }
 
     editHandler(editClicked)
@@ -248,12 +253,12 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', transform: 'rotate(90deg)', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px',position: 'relative' }, 'item');
+    let div = createElement('div', hexagon, { display: 'flex', transform: 'rotate(90deg)', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px', position: 'relative' }, 'item');
 
     return div
   });
 
- 
+
   goalSettingsBox.append(...arr)
 
 
@@ -269,7 +274,7 @@ export default function settings() {
 
 
 
-let goalSettingsBox1 = createElement('div', '', {}, 'goalSettingsBox1 flexSpaceAround')
+  let goalSettingsBox1 = createElement('div', '', {}, 'goalSettingsBox1 flexSpaceAround')
 
 
   mainWindow.append(width)
