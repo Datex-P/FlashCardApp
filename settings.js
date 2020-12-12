@@ -1,7 +1,18 @@
-
-import { edit, hexagon, save } from './svgs.js';
-import { createElement, closeMenu, close, redCross, handleOutsideClick } from './exportFunctions.js'
-import { dataBase } from './dataBase.js';
+import {
+  edit,
+  hexagon,
+  save
+} from './svgs.js';
+import {
+  createElement,
+  closeMenu,
+  close,
+  redCross,
+  handleOutsideClick
+} from './exportFunctions.js'
+import {
+  dataBase
+} from './dataBase.js';
 
 
 
@@ -17,19 +28,28 @@ export default function settings() {
 
 
   let settingsAndRedCrossContainer = createElement(
-    'div', '', { width: "291px", marginBottom: '20px', height: '24px' }, 'flexSpaceBetweenAlignCenter'
+    'div', '', {
+      width: "291px",
+      marginBottom: '20px',
+      height: '24px'
+    }, 'flexSpaceBetweenAlignCenter'
   );
 
   let changeTimeIntervall = createElement(
-    'div', 'Change Repetition Interval', { fontWeight: 'bold', fontSize: '17px' });
+    'div', 'Change Repetition Interval', {
+      fontWeight: 'bold',
+      fontSize: '17px'
+    });
 
 
   mainWindow.append(settingsAndRedCrossContainer, changeTimeIntervall);
 
   let theWordSettings = createElement(
     "div",
-    'Settings',
-    { fontWeight: 'bold', fontSize: '22px' }
+    'Settings', {
+      fontWeight: 'bold',
+      fontSize: '22px'
+    }
   );
   settingsAndRedCrossContainer.append(theWordSettings);
 
@@ -37,14 +57,22 @@ export default function settings() {
 
 
   let [editContainerUpper] = [''].map(el => {
-    return createElement('div', edit, { position: 'absolute', right: '8px', top: '24px', cursor: 'pointer' })
+    return createElement('div', edit, {
+      position: 'absolute',
+      right: '8px',
+      top: '24px',
+      cursor: 'pointer'
+    })
   });
 
   editContainerUpper.title = 'Click and change name buttons and repetition intervals for all decks.'
 
 
   let changeRepetitionIntervalContainer = createElement(
-    'div', '', { position: 'relative', marginTop: '10px' }, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
+    'div', '', {
+      position: 'relative',
+      marginTop: '10px'
+    }, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
   );
 
 
@@ -57,8 +85,7 @@ export default function settings() {
 
   let [containerUpper, containerLower] = ['', ''].map((el) => createElement(
     'div',
-    '',
-    {
+    '', {
       position: 'relative',
       width: '100%',
       height: '50%',
@@ -88,21 +115,27 @@ export default function settings() {
 
 
 
-  let [[upperLeftSmaller, upperLeftZero], [upperMiddleSmaller, upperMiddleZero], [upperRightSmaller, upperRightZero]] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container =>
-    ["<", "0"].map((el) => {
-      let input = document.createElement("div");
-      input.innerText = el;
-      //input.className = "noBorders";
-      //input.style.height = '30%'
-      input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+  let [
+    [upperLeftSmaller, upperLeftZero],
+    [upperMiddleSmaller, upperMiddleZero],
+    [upperRightSmaller, upperRightZero]
+  ] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container => ["<", "0"].map((el) => {
+    let input = document.createElement("div");
+    input.innerText = el;
+    //input.className = "noBorders";
+    //input.style.height = '30%'
+    input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
 
-      container.append(input)
-      return input;
+    container.append(input)
+    return input;
 
-    })
-  );
-  let { left, middle, right } = dataBase.timeValues
+  }));
+  let {
+    left,
+    middle,
+    right
+  } = dataBase.timeValues
   upperLeftZero.innerText = left
   upperMiddleZero.innerText = middle
   upperRightZero.innerText = right;
@@ -135,7 +168,11 @@ export default function settings() {
 
   changeRepetitionIntervalContainer.append(editContainerUpper)
 
-  let { leftName, middleName, rightName } = dataBase.nameValues
+  let {
+    leftName,
+    middleName,
+    rightName
+  } = dataBase.nameValues
 
   let [again, good, easy] = [`${leftName}`, `${middleName}`, `${rightName}`].map((el) => {
     let input = createElement('div', el, {
@@ -148,23 +185,41 @@ export default function settings() {
 
 
   let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3, changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] = [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
-    return createElement('input', '', { width }, 'settingsButtonStyling');
+    return createElement('input', '', {
+      width
+    }, 'settingsButtonStyling');
   })
 
   changeNameofDeckInput1.type = 'number';
   changeNameofDeckInput2.type = 'number';
   changeNameofDeckInput3.type = 'number';
 
-  let width = createElement('div', '', { width: '40px', height: '3px', backgroundColor: 'black' })
+  let width = createElement('div', '', {
+    width: '40px',
+    height: '3px',
+    backgroundColor: 'black'
+  })
 
-  let width2 = createElement('div', '', { width: '40px', height: '3px', backgroundColor: 'black' })
+  let width2 = createElement('div', '', {
+    width: '40px',
+    height: '3px',
+    backgroundColor: 'black'
+  })
 
   let goalSettings = createElement(
-    'div', 'Goal Settings', { marginTop: "25px", fontWeight: 'bold', fontSize: '17px' }
+    'div', 'Goal Settings', {
+      marginTop: "25px",
+      fontWeight: 'bold',
+      fontSize: '17px'
+    }
   );
 
   let goalSettingsText = createElement('div', 'Current weekly Target', {}, 'goalSettingsText')
-  let editGoals = createElement('div', edit, { position: 'absolute', right: '-30px', top: '13px' }, 'editToReview');
+  let editGoals = createElement('div', edit, {
+    position: 'absolute',
+    right: '-30px',
+    top: '13px'
+  }, 'editToReview');
 
 
   let goalSettingsBox = createElement('div', '', {}, 'flexSpaceAround')
@@ -253,7 +308,16 @@ export default function settings() {
 
   let arr = Array(7).fill('').map(el => {
 
-    let div = createElement('div', hexagon, { display: 'flex', transform: 'rotate(90deg)', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '16px', height: '21px', position: 'relative' }, 'item');
+    let div = createElement('div', hexagon, {
+      display: 'flex',
+      transform: 'rotate(90deg)',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '16px',
+      height: '21px',
+      position: 'relative'
+    }, 'item');
 
     return div
   });
@@ -287,11 +351,11 @@ export default function settings() {
 
   let resetColorSchemeContainer = createElement(
     'div', '', {
-    width: '154px',
-    // border: '1px black solid',
-    marginTop: '20px',
+      width: '154px',
+      // border: '1px black solid',
+      marginTop: '20px',
 
-  }, '');
+    }, '');
 
   let colorscheme = createElement(
     'div', 'Colorscheme', {}, 'colorscheme'
@@ -353,8 +417,7 @@ export default function settings() {
 
 
   function editContainerUpperClickHandler(cond) {
-    [
-      {
+    [{
         container: upperLeftContainer,
         input: changeNameofDeckInput1,
         div: upperLeftZero,
@@ -399,8 +462,7 @@ export default function settings() {
           dataBase.timeValues.right = Number(item.div.innerText)
         }
       }
-    }
-    )
+    })
   }
 
   editContainerUpper.onclick = function () {
@@ -431,7 +493,9 @@ export default function settings() {
   ['light', 'dark', 'default'].map(comp => {
     let inputContainer = createElement('div', '', {}, '', '', themeRadiosContainer)
 
-    let radio = createElement('input', '', { cursor: 'pointer' }, '', '', inputContainer)
+    let radio = createElement('input', '', {
+      cursor: 'pointer'
+    }, '', '', inputContainer)
     radio.name = 'theme';
     radio.type = 'radio';
     radio.value = comp;
@@ -450,4 +514,3 @@ export default function settings() {
   });
 
 }
-
