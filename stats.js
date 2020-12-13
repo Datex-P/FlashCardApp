@@ -31,10 +31,6 @@ export default function stats() {
     "flexColumnAlignCenter"
   );
 
-  let cardsStudied = createElement(
-    "div", "", {}, "flexColumnCenter cardsStudied"
-  );
-
   let theWordTodayContainer = createElement(
     "div",
     "",
@@ -44,23 +40,22 @@ export default function stats() {
 
 
 
-
-
-
-
-  let canvas = createElement('canvas', '', {}, 'myChart')
+  let canvas = createElement('canvas', '', {width: '270px'}, 'pieChart')
   
   theWordTodayContainer.append(canvas)
+
+  let todayStudyContainer = createElement('div', "Today's study breakdown", {width: '100px', fontWeight: 'bold', fontSize: '17px'})
    
   
-  let myChart  = canvas.getContext('2d')
+  let pieChart  = canvas.getContext('2d')
   
-  Chart.defaults.global.defaultFontFamily = 'Verdana'
+  //Chart.defaults.global.defaultFontFamily = 'Verdana'
   Chart.defaults.global.defaultFontSize = 11;
+  Chart.defaults.global.elements.rectangle.borderColor = 'black'
   
   
-  let massPopChart = new Chart(myChart, {
-    type: 'pie', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+  let massPopChart = new Chart(pieChart, {
+    type: 'doughnut', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
     data: {
       labels: ['Berlin', 'Hamburg', 'New York', 'London', 'Munich'],
       datasets: [{
@@ -68,36 +63,59 @@ export default function stats() {
         data: [
           1000, 400, 300, 400, 500, 600
         ], 
-        backgroundColor: ['blue', 'purple', 'red', 'black', 'black']
+        backgroundColor: ['blue', 'purple', 'red', 'black', 'black'],
+        borderColor: 'black',
+        borderWidth: 1
       }]
     },
     options: {
       title: {
-        display: true,
+        display: false,
         text: "Today's study breakdown",
-        fontSize: 20
+        fontSize: 20,
+        //fontColor
       },
       legend: {
         display: true,
-        position: 'right', //can do top bottom left right
+        position: 'bottom', //can do top bottom left right
       labels: {
-        fontColor: 'purple'
+        fontColor: 'black'
       }
       },
       layout: {
         padding: {
-          left: 10,
+          left: 20,
           right: 0,
           bottom: 0,
-          top: 0
+          top: 10
         }
         
       }
     }
+
+   
   });
-  
 
 
+  Chart.types.Doughnut.extend({
+    name: "DoughnutAlt",
+    draw: function () {
+        Chart.types.Doughnut.prototype.draw.apply(this, arguments);
+
+        this.chart.ctx.textBaseline = "middle";
+        this.chart.ctx.fillStyle = 'black'
+        this.chart.ctx.font = "50px Roboto";
+        this.chart.ctx.textAlign = "center";
+        this.chart.ctx.fillText(distributionChartData[3] + " %", 135, 120);
+        this.chart.ctx.font = "20px Roboto";
+        this.chart.ctx.fillText((distributionChartData[0] + distributionChartData[1] + distributionChartData[2]) + " Responses", 135, 160);
+    }
+});
+
+//var pieChart = document.getElementById("pieChart").getContext("2d");
+new Chart(pieChart).DoughnutAlt(pieData, {
+    percentageInnerCutout: 80, animationEasing: "easeOutQuart"
+});
 
 
 
@@ -442,9 +460,7 @@ anchorThreeDots.style.top = '0px'
 
  console.log(cardsOpenLastOne)
 
-
-  theWordTodayContainer.append( cardsStudied);
-
+ todayAndCardsStudiedContainer.append(todayStudyContainer)
 
   todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
   rightAndLeftButtonContainer.append(buttonLeft, year, buttonRight);
@@ -466,6 +482,21 @@ anchorThreeDots.style.top = '0px'
 
   closeMenu();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
