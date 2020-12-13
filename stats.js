@@ -42,10 +42,64 @@ export default function stats() {
     "flexColumnAlignCenter"
   );
 
-  let theWordToday = createElement("div", "Today's study breakdown", {
-    fontWeight: "bold",
-    marginBottom: "5px",
+
+
+
+
+
+
+  let canvas = createElement('canvas', '', {}, 'myChart')
+  
+  theWordTodayContainer.append(canvas)
+   
+  
+  let myChart  = canvas.getContext('2d')
+  
+  Chart.defaults.global.defaultFontFamily = 'Verdana'
+  Chart.defaults.global.defaultFontSize = 11;
+  
+  
+  let massPopChart = new Chart(myChart, {
+    type: 'pie', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    data: {
+      labels: ['Berlin', 'Hamburg', 'New York', 'London', 'Munich'],
+      datasets: [{
+        label: 'Population',
+        data: [
+          1000, 400, 300, 400, 500, 600
+        ], 
+        backgroundColor: ['blue', 'purple', 'red', 'black', 'black']
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Today's study breakdown",
+        fontSize: 20
+      },
+      legend: {
+        display: true,
+        position: 'right', //can do top bottom left right
+      labels: {
+        fontColor: 'purple'
+      }
+      },
+      layout: {
+        padding: {
+          left: 10,
+          right: 0,
+          bottom: 0,
+          top: 0
+        }
+        
+      }
+    }
   });
+  
+
+
+
+
 
   let theWordCalendarContainer = createElement("div", "",{}, "flexColumnAlignCenter"
   );
@@ -389,7 +443,7 @@ anchorThreeDots.style.top = '0px'
  console.log(cardsOpenLastOne)
 
 
-  theWordTodayContainer.append(theWordToday, cardsStudied);
+  theWordTodayContainer.append( cardsStudied);
 
 
   todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
@@ -529,3 +583,10 @@ anchorThreeDots.style.top = '0px'
   // };
 
   /*<----*/
+
+
+
+
+
+
+

@@ -299,13 +299,6 @@ export default function settings() {
       this.innerHTML = save;
       editClicked = true;
 
-      // arr.forEach(newItem => {
-      //   let arrow = newItem.querySelector('.blackArrow')
-      //   if (arrow) {
-      //     newItem.removeChild(arrow)
-      //   }
-
-      // })
 
     } else {
       this.innerHTML = edit;

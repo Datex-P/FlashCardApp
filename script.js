@@ -191,6 +191,7 @@ boxesInMenu.forEach(button => {
 
 
 
+
 document.getElementById("createDeckButton").onclick = function () {
   createNewDeck()
 
