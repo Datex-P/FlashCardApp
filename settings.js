@@ -194,17 +194,17 @@ export default function settings() {
   changeNameofDeckInput2.type = 'number';
   changeNameofDeckInput3.type = 'number';
 
-  let width = createElement('div', '', {
-    width: '40px',
-    height: '3px',
-    backgroundColor: 'black'
-  })
+  // let width = createElement('div', '', {
+  //   width: '40px',
+  //   height: '3px',
+  //   backgroundColor: 'black'
+  // })
 
-  let width2 = createElement('div', '', {
-    width: '40px',
-    height: '3px',
-    backgroundColor: 'black'
-  })
+  // let width2 = createElement('div', '', {
+  //   width: '40px',
+  //   height: '3px',
+  //   backgroundColor: 'black'
+  // })
 
   let goalSettings = createElement(
     'div', 'Goal Settings', {
@@ -279,6 +279,7 @@ export default function settings() {
         div.onclick = function () {
           // editGoals.innerHTML = edit;
           // editClicked = false;
+          dataBase.daysOfStudy.day = k-1;
           editGoals.click()
           arr.forEach(newItem => {
             newItem.onmouseleave = null;
@@ -336,7 +337,7 @@ export default function settings() {
 
   function renderHexagons() {
     arr.forEach((newItem, index) => {
-      if (index <= dataBase.daysOfStudy.day) {
+      if (index < dataBase.daysOfStudy.day) {
         newItem.classList.add('selected')
       }
     })
@@ -349,7 +350,7 @@ export default function settings() {
   let goalSettingsBox1 = createElement('div', '', {}, 'goalSettingsBox1 flexSpaceAround')
 
 
-  mainWindow.append(width)
+  // mainWindow.append(width)
 
   mainWindow.append(goalSettings);
   goalSettings.append(goalSettingsText, goalSettingsBox1, weeklyTarget);
@@ -386,7 +387,7 @@ export default function settings() {
 
   editToReview.title = 'change study and review intervals for all decks';
 
-  mainWindow.append(width2)
+  // mainWindow.append(width2)
 
   mainWindow.append(resetColorSchemeContainer);
 

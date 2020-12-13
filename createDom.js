@@ -206,7 +206,7 @@ export default function createDom(obj) {
         nameOfNewDeck.classList.remove('pointer')
         input.disabled = true; 
 
-      }else {
+      } else {
         container.replaceChild(pauseIcon, playIcon)
         edited = false;
         newDeckContainer.style.border = 'none';
@@ -253,6 +253,8 @@ export default function createDom(obj) {
     addToDeckIcon.onclick = function () {
       addQuestionsToDeck(item)
     }
+
+    nameOfNewDeck.classList.add('pointer')
 
 
     newDeckContainer.append(nameOfNewDeck, threeDotsContainer, addToDeckIcon)

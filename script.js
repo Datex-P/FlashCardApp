@@ -157,12 +157,12 @@ function days(){
       `
  })
 }
-let div = createElement('div', '2 out of 3 days', {width: '100px', height: '50px', position: 'absolute', top: '49px', right: '6px'})
+//let div = createElement('div', '2 out of 3 days', {width: '100px', height: '50px', position: 'absolute', top: '49px', right: '6px'})
 
-document.querySelector('#mainMenu').append(div)
+//document.querySelector('#mainMenu').append(div)
  
 
-days()
+//days()
 
 
 
@@ -185,9 +185,9 @@ boxesInMenu.forEach(button => {
   }
 });
 
-document.querySelector('#daysContainer').onclick = function () {
-  settings()
-}
+// document.querySelector('#daysContainer').onclick = function () {
+//   settings()
+// }
 
 
 
