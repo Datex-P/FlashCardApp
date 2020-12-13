@@ -336,9 +336,15 @@ export default function settings() {
 
 
   function renderHexagons() {
-    arr.forEach((newItem, index) => {
-      if (index < dataBase.daysOfStudy.day) {
+    arr.forEach((newItem, k) => {
+      if (k < dataBase.daysOfStudy.day) {
         newItem.classList.add('selected')
+      }
+      if(k == dataBase.daysOfStudy.day-1){
+        let blackArrow = createElement('div', '', {}, 'blackArrow')
+        let number = createElement('div', `<span style='font-weight: bold'>${k + 1}</span> ${k + 1 > 1 ? 'days' : 'day'}`, {}, 'number')
+        blackArrow.append(number)
+        newItem.append(blackArrow)
       }
     })
   }
