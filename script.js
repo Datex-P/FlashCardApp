@@ -197,3 +197,35 @@ document.getElementById("createDeckButton").onclick = function () {
 
   document.querySelector(".arrowDown").style.display = "none";
 };
+
+
+document.getElementById('loginButton').onclick = function () {
+	let userNameExists = userDataBase[loginName.value];
+	if (userNameExists && userNameExists.password === password.value) {
+		startRender(userNameExists,loginName.value)
+    currentlyLoggedIn = loginName.value;
+	}else{
+		alert('Invalid username or password.')
+	}
+}
+
+
+
+document.querySelector('#signUpNow').onclick = function(){
+	loginPage.style.display='none'
+	registerPageContainer.style.display='flex'
+}
+
+
+
+document.querySelector('#backToSignIn').onclick = function () {
+  loginPage.style.display='flex';
+  registerPageContainer.style.display='none'
+  document.getElementById('passwordRequirements').style.display='none';
+  document.getElementById('newUserPassword').value = '';
+  newUserLoginName.value = '';
+  registerButton.style.marginTop="90px";
+}
+
+
+

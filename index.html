@@ -14,84 +14,123 @@
 
 <body>
   <div id="outerLoginPage">
-    <div style="display: block; position: relative">
-      <!-- <div id="registerPage">
-        <div class="flexCenter">
-          <img src="js_logo.svg" style="
-                width: 50px;
-                height: 40px;
-                border-radius: 5px;
-                margin-top: 20px;
-              ">-->
-      <!-- </div>
-        <div style="
-              width: 100%;
-              margin-top: 5px;
-              font-size: 20px;
-              text-align: center;
-            ">
-          Register
-        </div>
-        <div style="
-              display: flex;
-              align-items: center;
-              flex-direction: column;
-              width: 100%;
-            ">
-          <input style="width: 80%; margin-top: 70px" type="text" />
-          <input style="width: 80%; margin-top: 10px" type="text" />
-        </div>
-        <div class="flexCenter" style="margin-top: 140px"> -->
+    <!-- <div style="display: block; position: relative">
+      
 
-      <!--some sort of please confirm with your email kind of thing-->
-      <!-- <button style="width: 70%; background-color: #545863; color: #ffe3e3">
-            Register
-          </button>
-        </div>
-      </div>  -->
+      <div style="background-color: #86a873; width: 411px; height: 731px; margin: 0 auto; padding: 20px; border-radius: 15px;" id='registerAndLoginContainer'>
 
-      <!--make the line below to display block to show sign in-->
-
-      <div id="loginPage" style='display: none'>
-        <div class="flexCenter" style="margin-top: 20px">
-          <!--<img src="js_logo.svg" style="width: 50px; height: 40px; border-radius: 5px" />-->
+        <div id='registerPageContainer' style="display: none; flex-direction: column; align-items: center; justify-content: space-around">
+  
+              <img src="coins-solid.svg" style="width: 30px" "height: 10px">
+  
+  
+  
+              <div id='innerRegisterPage'>
+                  <div style="width: 100%; text-align: center; margin-top: 25px">Budget Master
+  
+                      <div style="font-size: 26px; margin-top: 30px">Register</div> 
+  
+                      <div style="display: flex; margin-top: 40px">
+                          <img src="user-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 3px">
+                          <input class="buttonPassWordandReg" id="newUserLoginName" type="text" style="width: 80%">
+                      </div>
+  
+                      <div style="display: flex; margin-top: 10px">
+                          <img src="key-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 1px">
+                          <input class="buttonPassWordandReg" type="password"   id="newUserPassword"  style="width: 80%; margin-top: 15px" >
+                      </div>
+                      <div id="passwordRequirements" onmouseleave="hide(this)" style="display: none; width: 190px; flex-direction: column; margin-top:10px; margin-bottom:5px; align-items: flex-start;font-size: small;border: 1px black solid">
+                          <div>Your password must meet these requirements:</div>
+                          <div id="capitalLetter"><img id="capitalLetterSrc" src="redCross.svg" style="width: 10px; margin-right: 3px; margin-left: 20px">At least <strong>one capital letter</strong></div>
+                          <div id="oneNumber"><img id="oneNumberSrc" src="redCross.svg" style="width: 10px; margin-right: 3px; margin-left:20px">At least <strong>one number</strong></div>
+                          <div id="eightCharacters"><img id="eightCharactersSrc" src="redCross.svg" style="width: 10px; margin-right: 3px; margin-left: 20px">Be at least <strong>8 characters</strong></div>   
+                      </div>
+  
+  
+                      <button id="registerButton" style="width: 80%; color: white; border-radius: 8px; border-color: #53131E; padding: 5px; background-color: #53131E;margin-top: 90px">
+                      Register
+                      </button>
+                      <div id='backToSignIn' style="margin-top: 8px; font-size: small">Already a user? <strong>Sign In</strong></div>
+                  </div> 
+              </div>
+              
+              <div style="margin-top:100px; text-align:center" id="welcomeMessage"></div>
+                  <div style="display:none" class="spinner">
+                      <div class="bounce1"></div>
+                      <div class="bounce2"></div>
+                      <div class="bounce3"></div>    
+                  </div>    
         </div>
-        <!-- <div style="
-              width: 100%;
-              margin-top: 5px;
-              font-size: 20px;
-              text-align: center;
-            ">
-          Login
-        </div>
-        <div style="
-              display: flex;
-              align-items: center;
-              flex-direction: column;
-              width: 100%;
-            ">
-          <input style="width: 80%; margin-top: 70px" type="text" />
-          <input style="width: 80%; margin-top: 10px" type="text" />
-        </div>
+  
+  
+  
+        <div id='loginPage' style="display: flex; flex-direction: column; align-items: center">
+  
+            <img src="coins-solid.svg" style="width: 30px" "height: 10px">
+  
+            <div style="width: 100%; text-align: center; margin-top: 25px">Budget Master</div>
 
-       -->
 
-        <!-- <div id="registerButton" class="flexCenter">
-          <button id="loginButton">
-            Login
-          </button>
-        </div> -->
+            <div style="font-size: 26px; margin-top: 30px">Login</div>
+             <script> -->
+              <!-- function handlerInput(event){
+                console.log('input',event.target.value)
+              }
+              function handlerChange(event){
+                console.log('change',event.target.value)
+              }
+            </script> 
+   -->
+            <!-- <div style="display: flex; margin-top: 40px">
+                <img src="user-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 3px">
+                <input class="buttonPassWordandReg" id="userNameInput" type="text" style="width: 80%" autofocus>
+            </div>
+  
+            <div style="display: flex; margin-top: 10px">
+                <img src="key-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 1px">
+                <input class="buttonPassWordandReg" type="password" id="userPassWord"  style="width: 80%; margin-top: 15px">
+            </div>
+  
+  
+           
+  
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; ">
+          
+                <button id="loginButton" style="width: 80%; color: white; border-radius: 8px; border-color: #53131E; padding: 5px; background-color: #53131E;margin-top: 90px"> Login</button>
+  
+
+
+                <fb:login-button 
+                scope="public_profile,email"
+                onlogin="checkLoginState();">
+                </fb:login-button>
+              
+
+
+
+
+
+                <div id='signUpNow' style="margin-top: 8px; font-size: small">Don't have an account? <strong>Sign up Now</strong></div>
+                
+            </div>
+        </div>
+    </div>
+
+ -->
+
+
+
         <div style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%">
 
           <div class='g-signin2'></div>
 
         </div>
 
-      </div>
+      </div> 
 
-      <div id="mainMenu">
+      <div id="mainMenu" style="display: flex">
 
-
+        
 
         <div class="menu flexColumnAlignCenter">Menu
           <div class='menuContainer flexColumnAlignCenter'>
@@ -162,6 +201,11 @@
 
     <script type='module' src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+
+  </script>
+
 </body>
 
 </html>

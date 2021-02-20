@@ -45,9 +45,7 @@ export default function createNewDeck() {
   let selectField = createElement('select', `
     <option>or choose exited one</option>
     <option>cars' brands</option>
-    <option>beer history</option>
-    <option>kamasutra</option>
-    <option>weman and how understand them - cost 100$</option>
+ 
   `, {
     width: '70%',
     marginTop: '10px',

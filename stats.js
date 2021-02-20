@@ -9,6 +9,12 @@ import {
   deleteCardQuestionBox, setThreeDotsOpen, threeDots
 } from "./exportFunctions.js";
 
+
+
+
+
+
+
 export default function stats() {
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = "flex";
@@ -40,98 +46,15 @@ export default function stats() {
 
 
 
-  let canvas = createElement('canvas', '', {width: '270px'}, 'pieChart')
+  let canvas = createElement('canvas', '', {width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px'}, 'pieChart')
   
   theWordTodayContainer.append(canvas)
 
-  let todayStudyContainer = createElement('div', "Today's study breakdown", {width: '100px', fontWeight: 'bold', fontSize: '17px'})
+  let todayStudyContainer = createElement('div', "Today's study breakdown", {width: '105px', textAlign: 'center', fontWeight: 'bold', fontSize: '17px'})
    
   let todayDate = new Date();
 
 
-  Chart.pluginService.register({
-    beforeDraw: function(chart) {
-      if (chart.config.options.elements.center) {
-        // Get ctx from string
-        var ctx = chart.chart.ctx;
-
-        // Get options from the center object in options
-        var centerConfig = chart.config.options.elements.center;
-        var fontStyle = centerConfig.fontStyle || 'Arial';
-        var txt = centerConfig.text;
-        var color = centerConfig.color || '#000';
-        var maxFontSize = centerConfig.maxFontSize || 75;
-        var sidePadding = centerConfig.sidePadding || 20;
-        var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
-        // Start with a base font of 30px
-        ctx.font = "30px " + fontStyle;
-
-        // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-        var stringWidth = ctx.measureText(txt).width;
-        var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
-
-        // Find out how much the font can grow in width.
-        var widthRatio = elementWidth / stringWidth;
-        var newFontSize = Math.floor(30 * widthRatio);
-        var elementHeight = (chart.innerRadius * 2);
-
-        // Pick a new font size so it will not be larger than the height of label.
-        var fontSizeToUse = Math.min(newFontSize, elementHeight, maxFontSize);
-        var minFontSize = centerConfig.minFontSize;
-        var lineHeight = centerConfig.lineHeight || 25;
-        var wrapText = false;
-
-        if (minFontSize === undefined) {
-          minFontSize = 20;
-        }
-
-        if (minFontSize && fontSizeToUse < minFontSize) {
-          fontSizeToUse = minFontSize;
-          wrapText = true;
-        }
-
-        // Set font settings to draw it correctly.
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-        var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
-        ctx.font = fontSizeToUse + "px " + fontStyle;
-        ctx.fillStyle = color;
-
-        if (!wrapText) {
-          ctx.fillText(txt, centerX, centerY);
-          return;
-        }
-
-        var words = txt.split(' ');
-        var line = '';
-        var lines = [];
-
-        // Break words up into multiple lines if necessary
-        for (var n = 0; n < words.length; n++) {
-          var testLine = line + words[n] + ' ';
-          var metrics = ctx.measureText(testLine);
-          var testWidth = metrics.width;
-          if (testWidth > elementWidth && n > 0) {
-            lines.push(line);
-            line = words[n] + ' ';
-          } else {
-            line = testLine;
-          }
-        }
-
-        // Move the center up depending on line height and number of lines
-        centerY -= (lines.length / 2) * lineHeight;
-
-        for (var n = 0; n < lines.length; n++) {
-          ctx.fillText(lines[n], centerX, centerY);
-          centerY += lineHeight;
-        }
-        //Draw text in center
-        ctx.fillText(line, centerX, centerY);
-      }
-    }
-  });
 
 
 var config = {
@@ -149,11 +72,11 @@ data: {
       "#36A2EB",
       "#FFCE56"
     ],
-    // borderColor: [
-    //   "#FF6384",
-    //   "#36A2EB",
-    //   "#FFCE56"
-    // ],
+    borderColor: [
+   'rgba(184, 156, 110, 0.95)',
+   'rgba(184, 156, 110, 0.95)',
+   'rgba(184, 156, 110, 0.95)'
+    ],
     borderWidth: 1,
     hoverBackgroundColor: [
       "#FF6384",
@@ -172,22 +95,72 @@ options: {
       color: 'black',
       fontStyle: 'Arial', // Default is Arial
       sidePadding: 2, // Default is 20 (as a percentage)
-      minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
-      lineHeight: 18, // Default is 25 (in px), used for when text wraps
+      minFontSize: 14, // Default is 20 (in px), set to false and text will not wrap.
+      lineHeight: 19,
+       // Default is 25 (in px), used for when text wraps
     }
   },
   legend: {
-    position: 'bottom'
+    position: 'bottom', 
+    labels: {
+    fontColor: 'black'
+    }
+    
   },
-  cutoutPercentage: 75,
+  cutoutPercentage: 81,
+  maintainAspectRatio: false,
   layout : {
     padding: {
       top: 10
-    }
-    //borderradius: 5px;
+    },
+   border: 'none'
   }
 }
 };
+
+//console.log(config.data.datasets[0].data)
+
+function updateChart() {
+  config.data.datasets[0].data = [10,20,30,40,50];
+  config.data.datasets[0].backgroundColor = ['green', 'blue', 'yellow', 
+'purple', 'red'];
+  config.data.datasets[0].borderColor = ['green', 'blue', 'yellow', 
+  'purple', 'red']
+  config.data.hoverBackgroundColor = ['green', 'blue', 'yellow', 
+  'purple', 'red']
+  config.data.labels = ['green', 'blue', 'yellow', 
+  'purple', 'red']
+
+  //config.update()
+}
+
+updateChart()
+
+
+
+
+
+// function addData(chart, label, data) {
+//   chart.data.labels.push(label);
+//   chart.data.datasets.forEach((dataset) => {
+//       dataset.data.push(data);
+//   });
+//   chart.update();
+// }
+
+// addData()
+
+
+
+
+
+
+
+
+
+
+
+
 
 //let pieChart  = canvas.getContext('2d')
 
@@ -198,92 +171,6 @@ var myChart = new Chart(ctx, config);
 
 
 console.log(todayDate)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-//   //Chart.defaults.global.defaultFontFamily = 'Verdana'
-//   Chart.defaults.global.defaultFontSize = 11;
-//   Chart.defaults.global.elements.rectangle.borderColor = 'black'
-  
-  
-//   let massPopChart = new Chart(pieChart, {
-//     type: 'doughnut', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
-//     data: {
-//       labels: ['Berlin', 'Hamburg', 'New York', 'London', 'Munich'],
-//       datasets: [{
-//         label: 'Population',
-//         data: [
-//           1000, 400, 300, 400, 500, 600
-//         ], 
-//         backgroundColor: ['blue', 'purple', 'red', 'black', 'black'],
-//         borderColor: 'black',
-//         borderWidth: 1
-//       }]
-//     },
-//     options: {
-//       title: {
-//         display: false,
-//         text: "Today's study breakdown",
-//         fontSize: 20,
-//         //fontColor
-//       },
-//       legend: {
-//         display: true,
-//         position: 'bottom', //can do top bottom left right
-//       labels: {
-//         fontColor: 'black'
-//       }
-//       },
-//       layout: {
-//         padding: {
-//           left: 20,
-//           right: 0,
-//           bottom: 0,
-//           top: 10
-//         }
-        
-//       }
-//     }
-
-   
-//   });
-
-
-//   Chart.controllers.doughnut.extend({
-//     name: "DoughnutAlt",
-//     draw: function () {
-//         Chart.types.Doughnut.prototype.draw.apply(this, arguments);
-
-//         this.chart.ctx.textBaseline = "middle";
-//         this.chart.ctx.fillStyle = 'black'
-//         this.chart.ctx.font = "50px Roboto";
-//         this.chart.ctx.textAlign = "center";
-//         this.chart.ctx.fillText(distributionChartData[3] + " %", 135, 120);
-//         this.chart.ctx.font = "20px Roboto";
-//         this.chart.ctx.fillText((distributionChartData[0] + distributionChartData[1] + distributionChartData[2]) + " Responses", 135, 160);
-//     }
-// });
-
-// //var pieChart = document.getElementById("pieChart").getContext("2d");
-// new Chart(pieChart).DoughnutAlt(massPopChart, {
-//     percentageInnerCutout: 80, animationEasing: "easeOutQuart"
-// });
 
 
 
@@ -651,6 +538,89 @@ anchorThreeDots.style.top = '0px'
   closeMenu();
 }
 
+Chart.pluginService.register({
+  beforeDraw: function(chart) {
+    if (chart.config.options.elements.center) {
+      // Get ctx from string
+      var ctx = chart.chart.ctx;
+
+      // Get options from the center object in options
+      var centerConfig = chart.config.options.elements.center;
+      var fontStyle = centerConfig.fontStyle || 'Arial';
+      var txt = centerConfig.text;
+      var color = centerConfig.color || '#000';
+      var maxFontSize = centerConfig.maxFontSize || 75;
+      var sidePadding = centerConfig.sidePadding || 20;
+      var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+      // Start with a base font of 30px
+      ctx.font = "30px " + fontStyle;
+
+      // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+      var stringWidth = ctx.measureText(txt).width;
+      var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+      // Find out how much the font can grow in width.
+      var widthRatio = elementWidth / stringWidth;
+      var newFontSize = Math.floor(30 * widthRatio);
+      var elementHeight = (chart.innerRadius * 2);
+
+      // Pick a new font size so it will not be larger than the height of label.
+      var fontSizeToUse = Math.min(newFontSize, elementHeight, maxFontSize);
+      var minFontSize = centerConfig.minFontSize;
+      var lineHeight = centerConfig.lineHeight || 25;
+      var wrapText = false;
+
+      if (minFontSize === undefined) {
+        minFontSize = 20;
+      }
+
+      if (minFontSize && fontSizeToUse < minFontSize) {
+        fontSizeToUse = minFontSize;
+        wrapText = true;
+      }
+
+      // Set font settings to draw it correctly.
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+      var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+      ctx.font = fontSizeToUse + "px " + fontStyle;
+      ctx.fillStyle = color;
+
+      if (!wrapText) {
+        ctx.fillText(txt, centerX, centerY);
+        return;
+      }
+
+      var words = txt.split(' ');
+      var line = '';
+      var lines = [];
+
+      // Break words up into multiple lines if necessary
+      for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = ctx.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > elementWidth && n > 0) {
+          lines.push(line);
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+
+      // Move the center up depending on line height and number of lines
+      centerY -= (lines.length / 2) * lineHeight;
+
+      for (var n = 0; n < lines.length; n++) {
+        ctx.fillText(lines[n], centerX, centerY);
+        centerY += lineHeight;
+      }
+      //Draw text in center
+      ctx.fillText(line, centerX, centerY);
+    }
+  }
+});
 
 
 

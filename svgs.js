@@ -17,7 +17,7 @@ export let redCross = `<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-n
       <rect id="rect1874" transform="rotate(90)" height="20" width="100" y="-205.71" x="125.22"/>
     </g>
   </g>
-  <metadata>
+  <metadata> 
     <rdf:RDF>
       <cc:Work <dc:format>image/svg+xml</dc:format>
         <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>

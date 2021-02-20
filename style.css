@@ -483,11 +483,10 @@ pauseIconContainer:hover {
 }
 
 .newDeckContainer{
-  height: 168px;
+  height: 230px;
   width: 307px;
   padding: 10px 0px 0px 0px;
   margin: 10px 0 0 20px;
-  /*border: 1px solid black;*/
   display: flex;
   flex-direction: column;
   margin-bottom: -80px;
@@ -632,16 +631,18 @@ pauseIconContainer:hover {
   height: 731px;
   display: flex;
   justify-content: center;
+  display: none;
 }
 
 #mainMenu {
   background-color: var(--backgroundColor);
-  width: 411px;
+  width: 440px;
   height: 731px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   position: relative;
+  margin: auto;
 }
 
 .orangeCircle {

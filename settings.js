@@ -96,7 +96,7 @@ export default function settings() {
 
   let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['70px', '70px', '70px'].map(width => createElement('div', '', {
     width,
-    border: '1px black solid',
+    border: '1px solid black',
     borderRadius: '5px'
   }, 'flexCenter'))
 
