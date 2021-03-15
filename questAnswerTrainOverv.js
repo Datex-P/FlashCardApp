@@ -12,6 +12,9 @@ import {
   redCross, deleteCardQuestionBox, setThreeDotsOpen, threeDots
 } from './exportFunctions.js'
 import createDom from "./createDom.js";
+import {
+edit
+} from "./svgs.js";
 
 
 
@@ -98,7 +101,7 @@ dataBase.studyTime += 1
 
 
 
-  function close() {
+  function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
     clearInterval(timer); //not implemented yet
@@ -129,6 +132,8 @@ dataBase.studyTime += 1
 
   questionContainer.id = 'questionContainer'
   questionFieldTextArea.id = 'questionFieldTextArea'
+
+ 
 
 
   mainWindow.appendChild(questionContainer);
@@ -174,7 +179,7 @@ dataBase.studyTime += 1
   )
 
 
-  let [saveButton, discardButton] = ['Save', 'Discard'].map(el => {
+  let [saveButton, discardButton] = ['Save', 'Discard'].map(el => { //generates the save and discard button in questAnswertrain
     return createElement('div', el, {
       fontSize: '14px',
     }, 'generalButtonStyling flexCenterAlignCenter')
@@ -188,11 +193,13 @@ dataBase.studyTime += 1
   saveAndDiscardContainer.append(discardButton, saveButton);
   let [question, answer, index] = shuffleLogic()
 
+  let editMode = false;
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
     {
       edit: () => {
+    editMode = true;
     showAnswerButtonContainer.style.justifyContent = 'center';
     answerContainer.style.display = 'block'
     answerFieldTextArea.style.display = 'block';
@@ -205,21 +212,20 @@ dataBase.studyTime += 1
     showAnswerButton.style.display = 'none';
     showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
     mainWindow.removeChild(showAnswerButtonContainer);
-
+    anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
+    editLogo.style.display='block'                     //edit logo appears that shows that the app is in edit-mode
+    editText.style.display = 'block'
   },
-    delete:() => {
-        deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
-      },
-
-      pause: (container,playIcon,pauseIcon,edited) => {
-        if (!edited) {
-          container.replaceChild(playIcon, pauseIcon)
+  
+  pause: (container,playIcon,pauseIcon,edited) => {
+    if (!edited) {
+      container.replaceChild(playIcon, pauseIcon)
           window.onclick = ''
           edited = true;
-
+          
           newDeckContainer.style.backgroundColor = 'grey'
           dataBase.DeckNames[item].deckPauseActive = true;
-
+          
         }else {
           container.replaceChild(pauseIcon, playIcon)
           edited = false;
@@ -230,8 +236,21 @@ dataBase.studyTime += 1
         }
         return edited
       }
+      ,
+      delete:() => {
+          deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
+        }
+      
+
+
     },{ top: '-15px',left:'13px'}, 'card'
       )
+
+
+      if (editMode) {
+        questionContainer.style.marginTop = '37px' // changes the top of the container question and answer field
+      }
+    
       
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '86px'
@@ -283,6 +302,32 @@ containerForMiddle.append(middleTimeValue);
 containerForRight.append(rightTimeValue);
 
 
+let editLogo = createElement(
+  'div',
+  edit, {
+  width: 'fit-content',
+  position: 'absolute',
+  top: '55px',
+  left: '48px'
+
+},
+  ''
+)
+
+let editText = createElement(
+  'div',
+  'mode', {
+  width: 'fit-content',
+  position: 'absolute',
+  top: '55px',
+  left: '68px'
+
+},
+  ''
+)
+
+editText.style.display = 'none'
+editLogo.style.display='none'
 
 
 
@@ -380,6 +425,11 @@ containerForRight.append(rightTimeValue);
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
+    anchorThreeDots.style.display = 'block' 
+
+    editLogo.style.display='none'             //edit Logo dissapears that is active in card edit mode
+    editText.style.display='none'
+    editMode = false
 
 
     question = questionFieldTextArea.value;
@@ -394,10 +444,15 @@ containerForRight.append(rightTimeValue);
 
 
 
-
+mainWindow.append(editLogo) //Logo that appears in edit mode
+mainWindow.append(editText) //text next to edit logo that appears in edit mode
 
   discardButton.onclick = function () {
     setThreeDotsOpen(false);
+
+    editLogo.style.display='none'  //edit Logo dissapears that is active in card edit mode
+    editText.style.display='none'
+    editMode = false
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
@@ -408,6 +463,8 @@ containerForRight.append(rightTimeValue);
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
+    anchorThreeDots.style.display = 'block'
+    
   };
 
 

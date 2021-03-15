@@ -30,7 +30,7 @@ export default function settings() {
   let settingsAndRedCrossContainer = createElement(
     'div', '', {
       width: "291px",
-      marginBottom: '20px',
+      marginBottom: '30px',
       height: '24px'
     }, 'flexSpaceBetweenAlignCenter'
   );
@@ -146,6 +146,7 @@ export default function settings() {
     let input = document.createElement("div");
     input.innerText = el;
     input.style.fontWeight = 'bold'
+   
     //input.className = "noBorders";
     //input.style.height = '30%'
     input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
@@ -184,27 +185,50 @@ export default function settings() {
 
 
 
-  let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3, changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] = [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
-    return createElement('input', '', {
+  let [ 
+    changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] =    //input fields for naming the time buttons
+    [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
+    let inp = createElement('input', '', {
       width
     }, 'settingsButtonStyling');
+    
+    inp.oninput = function(e){
+      
+      e.target.value =  e.target.value.substr(0,7)  //input can be seven letters long max
+    }
+
+    return inp
+
   })
+
+
+  let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3] =  //input fields for the time 
+    [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
+
+     let inp = createElement('input', '', {
+      width
+    }, 'settingsButtonStyling');
+    inp.type='number'
+    inp.maxlength = '2'
+    inp.oninput = function(e){
+      
+      e.target.value =  e.target.value.substr(0,2) //input can be two digits long max
+    }
+    return inp
+  })
+
+
+
 
   changeNameofDeckInput1.type = 'number';
   changeNameofDeckInput2.type = 'number';
   changeNameofDeckInput3.type = 'number';
 
-  // let width = createElement('div', '', {
-  //   width: '40px',
-  //   height: '3px',
-  //   backgroundColor: 'black'
-  // })
+  changeNameofDeckInput1.maxlength = '3'
+  changeNameofDeckInput2.maxlength = '3'
+  changeNameofDeckInput3.maxlength = '3'
 
-  // let width2 = createElement('div', '', {
-  //   width: '40px',
-  //   height: '3px',
-  //   backgroundColor: 'black'
-  // })
+
 
   let goalSettings = createElement(
     'div', 'Goal Settings', {
@@ -360,7 +384,6 @@ export default function settings() {
   let resetColorSchemeContainer = createElement(
     'div', '', {
       width: '154px',
-      // border: '1px black solid',
       marginTop: '20px',
 
     }, '');
@@ -386,7 +409,6 @@ export default function settings() {
 
   editToReview.title = 'change study and review intervals for all decks';
 
-  // mainWindow.append(width2)
 
   mainWindow.append(resetColorSchemeContainer);
 

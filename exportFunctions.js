@@ -14,10 +14,10 @@ import {
 
 
 
-function closeMenu() {
+function closeMenu() {  //closes the menu on the starting screen
   let all = document.querySelectorAll('.menuContainer>div')
   document.querySelector('.menuBox').style.display = 'none';
-  // opened = false;
+
   window.onclick = '';
   all[0].classList.remove('transPlus');
   all[0].style.top = '0px'
@@ -28,6 +28,8 @@ function closeMenu() {
 
 
 function createElement(tag = 'div', inner = '', style = {}, className = null, id = null, parentNode = null) {
+
+  //function that is the basis of all other functions in the application
 
   let element = document.createElement(tag);
 
@@ -81,41 +83,40 @@ function threeDots() {
     );
 
     settingsIconContainer.title = 'Edit question and answer or delete card';
-
-    settingsIconContainer.onclick = function () {
-      console.log('I was clicked')
-      if (threeDotsOpen === false) {
-        threeDotsOpen = true
-        littleModalWindow.style.display = "block";
-
-        setTimeout(function () {
-          window.onclick = function (event) {
-            if (!littleModalWindow.contains(event.target)) {
-              littleModalWindow.style.display = 'none';
-              window.onclick = ''
-            }
-          };
-        }, 10);
-      } else {
-        threeDotsOpen = false
-        littleModalWindow.style.display = "none";
-      }
-    };
-
     let littleModalWindow = createElement(
       'div',
       '', littleModalWindowStyles,
       'littleModalWindow flexColumn'
     )
+    settingsIconContainer.onclick = function () {
+      console.log('I was clicked')
+      function listener(event) {
+        littleModalWindow.style.display='none'
+      };
+      if (threeDotsOpen === false) {
+        threeDotsOpen = true
+        littleModalWindow.style.display = "block";
+        setTimeout(function () { 
+          window.onclick = function () {
+            littleModalWindow.style.display = 'none';
+            console.log('hello')
+          }
+        }, 10);
 
+        // setTimeout(function () { //function that closes  the edit/pause/trash field when clicked outside of it
+        //    window.addEventListener('click',listener)
+           
+        // }, 10);
 
-    // if(littleModalWindowStlyes){
-    //   for(let style in littleModalWindowStlyes){
-    //     littleModalWindow.style[style] = littleModalWindowStlyes[style]
-    //   }
-    // }
+      } else {
+        threeDotsOpen = false
+        littleModalWindow.style.display = "none";
+        window.onclick =''
+      }
+    };
 
-    // if (questAnswerTrain)
+   
+
 
     let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px' }, '')
     threeDotsContainer.append(settingsIconContainer, littleModalWindow);
@@ -125,7 +126,7 @@ function threeDots() {
 
     let [editIconContainer, trashIconContainer, pauseIconContainer, resetIconContainer] = ['', '', '', ''].map(el => {
       return createElement('div', '', {
-      }, 'flexCenterAlignCenter trashIconContainer')
+      }, 'flexCenterAlignCenter')
     });
 
 
@@ -154,6 +155,13 @@ function threeDots() {
     pauseIconContainer.append(pauseIcon, pauseIconText);
     trashIconContainer.append(trashIcon, trashIconText);
 
+    trashIconContainer.classList.add('trashIconContainer')
+    editIconContainer.classList.add('editIconContainer')
+    pauseIconContainer.classList.add('resetAndPauseIconContainer')
+    resetIconContainer.classList.add('resetIconContainer')
+
+
+
     let btns = {
       edit: editIconContainer,
       reset: resetIconContainer,
@@ -168,6 +176,8 @@ function threeDots() {
           btns[btn].onclick = function () {
             threeDotsOpen = true;
             littleModalWindow.style.display = "none";
+
+          //  document.querySelector('addEditDeleteContainer').style.display = 'none'
 
             paused = btnList[btn](pauseIconContainer, playIcon, pauseIcon, paused)
           };
@@ -194,18 +204,34 @@ function threeDots() {
           btns[btn].onclick = function (event) {
             threeDotsOpen = true;
             littleModalWindow.style.display = "none";
+
+           
+
             btnList[btn](event, editIconContainer, editIcon, saveIcon, (event) => {
               if (!littleModalWindow.contains(event.target)) {
                 littleModalWindow.style.display = 'none';
-                window.onclick = ''
+                window.onclick = '';
               }
             }, littleModalWindow)
           };
           littleModalWindow.append(btns[btn])
           break;
         case 'reset':
-          btns[btn].onclick = btnList[btn]
+          btns[btn].onclick =  function(event){
+       
+            btnList[btn](event)
+            threeDotsOpen = !threeDotsOpen
+          }
+           
+          
+          
           littleModalWindow.append(btns[btn])
+          
+          //newly added
+          // setTimeout(function () {
+          //   window.onclick = outsideClickClosehandler
+          // }, 10);
+          //newly added
           break;
       }
     }
@@ -260,7 +286,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   let messageDeleteCard = createElement('div', `${header}`, messageDeleteCardStyling, 'flexCenterAlignCenter messageDeleteCard')
 
   let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
-  let dontShowMessageAgainContainer = createElement('div', '', {}, 'flexCenter');
+  let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '65px'}, 'flexCenter');
   let dontShowMessageText = createElement('div', "Don't show message again", {
     width: '200px',
     color: 'white'

@@ -162,7 +162,6 @@ updateChart()
 
 
 
-//let pieChart  = canvas.getContext('2d')
 
 var ctx = canvas.getContext("2d");
 var myChart = new Chart(ctx, config);
@@ -195,14 +194,30 @@ console.log(todayDate)
   buttonLeft.style.marginRight = "5px";
   buttonRight.style.marginLeft = "5px";
 
-
+  // function handleOutsideClick(e) {
+  //   if (!(document.querySelector('.anchorThreeDots').contains(e.target))) {
+  //     //alert("Clicked outside Box");
+  //     // document.querySelector('.menuBox').style.display = 'none';
+  //     // opened = false;
+  //     console.log('window handler still alive')
+  //     //window.onclick = ''
+  //    // closeMenu()
+  //     opened = false;
+  //   }
+  //   window.onclick = ''
+  // }
 
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
 
-    {reset: ()=>{
+    {reset: (outsideClickClosehandler,func)=>{       //when reset is clicked the window whether you want to reset the progress appears
     
+      //window.addEventListener('click', () => console.log('kokverjbnjre'))
+
+      setTimeout(function () {
+        window.onclick = outsideClickClosehandler
+      }, 10);
     
   deleteCardQuestionBox(() => {
 
@@ -225,9 +240,10 @@ console.log(todayDate)
     
     , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
     
-  }} , {top: '2px'}
+  }} , {top: '4px'} //the position of the stats field after three dots is clicked
     )
-  
+
+
 
 anchorThreeDots.style.height = '29px'
 anchorThreeDots.style.right = '-68px';
@@ -261,6 +277,9 @@ anchorThreeDots.style.top = '0px'
       let { value } = event.target;
       console.log(value);
     };
+    if (radioBtn.value === '1 month') { //sets the blue mark to 1 month by default
+      radioBtn.checked = true
+    }
  
     radioButtonContainer.append(radioBtn, label);
   });
@@ -272,18 +291,20 @@ anchorThreeDots.style.top = '0px'
 
   let studyGoal = 80
   let timeObj = {
-    5: 15,
-    9: 20,
-    17: 14
+    6: 15,
+    12: 20,
+    18: 1,
+    24: 14,
+ 
   }
 
 
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
-  let time = createElement("div", 'Study Goal', { marginLeft: '10px', border: '1px solid black', width: '82px' });
+  let time = createElement("div", 'Study Goal', { marginLeft: '10px', border: '1px solid black', fontSize: '15px', width: '68px', padding: '4px' });
 
   let progressBar = createElement('div', '', {}, 'progressBar');
 
-  progressBar.style.marginLeft = '6px'
+  progressBar.style.marginLeft = '20px' //first progress bar next to study goal
 
 
 
@@ -300,8 +321,8 @@ anchorThreeDots.style.top = '0px'
   console.log((((Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100) / 145) * 125))
 
 
-  let progressNumber = createElement('div', `${currentProgress.toFixed(0)}%`, {
-    position: 'absolute', top: '0px', left: `${widthAdjusted}px`, fontSize: '13px'
+  let progressNumber = createElement('div', `${currentProgress.toFixed(0)}%`, { //number that is shown above the study goal progress bar
+    position: 'absolute', top: '2px', left: `${widthAdjusted}px`, fontSize: '13px'
   })
 
 
@@ -313,7 +334,7 @@ anchorThreeDots.style.top = '0px'
   let arr = [];
   let previousWidthVar = 0
 
-  for (let i = 5; i <= 25; i += 4) {
+  for (let i = 6; i <= 30; i += 6) {
 
 
     if (i in timeObj) {
@@ -326,36 +347,26 @@ anchorThreeDots.style.top = '0px'
 
       let widthVar = (timeObj[i] || 0) / studyGoal * 100
 
-      let time = createElement("div", '', {}, 'time');
+      let time = createElement("div", '', {}, 'time flexCenterAlignCenter'); //container for the times 06-12 / 12-18 etc.
 
       let progressBar = createElement('div', '', {}, 'progressBar')
       let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px'});
 
       previousWidthVar+=widthVar
 
-      if (i === 21) {
-        time.innerHTML = `
-        <div>${21} - ${24}</div>
-      `;
-      } else if (i === 25) {
-        time.innerHTML = `
-        <div>${24} - ${5}</div>
-      `;
-      } else if (i <= 9) {
-        time.innerHTML = `
-      <div>${'0'+i} - ${'0'+(i + 4)}</div>
-    `;
-        if (i<=9 && i+4 >9) {
-          time.innerHTML = `
-          <div>${'0'+i} - ${(i + 4)}</div>`
-        }
-      }
-      else {
-        time.innerHTML = `
-      <div>${i} - ${i + 4}</div>
-    `;
-      }
+      if (i === 24) {
+        
+        time.innerHTML = 
+                  `<div style='padding: 3px' >${24} - ${'0' +6}</div>` //line gets not triggered for some reason
+      
+      } else if (i === 6) {
+        time.innerHTML = 
+                  `<div style='padding: 3px'>${'0'+i} - ${(i + 6)}</div>`
+           
+      } else {
 
+        time.innerHTML = `<div>${i} - ${i+6}</div>`
+      }
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
       timeAndProgressContainer.append(time, progressBar)
@@ -413,8 +424,6 @@ anchorThreeDots.style.top = '0px'
         //let date = dataBase.DeckNames.calendarReset.value()
         //don t use dates before this date
         //}
-
-
 
         dataBase.DeckNames[deck].data.forEach((card) => {
           card.openHistory &&

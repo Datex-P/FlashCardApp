@@ -15,7 +15,7 @@ export default function addQuestionsToDeck(item) {
   let innerWindow = createElement('div', '', {});
 
   let addToDeck = createElement('button', 'Add to Deck', {
-    backgroundColor: '#545863', color: '#FFE3E3', width: '45%', height: '21px', marginTop: '10px',
+    backgroundColor: '#545863', color: '#FFE3E3', width: '45%', height: '28px', marginTop: '10px',
     marginLeft: '8px', cursor: 'pointer'
   });
 
@@ -44,10 +44,16 @@ export default function addQuestionsToDeck(item) {
     theWordQuestionAndAnswer.style.marginBottom = '14px';
     theWordQuestionAndAnswer.style.marginLeft = '8px';
 
+    // if (el =='Answer') {
+    //   theWordQuestionAndAnswer.style.marginTop = '60px';
+    // }
+
+
     insideFlashCardsContainer.append(theWordQuestionAndAnswer, textarea)
   });
 
-  insideFlashCardsContainer.childNodes[2].style.marginTop = '25px';
+  //insideFlashCardsContainer.childNodes[2].style.marginTop = '25px';
+  insideFlashCardsContainer.childNodes[2].style.marginTop = '60px';
 
 
 

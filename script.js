@@ -7,7 +7,6 @@ import settings from './settings.js';
 import createNewDeck from './createNewDeck.js';
 import {
   closeMenu,
-  createElement
 } from './exportFunctions.js';
 import {
   brush, hexagon
@@ -33,15 +32,15 @@ function handleOutsideClick(e) {
     //alert("Clicked outside Box");
     // document.querySelector('.menuBox').style.display = 'none';
     // opened = false;
-    console.log('window handler still alive')
+    console.log('window handler still alive')  //message gets displayed when menu is open and clicked outside
     //window.onclick = ''
-    closeMenu()
+    closeMenu()            //menu closes after clicked outside
     opened = false;
   }
   window.onclick = ''
 }
 
-document.querySelector('.menu').onclick = function () {
+document.querySelector('.menu').onclick = function () { //opens the menu field when clicked
 
   let all = document.querySelectorAll('.menuContainer>div')
   all[0].classList.add('transPlus');
@@ -57,7 +56,7 @@ document.querySelector('.menu').onclick = function () {
     document.querySelector('.menuBox').style.display = 'flex';
     document.querySelector('.menuBox').style.justifyContent = 'space-around';
     opened = true;
-    setTimeout(() => {
+    setTimeout(() => {        // logic that menu field closes again when clicked outside
       window.onclick = handleOutsideClick;
     }, 10)
   } else {
@@ -67,11 +66,11 @@ document.querySelector('.menu').onclick = function () {
 
 };
 
-let colorContainer = createElement('div', '', {
-  position: 'absolute',
-  display: 'block',
-  zIndex: 3
-}, '', '', document.body)
+// let colorContainer = createElement('div', '', {
+//   position: 'absolute',
+//   display: 'block',
+//   zIndex: 3
+// }, '', '', document.body)
 // let colorInput = createElement('input')
 //       colorInput.type = 'color'
 //       colorContainer.appendChild(colorInput)
@@ -139,7 +138,7 @@ let colorContainer = createElement('div', '', {
 
 
 
-function days(){
+function days(){ //itereates over the days and adds them to the days container
 	let anchor = document.querySelector('#daysContainer')
 
   anchor.style.display = 'flex';
@@ -171,8 +170,9 @@ function days(){
 
 
 
-let boxesInMenu = document.querySelectorAll('.menuBoxesStyling');
-boxesInMenu.forEach(button => {
+let boxesInMenu = document.querySelectorAll('.menuBoxesStyling'); 
+boxesInMenu.forEach(button => { //opens settings and stats when clicked upon them does not
+                                //do anything for logout icon so far
   button.onclick = function () {
     if (button.innerText === 'Stats') {
       stats();
@@ -193,39 +193,40 @@ boxesInMenu.forEach(button => {
 
 
 document.getElementById("createDeckButton").onclick = function () {
+                                    //opens the add new deck question field when create button is clicked
   createNewDeck()
 
   document.querySelector(".arrowDown").style.display = "none";
 };
 
 
-document.getElementById('loginButton').onclick = function () {
-	let userNameExists = userDataBase[loginName.value];
-	if (userNameExists && userNameExists.password === password.value) {
-		startRender(userNameExists,loginName.value)
-    currentlyLoggedIn = loginName.value;
-	}else{
-		alert('Invalid username or password.')
-	}
-}
+// document.getElementById('loginButton').onclick = function () {
+// 	let userNameExists = userDataBase[loginName.value];
+// 	if (userNameExists && userNameExists.password === password.value) {
+// 		startRender(userNameExists,loginName.value)
+//     currentlyLoggedIn = loginName.value;
+// 	}else{
+// 		alert('Invalid username or password.')
+// 	}
+// }
 
 
 
-document.querySelector('#signUpNow').onclick = function(){
-	loginPage.style.display='none'
-	registerPageContainer.style.display='flex'
-}
+// document.querySelector('#signUpNow').onclick = function(){
+// 	loginPage.style.display='none'
+// 	registerPageContainer.style.display='flex'
+// }
 
 
 
-document.querySelector('#backToSignIn').onclick = function () {
-  loginPage.style.display='flex';
-  registerPageContainer.style.display='none'
-  document.getElementById('passwordRequirements').style.display='none';
-  document.getElementById('newUserPassword').value = '';
-  newUserLoginName.value = '';
-  registerButton.style.marginTop="90px";
-}
+// document.querySelector('#backToSignIn').onclick = function () {
+//   loginPage.style.display='flex';
+//   registerPageContainer.style.display='none'
+//   document.getElementById('passwordRequirements').style.display='none';
+//   document.getElementById('newUserPassword').value = '';
+//   newUserLoginName.value = '';
+//   registerButton.style.marginTop="90px";
+// }
 
 
 

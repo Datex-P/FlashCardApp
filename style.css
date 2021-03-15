@@ -4,6 +4,7 @@ textarea {
   outline: none;
 }
 
+
 :root{
   --backgroundColor: #5aaa95
 }
@@ -13,6 +14,18 @@ textarea {
 .dark{
   --backgroundColor: #5aaaff
 }
+.openDeck {
+  background-color: grey;
+}
+
+.openDeck:hover {
+  background-color: #545863;
+}
+
+/* .plusIcon:hover {
+  background-color: #545863;
+} */
+
 
 button,
 input,
@@ -21,7 +34,7 @@ textarea {
 }
 button {
   border: none;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .studyAndReviewInputStyling {
@@ -117,6 +130,14 @@ textarea {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.flexColumnSpaceAroundAlignCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 
 .flexColumnCenter {
   display: flex;
@@ -237,13 +258,34 @@ textarea {
 }
 
 .generalButtonStyling {
-  width: 63px;
-  height: 24px;
+  width: 65px;
+  height: 27px;
   background-color: grey;
   color: white;
   cursor: pointer;
   border-radius: 5px;
 }
+
+.cancelOkButtonStyling {
+  width: 65px;
+  height: 27px;
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancelOkButtonStyling:hover {
+  background-color: #545863;
+}
+
+
+
+
+
+
+
+
 
 .menuBoxesStyling {
   background-color: #dcc9b6;
@@ -254,11 +296,35 @@ textarea {
   justify-content: space-around;
 }
 
-.menuBoxesStyling:hover, .trashIconContainer:hover, .editIconContainer:hover,
+.menuBoxesStyling:hover, .trashIconContainer:hover, .editIconContainer:hover, .resetAndPauseIconContainer:hover,
 pauseIconContainer:hover {
   background-color: #a39171;
   cursor: pointer;
 }
+
+.editIconContainer {
+  border: 1px solid black;
+  width: fit-content;
+  height: 25px;
+}
+
+.resetAndPauseIconContainer {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: fit-content;
+  height: 25px;
+
+}
+
+.resetIconContainer {
+  border: 1px solid black;
+  width: fit-content;
+  height: 25px;
+
+}
+
+
+
 
 .trashIconContainer {
   width: fit-content;
@@ -342,8 +408,8 @@ pauseIconContainer:hover {
 
 .deleteContainerInner {
   position: absolute;
-  top: 188px;
-  height: 206px;
+  top: 255px;
+  height: 177px;
   width: 252px;
   height: 160px;
   background-color: white;
@@ -382,7 +448,7 @@ pauseIconContainer:hover {
 
 .menuContainer {
   width: 100%;
-  margin-top: 1px;
+  margin-top: 3px;
   position: relative;
   height: 20px;
 }
@@ -424,7 +490,7 @@ pauseIconContainer:hover {
   width: 75%;
   height: 500px;
   top: 100px;
-  background-color: rgba(200, 168, 115, 0.95);
+  background-color: rgba(200, 168, 115);
   position: absolute;
   border: 2px solid black;
   border-radius: 20px;
@@ -483,8 +549,8 @@ pauseIconContainer:hover {
 }
 
 .newDeckContainer{
-  height: 230px;
-  width: 307px;
+  height: 196px;
+  width: 310px;
   padding: 10px 0px 0px 0px;
   margin: 10px 0 0 20px;
   display: flex;
@@ -493,8 +559,8 @@ pauseIconContainer:hover {
   background-color: #dcc9b6;
   /*transition: all 1s; */
   position: absolute;
-  top:70px;
-  transform-origin: 0px 175px;
+  top:22px;
+  transform-origin: 0px 195px;
   
 }
 
@@ -552,6 +618,15 @@ pauseIconContainer:hover {
   height: 30px;
 }
 
+.nameOfNewDeck {
+  position: absolute; 
+  left: 84px;
+  font-size: 19px; 
+  width: 108px;
+  padding: 2px; 
+  border-radius: 5px;
+}
+
 #redCross {
   margin-left: 240px;
   height: 20px;
@@ -561,7 +636,7 @@ pauseIconContainer:hover {
 
 
 #questAnswerTrainOverv {
-  width: 411px;
+  width: 441px;
   height: 731px;
   position: absolute;
   /* height: 100vh; */
@@ -572,11 +647,15 @@ pauseIconContainer:hover {
   top:0;
 }
 
+
+/*whiteLines that are shown in deck*/
+/*
 .whiteLines {
   width: 99%;
   margin-top: 15px;
   border: 0.5px #eee4e1 solid;
 }
+*/
 
 .theWordQuestionAndAnswer {
   margin-left: 4px;
@@ -605,13 +684,13 @@ pauseIconContainer:hover {
 #showAnswerButton {
   background-color: grey;
   color: white;
-  width: 95px;
-  height: 22px;
+  width: 102px;
+  height: 32px;
   margin-left: 7px
 }
 
 #createDeckButtonContainer {
-  bottom: 40px;
+  bottom: 87px;
   position: absolute;
   width: 100%;
 }
@@ -621,7 +700,7 @@ pauseIconContainer:hover {
   color: #ffe3e3;
   padding: 5px 5px;
   width: 217px;
-  height: 21px;
+  height: 30px;
   font-size: 14px;
   cursor: pointer;
 }
@@ -645,6 +724,8 @@ pauseIconContainer:hover {
   margin: auto;
 }
 
+
+/*orange circle embeds the plus icon*/
 .orangeCircle {
   width: 50px;
   height: 50px;
@@ -654,10 +735,15 @@ pauseIconContainer:hover {
   background-color: grey;
   position: absolute;
   left: -12px;
-  top: 150px;
+  top: 171px;
   z-index: 3;
   display:none;
 }
+
+
+/* .orangeCircle:hover {
+  background-color: #545863;
+} */
 
 .day {
   width: 10px;
@@ -734,6 +820,19 @@ pauseIconContainer:hover {
   border-radius: 5px;
 }
 
+.pauseInfoField {
+  width: 119px;
+  height: 115px;
+  z-Index: 2;
+  top: 41px;
+  left: 82px;
+  position: absolute;
+  border-radius: 5px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 8px;
+  line-height: 21px;
+}
 
 .littleModalWindow2 {
   position: absolute;
@@ -815,12 +914,12 @@ textarea:enabled {
   font-size: 14px;
 }
 
+/*container for decksize, to study, to review*/
 .addEditDeleteContainer {
   width: 149px;
-  height: 128px;
-  margin-top: 20px;
-  left: 77px;
-  /*border: 1px black solid;*/
+  height: 158px;
+  margin-top: 29px;
+  left: 70px;
   z-index: 3;
   position: absolute;
 }
@@ -831,16 +930,19 @@ textarea:enabled {
   height: 10px; 
   width: 146px; 
   margin-left: 37px; 
+  border-radius: 3px;
+  margin-top: 7px;
 }
 
 #scrollable {
-  height: 140px;
+  height: 174px;
   position: absolute; 
   overflow: scroll; 
   overflow-x: hidden; 
-  width:100%; 
-  top: 303px; 
-  left: -3px;
+  width:20px; 
+  top: 258px; 
+  right: 19px;
+  cursor: pointer;
 }
 
 .editToReview {
@@ -853,7 +955,6 @@ textarea:enabled {
   height: 20px;
   width: 290px;
   margin-left: 24px;
-  border: 1px black solid;
 }
 
 
@@ -873,15 +974,19 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
 .diagramHourlyBreakDownContainer {
   width: 260px; 
   border: 1px solid black; 
-  height: 190px; 
+  height: 193px; 
   position: relative ;
+  padding: 6px;
+  border-radius: 3px;
 }
 
 .radioButtonContainer {
   display: flex;
   border: 1px black solid;
   margin-top: 10px;
-  margin-bottom: 20px;
+  padding: 6px; 
+  border-radius: 5px;
+  margin-bottom: 17px;
 }
 
 .studyAndReviewContainerOuter {
@@ -909,7 +1014,8 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
 .time {
   margin-left: 10px ;
   border: 1px solid black;
-  width: 50px;
+  width: 61px;
+  height: 26px;
 }
 
 .changeRepetitionIntervalContainerInner {
@@ -1010,11 +1116,11 @@ input[type=number]  {
   width: 5px;
 }
 
-
+/*class for decksize study and review input field*/
 .decksizeStudyRev {
   background-color: white;
   width: 100%; 
-  padding: 3px; 
+  padding: 4px; 
   padding-left: 3px; 
   border-radius: 5px;
 }
@@ -1137,7 +1243,7 @@ height: 57px;
 .goalSettingsText {
   font-weight: bold; 
   font-size: 13px; 
-  margin: 6px 0 2px; 
+  margin: 9px 0 4px; 
 }
 /* 
 #daysContainer {
