@@ -140,10 +140,10 @@ export default function createDom(obj) {
           event.stopPropagation()
 
           threeDotsContainer.onclick = check
-          
+
           function check() { //needed in case the changeNameofDeckINput is active and  three dots is clicked
             if (edited) {                            //default state is false
-              //setTimeout(()=>editIconContainer.replaceChild(editIcon, saveIcon), 10)
+             
               newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
               editIconContainer.replaceChild(editIcon, saveIcon)          //why does this line not fire up
               edited = false
@@ -163,11 +163,11 @@ export default function createDom(obj) {
             littleModalWindow.style.display = 'block'
             console.log('click like a edit')
 
-            openDeck.removeEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
+           // openDeck.removeEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
 
           } else {
 
-            openDeck.addEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
+            //openDeck.addEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
 
             editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
             newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
@@ -188,39 +188,43 @@ export default function createDom(obj) {
             threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
             nameOfNewDeck.style.background = colors[index % 5]
 
-            newDeckContainer.style.background = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC") repeat rgb(255, 205, 178)'
+            newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
+            ${colors[index % 5]} repeat`
             dataBase.DeckNames[item].deckPauseActive = true;
 
             nameOfNewDeck.classList.remove('pointer')
 
             addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
             //not sure why the line below does not
-            document.querySelector('.orangeCircle').style.cursor = 'default' 
-
-            input.disabled = true;
+            document.querySelector('.orangeCircle').style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
+            document.querySelector('.plusIcon').style.cursor = 'default'
+          
             document.querySelector('.addEditDeleteContainer').style.display = 'none' //hides decksize and the other divs when deck is paused
             pauseInfoField.style.display = 'block'
           } else {
-            container.replaceChild(pauseIcon, playIcon)
+           
+
+             addToDeckIcon.addEventListener('click', addToDeckHandler) 
             edited = false;
+
+       
+          //  container.replaceChild(pauseIcon, playIcon)
             newDeckContainer.style.border = 'none';
             newDeckContainer.style.background = colors[index % 5]
-            document.querySelector('.addEditDeleteContainer').style.display = 'flex'
+            document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study to review and decksize shown again
 
 
-            input.disabled = false;
+    
 
 
             newDeckContainer.style.backgroundColor = dataBase.DeckNames[item].colorPlay;
-            dataBase.DeckNames[item].deckPauseActive = false;
+            dataBase.DeckNames[item].deckPauseActive = false;   //deck is not put put on pauseActive in dataBase anymore
           }
           return edited
         },
         delete: () => {
           deleteCardQuestionBox(() => {
 
-            //probably not right here
-            nameOfNewDeck.style.background = colors[index % 5]
 
             delete dataBase.DeckNames[item]
           }, createDom, 'Delete deck', 'delete this deck')
@@ -230,7 +234,7 @@ export default function createDom(obj) {
     )
 
 
-    
+
 
 
     threeDotsContainer.style.position = 'absolute'
@@ -255,14 +259,21 @@ export default function createDom(obj) {
 
     pauseInfoField.style.display = 'none'
 
-    let playIconContainer = createElement('button', play, { width: '23px', marginLeft: '6px', borderRadius: '12px', cursor: 'pointer' }, '')
+    let playIconContainer = createElement('button', play, {}, 'playIconContainer')
+
+    playIconContainer.onclick = function () {
+      document.querySelector('.plusIcon').style.cursor = 'pointer' //plus Icon pointable again
+      document.querySelector('.orangeCircle').style.cursor = 'pointer' //plus Icon pointable again
+    }
+
+
     let playText = createElement('div', 'to unpause the Deck', { textAlign: 'center' })
 
     newDeckContainer.append(pauseInfoField)
     pauseInfoField.append(playIconContainer)
     pauseInfoField.append(playText)
 
-    playIconContainer.onclick = function () {
+    playIconContainer.onclick = function () { //play button that appeas inside the card  when it is put on pause
       threeDotsContainer.style.display = 'block'
       newDeckContainer.style.background = colors[index % 5]
       pauseInfoField.style.display = 'none'
@@ -271,7 +282,7 @@ export default function createDom(obj) {
     }
 
     function openDeckHandler() {
-
+        console.log('ok')
       //moved functionality to open deck
       if (dataBase.DeckNames[item].deckPauseActive !== true) {
         questAnswerTrainOverv(item);
@@ -285,7 +296,6 @@ export default function createDom(obj) {
 
 
     let addToDeckIcon = createElement('div', '', {
-      cursor: 'pointer'
     }, 'orangeCircle');
 
     if (index === arr.length - 1) {
@@ -295,9 +305,15 @@ export default function createDom(obj) {
     }
     addToDeckIcon.title = 'Add Questions to this deck';
 
-    addToDeckIcon.onclick = function addToDeckHandler() {
+    addToDeckIcon.onclick = addToDeckHandler
+
+    
+    function addToDeckHandler() {
       addQuestionsToDeck(item)
+      
     }
+
+    
 
 
 

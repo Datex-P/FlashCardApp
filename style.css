@@ -738,6 +738,7 @@ pauseIconContainer:hover {
   top: 171px;
   z-index: 3;
   display:none;
+  cursor: pointer;
 }
 
 
@@ -806,6 +807,13 @@ pauseIconContainer:hover {
   margin-top: 10px;
   align-items: center;
   justify-content: space-around;
+}
+
+.playIconContainer {
+  width: 23px; 
+  margin-left: 6px;
+  border-radius: 12px;
+  cursor: pointer; 
 }
 
 
