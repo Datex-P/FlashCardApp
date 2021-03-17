@@ -280,13 +280,6 @@ textarea {
 }
 
 
-
-
-
-
-
-
-
 .menuBoxesStyling {
   background-color: #dcc9b6;
   border: 2px black solid; 
@@ -296,7 +289,10 @@ textarea {
   justify-content: space-around;
 }
 
-.menuBoxesStyling:hover, .trashIconContainer:hover, .editIconContainer:hover, .resetAndPauseIconContainer:hover,
+.menuBoxesStyling:hover,
+.resetIconContainer:hover,
+.trashIconContainer:hover, .editIconContainer:hover, 
+.resetAndPauseIconContainer:hover,
 pauseIconContainer:hover {
   background-color: #a39171;
   cursor: pointer;
@@ -1024,6 +1020,14 @@ input[type="checkbox"] { /* change "blue" browser chrome to yellow */
   border: 1px solid black;
   width: 61px;
   height: 26px;
+}
+
+.studyGoal {
+  margin-left: 10px; 
+  border: 1px solid black; 
+  font-size: 15px; 
+  width: 68px; 
+  padding: 4px;
 }
 
 .changeRepetitionIntervalContainerInner {

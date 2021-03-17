@@ -300,7 +300,7 @@ anchorThreeDots.style.top = '0px'
 
 
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
-  let time = createElement("div", 'Study Goal', { marginLeft: '10px', border: '1px solid black', fontSize: '15px', width: '68px', padding: '4px' });
+  let time = createElement("div", 'Study Goal', {  }, 'studyGoal');
 
   let progressBar = createElement('div', '', {}, 'progressBar');
 
@@ -337,7 +337,7 @@ anchorThreeDots.style.top = '0px'
   for (let i = 6; i <= 30; i += 6) {
 
 
-    if (i in timeObj) {
+    if (i in timeObj) { //timeObj is list of precoded times above
 
 
       arr.push(i)
@@ -354,19 +354,17 @@ anchorThreeDots.style.top = '0px'
 
       previousWidthVar+=widthVar
 
-      if (i === 24) {
-        
-        time.innerHTML = 
-                  `<div style='padding: 3px' >${24} - ${'0' +6}</div>` //line gets not triggered for some reason
-      
-      } else if (i === 6) {
-        time.innerHTML = 
-                  `<div style='padding: 3px'>${'0'+i} - ${(i + 6)}</div>`
-           
-      } else {
+          if (i === 24) {
+            
+            time.innerHTML = `<div style='padding: 3px' >${24} - ${'0' +6}</div>` //line gets not triggered for some reason
+          
+          } else if (i === 6) {
 
-        time.innerHTML = `<div>${i} - ${i+6}</div>`
-      }
+            time.innerHTML =  `<div style='padding: 3px'>${'0'+i} - ${(i + 6)}</div>`
+          } else {
+
+            time.innerHTML = `<div>${i} - ${i+6}</div>`
+          }
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
       timeAndProgressContainer.append(time, progressBar)
@@ -522,7 +520,7 @@ anchorThreeDots.style.top = '0px'
 
  }
 
- console.log(cardsOpenLastOne)
+ //console.log(cardsOpenLastOne)
 
  todayAndCardsStudiedContainer.append(todayStudyContainer)
 

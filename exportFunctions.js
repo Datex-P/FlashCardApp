@@ -218,7 +218,7 @@ function threeDots() {
           break;
         case 'reset':
           btns[btn].onclick =  function(event){
-       
+            littleModalWindow.style.display = "none";
             btnList[btn](event)
             threeDotsOpen = !threeDotsOpen
           }

@@ -79,7 +79,7 @@ export default function addQuestionsToDeck(item) {
       dataBase.DeckNames[item] = [];
       dataBase.DeckNames[item].cardsStudied = 0;
     }
-    dataBase.DeckNames[item].push({
+    dataBase.DeckNames[item].data.push({
       question: insideFlashCardsContainer.childNodes[1].value,
       answer: insideFlashCardsContainer.childNodes[3].value,
     });

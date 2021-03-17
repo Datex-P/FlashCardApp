@@ -1,7 +1,7 @@
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
-import { createElement, deleteCardQuestionBox, threeDots } from './exportFunctions.js'
+import { createElement, deleteCardQuestionBox, threeDots, threeDotsOpen } from './exportFunctions.js'
 import {
   edit, save, play
 } from "./svgs.js";
@@ -13,6 +13,7 @@ export default function createDom(obj) {
   let arr = Object.keys(obj);
 
   let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+  let edited = false;
 
   arr.forEach((item, index) => {
 
@@ -129,11 +130,12 @@ export default function createDom(obj) {
 
 
 
-    let edited = false; //shows if edit button inside three dots on the mainscreen is pressed
-
+    //shows if edit button inside three dots on the mainscreen is pressed
+  
     let mainThreeDots = threeDots()
 
     let threeDotsContainer = mainThreeDots(
+        
       {
         edit: (event, editIconContainer, editIcon, saveIcon,
           outsideClickClosehandler, littleModalWindow) => {
@@ -182,7 +184,6 @@ export default function createDom(obj) {
           }
         }, pause: (container, playIcon, pauseIcon, edited) => {
           if (!edited) { //edited was pressed in three dots /default false
-            container.replaceChild(playIcon, pauseIcon) //deck is put on pause
             window.onclick = ''
             edited = true;
             threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
@@ -204,7 +205,7 @@ export default function createDom(obj) {
           } else {
            
 
-             addToDeckIcon.addEventListener('click', addToDeckHandler) 
+            
             edited = false;
 
        
@@ -261,10 +262,7 @@ export default function createDom(obj) {
 
     let playIconContainer = createElement('button', play, {}, 'playIconContainer')
 
-    playIconContainer.onclick = function () {
-      document.querySelector('.plusIcon').style.cursor = 'pointer' //plus Icon pointable again
-      document.querySelector('.orangeCircle').style.cursor = 'pointer' //plus Icon pointable again
-    }
+  
 
 
     let playText = createElement('div', 'to unpause the Deck', { textAlign: 'center' })
@@ -273,12 +271,15 @@ export default function createDom(obj) {
     pauseInfoField.append(playIconContainer)
     pauseInfoField.append(playText)
 
-    playIconContainer.onclick = function () { //play button that appeas inside the card  when it is put on pause
-      threeDotsContainer.style.display = 'block'
+    playIconContainer.onclick = function () { //play button that appears inside the card  when it is put on pause
+      document.querySelector('.plusIcon').style.cursor = 'pointer' //plus Icon pointable again
+      document.querySelector('.orangeCircle').style.cursor = 'pointer' //plus Icon pointable again
+      threeDotsContainer.style.display = 'block'  //three dots container is shown again
       newDeckContainer.style.background = colors[index % 5]
       pauseInfoField.style.display = 'none'
-      document.querySelector('.addEditDeleteContainer').style.display = 'flex'
-
+      document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study, decksize etc shown again
+      addToDeckIcon.addEventListener('click', addToDeckHandler) 
+      dataBase.DeckNames[item].deckPauseActive = false;
     }
 
     function openDeckHandler() {
@@ -305,7 +306,7 @@ export default function createDom(obj) {
     }
     addToDeckIcon.title = 'Add Questions to this deck';
 
-    addToDeckIcon.onclick = addToDeckHandler
+    addToDeckIcon.addEventListener('click', addToDeckHandler)
 
     
     function addToDeckHandler() {
@@ -352,8 +353,14 @@ export default function createDom(obj) {
 
 
 
-
   document.querySelector("#scrollable").onscroll = function (event) {
+    //if (!threeDotsOpen) {
+      if (!edited) {
+
+    //  newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+
+  
+      document.querySelector('.littleModalWindow').style.display='none'
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
     let step = (1000 - 140) / (all.length - 1)
     let index = Math.floor(event.target.scrollTop / step)
@@ -369,6 +376,7 @@ export default function createDom(obj) {
     all[index].style.zIndex = 2;
     all[index].style.transform = 'rotate(0deg)';
     all[index].querySelector('.orangeCircle').style.display = 'flex'
-
+  }
+//  }
   }
 }
