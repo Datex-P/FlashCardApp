@@ -3,6 +3,8 @@ DeckNames: { /*deckname:[]*/   },
   queue: [],
   userStylePreferences: [],
   showDeleteFrame: true,
+  showDeleteFrameQuestion: false,
+  showDeleteFrameStats: true,
   toStudyGoal: 20,
   toReviewGoal: 0,
   timeValues: { left: 2, middle: 5, right: 10 },
@@ -27,7 +29,7 @@ for (let i = 1; i < 7; i++) {
       answer: `answer${i}`
     })
   };
-  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, cardsToday:0}
+  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, cardsToday:0, pause: false}
   //dataBase.DeckNames[`Literature${i}`].cardsToday = 0;
   //dataBase.DeckNames[`Literature${i}`].toStudyGoal = 20;
 };

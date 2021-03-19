@@ -505,9 +505,35 @@ export default function settings() {
 
 
   redCross.onclick = () => {
-    close(mainWindow, anchorElement);
+    if (!editedUpper && !editClicked) { //checks whether times and names field are still open or study days is open
+        close(mainWindow, anchorElement);
+    
+    } else if (editClicked && editedUpper) {
+      console.log('fired')
+    
+      editContainerUpper.classList.add('blinkingIcon');
+      editGoals.classList.add('blinkingIcon');
 
+      setTimeout(() => {
+        editGoals.classList.remove('blinkingIcon')
+        editContainerUpper.classList.remove('blinkingIcon')
+      }, 3000);
+    } else if (editClicked) {
+    
+    editGoals.classList.add('blinkingIcon');
+  setTimeout(() => {
+    editGoals.classList.remove('blinkingIcon')
+  }, 3000);
+
+} else if (editedUpper) {
+
+  editContainerUpper.classList.add('blinkingIcon');
+  setTimeout(() => {
+    editContainerUpper.classList.remove('blinkingIcon')
+  }, 3000);
   }
+}
+
   handleOutsideClick(mainWindow, redCross)
 
   redCross.addEventListener('click', closeMenu());

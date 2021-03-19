@@ -63,7 +63,6 @@ function handleOutsideClick(mainWindow, target = redCross) {
     mainWindow.onclick = function (e) { e.stopPropagation() }
 
     window.onclick = function () {
-
       target.classList.add('blinkingIcon');
       setTimeout(() => {
         target.classList.remove('blinkingIcon')
@@ -75,6 +74,7 @@ function handleOutsideClick(mainWindow, target = redCross) {
 
 
 function threeDots() {
+  
   let threeDotsOpen = false
   return function (btnList, littleModalWindowStyles = {}, cardOrDeck) {
 
@@ -89,24 +89,26 @@ function threeDots() {
       'littleModalWindow flexColumn'
     )
     settingsIconContainer.onclick = function () {
+   
       console.log('I was clicked')
       function listener(event) {
         littleModalWindow.style.display='none'
       };
-      if (threeDotsOpen === false) {
+      if (!threeDotsOpen || !globalThreeDotsOpen) {
         threeDotsOpen = true
+        globalThreeDotsOpen = true
         littleModalWindow.style.display = "block";
         setTimeout(function () { 
           window.onclick = function () {
-            littleModalWindow.style.display = 'none';
-            console.log('hello')
-          }
-        }, 10);
 
-        // setTimeout(function () { //function that closes  the edit/pause/trash field when clicked outside of it
-        //    window.addEventListener('click',listener)
-           
-        // }, 10);
+              littleModalWindow.style.display = 'none';
+              console.log('hello')
+              globalThreeDotsOpen = false
+              window.onclick =''
+        
+            }
+          
+        }, 10);
 
       } else {
         threeDotsOpen = false
@@ -177,7 +179,6 @@ function threeDots() {
             threeDotsOpen = true;
             littleModalWindow.style.display = "none";
 
-          //  document.querySelector('addEditDeleteContainer').style.display = 'none'
 
             paused = btnList[btn](pauseIconContainer, playIcon, pauseIcon, paused)
           };
@@ -195,6 +196,8 @@ function threeDots() {
               e.stopPropagation()
               threeDotsOpen = false;
               littleModalWindow.style.display = "none";
+              console.log('window wont show again')
+              btnList[btn]()
             }
           };
           littleModalWindow.append(btns[btn])
@@ -226,12 +229,7 @@ function threeDots() {
           
           
           littleModalWindow.append(btns[btn])
-          
-          //newly added
-          // setTimeout(function () {
-          //   window.onclick = outsideClickClosehandler
-          // }, 10);
-          //newly added
+        
           break;
       }
     }
@@ -326,7 +324,8 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
     width: '40px'
   }, 'checkBoxContainer');
   let checkbox = createElement('input', '', {
-    width: '45px'
+    width: '45px',
+    cursor: 'pointer'
   });
   checkbox.setAttribute('type', 'checkbox');
 

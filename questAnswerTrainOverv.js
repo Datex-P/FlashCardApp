@@ -130,15 +130,15 @@ dataBase.studyTime += 1
   }
   )
 
+  
   questionContainer.id = 'questionContainer'
   questionFieldTextArea.id = 'questionFieldTextArea'
 
- 
+  
 
-
+  
   mainWindow.appendChild(questionContainer);
-
-
+  
 
 
   let buttonContainer = createElement(
@@ -193,7 +193,7 @@ dataBase.studyTime += 1
   saveAndDiscardContainer.append(discardButton, saveButton);
   let [question, answer, index] = shuffleLogic()
 
-  let editMode = false;
+  var editMode = false;
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
@@ -215,6 +215,8 @@ dataBase.studyTime += 1
     anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
     editLogo.style.display='block'                     //edit logo appears that shows that the app is in edit-mode
     editText.style.display = 'block'
+
+    questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
   },
   
   pause: (container,playIcon,pauseIcon,edited) => {
@@ -223,7 +225,7 @@ dataBase.studyTime += 1
           window.onclick = ''
           edited = true;
           
-          newDeckContainer.style.backgroundColor = 'grey'
+         // newDeckContainer.style.backgroundColor = 'grey' was error message in console when uncommented
           dataBase.DeckNames[item].deckPauseActive = true;
           
         }else {
@@ -238,7 +240,19 @@ dataBase.studyTime += 1
       }
       ,
       delete:() => {
-          deleteCardQuestionBox(() => dataBase.DeckNames[item].splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
+          
+        if (dataBase.showDeleteFrameQuestion) {
+        deleteCardQuestionBox(() => 
+        dataBase.DeckNames[item].data.splice(index, 1), () => 
+        { questAnswerTrainOverv(item), createDom(dataBase.DeckNames),clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
+        
+        } else {
+          dataBase.DeckNames[item].data.splice(index, 1)
+          questAnswerTrainOverv(item)
+          createDom(dataBase.DeckNames) //to remove it from the database
+        }
+        
+        
         }
       
 
@@ -246,11 +260,7 @@ dataBase.studyTime += 1
     },{ top: '-15px',left:'13px'}, 'card'
       )
 
-
-      if (editMode) {
-        questionContainer.style.marginTop = '37px' // changes the top of the container question and answer field
-      }
-    
+      
       
   anchorThreeDots.style.position = 'absolute'
   anchorThreeDots.style.right = '86px'
@@ -414,8 +424,13 @@ editLogo.style.display='none'
 
   saveButton.onclick = function () {
     setThreeDotsOpen(false);
+    questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
 
-    //littleModalWindow.style.display = "none";
+
+    cardModifiedPrompt.style.display = 'block'
+
+    setTimeout(()=> cardModifiedPrompt.style.display = 'none', 500) //message that card was changed appears for half a second
+
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
     answerFieldTextArea.style.outline = 'none';
@@ -428,8 +443,8 @@ editLogo.style.display='none'
     anchorThreeDots.style.display = 'block' 
 
     editLogo.style.display='none'             //edit Logo dissapears that is active in card edit mode
-    editText.style.display='none'
-    editMode = false
+    editText.style.display='none'             //'mode' dissappears 
+    editMode = false                          //whether edit in three dots was clicked or not
 
 
     question = questionFieldTextArea.value;
@@ -442,17 +457,33 @@ editLogo.style.display='none'
 
   }
 
+  let cardModifiedPrompt = createElement('div', 'Card modified', {
+
+    position: 'relative',
+    top: '14px',
+   }, 'alertSuccess prompt');
+
 
 
 mainWindow.append(editLogo) //Logo that appears in edit mode
 mainWindow.append(editText) //text next to edit logo that appears in edit mode
+mainWindow.append(cardModifiedPrompt)
+
+let questionField = questionFieldTextArea.value; //previous question value saved
+let answerField = answerFieldTextArea.value; //previous answer value saved
+
+
 
   discardButton.onclick = function () {
     setThreeDotsOpen(false);
 
+    questionFieldTextArea.value = questionField  //access to previous saved value
+    answerFieldTextArea.value = answerField //access to previous saved value
+
     editLogo.style.display='none'  //edit Logo dissapears that is active in card edit mode
     editText.style.display='none'
     editMode = false
+    questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';
@@ -461,6 +492,7 @@ mainWindow.append(editText) //text next to edit logo that appears in edit mode
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.style.display = 'none';
     anchorThreeDots.style.display = 'block'

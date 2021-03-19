@@ -22,7 +22,7 @@ export default function stats() {
   let mainWindow = createElement("div", "", {}, "addQuestionsToDeck");
 
   let innerWindow = createElement("div", "", {
-     overflow: "scroll", overflowX: "hidden"});
+     overflow: "scroll", overflowX: "hidden", cursor: 'pointer'}); //scroll bar at the right side of the stats window
 
   let redCrossAndStatsContainer = createElement(
     "div", "", {},"flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
@@ -211,7 +211,7 @@ console.log(todayDate)
 
   let anchorThreeDots = cardThreeDots(
 
-    {reset: (outsideClickClosehandler,func)=>{       //when reset is clicked the window whether you want to reset the progress appears
+    {reset: (outsideClickClosehandler)=>{       //when reset is clicked the window whether you want to reset the progress appears
     
       //window.addEventListener('click', () => console.log('kokverjbnjre'))
 

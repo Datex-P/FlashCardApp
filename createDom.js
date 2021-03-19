@@ -8,7 +8,7 @@ import {
 
 
 export default function createDom(obj) {
-  console.log('I do render')
+  console.log('create Dom was rendered')
   listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
@@ -134,9 +134,10 @@ export default function createDom(obj) {
   
     let mainThreeDots = threeDots()
 
-    let threeDotsContainer = mainThreeDots(
-        
-      {
+    let threeDotsContainer = mainThreeDots({
+
+     // if (dataBase.DeckNames[item].data.length !==0 ){ not sure how to check
+
         edit: (event, editIconContainer, editIcon, saveIcon,
           outsideClickClosehandler, littleModalWindow) => {
           event.stopPropagation()
@@ -183,7 +184,7 @@ export default function createDom(obj) {
 
           }
         }, pause: (container, playIcon, pauseIcon, edited) => {
-          if (!edited) { //edited was pressed in three dots /default false
+          //if (!edited) { //edited was pressed in three dots /default false
             window.onclick = ''
             edited = true;
             threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
@@ -200,11 +201,19 @@ export default function createDom(obj) {
             document.querySelector('.orangeCircle').style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
             document.querySelector('.plusIcon').style.cursor = 'default'
           
-            document.querySelector('.addEditDeleteContainer').style.display = 'none' //hides decksize and the other divs when deck is paused
-            pauseInfoField.style.display = 'block'
+//            document.querySelector('.addEditDeleteContainer').style.display = 'none' //hides decksize and the other divs when deck is paused
+  //          pauseInfoField.style.display = 'block'
+
+
+            
+            
+
+            console.log('close')
+
+          /*
           } else {
            
-
+            console.log('open')
             
             edited = false;
 
@@ -220,16 +229,36 @@ export default function createDom(obj) {
 
             newDeckContainer.style.backgroundColor = dataBase.DeckNames[item].colorPlay;
             dataBase.DeckNames[item].deckPauseActive = false;   //deck is not put put on pauseActive in dataBase anymore
+          }*/
+          if (dataBase.DeckNames[item].pause==false) {
+         
+            addEditDeleteContainer.style.display = 'none'
+            pauseInfoField.style.display = 'block'
+            addToDeckIcon.style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
+            plusIcon.style.cursor = 'default'
+            
+          }else{
+            dataBase.DeckNames[item].pause=true
           }
           return edited
-        },
+        }
+        
+     // } parantheses for the if datalength it 0 
+        ,
         delete: () => {
+          if(dataBase.showDeleteFrame){
           deleteCardQuestionBox(() => {
 
 
             delete dataBase.DeckNames[item]
+            
           }, createDom, 'Delete deck', 'delete this deck')
-
+        }else{
+          delete dataBase.DeckNames[item]
+          console.log('I did')
+          createDom(dataBase.DeckNames)
+          window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
+        }
         }
       }, { top: '3px', left: '13px' }, 'deck'
     )
@@ -260,6 +289,16 @@ export default function createDom(obj) {
 
     pauseInfoField.style.display = 'none'
 
+    let deckIsEmptyField = createElement('div', 'Click the plus button to add cards to the deck', {
+      backgroundColor: colors[index % 5],
+      textAlign: 'center'
+    }, 'pauseInfoField')
+
+    deckIsEmptyField.style.display = 'none'
+
+
+
+
     let playIconContainer = createElement('button', play, {}, 'playIconContainer')
 
   
@@ -268,6 +307,7 @@ export default function createDom(obj) {
     let playText = createElement('div', 'to unpause the Deck', { textAlign: 'center' })
 
     newDeckContainer.append(pauseInfoField)
+    newDeckContainer.append(deckIsEmptyField)
     pauseInfoField.append(playIconContainer)
     pauseInfoField.append(playText)
 
@@ -276,20 +316,36 @@ export default function createDom(obj) {
       document.querySelector('.orangeCircle').style.cursor = 'pointer' //plus Icon pointable again
       threeDotsContainer.style.display = 'block'  //three dots container is shown again
       newDeckContainer.style.background = colors[index % 5]
-      pauseInfoField.style.display = 'none'
-      document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study, decksize etc shown again
-      addToDeckIcon.addEventListener('click', addToDeckHandler) 
+      pauseInfoField.style.display = 'none';
+      globalThreeDotsOpen = false;
+     // document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study, decksize etc shown again
+     addEditDeleteContainer.style.display = 'flex' 
+     addToDeckIcon.addEventListener('click', addToDeckHandler) 
       dataBase.DeckNames[item].deckPauseActive = false;
     }
 
     function openDeckHandler() {
         console.log('ok')
       //moved functionality to open deck
-      if (dataBase.DeckNames[item].deckPauseActive !== true) {
+      if (dataBase.DeckNames[item].deckPauseActive !== true && dataBase.DeckNames[item].data.length !==0 ) {
         questAnswerTrainOverv(item);
       }
     };
     openDeck.addEventListener('click', openDeckHandler)
+
+    if (dataBase.DeckNames[item].data.length ===0 ) {
+      
+      addEditDeleteContainer.style.display = 'none' 
+      openDeck.style.display = 'none'
+      deckIsEmptyField.style.display = 'flex'
+    
+    } else {
+      addEditDeleteContainer.style.display = 'flex' 
+      openDeck.style.display = 'block'
+      deckIsEmptyField.style.display = 'none'
+
+
+    }
 
 
 
@@ -314,6 +370,7 @@ export default function createDom(obj) {
       
     }
 
+    console.log(dataBase.DeckNames.length, 'length of datab')
     
 
 
@@ -343,9 +400,13 @@ export default function createDom(obj) {
   // });
 
 
+  if (Object.keys(dataBase.DeckNames).length ===0)  {
 
-
-
+  document.querySelector("#scrollable").style.display = 'none'
+  } else {
+    document.querySelector("#scrollable").style.display = 'block'
+    //make arrow appear when decklength is zero
+  }
 
 
 

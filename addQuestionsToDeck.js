@@ -43,29 +43,33 @@ export default function addQuestionsToDeck(item) {
     theWordQuestionAndAnswer.style.fontWeight = 'bold';
     theWordQuestionAndAnswer.style.marginBottom = '14px';
     theWordQuestionAndAnswer.style.marginLeft = '8px';
-
-    // if (el =='Answer') {
-    //   theWordQuestionAndAnswer.style.marginTop = '60px';
-    // }
-
-
+ 
     insideFlashCardsContainer.append(theWordQuestionAndAnswer, textarea)
   });
 
-  //insideFlashCardsContainer.childNodes[2].style.marginTop = '25px';
   insideFlashCardsContainer.childNodes[2].style.marginTop = '60px';
 
+  let cardAddedPrompt = createElement('div', 'Card Added', {
+
+   position: 'relative', left: '100px', top: '-208px',
+
+  }, 'alertSuccess prompt');
 
 
   insideFlashCardsContainer.append(addToDeck);
 
   theWordFlashCardsAndRedCrossContainer.append(header, redCross);
   innerWindow.append(theWordFlashCardsAndRedCrossContainer, insideFlashCardsContainer)
-
+  
+  insideFlashCardsContainer.append(cardAddedPrompt)
+  
+  
   mainWindow.append(innerWindow);
+
   anchorElement.append(mainWindow);
 
   redCross.onclick = function () {
+    window.onclick = null
 
     anchorElement.innerHTML = '';
     anchorElement.style.display = 'none'
@@ -74,15 +78,46 @@ export default function addQuestionsToDeck(item) {
   handleOutsideClick(mainWindow)
 
   addToDeck.onclick = function () {
-
+    console.log('still here')
     if (!dataBase.DeckNames[item]) {
       dataBase.DeckNames[item] = [];
       dataBase.DeckNames[item].cardsStudied = 0;
     }
+
+    if (document.getElementsByTagName('textarea')[0].value.trim() === ''  //if one of the two input fields is empty message gets changed
+    ||
+    document.getElementsByTagName('textarea')[1].value.trim() === ''
+    ) {
+      cardAddedPrompt.classList.remove('alertSuccess')
+      cardAddedPrompt.classList.add('alertDanger')
+
+      // cardAddedPrompt.style.background = '#721c24'
+      // cardAddedPrompt.style.backgroundColor = '#f8d7da'
+      // cardAddedPrompt.style.borderColor='#f5c6cb'
+
+
+
+      cardAddedPrompt.innerText = 'Input needed'
+
+    } else {
+    cardAddedPrompt.innerText = 'Card Added'
+  //  cardAddedPrompt.style.background = 'green'
+  cardAddedPrompt.classList.add('alertSuccess')
+      cardAddedPrompt.classList.remove('alertDanger')
+
+    }
+
+
+    cardAddedPrompt.style.display = 'block'
+
+    setTimeout(()=> cardAddedPrompt.style.display = 'none', 500)
+
     dataBase.DeckNames[item].data.push({
       question: insideFlashCardsContainer.childNodes[1].value,
       answer: insideFlashCardsContainer.childNodes[3].value,
     });
+
+    
 
     insideFlashCardsContainer.childNodes[1].value = '';
     insideFlashCardsContainer.childNodes[3].value = '';
