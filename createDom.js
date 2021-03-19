@@ -133,135 +133,144 @@ export default function createDom(obj) {
     //shows if edit button inside three dots on the mainscreen is pressed
   
     let mainThreeDots = threeDots()
-
-    let threeDotsContainer = mainThreeDots({
-
-     // if (dataBase.DeckNames[item].data.length !==0 ){ not sure how to check
-
-        edit: (event, editIconContainer, editIcon, saveIcon,
-          outsideClickClosehandler, littleModalWindow) => {
-          event.stopPropagation()
-
-          threeDotsContainer.onclick = check
-
-          function check() { //needed in case the changeNameofDeckINput is active and  three dots is clicked
-            if (edited) {                            //default state is false
-             
-              newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-              editIconContainer.replaceChild(editIcon, saveIcon)          //why does this line not fire up
-              edited = false
-            }
-          }
-
-          if (!edited) { //edited was pressed in three dots /default false
-
-            window.addEventListener('click', () => clickOutsideHandle(saveIcon))
-
-
-            editIconContainer.replaceChild(saveIcon, editIcon) //saveIcon replaces  editIcon //replaceChild(newChild, oldchild)
-            newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
-            changeNameofDeckInput.value = nameOfNewDeck.innerText;
-            edited = true;
-            window.onclick = ''
-            littleModalWindow.style.display = 'block'
-            console.log('click like a edit')
-
-           // openDeck.removeEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
-
-          } else {
-
-            //openDeck.addEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
-
-            editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
-            newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-
-
-            edited = false;
-            nameOfNewDeck.innerText = changeNameofDeckInput.value;
-            setTimeout(function () {
-              window.onclick = outsideClickClosehandler
-            }, 10);
-
-          }
-        }, pause: (container, playIcon, pauseIcon, edited) => {
-          //if (!edited) { //edited was pressed in three dots /default false
-            window.onclick = ''
-            edited = true;
-            threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
-            nameOfNewDeck.style.background = colors[index % 5]
-
-            newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
-            ${colors[index % 5]} repeat`
-            dataBase.DeckNames[item].deckPauseActive = true;
-
-            nameOfNewDeck.classList.remove('pointer')
-
-            addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
-            //not sure why the line below does not
-            document.querySelector('.orangeCircle').style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
-            document.querySelector('.plusIcon').style.cursor = 'default'
-          
-//            document.querySelector('.addEditDeleteContainer').style.display = 'none' //hides decksize and the other divs when deck is paused
-  //          pauseInfoField.style.display = 'block'
-
-
-            
-            
-
-            console.log('close')
-
-          /*
-          } else {
-           
-            console.log('open')
-            
-            edited = false;
-
-       
-          //  container.replaceChild(pauseIcon, playIcon)
-            newDeckContainer.style.border = 'none';
-            newDeckContainer.style.background = colors[index % 5]
-            document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study to review and decksize shown again
-
-
+    let threeDotsContainer = null
+    if (dataBase.DeckNames[item].data.length ){ 
     
+      threeDotsContainer = mainThreeDots({
 
-
-            newDeckContainer.style.backgroundColor = dataBase.DeckNames[item].colorPlay;
-            dataBase.DeckNames[item].deckPauseActive = false;   //deck is not put put on pauseActive in dataBase anymore
-          }*/
-          if (dataBase.DeckNames[item].pause==false) {
+        // if (dataBase.DeckNames[item].data.length !==0 ){ not sure how to check
+   
+           edit: (event, editIconContainer, editIcon, saveIcon,
+             outsideClickClosehandler, littleModalWindow) => {
+             event.stopPropagation()
+   
+             threeDotsContainer.onclick = check
+   
+             function check() { //needed in case the changeNameofDeckINput is active and  three dots is clicked
+               if (edited) {                            //default state is false
+                
+                 newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+                 editIconContainer.replaceChild(editIcon, saveIcon)          //why does this line not fire up
+                 edited = false
+               }
+             }
+   
+             if (!edited) { //edited was pressed in three dots /default false
+   
+               window.addEventListener('click', () => clickOutsideHandle(saveIcon))
+   
+             //  window.addEventListener('drag', () => clickOutsideHandle(saveIcon))
+   
+              // window.addEventListener('scroll', () => clickOutsideHandle(saveIcon))
+   
+               editIconContainer.replaceChild(saveIcon, editIcon) //saveIcon replaces  editIcon //replaceChild(newChild, oldchild)
+               newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
+               changeNameofDeckInput.value = nameOfNewDeck.innerText;
+               edited = true;
+               window.onclick = ''
+               littleModalWindow.style.display = 'block'
+               console.log('click like a edit')
+   
+              // openDeck.removeEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
+   
+             } else {
+   
+               //openDeck.addEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
+   
+               editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
+               newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+   
+   
+               edited = false;
+               nameOfNewDeck.innerText = changeNameofDeckInput.value;
+               setTimeout(function () {
+                 window.onclick = outsideClickClosehandler
+               }, 10);
+   
+             }
+           },
+          // if(dataBase.DeckNames[item].data.length !==0) {
+           pause: (container, playIcon, pauseIcon, edited
+             ) => {
+             
+             //if (!edited) { //edited was pressed in three dots /default false
+               window.onclick = ''
+               edited = true;
+               threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
+               nameOfNewDeck.style.background = colors[index % 5]
+   
+               newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
+               ${colors[index % 5]} repeat`
+               dataBase.DeckNames[item].deckPauseActive = true;
+   
+               nameOfNewDeck.classList.remove('pointer')
+   
+               addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
+               //not sure why the line below does not
+               document.querySelector('.orangeCircle').style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
+               document.querySelector('.plusIcon').style.cursor = 'default'
+   
+               
+               
+   
+               console.log('close')
+   
+             if (dataBase.DeckNames[item].pause==false) {
+            
+               addEditDeleteContainer.style.display = 'none'
+               pauseInfoField.style.display = 'block'
+               addToDeckIcon.style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
+               plusIcon.style.cursor = 'default'
+               
+             }else{
+               dataBase.DeckNames[item].pause=true
+             }
+             return edited
+             
+           }
          
-            addEditDeleteContainer.style.display = 'none'
-            pauseInfoField.style.display = 'block'
-            addToDeckIcon.style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
-            plusIcon.style.cursor = 'default'
-            
-          }else{
-            dataBase.DeckNames[item].pause=true
-          }
-          return edited
-        }
-        
-     // } parantheses for the if datalength it 0 
-        ,
-        delete: () => {
-          if(dataBase.showDeleteFrame){
-          deleteCardQuestionBox(() => {
+        // } parantheses for the if datalength it 0 
+           ,
+           
+           delete: () => {
+             if(dataBase.showDeleteFrame){
+             deleteCardQuestionBox(() => {
+   
+   
+               delete dataBase.DeckNames[item]
+               
+             }, createDom, 'Delete deck', 'delete this deck')
+           }else{
+             delete dataBase.DeckNames[item]
+             console.log('I did')
+             createDom(dataBase.DeckNames)
+             window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
+           }
+           }
+         }, { top: '3px', left: '13px' }, 'deck'
+       )
+    }else{
+      threeDotsContainer = mainThreeDots({
 
-
-            delete dataBase.DeckNames[item]
-            
-          }, createDom, 'Delete deck', 'delete this deck')
-        }else{
-          delete dataBase.DeckNames[item]
-          console.log('I did')
-          createDom(dataBase.DeckNames)
-          window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
-        }
-        }
-      }, { top: '3px', left: '13px' }, 'deck'
-    )
+           delete: () => {
+             if(dataBase.showDeleteFrame){
+             deleteCardQuestionBox(() => {
+   
+   
+               delete dataBase.DeckNames[item]
+               
+             }, createDom, 'Delete deck', 'delete this deck')
+           }else{
+             delete dataBase.DeckNames[item]
+             console.log('I did')
+             createDom(dataBase.DeckNames)
+             window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
+           }
+           }
+         }, { top: '3px', left: '13px' }, 'deck'
+       )
+    }
+    
 
 
 
@@ -416,6 +425,10 @@ export default function createDom(obj) {
 
   document.querySelector("#scrollable").onscroll = function (event) {
     //if (!threeDotsOpen) {
+    if (edited) {
+      document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
+    }
+
       if (!edited) {
 
     //  newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);

@@ -210,10 +210,10 @@ console.log(todayDate)
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
-
+ 
     {reset: (outsideClickClosehandler)=>{       //when reset is clicked the window whether you want to reset the progress appears
     
-      //window.addEventListener('click', () => console.log('kokverjbnjre'))
+      if (dataBase.showDeleteFrameStats) {
 
       setTimeout(function () {
         window.onclick = outsideClickClosehandler
@@ -239,7 +239,22 @@ console.log(todayDate)
     }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
     
     , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
-    
+  } else {
+    for (let deck in dataBase.DeckNames) {
+
+      dataBase.DeckNames[deck].data.forEach((card) => {
+
+        if (card.openHistory) {
+          delete card.openHistory
+        }
+      })
+    }
+    console.log('it works')
+  }
+  
+  
+  
+  
   }} , {top: '4px'} //the position of the stats field after three dots is clicked
     )
 
@@ -422,6 +437,7 @@ anchorThreeDots.style.top = '0px'
         //let date = dataBase.DeckNames.calendarReset.value()
         //don t use dates before this date
         //}
+       // console.log('I love it')
 
         dataBase.DeckNames[deck].data.forEach((card) => {
           card.openHistory &&
@@ -431,14 +447,22 @@ anchorThreeDots.style.top = '0px'
               }
             });
         });
+        console.log(cardsStudiedCounter, 'cardsstud')
+
+       // console.log( dataBase.DeckNames[deck].data.find(
+        //   (item) => new Date(item.openHistory).toDateString(), 'jsutadded')
+        // )
       }
 
       for (let deck in dataBase.DeckNames) {
         if (
-          dataBase.DeckNames[deck].data.find(
-            (item) => new Date(item.openHistory).toDateString() == date
-          )
+          
+           dataBase.DeckNames[deck].data.find(
+             (item) => new Date(item.openHistory).toDateString() == date
+           )
         ) {
+//console.log('yo I fired');
+
           day.style.backgroundColor = "red";
           day.style.cursor = "pointer";
           day.title = 'Click to see the study stats of this date'
@@ -520,7 +544,106 @@ anchorThreeDots.style.top = '0px'
 
  }
 
- //console.log(cardsOpenLastOne)
+
+
+        
+      // child1.innerText = `Deck ${deck}:`;
+      // child2.innerText = `${counterTwo} cards studied`;
+      
+      
+    // });
+    // if(counterTwo){
+    //   counterOne++
+     // let child1 = createElement("div", `Deck ${deck}:`, {});
+    //  let child1 = createElement("div", `${deck}`, {});
+
+      
+
+    //   let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
+
+     
+
+    //   if (counterOne === 1) {
+   
+    
+    //   }
+    //   else if (counterOne >= 2) {
+
+
+    //   }
+
+    // }
+    
+  
+
+
+
+  // if (counterOne === 0) {
+  //   cardsStudied.style.textAlign = "center";
+  //   cardsStudied.innerHTML = "No cards studied today";
+  //   cardsStudied.style.removeProperty("border");
+  //   cardsStudied.style.removeProperty("overflow");
+  // }
+
+  // if (counterOne <= 7) {
+  //   cardsStudied.style.removeProperty("border");
+  //   cardsStudied.style.removeProperty("overflow");
+  // }
+
+
+
+
+
+
+  /*not sure if it does anything*/
+  // for (let deck in dataBase.DeckNames) {
+
+  //   card.openHistory && card.openHistory.forEach(openTime=> {
+  //     if (date.toDateString() === openTime.toDateString()) {
+
+  //   let container = document.createElement('div');
+  //   container.style.border = '1px black solid'
+  //   container.className = 'flexSpaceBetween'
+  //   let child1 = document.createElement('div');
+  //   let child2 = document.createElement('div');
+
+  //   child1.innerText = `Deck ${deck}:`;
+  //   child2.innerText = `${counterTwo} cards studied`;
+  //   cardsStudied.append(container);
+  //   container.append(child1);
+  //   container.append(child2);
+  // }
+  //   })
+  // };
+
+  /*<----*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ console.log(cardsOpenLastThree, cardsOpenLastTwelve, cardsOpenLastOne)
+
 
  todayAndCardsStudiedContainer.append(todayStudyContainer)
 

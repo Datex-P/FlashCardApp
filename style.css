@@ -1036,6 +1036,17 @@ background-color: #f8d7da;
 border-color:#f5c6cb;
 }
 
+.alertDanger:hover {
+  background-color: #772e25;
+  color: white;
+}
+
+.alertSuccess:hover {
+  background-color: #2d6a4f;
+  color: white;
+}
+)
+
 .time {
   margin-left: 10px ;
   border: 1px solid black;

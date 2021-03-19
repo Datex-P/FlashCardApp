@@ -102,12 +102,21 @@ dataBase.studyTime += 1
 
 
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
+    if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
+
+      saveAndDiscardContainer.classList.add('blinkingIcon');
+      setTimeout(() => {
+        saveAndDiscardContainer.classList.remove('blinkingIcon')
+      }, 3000); 
+      console.log('its active')
+    }  else {
     mainWindow.parentNode.removeChild(mainWindow);
     anchorElement.style.display = "none";
     clearInterval(timer); //not implemented yet
     clearInterval(decrementTimer);
     clearInterval(incrementTimer)
     window.onclick = null
+    }
   }
   redCross.onclick = close
 
@@ -185,8 +194,10 @@ dataBase.studyTime += 1
     }, 'generalButtonStyling flexCenterAlignCenter')
   })
 
-  saveButton.style.backgroundColor = '#2d6a4f';
-  discardButton.style.backgroundColor = '#772e25';
+  saveButton.classList.add('alertSuccess')
+  discardButton.classList.add('alertDanger')
+
+
 
 
   mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
@@ -429,7 +440,10 @@ editLogo.style.display='none'
 
     cardModifiedPrompt.style.display = 'block'
 
+    if (questionField.value !== questionFieldTextArea.value) { //only show modified when card was actually changed
+
     setTimeout(()=> cardModifiedPrompt.style.display = 'none', 500) //message that card was changed appears for half a second
+    }
 
     answerFieldTextArea.style.border = 'none';
     questionFieldTextArea.style.border = 'none';

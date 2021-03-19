@@ -94,7 +94,8 @@ function threeDots() {
       function listener(event) {
         littleModalWindow.style.display='none'
       };
-      if (!threeDotsOpen || !globalThreeDotsOpen) {
+      if (!threeDotsOpen || !globalThreeDotsOpen
+        ) {
         threeDotsOpen = true
         globalThreeDotsOpen = true
         littleModalWindow.style.display = "block";
@@ -173,7 +174,9 @@ function threeDots() {
 
     for (let btn in btnList) {
       switch (btn) {
+        
         case 'pause':
+      //  if(dataBase.DeckNames[1].data.length !==0 ) {
           let paused = false;
           btns[btn].onclick = function () {
             threeDotsOpen = true;
@@ -184,6 +187,7 @@ function threeDots() {
           };
           littleModalWindow.append(btns[btn])
           break;
+      //  }
 
         case 'delete':
           btns[btn].onclick = function (e) {
@@ -330,6 +334,9 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   checkbox.setAttribute('type', 'checkbox');
 
   checkbox.onchange = function (e) {
+    if (stats()) {
+      console.log('hello')
+    }
     dataBase.showDeleteFrame = !e.target.checked;
     console.log('still alive and well')
   }
