@@ -3,7 +3,7 @@ DeckNames: { /*deckname:[]*/   },
   queue: [],
   userStylePreferences: [],
   showDeleteFrame: true,
-  showDeleteFrameQuestion: false,
+  showDeleteFrameQuestion: true,
   showDeleteFrameStats: true,
   toStudyGoal: 20,
   toReviewGoal: 0,
@@ -15,8 +15,10 @@ DeckNames: { /*deckname:[]*/   },
   daysOfStudy : {day : 4},
   studied: [new Date()]
 
+
 };
 
+let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
 
 
@@ -26,10 +28,11 @@ for (let i = 1; i < 7; i++) {
   for (let i = 1; i < 10; i++) {
     arr.push({
       question: `question${i}`,
-      answer: `answer${i}`
+      answer: `answer${i}`,
+      pause: false
     })
   };
-  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, cardsToday:0, pause: false}
+  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, cardsToday:0, pause:false, color: colors[i%colors.length]}
   //dataBase.DeckNames[`Literature${i}`].cardsToday = 0;
   //dataBase.DeckNames[`Literature${i}`].toStudyGoal = 20;
 };

@@ -99,22 +99,23 @@ function threeDots() {
         threeDotsOpen = true
         globalThreeDotsOpen = true
         littleModalWindow.style.display = "block";
+        
         setTimeout(function () { 
           window.onclick = function () {
 
               littleModalWindow.style.display = 'none';
               console.log('hello')
               globalThreeDotsOpen = false
-              window.onclick =''
-        
+              window.onclick = '' 
             }
           
         }, 10);
-
+     
       } else {
         threeDotsOpen = false
         littleModalWindow.style.display = "none";
-        window.onclick =''
+        window.onclick = '' 
+   
       }
     };
 
@@ -176,7 +177,7 @@ function threeDots() {
       switch (btn) {
         
         case 'pause':
-      //  if(dataBase.DeckNames[1].data.length !==0 ) {
+      
           let paused = false;
           btns[btn].onclick = function () {
             threeDotsOpen = true;
@@ -187,7 +188,7 @@ function threeDots() {
           };
           littleModalWindow.append(btns[btn])
           break;
-      //  }
+
 
         case 'delete':
           btns[btn].onclick = function (e) {
@@ -204,6 +205,7 @@ function threeDots() {
               btnList[btn]()
             }
           };
+
           littleModalWindow.append(btns[btn])
           break;
 
@@ -212,7 +214,6 @@ function threeDots() {
             threeDotsOpen = true;
             littleModalWindow.style.display = "none";
 
-           
 
             btnList[btn](event, editIconContainer, editIcon, saveIcon, (event) => {
               if (!littleModalWindow.contains(event.target)) {
@@ -223,6 +224,7 @@ function threeDots() {
           };
           littleModalWindow.append(btns[btn])
           break;
+
         case 'reset':
           btns[btn].onclick =  function(event){
             littleModalWindow.style.display = "none";
@@ -266,6 +268,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
     return createElement('div', el, {
       cursor: 'pointer'
     }, 'flexCenterAlignCenter deleteContainerNoAndYes')
+   // handleOutsideClick(mainWindow) //add red cross blink functionality as it was killed by clicking on three dots
   })
 
 
@@ -334,9 +337,9 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   checkbox.setAttribute('type', 'checkbox');
 
   checkbox.onchange = function (e) {
-    if (stats()) {
+    /*if (stats()) {
       console.log('hello')
-    }
+    }*/
     dataBase.showDeleteFrame = !e.target.checked;
     console.log('still alive and well')
   }

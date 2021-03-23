@@ -115,7 +115,7 @@ export default function createNewDeck() {
 
           document.querySelector('#listOfDecks').style.display= 'block'
 
-          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, cardsToday:0};
+          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, cardsToday:0, pause: false, color: colors[ Object.keys(dataBase.DeckNames).length % colors.length]};
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow);
           anchorElement.style.display = 'none';

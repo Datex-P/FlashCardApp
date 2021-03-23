@@ -12,17 +12,22 @@ export default function createDom(obj) {
   listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
-  let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+  
   let edited = false;
 
   arr.forEach((item, index) => {
-
+    console.log(dataBase.DeckNames[item].color,item)
     let newDeckContainer = createElement('div', '', {
-      backgroundColor: colors[index % 5],
+      backgroundColor: dataBase.DeckNames[item].color,
       transform: `rotate(${index * -2}deg)`
     }, 'newDeckContainer');
 
-    dataBase.DeckNames[item].colorPlay = colors[index % 5];
+   // let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+
+   
+
+    
+
     dataBase.DeckNames[item].deckPauseActive = false;
 
 
@@ -159,9 +164,7 @@ export default function createDom(obj) {
    
                window.addEventListener('click', () => clickOutsideHandle(saveIcon))
    
-             //  window.addEventListener('drag', () => clickOutsideHandle(saveIcon))
-   
-              // window.addEventListener('scroll', () => clickOutsideHandle(saveIcon))
+          
    
                editIconContainer.replaceChild(saveIcon, editIcon) //saveIcon replaces  editIcon //replaceChild(newChild, oldchild)
                newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
@@ -189,11 +192,11 @@ export default function createDom(obj) {
    
              }
            },
-          // if(dataBase.DeckNames[item].data.length !==0) {
+        
            pause: (container, playIcon, pauseIcon, edited
              ) => {
              
-             //if (!edited) { //edited was pressed in three dots /default false
+          
                window.onclick = ''
                edited = true;
                threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
@@ -204,7 +207,7 @@ export default function createDom(obj) {
                dataBase.DeckNames[item].deckPauseActive = true;
    
                nameOfNewDeck.classList.remove('pointer')
-   
+              console.log('I fired')
                addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
                //not sure why the line below does not
                document.querySelector('.orangeCircle').style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
@@ -228,8 +231,7 @@ export default function createDom(obj) {
              return edited
              
            }
-         
-        // } parantheses for the if datalength it 0 
+      
            ,
            
            delete: () => {
@@ -337,7 +339,12 @@ export default function createDom(obj) {
         console.log('ok')
       //moved functionality to open deck
       if (dataBase.DeckNames[item].deckPauseActive !== true && dataBase.DeckNames[item].data.length !==0 ) {
+        if (edited) { //checks whether the input field is open and in that case it does not open the trainings overview
+          console.log('edit is open')
+          document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
+        } else {
         questAnswerTrainOverv(item);
+        }
       }
     };
     openDeck.addEventListener('click', openDeckHandler)
@@ -352,8 +359,6 @@ export default function createDom(obj) {
       addEditDeleteContainer.style.display = 'flex' 
       openDeck.style.display = 'block'
       deckIsEmptyField.style.display = 'none'
-
-
     }
 
 
@@ -368,7 +373,13 @@ export default function createDom(obj) {
       addToDeckIcon.style.display = 'flex';
       newDeckContainer.style.zIndex = 2
       newDeckContainer.style.transform = 'rotate(0deg)'
-    }
+
+     } 
+   
+
+
+
+
     addToDeckIcon.title = 'Add Questions to this deck';
 
     addToDeckIcon.addEventListener('click', addToDeckHandler)
@@ -424,15 +435,12 @@ export default function createDom(obj) {
 
 
   document.querySelector("#scrollable").onscroll = function (event) {
-    //if (!threeDotsOpen) {
+    
     if (edited) {
       document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
     }
 
       if (!edited) {
-
-    //  newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-
   
       document.querySelector('.littleModalWindow').style.display='none'
     let all = listOfDecks.querySelectorAll('.newDeckContainer')
@@ -443,12 +451,18 @@ export default function createDom(obj) {
 
     Array.from(all).reverse().forEach((item, index) => {
       item.style.zIndex = 0
-
+      item.querySelector('.settingsIconContainer').style.display = 'none'
+      item.querySelector('.nameOfNewDeck').style.display = 'none'
+      
       item.querySelector('.orangeCircle').style.display = 'none'
       item.style.transform = `rotate(${(index * -2) || -2}deg)`;
     })
+
     all[index].style.zIndex = 2;
     all[index].style.transform = 'rotate(0deg)';
+    all[index].querySelector('.settingsIconContainer').style.display = 'block'
+    all[index].querySelector('.nameOfNewDeck').style.display = 'block'
+
     all[index].querySelector('.orangeCircle').style.display = 'flex'
   }
 //  }

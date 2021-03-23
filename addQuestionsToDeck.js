@@ -91,18 +91,13 @@ export default function addQuestionsToDeck(item) {
       cardAddedPrompt.classList.remove('alertSuccess')
       cardAddedPrompt.classList.add('alertDanger')
 
-      // cardAddedPrompt.style.background = '#721c24'
-      // cardAddedPrompt.style.backgroundColor = '#f8d7da'
-      // cardAddedPrompt.style.borderColor='#f5c6cb'
-
-
 
       cardAddedPrompt.innerText = 'Input needed'
 
     } else {
-    cardAddedPrompt.innerText = 'Card Added'
-  //  cardAddedPrompt.style.background = 'green'
-  cardAddedPrompt.classList.add('alertSuccess')
+      
+      cardAddedPrompt.innerText = 'Card Added'
+      cardAddedPrompt.classList.add('alertSuccess')
       cardAddedPrompt.classList.remove('alertDanger')
 
     }

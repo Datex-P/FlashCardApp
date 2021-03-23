@@ -414,7 +414,7 @@ anchorThreeDots.style.top = '0px'
 
   let cardsStudiedCounter = 0;
 
-  renderDays(2020);
+  renderDays(2021);
 
   function renderDays(year) {
     yearBoxContainer.innerHTML = "";
@@ -447,7 +447,7 @@ anchorThreeDots.style.top = '0px'
               }
             });
         });
-        console.log(cardsStudiedCounter, 'cardsstud')
+       // console.log(cardsStudiedCounter, 'cardsstud')
 
        // console.log( dataBase.DeckNames[deck].data.find(
         //   (item) => new Date(item.openHistory).toDateString(), 'jsutadded')
@@ -455,42 +455,42 @@ anchorThreeDots.style.top = '0px'
       }
 
       for (let deck in dataBase.DeckNames) {
-        if (
-          
-           dataBase.DeckNames[deck].data.find(
-             (item) => new Date(item.openHistory).toDateString() == date
-           )
-        ) {
-//console.log('yo I fired');
+        
+        
+//         dataBase.DeckNames[deck].data.forEach(item => {
+//           console.log(new Date(item?.openHistory?.[0]).toDateString(), date )
+//         })
+//         if ( dataBase.DeckNames[deck].data.find(item => new Date(item?.openHistory?.[0]).toDateString() == date )){
+// //console.log('yo I fired');
 
-          day.style.backgroundColor = "red";
-          day.style.cursor = "pointer";
-          day.title = 'Click to see the study stats of this date'
+//           day.style.backgroundColor = "red";
+//           day.style.cursor = "pointer";
+//           day.title = 'Click to see the study stats of this date'
 
-          day.onclick = function (event) {
-            event.stopPropagation();
-            yearBoxContainer
-              .querySelectorAll(".day")
-              .forEach((day) => (day.innerHTML = ""));
-            let dayInner = createElement('div', '', {lineHeight: '22px', width: '120px'})
-            // let time = Math.round(
-            //   Object.values(dataBase.studyTime).reduce(
-            //     (acc, cur) => acc + cur, 0
-            //   ) / 60
-            // );
+//           day.onclick = function (event) {
+//             event.stopPropagation();
+//             yearBoxContainer
+//               .querySelectorAll(".day")
+//               .forEach((day) => (day.innerHTML = ""));
+//             let dayInner = createElement('div', '', {lineHeight: '22px', width: '120px'})
+//             // let time = Math.round(
+//             //   Object.values(dataBase.studyTime).reduce(
+//             //     (acc, cur) => acc + cur, 0
+//             //   ) / 60
+//             // );
 
 
-            let time = Math.floor(dataBase.studyTime/60)
-            console.log(cardsStudiedCounter)
+//             let time = Math.floor(dataBase.studyTime/60)
+//             console.log(cardsStudiedCounter)
             
        
-            dayInner.innerText = `${date} Time: ${time
-              .toString()
-              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`; 
-            console.log(cardsStudiedCounter);
-            day.append(dayInner);
-          };
-        }
+//             dayInner.innerText = `${date} Time: ${time
+//               .toString()
+//               .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`; 
+//             console.log(cardsStudiedCounter);
+//             day.append(dayInner);
+//           };
+//         }
       }
 
    
