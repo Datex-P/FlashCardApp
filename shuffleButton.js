@@ -6,7 +6,20 @@ export default function shuffle(item,index=null) {
 
 
   function questionNumber(random) {
-    return dataBase.DeckNames[item].data[random].question;
+    console.log(dataBase.DeckNames[item].pauseSwitch, 'paus')
+    //if pauseMode
+    if  (dataBase.DeckNames[item].pauseSwitch === false) {
+
+     // console.log(dataBase.DeckNames[item].data.filter(x=>x.pause === true)[random].question, 'paused true')
+      return dataBase.DeckNames[item].data[random].question;
+    } else {
+      console.log(dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].question, 'paused true')
+
+      return dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].question;
+
+      //{dataBase.DeckNames[item].data.filter(x => x.pause ===true)
+    }
+
   }
   let randomInScope = index || random();
   if(!dataBase.DeckNames[item].data[randomInScope]?.openHistory){

@@ -89,6 +89,9 @@ function threeDots() {
       'littleModalWindow flexColumn'
     )
     settingsIconContainer.onclick = function () {
+
+
+     // if(dataBase.DeckNames[item].pauseSwitch !== true) {
    
       console.log('I was clicked')
       function listener(event) {
@@ -117,6 +120,7 @@ function threeDots() {
         window.onclick = '' 
    
       }
+   // }
     };
 
    
@@ -310,7 +314,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
 
 
-  let doYouWantToDelete = createElement('div', `Do you want to ${body}?`, {}, 'doYouWantToDelete');
+  let doYouWantToDelete = createElement('div', `Do you want to ${body}`, {}, 'doYouWantToDelete');
 
   let [questionMark1, questionMark2, questionMark3] = [questionMark, questionMark, questionMark].map(el => {
     return createElement('div', el, { position: 'absolute' })

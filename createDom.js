@@ -8,7 +8,7 @@ import {
 
 
 export default function createDom(obj) {
-  console.log('create Dom was rendered')
+ // console.log('create Dom was rendered')
   listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
@@ -16,17 +16,13 @@ export default function createDom(obj) {
   let edited = false;
 
   arr.forEach((item, index) => {
-    console.log(dataBase.DeckNames[item].color,item)
+   // console.log(dataBase.DeckNames[item].color,item)
     let newDeckContainer = createElement('div', '', {
       backgroundColor: dataBase.DeckNames[item].color,
       transform: `rotate(${index * -2}deg)`
     }, 'newDeckContainer');
 
-   // let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
-   
-
-    
 
     dataBase.DeckNames[item].deckPauseActive = false;
 
@@ -174,15 +170,11 @@ export default function createDom(obj) {
                littleModalWindow.style.display = 'block'
                console.log('click like a edit')
    
-              // openDeck.removeEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
    
              } else {
    
-               //openDeck.addEventListener('click', openDeckHandler) //when changeNameOfDeckInput is active, deck can t be opened
-   
                editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
                newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-   
    
                edited = false;
                nameOfNewDeck.innerText = changeNameofDeckInput.value;
@@ -200,23 +192,15 @@ export default function createDom(obj) {
                window.onclick = ''
                edited = true;
                threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
-               nameOfNewDeck.style.background = colors[index % 5]
+               nameOfNewDeck.style.background = dataBase.DeckNames[item].color
    
                newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
-               ${colors[index % 5]} repeat`
+               ${dataBase.DeckNames[item].color} repeat`
                dataBase.DeckNames[item].deckPauseActive = true;
    
                nameOfNewDeck.classList.remove('pointer')
-              console.log('I fired')
                addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
-               //not sure why the line below does not
-               document.querySelector('.orangeCircle').style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
-               document.querySelector('.plusIcon').style.cursor = 'default'
-   
                
-               
-   
-               console.log('close')
    
              if (dataBase.DeckNames[item].pause==false) {
             
@@ -275,9 +259,6 @@ export default function createDom(obj) {
     
 
 
-
-
-
     threeDotsContainer.style.position = 'absolute'
     threeDotsContainer.style.top = '6px'
     threeDotsContainer.style.right = '95px'
@@ -294,14 +275,14 @@ export default function createDom(obj) {
 
 
     let pauseInfoField = createElement('div', 'Deck is paused. \n Press:', {
-      backgroundColor: colors[index % 5],
+      backgroundColor: dataBase.DeckNames[item].color,
       textAlign: 'center'
     }, 'pauseInfoField')
 
     pauseInfoField.style.display = 'none'
 
     let deckIsEmptyField = createElement('div', 'Click the plus button to add cards to the deck', {
-      backgroundColor: colors[index % 5],
+      backgroundColor: dataBase.DeckNames[item].color,
       textAlign: 'center'
     }, 'pauseInfoField')
 
@@ -326,7 +307,7 @@ export default function createDom(obj) {
       document.querySelector('.plusIcon').style.cursor = 'pointer' //plus Icon pointable again
       document.querySelector('.orangeCircle').style.cursor = 'pointer' //plus Icon pointable again
       threeDotsContainer.style.display = 'block'  //three dots container is shown again
-      newDeckContainer.style.background = colors[index % 5]
+      newDeckContainer.style.background = dataBase.DeckNames[item].color
       pauseInfoField.style.display = 'none';
       globalThreeDotsOpen = false;
      // document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study, decksize etc shown again
@@ -390,7 +371,7 @@ export default function createDom(obj) {
       
     }
 
-    console.log(dataBase.DeckNames.length, 'length of datab')
+    // console.log(dataBase.DeckNames.length, 'length of datab')
     
 
 

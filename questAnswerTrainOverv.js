@@ -9,11 +9,11 @@ import {
 import {
   createElement,
   handleOutsideClick,
-  redCross, deleteCardQuestionBox, setThreeDotsOpen, threeDots
+  redCross, deleteCardQuestionBox, setThreeDotsOpen, threeDots, threeDotsOpen
 } from './exportFunctions.js'
 import createDom from "./createDom.js";
 import {
-  edit
+  edit, pause
 } from "./svgs.js";
 
 
@@ -75,6 +75,7 @@ export default function questAnswerTrainOverv(item) {
     return [question, answer, index]
   }
 
+ 
 
   let onOffSwitch = createElement('div', '', {}, 'onoffswitch')
       onOffSwitch.title = 'click to show all paused cards'
@@ -82,9 +83,7 @@ export default function questAnswerTrainOverv(item) {
   let inputCheckbox = createElement('input', '', {}, 'onoffswitch-checkbox myonoffswitch')
   let label1 = createElement('label', '', {}, 'onoffswitch-label')
   let span1 = createElement('span', '', {}, 'onoffswitch-inner')
-  let span2 = createElement('span', '', {}, 'onoffswitch-switch')
-
-
+  let span2 = createElement('span', `${dataBase.DeckNames[item].data.filter(x => x.pause ===true).length || 0}`, {}, 'onoffswitch-switch')
 
 
   label1.for = 'myonoffswitch'
@@ -93,20 +92,53 @@ export default function questAnswerTrainOverv(item) {
   inputCheckbox.type = 'checkbox'
 
   if (dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {
+
+
     label1.classList.add('cursor')  //if card in deck is set to pause, the on off switch is clickable and cursor appears
   } else {
     label1.classList.remove('cursor')
   }
 
+
+
   onOffSwitch.onclick = function (e) {
 
       if (dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {
           if (inputCheckbox.checked){
-
+            pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
+            pauseText.style.display = 'none'   
+            questionContainer.style.marginTop = '20px' 
             inputCheckbox.checked = false
+            
+            answerContainer.style.display = 'none';
+            answerFieldTextArea.style.display = 'none';
+            dataBase.DeckNames[item].pauseSwitch = false
+            unpauseButton.style.display = 'none';
+            showAnswerButton.style.display = 'block'
+            shuffleLogic() //just does not work sometimes
+    
+
           } else {
+       
             inputCheckbox.checked = true
             console.log('on')
+            shuffleLogic()
+        
+        
+          dataBase.DeckNames[item].pauseSwitch  = true
+
+          pauseLogo.style.display = 'block'             //edit Logo dissapears that is active in card edit mode
+          pauseText.style.display = 'block'  
+          unpauseButton.style.display = 'block' 
+          questionContainer.style.marginTop = '37px' 
+          answerContainer.style.display = 'block';
+          answerFieldTextArea.style.display = 'block';
+          showAnswerButton.style.display = 'none'
+          //load only paused cards here
+     
+       
+
+
          }   
       }
   }
@@ -200,7 +232,28 @@ export default function questAnswerTrainOverv(item) {
     'showAnswerButton'
   );
 
-  buttonContainer.append(showAnswerButton)
+
+  let unpauseButton = createElement(
+    'button',
+    'Unpause this card', {
+    cursor: 'pointer',
+    display: 'none',
+    width: '132px',
+    padding: '7px'
+  },
+    '',
+    'showAnswerButton'
+  );
+
+  unpauseButton.onclick = function () {
+    dataBase.DeckNames[item].data.pause = false;
+    shuffleLogic()
+
+  }
+
+
+
+  buttonContainer.append(showAnswerButton, unpauseButton)
   mainWindow.append(buttonContainer)
 
   let showAnswerButtonContainer = createElement(
@@ -238,7 +291,7 @@ export default function questAnswerTrainOverv(item) {
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
-   // handleOutsideClick(mainWindow),
+  
     {
       edit: () => {
         editMode = true;
@@ -266,7 +319,8 @@ export default function questAnswerTrainOverv(item) {
         if (dataBase.showDeleteFrameQuestion) {
           deleteCardQuestionBox(() =>
             dataBase.DeckNames[item].data[index].pause = true, () => { questAnswerTrainOverv(item), 
-              createDom(dataBase.DeckNames), clearInterval(decrementTimer) }, 'Pause card', 'pause this card')
+              createDom(dataBase.DeckNames), clearInterval(decrementTimer) }, 'Pause card', 'pause this card? <br><span style="font-size: 12px">Paused cards are not counted in stats.</span>')
+             
         } else {
           dataBase.DeckNames[item].data[index].pause = true
         }
@@ -292,6 +346,7 @@ export default function questAnswerTrainOverv(item) {
     
   )
 
+  console.log(shuffleLogic(), 'shuff')
  
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
@@ -303,10 +358,19 @@ export default function questAnswerTrainOverv(item) {
 
 
   showAnswerButton.onclick = function () {
-    this.style.display = 'none';
+
+    if(dataBase.DeckNames[item].pauseSwitch === true) { //checks whether pause switch was clicked next to three dots / default is false
+      console.log('sers')
+      // answerContainer.style.display = 'none';
+      // answerFieldTextArea.style.display = 'none';
+    } else {
+
+  this.style.display = 'none';
     answerContainer.style.display = 'block';
-    showAnswerButtonContainer.style.display = 'flex';
     answerFieldTextArea.style.display = 'block';
+    showAnswerButtonContainer.style.display = 'flex';
+    dataBase.DeckNames[item].pauseSwitch  = false
+    }
   };
 
   let containerForAgainGoodEasyButtons = createElement(
@@ -347,15 +411,46 @@ export default function questAnswerTrainOverv(item) {
 
   let editLogo = createElement(
     'div',
-    edit, {
+    edit, {   //pause switch here   `${pauseMode ===false? edit: pause}`
     width: 'fit-content',
     position: 'absolute',
     top: '55px',
-    left: '48px'
+    left: '48px',
+    display: 'none'
 
   },
     ''
   )
+
+
+  let pauseLogo = createElement(
+    'div',
+    pause, {
+    width: 'fit-content',
+    position: 'absolute',
+    top: '55px',
+    left: '48px',
+    display: 'none'
+
+  },
+    ''
+  )
+
+  let pauseText = createElement(
+    'div',
+    'mode', {
+    width: 'fit-content',
+    position: 'absolute',
+    top: '55px',
+    left: '68px',
+    display: 'none'
+
+  },
+    ''
+  )
+
+
+
 
   let editText = createElement(
     'div',
@@ -363,14 +458,15 @@ export default function questAnswerTrainOverv(item) {
     width: 'fit-content',
     position: 'absolute',
     top: '55px',
-    left: '68px'
+    left: '68px',
+    display: 'none'
 
   },
     ''
   )
 
-  editText.style.display = 'none'
-  editLogo.style.display = 'none'
+  // editText.style.display = 'none'
+  // editLogo.style.display = 'none'
 
 
 
@@ -526,6 +622,8 @@ export default function questAnswerTrainOverv(item) {
 
   mainWindow.append(editLogo) //Logo that appears in edit mode
   mainWindow.append(editText) //text next to edit logo that appears in edit mode
+  mainWindow.append(pauseLogo)
+  mainWindow.append(pauseText)
   mainWindow.append(cardModifiedPrompt)
 
   let questionField = questionFieldTextArea.value; //previous question value saved
@@ -538,3 +636,5 @@ export default function questAnswerTrainOverv(item) {
   onOffSwitch.append(inputCheckbox, label1)
   label1.append(span1, span2)
 }
+
+

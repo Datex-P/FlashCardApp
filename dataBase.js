@@ -32,7 +32,8 @@ for (let i = 1; i < 7; i++) {
       pause: false
     })
   };
-  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, cardsToday:0, pause:false, color: colors[i%colors.length]}
+  dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, 
+    cardsToday:0, pause:false, color: colors[i%colors.length], pauseSwitch: false}
   //dataBase.DeckNames[`Literature${i}`].cardsToday = 0;
   //dataBase.DeckNames[`Literature${i}`].toStudyGoal = 20;
 };
