@@ -752,8 +752,8 @@ pauseIconContainer:hover {
 }
 .day > div {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 13px;
+  left: -74px;
   display: flex;
   width: 120px;
   background-color: white;
@@ -791,6 +791,10 @@ pauseIconContainer:hover {
   height: 30px;
   background-color: blue;
   margin: 1px 0;
+}
+
+.justify {
+  justify-content: space-evenly;
 }
 
 .showAnswerButtonContainer {
@@ -1353,7 +1357,8 @@ height: 57px;
 .onoffswitch-inner:after {
   content: "Paused";
   
-  padding-right: 10px;
+  padding-right: 7px;
+  padding-top: 1px;
   background-color: rgba(200, 168, 115); color: #FFFFFF;
   text-align: right;
   font-size: 12px;
@@ -1366,8 +1371,8 @@ height: 57px;
   text-align: center;
   background: #FFFFFF;
   position: absolute; 
-  top: 0; 
-  bottom: 0;
+  top: 0px; 
+  bottom: 0px;
   right: 51px;
   border: 1px solid #1F1E1E; 
   border-radius: 14px;
@@ -1375,7 +1380,7 @@ height: 57px;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {

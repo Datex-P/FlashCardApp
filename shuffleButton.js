@@ -2,38 +2,46 @@ import {dataBase} from "./dataBase.js";
 
 export default function shuffle(item,index=null) {
  
-  //console.log(item)
-
 
   function questionNumber(random) {
-    console.log(dataBase.DeckNames[item].pauseSwitch, 'paus')
-    //if pauseMode
+
     if  (dataBase.DeckNames[item].pauseSwitch === false) {
 
      // console.log(dataBase.DeckNames[item].data.filter(x=>x.pause === true)[random].question, 'paused true')
       return dataBase.DeckNames[item].data[random].question;
     } else {
-      console.log(dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].question, 'paused true')
+//      console.log(dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].question, 'paused true')
 
-      return dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].question;
+      return dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0]?.question;
 
-      //{dataBase.DeckNames[item].data.filter(x => x.pause ===true)
     }
 
   }
   let randomInScope = index || random();
+
   if(!dataBase.DeckNames[item].data[randomInScope]?.openHistory){
     dataBase.DeckNames[item].data[randomInScope].openHistory = [];
+    
   }
   dataBase.DeckNames[item].data[randomInScope].openHistory.push(new Date());
   console.log(dataBase)
 
 
   function answerNumber(random) {
-    return  dataBase.DeckNames[item].data[random].answer;
+   
+
+    if  (dataBase.DeckNames[item].pauseSwitch === false) {
+
+       return dataBase.DeckNames[item].data[random].answer;
+     } else {
+    //   console.log(dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].answer, 'paused true')
+ 
+       return dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0]?.answer;
   }
+}
 
   function random() {
+    
     return Math.floor(
       Math.random() * dataBase.DeckNames[item].data.length
     );

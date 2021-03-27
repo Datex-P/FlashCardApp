@@ -10,11 +10,6 @@ import {
 } from "./exportFunctions.js";
 
 
-
-
-
-
-
 export default function stats() {
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = "flex";
@@ -22,10 +17,11 @@ export default function stats() {
   let mainWindow = createElement("div", "", {}, "addQuestionsToDeck");
 
   let innerWindow = createElement("div", "", {
-     overflow: "scroll", overflowX: "hidden", cursor: 'pointer'}); //scroll bar at the right side of the stats window
+    overflow: "scroll", overflowX: "hidden", cursor: 'pointer'
+  }); //scroll bar at the right side of the stats window
 
   let redCrossAndStatsContainer = createElement(
-    "div", "", {},"flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
+    "div", "", {}, "flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
   );
 
   let theWordStats = createElement("div", "Stats", { fontWeight: "bold", fontSize: '22px' });
@@ -46,137 +42,90 @@ export default function stats() {
 
 
 
-  let canvas = createElement('canvas', '', {width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px'}, 'pieChart')
-  
+  let canvas = createElement('canvas', '', { width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
+
   theWordTodayContainer.append(canvas)
 
-  let todayStudyContainer = createElement('div', "Today's study breakdown", {width: '105px', textAlign: 'center', fontWeight: 'bold', fontSize: '17px'})
-   
+  let todayStudyContainer = createElement('div', "Today's study breakdown", { width: '105px', textAlign: 'center', fontWeight: 'bold', fontSize: '17px' })
+
   let todayDate = new Date();
 
 
 
 
-var config = {
-type: 'doughnut',
-data: {
-  labels: [
-    "Red",
-    "Green",
-    "Yellow"
-  ],
-  datasets: [{
-    data: [300, 50, 100],
-    backgroundColor: [
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56"
-    ],
-    borderColor: [
-   'rgba(184, 156, 110, 0.95)',
-   'rgba(184, 156, 110, 0.95)',
-   'rgba(184, 156, 110, 0.95)'
-    ],
-    borderWidth: 1,
-    hoverBackgroundColor: [
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56"
-    ]
-  }]
-},
-options: {
-  elements: {
-    center: {
-      text: `Data from ${todayDate.toLocaleString('de-DE', { day: 'numeric',
-      month:  'numeric',
-      year:   'numeric',})  }`,
-      //color: '#FF6384', // Default is #000000
-      color: 'black',
-      fontStyle: 'Arial', // Default is Arial
-      sidePadding: 2, // Default is 20 (as a percentage)
-      minFontSize: 14, // Default is 20 (in px), set to false and text will not wrap.
-      lineHeight: 19,
-       // Default is 25 (in px), used for when text wraps
-    }
-  },
-  legend: {
-    position: 'bottom', 
-    labels: {
-    fontColor: 'black'
-    }
-    
-  },
-  cutoutPercentage: 81,
-  maintainAspectRatio: false,
-  layout : {
-    padding: {
-      top: 10
+  var config = {
+    type: 'doughnut',
+    data: {
+      labels: [
+        // "Red",
+        // "Green",
+      ],
+      datasets: [{
+        data: [
+          // 300, 50
+        ],
+        backgroundColor: [
+          // "#FF6384",
+          // "#36A2EB",
+        ],
+        borderColor: [
+          // 'rgba(184, 156, 110, 0.95)',
+          // 'rgba(184, 156, 110, 0.95)',
+        ],
+        borderWidth: 1,
+        hoverBackgroundColor: [
+          // "#FF6384",
+          // "#36A2EB",
+        ]
+      }]
     },
-   border: 'none'
-  }
-}
-};
+    options: {
+      elements: {
+        center: {
+          text: cardsStudiedCounter ===0? 'No data' :
+          
+          `Data from ${todayDate.toLocaleString('de-DE', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+          })}`,
+          //color: '#FF6384', // Default is #000000
+          color: 'black',
+          fontStyle: 'Arial', // Default is Arial
+          sidePadding: 2, // Default is 20 (as a percentage)
+          minFontSize: 14, // Default is 20 (in px), set to false and text will not wrap.
+          lineHeight: 19,
+          // Default is 25 (in px), used for when text wraps
+        }
+      },
+      legend: {
+        position: 'bottom',
+        labels: {
+          fontColor: 'black'
+        }
 
-//console.log(config.data.datasets[0].data)
-
-function updateChart() {
-  config.data.datasets[0].data = [10,20,30,40,50];
-  config.data.datasets[0].backgroundColor = ['green', 'blue', 'yellow', 
-'purple', 'red'];
-  config.data.datasets[0].borderColor = ['green', 'blue', 'yellow', 
-  'purple', 'red']
-  config.data.hoverBackgroundColor = ['green', 'blue', 'yellow', 
-  'purple', 'red']
-  config.data.labels = ['green', 'blue', 'yellow', 
-  'purple', 'red']
-
-  //config.update()
-}
-
-updateChart()
-
-
-
-
-
-// function addData(chart, label, data) {
-//   chart.data.labels.push(label);
-//   chart.data.datasets.forEach((dataset) => {
-//       dataset.data.push(data);
-//   });
-//   chart.update();
-// }
-
-// addData()
-
-
+      },
+      cutoutPercentage: 81,
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 10
+        },
+        border: 'none'
+      }
+    }
+  };
 
 
 
+  var ctx = canvas.getContext("2d");
+  var myChart = new Chart(ctx, config);
 
 
 
+  let theWordCalendarContainer = createElement("div", "", {}, "flexColumnAlignCenter");
 
-
-
-
-
-
-var ctx = canvas.getContext("2d");
-var myChart = new Chart(ctx, config);
-
-
-
-
-console.log(todayDate)
-
-
-
-  let theWordCalendarContainer = createElement("div", "",{}, "flexColumnAlignCenter"
-  );
-
-  let theWordCalendar = createElement("div", "Calendar", {fontSize: '18px'}, 'theWordCalendar');
+  let theWordCalendar = createElement("div", "Calendar", { fontSize: '18px' }, 'theWordCalendar');
 
   let rightAndLeftButtonContainer = createElement("div", "", {
     display: "flex",
@@ -210,59 +159,62 @@ console.log(todayDate)
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
- 
-    {reset: (outsideClickClosehandler)=>{       //when reset is clicked the window whether you want to reset the progress appears
-    
-      if (dataBase.showDeleteFrameStats) {
 
-      setTimeout(function () {
-        window.onclick = outsideClickClosehandler
-      }, 10);
-    
-  deleteCardQuestionBox(() => {
+    {
+      reset: (outsideClickClosehandler) => {       //when reset is clicked the window whether you want to reset the progress appears
+
+        if (dataBase.showDeleteFrameStats) {
+
+          setTimeout(function () {
+            window.onclick = outsideClickClosehandler
+          }, 10);
+
+          deleteCardQuestionBox(() => {
 
 
-    for (let deck in dataBase.DeckNames) {
+            for (let deck in dataBase.DeckNames) {
 
-      dataBase.DeckNames[deck].data.forEach((card) => {
+              dataBase.DeckNames[deck].data.forEach((card) => {
 
-        if (card.openHistory) {
-          delete card.openHistory
+                if (card.openHistory) {
+                  delete card.openHistory
+                  stats()
+                }
+              })
+            }
+          }
+
+            //breakdown has to be resetted as well
+            , () => {
+
+            }, 'Reset current progress', 'reset the stats section?', { marginLeft: '40px', fontSize: '18px' })
+
+            , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
+        } else {
+          for (let deck in dataBase.DeckNames) {
+
+            dataBase.DeckNames[deck].data.forEach((card) => {
+
+              if (card.openHistory) {
+                delete card.openHistory
+              }
+            })
+          }
+          console.log('it works')
         }
-      })
-    }
-  }
-
-    //breakdown has to be resetted as well
-    , () => {
-
-    }, 'Reset current progress', 'reset the calendar and the hourly breakdown', { marginLeft: '40px', fontSize: '18px' })
-    
-    , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
-  } else {
-    for (let deck in dataBase.DeckNames) {
-
-      dataBase.DeckNames[deck].data.forEach((card) => {
-
-        if (card.openHistory) {
-          delete card.openHistory
-        }
-      })
-    }
-    console.log('it works')
-  }
-  
-  
-  
-  
-  }} , {top: '4px'} //the position of the stats field after three dots is clicked
-    )
 
 
 
-anchorThreeDots.style.height = '29px'
-anchorThreeDots.style.right = '-68px';
-anchorThreeDots.style.top = '0px'
+
+      }
+    }, { top: '4px' } //the position of the stats field after three dots is clicked
+  )
+
+
+
+  anchorThreeDots.style.height = '29px'
+  anchorThreeDots.style.right = '-68px';
+  anchorThreeDots.style.top = '0px'
 
 
 
@@ -279,7 +231,7 @@ anchorThreeDots.style.top = '0px'
   let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {}, 'theWordhourlyBreakdown');
 
   let radioButtonContainer = createElement("div", "", {
-  
+
   }, 'radioButtonContainer');
 
   ["1 month", "3 month", "12 month"].forEach((radio) => {
@@ -295,7 +247,7 @@ anchorThreeDots.style.top = '0px'
     if (radioBtn.value === '1 month') { //sets the blue mark to 1 month by default
       radioBtn.checked = true
     }
- 
+
     radioButtonContainer.append(radioBtn, label);
   });
 
@@ -310,12 +262,12 @@ anchorThreeDots.style.top = '0px'
     12: 20,
     18: 1,
     24: 14,
- 
+
   }
 
 
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
-  let time = createElement("div", 'Study Goal', {  }, 'studyGoal');
+  let time = createElement("div", 'Study Goal', {}, 'studyGoal');
 
   let progressBar = createElement('div', '', {}, 'progressBar');
 
@@ -365,21 +317,21 @@ anchorThreeDots.style.top = '0px'
       let time = createElement("div", '', {}, 'time flexCenterAlignCenter'); //container for the times 06-12 / 12-18 etc.
 
       let progressBar = createElement('div', '', {}, 'progressBar')
-      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px'});
+      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px' });
 
-      previousWidthVar+=widthVar
+      previousWidthVar += widthVar
 
-          if (i === 24) {
-            
-            time.innerHTML = `<div style='padding: 3px' >${24} - ${'0' +6}</div>` //line gets not triggered for some reason
-          
-          } else if (i === 6) {
+      if (i === 24) {
 
-            time.innerHTML =  `<div style='padding: 3px'>${'0'+i} - ${(i + 6)}</div>`
-          } else {
+        time.innerHTML = `<div style='padding: 3px' >${24} - ${'0' + 6}</div>` //line gets not triggered for some reason
 
-            time.innerHTML = `<div>${i} - ${i+6}</div>`
-          }
+      } else if (i === 6) {
+
+        time.innerHTML = `<div style='padding: 3px'>${'0' + i} - ${(i + 6)}</div>`
+      } else {
+
+        time.innerHTML = `<div>${i} - ${i + 6}</div>`
+      }
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
       timeAndProgressContainer.append(time, progressBar)
@@ -412,88 +364,79 @@ anchorThreeDots.style.top = '0px'
   };
 
 
-  let cardsStudiedCounter = 0;
+  var cardsStudiedCounter = 0;
 
   renderDays(2021);
 
   function renderDays(year) {
     yearBoxContainer.innerHTML = "";
     let thisYear = new Date(`January 1, ${+year}`);
-
+    let counter = 1
     while (
-      thisYear.getMonth() != 0 ||
-      thisYear.getDate() != 1 ||
-      thisYear.getFullYear() == +year
+      counter<365
     ) {
+      counter++
       let day = document.createElement("div");
       day.classList.add("day");
       let date = thisYear.toDateString();
 
-      for (let deck in dataBase.DeckNames) {
-
-
-        //if  (dataBase.DeckNames.calendarReset !== false) {
-
-        //let date = dataBase.DeckNames.calendarReset.value()
-        //don t use dates before this date
-        //}
-       // console.log('I love it')
-
-        dataBase.DeckNames[deck].data.forEach((card) => {
-          card.openHistory &&
-            card.openHistory.forEach((openTime) => {
-              if (date === openTime.toDateString()) {
-                cardsStudiedCounter++;
-              }
-            });
-        });
-       // console.log(cardsStudiedCounter, 'cardsstud')
-
-       // console.log( dataBase.DeckNames[deck].data.find(
-        //   (item) => new Date(item.openHistory).toDateString(), 'jsutadded')
-        // )
-      }
-
-      for (let deck in dataBase.DeckNames) {
-        
-        
-//         dataBase.DeckNames[deck].data.forEach(item => {
-//           console.log(new Date(item?.openHistory?.[0]).toDateString(), date )
-//         })
-//         if ( dataBase.DeckNames[deck].data.find(item => new Date(item?.openHistory?.[0]).toDateString() == date )){
-// //console.log('yo I fired');
-
-//           day.style.backgroundColor = "red";
-//           day.style.cursor = "pointer";
-//           day.title = 'Click to see the study stats of this date'
-
-//           day.onclick = function (event) {
-//             event.stopPropagation();
-//             yearBoxContainer
-//               .querySelectorAll(".day")
-//               .forEach((day) => (day.innerHTML = ""));
-//             let dayInner = createElement('div', '', {lineHeight: '22px', width: '120px'})
-//             // let time = Math.round(
-//             //   Object.values(dataBase.studyTime).reduce(
-//             //     (acc, cur) => acc + cur, 0
-//             //   ) / 60
-//             // );
-
-
-//             let time = Math.floor(dataBase.studyTime/60)
-//             console.log(cardsStudiedCounter)
-            
-       
-//             dayInner.innerText = `${date} Time: ${time
-//               .toString()
-//               .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`; 
-//             console.log(cardsStudiedCounter);
-//             day.append(dayInner);
-//           };
-//         }
-      }
-
+    
+      
+      let arr = []
    
+      for (let deck in dataBase.DeckNames) {
+
+       
+        let deckItem = dataBase.DeckNames[deck]
+        if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == date)) {
+     
+          let color = ['green', 'blue']
+          
+
+          cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item=>new Date(item).toDateString() == date)).length
+          console.log(deckItem.data.filter((item) => new Date(item?.openHistory?.[0]).toDateString() == date).length, 'filt')
+
+
+          arr.push(deckItem.name)
+          config.data.labels.push(deckItem.name)
+          config.data.datasets[0].data.push(deckItem.data.filter((item) => item?.openHistory?.some(item=>new Date(item).toDateString() == date)).length)
+
+
+          config.data.datasets[0].backgroundColor.push(color[(arr.length-1)%color.length])
+          config.data.datasets[0].borderColor.push(color[(arr.length-1)%color.length])
+          config.data.datasets[0].hoverBackgroundColor.push(color[(arr.length-1)%color.length])
+
+         
+
+          day.style.backgroundColor = "red";
+          day.style.cursor = "pointer";
+          day.title = 'Click to see the study stats of this date'
+
+          day.onclick = function (event) {
+            event.stopPropagation();
+            yearBoxContainer
+              .querySelectorAll(".day")
+              .forEach((day) => (day.innerHTML = ""));
+            let dayInner = createElement('div', '', { lineHeight: '22px', width: '120px' })
+            // let time = Math.round(
+            //   Object.values(dataBase.studyTime).reduce(
+            //     (acc, cur) => acc + cur, 0
+            //   ) / 60
+            // );
+            let time = Math.floor(dataBase.studyTime / 60)
+            //console.log(cardsStudiedCounter)
+
+
+            dayInner.innerText = `${date} Time: ${time
+              .toString()
+              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`;
+     
+            day.append(dayInner);
+          };
+        }
+      }
+
+
 
       thisYear.setDate(thisYear.getDate() + 1);
 
@@ -513,139 +456,41 @@ anchorThreeDots.style.top = '0px'
 
   /*when deck is deleted it should also be deleted out of stats*/
 
-  
+
 
   let timeToday = new Date();
   let cardsOpenLastThree = 0;
   let cardsOpenLastTwelve = 0;
   let cardsOpenLastOne = 0;
 
- for (let deck in dataBase.DeckNames) {
- 
-  dataBase.DeckNames[deck].data.forEach( (card) => {
+  for (let deck in dataBase.DeckNames) {
 
-    card.openHistory && card.openHistory.forEach((openTime) => {
+    dataBase.DeckNames[deck].data.forEach((card) => {
 
-      if(openTime>timeToday.setMonth(timeToday.getMonth() - 1)) {
-        cardsOpenLastOne++;
-      }       
-      else if(openTime>timeToday.setMonth(timeToday.getMonth() - 3)) {
+      card.openHistory && card.openHistory.forEach((openTime) => {
 
-        cardsOpenLastThree++;
-      }  
-      else if (openTime>timeToday.setMonth(timeToday.getMonth() - 12)) {
+        if (openTime > timeToday.setMonth(timeToday.getMonth() - 1)) {
+          cardsOpenLastOne++;
+        }
+        else if (openTime > timeToday.setMonth(timeToday.getMonth() - 3)) {
 
-        cardsOpenLastTwelve++;
+          cardsOpenLastThree++;
+        }
+        else if (openTime > timeToday.setMonth(timeToday.getMonth() - 12)) {
+
+          cardsOpenLastTwelve++;
+        }
       }
+      )
+    }
+    )
+
   }
-  )
- }
-  )
-
- }
-
-
-
-        
-      // child1.innerText = `Deck ${deck}:`;
-      // child2.innerText = `${counterTwo} cards studied`;
-      
-      
-    // });
-    // if(counterTwo){
-    //   counterOne++
-     // let child1 = createElement("div", `Deck ${deck}:`, {});
-    //  let child1 = createElement("div", `${deck}`, {});
-
-      
-
-    //   let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
-
-     
-
-    //   if (counterOne === 1) {
-   
-    
-    //   }
-    //   else if (counterOne >= 2) {
-
-
-    //   }
-
-    // }
-    
-  
-
-
-
-  // if (counterOne === 0) {
-  //   cardsStudied.style.textAlign = "center";
-  //   cardsStudied.innerHTML = "No cards studied today";
-  //   cardsStudied.style.removeProperty("border");
-  //   cardsStudied.style.removeProperty("overflow");
-  // }
-
-  // if (counterOne <= 7) {
-  //   cardsStudied.style.removeProperty("border");
-  //   cardsStudied.style.removeProperty("overflow");
-  // }
 
 
 
 
-
-
-  /*not sure if it does anything*/
-  // for (let deck in dataBase.DeckNames) {
-
-  //   card.openHistory && card.openHistory.forEach(openTime=> {
-  //     if (date.toDateString() === openTime.toDateString()) {
-
-  //   let container = document.createElement('div');
-  //   container.style.border = '1px black solid'
-  //   container.className = 'flexSpaceBetween'
-  //   let child1 = document.createElement('div');
-  //   let child2 = document.createElement('div');
-
-  //   child1.innerText = `Deck ${deck}:`;
-  //   child2.innerText = `${counterTwo} cards studied`;
-  //   cardsStudied.append(container);
-  //   container.append(child1);
-  //   container.append(child2);
-  // }
-  //   })
-  // };
-
-  /*<----*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- console.log(cardsOpenLastThree, cardsOpenLastTwelve, cardsOpenLastOne)
-
-
- todayAndCardsStudiedContainer.append(todayStudyContainer)
+  todayAndCardsStudiedContainer.append(todayStudyContainer)
 
   todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
   rightAndLeftButtonContainer.append(buttonLeft, year, buttonRight);
@@ -669,7 +514,7 @@ anchorThreeDots.style.top = '0px'
 }
 
 Chart.pluginService.register({
-  beforeDraw: function(chart) {
+  beforeDraw: function (chart) {
     if (chart.config.options.elements.center) {
       // Get ctx from string
       var ctx = chart.chart.ctx;
@@ -751,141 +596,3 @@ Chart.pluginService.register({
     }
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //let counterOne = 0
-  // for (let deck in dataBase.DeckNames) {
-  //   let counterTwo = 0;
-  //   dataBase.DeckNames[deck].forEach((card) => {
-      
-  //     card.openHistory &&
-  //       card.openHistory.forEach((openTime) => {
-  //         if (date.toDateString() === openTime.toDateString()) {
-  //           console.log(deck)
-  //           counterTwo++;
-  //         }
-  //       });
-  //     })
-  //   }
-
-        
-      // child1.innerText = `Deck ${deck}:`;
-      // child2.innerText = `${counterTwo} cards studied`;
-      
-      
-    // });
-    // if(counterTwo){
-    //   counterOne++
-     // let child1 = createElement("div", `Deck ${deck}:`, {});
-    //  let child1 = createElement("div", `${deck}`, {});
-
-      
-
-    //   let child2 = createElement("div", `${counterTwo} cards studied`, {color: 'white'});
-
-     
-
-    //   if (counterOne === 1) {
-   
-    
-    //   }
-    //   else if (counterOne >= 2) {
-
-
-    //   }
-
-    // }
-    
-  
-
-
-
-  // if (counterOne === 0) {
-  //   cardsStudied.style.textAlign = "center";
-  //   cardsStudied.innerHTML = "No cards studied today";
-  //   cardsStudied.style.removeProperty("border");
-  //   cardsStudied.style.removeProperty("overflow");
-  // }
-
-  // if (counterOne <= 7) {
-  //   cardsStudied.style.removeProperty("border");
-  //   cardsStudied.style.removeProperty("overflow");
-  // }
-
-
-
-
-
-
-  /*not sure if it does anything*/
-  // for (let deck in dataBase.DeckNames) {
-
-  //   card.openHistory && card.openHistory.forEach(openTime=> {
-  //     if (date.toDateString() === openTime.toDateString()) {
-
-  //   let container = document.createElement('div');
-  //   container.style.border = '1px black solid'
-  //   container.className = 'flexSpaceBetween'
-  //   let child1 = document.createElement('div');
-  //   let child2 = document.createElement('div');
-
-  //   child1.innerText = `Deck ${deck}:`;
-  //   child2.innerText = `${counterTwo} cards studied`;
-  //   cardsStudied.append(container);
-  //   container.append(child1);
-  //   container.append(child2);
-  // }
-  //   })
-  // };
-
-  /*<----*/
-
-
-
-
-
-
-
