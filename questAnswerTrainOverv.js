@@ -53,7 +53,7 @@ export default function questAnswerTrainOverv(item) {
       } else {
         dataBase.queue[index].timeLeft = 0
       }
-     // console.log(dataBase.queue[index].timeLeft)
+      // console.log(dataBase.queue[index].timeLeft)
     })
 
   }, 1000)
@@ -78,7 +78,7 @@ export default function questAnswerTrainOverv(item) {
 
 
   let onOffSwitch = createElement('div', '', {}, 'onoffswitch')
-    
+
 
   let inputCheckbox = createElement('input', '', {}, 'onoffswitch-checkbox myonoffswitch')
   let label1 = createElement('label', '', {}, 'onoffswitch-label')
@@ -86,18 +86,18 @@ export default function questAnswerTrainOverv(item) {
   let span2 = createElement('span', `${cardsPaused()}`, {}, 'onoffswitch-switch')
 
 
-   function cardsPaused (){
-     console.log('function cardsPaused was fired')
-    return dataBase.DeckNames[item].data.filter(x => x.pause ===true).length || 0
-   }
-  
+  function cardsPaused() {
+    console.log('function cardsPaused was fired')
+    return dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0
+  }
+
 
   label1.for = 'myonoffswitch'
   inputCheckbox.tabindex = '0'
   inputCheckbox.name = 'onoffswitch'
   inputCheckbox.type = 'checkbox'
 
-  if (dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {
+  if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
 
 
     label1.classList.add('cursor')  //if card in deck is set to pause, the on off switch is clickable and cursor appears
@@ -105,66 +105,81 @@ export default function questAnswerTrainOverv(item) {
     label1.classList.remove('cursor')
   }
 
+
+let arrOfPausedDecks;
+
+
+  onOffSwitch.onclick = (e)=>{clickHandler(e)}
   
+  function clickHandler(e) {
+
+     i = 0;
+    console.log(i, 'value of i')
+
+    dataBase.DeckNames[item].skippedPausedCards = 0
+
+
+    if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
+      if (inputCheckbox.checked) {
+        pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
+        pauseText.style.display = 'none'
+        questionContainer.style.marginTop = '20px'
+        inputCheckbox.checked = false
+
+        answerContainer.style.display = 'none';
+        answerFieldTextArea.style.display = 'none';
+        dataBase.DeckNames[item].pauseSwitch = false
+        unpauseButton.style.display = 'none';
+        keepPausedButton.style.display = 'none'
+        showAnswerButton.style.display = 'block'
+        shuffleLogic() //just does not work sometimes
+
+        console.log('yeah it works you know')
+        //onOffSwitch.setAttribute('title', 'click to show all paused cards')
+        buttonContainer.classList.remove('justify') //that keep paused button gets centered
+
+      } else {
+
+        arrOfPausedDecks = dataBase.DeckNames[item].data.reduce((acc,el,index) => {
+          if(el.pause){
+            let x = {...el}
+            x.index=index;
+            x.deck = item
+            acc.push(x)
+        }
+        return acc
+      },[])
+        console.log(arrOfPausedDecks, 'paus')
+        inputCheckbox.checked = true
+        console.log('on')
+        dataBase.DeckNames[item].pauseSwitch = true
+        shuffleLogic()
+        onOffSwitch.removeAttribute('title')
+        console.log('also works somehow')
 
 
 
-  onOffSwitch.onclick = function (e) {
-
-  
-
-      if (dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {
-          if (inputCheckbox.checked){
-            pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-            pauseText.style.display = 'none'   
-            questionContainer.style.marginTop = '20px' 
-            inputCheckbox.checked = false
-
-            answerContainer.style.display = 'none';
-            answerFieldTextArea.style.display = 'none';
-            dataBase.DeckNames[item].pauseSwitch = false
-            unpauseButton.style.display = 'none';
-            keepPausedButton.style.display = 'none'
-            showAnswerButton.style.display = 'block'
-            shuffleLogic() //just does not work sometimes
-
-            console.log('yeah it works you know')
-            //onOffSwitch.setAttribute('title', 'click to show all paused cards')
-            buttonContainer.classList.remove('justify') //that keep paused button gets centered
-
-          } else {
-       
-            inputCheckbox.checked = true
-            console.log('on')
-            shuffleLogic()
-            onOffSwitch.removeAttribute('title')
-        
-        
-          dataBase.DeckNames[item].pauseSwitch  = true
-
-          pauseLogo.style.display = 'block'             //edit Logo dissapears that is active in card edit mode
-          pauseText.style.display = 'block'  
-          unpauseButton.style.display = 'inline' 
-          keepPausedButton.style.display = 'inline'
-          questionContainer.style.marginTop = '37px' 
-          answerContainer.style.display = 'block';
-          answerFieldTextArea.style.display = 'block';
-          showAnswerButton.style.display = 'none'
-          //load only paused cards here
-          buttonContainer.classList.add('justify')
-     
-       
+        pauseLogo.style.display = 'block'             //edit Logo dissapears that is active in card edit mode
+        pauseText.style.display = 'block'
+        unpauseButton.style.display = 'inline'
+        keepPausedButton.style.display = 'inline'
+        questionContainer.style.marginTop = '37px'
+        answerContainer.style.display = 'block';
+        answerFieldTextArea.style.display = 'block';
+        showAnswerButton.style.display = 'none'
+        //load only paused cards here
+        buttonContainer.classList.add('justify')
 
 
-         }   
       }
+    }
   }
 
   onOffSwitch.addEventListener('mouseenter', function () {
 
-    if (dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {
+    if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
       onOffSwitch.setAttribute('title', 'click to show all paused cards')
-    console.log('working and alive')
+      console.log('working and alive')
     } else {
       onOffSwitch.removeAttribute('title')   //has to be tested if remove works
     }
@@ -198,7 +213,7 @@ export default function questAnswerTrainOverv(item) {
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
 
   theNameOftheDeckAndRedCrossContainer.append(onOffSwitch)
-  
+
 
 
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
@@ -221,10 +236,8 @@ export default function questAnswerTrainOverv(item) {
 
     }
 
-    // console.log(Math.floor(Math.random() * dataBase.DeckNames[item].data.length), 'her')
-    //   console.log(dataBase.DeckNames[item].data.length, 'len')
-    //   console.log(Math.floor(Math.random()*9), 'rand')
-     
+ 
+
   }
   redCross.onclick = close
 
@@ -297,68 +310,67 @@ export default function questAnswerTrainOverv(item) {
     'showAnswerButton'
   );
 
+  var i =0;
+
+
+function pausedAndUnpaused() {
+  unpauseButton.style.display = 'none'
+  keepPausedButton.style.display = 'none'
+  showAnswerButton.style.display = 'block'
+  pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
+  pauseText.style.display = 'none'
+  questionContainer.style.marginTop = '20px'
+  buttonContainer.classList.remove('justify')
+  answerFieldTextArea.style.display = 'none';
+  answerContainer.style.display = 'none';
+   dataBase.DeckNames[item].pauseSwitch = false
+   inputCheckbox.checked = false
+   label1.classList.remove('cursor')
+   span2.innerText = cardsPaused()
+   shuffleLogic()
+}
+
   unpauseButton.onclick = function () {
 
 
-    if (!dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {  //if no paused cards are there or all were already shown
-      unpauseButton.style.display = 'none' 
-      keepPausedButton.style.display = 'none'
-      showAnswerButton.style.display = 'block'
-      pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-      pauseText.style.display = 'none'   
-      questionContainer.style.marginTop = '20px' 
-      buttonContainer.classList.remove('justify')
-      shuffleLogic()
-      answerFieldTextArea.style.display = 'none';
-      answerContainer.style.display = 'none';
-     // inputCheckbox.checked = false
-     dataBase.DeckNames[item].pauseSwitch = false
-    } else {
+      dataBase.DeckNames[item].data[arrOfPausedDecks[i].index].pause = false //the first item that was captured by pauseswitch is set to fasle
+      
+      i++
+
+      if (i >= arrOfPausedDecks.length) {
   
-
-    dataBase.DeckNames[item].data.filter(x=>x.pause === true)[0].pause = false
-
-    console.log(dataBase.DeckNames[item].data.filter(x => x.pause ===true).length, 'still paused')
-  
-
-   
-    shuffleLogic()
-    span2.innerText = cardsPaused ()
-    console.log('hlleo')
-
-
-    answerFieldTextArea.style.display = 'block';
-    answerContainer.style.display = 'block';
-
+        pausedAndUnpaused()
+        } else {
+    
+          pausedAndUnpausedElseCond()
+          }
     }
 
-  }
-  
   keepPausedButton.onclick = function () {
-
-    if (!dataBase.DeckNames[item].data.find( x=>  x.pause === true)) {  //if no paused cards are there or all were already shown
-      unpauseButton.style.display = 'none' 
-      buttonContainer.classList.remove('justify')
-      keepPausedButton.style.display = 'none'
-      showAnswerButton.style.display = 'block'
-      pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-      pauseText.style.display = 'none'   
-      questionContainer.style.marginTop = '20px' 
-      answerContainer.style.display = 'none';
-    answerFieldTextArea.style.display = 'none';
-    inputCheckbox.checked = false
-    dataBase.DeckNames[item].pauseSwitch = false
-
-
-    shuffleLogic()
-    } else {
   
-   shuffleLogic()
+    i++
 
+    if (i >= arrOfPausedDecks.length) {
+
+      pausedAndUnpaused()
+    
+    } else {
+
+        dataBase.DeckNames[item].skippedPausedCards +=1
+        pausedAndUnpausedElseCond()
+        }
+        label1.classList.add('cursor')
+   }
+
+   function pausedAndUnpausedElseCond () {
+    span2.innerText = cardsPaused()
+    shuffleLogic()
     answerFieldTextArea.style.display = 'block';
     answerContainer.style.display = 'block';
-    }
-  }
+   }
+
+
+
 
 
 
@@ -367,8 +379,9 @@ export default function questAnswerTrainOverv(item) {
 
   let showAnswerButtonContainer = createElement(
     'div',
-    '', { display: 'flex'
-  
+    '', {
+      display: 'flex'
+
   }, 'showAnswerButtonContainer'
   )
 
@@ -402,7 +415,7 @@ export default function questAnswerTrainOverv(item) {
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
-  
+
     {
       edit: () => {
         editMode = true;
@@ -429,14 +442,16 @@ export default function questAnswerTrainOverv(item) {
 
         if (dataBase.showDeleteFrameQuestion) {
           deleteCardQuestionBox(() =>
-            dataBase.DeckNames[item].data[index].pause = true, () => { questAnswerTrainOverv(item), 
-              createDom(dataBase.DeckNames), clearInterval(decrementTimer) }, 'Pause card', 'pause this card? <br><span style="font-size: 12px">Paused cards are not counted in stats.</span>')
-             
+            dataBase.DeckNames[item].data[index].pause = true, () => {
+              questAnswerTrainOverv(item),
+              createDom(dataBase.DeckNames), clearInterval(decrementTimer)
+            }, 'Pause card', 'pause this card? <br><span style="font-size: 12px">Paused cards are not counted in stats.</span>')
+
         } else {
           dataBase.DeckNames[item].data[index].pause = true
         }
-        
-        
+
+
       }
       ,
       delete: () => {
@@ -454,11 +469,11 @@ export default function questAnswerTrainOverv(item) {
 
     }, { top: '-15px', left: '13px' }, 'card'
 
-    
+
   )
 
   console.log('shuff')
- 
+
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
 
@@ -470,17 +485,17 @@ export default function questAnswerTrainOverv(item) {
 
   showAnswerButton.onclick = function () {
 
-    if(dataBase.DeckNames[item].pauseSwitch === true) { //checks whether pause switch was clicked next to three dots / default is false
+    if (dataBase.DeckNames[item].pauseSwitch === true) { //checks whether pause switch was clicked next to three dots / default is false
       console.log('sers')
       // answerContainer.style.display = 'none';
       // answerFieldTextArea.style.display = 'none';
     } else {
 
-  this.style.display = 'none';
-    answerContainer.style.display = 'block';
-    answerFieldTextArea.style.display = 'block';
-    showAnswerButtonContainer.style.display = 'flex';
-    dataBase.DeckNames[item].pauseSwitch  = false
+      this.style.display = 'none';
+      answerContainer.style.display = 'block';
+      answerFieldTextArea.style.display = 'block';
+      showAnswerButtonContainer.style.display = 'flex';
+      dataBase.DeckNames[item].pauseSwitch = false
     }
   };
 
@@ -637,7 +652,7 @@ export default function questAnswerTrainOverv(item) {
       dataBaseQueue(randomNum, item)
       display()
       shuffleLogic()
-      console.log(  'sh')
+      console.log('sh')
       createDom(dataBase.DeckNames)
     })
 

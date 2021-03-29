@@ -6,11 +6,13 @@ import {
   closeMenu,
   close,
   redCross,
-  deleteCardQuestionBox, setThreeDotsOpen, threeDots
+  deleteCardQuestionBox, threeDots
 } from "./exportFunctions.js";
 
 
 export default function stats() {
+
+  var todayCardsStudiedCounter = 0
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = "flex";
 
@@ -42,6 +44,7 @@ export default function stats() {
 
 
 
+
   let canvas = createElement('canvas', '', { width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
 
   theWordTodayContainer.append(canvas)
@@ -51,14 +54,11 @@ export default function stats() {
   let todayDate = new Date();
 
 
-
-
   var config = {
     type: 'doughnut',
     data: {
       labels: [
         // "Red",
-        // "Green",
       ],
       datasets: [{
         data: [
@@ -66,23 +66,22 @@ export default function stats() {
         ],
         backgroundColor: [
           // "#FF6384",
-          // "#36A2EB",
         ],
         borderColor: [
-          // 'rgba(184, 156, 110, 0.95)',
           // 'rgba(184, 156, 110, 0.95)',
         ],
         borderWidth: 1,
         hoverBackgroundColor: [
           // "#FF6384",
-          // "#36A2EB",
         ]
       }]
     },
     options: {
       elements: {
         center: {
-          text: cardsStudiedCounter ===0? 'No data' :
+          text: !dataBase.openedToday? 'No cards studied today'
+          //<div style='font-size:12px'>No data</div> 
+          :
           
           `Data from ${todayDate.toLocaleString('de-DE', {
             day: 'numeric',
@@ -121,8 +120,6 @@ export default function stats() {
   var ctx = canvas.getContext("2d");
   var myChart = new Chart(ctx, config);
 
-
-
   let theWordCalendarContainer = createElement("div", "", {}, "flexColumnAlignCenter");
 
   let theWordCalendar = createElement("div", "Calendar", { fontSize: '18px' }, 'theWordCalendar');
@@ -155,6 +152,8 @@ export default function stats() {
   //   }
   //   window.onclick = ''
   // }
+
+  //console.log(cardsStudiedCounter, 'cardsstud')
 
   let cardThreeDots = threeDots()
 
@@ -301,6 +300,7 @@ export default function stats() {
   let arr = [];
   let previousWidthVar = 0
 
+
   for (let i = 6; i <= 30; i += 6) {
 
 
@@ -364,16 +364,33 @@ export default function stats() {
   };
 
 
-  var cardsStudiedCounter = 0;
 
   renderDays(2021);
+  function leapyear(year)
+{
+return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+}
+
 
   function renderDays(year) {
     yearBoxContainer.innerHTML = "";
     let thisYear = new Date(`January 1, ${+year}`);
+
+    let daysOfYear = 365
+
+    if ( leapyear(year)) {
+      daysOfYear = 366
+    } 
+   
+
+  
+
+
+   
     let counter = 1
     while (
-      counter<365
+      counter< daysOfYear
+
     ) {
       counter++
       let day = document.createElement("div");
@@ -383,31 +400,27 @@ export default function stats() {
     
       
       let arr = []
-   
-      for (let deck in dataBase.DeckNames) {
-
-       
+    let cardsStudiedCounter = 0;
+    for (let deck in dataBase.DeckNames) {
         let deckItem = dataBase.DeckNames[deck]
+       if(deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())){
+            todayCardsStudiedCounter++
+      
+          }
         if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == date)) {
-     
-          let color = ['green', 'blue']
           
 
           cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item=>new Date(item).toDateString() == date)).length
-          console.log(deckItem.data.filter((item) => new Date(item?.openHistory?.[0]).toDateString() == date).length, 'filt')
+         // console.log(deckItem.data.filter((item) => new Date(item?.openHistory?.[0]).toDateString() == date).length, 'filt')
 
 
           arr.push(deckItem.name)
           config.data.labels.push(deckItem.name)
           config.data.datasets[0].data.push(deckItem.data.filter((item) => item?.openHistory?.some(item=>new Date(item).toDateString() == date)).length)
-
-
-          config.data.datasets[0].backgroundColor.push(color[(arr.length-1)%color.length])
-          config.data.datasets[0].borderColor.push(color[(arr.length-1)%color.length])
-          config.data.datasets[0].hoverBackgroundColor.push(color[(arr.length-1)%color.length])
-
+          config.data.datasets[0].backgroundColor.push(deckItem.color)
+          config.data.datasets[0].borderColor.push(deckItem.color)
+          config.data.datasets[0].hoverBackgroundColor.push(deckItem.color)
          
-
           day.style.backgroundColor = "red";
           day.style.cursor = "pointer";
           day.title = 'Click to see the study stats of this date'
@@ -423,9 +436,17 @@ export default function stats() {
             //     (acc, cur) => acc + cur, 0
             //   ) / 60
             // );
-            let time = Math.floor(dataBase.studyTime / 60)
-            //console.log(cardsStudiedCounter)
 
+            window.addEventListener('click', function(e){
+              if(day.contains(e.target) ) {
+                console.log('clicked inside')
+              } else {
+                console.log('clciked outside')
+              }
+            })  
+
+
+            let time = Math.floor(dataBase.studyTime / 60)
 
             dayInner.innerText = `${date} Time: ${time
               .toString()
@@ -433,9 +454,9 @@ export default function stats() {
      
             day.append(dayInner);
           };
+
         }
       }
-
 
 
       thisYear.setDate(thisYear.getDate() + 1);
@@ -484,8 +505,9 @@ export default function stats() {
       )
     }
     )
-
   }
+
+
 
 
 

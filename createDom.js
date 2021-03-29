@@ -51,7 +51,8 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAroundAlignCenter addEditDeleteContainer', '', newDeckContainer
     )
 
-    let hi = (dB) => dB[item].toStudyGoal - dB[item].cardsToday
+   // let hi = (dB) => dB[item].toStudyGoal <= dB[item].decksize
+
     let toStud = 'To Study:'
 
     let input = createElement('input', '', {
@@ -59,18 +60,23 @@ export default function createDom(obj) {
       border: 'none'
     })
     input.type = 'number';
-    input.value = hi(obj);
+    input.value = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
+    input.min = '1'
+    input.max = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
 
 
-    let [toStudy, toReview] = [`${toStud.padEnd(9, '⠀')}`, `To Review: ${dataBase.queue.filter((obj) => obj.item === item).length}`].map(el => {
+    let [toStudy, paused] = [`${toStud.padEnd(9, '⠀')}`, 
+    `Paused:⠀⠀⠀${dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`].map(el => {
       return createElement('div', el, {}, 'decksizeStudyRev')
     });
 
+    //paused.padEnd(29, )
+
 
     toStudy.append(input)
-    input.oninput = function () {
-      dataBase.DeckNames[item].toStudyGoal = this.value;
-    }
+    // input.oninput = function () {
+    //   dataBase.DeckNames[item].toStudyGoal = this.value;
+    // }
 
 
 
@@ -274,7 +280,7 @@ export default function createDom(obj) {
     }, 'openDeck');
 
 
-    let pauseInfoField = createElement('div', 'Deck is paused. \n Press:', {
+    let pauseInfoField = createElement('div', 'Press:', {
       backgroundColor: dataBase.DeckNames[item].color,
       textAlign: 'center'
     }, 'pauseInfoField')
@@ -296,7 +302,7 @@ export default function createDom(obj) {
   
 
 
-    let playText = createElement('div', 'to unpause the Deck', { textAlign: 'center' })
+    let playText = createElement('div', "to unpause. Paused Decks don't count to the study goal.", { textAlign: 'center' })
 
     newDeckContainer.append(pauseInfoField)
     newDeckContainer.append(deckIsEmptyField)
@@ -324,7 +330,10 @@ export default function createDom(obj) {
           console.log('edit is open')
           document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
         } else {
+        document.querySelector('.settingsIconContainer').classList.add('top')
         questAnswerTrainOverv(item);
+        dataBase.openedToday = true
+
         }
       }
     };
@@ -383,7 +392,7 @@ export default function createDom(obj) {
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer, openDeck)
 
     toStudyContainer.append(toStudy);
-    toReviewContainer.append(toReview);
+    toReviewContainer.append(paused);
     decksizeContainer.append(decksize);
 
     addToDeckIcon.append(plusIcon);

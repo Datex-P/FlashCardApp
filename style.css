@@ -22,9 +22,6 @@ textarea {
   background-color: #545863;
 }
 
-/* .plusIcon:hover {
-  background-color: #545863;
-} */
 
 
 button,
@@ -344,6 +341,10 @@ pauseIconContainer:hover {
   right: 197px 
 }
 
+.top {
+  top: 100px
+}
+
 .settingsIconContainer {
   transform: rotate(270deg);
   font-weight: bold;
@@ -644,15 +645,6 @@ pauseIconContainer:hover {
 }
 
 
-/*whiteLines that are shown in deck*/
-/*
-.whiteLines {
-  width: 99%;
-  margin-top: 15px;
-  border: 0.5px #eee4e1 solid;
-}
-*/
-
 .theWordQuestionAndAnswer {
   margin-left: 4px;
   font-weight: bold;
@@ -738,10 +730,6 @@ pauseIconContainer:hover {
 }
 
 
-/* .orangeCircle:hover {
-  background-color: #545863;
-} */
-
 .day {
   width: 10px;
   height: 10px;
@@ -753,7 +741,7 @@ pauseIconContainer:hover {
 .day > div {
   position: absolute;
   top: 13px;
-  left: -74px;
+  left: -102px;
   display: flex;
   width: 120px;
   background-color: white;
@@ -1169,7 +1157,7 @@ input[type=number]  {
   background-color: white;
   width: 100%; 
   padding: 4px; 
-  padding-left: 3px; 
+  padding-left: 5px; 
   border-radius: 5px;
 }
 
@@ -1293,15 +1281,7 @@ height: 57px;
   font-size: 13px; 
   margin: 9px 0 4px; 
 }
-/* 
-#daysContainer {
-  width: 181px; 
-  height: 40px; 
-  background-color: white; 
-  position: absolute; 
-  top: 10px; 
-  right: 7px'
-} */
+
 .onoffswitch {
   position: relative; 
   width: 81px;

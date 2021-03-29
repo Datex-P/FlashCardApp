@@ -2,6 +2,7 @@ export let dataBase = {
 DeckNames: { /*deckname:[]*/   },
   queue: [],
   userStylePreferences: [],
+  openedToday: false,
   showDeleteFrame: true,
   showDeleteFrameQuestion: true,
   showDeleteFrameStats: true,
@@ -33,7 +34,7 @@ for (let i = 1; i < 7; i++) {
     })
   };
   dataBase.DeckNames[`Literature${i}`] = {data: arr, toStudyGoal:20, name: `Literature${i}`,
-    cardsToday:0, pause:false, color: colors[i%colors.length], pauseSwitch: false}
+    cardsToday:0, pause:false, color: colors[i%colors.length], pauseSwitch: false, skippedPausedCards: 0}
   //dataBase.DeckNames[`Literature${i}`].cardsToday = 0;
   //dataBase.DeckNames[`Literature${i}`].toStudyGoal = 20;
 };
