@@ -24,7 +24,7 @@ let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
 
 
-for (let i = 1; i < 7; i++) {
+for (let i = 3; i < 7; i++) {
   let arr = [];
   for (let i = 1; i < 10; i++) {
     arr.push({

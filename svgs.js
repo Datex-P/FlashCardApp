@@ -267,6 +267,65 @@ export let hexagon = `
 </g>
 </svg>
 `
+export let greenCheckmark = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="755"
+   height="607"
+   viewBox="0 0 755.0000000000006 606.999999999999"
+   enable-background="new 0 0 578 462"
+   xml:space="preserve"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Checkmark.svg"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:date>2016</dc:date><dc:creator><cc:Agent><dc:title>Lazur</dc:title></cc:Agent></dc:creator><dc:description>Original raster images of this series were uploaded by NicholasJudy456 to openclipart embedded in svg-s (416 in total).  This is one of the refixes upon request by the original author.</dc:description><dc:contributor><cc:Agent><dc:title /></cc:Agent></dc:contributor><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     id="namedview4"
+     showgrid="false"
+     borderlayer="true"
+     inkscape:showpageshadow="false"
+     inkscape:zoom="0.914332784184514"
+     inkscape:cx="377.5000000000001"
+     inkscape:cy="303.5"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     showborder="true" /><path
+     inkscape:connector-curvature="0"
+     id="path3368"
+     d="m 225.3801993123471,585.25 -26.7694797455667,-35.25 -43.8896525235758,-50.3230445277813 -50.2210670432046,-40.0882581530303 -56.74999999999993,-35.9962453546368 -24.75000000000004,-12.9970072272631 15.50000000000006,-74.5954447372885 15.5,-77.1647346197068 1.50999789340672,-2.8352653802932 20.24999999999995,9.4236293220665 18.74000210659325,9.4236293220665 29.11074879661699,29.3263706779335 29.1107487966171,29.3263706779335 13.214567068002,21.25 13.9345384565016,21.25 97.4572144055204,-102 121.1721824767419,-114.4814784644757 89,-69.95668711536742 114.973409270599,-79.36892397440396 57.0706610685825,71.30708955424688 64.6108902742039,81.83779648198262 8.8135726182045,12 -62.25,36.092656967498 -62.2185332315898,34.9304534494805 -65.5,45.9578639313265 -164.2334506486918,127.8561582488706 -44.7334506486919,40.3250709208418 -37.601038908247,42.5 -52.7665493513082,63.2255371869551 -16.1749636542898,20.75 z"
+     style="fill:#21b04b"
+     sodipodi:nodetypes="ccccccccccccccccccccccccccccccc" /></svg>`
+
+
 export let reset = `<svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
 .st0{fill:#333333;}
 </style><g id="Layer_1"/><g id="Layer_2"><g><path class="st0" d="M274.91,47.78c-97.6,0-179.71,67.5-202.15,158.26L58.79,181.4c-4.36-7.69-14.12-10.39-21.81-6.03    c-7.69,4.36-10.39,14.12-6.03,21.81l37.66,66.44c0,0,0,0.01,0.01,0.01l0.15,0.26c0.19,0.34,0.39,0.66,0.6,0.98    c0.01,0.01,0.02,0.03,0.03,0.04c0.04,0.07,0.09,0.13,0.14,0.19c0.23,0.33,0.46,0.64,0.71,0.95c0.04,0.05,0.07,0.1,0.11,0.15    c0,0,0,0.01,0.01,0.01c0.02,0.02,0.04,0.04,0.06,0.07c0.36,0.44,0.75,0.85,1.15,1.24c0.04,0.04,0.07,0.07,0.11,0.1    c0.25,0.23,0.5,0.46,0.76,0.67c0.05,0.04,0.1,0.08,0.15,0.12c0.35,0.28,0.71,0.55,1.08,0.81c0.03,0.02,0.06,0.04,0.09,0.06    c0.17,0.11,0.35,0.22,0.52,0.33c0.09,0.06,0.18,0.11,0.28,0.17c0.12,0.07,0.25,0.14,0.38,0.21c0.11,0.06,0.22,0.12,0.33,0.17    c0.2,0.1,0.39,0.2,0.59,0.3c0.11,0.05,0.22,0.1,0.33,0.15c0,0,0.01,0,0.01,0.01c0.12,0.05,0.24,0.11,0.36,0.16    c0.33,0.14,0.66,0.26,1,0.37c0.04,0.02,0.09,0.03,0.13,0.04c0.02,0.01,0.03,0.01,0.05,0.02c0.15,0.05,0.31,0.09,0.47,0.14    c0.29,0.09,0.59,0.16,0.89,0.23c0.08,0.02,0.15,0.04,0.23,0.06c0.07,0.02,0.14,0.03,0.22,0.05c0.44,0.09,0.89,0.15,1.33,0.2    c0.04,0,0.07,0.01,0.11,0.02c0.08,0.01,0.15,0.01,0.23,0.02c0.49,0.05,0.98,0.08,1.48,0.08c0.42,0,0.84-0.02,1.26-0.06    c0.07-0.01,0.14-0.01,0.21-0.02c0.01,0,0.03,0,0.04,0c0.06-0.01,0.12-0.01,0.19-0.02c0.28-0.03,0.55-0.07,0.83-0.11   

@@ -13,7 +13,7 @@ import {
 } from './exportFunctions.js'
 import createDom from "./createDom.js";
 import {
-  edit, pause
+  edit, pause, greenCheckmark
 } from "./svgs.js";
 
 
@@ -107,7 +107,7 @@ export default function questAnswerTrainOverv(item) {
 
 
 let arrOfPausedDecks;
-
+console.log(dataBase.DeckNames[item], 'items')
 
   onOffSwitch.onclick = (e)=>{clickHandler(e)}
   
@@ -134,7 +134,6 @@ let arrOfPausedDecks;
         showAnswerButton.style.display = 'block'
         shuffleLogic() //just does not work sometimes
 
-        console.log('yeah it works you know')
         //onOffSwitch.setAttribute('title', 'click to show all paused cards')
         buttonContainer.classList.remove('justify') //that keep paused button gets centered
 
@@ -149,13 +148,13 @@ let arrOfPausedDecks;
         }
         return acc
       },[])
-        console.log(arrOfPausedDecks, 'paus')
+      
         inputCheckbox.checked = true
-        console.log('on')
-        dataBase.DeckNames[item].pauseSwitch = true
+
+      //= true
         shuffleLogic()
         onOffSwitch.removeAttribute('title')
-        console.log('also works somehow')
+
 
 
 
@@ -207,7 +206,7 @@ let arrOfPausedDecks;
 
   let theNameofTheDeck = createElement(
     "div",
-    `Deck: ${item}`,
+    `Deck: ${dataBase.DeckNames[item].name}`,
     { fontSize: '17px' }
   );
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
@@ -241,7 +240,7 @@ let arrOfPausedDecks;
   }
   redCross.onclick = close
 
-
+console.log(dataBase)
 
 
   // startTimer(item, index);
@@ -252,7 +251,6 @@ let arrOfPausedDecks;
 
 
   theNameOftheDeckAndRedCrossContainer.append(redCross);
-  //header
   let [questionContainer, questionFieldTextArea] = generateTextarea(
     'Question', {
     marginBottom: '20px',
@@ -311,6 +309,8 @@ let arrOfPausedDecks;
   );
 
   var i =0;
+
+
 
 
 function pausedAndUnpaused() {
@@ -432,7 +432,7 @@ function pausedAndUnpaused() {
         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
         mainWindow.removeChild(showAnswerButtonContainer);
         anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
-        editLogo.style.display = 'block'                     //edit logo appears that shows that the app is in edit-mode
+        //editLogo.style.display = 'block'                     //edit logo appears that shows that the app is in edit-mode
         editText.style.display = 'block'
 
         questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
@@ -467,7 +467,7 @@ function pausedAndUnpaused() {
         }
       }
 
-    }, { top: '-15px', left: '13px' }, 'card'
+    }, { top: '-15px', left: '13px' }, 'card',{marginTop:'0px'}
 
 
   )
@@ -486,7 +486,7 @@ function pausedAndUnpaused() {
   showAnswerButton.onclick = function () {
 
     if (dataBase.DeckNames[item].pauseSwitch === true) { //checks whether pause switch was clicked next to three dots / default is false
-      console.log('sers')
+    
       // answerContainer.style.display = 'none';
       // answerFieldTextArea.style.display = 'none';
     } else {
@@ -535,23 +535,29 @@ function pausedAndUnpaused() {
   containerForRight.append(rightTimeValue);
 
 
-  let editLogo = createElement(
-    'div',
-    edit, {   //pause switch here   `${pauseMode ===false? edit: pause}`
-    width: 'fit-content',
-    position: 'absolute',
-    top: '55px',
-    left: '48px',
-    display: 'none'
+  // let editLogo = createElement(
+  //   'div',
+  //   edit, {   //pause switch here   `${pauseMode ===false? edit: pause}`
+  //   width: 'fit-content',
+  //   position: 'absolute',
+  //   top: '55px',
+  //   left: '48px',
+  //   display: 'none'
 
-  },
-    ''
-  )
+  // },
+  //   ''
+  // )
 
+ // let pic =  dataBase.DeckNames[item].pauseSwitch === true? pause : edit
 
   let pauseLogo = createElement(
     'div',
-    pause, {
+
+   pause
+
+   // pause
+    
+    , {
     width: 'fit-content',
     position: 'absolute',
     top: '55px',
@@ -561,6 +567,8 @@ function pausedAndUnpaused() {
   },
     ''
   )
+
+
 
   let pauseText = createElement(
     'div',
@@ -575,9 +583,6 @@ function pausedAndUnpaused() {
     ''
   )
 
-
-
-
   let editText = createElement(
     'div',
     'mode', {
@@ -590,10 +595,6 @@ function pausedAndUnpaused() {
   },
     ''
   )
-
-
-
-
 
 
   //let randomNum = Math.floor(Math.random() * 10 + 4); //good
@@ -652,8 +653,10 @@ function pausedAndUnpaused() {
       dataBaseQueue(randomNum, item)
       display()
       shuffleLogic()
-      console.log('sh')
       createDom(dataBase.DeckNames)
+      console.log(dataBase.DeckNames)
+    
+      console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
     })
 
 
@@ -695,7 +698,7 @@ function pausedAndUnpaused() {
     saveAndDiscardContainer.style.display = 'none';
     anchorThreeDots.style.display = 'block'
 
-    editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
+    //editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
     editText.style.display = 'none'             //'mode' dissappears 
     editMode = false                          //whether edit in three dots was clicked or not
 
@@ -716,7 +719,7 @@ function pausedAndUnpaused() {
     questionFieldTextArea.value = questionField  //access to previous saved value
     answerFieldTextArea.value = answerField //access to previous saved value
 
-    editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
+   // editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
     editText.style.display = 'none'
     editMode = false
     questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
@@ -745,7 +748,7 @@ function pausedAndUnpaused() {
 
   // console.log(dataBase.DeckNames[item].pauseSwitch , 'pauseswit')
 
-  mainWindow.append(editLogo) //Logo that appears in edit mode
+ // mainWindow.append(editLogo) //Logo that appears in edit mode
   mainWindow.append(editText) //text next to edit logo that appears in edit mode
   mainWindow.append(pauseLogo)
   mainWindow.append(pauseText)

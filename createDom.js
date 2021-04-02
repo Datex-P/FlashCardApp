@@ -3,33 +3,28 @@ import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
 import { createElement, deleteCardQuestionBox, threeDots, threeDotsOpen } from './exportFunctions.js'
 import {
-  edit, save, play
+  edit, save, play, greenCheckmark
 } from "./svgs.js";
 
 
 export default function createDom(obj) {
- // console.log('create Dom was rendered')
+  // console.log('create Dom was rendered')
   listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
-  
+
   let edited = false;
 
   arr.forEach((item, index) => {
-   // console.log(dataBase.DeckNames[item].color,item)
+   
     let newDeckContainer = createElement('div', '', {
       backgroundColor: dataBase.DeckNames[item].color,
       transform: `rotate(${index * -2}deg)`
     }, 'newDeckContainer');
 
-
-
     dataBase.DeckNames[item].deckPauseActive = false;
 
-
-
-
-    let nameOfNewDeck = createElement("div", item, { //most upper deck after rendering name of deck 
+    let nameOfNewDeck = createElement("div", dataBase.DeckNames[item].name, { //most upper deck after rendering name of deck 
 
     }, 'nameOfNewDeck')
 
@@ -41,8 +36,6 @@ export default function createDom(obj) {
         plusIcon.classList.remove('blinkingIcon');
         alert('Click on the blinking add icon');
         plusIcon.classList.add('blinkingIcon');
-
-
       }
     }
 
@@ -51,12 +44,10 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAroundAlignCenter addEditDeleteContainer', '', newDeckContainer
     )
 
-   // let hi = (dB) => dB[item].toStudyGoal <= dB[item].decksize
-
-    let toStud = 'To Study:'
+    let toStud = 'Study Goal:'
 
     let input = createElement('input', '', {
-      width: '49px',
+      width: '35px',
       border: 'none'
     })
     input.type = 'number';
@@ -65,21 +56,32 @@ export default function createDom(obj) {
     input.max = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
 
 
-    let [toStudy, paused] = [`${toStud.padEnd(9, '⠀')}`, 
-    `Paused:⠀⠀⠀${dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`].map(el => {
+    let [toStudy, progress] = [`${toStud.padEnd(5, '⠀')}`,
+    `Progress:        ${( ((dataBase.DeckNames[item].data.filter(x=>x.openHistory).length || 0) * 100) / input.value).toFixed(0)   } %`].map(el => {
+      
       return createElement('div', el, {}, 'decksizeStudyRev')
     });
 
-    //paused.padEnd(29, )
+
+  //x=> new Date(x?.openHistory?.toDateString() == new Date().toDateString()) )
+
+    // if (dataBase.DeckNames[item].data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())){
+
+    //    todayCardsStudiedCounter++
+    //  }
+
+    //  console.log(todayCardsStudiedCounter)
+
+
+
+
+
+
+
+
 
 
     toStudy.append(input)
-    // input.oninput = function () {
-    //   dataBase.DeckNames[item].toStudyGoal = this.value;
-    // }
-
-
-
 
 
     let [toStudyContainer, toReviewContainer, decksizeContainer] = ['', '', ''].map(el => {
@@ -89,28 +91,14 @@ export default function createDom(obj) {
 
     let Decksize = 'Decksize:';
 
-    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')} ${dataBase.DeckNames[item].data.length}`, {}, 'decksizeStudyRev');
+    let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')}${dataBase.DeckNames[item].data.length}`, {}, 'decksizeStudyRev');
+
+ 
 
 
 
+  
 
-
-    // trashIconContainer.onclick = () => {
-
-
-    //   deleteCardQuestionBox(()=>{delete dataBase.DeckNames[item]},()=>{createDom(dataBase.DeckNames)})
-
-
-
-    //   // delete dataBase.DeckNames[item];
-    //   // createDom(dataBase.DeckNames)
-    //   // if (!Object.keys(dataBase.DeckNames).length) {
-    //   //   let arrowDown = document.querySelector(".arrowDown");
-    //   //   arrowDown.style.display = "block";
-    //   //   document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
-
-
-    // };
 
     let changeNameofDeckInput = createElement('input', '', { //input field that gets active when deckname is changed
       width: '32%',
@@ -134,135 +122,126 @@ export default function createDom(obj) {
       }, 3000)
     }
 
-
-
-
     //shows if edit button inside three dots on the mainscreen is pressed
-  
+
     let mainThreeDots = threeDots()
     let threeDotsContainer = null
-    if (dataBase.DeckNames[item].data.length ){ 
-    
+    if (dataBase.DeckNames[item].data.length) {
+
       threeDotsContainer = mainThreeDots({
 
         // if (dataBase.DeckNames[item].data.length !==0 ){ not sure how to check
-   
-           edit: (event, editIconContainer, editIcon, saveIcon,
-             outsideClickClosehandler, littleModalWindow) => {
-             event.stopPropagation()
-   
-             threeDotsContainer.onclick = check
-   
-             function check() { //needed in case the changeNameofDeckINput is active and  three dots is clicked
-               if (edited) {                            //default state is false
-                
-                 newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-                 editIconContainer.replaceChild(editIcon, saveIcon)          //why does this line not fire up
-                 edited = false
-               }
-             }
-   
-             if (!edited) { //edited was pressed in three dots /default false
-   
-               window.addEventListener('click', () => clickOutsideHandle(saveIcon))
-   
-          
-   
-               editIconContainer.replaceChild(saveIcon, editIcon) //saveIcon replaces  editIcon //replaceChild(newChild, oldchild)
-               newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
-               changeNameofDeckInput.value = nameOfNewDeck.innerText;
-               edited = true;
-               window.onclick = ''
-               littleModalWindow.style.display = 'block'
-               console.log('click like a edit')
-   
-   
-             } else {
-   
-               editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
-               newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-   
-               edited = false;
-               nameOfNewDeck.innerText = changeNameofDeckInput.value;
-               setTimeout(function () {
-                 window.onclick = outsideClickClosehandler
-               }, 10);
-   
-             }
-           },
-        
-           pause: (container, playIcon, pauseIcon, edited
-             ) => {
-             
-          
-               window.onclick = ''
-               edited = true;
-               threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
-               nameOfNewDeck.style.background = dataBase.DeckNames[item].color
-   
-               newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
+
+        edit: (event, editIconContainer, editIcon, saveIcon,
+          outsideClickClosehandler, littleModalWindow) => {
+          event.stopPropagation()
+
+          threeDotsContainer.onclick = check
+
+          function check() { //needed in case the changeNameofDeckINput is active and  three dots is clicked
+            if (edited) {                            //default state is false
+
+              newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+              editIconContainer.replaceChild(editIcon, saveIcon)          //why does this line not fire up
+              edited = false
+            }
+          }
+
+          if (!edited) { //edited was pressed in three dots /default false
+
+            window.addEventListener('click', () => clickOutsideHandle(saveIcon))
+            editIconContainer.replaceChild(saveIcon, editIcon) //saveIcon replaces  editIcon //replaceChild(newChild, oldchild)
+            newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
+            changeNameofDeckInput.value = nameOfNewDeck.innerText;
+            edited = true;
+            window.onclick = ''
+            littleModalWindow.style.display = 'block'
+
+          } else {
+
+            editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
+            newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+            console.log('ijerggijnegrtgfpiodnigjunin')
+            dataBase.DeckNames[item].name = changeNameofDeckInput.value;
+            edited = false;
+            nameOfNewDeck.innerText = changeNameofDeckInput.value;
+            setTimeout(function () {
+              window.onclick = outsideClickClosehandler
+            }, 10);
+
+          }
+        },
+
+        pause: (container, playIcon, pauseIcon, edited
+        ) => {
+
+          window.onclick = ''
+          edited = true;
+          threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
+          nameOfNewDeck.style.background = dataBase.DeckNames[item].color
+
+          newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
                ${dataBase.DeckNames[item].color} repeat`
-               dataBase.DeckNames[item].deckPauseActive = true;
-   
-               nameOfNewDeck.classList.remove('pointer')
-               addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
-               
-   
-             if (dataBase.DeckNames[item].pause==false) {
-            
-               addEditDeleteContainer.style.display = 'none'
-               pauseInfoField.style.display = 'block'
-               addToDeckIcon.style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
-               plusIcon.style.cursor = 'default'
-               
-             }else{
-               dataBase.DeckNames[item].pause=true
-             }
-             return edited
-             
-           }
-      
-           ,
-           
-           delete: () => {
-             if(dataBase.showDeleteFrame){
-             deleteCardQuestionBox(() => {
-   
-   
-               delete dataBase.DeckNames[item]
-               
-             }, createDom, 'Delete deck', 'delete this deck')
-           }else{
-             delete dataBase.DeckNames[item]
-             console.log('I did')
-             createDom(dataBase.DeckNames)
-             window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
-           }
-           }
-         }, { top: '3px', left: '13px' }, 'deck'
-       )
-    }else{
+          dataBase.DeckNames[item].deckPauseActive = true;
+
+          nameOfNewDeck.classList.remove('pointer')
+          addToDeckIcon.removeEventListener('click', addToDeckHandler) //to remove event listener
+
+
+          if (dataBase.DeckNames[item].pause == false) {
+
+            addEditDeleteContainer.style.display = 'none'
+            pauseInfoField.style.display = 'block'
+            addToDeckIcon.style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
+            plusIcon.style.cursor = 'default'
+
+          } else {
+            dataBase.DeckNames[item].pause = true
+          }
+          return edited
+
+        }
+
+        ,
+
+        delete: () => {
+          if (dataBase.showDeleteFrame) {
+            deleteCardQuestionBox(() => {
+
+              delete dataBase.DeckNames[item]
+        
+            }, createDom, 'Delete deck', 'delete this deck')
+          } else {
+            createDom(dataBase.DeckNames)
+            delete dataBase.DeckNames[item]
+            window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
+          }
+
+        }
+      }, { top: '3px', left: '13px' }, 'deck'
+      )
+    } else {
       threeDotsContainer = mainThreeDots({
 
-           delete: () => {
-             if(dataBase.showDeleteFrame){
-             deleteCardQuestionBox(() => {
-   
-   
-               delete dataBase.DeckNames[item]
-               
-             }, createDom, 'Delete deck', 'delete this deck')
-           }else{
-             delete dataBase.DeckNames[item]
-             console.log('I did')
-             createDom(dataBase.DeckNames)
-             window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
-           }
-           }
-         }, { top: '3px', left: '13px' }, 'deck'
-       )
+        delete: () => {
+          if (dataBase.showDeleteFrame) {
+            deleteCardQuestionBox(() => {
+
+
+              delete dataBase.DeckNames[item]
+
+            }, createDom, 'Delete deck', 'delete this deck')
+          } else {
+            delete dataBase.DeckNames[item]
+            console.log('I did')
+            createDom(dataBase.DeckNames)
+            window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
+          }
+        }
+      }, { top: '3px', left: '13px' }, 'deck'
+      )
     }
-    
+
 
 
     threeDotsContainer.style.position = 'absolute'
@@ -294,13 +273,12 @@ export default function createDom(obj) {
 
     deckIsEmptyField.style.display = 'none'
 
+    
 
+   
 
 
     let playIconContainer = createElement('button', play, {}, 'playIconContainer')
-
-  
-
 
     let playText = createElement('div', "to unpause. Paused Decks don't count to the study goal.", { textAlign: 'center' })
 
@@ -316,37 +294,34 @@ export default function createDom(obj) {
       newDeckContainer.style.background = dataBase.DeckNames[item].color
       pauseInfoField.style.display = 'none';
       globalThreeDotsOpen = false;
-     // document.querySelector('.addEditDeleteContainer').style.display = 'flex' //to study, decksize etc shown again
-     addEditDeleteContainer.style.display = 'flex' 
-     addToDeckIcon.addEventListener('click', addToDeckHandler) 
+      addEditDeleteContainer.style.display = 'flex'
+      addToDeckIcon.addEventListener('click', addToDeckHandler)
       dataBase.DeckNames[item].deckPauseActive = false;
     }
 
     function openDeckHandler() {
-        console.log('ok')
-      //moved functionality to open deck
-      if (dataBase.DeckNames[item].deckPauseActive !== true && dataBase.DeckNames[item].data.length !==0 ) {
+
+      if (dataBase.DeckNames[item].deckPauseActive !== true && dataBase.DeckNames[item].data.length !== 0) {
         if (edited) { //checks whether the input field is open and in that case it does not open the trainings overview
-          console.log('edit is open')
           document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
         } else {
-        document.querySelector('.settingsIconContainer').classList.add('top')
-        questAnswerTrainOverv(item);
-        dataBase.openedToday = true
+          document.querySelector('.settingsIconContainer').classList.add('top')
+          questAnswerTrainOverv(item);
+          dataBase.openedToday = true
 
         }
       }
     };
     openDeck.addEventListener('click', openDeckHandler)
 
-    if (dataBase.DeckNames[item].data.length ===0 ) {
-      
-      addEditDeleteContainer.style.display = 'none' 
+    if (dataBase.DeckNames[item].data.length === 0) {
+
+      addEditDeleteContainer.style.display = 'none'
       openDeck.style.display = 'none'
       deckIsEmptyField.style.display = 'flex'
-    
+
     } else {
-      addEditDeleteContainer.style.display = 'flex' 
+      addEditDeleteContainer.style.display = 'flex'
       openDeck.style.display = 'block'
       deckIsEmptyField.style.display = 'none'
     }
@@ -363,27 +338,46 @@ export default function createDom(obj) {
       addToDeckIcon.style.display = 'flex';
       newDeckContainer.style.zIndex = 2
       newDeckContainer.style.transform = 'rotate(0deg)'
-
-     } 
-
-    
-   
-
-
+    }
 
 
     addToDeckIcon.title = 'Add Questions to this deck';
 
     addToDeckIcon.addEventListener('click', addToDeckHandler)
 
-    
+
     function addToDeckHandler() {
       addQuestionsToDeck(item)
-      
-    }
 
-    // console.log(dataBase.DeckNames.length, 'length of datab')
+    }
     
+    let today = new Date().toDateString()
+
+    let cardsStudiedToday = dataBase.DeckNames[item].data.reduce((acc,card)=>{
+      let cardsForToday = card.openHistory?.filter(time=>time?.toDateString() == today)
+      acc+= cardsForToday?.length 
+      return acc
+    },0)
+
+    if ( (((cardsStudiedToday|| 0) * 100) / input.value).toFixed(0) > 2) {
+
+
+  //x=> new Date(x?.openHistory?.toDateString() == new Date().toDateString()) )
+
+      toStudyContainer.style.display = 'none'
+      toReviewContainer.style.display = 'none'
+      decksizeContainer.style.display = 'none'
+     // openDeck.style.display = 'none'
+     // pauseInfoField.style.display = 'block'
+     
+  } else {
+    toStudyContainer.style.display = 'flex'
+    toReviewContainer.style.display = 'flex'
+    decksizeContainer.style.display = 'flex'
+   // openDeck.style.display = 'block'
+
+  }
+
 
 
 
@@ -392,7 +386,7 @@ export default function createDom(obj) {
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer, openDeck)
 
     toStudyContainer.append(toStudy);
-    toReviewContainer.append(paused);
+    toReviewContainer.append(progress);
     decksizeContainer.append(decksize);
 
     addToDeckIcon.append(plusIcon);
@@ -412,51 +406,51 @@ export default function createDom(obj) {
   // });
 
 
-  if (Object.keys(dataBase.DeckNames).length ===0)  {
 
-  document.querySelector("#scrollable").style.display = 'none'
+
+  if (Object.keys(dataBase.DeckNames).length === 0) { //if no deck is present, scrollbar dissapear and info to create a deck appears
+
+    document.querySelector("#scrollable").style.display = 'none' 
+    document.querySelector(".arrowDown").style.display = "block"; 
+    document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
+
   } else {
     document.querySelector("#scrollable").style.display = 'block'
-    //make arrow appear when decklength is zero
   }
-
-
-
-
 
 
 
   document.querySelector("#scrollable").onscroll = function (event) {
-    
+
     if (edited) {
       document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
     }
 
-      if (!edited) {
-  
-      document.querySelector('.littleModalWindow').style.display='none'
-    let all = listOfDecks.querySelectorAll('.newDeckContainer')
-    let step = (1000 - 140) / (all.length - 1)
-    let index = Math.floor(event.target.scrollTop / step)
-    // index = (index > arr.length-1) ? arr.length-1 : index
+    if (!edited) {
+
+      document.querySelector('.littleModalWindow').style.display = 'none'
+      let all = listOfDecks.querySelectorAll('.newDeckContainer')
+      let step = (1000 - 140) / (all.length - 1)
+      let index = Math.floor(event.target.scrollTop / step)
+      // index = (index > arr.length-1) ? arr.length-1 : index
 
 
-    Array.from(all).reverse().forEach((item, index) => {
-      item.style.zIndex = 0
-      item.querySelector('.settingsIconContainer').style.display = 'none'
-      item.querySelector('.nameOfNewDeck').style.display = 'none'
-      
-      item.querySelector('.orangeCircle').style.display = 'none'
-      item.style.transform = `rotate(${(index * -2) || -2}deg)`;
-    })
+      Array.from(all).reverse().forEach((item, index) => {
+        item.style.zIndex = 0
+        item.querySelector('.settingsIconContainer').style.display = 'none'
+        item.querySelector('.nameOfNewDeck').style.display = 'none'
 
-    all[index].style.zIndex = 2;
-    all[index].style.transform = 'rotate(0deg)';
-    all[index].querySelector('.settingsIconContainer').style.display = 'block'
-    all[index].querySelector('.nameOfNewDeck').style.display = 'block'
+        item.querySelector('.orangeCircle').style.display = 'none'
+        item.style.transform = `rotate(${(index * -2) || -2}deg)`;
+      })
 
-    all[index].querySelector('.orangeCircle').style.display = 'flex'
-  }
-//  }
+      all[index].style.zIndex = 2;
+      all[index].style.transform = 'rotate(0deg)';
+      all[index].querySelector('.settingsIconContainer').style.display = 'block'
+      all[index].querySelector('.nameOfNewDeck').style.display = 'block'
+
+      all[index].querySelector('.orangeCircle').style.display = 'flex'
+    }
+
   }
 }

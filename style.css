@@ -113,8 +113,9 @@ textarea {
 
 #createYourFirstDeckPrompt {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 270px;
   font-weight: bold;
+  display: none;
 }
 
 .flexColumn {
@@ -350,7 +351,7 @@ pauseIconContainer:hover {
   font-weight: bold;
   position: absolute;
   cursor: pointer;
-  top: 0px;
+  top: 2px;
   right: 10px;
   font-size: 25px;
 }
@@ -1165,6 +1166,7 @@ input[type=number]  {
   border: 1px black solid; 
   display: flex; 
   width: 84%; 
+  height: 26px;
   border-radius: 5px;
 }
 

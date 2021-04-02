@@ -76,10 +76,10 @@ function handleOutsideClick(mainWindow, target = redCross) {
 function threeDots() {
   
   let threeDotsOpen = false
-  return function (btnList, littleModalWindowStyles = {}, cardOrDeck) {
+  return function (btnList, littleModalWindowStyles = {}, cardOrDeck, threeDotsStyles={}) {
 
     let settingsIconContainer = createElement(
-      'div', '...', {}, 'settingsIconContainer'
+      'div', '...', threeDotsStyles, 'settingsIconContainer'
     );
 
     settingsIconContainer.title = 'Edit question and answer or delete card';
@@ -91,9 +91,7 @@ function threeDots() {
     settingsIconContainer.onclick = function () {
 
 
-     // if(dataBase.DeckNames[item].pauseSwitch !== true) {
    
-      console.log('I was clicked')
       function listener(event) {
         littleModalWindow.style.display='none'
       };
@@ -120,25 +118,15 @@ function threeDots() {
         window.onclick = '' 
    
       }
-   // }
     };
-
-   
-
 
     let threeDotsContainer = createElement('div', '', { position: 'relative', width: 'fit-content', right: '95px', top: '6px' }, '')
     threeDotsContainer.append(settingsIconContainer, littleModalWindow);
-
-
-
 
     let [editIconContainer, trashIconContainer, pauseIconContainer, resetIconContainer] = ['', '', '', ''].map(el => {
       return createElement('div', '', {
       }, 'flexCenterAlignCenter')
     });
-
-
-
 
 
     let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon, resetIcon] = [edit, trash, save, pause, play, reset].map(el => {
@@ -234,9 +222,7 @@ function threeDots() {
             littleModalWindow.style.display = "none";
             btnList[btn](event)
             threeDotsOpen = !threeDotsOpen
-          }
-           
-          
+          }     
           
           littleModalWindow.append(btns[btn])
         
@@ -261,7 +247,10 @@ function setThreeDotsOpen(cond) {
   threeDotsOpen = cond
 }
 
-function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardStyling = {}) {
+function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardStyling = {}, showMessageAgainCheckBox= true) {
+  //by default showMessageAgainCheckbox is true, it is only false for the stats section
+
+  
   let anchorElement = document.getElementById("mainMenu");
   let deleteContainerFrame = createElement('div', '', {}, 'deleteContainerFr');
 
@@ -295,11 +284,6 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   let messageDeleteCard = createElement('div', `${header}`, messageDeleteCardStyling, 'flexCenterAlignCenter messageDeleteCard')
 
   let deleteYesAndNoContainer = createElement('div', '', {}, 'flexSpaceAround deleteYesAndNoContainer');
-  let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '65px'}, 'flexCenter');
-  let dontShowMessageText = createElement('div', "Don't show message again", {
-    width: '200px',
-    color: 'white'
-  });
 
   let flashcardIcon = createElement('div', flashcards, {}, 'flashcardIcon');
 
@@ -341,11 +325,21 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   checkbox.setAttribute('type', 'checkbox');
 
   checkbox.onchange = function (e) {
-    /*if (stats()) {
-      console.log('hello')
-    }*/
+
     dataBase.showDeleteFrame = !e.target.checked;
     console.log('still alive and well')
+  }
+
+  if (showMessageAgainCheckBox) { //by default this true, only false for the stats section
+
+    let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '65px'}, 'flexCenter');
+    let dontShowMessageText = createElement('div', "Don't show message again", {
+      width: '200px',
+      color: 'white'
+    });
+    deleteContainerFrame.append(dontShowMessageAgainContainer);
+    dontShowMessageAgainContainer.append(checkBoxContainer, dontShowMessageText)
+
   }
 
 
@@ -353,7 +347,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
   anchorElement.append(deleteContainerFrame);
 
-  deleteContainerFrame.append(deleteContainerInner, dontShowMessageAgainContainer);
+  deleteContainerFrame.append(deleteContainerInner);
 
   deleteContainerInner.append(doYouWantToDelete, deleteHeader, deleteYesAndNoContainer)
   deleteContainerInner.append(flashcardIcon, leaveXContainer, questionMark1, questionMark2, questionMark3)
@@ -364,8 +358,6 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   leaveXContainer.append(leaveXsign)
 
   deleteYesAndNoContainer.append(deleteContainerNo, deleteContainerYes);
-
-  dontShowMessageAgainContainer.append(checkBoxContainer, dontShowMessageText)
   checkBoxContainer.append(checkbox)
 }
 

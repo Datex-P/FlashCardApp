@@ -19,7 +19,8 @@ export default function stats() {
   let mainWindow = createElement("div", "", {}, "addQuestionsToDeck");
 
   let innerWindow = createElement("div", "", {
-    overflow: "scroll", overflowX: "hidden", cursor: 'pointer'
+    overflow: "scroll", overflowX: "hidden",
+    //cursor: 'pointer'
   }); //scroll bar at the right side of the stats window
 
   let redCrossAndStatsContainer = createElement(
@@ -79,15 +80,15 @@ export default function stats() {
     options: {
       elements: {
         center: {
-          text: !dataBase.openedToday? 'No cards studied today'
-          //<div style='font-size:12px'>No data</div> 
-          :
-          
-          `Data from ${todayDate.toLocaleString('de-DE', {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-          })}`,
+          text: !dataBase.openedToday ? 'No cards studied today'
+            //<div style='font-size:12px'>No data</div> 
+            :
+
+            `Data from ${todayDate.toLocaleString('de-DE', {
+              day: 'numeric',
+              month: 'numeric',
+              year: 'numeric',
+            })}`,
           //color: '#FF6384', // Default is #000000
           color: 'black',
           fontStyle: 'Arial', // Default is Arial
@@ -186,7 +187,7 @@ export default function stats() {
             //breakdown has to be resetted as well
             , () => {
 
-            }, 'Reset current progress', 'reset the stats section?', { marginLeft: '40px', fontSize: '18px' })
+            }, 'Reset current progress', 'reset the stats section?', { marginLeft: '40px', fontSize: '18px' }, false)
 
             , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
         } else {
@@ -208,6 +209,8 @@ export default function stats() {
       }
     }, { top: '4px' } //the position of the stats field after three dots is clicked
   )
+
+
 
 
 
@@ -366,104 +369,116 @@ export default function stats() {
 
 
   renderDays(2021);
-  function leapyear(year)
-{
-return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
-}
+  function leapyear(year) {
+    return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+  }
+
 
 
   function renderDays(year) {
     yearBoxContainer.innerHTML = "";
     let thisYear = new Date(`January 1, ${+year}`);
 
-    let daysOfYear = 365
+    let daysOfYear = 366 //because counter starts at 1 thus 365
 
-    if ( leapyear(year)) {
-      daysOfYear = 366
-    } 
-   
-
-  
+    if (leapyear(year)) {
+      daysOfYear = 367
+    }
 
 
-   
+
+
     let counter = 1
     while (
-      counter< daysOfYear
+      counter < daysOfYear
 
     ) {
       counter++
       let day = document.createElement("div");
       day.classList.add("day");
+      day.setAttribute( "id", `${counter}` ); //id equals the day of the year like january 1 is 1 december 31 is 365
       let date = thisYear.toDateString();
 
-    
-      
+
+
       let arr = []
-    let cardsStudiedCounter = 0;
-    for (let deck in dataBase.DeckNames) {
+      let cardsStudiedCounter = 0;
+
+      for (let deck in dataBase.DeckNames) {
+
         let deckItem = dataBase.DeckNames[deck]
-       if(deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())){
-            todayCardsStudiedCounter++
-      
-          }
+        if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
+          todayCardsStudiedCounter++
+
+        }
         if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == date)) {
-          
 
-          cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item=>new Date(item).toDateString() == date)).length
-         // console.log(deckItem.data.filter((item) => new Date(item?.openHistory?.[0]).toDateString() == date).length, 'filt')
 
+          cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() == date)).length
 
           arr.push(deckItem.name)
           config.data.labels.push(deckItem.name)
-          config.data.datasets[0].data.push(deckItem.data.filter((item) => item?.openHistory?.some(item=>new Date(item).toDateString() == date)).length)
+          config.data.datasets[0].data.push(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() == date)).length)
           config.data.datasets[0].backgroundColor.push(deckItem.color)
           config.data.datasets[0].borderColor.push(deckItem.color)
           config.data.datasets[0].hoverBackgroundColor.push(deckItem.color)
-         
+
           day.style.backgroundColor = "red";
           day.style.cursor = "pointer";
-          day.title = 'Click to see the study stats of this date'
+        //  day.title = 'Click to see the study stats of this date'
 
           day.onclick = function (event) {
             event.stopPropagation();
+
+
+
+            let targetView = yearBoxContainer.getBoundingClientRect()
+          
+ 
             yearBoxContainer
               .querySelectorAll(".day")
               .forEach((day) => (day.innerHTML = ""));
-            let dayInner = createElement('div', '', { lineHeight: '22px', width: '120px' })
-            // let time = Math.round(
-            //   Object.values(dataBase.studyTime).reduce(
-            //     (acc, cur) => acc + cur, 0
-            //   ) / 60
-            // );
-
-            window.addEventListener('click', function(e){
-              if(day.contains(e.target) ) {
-                console.log('clicked inside')
-              } else {
-                console.log('clciked outside')
-              }
-            })  
-
+            let dayInner = createElement('div', '', { lineHeight: '22px', width: '120px' }
+            )
 
             let time = Math.floor(dataBase.studyTime / 60)
 
             dayInner.innerText = `${date} Time: ${time
               .toString()
               .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`;
-     
-            day.append(dayInner);
-          };
 
+            day.append(dayInner);
+            dayInner.title = 'Click outside the window to close it'
+
+
+            let inner = dayInner.getBoundingClientRect()
+
+             if (inner.right >targetView.right) { //when the outer right of the day inner field is bigger than the targetView
+               dayInner.style.left = '-91px'
+             }
+
+
+             if (inner.left <targetView.left) { //when the outer right of the day inner field is bigger than the targetView
+              dayInner.style.left = '-5px'
+            }
+
+
+             if (parseInt((day.id)) > 287 )  { //question ...why does this line not fire up without replace??
+              //.replace(/[^0-9]/g,'')
+              console.log('true bigger than 100')                //October 13 is the breakpoint aka day 287 where layout changes and box is shown above red point
+               dayInner.style.top = '-104px'
+             }
+          };
         }
       }
 
-
       thisYear.setDate(thisYear.getDate() + 1);
 
-      yearBoxContainer.appendChild(day);
-      yearBoxContainer.onclick = function () {
-        alert("you do not have training in this day");
+      yearBoxContainer.appendChild(day); 
+      innerWindow.onclick = function (e) {  //when you click something outside of the pop up study window, it closes
+        this.querySelectorAll('.day div').forEach(day=>  //gets all divs with this special selector
+          day.style.display = 'none'
+        );
       };
     }
   }
@@ -506,9 +521,6 @@ return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
     }
     )
   }
-
-
-
 
 
 

@@ -27,7 +27,8 @@ export default function shuffle(item, index = null) {
   }
 
   dataBase.DeckNames[item].data[randomInScope].openHistory.push(new Date());
-
+ // dataBase.DeckNames[item].data[randomInScope].openHistory.push(new Date(('January 01, 2020')))
+//method to check different dates
 
 
   function answerNumber(random) {
