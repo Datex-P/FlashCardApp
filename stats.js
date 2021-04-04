@@ -179,6 +179,7 @@ export default function stats() {
                 if (card.openHistory) {
                   delete card.openHistory
                   stats()
+                  //createDom(dataBase.deckNames)
                 }
               })
             }

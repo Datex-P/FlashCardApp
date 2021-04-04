@@ -121,6 +121,7 @@ console.log(dataBase.DeckNames[item], 'items')
 
     if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
       if (inputCheckbox.checked) {
+        console.log('pause not shown')
         pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
         pauseText.style.display = 'none'
         questionContainer.style.marginTop = '20px'
@@ -215,6 +216,7 @@ console.log(dataBase.DeckNames[item], 'items')
 
 
 
+
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
     if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
       console.log('save works')
@@ -230,20 +232,19 @@ console.log(dataBase.DeckNames[item], 'items')
       clearInterval(decrementTimer);
       clearInterval(incrementTimer)
       window.onclick = null
-      //pauseSwitch = false
+ 
       dataBase.DeckNames[item].pauseSwitch = false
+//      dataBase.overview = true; //commented out again 
+      dataBase.DeckNames[item].displayDeckInBack = true
+      createDom(dataBase.DeckNames)
+
 
     }
-
- 
-
   }
+
   redCross.onclick = close
 
-console.log(dataBase)
 
-
-  // startTimer(item, index);
 
 
 
@@ -432,7 +433,7 @@ function pausedAndUnpaused() {
         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
         mainWindow.removeChild(showAnswerButtonContainer);
         anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
-        //editLogo.style.display = 'block'                     //edit logo appears that shows that the app is in edit-mode
+        editLogo.style.display = 'block'                     //edit logo appears that shows that the app is in edit-mode
         editText.style.display = 'block'
 
         questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
@@ -535,29 +536,24 @@ function pausedAndUnpaused() {
   containerForRight.append(rightTimeValue);
 
 
-  // let editLogo = createElement(
-  //   'div',
-  //   edit, {   //pause switch here   `${pauseMode ===false? edit: pause}`
-  //   width: 'fit-content',
-  //   position: 'absolute',
-  //   top: '55px',
-  //   left: '48px',
-  //   display: 'none'
+  let editLogo = createElement(
+    'div',
+    edit, {   //pause switch here   `${pauseMode ===false? edit: pause}`
+    width: 'fit-content',
+    position: 'absolute',
+    top: '55px',
+    left: '48px',
+    display: 'none'
 
-  // },
-  //   ''
-  // )
+  },
+    ''
+  )
 
  // let pic =  dataBase.DeckNames[item].pauseSwitch === true? pause : edit
 
   let pauseLogo = createElement(
     'div',
-
-   pause
-
-   // pause
-    
-    , {
+   pause, {
     width: 'fit-content',
     position: 'absolute',
     top: '55px',
@@ -591,16 +587,13 @@ function pausedAndUnpaused() {
     top: '55px',
     left: '68px',
     display: 'none'
-
   },
     ''
   )
 
-
   //let randomNum = Math.floor(Math.random() * 10 + 4); //good
   //let randomNum = Math.floor(Math.random() * 4 +2.1); //easy
   //let randomNum = Math.floor(Math.random() * 2); //again
-
 
   function display() {
     answerFieldTextArea.style.display = 'none';
@@ -636,19 +629,20 @@ function pausedAndUnpaused() {
 
     button.addEventListener('click', function () {
 
-
       dataBase.DeckNames[item].cardsToday++
-
 
       let randomNum = 0
       if (el === `${leftName}`) {
         randomNum = Math.floor(Math.random() * 10);
+        console.log(randomNum)
       }
       if (el === `${middleName}`) {
         randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
+        console.log(randomNum)
       }
       if (el === `${rightName}`) {
         randomNum = (Math.floor(Math.random() * 3000));
+        console.log(randomNum)
       };
       dataBaseQueue(randomNum, item)
       display()
@@ -656,7 +650,7 @@ function pausedAndUnpaused() {
       createDom(dataBase.DeckNames)
       console.log(dataBase.DeckNames)
     
-      console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
+      //console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
     })
 
 
@@ -670,9 +664,6 @@ function pausedAndUnpaused() {
       containerForRight.append(button);
     }
   });
-
-
-
 
 
   saveButton.onclick = function () {
@@ -698,7 +689,7 @@ function pausedAndUnpaused() {
     saveAndDiscardContainer.style.display = 'none';
     anchorThreeDots.style.display = 'block'
 
-    //editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
+    editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
     editText.style.display = 'none'             //'mode' dissappears 
     editMode = false                          //whether edit in three dots was clicked or not
 
@@ -719,7 +710,7 @@ function pausedAndUnpaused() {
     questionFieldTextArea.value = questionField  //access to previous saved value
     answerFieldTextArea.value = answerField //access to previous saved value
 
-   // editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
+    editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
     editText.style.display = 'none'
     editMode = false
     questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
@@ -748,7 +739,7 @@ function pausedAndUnpaused() {
 
   // console.log(dataBase.DeckNames[item].pauseSwitch , 'pauseswit')
 
- // mainWindow.append(editLogo) //Logo that appears in edit mode
+  mainWindow.append(editLogo) //Logo that appears in edit mode
   mainWindow.append(editText) //text next to edit logo that appears in edit mode
   mainWindow.append(pauseLogo)
   mainWindow.append(pauseText)
@@ -756,10 +747,6 @@ function pausedAndUnpaused() {
 
   let questionField = questionFieldTextArea.value; //previous question value saved
   let answerField = answerFieldTextArea.value; //previous answer value saved
-
-
-
-
 
   onOffSwitch.append(inputCheckbox, label1)
   label1.append(span1, span2)

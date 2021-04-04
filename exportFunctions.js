@@ -316,12 +316,11 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
 
   let checkBoxContainer = createElement('div', '', {
-    width: '40px'
   }, 'checkBoxContainer');
   let checkbox = createElement('input', '', {
     width: '45px',
     cursor: 'pointer'
-  });
+  },'checkbox');
   checkbox.setAttribute('type', 'checkbox');
 
   checkbox.onchange = function (e) {
@@ -329,16 +328,16 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
     dataBase.showDeleteFrame = !e.target.checked;
     console.log('still alive and well')
   }
-
-  if (showMessageAgainCheckBox) { //by default this true, only false for the stats section
-
-    let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '65px'}, 'flexCenter');
-    let dontShowMessageText = createElement('div', "Don't show message again", {
+let dontShowMessageText = createElement('label', "Don't show message again", {
       width: '200px',
       color: 'white'
     });
+  if (showMessageAgainCheckBox) { //by default this true, only false for the stats section
+
+    let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '65px'}, 'flexCenter');
+    
     deleteContainerFrame.append(dontShowMessageAgainContainer);
-    dontShowMessageAgainContainer.append(checkBoxContainer, dontShowMessageText)
+    dontShowMessageAgainContainer.append(checkBoxContainer)
 
   }
 
@@ -358,7 +357,10 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   leaveXContainer.append(leaveXsign)
 
   deleteYesAndNoContainer.append(deleteContainerNo, deleteContainerYes);
-  checkBoxContainer.append(checkbox)
+  checkBoxContainer.onclick = function(){
+    checkbox.click()
+  }
+  checkBoxContainer.append(checkbox,dontShowMessageText)
 }
 
 

@@ -14,6 +14,7 @@ DeckNames: { /*deckname:[]*/   },
   calendarReset: false,
   weeklyTarget: 1,
   daysOfStudy : {day : 4},
+  overview: false,
   studied: [new Date()]
 
 

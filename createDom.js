@@ -3,12 +3,12 @@ import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
 import { createElement, deleteCardQuestionBox, threeDots, threeDotsOpen } from './exportFunctions.js'
 import {
-  edit, save, play, greenCheckmark
+  edit, save, play, greenCheckmark, orangeCircle
 } from "./svgs.js";
 
 
 export default function createDom(obj) {
-  // console.log('create Dom was rendered')
+  console.log('create Dom was rendered')
   listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
@@ -56,28 +56,11 @@ export default function createDom(obj) {
     input.max = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
 
 
-    let [toStudy, progress] = [`${toStud.padEnd(5, '⠀')}`,
-    `Progress:        ${( ((dataBase.DeckNames[item].data.filter(x=>x.openHistory).length || 0) * 100) / input.value).toFixed(0)   } %`].map(el => {
+    let [toStudy, progress] = [`${toStud.padEnd(7, '⠀')}`,
+    `Progress:⠀${( ((dataBase.DeckNames[item].data.filter(x=>x.openHistory).length || 0) * 100) / input.value).toFixed(0).padStart(2,'⠀')   } %`].map(el => {
       
       return createElement('div', el, {}, 'decksizeStudyRev')
     });
-
-
-  //x=> new Date(x?.openHistory?.toDateString() == new Date().toDateString()) )
-
-    // if (dataBase.DeckNames[item].data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())){
-
-    //    todayCardsStudiedCounter++
-    //  }
-
-    //  console.log(todayCardsStudiedCounter)
-
-
-
-
-
-
-
 
 
 
@@ -92,12 +75,6 @@ export default function createDom(obj) {
     let Decksize = 'Decksize:';
 
     let decksize = createElement('div', `${Decksize.padEnd(10, '⠀')}${dataBase.DeckNames[item].data.length}`, {}, 'decksizeStudyRev');
-
- 
-
-
-
-  
 
 
     let changeNameofDeckInput = createElement('input', '', { //input field that gets active when deckname is changed
@@ -161,7 +138,6 @@ export default function createDom(obj) {
 
             editIconContainer.replaceChild(editIcon, saveIcon) //editIcon replaces  saveIcon //replaceChild(newChild, oldchild)
             newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
-            console.log('ijerggijnegrtgfpiodnigjunin')
             dataBase.DeckNames[item].name = changeNameofDeckInput.value;
             edited = false;
             nameOfNewDeck.innerText = changeNameofDeckInput.value;
@@ -282,10 +258,10 @@ export default function createDom(obj) {
 
     let playText = createElement('div', "to unpause. Paused Decks don't count to the study goal.", { textAlign: 'center' })
 
-    newDeckContainer.append(pauseInfoField)
-    newDeckContainer.append(deckIsEmptyField)
-    pauseInfoField.append(playIconContainer)
-    pauseInfoField.append(playText)
+    // newDeckContainer.append(pauseInfoField, studiedAllForTodayField)
+    // newDeckContainer.append(deckIsEmptyField)
+    // pauseInfoField.append(playIconContainer)
+    // pauseInfoField.append(playText)
 
     playIconContainer.onclick = function () { //play button that appears inside the card  when it is put on pause
       document.querySelector('.plusIcon').style.cursor = 'pointer' //plus Icon pointable again
@@ -355,57 +331,114 @@ export default function createDom(obj) {
 
     let cardsStudiedToday = dataBase.DeckNames[item].data.reduce((acc,card)=>{
       let cardsForToday = card.openHistory?.filter(time=>time?.toDateString() == today)
-      acc+= cardsForToday?.length 
+     // console.log(cardsForToday, 'cardsforToday')
+      if(cardsForToday?.length ){
+        acc+= cardsForToday.length 
+      }
       return acc
     },0)
 
-    if ( (((cardsStudiedToday|| 0) * 100) / input.value).toFixed(0) > 2) {
+    let deckCompleted = createElement('div', dataBase.DeckNames[item].name, 
+    {width: '100px', height:'50px', textAlign: 'center', paddingTop:'5px', backgroundColor: dataBase.DeckNames[item].color, display: 'none',
+    top: '-133px', position: 'relative', transform:'rotate(-5deg)'})
 
 
-  //x=> new Date(x?.openHistory?.toDateString() == new Date().toDateString()) )
+    let studiedAllForTodayField = createElement('div', 'You reached the study Goal for this deck.', {
+      backgroundColor: dataBase.DeckNames[item].color,
+      textAlign: 'center',
+      display: 'none',
+      paddingTop: '15px',
+      lineHeight: '23px'
+    }, 'pauseInfoField flexCenterAlignCenter') //just using the same class as for pauseInfoField as they have the same size
 
-      toStudyContainer.style.display = 'none'
-      toReviewContainer.style.display = 'none'
-      decksizeContainer.style.display = 'none'
-     // openDeck.style.display = 'none'
-     // pauseInfoField.style.display = 'block'
-     
-  } else {
-    toStudyContainer.style.display = 'flex'
-    toReviewContainer.style.display = 'flex'
-    decksizeContainer.style.display = 'flex'
-   // openDeck.style.display = 'block'
+   
 
+
+  let greenMark = createElement('div', greenCheckmark, {width:'200px', height: '100px', right: '-85px', top:'130px', position: 'absolute', display: 'none', zIndex: '3'})
+  
+  if ((((cardsStudiedToday|| 0) * 100) / input.value).toFixed(0) > 10) {
+    greenMark.style.display = 'block'
   }
 
+  if ( ((((cardsStudiedToday|| 0) * 100) / input.value).toFixed(0) > 40) && dataBase.DeckNames[item].displayDeckInBack){ //when the study goal is fullfilled for 100 %
+    
+ 
+      // toStudyContainer.style.display = 'none'
+      // toReviewContainer.style.display = 'none'
+      // decksizeContainer.style.display = 'none'
+      // openDeck.style.display = 'none'
+      // studiedAllForTodayField.style.display = 'block'
+      // newDeckContainer.style.display = 'none'
+      // deckCompleted.style.display = 'block'
+    //  orangeCircle.style.display = 'flex' 
+   //item.querySelector('.orangeCircle').style.display = 'flex'
+   //   createDom(dataBase.DeckNames) 
+  //  if (document.querySelector('.orangeCircle')) {  //needed so that nodeC does not copy the grey circle icon
+  //  document.querySelector('.orangeCircle').remove()
+  //  newDeckContainer.append(addToDeckIcon)
+  //  }
 
+   
+
+  //  document.querySelector('.orangeCircle').style.display = 'flex';
+     let nodeC = document.querySelector('.newDeckContainer').cloneNode(true)
+     nodeC.style.pointerEvents = 'none'
+       nodeC.style.transform = 'scale(0.5)'
+       document.querySelector('#createEditDeleteDeckPage').append(nodeC)
+
+
+  //   nodeC.children[0].children[3].style.cursor = 'default'
+  //   nodeC.children[0].children[3].style.background = 'blue'
+    // nodeC.children[0].children[3].style.pointerEvents = 'none'
+
+  //   nodeC.children[0].children[3].remove()
+  //   nodeC.children[0][0].style.backgroundColor = 'green'
+  //   //console.log(nodeC.children, 'node first child')
+
+  } else {
+
+  //   toStudyContainer.style.display = 'flex'
+  //   toReviewContainer.style.display = 'flex'
+  //   decksizeContainer.style.display = 'flex'
+  //   studiedAllForTodayField.style.display = 'none'
+  //   deckCompleted.style.display = 'none'
+
+  // //  document.querySelector('.orangeCircle').style.display = 'flex'
+  //  orangeCircle.style.display = 'flex'  //needs to be there because otherwise plus icon is not shown
+  //newDeckContainer.append(checkmarkStudyComplete)
+  }
+
+ 
+
+  newDeckContainer.append(pauseInfoField, studiedAllForTodayField)
+
+    newDeckContainer.append(deckIsEmptyField)
+    pauseInfoField.append(playIconContainer)
+    pauseInfoField.append(playText)
+newDeckContainer.append(greenMark)
+
+console.log(dataBase.overview, 'database overview')
 
 
     newDeckContainer.append(nameOfNewDeck, threeDotsContainer, addToDeckIcon)
-
+  
     addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer, openDeck)
 
     toStudyContainer.append(toStudy);
     toReviewContainer.append(progress);
     decksizeContainer.append(decksize);
-
     addToDeckIcon.append(plusIcon);
-
     listOfDecks.prepend(newDeckContainer);
+    listOfDecks.append(deckCompleted)
+ 
 
   });
 
 
 
 
-  // let arr = Array(7).fill('M').map((item,k)=>{
 
-  //   let div = createElement('div', hexagon, {width: '16px', height: '16px'}, 'item');
-
-  //   return div
-  // });
-
-
+  
 
 
   if (Object.keys(dataBase.DeckNames).length === 0) { //if no deck is present, scrollbar dissapear and info to create a deck appears

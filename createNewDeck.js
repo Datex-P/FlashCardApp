@@ -115,11 +115,13 @@ export default function createNewDeck() {
 
           document.querySelector('#listOfDecks').style.display= 'block'
 
-          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, cardsToday:0, pause: false, color: colors[ Object.keys(dataBase.DeckNames).length % colors.length]};
+          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, cardsToday:0, pause: false, 
+            color: colors[ Object.keys(dataBase.DeckNames).length % colors.length],
+          name: inputField.value};
           createDom(dataBase.DeckNames);
-          anchorElement.removeChild(mainWindow);
+          anchorElement.removeChild(mainWindow); 
           anchorElement.style.display = 'none';
-          //document.getElementById('createYourFirstDeckPrompt').style.display = 'none'
+
         }
       }
     })

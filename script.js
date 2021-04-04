@@ -166,10 +166,6 @@ function days(){ //itereates over the days and adds them to the days container
 
 
 
-
-
-
-
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling'); 
 boxesInMenu.forEach(button => { //opens settings and stats when clicked upon them does not
                                 //do anything for logout icon so far
