@@ -44,7 +44,7 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceAroundAlignCenter addEditDeleteContainer', '', newDeckContainer
     )
 
-    let toStud = 'Study Goal:'
+    let toStud = 'To Study:' //field on each card on the main screen
 
     let input = createElement('input', '', {
       width: '35px',
@@ -57,7 +57,9 @@ export default function createDom(obj) {
 
 
     let [toStudy, progress] = [`${toStud.padEnd(7, '⠀')}`,
-    `Progress:⠀${(((dataBase.DeckNames[item].data.filter(x => x.openHistory).length || 0) * 100) / input.value).toFixed(0).padStart(2, '⠀')} %`].map(el => {
+    `Progress:⠀${(((dataBase.DeckNames[item].data.
+      filter(x => x.openHistory).length || 0) * 100) / input.value).toFixed(0).padStart(2, '⠀')} %`].
+      map(el => {
 
       return createElement('div', el, {}, 'decksizeStudyRev')
     });
@@ -67,7 +69,9 @@ export default function createDom(obj) {
     toStudy.append(input)
 
 
-    let [toStudyContainer, toReviewContainer, decksizeContainer] = ['', '', ''].map(el => {
+    let [toStudyContainer, 
+      //toReviewContainer, 
+      decksizeContainer] = ['', '', ''].map(el => {
       return createElement('div', el, {}, 'studyReviewDecksize')
     });
 
@@ -350,26 +354,16 @@ export default function createDom(obj) {
       lineHeight: '23px'
     }, 'pauseInfoField flexCenterAlignCenter') //just using the same class as for pauseInfoField as they have the same size
 
-
-
-
-
-
-    if ((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) > 10) {
-
-      console.log(item, 'item')
-     
-    }
-
-
-
+    //document.querySelector('.menu').onclick = 'none'
 
 
     newDeckContainer.append(pauseInfoField, studiedAllForTodayField, deckIsEmptyField, nameOfNewDeck, threeDotsContainer,addToDeckIcon)
-    addEditDeleteContainer.append(toStudyContainer, toStudy, toReviewContainer, decksizeContainer,openDeck)
+    addEditDeleteContainer.append(toStudyContainer, toStudy, 
+      //toReviewContainer,  //review container that has input inside commented out
+      decksizeContainer,openDeck)
 
     toStudyContainer.append(toStudy);
-    toReviewContainer.append(progress);
+   // toReviewContainer.append(progress); commented the progress field out in overview
     decksizeContainer.append(decksize);
 
     listOfDecks.prepend(newDeckContainer);
@@ -380,18 +374,25 @@ export default function createDom(obj) {
     pauseInfoField.append(playText)
 
   
-    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) == 100) && dataBase.DeckNames[item].thisDeckCompleted === false ) { //when the study goal is fullfilled for 100 %
+    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) == 100) && dataBase.DeckNames[item].thisDeckCompleted === false )  { 
+      //when the study goal is fullfilled for 100 %
 
       dataBase.DeckNames[item].thisDeckCompleted = true
       dataBase.deckCompleted++
     newDeckContainer.style.display = 'none'
     //listOfDecks.remove(newDeckContainer, 'new Deckcontainer removed')
       console.log(newDeckContainer, 'why newdeckcont not triggered')
+
+      //config.data.datasets[0].data.push(      Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted) 
+      //dataBase.deckCompleted)
+    //config.data.datasets[0].data.push('config data')
+    //console.log(config.data.datasets[0])
+    console.log(config, 'conf')
    
     }
 
-    console.log(dataBase.DeckNames[item].thisDeckCompleted, 'dataBase completed')
-    console.log(Object.keys(dataBase.DeckNames).length, 'data decknames')
+    // console.log(dataBase.DeckNames[item].thisDeckCompleted, 'dataBase completed')
+    // console.log(Object.keys(dataBase.DeckNames).length, 'data decknames')
   });
 
   console.log(dataBase.deckCompleted, 'deckcompleted')
@@ -417,12 +418,14 @@ export default function createDom(obj) {
       ],
       datasets: [{
         data: [
-          Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted, dataBase.deckCompleted
+          'hi'
+          // Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted, 
+          // dataBase.deckCompleted
          //first value shows all decks that are left to study
          //second value shows decks that were already studied
         ],
         backgroundColor: [
-          '#5aaa95', "#FF6384"
+         '#5aaa95', "#FF6384"
         ],
         borderColor: [
            '#5aaa95', "#FF6384",
@@ -438,17 +441,7 @@ export default function createDom(obj) {
         center: {
           text: `Goal ${((dataBase.deckCompleted*100)/Object.keys(dataBase.DeckNames).length)}`,
           
-          // !dataBase.openedToday ? 'No cards studied today'
-          //   //<div style='font-size:12px'>No data</div> 
-          //   :
-
-          //   `Data from ${todayDate.toLocaleString('de-DE', {
-          //     day: 'numeric',
-          //     month: 'numeric',
-          //     year: 'numeric',
-          //   })}`,
-          // color: '#FF6384', // Default is #000000
-          // color: 'black',
+      
            fontStyle: 'Times', // Default is Arial
           // sidePadding: 2, // Default is 20 (as a percentage)
            minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
@@ -576,7 +569,7 @@ export default function createDom(obj) {
     document.querySelector("#scrollable").style.display = 'block'
   }
   
- 
+  console.log(config, 'conf')
 
 
   document.querySelector("#scrollable").onscroll = function (event) {
