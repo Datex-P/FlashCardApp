@@ -46,7 +46,9 @@ export default function stats() {
 
 
 
-  let canvas = createElement('canvas', '', { width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
+  let canvas = createElement('canvas', '', { width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }
+  //, 'pieChart' probably not needed
+  )
 
   theWordTodayContainer.append(canvas)
 
@@ -83,7 +85,6 @@ export default function stats() {
           text: !dataBase.openedToday ? 'No cards studied today'
             //<div style='font-size:12px'>No data</div> 
             :
-
             `Data from ${todayDate.toLocaleString('de-DE', {
               day: 'numeric',
               month: 'numeric',
@@ -116,8 +117,6 @@ export default function stats() {
     }
   };
 
-
-
   var ctx = canvas.getContext("2d");
   var myChart = new Chart(ctx, config);
 
@@ -140,21 +139,6 @@ export default function stats() {
 
   buttonLeft.style.marginRight = "5px";
   buttonRight.style.marginLeft = "5px";
-
-  // function handleOutsideClick(e) {
-  //   if (!(document.querySelector('.anchorThreeDots').contains(e.target))) {
-  //     //alert("Clicked outside Box");
-  //     // document.querySelector('.menuBox').style.display = 'none';
-  //     // opened = false;
-  //     console.log('window handler still alive')
-  //     //window.onclick = ''
-  //    // closeMenu()
-  //     opened = false;
-  //   }
-  //   window.onclick = ''
-  // }
-
-  //console.log(cardsStudiedCounter, 'cardsstud')
 
   let cardThreeDots = threeDots()
 
@@ -201,11 +185,7 @@ export default function stats() {
               }
             })
           }
-          console.log('it works')
         }
-
-
-
 
       }
     }, { top: '4px' } //the position of the stats field after three dots is clicked
@@ -260,7 +240,7 @@ export default function stats() {
 
 
   let studyGoal = 80
-  let timeObj = {
+  let timeObj = { //shows time in hourly breakdown
     6: 15,
     12: 20,
     18: 1,
@@ -500,7 +480,7 @@ export default function stats() {
   let cardsOpenLastTwelve = 0;
   let cardsOpenLastOne = 0;
 
-  for (let deck in dataBase.DeckNames) {
+  for (let deck in dataBase.DeckNames) { //needed for hourly breakdown
 
     dataBase.DeckNames[deck].data.forEach((card) => {
 

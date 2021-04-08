@@ -66,6 +66,9 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
 
 };
 
+
+
+
 // let colorContainer = createElement('div', '', {
 //   position: 'absolute',
 //   display: 'block',
@@ -134,6 +137,80 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
 //   }
 
 
+// let canvasContainer = createElement('div', '', {width: '100px', height:'100px'})
+
+// let canvas = createElement('canvas', '', { position: 'absolute', width: '50px', right: '50px', top: '34px', height: '50px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
+
+// document.querySelector('#mainMenu').append(canvasContainer)
+// canvasContainer.append(canvas)
+
+
+// var config = {
+//   type: 'doughnut',
+//   data: {
+//     labels: [
+//       //  "Red",
+//       //  'Blue'
+//     ],
+//     datasets: [{
+//       data: [
+//         Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted, dataBase.deckCompleted
+//        //first value shows all decks that are left to study
+//        //second value shows decks that were already studied
+//       ],
+//       backgroundColor: [
+//         '#5aaa95', "#FF6384"
+//       ],
+//       borderColor: [
+//          '#5aaa95', "#FF6384",
+//       ],
+//       borderWidth: 1,
+//       hoverBackgroundColor: [
+//         // "#FF6384",
+//       ]
+//     }]
+//   },
+//   options: {
+//     elements: {
+//       center: {
+//         text: `Goal ${(dataBase.deckCompleted*100)/Object.keys(dataBase.DeckNames).length}`,
+        
+//         // !dataBase.openedToday ? 'No cards studied today'
+//         //   //<div style='font-size:12px'>No data</div> 
+//         //   :
+
+//         //   `Data from ${todayDate.toLocaleString('de-DE', {
+//         //     day: 'numeric',
+//         //     month: 'numeric',
+//         //     year: 'numeric',
+//         //   })}`,
+//         // color: '#FF6384', // Default is #000000
+//         // color: 'black',
+//          fontStyle: 'Times', // Default is Arial
+//         // sidePadding: 2, // Default is 20 (as a percentage)
+//          minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
+         
+//         // lineHeight: 19,
+//         // Default is 25 (in px), used for when text wraps
+//       }
+//     },
+//     legend: {
+//       // position: 'bottom',
+//       // labels: {
+//       //   fontColor: 'black'
+//       // }
+
+//     },
+//     cutoutPercentage: 81,
+//     maintainAspectRatio: false,
+//     layout: {
+//       padding: {
+//         top: 10
+//       },
+//       border: 'none'
+//     }
+//   }
+// };
 
 
 
@@ -164,8 +241,6 @@ function days(){ //itereates over the days and adds them to the days container
 //days()
 
 
-
-
 let boxesInMenu = document.querySelectorAll('.menuBoxesStyling'); 
 boxesInMenu.forEach(button => { //opens settings and stats when clicked upon them does not
                                 //do anything for logout icon so far
@@ -180,13 +255,6 @@ boxesInMenu.forEach(button => { //opens settings and stats when clicked upon the
     }
   }
 });
-
-// document.querySelector('#daysContainer').onclick = function () {
-//   settings()
-// }
-
-
-
 
 document.getElementById("createDeckButton").onclick = function () {
                                     //opens the add new deck question field when create button is clicked

@@ -16,6 +16,8 @@ import {
 
 
 
+
+
 export default function settings() {
 
   let anchorElement = document.getElementById("questAnswerTrainOverv");
@@ -147,8 +149,7 @@ export default function settings() {
     input.innerText = el;
     input.style.fontWeight = 'bold'
    
-    //input.className = "noBorders";
-    //input.style.height = '30%'
+    
     input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
     switch (el) {
@@ -373,7 +374,6 @@ export default function settings() {
   let goalSettingsBox1 = createElement('div', '', {}, 'goalSettingsBox1 flexSpaceAround')
 
 
-  // mainWindow.append(width)
 
   mainWindow.append(goalSettings);
   goalSettings.append(goalSettingsText, goalSettingsBox1, weeklyTarget);
@@ -559,8 +559,10 @@ export default function settings() {
     radio.onchange = function () {
       if (comp === 'default') {
         document.body.className = ''
+       
       } else {
         document.body.className = this.value
+     
       }
     }
     if (comp === 'default') {

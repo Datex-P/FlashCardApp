@@ -49,7 +49,7 @@ export default function createNewDeck() {
 //select Field contains different options in the 'add new deck' field
 
   let selectField = createElement('select', ` 
-    <option>or choose exited one</option>
+    <option>or choose existing one</option>
     <option>cars' brands</option>
  
   `, {

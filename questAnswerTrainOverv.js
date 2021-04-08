@@ -123,7 +123,7 @@ console.log(dataBase.DeckNames[item], 'items')
       if (inputCheckbox.checked) {
         console.log('pause not shown')
         pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-        pauseText.style.display = 'none'
+        pauseAndEditText.style.display = 'none'
         questionContainer.style.marginTop = '20px'
         inputCheckbox.checked = false
 
@@ -160,7 +160,7 @@ console.log(dataBase.DeckNames[item], 'items')
 
 
         pauseLogo.style.display = 'block'             //edit Logo dissapears that is active in card edit mode
-        pauseText.style.display = 'block'
+        pauseAndEditText.style.display = 'block'
         unpauseButton.style.display = 'inline'
         keepPausedButton.style.display = 'inline'
         questionContainer.style.marginTop = '37px'
@@ -219,12 +219,10 @@ console.log(dataBase.DeckNames[item], 'items')
 
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
     if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
-      console.log('save works')
       saveAndDiscardContainer.classList.add('blinkingIcon');
       setTimeout(() => {
         saveAndDiscardContainer.classList.remove('blinkingIcon')
       }, 3000);
-      console.log('its active')
     } else {
       mainWindow.parentNode.removeChild(mainWindow);
       anchorElement.style.display = "none";
@@ -232,11 +230,11 @@ console.log(dataBase.DeckNames[item], 'items')
       clearInterval(decrementTimer);
       clearInterval(incrementTimer)
       window.onclick = null
- 
+      console.log('hello from close')
       dataBase.DeckNames[item].pauseSwitch = false
 //      dataBase.overview = true; //commented out again 
-      dataBase.DeckNames[item].displayDeckInBack = true
-      createDom(dataBase.DeckNames)
+     // dataBase.DeckNames[item].displayDeckInBack = true
+      //createDom(dataBase.DeckNames)
 
 
     }
@@ -319,7 +317,7 @@ function pausedAndUnpaused() {
   keepPausedButton.style.display = 'none'
   showAnswerButton.style.display = 'block'
   pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-  pauseText.style.display = 'none'
+  pauseAndEditText.style.display = 'none'
   questionContainer.style.marginTop = '20px'
   buttonContainer.classList.remove('justify')
   answerFieldTextArea.style.display = 'none';
@@ -382,7 +380,6 @@ function pausedAndUnpaused() {
     'div',
     '', {
       display: 'flex'
-
   }, 'showAnswerButtonContainer'
   )
 
@@ -434,7 +431,7 @@ function pausedAndUnpaused() {
         mainWindow.removeChild(showAnswerButtonContainer);
         anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
         editLogo.style.display = 'block'                     //edit logo appears that shows that the app is in edit-mode
-        editText.style.display = 'block'
+        pauseAndEditText.style.display = 'block'
 
         questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
       },
@@ -472,8 +469,6 @@ function pausedAndUnpaused() {
 
 
   )
-
-  console.log('shuff')
 
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
@@ -566,20 +561,7 @@ function pausedAndUnpaused() {
 
 
 
-  let pauseText = createElement(
-    'div',
-    'mode', {
-    width: 'fit-content',
-    position: 'absolute',
-    top: '55px',
-    left: '68px',
-    display: 'none'
-
-  },
-    ''
-  )
-
-  let editText = createElement(
+  let pauseAndEditText = createElement(
     'div',
     'mode', {
     width: 'fit-content',
@@ -633,7 +615,13 @@ function pausedAndUnpaused() {
 
       let randomNum = 0
       if (el === `${leftName}`) {
-        randomNum = Math.floor(Math.random() * 10);
+
+        let newRandomNumber = Math.floor(Math.random() * 10);
+        while (randomNum == newRandomNumber){
+          newRandomNumber = Math.floor(Math.random() * 10);
+        }
+
+        randomNum = newRandomNumber
         console.log(randomNum)
       }
       if (el === `${middleName}`) {
@@ -650,7 +638,7 @@ function pausedAndUnpaused() {
       createDom(dataBase.DeckNames)
       console.log(dataBase.DeckNames)
     
-      //console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
+      console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
     })
 
 
@@ -690,7 +678,7 @@ function pausedAndUnpaused() {
     anchorThreeDots.style.display = 'block'
 
     editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-    editText.style.display = 'none'             //'mode' dissappears 
+    pauseAndEditText.style.display = 'none'             //'mode' dissappears 
     editMode = false                          //whether edit in three dots was clicked or not
 
 
@@ -711,7 +699,7 @@ function pausedAndUnpaused() {
     answerFieldTextArea.value = answerField //access to previous saved value
 
     editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
-    editText.style.display = 'none'
+    pauseAndEditText.style.display = 'none'
     editMode = false
     questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
 
@@ -737,12 +725,10 @@ function pausedAndUnpaused() {
     top: '14px',
   }, 'alertSuccess prompt');
 
-  // console.log(dataBase.DeckNames[item].pauseSwitch , 'pauseswit')
 
   mainWindow.append(editLogo) //Logo that appears in edit mode
-  mainWindow.append(editText) //text next to edit logo that appears in edit mode
   mainWindow.append(pauseLogo)
-  mainWindow.append(pauseText)
+  mainWindow.append(pauseAndEditText)
   mainWindow.append(cardModifiedPrompt)
 
   let questionField = questionFieldTextArea.value; //previous question value saved
