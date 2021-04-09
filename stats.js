@@ -239,7 +239,7 @@ export default function stats() {
   );
 
 
-  let studyGoal = 80
+  let studyGoal = 90
   let timeObj = { //shows time in hourly breakdown
     6: 15,
     12: 20,
@@ -406,7 +406,7 @@ export default function stats() {
 
           day.style.backgroundColor = "red";
           day.style.cursor = "pointer";
-        //  day.title = 'Click to see the study stats of this date'
+         day.title = 'Click to see the study stats of this date'
 
           day.onclick = function (event) {
             event.stopPropagation();
@@ -488,6 +488,7 @@ export default function stats() {
 
         if (openTime > timeToday.setMonth(timeToday.getMonth() - 1)) {
           cardsOpenLastOne++;
+          console.log(cardsOpenLastOne)
         }
         else if (openTime > timeToday.setMonth(timeToday.getMonth() - 3)) {
 

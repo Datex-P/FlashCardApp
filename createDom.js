@@ -10,7 +10,9 @@ import {
 export default function createDom(obj) {
   console.log('create Dom was rendered')
   listOfDecks.innerHTML = '';
-  let arr = Object.keys(obj);
+  let arrDemo = Object.keys(obj);
+
+  let arr = arrDemo.filter(item=>!obj[item].thisDeckCompleted)
 
 
 
@@ -29,18 +31,6 @@ export default function createDom(obj) {
     let nameOfNewDeck = createElement("div", dataBase.DeckNames[item].name, { //most upper deck after rendering name of deck 
 
     }, 'nameOfNewDeck')
-
-
-
-
- 
-
-
-
-
-
-
-
 
 
     nameOfNewDeck.title = 'Click to open this deck'
@@ -242,14 +232,9 @@ export default function createDom(obj) {
     threeDotsContainer.style.right = '95px'
 
 
-    let plusIcon = createElement('div', '+', {  //field plus Icon on mainscreen
-      color: 'white', cursor: 'pointer', fontSize: '18px'
-    }, 'plusIcon');
+    let plusIcon = createElement('div', '+', {}, 'plusIcon');
 
-    let openDeck = createElement('button', 'Open Deck', { //button Open Deck at mainscreen
-      width: '100px', height: '27px',
-      color: 'white', cursor: 'pointer', fontSize: '14px'
-    }, 'openDeck');
+    let openDeck = createElement('button', 'Open Deck', {}, 'openDeck');
 
 
     let pauseInfoField = createElement('div', 'To unpause press:', {
@@ -301,7 +286,7 @@ export default function createDom(obj) {
           questAnswerTrainOverv(item); //here the questAnswertrainoverview gets started
           dataBase.openedToday = true
           dataBase.showDiagram = false //deck is opened and thus diagram with goals is not shown for the moment
-          console.log('hello I fired')
+          //console.log('hello I fired')
           createDom(dataBase.DeckNames)
         }
       }
@@ -356,41 +341,20 @@ export default function createDom(obj) {
       return acc
     }, 0)
 
-    // let deckCompleted = createElement('div', dataBase.DeckNames[item].name,
-    //   {
-    //     width: '100px', height: '50px', textAlign: 'center', paddingTop: '5px', backgroundColor: dataBase.DeckNames[item].color, display: 'none',
-    //     top: '-133px', position: 'relative', transform: 'rotate(-5deg)'
-    //   })
 
 
-    // let studiedAllForTodayField = createElement('div', 'You reached the study Goal for this deck.', {
-    //   backgroundColor: dataBase.DeckNames[item].color,
-    //   textAlign: 'center',
-    //   display: 'none',
-    //   paddingTop: '15px',
-    //   lineHeight: '23px'
-    // }, 'pauseInfoField flexCenterAlignCenter') //just using the same class as for pauseInfoField as they have the same size
-
-    //document.querySelector('.menu').onclick = 'none'
-
-
-    newDeckContainer.append(pauseInfoField,
-      //studiedAllForTodayField, 
-      deckIsEmptyField, nameOfNewDeck, threeDotsContainer, addToDeckIcon)
-    addEditDeleteContainer.append(toStudyContainer, toStudy,
-      //toReviewContainer,  //review container that has input inside commented out
-      decksizeContainer, openDeck)
+    newDeckContainer.append(pauseInfoField,deckIsEmptyField, nameOfNewDeck, threeDotsContainer, addToDeckIcon)
+    addEditDeleteContainer.append(toStudyContainer, toStudy, decksizeContainer, openDeck)
 
     toStudyContainer.append(toStudy);
-    // toReviewContainer.append(progress); commented the progress field out in overview
+
     decksizeContainer.append(decksize);
 
     listOfDecks.prepend(newDeckContainer);
-    // listOfDecks.append(deckCompleted)
     addToDeckIcon.append(plusIcon);
 
-    pauseInfoField.append(playIconContainer)
-    pauseInfoField.append(playText)
+    pauseInfoField.append(playIconContainer, playText)
+
 
 var config = {
         type: 'doughnut',
@@ -451,30 +415,30 @@ var config = {
           }
         }
       };
-    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) == 100) && dataBase.DeckNames[item].thisDeckCompleted === false) {
+
+
+    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) >= 10) && dataBase.DeckNames[item].thisDeckCompleted === false
+    &&  dataBase.showDiagram === true) {
       //when the study goal is fullfilled for 100 %
       
       dataBase.DeckNames[item].thisDeckCompleted = true
+     // dataBase.showDiagram = true;
       dataBase.deckCompleted++
       newDeckContainer.style.display = 'none'
-    listOfDecks.remove(newDeckContainer[0], 'new Deckcontainer removed')
-      console.log(newDeckContainer, 'why newdeckcont not triggered')
+      config.data.datasets[0].data.push(
+        Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
+       dataBase.deckCompleted)
 
-      config.data.datasets[0].data.push(Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted)
-      //dataBase.deckCompleted)
+
       config.data.datasets[0].data.push('config data')
-      //console.log(config.data.datasets[0])
-      console.log(config, 'conf')
-
-  let canvasContainer = createElement('div', '', { width: '100px', height: '100px' }, 'canvasContainer')
+    
+  let canvasContainer = createElement('div', '', {  }, 'canvasContainer')
+ 
   document.querySelectorAll('.canvasContainer').forEach(item => {
     document.querySelector('#mainMenu').removeChild(item)
   })
 
-  let canvas = createElement('canvas', '', { position: 'absolute', width: '50px', right: '50px', top: '34px', height: '50px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
-  
-
-
+  let canvas = createElement('canvas', '', {}, 'pieChart canvasStyling')
 
   let ctx = canvas.getContext("2d");
   let myChart = new Chart(ctx, config);
@@ -568,12 +532,9 @@ var config = {
     canvasContainer.append(canvas)
   }
     }
-
-    // console.log(dataBase.DeckNames[item].thisDeckCompleted, 'dataBase completed')
-    // console.log(Object.keys(dataBase.DeckNames).length, 'data decknames')
   });
 
-  console.log(dataBase.deckCompleted, 'deckcompleted')
+
 
 
 
@@ -587,8 +548,6 @@ var config = {
   } else {
     document.querySelector("#scrollable").style.display = 'block'
   }
-
-  // console.log(config, 'conf')
 
 
   document.querySelector("#scrollable").onscroll = function (event) {

@@ -433,8 +433,6 @@ function pausedAndUnpaused() {
         } else {
           dataBase.DeckNames[item].data[index].pause = true
         }
-
-
       }
       ,
       delete: () => {
@@ -571,7 +569,7 @@ function pausedAndUnpaused() {
         console.log(randomNum)
       }
       if (el === `${middleName}`) {
-        let newRandomNum = Math.floor(Math.random() * (100 - 60 + 1) + 60);
+        let newRandomNumber = Math.floor(Math.random() * (100 - 60 + 1) + 60);
         while (randomNum == newRandomNumber){
           newRandomNumber = Math.floor(Math.random() * (100 - 60 + 1) + 60);
         }
@@ -582,7 +580,7 @@ function pausedAndUnpaused() {
         console.log(randomNum)
       }
       if (el === `${rightName}`) {
-        let newRandomNum = Math.floor(Math.random() * 3000);
+        let newRandomNumber = Math.floor(Math.random() * 3000);
         while (randomNum == newRandomNumber){
           newRandomNumber = Math.floor(Math.random() * 3000);
         }

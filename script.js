@@ -68,11 +68,13 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
 
 };
 
-document.querySelector('.menuContainer').onclick = function () {
-  dataBase.showDiagram = false
-  console.log('hello menucontainer')
-  createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
-}
+// document.querySelector('.menuContainer').onclick = function () {
+//   //dataBase.showDiagram = false
+//   document.getElementById('canvasContainer').style.display = 'none'
+//   canvasContainer.style.display = 'none'
+//   console.log('hello menucontainer')
+//   createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
+// }
 
 
 

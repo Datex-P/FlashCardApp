@@ -8,8 +8,8 @@ DeckNames: { /*deckname:[]*/   },
   deckCompleted: 0, //counter goes up when study goal for the day is reached and deck is finished, thus no need to display it anymore
   showDeleteFrameQuestion: true,
   showDeleteFrameStats: true,
-  toStudyGoal: 20,
-  toReviewGoal: 0,
+  // toStudyGoal: 20,
+  // toReviewGoal: 0,
   timeValues: { left: 2, middle: 5, right: 10 },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
   studyTime : 0,
@@ -39,6 +39,7 @@ for (let i = 3; i < 7; i++) {
     cardsToday:0, pause:false, color: colors[i%colors.length], pauseSwitch: false, 
     thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
     skippedPausedCards: 0,
+    deckPauseActive: false //deck is not  paused right now
     //displayDeckInBack: false
   }
   //dataBase.DeckNames[`Literature${i}`].cardsToday = 0;
