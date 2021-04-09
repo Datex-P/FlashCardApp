@@ -13,7 +13,7 @@ import {
 } from './exportFunctions.js'
 import createDom from "./createDom.js";
 import {
-  edit, pause, greenCheckmark
+  edit, pause
 } from "./svgs.js";
 
 
@@ -152,12 +152,8 @@ console.log(dataBase.DeckNames[item], 'items')
       
         inputCheckbox.checked = true
 
-      //= true
         shuffleLogic()
         onOffSwitch.removeAttribute('title')
-
-
-
 
         pauseLogo.style.display = 'block'             //edit Logo dissapears that is active in card edit mode
         pauseAndEditText.style.display = 'block'
@@ -199,8 +195,7 @@ console.log(dataBase.DeckNames[item], 'items')
 
   let theNameOftheDeckAndRedCrossContainer = createElement(
     'div',
-    '', {
-  },
+    '', {},
     'flexSpaceBetweenAlignCenter theNameOftheDeckAndRedCrossContainer'
   );
   mainWindow.append(theNameOftheDeckAndRedCrossContainer);
@@ -210,12 +205,7 @@ console.log(dataBase.DeckNames[item], 'items')
     `Deck: ${dataBase.DeckNames[item].name}`,
     { fontSize: '17px' }
   );
-  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck);
-
-  theNameOftheDeckAndRedCrossContainer.append(onOffSwitch)
-
-
-
+  theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck, onOffSwitch);
 
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
     if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
@@ -230,21 +220,16 @@ console.log(dataBase.DeckNames[item], 'items')
       clearInterval(decrementTimer);
       clearInterval(incrementTimer)
       window.onclick = null
-      console.log('hello from close')
+      //console.log('hello from close')
       dataBase.DeckNames[item].pauseSwitch = false
 //      dataBase.overview = true; //commented out again 
-     // dataBase.DeckNames[item].displayDeckInBack = true
-      //createDom(dataBase.DeckNames)
-
+      dataBase.showDiagram = true
+      createDom(dataBase.DeckNames) //Dom is rerendered so that show diagram and pause switch for instance get updated
 
     }
   }
 
   redCross.onclick = close
-
-
-
-
 
   handleOutsideClick(mainWindow)
 
@@ -531,51 +516,12 @@ function pausedAndUnpaused() {
   containerForRight.append(rightTimeValue);
 
 
-  let editLogo = createElement(
-    'div',
-    edit, {   //pause switch here   `${pauseMode ===false? edit: pause}`
-    width: 'fit-content',
-    position: 'absolute',
-    top: '55px',
-    left: '48px',
-    display: 'none'
+  let editLogo = createElement( 'div', edit, {}, 'editAndPauseLogo')
 
-  },
-    ''
-  )
+  let pauseLogo = createElement('div', pause, {}, 'editAndPauseLogo')
 
- // let pic =  dataBase.DeckNames[item].pauseSwitch === true? pause : edit
+  let pauseAndEditText = createElement('div','mode', {},'pauseAndEditText')
 
-  let pauseLogo = createElement(
-    'div',
-   pause, {
-    width: 'fit-content',
-    position: 'absolute',
-    top: '55px',
-    left: '48px',
-    display: 'none'
-
-  },
-    ''
-  )
-
-
-
-  let pauseAndEditText = createElement(
-    'div',
-    'mode', {
-    width: 'fit-content',
-    position: 'absolute',
-    top: '55px',
-    left: '68px',
-    display: 'none'
-  },
-    ''
-  )
-
-  //let randomNum = Math.floor(Math.random() * 10 + 4); //good
-  //let randomNum = Math.floor(Math.random() * 4 +2.1); //easy
-  //let randomNum = Math.floor(Math.random() * 2); //again
 
   function display() {
     answerFieldTextArea.style.display = 'none';
@@ -625,20 +571,31 @@ function pausedAndUnpaused() {
         console.log(randomNum)
       }
       if (el === `${middleName}`) {
-        randomNum = (Math.floor(Math.random() * (100 - 60 + 1) + 60));
+        let newRandomNum = Math.floor(Math.random() * (100 - 60 + 1) + 60);
+        while (randomNum == newRandomNumber){
+          newRandomNumber = Math.floor(Math.random() * (100 - 60 + 1) + 60);
+        }
+
+        randomNum = newRandomNumber
+
+
         console.log(randomNum)
       }
       if (el === `${rightName}`) {
-        randomNum = (Math.floor(Math.random() * 3000));
-        console.log(randomNum)
+        let newRandomNum = Math.floor(Math.random() * 3000);
+        while (randomNum == newRandomNumber){
+          newRandomNumber = Math.floor(Math.random() * 3000);
+        }
+
+        randomNum = newRandomNumber
       };
       dataBaseQueue(randomNum, item)
       display()
       shuffleLogic()
       createDom(dataBase.DeckNames)
-      console.log(dataBase.DeckNames)
+      // console.log(dataBase.DeckNames)
     
-      console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
+      // console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
     })
 
 
@@ -726,11 +683,8 @@ function pausedAndUnpaused() {
   }, 'alertSuccess prompt');
 
 
-  mainWindow.append(editLogo) //Logo that appears in edit mode
-  mainWindow.append(pauseLogo)
-  mainWindow.append(pauseAndEditText)
-  mainWindow.append(cardModifiedPrompt)
-
+  mainWindow.append(editLogo, pauseLogo, pauseAndEditText, cardModifiedPrompt) //Logo that appears in edit mode
+  
   let questionField = questionFieldTextArea.value; //previous question value saved
   let answerField = answerFieldTextArea.value; //previous answer value saved
 

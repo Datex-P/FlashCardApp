@@ -35,6 +35,9 @@ function handleOutsideClick(e) {
     console.log('window handler still alive')  //message gets displayed when menu is open and clicked outside
     //window.onclick = ''
     closeMenu()            //menu closes after clicked outside
+    dataBase.showDiagram = true
+    createDom(dataBase.DeckNames)
+
     opened = false;
   }
   window.onclick = ''
@@ -42,13 +45,12 @@ function handleOutsideClick(e) {
 
 document.querySelector('.menu').onclick = function () { //opens the menu field when clicked
 
+
   let all = document.querySelectorAll('.menuContainer>div')
   all[0].classList.add('transPlus');
   all[2].classList.add('transMinus');
   all.forEach(item => item.style.top = '8px')
-  // document.querySelectorAll('.menuContainer>div').removeProperty('margin-bottom');
 
-  // document.getElementById('menuBanner').style.display = 'block'
 
   document.getElementById('menuIcon2').style.display = 'none';
 
@@ -65,6 +67,12 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
   }
 
 };
+
+document.querySelector('.menuContainer').onclick = function () {
+  dataBase.showDiagram = false
+  console.log('hello menucontainer')
+  createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
+}
 
 
 

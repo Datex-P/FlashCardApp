@@ -9,8 +9,10 @@ import {
 
 export default function createDom(obj) {
   console.log('create Dom was rendered')
- listOfDecks.innerHTML = '';
+  listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
+
+
 
 
   let edited = false;
@@ -28,6 +30,19 @@ export default function createDom(obj) {
 
     }, 'nameOfNewDeck')
 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
     nameOfNewDeck.title = 'Click to open this deck'
 
 
@@ -41,7 +56,7 @@ export default function createDom(obj) {
 
 
     let addEditDeleteContainer = createElement(
-      'div', '', {}, 'flexColumnSpaceAroundAlignCenter addEditDeleteContainer', '', newDeckContainer
+      'div', '', {}, 'flexColumnSpaceEvenlyAlignCenter addEditDeleteContainer', '', newDeckContainer
     )
 
     let toStud = 'To Study:' //field on each card on the main screen
@@ -61,19 +76,19 @@ export default function createDom(obj) {
       filter(x => x.openHistory).length || 0) * 100) / input.value).toFixed(0).padStart(2, '⠀')} %`].
       map(el => {
 
-      return createElement('div', el, {}, 'decksizeStudyRev')
-    });
+        return createElement('div', el, {}, 'decksizeStudyRev')
+      });
 
 
 
     toStudy.append(input)
 
 
-    let [toStudyContainer, 
+    let [toStudyContainer,
       //toReviewContainer, 
       decksizeContainer] = ['', '', ''].map(el => {
-      return createElement('div', el, {}, 'studyReviewDecksize')
-    });
+        return createElement('div', el, {}, 'studyReviewDecksize')
+      });
 
 
     let Decksize = 'Decksize:';
@@ -283,9 +298,11 @@ export default function createDom(obj) {
           document.querySelector('svg[data-icon="save"]').classList.add('blinkingIcon')
         } else {
           document.querySelector('.settingsIconContainer').classList.add('top')
-          questAnswerTrainOverv(item);
+          questAnswerTrainOverv(item); //here the questAnswertrainoverview gets started
           dataBase.openedToday = true
-
+          dataBase.showDiagram = false //deck is opened and thus diagram with goals is not shown for the moment
+          console.log('hello I fired')
+          createDom(dataBase.DeckNames)
         }
       }
     };
@@ -339,146 +356,135 @@ export default function createDom(obj) {
       return acc
     }, 0)
 
-    let deckCompleted = createElement('div', dataBase.DeckNames[item].name,
-      {
-        width: '100px', height: '50px', textAlign: 'center', paddingTop: '5px', backgroundColor: dataBase.DeckNames[item].color, display: 'none',
-        top: '-133px', position: 'relative', transform: 'rotate(-5deg)'
-      })
+    // let deckCompleted = createElement('div', dataBase.DeckNames[item].name,
+    //   {
+    //     width: '100px', height: '50px', textAlign: 'center', paddingTop: '5px', backgroundColor: dataBase.DeckNames[item].color, display: 'none',
+    //     top: '-133px', position: 'relative', transform: 'rotate(-5deg)'
+    //   })
 
 
-    let studiedAllForTodayField = createElement('div', 'You reached the study Goal for this deck.', {
-      backgroundColor: dataBase.DeckNames[item].color,
-      textAlign: 'center',
-      display: 'none',
-      paddingTop: '15px',
-      lineHeight: '23px'
-    }, 'pauseInfoField flexCenterAlignCenter') //just using the same class as for pauseInfoField as they have the same size
+    // let studiedAllForTodayField = createElement('div', 'You reached the study Goal for this deck.', {
+    //   backgroundColor: dataBase.DeckNames[item].color,
+    //   textAlign: 'center',
+    //   display: 'none',
+    //   paddingTop: '15px',
+    //   lineHeight: '23px'
+    // }, 'pauseInfoField flexCenterAlignCenter') //just using the same class as for pauseInfoField as they have the same size
 
     //document.querySelector('.menu').onclick = 'none'
 
 
-    newDeckContainer.append(pauseInfoField, studiedAllForTodayField, deckIsEmptyField, nameOfNewDeck, threeDotsContainer,addToDeckIcon)
-    addEditDeleteContainer.append(toStudyContainer, toStudy, 
+    newDeckContainer.append(pauseInfoField,
+      //studiedAllForTodayField, 
+      deckIsEmptyField, nameOfNewDeck, threeDotsContainer, addToDeckIcon)
+    addEditDeleteContainer.append(toStudyContainer, toStudy,
       //toReviewContainer,  //review container that has input inside commented out
-      decksizeContainer,openDeck)
+      decksizeContainer, openDeck)
 
     toStudyContainer.append(toStudy);
-   // toReviewContainer.append(progress); commented the progress field out in overview
+    // toReviewContainer.append(progress); commented the progress field out in overview
     decksizeContainer.append(decksize);
 
     listOfDecks.prepend(newDeckContainer);
-    listOfDecks.append(deckCompleted)
+    // listOfDecks.append(deckCompleted)
     addToDeckIcon.append(plusIcon);
 
     pauseInfoField.append(playIconContainer)
     pauseInfoField.append(playText)
 
-  
-    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) == 100) && dataBase.DeckNames[item].thisDeckCompleted === false )  { 
+var config = {
+        type: 'doughnut',
+        data: {
+          labels: [
+            //  "Red",
+            //  'Blue'
+          ],
+          datasets: [{
+            data: [
+              //'hi'
+             // Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
+              //dataBase.deckCompleted
+              //first value shows all decks that are left to study
+              //second value shows decks that were already studied
+            ],
+            backgroundColor: [
+              '#5aaa95', "#FF6384"
+            ],
+            borderColor: [
+              '#5aaa95', "#FF6384",
+            ],
+            borderWidth: 1,
+            hoverBackgroundColor: [
+              // "#FF6384",
+            ]
+          }]
+        },
+        options: {
+          elements: {
+            center: {
+              text: `Goal ${((dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length)}`,
+              //text: 'hello',
+    
+    
+              fontStyle: 'Times', // Default is Arial
+              // sidePadding: 2, // Default is 20 (as a percentage)
+              minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
+    
+              // lineHeight: 19,
+              // Default is 25 (in px), used for when text wraps
+            }
+          },
+          legend: {
+            // position: 'bottom',
+            // labels: {
+            //   fontColor: 'black'
+            // }
+    
+          },
+          cutoutPercentage: 81,
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              top: 10
+            },
+            border: 'none'
+          }
+        }
+      };
+    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) == 100) && dataBase.DeckNames[item].thisDeckCompleted === false) {
       //when the study goal is fullfilled for 100 %
-
+      
       dataBase.DeckNames[item].thisDeckCompleted = true
       dataBase.deckCompleted++
-    newDeckContainer.style.display = 'none'
-    //listOfDecks.remove(newDeckContainer, 'new Deckcontainer removed')
+      newDeckContainer.style.display = 'none'
+    listOfDecks.remove(newDeckContainer[0], 'new Deckcontainer removed')
       console.log(newDeckContainer, 'why newdeckcont not triggered')
 
-      //config.data.datasets[0].data.push(      Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted) 
+      config.data.datasets[0].data.push(Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted)
       //dataBase.deckCompleted)
-    //config.data.datasets[0].data.push('config data')
-    //console.log(config.data.datasets[0])
-    console.log(config, 'conf')
-   
-    }
+      config.data.datasets[0].data.push('config data')
+      //console.log(config.data.datasets[0])
+      console.log(config, 'conf')
 
-    // console.log(dataBase.DeckNames[item].thisDeckCompleted, 'dataBase completed')
-    // console.log(Object.keys(dataBase.DeckNames).length, 'data decknames')
-  });
-
-  console.log(dataBase.deckCompleted, 'deckcompleted')
-
-  let canvasContainer = createElement('div', '', {width: '100px', height:'100px'},'canvasContainer')
-  document.querySelectorAll('.canvasContainer').forEach(item=>{
+  let canvasContainer = createElement('div', '', { width: '100px', height: '100px' }, 'canvasContainer')
+  document.querySelectorAll('.canvasContainer').forEach(item => {
     document.querySelector('#mainMenu').removeChild(item)
   })
 
   let canvas = createElement('canvas', '', { position: 'absolute', width: '50px', right: '50px', top: '34px', height: '50px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
-
-
-  document.querySelector('#mainMenu').append(canvasContainer)
-  canvasContainer.append(canvas)
-
-
-  var config = {
-    type: 'doughnut',
-    data: {
-      labels: [
-        //  "Red",
-        //  'Blue'
-      ],
-      datasets: [{
-        data: [
-          'hi'
-          // Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted, 
-          // dataBase.deckCompleted
-         //first value shows all decks that are left to study
-         //second value shows decks that were already studied
-        ],
-        backgroundColor: [
-         '#5aaa95', "#FF6384"
-        ],
-        borderColor: [
-           '#5aaa95', "#FF6384",
-        ],
-        borderWidth: 1,
-        hoverBackgroundColor: [
-          // "#FF6384",
-        ]
-      }]
-    },
-    options: {
-      elements: {
-        center: {
-          text: `Goal ${((dataBase.deckCompleted*100)/Object.keys(dataBase.DeckNames).length)}`,
-          
-      
-           fontStyle: 'Times', // Default is Arial
-          // sidePadding: 2, // Default is 20 (as a percentage)
-           minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
-           
-          // lineHeight: 19,
-          // Default is 25 (in px), used for when text wraps
-        }
-      },
-      legend: {
-        // position: 'bottom',
-        // labels: {
-        //   fontColor: 'black'
-        // }
-
-      },
-      cutoutPercentage: 81,
-      maintainAspectRatio: false,
-      layout: {
-        padding: {
-          top: 10
-        },
-        border: 'none'
-      }
-    }
-  };
+  
 
 
 
-  var ctx = canvas.getContext("2d");
-  var myChart = new Chart(ctx, config);
+  let ctx = canvas.getContext("2d");
+  let myChart = new Chart(ctx, config);
 
   Chart.pluginService.register({
     beforeDraw: function (chart) {
       if (chart.config.options.elements.center) {
         // Get ctx from string
         var ctx = chart.chart.ctx;
-  
+
         // Get options from the center object in options
         var centerConfig = chart.config.options.elements.center;
         var fontStyle = centerConfig.fontStyle || 'Arial';
@@ -489,31 +495,31 @@ export default function createDom(obj) {
         var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
         // Start with a base font of 30px
         ctx.font = "30px " + fontStyle;
-  
+
         // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
         var stringWidth = ctx.measureText(txt).width;
         var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
-  
+
         // Find out how much the font can grow in width.
         var widthRatio = elementWidth / stringWidth;
         var newFontSize = Math.floor(30 * widthRatio);
         var elementHeight = (chart.innerRadius * 2);
-  
+
         // Pick a new font size so it will not be larger than the height of label.
         var fontSizeToUse = Math.min(newFontSize, elementHeight, maxFontSize);
         var minFontSize = centerConfig.minFontSize;
         var lineHeight = centerConfig.lineHeight || 25;
         var wrapText = false;
-  
+
         if (minFontSize === undefined) {
           minFontSize = 20;
         }
-  
+
         if (minFontSize && fontSizeToUse < minFontSize) {
           fontSizeToUse = minFontSize;
           wrapText = true;
         }
-  
+
         // Set font settings to draw it correctly.
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -521,16 +527,16 @@ export default function createDom(obj) {
         var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
         ctx.font = fontSizeToUse + "px " + fontStyle;
         ctx.fillStyle = color;
-  
+
         if (!wrapText) {
           ctx.fillText(txt, centerX, centerY);
           return;
         }
-  
+
         var words = txt.split(' ');
         var line = '';
         var lines = [];
-  
+
         // Break words up into multiple lines if necessary
         for (var n = 0; n < words.length; n++) {
           var testLine = line + words[n] + ' ';
@@ -543,10 +549,10 @@ export default function createDom(obj) {
             line = testLine;
           }
         }
-  
+
         // Move the center up depending on line height and number of lines
         centerY -= (lines.length / 2) * lineHeight;
-  
+
         for (var n = 0; n < lines.length; n++) {
           ctx.fillText(lines[n], centerX, centerY);
           centerY += lineHeight;
@@ -556,20 +562,33 @@ export default function createDom(obj) {
       }
     }
   });
-  
 
-  
+  if (dataBase.showDiagram) {
+    document.querySelector('#mainMenu').append(canvasContainer)
+    canvasContainer.append(canvas)
+  }
+    }
+
+    // console.log(dataBase.DeckNames[item].thisDeckCompleted, 'dataBase completed')
+    // console.log(Object.keys(dataBase.DeckNames).length, 'data decknames')
+  });
+
+  console.log(dataBase.deckCompleted, 'deckcompleted')
+
+
+
+
   if (Object.keys(dataBase.DeckNames).length === 0) { //if no deck is present, scrollbar dissapear and info to create a deck appears
-    
+
     document.querySelector("#scrollable").style.display = 'none'
     document.querySelector(".arrowDown").style.display = "block";
     document.getElementById('createYourFirstDeckPrompt').style.display = 'block';
-    
+
   } else {
     document.querySelector("#scrollable").style.display = 'block'
   }
-  
-  console.log(config, 'conf')
+
+  // console.log(config, 'conf')
 
 
   document.querySelector("#scrollable").onscroll = function (event) {

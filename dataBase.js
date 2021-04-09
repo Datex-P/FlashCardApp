@@ -1,11 +1,11 @@
 export let dataBase = {
 DeckNames: { /*deckname:[]*/   },
   queue: [],
+  showDiagram: true, //when clicked on the menu button or in questionAsnwerTrain it is set to false
   userStylePreferences: [],
   openedToday: false,
   displayDeck: false, //when display deck is true the study goal of the deck is reached and thus it is not displayed anymore
-  deckCompleted: 0, //counter goes up when study goal for the day is reached
-  showDeleteFrame: true,
+  deckCompleted: 0, //counter goes up when study goal for the day is reached and deck is finished, thus no need to display it anymore
   showDeleteFrameQuestion: true,
   showDeleteFrameStats: true,
   toStudyGoal: 20,
@@ -18,7 +18,6 @@ DeckNames: { /*deckname:[]*/   },
   daysOfStudy : {day : 4},
   overview: false,
   studied: [new Date()],
- // completed: false
 
 };
 

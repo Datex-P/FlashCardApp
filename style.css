@@ -86,6 +86,22 @@ button {
   font-size: 14px;
 }
 
+.editAndPauseLogo {
+  width: fit-content;
+  position: absolute;
+  top: 55px;
+  left: 48px;
+  display: none;
+}
+
+.pauseAndEditText {
+  width: fit-content;
+  position: absolute;
+  top: 55px;
+  left: 68px;
+  display: none;
+}
+
 .studyAndReviewInputStyling {
   width: 23px;
   height:25px;
@@ -187,6 +203,14 @@ textarea {
   justify-content: space-around;
   align-items: center;
 }
+
+.flexColumnSpaceEvenlyAlignCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 
 
 .flexColumnCenter {
@@ -1109,11 +1133,12 @@ border-color:#f5c6cb;
 }
 
 
-.time {
+.time { /*used in stats in the hourly breakdown countainer*/
   margin-left: 10px ;
   border: 1px solid black;
   width: 61px;
   height: 26px;
+  border-radius: 1px;
 }
 
 .studyGoal {

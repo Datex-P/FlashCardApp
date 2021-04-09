@@ -10,6 +10,11 @@ import {
   dataBase
 } from './dataBase.js';
 
+import 
+  createDom
+ from './createDom.js'
+
+
 
 
 
@@ -24,6 +29,8 @@ function closeMenu() {  //closes the menu on the starting screen
   all[2].classList.remove('transMinus');
   all[2].style.top = '16px'
   document.getElementById('menuIcon2').style.display = 'block';
+  //  dataBase.showDiagram = true
+  //  createDom(dataBase.DeckNames)
 };
 
 
@@ -237,6 +244,8 @@ function threeDots() {
 
 function close(mainWindow, anchorElement) {
   mainWindow.parentNode.removeChild(mainWindow);
+  dataBase.showDiagram = true  //is set to true because when stats or settings closed it is shown on the starting screen again
+   createDom(dataBase.DeckNames)   //rerenders the dom so that diagram is displayed again
   anchorElement.style.display = "none";
   window.onclick = null
 }
