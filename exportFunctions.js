@@ -10,9 +10,7 @@ import {
   dataBase
 } from './dataBase.js';
 
-import 
-  createDom
- from './createDom.js'
+import createDom from './createDom.js';
 
 
 
@@ -112,7 +110,7 @@ function threeDots() {
           window.onclick = function () {
 
               littleModalWindow.style.display = 'none';
-              console.log('hello')
+           
               globalThreeDotsOpen = false
               window.onclick = '' 
             }
@@ -245,6 +243,7 @@ function threeDots() {
 function close(mainWindow, anchorElement) {
   mainWindow.parentNode.removeChild(mainWindow);
   dataBase.showDiagram = true  //is set to true because when stats or settings closed it is shown on the starting screen again
+ // document.querySelector('.canvasContainer').style.display = 'block'
    createDom(dataBase.DeckNames)   //rerenders the dom so that diagram is displayed again
   anchorElement.style.display = "none";
   window.onclick = null
@@ -335,7 +334,7 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   checkbox.onchange = function (e) {
 
     dataBase.showDeleteFrame = !e.target.checked;
-    console.log('still alive and well')
+   
   }
 let dontShowMessageText = createElement('label', "Don't show message again", {
       width: '200px',

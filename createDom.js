@@ -1,26 +1,22 @@
 import questAnswerTrainOverv from './questAnswerTrainOverv.js';
 import addQuestionsToDeck from './addQuestionsToDeck.js';
 import { dataBase } from './dataBase.js';
-import { createElement, deleteCardQuestionBox, threeDots, threeDotsOpen } from './exportFunctions.js'
-import {
-  edit, save, play, greenCheckmark, orangeCircle
-} from "./svgs.js";
+import { createElement, deleteCardQuestionBox, threeDots } from './exportFunctions.js'
+import {play, plusSvg} from "./svgs.js";
 
 
 export default function createDom(obj) {
   console.log('create Dom was rendered')
   listOfDecks.innerHTML = '';
-  let arrDemo = Object.keys(obj);
+  let arr = Object.keys(obj);
 
-  let arr = arrDemo.filter(item=>!obj[item].thisDeckCompleted)
-
-
+  let decksThatArenotCompleted = arr.filter(item=>!obj[item].thisDeckCompleted)
 
 
   let edited = false;
 
-  arr.forEach((item, index) => {
-    console.log(item, 'item')
+  decksThatArenotCompleted.forEach((item, index) => {
+  //  console.log(item, 'item')
     let newDeckContainer = createElement('div', '', {
       backgroundColor: dataBase.DeckNames[item].color,
       transform: `rotate(${index * -2}deg)`
@@ -29,7 +25,6 @@ export default function createDom(obj) {
     //dataBase.DeckNames[item].deckPauseActive = false; not sure if this value is needed here
 
     let nameOfNewDeck = createElement("div", dataBase.DeckNames[item].name, { //most upper deck after rendering name of deck 
-
     }, 'nameOfNewDeck')
 
 
@@ -51,19 +46,18 @@ export default function createDom(obj) {
 
     let toStud = 'To Study:' //field on each card on the main screen
 
-    let input = createElement('input', '', {
-      width: '35px',
-      border: 'none'
-    })
-    input.type = 'number';
-    input.value = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
-    input.min = '1'
-    input.max = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
+    let inputToStudy = createElement('input', '', {}, 'inputToStudy')
+
+    inputToStudy.type = 'number';
+    inputToStudy.value = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
+    inputToStudy.min = '1'
+    inputToStudy.max = `${dataBase.DeckNames[item].data.length - dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0}`
 
 
-    let [toStudy, progress] = [`${toStud.padEnd(7, '⠀')}`,
+    let [toStudy] = [`${toStud.padEnd(7, '⠀')}`,
+    
     `Progress:⠀${(((dataBase.DeckNames[item].data.
-      filter(x => x.openHistory).length || 0) * 100) / input.value).toFixed(0).padStart(2, '⠀')} %`].
+      filter(x => x.openHistory).length || 0) * 100) / inputToStudy.value).toFixed(0).padStart(2, '⠀')} %`].
       map(el => {
 
         return createElement('div', el, {}, 'decksizeStudyRev')
@@ -71,12 +65,10 @@ export default function createDom(obj) {
 
 
 
-    toStudy.append(input)
+    toStudy.append(inputToStudy)
 
 
-    let [toStudyContainer,
-      //toReviewContainer, 
-      decksizeContainer] = ['', '', ''].map(el => {
+    let [toStudyContainer, decksizeContainer] = ['', ''].map(el => {
         return createElement('div', el, {}, 'studyReviewDecksize')
       });
 
@@ -87,7 +79,6 @@ export default function createDom(obj) {
 
 
     let changeNameofDeckInput = createElement('input', '', { //input field that gets active when deckname is changed
-
     }, 'changeNameOfDeckInput');
 
 
@@ -106,13 +97,20 @@ export default function createDom(obj) {
 
     //shows if edit button inside three dots on the mainscreen is pressed
 
+    let canvasContainer = createElement('div', '', {  }, 'canvasContainer')
+ 
+    document.querySelectorAll('.canvasContainer').forEach(item => {
+      document.querySelector('#mainMenu').removeChild(item)
+    })
+  
+    let canvas = createElement('canvas', '', {}, 'pieChart canvasStyling')
+
     let mainThreeDots = threeDots()
     let threeDotsContainer = null
     if (dataBase.DeckNames[item].data.length) {
 
       threeDotsContainer = mainThreeDots({
 
-        // if (dataBase.DeckNames[item].data.length !==0 ){ not sure how to check
 
         edit: (event, editIconContainer, editIcon, saveIcon,
           outsideClickClosehandler, littleModalWindow) => {
@@ -128,16 +126,31 @@ export default function createDom(obj) {
               edited = false
             }
           }
+          //littleModalWindow.style.display = 'block'
 
           if (!edited) { //edited was pressed in three dots /default false
 
+            window.onclick = ''
             window.addEventListener('click', () => clickOutsideHandle(saveIcon))
             editIconContainer.replaceChild(saveIcon, editIcon) //saveIcon replaces  editIcon //replaceChild(newChild, oldchild)
             newDeckContainer.replaceChild(changeNameofDeckInput, nameOfNewDeck);
             changeNameofDeckInput.value = nameOfNewDeck.innerText;
-            edited = true;
-            window.onclick = ''
+            console.log('here it is')
             littleModalWindow.style.display = 'block'
+
+            changeNameofDeckInput.oninput = function () {  //this function checks whether the input length is bigger than 3  and smaller than 13
+              if (this.value.length > 12 || this.value.length <3) {
+                littleModalWindow.style.display = 'none'
+              } else {
+
+               // edited = true;
+                window.onclick = ''
+                littleModalWindow.style.display = 'block'
+                console.log('hello helloo hello')
+              }
+            }
+            edited = true;
+            
 
           } else {
 
@@ -149,7 +162,8 @@ export default function createDom(obj) {
             setTimeout(function () {
               window.onclick = outsideClickClosehandler
             }, 10);
-
+            createDom(dataBase.DeckNames) //rerender Dom so that the deckname is changed when cards are added to the deck right away
+           // console.log('I rerendered')
           }
         },
 
@@ -161,8 +175,7 @@ export default function createDom(obj) {
           threeDotsContainer.style.display = 'none' //hides the three dots when pause was pressed
           nameOfNewDeck.style.background = dataBase.DeckNames[item].color
 
-          newDeckContainer.style.background = `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAe0lEQVQoU03PURECMQxF0RMbrIzFBjbQUR3YwAYrA2xkJ2l3hn61fZl7XwI7jkAyghd+5jtjBXvwwKgAN3zReZ0K3sGx3omtSDVQ2FE/MXWf7OskFaJw7Sxtcr9I3Wl1aGcQf6TudKEy2HKRSlmderuY2B4sXfK8tqlOJ205I9rLApoiAAAAAElFTkSuQmCC")
-               ${dataBase.DeckNames[item].color} repeat`
+
           dataBase.DeckNames[item].deckPauseActive = true;
 
           nameOfNewDeck.classList.remove('pointer')
@@ -175,7 +188,11 @@ export default function createDom(obj) {
             pauseInfoField.style.display = 'block'
             addToDeckIcon.style.cursor = 'default' //grey Circle and plus Icon not 'obviously clickable
             plusIcon.style.cursor = 'default'
-            newDeckContainer.querySelector('.nameOfNewDeck').classList.add('nameOfDeckChangedPausedMode')
+            //newDeckContainer.querySelector('.nameOfNewDeck').classList.add('nameOfDeckChangedPausedMode') not sure what it is needed for 11.04
+           // newDeckContainer.replaceChild(nameOfNewDeck, changeNameofDeckInput);
+         
+         
+           editIconContainer.replaceChild(editIcon, saveIcon) 
 
           } else {
             dataBase.DeckNames[item].pause = true
@@ -188,6 +205,7 @@ export default function createDom(obj) {
         ,
 
         delete: () => {
+      
           if (dataBase.showDeleteFrame) {
             deleteCardQuestionBox(() => {
 
@@ -195,8 +213,10 @@ export default function createDom(obj) {
 
             }, createDom, 'Delete deck', 'delete this deck')
           } else {
-            createDom(dataBase.DeckNames)
+            
             delete dataBase.DeckNames[item]
+            createDom(dataBase.DeckNames)
+            
             window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
           }
 
@@ -210,14 +230,14 @@ export default function createDom(obj) {
           if (dataBase.showDeleteFrame) {
             deleteCardQuestionBox(() => {
 
-
               delete dataBase.DeckNames[item]
-
             }, createDom, 'Delete deck', 'delete this deck')
           } else {
             delete dataBase.DeckNames[item]
-            console.log('I did')
-            createDom(dataBase.DeckNames)
+            
+            console.log('newstate', dataBase.DeckNames)
+            setTimeout(()=>createDom(dataBase.DeckNames),0)
+            setTimeout(()=>createDom(dataBase.DeckNames),1000)
             window.onclick = '' //otherwise you had to click double on three dots as some event listener was still active
           }
         }
@@ -225,11 +245,11 @@ export default function createDom(obj) {
       )
     }
 
+    
 
-
-    threeDotsContainer.style.position = 'absolute'
-    threeDotsContainer.style.top = '6px'
-    threeDotsContainer.style.right = '95px'
+ 
+     threeDotsContainer.classList.add('threeDotsContainer')  
+ 
 
 
     let plusIcon = createElement('div', '+', {}, 'plusIcon');
@@ -238,28 +258,24 @@ export default function createDom(obj) {
 
 
     let pauseInfoField = createElement('div', 'To unpause press:', {
-      backgroundColor: dataBase.DeckNames[item].color,
-      textAlign: 'center',
-      lineHeight: '1.5'
+      backgroundColor: dataBase.DeckNames[item].color
     }, 'pauseInfoField')
 
     pauseInfoField.style.display = 'none'
 
     let deckIsEmptyField = createElement('div', 'Click the plus button to add cards to the deck', {
-      backgroundColor: dataBase.DeckNames[item].color,
-      textAlign: 'center'
-    }, 'pauseInfoField')
+      backgroundColor: dataBase.DeckNames[item].color
+    }, 'deckIsEmptyField')
 
-    deckIsEmptyField.style.display = 'none'
+    let plusButtonInsidePause = createElement('div', plusSvg, {width: '20px', height: '20px'}
+    )
 
-
-
-
+    deckIsEmptyField.append(plusButtonInsidePause)
 
 
-    let playIconContainer = createElement('button', play, {}, 'playIconContainer')
+    let playIconContainer = createElement('button', plusSvg, {}, 'playIconContainer')
 
-    let playText = createElement('div', "Right now, this deck doesn't count to the study goal.", { textAlign: 'center' })
+    let playText = createElement('div', "Right now, this deck doesn't count to the study goal.", {}, 'playText')
 
 
 
@@ -288,6 +304,8 @@ export default function createDom(obj) {
           dataBase.showDiagram = false //deck is opened and thus diagram with goals is not shown for the moment
           //console.log('hello I fired')
           createDom(dataBase.DeckNames)
+          canvasContainer.style.display = 'none'
+         
         }
       }
     };
@@ -417,7 +435,7 @@ var config = {
       };
 
 
-    if (((((cardsStudiedToday || 0) * 100) / input.value).toFixed(0) >= 10) && dataBase.DeckNames[item].thisDeckCompleted === false
+    if (((((cardsStudiedToday || 0) * 100) / inputToStudy.value).toFixed(0) >= 10) && dataBase.DeckNames[item].thisDeckCompleted === false
     &&  dataBase.showDiagram === true) {
       //when the study goal is fullfilled for 100 %
       
@@ -429,16 +447,13 @@ var config = {
         Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
        dataBase.deckCompleted)
 
-
+       let decks= document.querySelectorAll('#listOfDecks .newDeckContainer')
+       let length = Array.from(decks).length
+       console.log(Array.from(decks))
+       decks[length-1].querySelector('.orangeCircle').style.display = 'flex'
       config.data.datasets[0].data.push('config data')
     
-  let canvasContainer = createElement('div', '', {  }, 'canvasContainer')
- 
-  document.querySelectorAll('.canvasContainer').forEach(item => {
-    document.querySelector('#mainMenu').removeChild(item)
-  })
 
-  let canvas = createElement('canvas', '', {}, 'pieChart canvasStyling')
 
   let ctx = canvas.getContext("2d");
   let myChart = new Chart(ctx, config);
@@ -532,6 +547,7 @@ var config = {
     canvasContainer.append(canvas)
   }
     }
+   
   });
 
 
@@ -560,11 +576,12 @@ var config = {
 
       document.querySelector('.littleModalWindow').style.display = 'none'
       let all = listOfDecks.querySelectorAll('.newDeckContainer')
-      let step = (1000 - 140) / (all.length - 1)
+      let allInArr= Array.from(all).filter(el=>el.style.display != 'none')
+      let step = (1000 - all[0].getBoundingClientRect().height) / (allInArr.length - 1)
       let index = Math.floor(event.target.scrollTop / step)
       // index = (index > arr.length-1) ? arr.length-1 : index
 
-      Array.from(all).reverse().forEach((item, index) => {
+      allInArr.reverse().forEach((item, index) => {
         item.style.zIndex = 0
         item.querySelector('.settingsIconContainer').style.display = 'none'
         item.querySelector('.nameOfNewDeck').style.display = 'none'
@@ -572,11 +589,11 @@ var config = {
         item.style.transform = `rotate(${(index * -2) || -2}deg)`;
       })
 
-      all[index].style.zIndex = 2;
-      all[index].style.transform = 'rotate(0deg)';
-      all[index].querySelector('.settingsIconContainer').style.display = 'block'
-      all[index].querySelector('.nameOfNewDeck').style.display = 'block'
-      all[index].querySelector('.orangeCircle').style.display = 'flex'
+      allInArr[index].style.zIndex = 2;
+      allInArr[index].style.transform = 'rotate(0deg)';
+      allInArr[index].querySelector('.settingsIconContainer').style.display = 'block'
+      allInArr[index].querySelector('.nameOfNewDeck').style.display = 'block'
+      allInArr[index].querySelector('.orangeCircle').style.display = 'flex'
     }
 
   }

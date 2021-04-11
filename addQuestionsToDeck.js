@@ -14,22 +14,18 @@ export default function addQuestionsToDeck(item) {
 
   let innerWindow = createElement('div', '', {});
 
-  let addToDeck = createElement('button', 'Add to Deck', {
-    backgroundColor: '#545863', color: '#FFE3E3', width: '45%', height: '28px', marginTop: '10px',
-    marginLeft: '8px', cursor: 'pointer'
-  });
+  let addToDeck = createElement('button', 'Add to Deck', {}, 'addToDeck');
 
   let insideFlashCardsContainer = createElement('div', '', { marginTop: '20px' });
 
   let theWordFlashCardsAndRedCrossContainer = createElement('div', '', { width: '97%'}, 'flexSpaceBetween')
 
-  let theNameOfTheDeck = createElement('div', `Deck: &#160${item}`, {fontSize: '17px'});
+  let theNameOfTheDeck = createElement('div', `Deck: &#160${dataBase.DeckNames[item].name}`, {fontSize: '17px'});
 
   let header = createElement('div', '',{ display: 'flex' });
 
+
   header.appendChild(theNameOfTheDeck);
-
-
 
 
 
@@ -38,22 +34,16 @@ export default function addQuestionsToDeck(item) {
     let textarea = document.createElement('textarea');
   
 
-    let theWordQuestionAndAnswer = document.createElement('div');
-    theWordQuestionAndAnswer.innerText = el;
-    theWordQuestionAndAnswer.style.fontWeight = 'bold';
-    theWordQuestionAndAnswer.style.marginBottom = '14px';
-    theWordQuestionAndAnswer.style.marginLeft = '8px';
+    let theWordQuestionAndAnswer = createElement('div',
+     el, { fontWeight: 'bold', marginBottom: '14px', marginLeft: '8px'}
+    )
  
     insideFlashCardsContainer.append(theWordQuestionAndAnswer, textarea)
   });
 
   insideFlashCardsContainer.childNodes[2].style.marginTop = '60px';
 
-  let cardAddedPrompt = createElement('div', 'Card Added', {
-
-   position: 'relative', left: '100px', top: '-208px',
-
-  }, 'alertSuccess prompt');
+  let cardAddedPrompt = createElement('div', 'Card Added', {}, 'alertSuccess prompt cardAddedPrompt');
 
 
   insideFlashCardsContainer.append(addToDeck);
@@ -73,6 +63,7 @@ export default function addQuestionsToDeck(item) {
 
     anchorElement.innerHTML = '';
     anchorElement.style.display = 'none'
+    createDom(dataBase.DeckNames)
   };
 
   handleOutsideClick(mainWindow)

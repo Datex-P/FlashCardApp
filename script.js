@@ -68,13 +68,15 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
 
 };
 
-// document.querySelector('.menuContainer').onclick = function () {
-//   //dataBase.showDiagram = false
-//   document.getElementById('canvasContainer').style.display = 'none'
-//   canvasContainer.style.display = 'none'
-//   console.log('hello menucontainer')
-//   createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
-// }
+document.querySelector('.menuContainer').onclick = function () {
+  //dataBase.showDiagram = false
+  //document.querySelector('.canvasContainer').style.display = 'none'
+ // canvasContainer.style.display = 'none'
+  console.log('hello menucontainer')
+  createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
+  document.querySelector('.orangeCircle').style.display = 'flex !important'
+  document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+}
 
 
 
@@ -147,81 +149,6 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
 //   }
 
 
-// let canvasContainer = createElement('div', '', {width: '100px', height:'100px'})
-
-// let canvas = createElement('canvas', '', { position: 'absolute', width: '50px', right: '50px', top: '34px', height: '50px', overflow: 'hidden', borderRadius: '5px' }, 'pieChart')
-
-// document.querySelector('#mainMenu').append(canvasContainer)
-// canvasContainer.append(canvas)
-
-
-// var config = {
-//   type: 'doughnut',
-//   data: {
-//     labels: [
-//       //  "Red",
-//       //  'Blue'
-//     ],
-//     datasets: [{
-//       data: [
-//         Object.keys(dataBase.DeckNames).length-dataBase.deckCompleted, dataBase.deckCompleted
-//        //first value shows all decks that are left to study
-//        //second value shows decks that were already studied
-//       ],
-//       backgroundColor: [
-//         '#5aaa95', "#FF6384"
-//       ],
-//       borderColor: [
-//          '#5aaa95', "#FF6384",
-//       ],
-//       borderWidth: 1,
-//       hoverBackgroundColor: [
-//         // "#FF6384",
-//       ]
-//     }]
-//   },
-//   options: {
-//     elements: {
-//       center: {
-//         text: `Goal ${(dataBase.deckCompleted*100)/Object.keys(dataBase.DeckNames).length}`,
-        
-//         // !dataBase.openedToday ? 'No cards studied today'
-//         //   //<div style='font-size:12px'>No data</div> 
-//         //   :
-
-//         //   `Data from ${todayDate.toLocaleString('de-DE', {
-//         //     day: 'numeric',
-//         //     month: 'numeric',
-//         //     year: 'numeric',
-//         //   })}`,
-//         // color: '#FF6384', // Default is #000000
-//         // color: 'black',
-//          fontStyle: 'Times', // Default is Arial
-//         // sidePadding: 2, // Default is 20 (as a percentage)
-//          minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
-         
-//         // lineHeight: 19,
-//         // Default is 25 (in px), used for when text wraps
-//       }
-//     },
-//     legend: {
-//       // position: 'bottom',
-//       // labels: {
-//       //   fontColor: 'black'
-//       // }
-
-//     },
-//     cutoutPercentage: 81,
-//     maintainAspectRatio: false,
-//     layout: {
-//       padding: {
-//         top: 10
-//       },
-//       border: 'none'
-//     }
-//   }
-// };
-
 
 
 
@@ -273,34 +200,6 @@ document.getElementById("createDeckButton").onclick = function () {
   document.querySelector(".arrowDown").style.display = "none";
 };
 
-
-// document.getElementById('loginButton').onclick = function () {
-// 	let userNameExists = userDataBase[loginName.value];
-// 	if (userNameExists && userNameExists.password === password.value) {
-// 		startRender(userNameExists,loginName.value)
-//     currentlyLoggedIn = loginName.value;
-// 	}else{
-// 		alert('Invalid username or password.')
-// 	}
-// }
-
-
-
-// document.querySelector('#signUpNow').onclick = function(){
-// 	loginPage.style.display='none'
-// 	registerPageContainer.style.display='flex'
-// }
-
-
-
-// document.querySelector('#backToSignIn').onclick = function () {
-//   loginPage.style.display='flex';
-//   registerPageContainer.style.display='none'
-//   document.getElementById('passwordRequirements').style.display='none';
-//   document.getElementById('newUserPassword').value = '';
-//   newUserLoginName.value = '';
-//   registerButton.style.marginTop="90px";
-// }
 
 
 

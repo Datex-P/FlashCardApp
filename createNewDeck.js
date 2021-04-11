@@ -13,17 +13,7 @@ export default function createNewDeck() {
   anchorElement.style.display = 'flex'
 
 
-  let mainWindow = createElement('div', '', {  //orange window
-      height: '160px',
-      justifyContent: 'center',
-      width: '247px',
-      backgroundColor: 'rgba(200, 168, 115,0.95)',
-      top: '185px',
-      position: 'absolute',
-      borderRadius: '5px',
-      padding: '5px'
-    },
-    'flexColumnAlignCenter'
+  let mainWindow = createElement('div', '', { },'flexColumnAlignCenter mainWindow'
   );
 
   anchorElement.append(mainWindow);
@@ -35,12 +25,7 @@ export default function createNewDeck() {
   mainWindow.append(nameForNewDeckText);
 
   let inputField = createElement('input', '', { //to add the new deck name
-    width: '64%',
-    marginTop: '10px',
-    marginBottom: '10px',
-    height: '24px',
-  
-  });
+}, 'inputField');
 
   
   mainWindow.append(inputField);
@@ -52,15 +37,7 @@ export default function createNewDeck() {
     <option>or choose existing one</option>
     <option>cars' brands</option>
  
-  `, {
-    width: '63%',
-    marginTop: '10px',
-    marginBottom: '10px',
-    height: '30px',
-    borderRadius: '5px',
-    outline: 'none',
-    cursor: 'pointer'
-  });
+  `, {}, 'selectField');
 
   mainWindow.append(selectField)
 
@@ -90,12 +67,6 @@ export default function createNewDeck() {
         anchorElement.style.display = 'none';
         document.querySelector('#listOfDecks').style.display= 'block'
 
-
-        // if (!Object.keys(dataBase.DeckNames).length) {
-        //   //         let arrowDown = document.querySelector(".arrowDown");
-        //   //         arrowDown.style.display = "block";
-        //   //         document.getElementById('createYourFirstDeckPrompt').style.display = 'block';   
-        //   //       }
 
       } else if (el === 'Ok') {
 

@@ -122,6 +122,29 @@ button {
   display: none;
 }
 
+.buttonContainer {
+text-align: left;
+width: 90%;
+display: flex;
+}
+
+
+.addToDeck {
+  background-color: #545863;
+    color: #FFE3E3;
+    width: 45%;
+    height: 28px;
+    margin-top: 10px;
+    margin-left: 8px; 
+    cursor: pointer;
+}
+
+.saveAndDisc {
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
 .studyAndReviewInputStyling {
   width: 23px;
   height:25px;
@@ -275,9 +298,9 @@ textarea {
 }
 
 .flexSpaceAroundAlignCenter {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
 }
  
 .flexSpaceBetweenAlignCenter {
@@ -667,6 +690,17 @@ pauseIconContainer:hover {
   color: blue;
 }
 
+.mainWindow {
+  height: 160px;
+  justify-content: center;
+  width: 247px;
+  background-color: rgba(200, 168, 115,0.95);
+  top: 185px;
+  position: absolute;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 #navOverview {
   margin-top: 30px;
   margin-left: 30px;
@@ -723,6 +757,12 @@ pauseIconContainer:hover {
   width: 108px;
   padding: 2px; 
   border-radius: 5px;
+}
+
+.cardAddedPrompt {
+  position: relative; 
+  left: 100px; 
+  top: -208px;
 }
 
 #redCross {
@@ -900,11 +940,29 @@ pauseIconContainer:hover {
 
 .playIconContainer {
   width: 31px; 
-  margin-left: 6px;
+  margin-left: 155px;
+  height: 40px;
   border-radius: 12px;
   cursor: pointer; 
   padding: 2px;
   border-radius: 32%;
+  position: relative; 
+  top: -13px;
+}
+
+.textAreaInQuestionAnswer {
+  background-color: white;
+  margin-top: 10px;
+}
+
+.labelInQuestionAnswer {
+  font-weight: bold;
+  margin-left: 7px;
+}
+
+.inputToStudy {
+  width: 35px;
+  border: none;
 }
 
 
@@ -930,6 +988,7 @@ pauseIconContainer:hover {
   box-sizing: border-box;
   padding: 8px;
   line-height: 21px;
+  text-align: center;
 }
 
 .changeNameOfDeckInput {
@@ -947,7 +1006,6 @@ pauseIconContainer:hover {
   position:absolute;
   text-align:center;
   left:66px;
-  border: 1px solid black;
 }
 
 
@@ -969,6 +1027,11 @@ textarea:focus {
 }
 textarea:enabled {
   border: 3px solid grey;
+}
+
+.questionAndQuestionField {
+  margin-bottom 20px;
+  margin-top: 20px;
 }
 
 .none{
@@ -996,6 +1059,18 @@ textarea:enabled {
   color: #772e25;
 }
 
+.theWordTodayContainer {
+  margin-bottom: 10px;
+  border: 1px black solid;
+}
+
+.todayStudyContainer {
+  width: 105px; 
+  text-align: center; 
+  font-weight: bold; 
+  font-size: 17px;
+}
+
 .closePopUpContainer {
   border-radius: 50%; 
   width: 16px;
@@ -1016,6 +1091,8 @@ textarea:enabled {
   border: 1px black solid;
   margin-top: 15px;
   border-radius: 5px;
+  position: relative;
+  margin-top: 10px;
 }
 
 #popUpWeeklyGoal {
@@ -1169,6 +1246,29 @@ border-color:#f5c6cb;
   border-radius: 1px;
 }
 
+.editGoals {
+  position: absolute;
+  right: -30px;
+  top: 13px;
+}
+
+.goalSettings {
+  margin-top: 25px;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.hexagonStyling {
+   display: flex;
+   transform: rotate(90deg);
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   width: 16px;
+   height: 21px;
+   position: relative;
+}
+
 .studyGoal {
   margin-left: 10px; 
   border: 1px solid black; 
@@ -1227,7 +1327,6 @@ input[type=number]  {
     -moz-appearance:textfield; 
     text-align: center;
   
-
 }
 
 #listOfDecks input::-webkit-outer-spin-button,
@@ -1280,7 +1379,7 @@ input[type=number]  {
   background-color: white;
   width: 100%; 
   padding: 4px; 
-  padding-left: 5px; 
+  padding-left: 10px; 
   border-radius: 5px;
 }
 
@@ -1290,6 +1389,31 @@ input[type=number]  {
   width: 84%; 
   height: 26px;
   border-radius: 5px;
+}
+
+.unpauseAndKeepPausedButton {
+  cursor: pointer;
+  display: none;
+  width: 113px;
+  padding: 7px;
+}
+
+/* .threeDotsStyling {
+  position: absolute;
+  right:86px;
+  top:18px;
+} */
+
+/* .saveAndDisc {
+  display:flex;
+  justify-content:space-around;
+        saveAndDiscardContainer.style.alignItems = 'center'
+} */
+
+.threeDotsStyling {
+  position:absolute !important;
+  right:86px !important;
+  top:18px !important;
 }
 
 .resetProgress {
@@ -1414,6 +1538,60 @@ height: 57px;
   -ms-user-select: none;
   left: -15px;
 }
+
+.threeDotsContainer {
+  position: absolute !important;
+  top: 6px !important;
+  right: 95px !important;
+}
+
+.upperLeftMiddleRightContainer {
+  /* padding: 13px !important; */
+  height: 19px !important;
+}
+
+.answerAndQuestion {
+  border: none !important;
+  outline: none !important;
+}
+
+.nonDragableIcon {
+ 
+    user-drag: none;  
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+  }
+
+
+.changeTimeIntervall {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.resetColorSchemeContainer {
+  width: 154px;
+  margin-top: 20px;
+}
+
+.editContainerUpper {
+  position: absolute;
+  right: 8px;
+  top: 24px;
+  cursor: pointer;
+}
+
+.playText {
+  position: relative;
+  top: -28px;
+  text-align: center;
+  line-height: 1.6;
+
+}
+
 .onoffswitch-checkbox {
   position: absolute;
   opacity: 0;
@@ -1489,4 +1667,71 @@ height: 57px;
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; 
+}
+
+.settingsAndRedCrossContainer {
+  width: 291px;
+  margin-bottom: 30px;
+  height: 24px;
+}
+
+.containerUpperAndLower {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.theWordSettings {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.deckIsEmptyField {
+  display:none;
+  text-align: center;
+  width: 146px;
+  height: 135px;
+  z-Index: 2;
+  top: 44px;
+  left: 66px;
+  position: absolute;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 8px;
+  line-height: 21px;
+}
+
+.anchorThreeDots {
+  height:29px !important;
+  right:-68px !important;
+  top:0px !important;
+}
+
+.progressNumber {
+  font-size: 13px;
+  position: absolute; 
+  top: 2px;
+}
+
+.selectField {
+  width: 63%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.inputField {
+  width: 64%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 24px;
+}
+
+.logoutSettingsStatsStyling {
+  width: 24px; 
+  height: 24px; 
+  margin-top: 2px;
 }

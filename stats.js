@@ -14,33 +14,31 @@ export default function stats() {
 
   var todayCardsStudiedCounter = 0
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
-  anchorElement.style.display = "flex";
+  anchorElement.style.display = 'flex';
 
-  let mainWindow = createElement("div", "", {}, "addQuestionsToDeck");
+  let mainWindow = createElement('div', '', {}, "addQuestionsToDeck");
 
-  let innerWindow = createElement("div", "", {
-    overflow: "scroll", overflowX: "hidden",
+  let innerWindow = createElement('div', '', {
+    overflow: 'scroll', overflowX: "hidden",
     //cursor: 'pointer'
   }); //scroll bar at the right side of the stats window
 
   let redCrossAndStatsContainer = createElement(
-    "div", "", {}, "flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
+    'div', '', {}, "flexSpaceBetweenAlignCenter redCrossAndStatsContainer"
   );
 
-  let theWordStats = createElement("div", "Stats", { fontWeight: "bold", fontSize: '22px' });
+  let theWordStats = createElement('div', 'Stats', { fontWeight: "bold", fontSize: '22px' });
 
   let todayAndCardsStudiedContainer = createElement(
-    "div",
-    "",
+    'div',
+    '',
     { marginTop: "30px" },
-    "flexColumnAlignCenter"
+    'flexColumnAlignCenter'
   );
 
   let theWordTodayContainer = createElement(
-    "div",
-    "",
-    { marginBottom: "10px", border: "1px black solid" },
-    "flexColumnAlignCenter"
+    'div', '',
+    { }, 'flexColumnAlignCenter theWordTodayContainer'
   );
 
 
@@ -52,7 +50,7 @@ export default function stats() {
 
   theWordTodayContainer.append(canvas)
 
-  let todayStudyContainer = createElement('div', "Today's study breakdown", { width: '105px', textAlign: 'center', fontWeight: 'bold', fontSize: '17px' })
+  let todayStudyContainer = createElement('div', "Today's study breakdown", {}, 'todayStudyContainer')
 
   let todayDate = new Date();
 
@@ -122,7 +120,7 @@ export default function stats() {
 
   let theWordCalendarContainer = createElement("div", "", {}, "flexColumnAlignCenter");
 
-  let theWordCalendar = createElement("div", "Calendar", { fontSize: '18px' }, 'theWordCalendar');
+  let theWordCalendar = createElement('div', 'Calendar', { fontSize: '18px' }, 'theWordCalendar');
 
   let rightAndLeftButtonContainer = createElement("div", "", {
     display: "flex",
@@ -130,7 +128,7 @@ export default function stats() {
 
   let [buttonLeft, buttonRight] = ["<", ">"].map((el) => {
     return createElement(
-      "div",
+      'div',
       el,
       { cursor: "pointer", marginBottom: "4px" },
       "calendarButtons flexCenter"
@@ -168,7 +166,6 @@ export default function stats() {
               })
             }
           }
-
             //breakdown has to be resetted as well
             , () => {
 
@@ -191,29 +188,22 @@ export default function stats() {
     }, { top: '4px' } //the position of the stats field after three dots is clicked
   )
 
-
-
-
-
-  anchorThreeDots.style.height = '29px'
-  anchorThreeDots.style.right = '-68px';
-  anchorThreeDots.style.top = '0px'
-
+    anchorThreeDots.classList.add('anchorThreeDots')
 
 
   let yearBoxContainer = createElement("div", "", {}, 'yearBoxContainer'
   );
 
   let hourlyBreakdownContainer = createElement(
-    "div",
-    "",
+    'div',
+    '',
     { marginTop: "20px", width: "330px" },
     "flexColumnAlignCenter"
   );
 
   let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {}, 'theWordhourlyBreakdown');
 
-  let radioButtonContainer = createElement("div", "", {
+  let radioButtonContainer = createElement('div', '', {
 
   }, 'radioButtonContainer');
 
@@ -235,7 +225,7 @@ export default function stats() {
   });
 
   let diagramHourlyBreakDownContainer = createElement(
-    "div", "", {}, "flexColumnSpaceAround diagramHourlyBreakDownContainer"
+    'div', '', {}, "flexColumnSpaceAround diagramHourlyBreakDownContainer"
   );
 
 
@@ -272,8 +262,8 @@ export default function stats() {
 
 
   let progressNumber = createElement('div', `${currentProgress.toFixed(0)}%`, { //number that is shown above the study goal progress bar
-    position: 'absolute', top: '2px', left: `${widthAdjusted}px`, fontSize: '13px'
-  })
+    left: `${widthAdjusted}px`, 
+  }, 'progressNumber')
 
 
   diagramHourlyBreakDownContainer.append(timeAndProgressContainer);

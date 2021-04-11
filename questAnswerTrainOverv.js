@@ -25,17 +25,11 @@ function generateTextarea(inner, style = {}) {
   });
   const label = createElement(
     'label',
-    inner, {
-    fontWeight: 'bold',
-    marginLeft: '7px'
-  }
+    inner, {}, 'labelInQuestionAnswer'
   );
 
   let textarea = createElement(
-    "textarea", '', {
-    backgroundColor: "white",
-    marginTop: '10px'
-  }
+    "textarea", '', {} , 'textAreaInQuestionAnswer'
   );
   textarea.setAttribute("disabled", "true");
 
@@ -70,8 +64,10 @@ export default function questAnswerTrainOverv(item) {
     let [question, answer, index] = shuffle(item);
     questionFieldTextArea.value = question;
     answerFieldTextArea.innerText = answer;
-    showAnswerButtonContainer.style.display = 'none'
-    answerContainer.style.display = 'none'
+
+    [showAnswerButtonContainer, answerContainer].map(el=>el.style.display = 'none');
+    // showAnswerButtonContainer.style.display = 'none'
+    // answerContainer.style.display = 'none'
     return [question, answer, index]
   }
 
@@ -84,6 +80,8 @@ export default function questAnswerTrainOverv(item) {
   let label1 = createElement('label', '', {}, 'onoffswitch-label')
   let span1 = createElement('span', '', {}, 'onoffswitch-inner')
   let span2 = createElement('span', `${cardsPaused()}`, {}, 'onoffswitch-switch')
+
+  var editMode = false;
 
 
   function cardsPaused() {
@@ -106,14 +104,14 @@ export default function questAnswerTrainOverv(item) {
   }
 
 
-let arrOfPausedDecks;
-console.log(dataBase.DeckNames[item], 'items')
+  let arrOfPausedDecks;
+  console.log(dataBase.DeckNames[item], 'items')
 
-  onOffSwitch.onclick = (e)=>{clickHandler(e)}
-  
+  onOffSwitch.onclick = (e) => { clickHandler(e) }
+
   function clickHandler(e) {
 
-     i = 0;
+    i = 0;
     console.log(i, 'value of i')
 
     dataBase.DeckNames[item].skippedPausedCards = 0
@@ -121,17 +119,13 @@ console.log(dataBase.DeckNames[item], 'items')
 
     if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
       if (inputCheckbox.checked) {
-        console.log('pause not shown')
-        pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-        pauseAndEditText.style.display = 'none'
+      
+        [pauseLogo, pauseAndEditText, answerContainer, answerFieldTextArea, unpauseButton, keepPausedButton].map(el=>el.style.display = 'none');
+        
         questionContainer.style.marginTop = '20px'
         inputCheckbox.checked = false
-
-        answerContainer.style.display = 'none';
-        answerFieldTextArea.style.display = 'none';
+     
         dataBase.DeckNames[item].pauseSwitch = false
-        unpauseButton.style.display = 'none';
-        keepPausedButton.style.display = 'none'
         showAnswerButton.style.display = 'block'
         shuffleLogic() //just does not work sometimes
 
@@ -140,35 +134,40 @@ console.log(dataBase.DeckNames[item], 'items')
 
       } else {
 
-        arrOfPausedDecks = dataBase.DeckNames[item].data.reduce((acc,el,index) => {
-          if(el.pause){
-            let x = {...el}
-            x.index=index;
+        if (editMode === false) {
+
+        console.log('hello from right now')
+
+        arrOfPausedDecks = dataBase.DeckNames[item].data.reduce((acc, el, index) => {
+          if (el.pause) {
+            let x = { ...el }
+            x.index = index;
             x.deck = item
             acc.push(x)
-        }
-        return acc
-      },[])
-      
+          }
+          return acc
+        }, [])
+
         inputCheckbox.checked = true
 
         shuffleLogic()
-        onOffSwitch.removeAttribute('title')
+        onOffSwitch.removeAttribute('title');
 
-        pauseLogo.style.display = 'block'             //edit Logo dissapears that is active in card edit mode
-        pauseAndEditText.style.display = 'block'
-        unpauseButton.style.display = 'inline'
-        keepPausedButton.style.display = 'inline'
+        [pauseLogo, pauseAndEditText, answerContainer, answerFieldTextArea].map(el=> el.style.display = 'block');
+        
+        [unpauseButton, keepPausedButton].map(el=> el.style.display = 'inline');
+ 
         questionContainer.style.marginTop = '37px'
-        answerContainer.style.display = 'block';
-        answerFieldTextArea.style.display = 'block';
         showAnswerButton.style.display = 'none'
         //load only paused cards here
         buttonContainer.classList.add('justify')
 
 
+      } else {
+      //onOffSwitch.style.cursor = 'default'  //cursor default needed when deck is paused
       }
     }
+  }
   }
 
   onOffSwitch.addEventListener('mouseenter', function () {
@@ -207,13 +206,33 @@ console.log(dataBase.DeckNames[item], 'items')
   );
   theNameOftheDeckAndRedCrossContainer.append(theNameofTheDeck, onOffSwitch);
 
+
+  // let cardsStudiedToday = dataBase.DeckNames[item].data.reduce((acc, card) => {
+  //   let cardsForToday = card.openHistory?.filter(time => time?.toDateString() == today)
+  //   // console.log(cardsForToday, 'cardsforToday')
+  //   if (cardsForToday?.length) {
+  //     acc += cardsForToday.length
+  //   }
+  //   return acc
+  // }, 0)
+
+
+
+
+
+
+
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
+    
     if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
+      
       saveAndDiscardContainer.classList.add('blinkingIcon');
       setTimeout(() => {
         saveAndDiscardContainer.classList.remove('blinkingIcon')
       }, 3000);
+
     } else {
+
       mainWindow.parentNode.removeChild(mainWindow);
       anchorElement.style.display = "none";
       clearInterval(timer); //not implemented yet
@@ -222,11 +241,139 @@ console.log(dataBase.DeckNames[item], 'items')
       window.onclick = null
       //console.log('hello from close')
       dataBase.DeckNames[item].pauseSwitch = false
-//      dataBase.overview = true; //commented out again 
+      //      dataBase.overview = true; //commented out again 
       dataBase.showDiagram = true
-      createDom(dataBase.DeckNames) //Dom is rerendered so that show diagram and pause switch for instance get updated
+
+
+      // if (((((cardsStudiedToday || 0) * 100) /  dataBase.DeckNames[item].studyGoal).toFixed(0) >= 50)
+      
+      //         && dataBase.DeckNames[item].thisDeckCompleted === false
+      //         && dataBase.diagramWasTriggeredOnce === false) {
+      //   //when the study goal is fullfilled for 100 %
+      //   console.log('hello from cardStudied')
+
+      //     dataBase.DeckNames[item].thisDeckCompleted = true
+      //     // dataBase.showDiagram = true;
+      //     dataBase.deckCompleted++
+      //     newDeckContainer.style.display = 'none'
+      //     let decks= document.querySelectorAll('#listOfDecks .newDeckContainer')
+      //       let length = Array.from(decks).length
+      //       console.log(Array.from(decks))
+      //       //decks[length-1]
+      
+      
+      // .querySelector('.orangeCircle').style.display = 'block'
+      //       config.data.datasets[0].data.push(
+      //       Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
+      //       dataBase.deckCompleted)
+
+
+      //   config.data.datasets[0].data.push('config data')
+
+
+
+      //   let canvas = createElement('canvas', '', {}, 'pieChart canvasStyling')
+
+      //   let ctx = canvas.getContext("2d");
+      //   let myChart = new Chart(ctx, config);
+
+      //   Chart.pluginService.register({
+      //     beforeDraw: function (chart) {
+      //       if (chart.config.options.elements.center) {
+      //         // Get ctx from string
+      //         var ctx = chart.chart.ctx;
+
+      //         // Get options from the center object in options
+      //         var centerConfig = chart.config.options.elements.center;
+      //         var fontStyle = centerConfig.fontStyle || 'Arial';
+      //         var txt = centerConfig.text;
+      //         var color = centerConfig.color || '#000';
+      //         var maxFontSize = centerConfig.maxFontSize || 75;
+      //         var sidePadding = centerConfig.sidePadding || 20;
+      //         var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+      //         // Start with a base font of 30px
+      //         ctx.font = "30px " + fontStyle;
+
+      //         // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+      //         var stringWidth = ctx.measureText(txt).width;
+      //         var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+      //         // Find out how much the font can grow in width.
+      //         var widthRatio = elementWidth / stringWidth;
+      //         var newFontSize = Math.floor(30 * widthRatio);
+      //         var elementHeight = (chart.innerRadius * 2);
+
+      //         // Pick a new font size so it will not be larger than the height of label.
+      //         var fontSizeToUse = Math.min(newFontSize, elementHeight, maxFontSize);
+      //         var minFontSize = centerConfig.minFontSize;
+      //         var lineHeight = centerConfig.lineHeight || 25;
+      //         var wrapText = false;
+
+      //         if (minFontSize === undefined) {
+      //           minFontSize = 20;
+      //         }
+
+      //         if (minFontSize && fontSizeToUse < minFontSize) {
+      //           fontSizeToUse = minFontSize;
+      //           wrapText = true;
+      //         }
+
+      //         // Set font settings to draw it correctly.
+      //         ctx.textAlign = 'center';
+      //         ctx.textBaseline = 'middle';
+      //         var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+      //         var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+      //         ctx.font = fontSizeToUse + "px " + fontStyle;
+      //         ctx.fillStyle = color;
+
+      //         if (!wrapText) {
+      //           ctx.fillText(txt, centerX, centerY);
+      //           return;
+      //         }
+
+      //         var words = txt.split(' ');
+      //         var line = '';
+      //         var lines = [];
+
+      //         // Break words up into multiple lines if necessary
+      //         for (var n = 0; n < words.length; n++) {
+      //           var testLine = line + words[n] + ' ';
+      //           var metrics = ctx.measureText(testLine);
+      //           var testWidth = metrics.width;
+      //           if (testWidth > elementWidth && n > 0) {
+      //             lines.push(line);
+      //             line = words[n] + ' ';
+      //           } else {
+      //             line = testLine;
+      //           }
+      //         }
+
+      //         // Move the center up depending on line height and number of lines
+      //         centerY -= (lines.length / 2) * lineHeight;
+
+      //         for (var n = 0; n < lines.length; n++) {
+      //           ctx.fillText(lines[n], centerX, centerY);
+      //           centerY += lineHeight;
+      //         }
+      //         //Draw text in center
+      //         ctx.fillText(line, centerX, centerY);
+      //       }
+      //     }
+      //   });
+
+      //   if (dataBase.showDiagram) {
+      //     document.querySelector('#mainMenu').append(canvasContainer)
+      //     canvasContainer.append(canvas)
+      //   }
+      // }
+
+
+
+      dataBase.showDiagram = true
+      // createDom(dataBase.DeckNames) //Dom is rerendered so that show diagram and pause switch for instance get updated
 
     }
+    createDom(dataBase.DeckNames)
   }
 
   redCross.onclick = close
@@ -236,10 +383,7 @@ console.log(dataBase.DeckNames[item], 'items')
 
   theNameOftheDeckAndRedCrossContainer.append(redCross);
   let [questionContainer, questionFieldTextArea] = generateTextarea(
-    'Question', {
-    marginBottom: '20px',
-    marginTop: '20px',
-  }
+    'Question', {}, 'questionAndQuestionField'
   )
 
 
@@ -249,18 +393,11 @@ console.log(dataBase.DeckNames[item], 'items')
   mainWindow.appendChild(questionContainer);
 
   let buttonContainer = createElement(
-    'div',
-    '', {
-    textAlign: 'left',
-    width: '90%',
-    display: 'flex'
-  });
+    'div', '', {}, 'buttonContainer');
 
 
 
-  let showAnswerButton = createElement(
-    'button',
-    'Show Answer', {
+  let showAnswerButton = createElement('button', 'Show Answer', {
     cursor: 'pointer'
   },
     '',
@@ -268,90 +405,72 @@ console.log(dataBase.DeckNames[item], 'items')
   );
 
 
-  let unpauseButton = createElement(
-    'button',
-    'Unpause card', {
-    cursor: 'pointer',
-    display: 'none',
-    width: '113px',
-    padding: '7px'
-  },
-    '',
-    'showAnswerButton'
+  let unpauseButton = createElement('button', 'Unpause card', {
+  }, ' unpauseAndKeepPausedButton', 'showAnswerButton'
   );
 
-  let keepPausedButton = createElement(
-    'button',
-    'Keep paused', {
-    cursor: 'pointer',
-    display: 'none',
-    width: '113px',
-    padding: '7px'
-  },
-    '',
-    'showAnswerButton'
+  let keepPausedButton = createElement('button','Keep paused', {
+  }, ' unpauseAndKeepPausedButton', 'showAnswerButton'
   );
 
-  var i =0;
+  var i = 0;
 
 
 
 
-function pausedAndUnpaused() {
-  unpauseButton.style.display = 'none'
-  keepPausedButton.style.display = 'none'
-  showAnswerButton.style.display = 'block'
-  pauseLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-  pauseAndEditText.style.display = 'none'
-  questionContainer.style.marginTop = '20px'
-  buttonContainer.classList.remove('justify')
-  answerFieldTextArea.style.display = 'none';
-  answerContainer.style.display = 'none';
-   dataBase.DeckNames[item].pauseSwitch = false
-   inputCheckbox.checked = false
-   label1.classList.remove('cursor')
-   span2.innerText = cardsPaused()
-   shuffleLogic()
-}
+  function pausedAndUnpaused() {
+    
+    [unpauseButton, keepPausedButton, pauseLogo, pauseAndEditText, answerFieldTextArea, answerContainer].map(el=>el.style.display = 'none');
+  
+    showAnswerButton.style.display = 'block'
+    questionContainer.style.marginTop = '20px'
+    buttonContainer.classList.remove('justify')
+    dataBase.DeckNames[item].pauseSwitch = false
+    inputCheckbox.checked = false
+    label1.classList.remove('cursor')
+    span2.innerText = cardsPaused()
+    shuffleLogic()
+  }
 
   unpauseButton.onclick = function () {
 
 
-      dataBase.DeckNames[item].data[arrOfPausedDecks[i].index].pause = false //the first item that was captured by pauseswitch is set to fasle
-      
-      i++
+    dataBase.DeckNames[item].data[arrOfPausedDecks[i].index].pause = false //the first item that was captured by pauseswitch is set to fasle
 
-      if (i >= arrOfPausedDecks.length) {
-  
-        pausedAndUnpaused()
-        } else {
-    
-          pausedAndUnpausedElseCond()
-          }
-    }
-
-  keepPausedButton.onclick = function () {
-  
     i++
 
     if (i >= arrOfPausedDecks.length) {
 
       pausedAndUnpaused()
-    
     } else {
 
-        dataBase.DeckNames[item].skippedPausedCards +=1
-        pausedAndUnpausedElseCond()
-        }
-        label1.classList.add('cursor')
-   }
+      pausedAndUnpausedElseCond()
+    }
+  }
 
-   function pausedAndUnpausedElseCond () {
+  keepPausedButton.onclick = function () {
+
+    i++
+
+    if (i >= arrOfPausedDecks.length) {
+
+      pausedAndUnpaused()
+
+    } else {
+
+      dataBase.DeckNames[item].skippedPausedCards += 1
+      pausedAndUnpausedElseCond()
+    }
+    label1.classList.add('cursor')
+  }
+
+  function pausedAndUnpausedElseCond() {
     span2.innerText = cardsPaused()
     shuffleLogic()
-    answerFieldTextArea.style.display = 'block';
-    answerContainer.style.display = 'block';
-   }
+    [answerFieldTextArea, answerContainer].map(el=>el.style.display = 'block');
+    // answerFieldTextArea.style.display = 'block';
+    // answerContainer.style.display = 'block';
+  }
 
 
 
@@ -364,7 +483,7 @@ function pausedAndUnpaused() {
   let showAnswerButtonContainer = createElement(
     'div',
     '', {
-      display: 'flex'
+    display: 'flex'
   }, 'showAnswerButtonContainer'
   )
 
@@ -372,9 +491,9 @@ function pausedAndUnpaused() {
 
   let [answerContainer, answerFieldTextArea] = generateTextarea(
     'Answer', {
-    marginTop: '26px',
-    display: 'none',
-  },
+         marginTop: '26px',
+         display: 'none',
+   }, 'answerAndAnswerField' 
   )
 
 
@@ -394,7 +513,7 @@ function pausedAndUnpaused() {
   saveAndDiscardContainer.append(discardButton, saveButton);
   let [question, answer, index] = shuffleLogic()
 
-  var editMode = false;
+  //var editMode = false;
   let cardThreeDots = threeDots()
 
   let anchorThreeDots = cardThreeDots(
@@ -403,20 +522,36 @@ function pausedAndUnpaused() {
       edit: () => {
         editMode = true;
         showAnswerButtonContainer.style.justifyContent = 'center';
-        answerContainer.style.display = 'block'
-        answerFieldTextArea.style.display = 'block';
-        answerFieldTextArea.removeAttribute("disabled");
-        questionFieldTextArea.removeAttribute("disabled");
+        //answerContainer.style.display = 'block'
+        //answerFieldTextArea.style.display = 'block';
+        console.log('hello from edit')
+
+          [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'block');
+        //  return el})
+        [answerFieldTextArea, questionFieldTextArea].map(el=> el.removeAttribute('disabled'));
+        //  answerFieldTextArea.removeAttribute('disabled');
+        //  questionFieldTextArea.removeAttribute('disabled');
         questionFieldTextArea.focus();
-        saveAndDiscardContainer.style.display = 'flex';
-        saveAndDiscardContainer.style.justifyContent = 'space-around';
-        saveAndDiscardContainer.style.alignItems = 'center'
-        showAnswerButton.style.display = 'none';
+       
+        dataBase.DeckNames[item].pauseSwitch = false
+
+        saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter')
+
+
+        // showAnswerButton.style.display = 'none';
+        // anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
+
+        [showAnswerButton, anchorThreeDots].map(el=>el.style.display = 'none');
         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
         mainWindow.removeChild(showAnswerButtonContainer);
-        anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
-        editLogo.style.display = 'block'                     //edit logo appears that shows that the app is in edit-mode
-        pauseAndEditText.style.display = 'block'
+        [editLogo, pauseAndEditText].forEach(el=> el = el.style.display = 'block');
+       
+
+        dataBase.DeckNames[item].pauseSwitch = false
+        console.log(dataBase.DeckNames[item].pauseSwitch, 'pauseSwitch status')
+        // console.log(dataBase.DeckNamses[item.pauseSwitch, 'pauseswitch'])
+
+        //inputCheckbox.checked = true
 
         questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
       },
@@ -427,7 +562,7 @@ function pausedAndUnpaused() {
           deleteCardQuestionBox(() =>
             dataBase.DeckNames[item].data[index].pause = true, () => {
               questAnswerTrainOverv(item),
-              createDom(dataBase.DeckNames), clearInterval(decrementTimer)
+                (data)=>createDom(data), clearInterval(decrementTimer)
             }, 'Pause card', 'pause this card? <br><span style="font-size: 12px">Paused cards are not counted in stats.</span>')
 
         } else {
@@ -448,32 +583,31 @@ function pausedAndUnpaused() {
         }
       }
 
-    }, { top: '-15px', left: '13px' }, 'card',{marginTop:'0px'}
+    }, { top: '-15px', left: '13px' }, 'card', { marginTop: '0px' }
 
 
   )
 
   theNameOftheDeckAndRedCrossContainer.append(anchorThreeDots)
 
+    anchorThreeDots.classList.add('threeDotsStyling')
 
-  anchorThreeDots.style.position = 'absolute'
-  anchorThreeDots.style.right = '86px'
-  anchorThreeDots.style.top = '18px'
 
 
 
   showAnswerButton.onclick = function () {
 
     if (dataBase.DeckNames[item].pauseSwitch === true) { //checks whether pause switch was clicked next to three dots / default is false
-    
+
       // answerContainer.style.display = 'none';
       // answerFieldTextArea.style.display = 'none';
+      [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'none');
     } else {
 
-      this.style.display = 'none';
-      answerContainer.style.display = 'block';
-      answerFieldTextArea.style.display = 'block';
-      showAnswerButtonContainer.style.display = 'flex';
+    this.style.display = 'none';
+    [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'block');
+     
+    showAnswerButtonContainer.style.display = 'flex';
       dataBase.DeckNames[item].pauseSwitch = false
     }
   };
@@ -514,18 +648,18 @@ function pausedAndUnpaused() {
   containerForRight.append(rightTimeValue);
 
 
-  let editLogo = createElement( 'div', edit, {}, 'editAndPauseLogo')
+  let editLogo = createElement('div', edit, {}, 'editAndPauseLogo')
 
   let pauseLogo = createElement('div', pause, {}, 'editAndPauseLogo')
 
-  let pauseAndEditText = createElement('div','mode', {},'pauseAndEditText')
+  let pauseAndEditText = createElement('div', 'mode', {}, 'pauseAndEditText')
 
 
   function display() {
-    answerFieldTextArea.style.display = 'none';
-    answerContainer.style.display = 'none'
+
+    [answerFieldTextArea, answerContainer, showAnswerButtonContainer].map(el=>el.style.display = 'none')
+
     showAnswerButton.style.display = 'block';
-    showAnswerButtonContainer.style.display = 'none'
   }
 
   function dataBaseQueue(randomNum, item) {
@@ -561,7 +695,7 @@ function pausedAndUnpaused() {
       if (el === `${leftName}`) {
 
         let newRandomNumber = Math.floor(Math.random() * 10);
-        while (randomNum == newRandomNumber){
+        while (randomNum == newRandomNumber) {
           newRandomNumber = Math.floor(Math.random() * 10);
         }
 
@@ -570,7 +704,7 @@ function pausedAndUnpaused() {
       }
       if (el === `${middleName}`) {
         let newRandomNumber = Math.floor(Math.random() * (100 - 60 + 1) + 60);
-        while (randomNum == newRandomNumber){
+        while (randomNum == newRandomNumber) {
           newRandomNumber = Math.floor(Math.random() * (100 - 60 + 1) + 60);
         }
 
@@ -581,7 +715,7 @@ function pausedAndUnpaused() {
       }
       if (el === `${rightName}`) {
         let newRandomNumber = Math.floor(Math.random() * 3000);
-        while (randomNum == newRandomNumber){
+        while (randomNum == newRandomNumber) {
           newRandomNumber = Math.floor(Math.random() * 3000);
         }
 
@@ -592,7 +726,7 @@ function pausedAndUnpaused() {
       shuffleLogic()
       createDom(dataBase.DeckNames)
       // console.log(dataBase.DeckNames)
-    
+
       // console.log(dataBase.DeckNames[item].data.filter(x=>x.openHistory))
     })
 
@@ -621,19 +755,18 @@ function pausedAndUnpaused() {
       setTimeout(() => cardModifiedPrompt.style.display = 'none', 500) //message that card was changed appears for half a second
     }
 
-    answerFieldTextArea.style.border = 'none';
-    questionFieldTextArea.style.border = 'none';
-    answerFieldTextArea.style.outline = 'none';
-    questionFieldTextArea.style.border = 'none';
+    [answerFieldTextArea, questionFieldTextArea].map(el=> el.classList.add('answerAndQuestion'))
+  
 
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'flex';
-    saveAndDiscardContainer.style.display = 'none';
+    saveAndDiscardContainer.classList.remove('flexSpaceAroundAlignCenter')
     anchorThreeDots.style.display = 'block'
 
-    editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-    pauseAndEditText.style.display = 'none'             //'mode' dissappears 
+    [editLogo, pauseAndEditText].map(el=>el.style.display = 'none');
+    // editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
+    // pauseAndEditText.style.display = 'none'             //'mode' dissappears 
     editMode = false                          //whether edit in three dots was clicked or not
 
 
@@ -653,21 +786,22 @@ function pausedAndUnpaused() {
     questionFieldTextArea.value = questionField  //access to previous saved value
     answerFieldTextArea.value = answerField //access to previous saved value
 
-    editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
-    pauseAndEditText.style.display = 'none'
+    // editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
+    // pauseAndEditText.style.display = 'none'
+    [pauseAndEditText, editLogo].map(el=>el.style.display = 'none');
     editMode = false
-    questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
+    questionContainer.style.marginTop = '20px'; //place for edit mode text not needed anymore, changed back to default
 
-    answerFieldTextArea.style.border = 'none';
-    questionFieldTextArea.style.border = 'none';
-    answerFieldTextArea.style.outline = 'none';
-    questionFieldTextArea.style.border = 'none';
+    [answerFieldTextArea, questionFieldTextArea].map(el=> el.classList.add('answerAndQuestion'))
 
+  
     mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
 
     showAnswerButtonContainer.style.display = 'flex';
-    saveAndDiscardContainer.style.display = 'none';
+    saveAndDiscardContainer.classList.remove('flexSpaceAroundAlignCenter')
+
+
     anchorThreeDots.style.display = 'block'
     display()
     handleOutsideClick(mainWindow) //add red cross blink functionality as it was killed by clicking on three dots
@@ -682,7 +816,7 @@ function pausedAndUnpaused() {
 
 
   mainWindow.append(editLogo, pauseLogo, pauseAndEditText, cardModifiedPrompt) //Logo that appears in edit mode
-  
+
   let questionField = questionFieldTextArea.value; //previous question value saved
   let answerField = answerFieldTextArea.value; //previous answer value saved
 
