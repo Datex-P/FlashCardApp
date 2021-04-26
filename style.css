@@ -126,6 +126,7 @@ button {
 text-align: left;
 width: 90%;
 display: flex;
+margin-top: 20px;
 }
 
 
@@ -482,7 +483,7 @@ pauseIconContainer:hover {
   display: none;
   width: 166px;
   height: 71px;
-  top: 388px;
+  top: 412px;
   position: absolute;
   border: 1px grey solid;
   border-radius: 5px;
@@ -716,6 +717,10 @@ pauseIconContainer:hover {
   margin-top: 5px;
 }
 
+#questionContainer {
+  margin-top: 20px;
+}
+
 .blinkingIcon {
   animation: blinker 1.3s linear infinite;
   animation-iteration-count: 2;
@@ -928,26 +933,31 @@ pauseIconContainer:hover {
 
 .showAnswerButtonContainer {
   display: none;
-  width: calc(90% - 2px);
+  width: calc(88% - 2px);
   height: 86px;
   border-radius: 5px;
   border: 1px solid grey;
   box-sizing: border-box;
-  margin-top: 10px;
+  margin-top: 12px;
   align-items: center;
   justify-content: space-around;
 }
 
 .playIconContainer {
-  width: 31px; 
-  margin-left: 155px;
-  height: 40px;
-  border-radius: 12px;
   cursor: pointer; 
   padding: 2px;
-  border-radius: 32%;
   position: relative; 
-  top: -13px;
+  top: 19px;
+  left: 76px;
+  border: 1px solid black;
+  height: 26px;
+  width: 29px;
+  display: flex;
+  outline: none !important;
+  align-items: center;
+  border-radius: 12px;
+  padding-left: 8px;
+  margin-left: 8px;
 }
 
 .textAreaInQuestionAnswer {
@@ -965,6 +975,14 @@ pauseIconContainer:hover {
   border: none;
 }
 
+.plusButtonInsidePause {
+  width: 20px; 
+  height: 22px; 
+  top: 38px; 
+  left: -37px; 
+  position: relative;
+}
+
 
 .littleModalWindow {
   position: absolute;
@@ -975,10 +993,11 @@ pauseIconContainer:hover {
   background-color: white;
   border: 1px black solid;
   border-radius: 5px;
+  z-index: 5;
 }
 
 .pauseInfoField {
-  width: 146px;
+  width: 154px;
   height: 135px;
   z-Index: 2;
   top: 44px;
@@ -989,6 +1008,13 @@ pauseIconContainer:hover {
   padding: 8px;
   line-height: 21px;
   text-align: center;
+  display: none;
+}
+
+.upperLeftMiddleRightContainerContainer {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px;
 }
 
 .changeNameOfDeckInput {
@@ -1398,17 +1424,6 @@ input[type=number]  {
   padding: 7px;
 }
 
-/* .threeDotsStyling {
-  position: absolute;
-  right:86px;
-  top:18px;
-} */
-
-/* .saveAndDisc {
-  display:flex;
-  justify-content:space-around;
-        saveAndDiscardContainer.style.alignItems = 'center'
-} */
 
 .threeDotsStyling {
   position:absolute !important;
@@ -1550,13 +1565,16 @@ height: 57px;
   height: 19px !important;
 }
 
+.containerForLeftMiddleRight{
+  margin: 0 auto !important;
+  width: 90% !important;
+}
 .answerAndQuestion {
   border: none !important;
   outline: none !important;
 }
 
 .nonDragableIcon {
- 
     user-drag: none;  
     user-select: none;
     -moz-user-select: none;
@@ -1586,10 +1604,33 @@ height: 57px;
 
 .playText {
   position: relative;
-  top: -28px;
+  top: 50px;
   text-align: center;
   line-height: 1.6;
+  font-size: 13px;
+  width: 175px;
+  left: -15px;
 
+}
+.d-none{
+  display:none !important;
+}
+.deckIsEmptyFieldAdditionalTwo {
+  width: 159px;
+  top: 135px;
+  left: 73px;
+  z-index: 3;
+  position: relative;
+  font-size: 13px;
+  display: none;
+}
+
+.playTextAdditional {
+  width: 58px; 
+  height: 50px;
+  position: relative; 
+  top:-25px;
+  left: 18px;
 }
 
 .onoffswitch-checkbox {
@@ -1689,16 +1730,23 @@ height: 57px;
 .deckIsEmptyField {
   display:none;
   text-align: center;
-  width: 146px;
+  width: 172px;
   height: 135px;
   z-Index: 2;
   top: 44px;
-  left: 66px;
+  left: 84px;
   position: absolute;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 8px;
   line-height: 21px;
+}
+
+.deckIsEmptyFieldAdditional {
+  position: relative; 
+  top: 37px; 
+  height: 24px; 
+  left: -107px;
 }
 
 .anchorThreeDots {

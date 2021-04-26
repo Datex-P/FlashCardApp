@@ -6,16 +6,17 @@ export default function shuffle(item, index = null) {
   function questionNumber(random) {
 
     if (dataBase.DeckNames[item].pauseSwitch === false) {
-
+      console.log(1,dataBase.DeckNames[item].data[random].question)
       return dataBase.DeckNames[item].data[random].question;
 
     } else if (dataBase.DeckNames[item].skippedPausedCards !==0) { //needed to skip cards when they are kept in pause mode
 
       let num = dataBase.DeckNames[item].skippedPausedCards  
+      console.log(2,dataBase.DeckNames[item].data.filter(x=>x.pause === true)[num]?.question)
       return dataBase.DeckNames[item].data.filter(x=>x.pause === true)[num]?.question;
 
     }  else {
-
+      console.log(3,dataBase.DeckNames[item].data.filter(x => x.pause === true)[0]?.question)
       return dataBase.DeckNames[item].data.filter(x => x.pause === true)[0]?.question;
     }
   }
@@ -37,7 +38,7 @@ export default function shuffle(item, index = null) {
 
       return dataBase.DeckNames[item].data[random].answer;
   
-    } else if (dataBase.DeckNames[item].skippedPausedCards !==0) {
+    } else if (dataBase.DeckNames[item].skippedPausedCards >0) {
       
       let num = dataBase.DeckNames[item].skippedPausedCards
       return dataBase.DeckNames[item].data.filter(x=>x.pause === true)[num]?.answer;
@@ -59,6 +60,7 @@ export default function shuffle(item, index = null) {
   if (dataBase.queue[0] && dataBase.queue[0].timeLeft == 0) {
     return Object.values(dataBase.queue.shift())
   } else {
+    console.log('magic place',[questionNumber(randomInScope), answerNumber(randomInScope), randomInScope]);
     return [questionNumber(randomInScope), answerNumber(randomInScope), randomInScope];
   }
 

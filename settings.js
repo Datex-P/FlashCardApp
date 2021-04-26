@@ -68,11 +68,10 @@ export default function settings() {
 
 
 
-  let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['70px', '70px', '70px'].map(width => createElement('div', '', {
-    width,
-    border: '1px solid black',
-    borderRadius: '5px'
-  }, 'flexCenter'))
+  let [upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer] = ['70px', '70px', '70px']
+  .map(width => createElement('div', '', {
+    width
+  }, 'flexCenter upperLeftMiddleRightContainerContainer'))
 
   containerUpper.append(upperLeftContainerContainer, upperMiddleContainerContainer, upperRightContainerContainer);
 
@@ -94,9 +93,12 @@ export default function settings() {
   ] = [upperLeftContainer, upperMiddleContainer, upperRightContainer].map(container => ["<", "0"].map((el) => {
     let input = document.createElement("div");
     input.innerText = el;
-    //input.className = "noBorders";
-    //input.style.height = '30%'
     input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
+
+    if (el === '<') { //if input is < sign than give it a different left position /overall position
+      input.style.position = 'relative';
+      input.style.left = '6px'
+    }
 
 
     container.append(input)
@@ -114,7 +116,7 @@ export default function settings() {
 
 
 
-  ["min", 'hrs', 'days'].map((el) => {
+  ["m", 'h', 'd'].map((el) => {
     let input = document.createElement("div");
     input.innerText = el;
     input.style.fontWeight = 'bold'
@@ -123,13 +125,13 @@ export default function settings() {
     input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
     switch (el) {
-      case 'min':
+      case 'm':
         upperLeftContainer.append(input)
         break
-      case 'hrs':
+      case 'h':
         upperMiddleContainer.append(input)
         break
-      case 'days':
+      case 'd':
         upperRightContainer.append(input)
         break
     }
@@ -154,9 +156,10 @@ export default function settings() {
 
   let [ 
     changeNameofDeckInput4, changeNameofDeckInput5, changeNameofDeckInput6] =    //input fields for naming the time buttons
-    [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
+    [...Array(3).fill('62px'), ...Array(3).fill('20%')].map(width => {
     let inp = createElement('input', '', {
-      width
+      width,
+      padding: '2px'
     }, 'settingsButtonStyling');
     
     inp.oninput = function(e){
@@ -170,16 +173,15 @@ export default function settings() {
 
 
   let [changeNameofDeckInput1, changeNameofDeckInput2, changeNameofDeckInput3] =  //input fields for the time 
-    [...Array(3).fill('82%'), ...Array(3).fill('20%')].map(width => {
+    [...Array(3).fill('39px'), ...Array(3).fill('20%')].map(width => {
 
      let inp = createElement('input', '', {
       width
     }, 'settingsButtonStyling');
     inp.type='number'
-    inp.maxlength = '2'
     inp.oninput = function(e){
       
-      e.target.value =  e.target.value.substr(0,2) //input can be two digits long max
+      e.target.value =  e.target.value.substr(0,3) //input can be two digits long max
     }
     return inp
   })

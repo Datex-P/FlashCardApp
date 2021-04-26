@@ -19,18 +19,15 @@ import {
 
 
 function generateTextarea(inner, style = {}) {
-  let container = createElement('div', '', {
-    ...style,
-    width: '90%'
-  });
+  let container = createElement('div', '', {...style, width: '90%'});
   const label = createElement(
-    'label',
-    inner, {}, 'labelInQuestionAnswer'
+    'label', inner, {}, 'labelInQuestionAnswer'
   );
 
   let textarea = createElement(
     "textarea", '', {} , 'textAreaInQuestionAnswer'
   );
+
   textarea.setAttribute("disabled", "true");
 
   container.append(label, textarea)
@@ -39,7 +36,7 @@ function generateTextarea(inner, style = {}) {
 
 
 export default function questAnswerTrainOverv(item) {
-  //console.log(item)
+
   let decrementTimer = setInterval(() => {
     dataBase.queue.forEach((item, index) => {
       if (dataBase.queue[index].timeLeft >= 1000) {
@@ -64,10 +61,8 @@ export default function questAnswerTrainOverv(item) {
     let [question, answer, index] = shuffle(item);
     questionFieldTextArea.value = question;
     answerFieldTextArea.innerText = answer;
-
     [showAnswerButtonContainer, answerContainer].map(el=>el.style.display = 'none');
-    // showAnswerButtonContainer.style.display = 'none'
-    // answerContainer.style.display = 'none'
+
     return [question, answer, index]
   }
 
@@ -95,6 +90,8 @@ export default function questAnswerTrainOverv(item) {
   inputCheckbox.name = 'onoffswitch'
   inputCheckbox.type = 'checkbox'
 
+function cardPausedAddCursor() {
+
   if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
 
 
@@ -102,6 +99,9 @@ export default function questAnswerTrainOverv(item) {
   } else {
     label1.classList.remove('cursor')
   }
+}
+
+cardPausedAddCursor()
 
 
   let arrOfPausedDecks;
@@ -174,11 +174,10 @@ export default function questAnswerTrainOverv(item) {
 
     if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
       onOffSwitch.setAttribute('title', 'click to show all paused cards')
-      console.log('working and alive')
+    
     } else {
       onOffSwitch.removeAttribute('title')   //has to be tested if remove works
     }
-
   }
   )
 
@@ -200,7 +199,7 @@ export default function questAnswerTrainOverv(item) {
   mainWindow.append(theNameOftheDeckAndRedCrossContainer);
 
   let theNameofTheDeck = createElement(
-    "div",
+    'div',
     `Deck: ${dataBase.DeckNames[item].name}`,
     { fontSize: '17px' }
   );
@@ -218,10 +217,6 @@ export default function questAnswerTrainOverv(item) {
 
 
 
-
-
-
-
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
     
     if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
@@ -234,146 +229,19 @@ export default function questAnswerTrainOverv(item) {
     } else {
 
       mainWindow.parentNode.removeChild(mainWindow);
-      anchorElement.style.display = "none";
+      anchorElement.style.display = "none"; //questionAnswerOverview gets put on display none
       clearInterval(timer); //not implemented yet
       clearInterval(decrementTimer);
       clearInterval(incrementTimer)
       window.onclick = null
-      //console.log('hello from close')
+    
       dataBase.DeckNames[item].pauseSwitch = false
-      //      dataBase.overview = true; //commented out again 
-      dataBase.showDiagram = true
-
-
-      // if (((((cardsStudiedToday || 0) * 100) /  dataBase.DeckNames[item].studyGoal).toFixed(0) >= 50)
-      
-      //         && dataBase.DeckNames[item].thisDeckCompleted === false
-      //         && dataBase.diagramWasTriggeredOnce === false) {
-      //   //when the study goal is fullfilled for 100 %
-      //   console.log('hello from cardStudied')
-
-      //     dataBase.DeckNames[item].thisDeckCompleted = true
-      //     // dataBase.showDiagram = true;
-      //     dataBase.deckCompleted++
-      //     newDeckContainer.style.display = 'none'
-      //     let decks= document.querySelectorAll('#listOfDecks .newDeckContainer')
-      //       let length = Array.from(decks).length
-      //       console.log(Array.from(decks))
-      //       //decks[length-1]
-      
-      
-      // .querySelector('.orangeCircle').style.display = 'block'
-      //       config.data.datasets[0].data.push(
-      //       Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
-      //       dataBase.deckCompleted)
-
-
-      //   config.data.datasets[0].data.push('config data')
+      dataBase.showDiagram = true; //diagram is shown again, when deck is opened it is set to false
 
 
 
-      //   let canvas = createElement('canvas', '', {}, 'pieChart canvasStyling')
-
-      //   let ctx = canvas.getContext("2d");
-      //   let myChart = new Chart(ctx, config);
-
-      //   Chart.pluginService.register({
-      //     beforeDraw: function (chart) {
-      //       if (chart.config.options.elements.center) {
-      //         // Get ctx from string
-      //         var ctx = chart.chart.ctx;
-
-      //         // Get options from the center object in options
-      //         var centerConfig = chart.config.options.elements.center;
-      //         var fontStyle = centerConfig.fontStyle || 'Arial';
-      //         var txt = centerConfig.text;
-      //         var color = centerConfig.color || '#000';
-      //         var maxFontSize = centerConfig.maxFontSize || 75;
-      //         var sidePadding = centerConfig.sidePadding || 20;
-      //         var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
-      //         // Start with a base font of 30px
-      //         ctx.font = "30px " + fontStyle;
-
-      //         // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-      //         var stringWidth = ctx.measureText(txt).width;
-      //         var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
-
-      //         // Find out how much the font can grow in width.
-      //         var widthRatio = elementWidth / stringWidth;
-      //         var newFontSize = Math.floor(30 * widthRatio);
-      //         var elementHeight = (chart.innerRadius * 2);
-
-      //         // Pick a new font size so it will not be larger than the height of label.
-      //         var fontSizeToUse = Math.min(newFontSize, elementHeight, maxFontSize);
-      //         var minFontSize = centerConfig.minFontSize;
-      //         var lineHeight = centerConfig.lineHeight || 25;
-      //         var wrapText = false;
-
-      //         if (minFontSize === undefined) {
-      //           minFontSize = 20;
-      //         }
-
-      //         if (minFontSize && fontSizeToUse < minFontSize) {
-      //           fontSizeToUse = minFontSize;
-      //           wrapText = true;
-      //         }
-
-      //         // Set font settings to draw it correctly.
-      //         ctx.textAlign = 'center';
-      //         ctx.textBaseline = 'middle';
-      //         var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-      //         var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
-      //         ctx.font = fontSizeToUse + "px " + fontStyle;
-      //         ctx.fillStyle = color;
-
-      //         if (!wrapText) {
-      //           ctx.fillText(txt, centerX, centerY);
-      //           return;
-      //         }
-
-      //         var words = txt.split(' ');
-      //         var line = '';
-      //         var lines = [];
-
-      //         // Break words up into multiple lines if necessary
-      //         for (var n = 0; n < words.length; n++) {
-      //           var testLine = line + words[n] + ' ';
-      //           var metrics = ctx.measureText(testLine);
-      //           var testWidth = metrics.width;
-      //           if (testWidth > elementWidth && n > 0) {
-      //             lines.push(line);
-      //             line = words[n] + ' ';
-      //           } else {
-      //             line = testLine;
-      //           }
-      //         }
-
-      //         // Move the center up depending on line height and number of lines
-      //         centerY -= (lines.length / 2) * lineHeight;
-
-      //         for (var n = 0; n < lines.length; n++) {
-      //           ctx.fillText(lines[n], centerX, centerY);
-      //           centerY += lineHeight;
-      //         }
-      //         //Draw text in center
-      //         ctx.fillText(line, centerX, centerY);
-      //       }
-      //     }
-      //   });
-
-      //   if (dataBase.showDiagram) {
-      //     document.querySelector('#mainMenu').append(canvasContainer)
-      //     canvasContainer.append(canvas)
-      //   }
-      // }
-
-
-
-      dataBase.showDiagram = true
-      // createDom(dataBase.DeckNames) //Dom is rerendered so that show diagram and pause switch for instance get updated
-
+      createDom(dataBase.DeckNames)
     }
-    createDom(dataBase.DeckNames)
   }
 
   redCross.onclick = close
@@ -468,8 +336,7 @@ export default function questAnswerTrainOverv(item) {
     span2.innerText = cardsPaused()
     shuffleLogic()
     [answerFieldTextArea, answerContainer].map(el=>el.style.display = 'block');
-    // answerFieldTextArea.style.display = 'block';
-    // answerContainer.style.display = 'block';
+
   }
 
 
@@ -491,7 +358,7 @@ export default function questAnswerTrainOverv(item) {
 
   let [answerContainer, answerFieldTextArea] = generateTextarea(
     'Answer', {
-         marginTop: '26px',
+         marginTop: '20px',
          display: 'none',
    }, 'answerAndAnswerField' 
   )
@@ -522,38 +389,33 @@ export default function questAnswerTrainOverv(item) {
       edit: () => {
         editMode = true;
         showAnswerButtonContainer.style.justifyContent = 'center';
-        //answerContainer.style.display = 'block'
-        //answerFieldTextArea.style.display = 'block';
-        console.log('hello from edit')
+       // label1.classList.remove('cursor')
 
-          [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'block');
-        //  return el})
+        [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'block');
+ 
         [answerFieldTextArea, questionFieldTextArea].map(el=> el.removeAttribute('disabled'));
-        //  answerFieldTextArea.removeAttribute('disabled');
-        //  questionFieldTextArea.removeAttribute('disabled');
+    
         questionFieldTextArea.focus();
        
         dataBase.DeckNames[item].pauseSwitch = false
 
-        saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter')
+        saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter');
+        [showAnswerButton, anchorThreeDots].map(el=> el.style.display = 'none');
 
-
-        // showAnswerButton.style.display = 'none';
-        // anchorThreeDots.style.display = 'none'             //hides the three dots element when edit is clicked
-
-        [showAnswerButton, anchorThreeDots].map(el=>el.style.display = 'none');
         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
         mainWindow.removeChild(showAnswerButtonContainer);
-        [editLogo, pauseAndEditText].forEach(el=> el = el.style.display = 'block');
-       
+        [editLogo, pauseAndEditText].map(el=> el.style.display = 'block');
+
 
         dataBase.DeckNames[item].pauseSwitch = false
         console.log(dataBase.DeckNames[item].pauseSwitch, 'pauseSwitch status')
-        // console.log(dataBase.DeckNamses[item.pauseSwitch, 'pauseswitch'])
 
         //inputCheckbox.checked = true
 
         questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
+        anchorThreeDots.style.display = 'none' //three dots are not displayed so that they can t be clicked accidentaly
+        label1.classList.remove('cursor') 
+        
       },
 
       pause: (container, playIcon, pauseIcon, edited) => {
@@ -568,6 +430,7 @@ export default function questAnswerTrainOverv(item) {
         } else {
           dataBase.DeckNames[item].data[index].pause = true
         }
+       
       }
       ,
       delete: () => {
@@ -582,7 +445,6 @@ export default function questAnswerTrainOverv(item) {
           createDom(dataBase.DeckNames) //to remove it from the database
         }
       }
-
     }, { top: '-15px', left: '13px' }, 'card', { marginTop: '0px' }
 
 
@@ -599,8 +461,6 @@ export default function questAnswerTrainOverv(item) {
 
     if (dataBase.DeckNames[item].pauseSwitch === true) { //checks whether pause switch was clicked next to three dots / default is false
 
-      // answerContainer.style.display = 'none';
-      // answerFieldTextArea.style.display = 'none';
       [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'none');
     } else {
 
@@ -622,9 +482,7 @@ export default function questAnswerTrainOverv(item) {
 
   let [containerForLeft, containerForMiddle, containerForRight] = ['', '', ''].map(el => {
     return createElement('div', el, {
-      margin: '0 auto',
-      width: '90%'
-    }, 'flexColumnAlignCenter')
+    }, 'flexColumnAlignCenter containerForLeftMiddleRight')
   });
 
 
@@ -657,7 +515,7 @@ export default function questAnswerTrainOverv(item) {
 
   function display() {
 
-    [answerFieldTextArea, answerContainer, showAnswerButtonContainer].map(el=>el.style.display = 'none')
+    [answerFieldTextArea, answerContainer, showAnswerButtonContainer].map(el=>el.style.display = 'none');
 
     showAnswerButton.style.display = 'block';
   }
@@ -675,7 +533,8 @@ export default function questAnswerTrainOverv(item) {
   let { leftName, middleName, rightName } = dataBase.nameValues;
 
 
-
+  let randomNum = 0
+  
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
   [`${leftName}`, `${middleName}`, `${rightName}`].forEach((el, idx) => {
 
@@ -691,7 +550,6 @@ export default function questAnswerTrainOverv(item) {
 
       dataBase.DeckNames[item].cardsToday++
 
-      let randomNum = 0
       if (el === `${leftName}`) {
 
         let newRandomNumber = Math.floor(Math.random() * 10);
@@ -711,7 +569,7 @@ export default function questAnswerTrainOverv(item) {
         randomNum = newRandomNumber
 
 
-        console.log(randomNum)
+        //console.log(randomNum)
       }
       if (el === `${rightName}`) {
         let newRandomNumber = Math.floor(Math.random() * 3000);
@@ -743,12 +601,17 @@ export default function questAnswerTrainOverv(item) {
   });
 
 
+  console.log(randomNum, 'randomNum')
+  console.log(dataBase.DeckNames[item].data[randomNum].answer, 'newRandomNumber')
+
+
   saveButton.onclick = function () {
     setThreeDotsOpen(false);
     questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
-
-
     cardModifiedPrompt.style.display = 'block'
+   
+    console.log(questionField.value, 'questionFieldvalue')
+    console.log(questionFieldTextArea.vlaue, 'questionfieldtextarevalue')
 
     if (questionField.value !== questionFieldTextArea.value) { //only show modified when card was actually changed
 
@@ -762,11 +625,10 @@ export default function questAnswerTrainOverv(item) {
     showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
     showAnswerButtonContainer.style.display = 'flex';
     saveAndDiscardContainer.classList.remove('flexSpaceAroundAlignCenter')
-    anchorThreeDots.style.display = 'block'
+    anchorThreeDots.style.display = 'block';
 
-    [editLogo, pauseAndEditText].map(el=>el.style.display = 'none');
-    // editLogo.style.display = 'none'             //edit Logo dissapears that is active in card edit mode
-    // pauseAndEditText.style.display = 'none'             //'mode' dissappears 
+    [editLogo, pauseAndEditText].map(el=>el.style.display = 'none'); //edit Logo dissapears that is active in card edit mode
+
     editMode = false                          //whether edit in three dots was clicked or not
 
 
@@ -777,18 +639,17 @@ export default function questAnswerTrainOverv(item) {
 
     display();
     shuffleLogic();
-    handleOutsideClick(mainWindow)  //add red cross blink functionality as it was killed by clicking on three dots
+    cardPausedAddCursor()
+   
   }
 
   discardButton.onclick = function () {
     setThreeDotsOpen(false);
 
     questionFieldTextArea.value = questionField  //access to previous saved value
-    answerFieldTextArea.value = answerField //access to previous saved value
+    answerFieldTextArea.value = answerField; //access to previous saved value
 
-    // editLogo.style.display = 'none'  //edit Logo dissapears that is active in card edit mode
-    // pauseAndEditText.style.display = 'none'
-    [pauseAndEditText, editLogo].map(el=>el.style.display = 'none');
+    [pauseAndEditText, editLogo].map(el=>el.style.display = 'none'); //edit Logo dissapears that is active in card edit mode
     editMode = false
     questionContainer.style.marginTop = '20px'; //place for edit mode text not needed anymore, changed back to default
 
@@ -805,7 +666,7 @@ export default function questAnswerTrainOverv(item) {
     anchorThreeDots.style.display = 'block'
     display()
     handleOutsideClick(mainWindow) //add red cross blink functionality as it was killed by clicking on three dots
-
+    cardPausedAddCursor()
   };
 
   let cardModifiedPrompt = createElement('div', 'Card modified', {

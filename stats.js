@@ -1,4 +1,5 @@
 import { dataBase } from "./dataBase.js";
+import createDom from './createDom.js';
 
 import {
   createElement,
@@ -71,7 +72,7 @@ export default function stats() {
         borderColor: [
           // 'rgba(184, 156, 110, 0.95)',
         ],
-        borderWidth: 1,
+        borderWidth: 0,
         hoverBackgroundColor: [
           // "#FF6384",
         ]
@@ -98,7 +99,7 @@ export default function stats() {
         }
       },
       legend: {
-        position: 'bottom',
+         position: 'bottom',
         labels: {
           fontColor: 'black'
         }
@@ -203,9 +204,7 @@ export default function stats() {
 
   let theWordhourlyBreakdown = createElement("div", "Hourly Breakdown", {}, 'theWordhourlyBreakdown');
 
-  let radioButtonContainer = createElement('div', '', {
-
-  }, 'radioButtonContainer');
+  let radioButtonContainer = createElement('div', '', {}, 'radioButtonContainer');
 
   ["1 month", "3 month", "12 month"].forEach((radio) => {
     let radioBtn = createElement("input", "", { cursor: "pointer" });
@@ -514,11 +513,15 @@ export default function stats() {
 
 
   handleOutsideClick(mainWindow);
-  redCross.onclick = () => close(mainWindow, anchorElement)
+  redCross.onclick = () => {close(mainWindow, anchorElement)
+    document.querySelector('.canvasContainer').style.display = 'block';
+    // document.querySelector('.orangeCircle').style.display = 'flex !important'
+    // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+   // createDom(dataBase.DeckNames)
+  }
 
   closeMenu();
 }
-
 Chart.pluginService.register({
   beforeDraw: function (chart) {
     if (chart.config.options.elements.center) {

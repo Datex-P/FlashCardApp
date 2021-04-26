@@ -64,6 +64,7 @@ export default function addQuestionsToDeck(item) {
     anchorElement.innerHTML = '';
     anchorElement.style.display = 'none'
     createDom(dataBase.DeckNames)
+    console.log('heljlo')
   };
 
   handleOutsideClick(mainWindow)
@@ -108,9 +109,12 @@ export default function addQuestionsToDeck(item) {
     insideFlashCardsContainer.childNodes[1].value = '';
     insideFlashCardsContainer.childNodes[3].value = '';
     // answerFieldTextArea.value = '';
-
-    createDom(dataBase.DeckNames);
+    setTimeout(()=>{
+      createDom(dataBase.DeckNames);
+    },0)
+    
   };
 
+  createDom(dataBase.DeckNames);
 }
 

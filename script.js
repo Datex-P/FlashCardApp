@@ -50,7 +50,8 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
   all[0].classList.add('transPlus');
   all[2].classList.add('transMinus');
   all.forEach(item => item.style.top = '8px')
-
+let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
+    
 
   document.getElementById('menuIcon2').style.display = 'none';
 
@@ -59,11 +60,28 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
     document.querySelector('.menuBox').style.justifyContent = 'space-around';
     opened = true;
     setTimeout(() => {        // logic that menu field closes again when clicked outside
-      window.onclick = handleOutsideClick;
+      window.onclick = function(e){
+        handleOutsideClick(e);
+        if(chartjsel){
+          chartjsel.classList.remove('d-none');
+          document.querySelector('.orangeCircle').style.display = 'flex !important'
+          document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+        }
+      }
     }, 10)
+    if(chartjsel){
+      chartjsel.classList.add('d-none');
+    }
   } else {
     closeMenu()
     opened = false;
+    
+    document.querySelector('.orangeCircle').style.display = 'flex !important'
+    document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+    if(chartjsel){
+      chartjsel.classList.remove('d-none');
+    }
+  //  document.querySelector('.canvasContainer .chartjs-render-monitor').classList.toggle('d-none');
   }
 
 };
@@ -71,9 +89,14 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
 document.querySelector('.menuContainer').onclick = function () {
   //dataBase.showDiagram = false
   //document.querySelector('.canvasContainer').style.display = 'none'
+  let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
+  if(chartjsel){
+    chartjsel.classList.toggle('d-none');
+  }
+  
  // canvasContainer.style.display = 'none'
   console.log('hello menucontainer')
-  createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
+ // createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
   document.querySelector('.orangeCircle').style.display = 'flex !important'
   document.querySelector('.orangeCircle').style.zIndex = '3 !important'
 }
@@ -185,10 +208,12 @@ boxesInMenu.forEach(button => { //opens settings and stats when clicked upon the
     if (button.innerText === 'Stats') {
       stats();
       document.querySelector('.menuBox').style.display = 'none';
+      document.querySelector('.canvasContainer').style.display = 'none';
     }
     if (button.innerText === 'Settings') {
       settings();
       document.querySelector('.menuBox').style.display = 'none';
+      document.querySelector('.canvasContainer').style.display = 'none';
     }
   }
 });

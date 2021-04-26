@@ -60,11 +60,13 @@ export default function createNewDeck() {
       // Array.from(all).reverse()[selectedIndex].style.zIndex = 2;
       // Array.from(all).reverse()[selectedIndex].querySelector('.threeDotsIcon').style.opacity = 1;
       // Array.from(all).reverse()[selectedIndex].style.transform = 'rotate(0deg)';
-      // Array.from(all).reverse()[selectedIndex].querySelector('.orangeCircle').style.display = 'flex'
+     //  Array.from(all).reverse()[selectedIndex].querySelector('.orangeCircle').style.display = 'flex'
 
       if (el === 'Cancel') {
-        mainWindow.style.display = 'none';
-        anchorElement.style.display = 'none';
+
+        [mainWindow, anchorElement].map(el=> el.style.display = 'none');
+        // mainWindow.style.display = 'none';
+        // anchorElement.style.display = 'none';
         document.querySelector('#listOfDecks').style.display= 'block'
 
 
@@ -79,14 +81,29 @@ export default function createNewDeck() {
           alert('Input needed')
 
 
-
         } else {
 
           //when deckname does not already exist this method is triggered
 
-          document.querySelector('#listOfDecks').style.display= 'block'
+          document.querySelector('#listOfDecks').style.display= 'block';
 
-          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, cardsToday:0, pause: false, 
+
+  //         Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
+  // Object.keys(dataBase.DeckNames).length) === 100 )
+
+
+
+          document.querySelector('.orangeCircle').style.display = 'flex';
+
+          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, 
+
+            cardsToday:0, pause: false, 
+            skippedPausedCards: 0,
+            pauseSwitch: false, 
+            studyGoal: 0,
+            thisDeckCompleted: false, 
+            toStudyValue: 0,
+
             color: colors[ Object.keys(dataBase.DeckNames).length % colors.length],
           name: inputField.value};
           createDom(dataBase.DeckNames);
