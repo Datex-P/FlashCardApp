@@ -3,6 +3,7 @@ DeckNames: { /*deckname:[]*/   },
   queue: [],
   showDiagram: true, //when clicked on the menu button or in questionAsnwerTrain it is set to false
   diagramWasTriggeredOnce: false, 
+  backgroundColorApp: 'default',
   userStylePreferences: [],
   openedToday: false,
   displayDeck: false, //when display deck is true the study goal of the deck is reached and thus it is not displayed anymore

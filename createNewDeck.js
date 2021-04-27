@@ -91,10 +91,11 @@ export default function createNewDeck() {
   //         Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
   // Object.keys(dataBase.DeckNames).length) === 100 )
 
-
+        if(Object.keys(dataBase.DeckNames).length !== 0) {
 
           document.querySelector('.orangeCircle').style.display = 'flex';
-
+        }
+        
           dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, 
 
             cardsToday:0, pause: false, 

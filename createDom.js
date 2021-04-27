@@ -347,6 +347,17 @@ export default function createDom(obj) {
 
     deckIsEmptyField.append(plusButtonInsidePause);
 
+
+    console.log((window.getComputedStyle(document.body).getPropertyValue('--backgroundColor')), 'backgro')
+
+    // console.log((window.getComputedStyle(document.getElementById('createEditDeleteDeckPage')).getPropertyValue('background')), 'this is backgroudn')
+    // if (window.getComputedStyle(document.body).getPropertyValue('background') ==='#5aaaff') {
+    //   console.log('that is true that body is dark')
+    // }
+
+      console.log(dataBase.backgroundColorApp, 'backgroundcolorApp')
+      console.log(dataBase.openedToday, 'openedToday')
+
     let playIconContainer = createElement(
       "button",
       play,
@@ -368,10 +379,16 @@ export default function createDom(obj) {
       "playTextAdditional"
     );
 
+    // console.log(dataBase.DeckNames[item].filter((x) => x.deckPauseActive === true), 'deckpauseact')
+
+    // console.log(dataBase.DeckNames[0].deckPauseActive, 'deckpause actie')
+    // console.log(dataBase.DeckNames.deckPauseActive.filter(x=> x===true), 'decks that are  paused')
+
     playIconContainer.onclick = function() {
       //play button that appears inside the card  when it is put on pause
       document.querySelector(".plusIcon").style.cursor = "pointer"; //plus Icon pointable again
       document.querySelector(".orangeCircle").style.cursor = "pointer"; //plus Icon pointable again
+     
 
       // [plusIcon, orangeCircle].map(el => document.querySelector(`.${el}`) = pointer);
 
@@ -450,6 +467,10 @@ export default function createDom(obj) {
       createDom(dataBase.DeckNames);
     }
 
+    plusButtonInsidePause.onclick = function () {  //plus button inside card when deck is new created
+      addToDeckHandler(item)
+    }
+
     let today = new Date().toDateString();
 
     let cardsStudiedToday = dataBase.DeckNames[item].data.reduce(
@@ -522,7 +543,9 @@ export default function createDom(obj) {
               //first value shows all decks that are left to study
               //second value shows decks that were already studied
             ],
-            backgroundColor: ["#5aaa95", "#FF6384"],
+            //checks which background color is set in the database and changed in settings
+            backgroundColor: [dataBase.backgroundColorApp === 'default'? "#5aaa95": dataBase.backgroundColorApp ==='dark'? '#5aaaff':'#86a873', 
+            "#FF6384"],
             borderColor: ["#5aaa95", "#FF6384"],
             borderWidth: 0,
             // hoverBackgroundColor: [
@@ -548,6 +571,7 @@ export default function createDom(obj) {
             // Default is 25 (in px), used for when text wraps
           },
         },
+        tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
         //legend: {
           //display: false
         //   // position: 'bottom',
@@ -587,8 +611,8 @@ export default function createDom(obj) {
         dataBase.deckCompleted
       );
       // config.data.labels.push('completed decks')
-      config.options.elements.center.text= `Goal ${(dataBase.deckCompleted * 100) /
-        Object.keys(dataBase.DeckNames).length} %`
+      config.options.elements.center.text= `Goal ${parseInt((dataBase.deckCompleted * 100) /
+        Object.keys(dataBase.DeckNames).length)} %`
       createDom(dataBase.DeckNames);
 
       let decks = document.querySelectorAll("#listOfDecks .newDeckContainer");
@@ -715,7 +739,7 @@ export default function createDom(obj) {
     document.getElementById("createYourFirstDeckPrompt").style.display =
       "block";
   } else {
-    document.querySelector("#scrollable").style.display = "block";
+   document.querySelector("#scrollable").style.display = "block";
   }
 
   document.querySelector("#scrollable").onscroll = function(event) {

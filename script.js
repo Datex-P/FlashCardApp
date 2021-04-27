@@ -38,7 +38,20 @@ function handleOutsideClick(e) {
     dataBase.showDiagram = true
     createDom(dataBase.DeckNames)
 
+    // document.querySelector('.orangeCircle').style.display = 'flex !important'
+    // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+    let decks = document.querySelectorAll("#listOfDecks .newDeckContainer");
+
+    // if (decks.length) {
+    //   decks[length - ].querySelector(".orangeCircle").style.display = "flex";
+    // }
+
+
     opened = false;
+    let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
+    if(chartjsel){
+      chartjsel.classList.toggle('d-none');
+    }
   }
   window.onclick = ''
 }
@@ -50,7 +63,7 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
   all[0].classList.add('transPlus');
   all[2].classList.add('transMinus');
   all.forEach(item => item.style.top = '8px')
-let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
+  let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
     
 
   document.getElementById('menuIcon2').style.display = 'none';
@@ -93,83 +106,12 @@ document.querySelector('.menuContainer').onclick = function () {
   if(chartjsel){
     chartjsel.classList.toggle('d-none');
   }
-  
- // canvasContainer.style.display = 'none'
-  console.log('hello menucontainer')
- // createDom(dataBase.DeckNames) //dom needs to be rerended to hide the diagram
-  document.querySelector('.orangeCircle').style.display = 'flex !important'
-  document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+
+
 }
 
 
 
-
-// let colorContainer = createElement('div', '', {
-//   position: 'absolute',
-//   display: 'block',
-//   zIndex: 3
-// }, '', '', document.body)
-// let colorInput = createElement('input')
-//       colorInput.type = 'color'
-//       colorContainer.appendChild(colorInput)
-
-// document.getElementById('paintbrush').onclick = function () {
-
-//     if (document.body.style.cursor == 'default') {
-//       document.body.style.cursor = "url('brush.svg') 10 20, auto";
-//       // document.body.style.cursor = "url(`${brush}`) 10 20, auto";
-
-//       let colorInput = createElement('input')
-//       document.body.addEventListener('mousemove',otherStaffListener)
-
-//       document.body.addEventListener('mousemove',changePositionOfColorContainer)
-
-//       function otherStaffListener(event){
-//         function componentToHex(c) {
-//           let num = +c
-//           var hex = num.toString(16);
-//           return hex.length == 1 ? "0" + hex : hex;
-//         }
-
-//         function rgbToHex(r, g, b) {
-//           return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-//         }
-
-//         colorInput.type = 'color'
-//         let color = window.getComputedStyle(event.target).getPropertyValue('background-color')
-//         let params = color.match(/([0-9]{3})/g) || [0, 0, 0]
-//         colorInput.value = rgbToHex(...params);
-//         // console.log(color)
-//         // console.log(event.target.style.backgroundColor)
-//         colorContainer.innerHTML = ''
-//         colorContainer.appendChild(colorInput)
-//         colorContainer.style.display = 'block'
-//       }
-//       function changePositionOfColorContainer(event){
-//         colorContainer.style.top = `${event.clientY+10}px`
-//         colorContainer.style.left = `${event.clientX+10}px`
-//       }
-
-//       document.body.ondblclick = function (event) {
-//         // event.target.style.backgroundColor = 'red'
-
-//         // let {x,y} = colorContainer.getBoundingClientRect()
-//         // colorContainer.style.top
-//         document.body.removeEventListener('mousemove',changePositionOfColorContainer)
-//         document.body.removeEventListener('mousemove',otherStaffListener)
-//         colorInput.oninput = function(){
-//           event.target.style.backgroundColor = this.value
-//           document.body.addEventListener('mousemove',otherStaffListener)
-//           document.body.addEventListener('mousemove',changePositionOfColorContainer)
-//           dataBase.userStylePreferences.push({element:event.target,backgroundColor:this.value})
-//           console.log(JSON.stringify(dataBase.userStylePreferences))
-//         }
-//       }
-
-//     } else {
-//       document.body.style.cursor = 'default'
-//     }
-//   }
 
 
 
@@ -209,8 +151,12 @@ boxesInMenu.forEach(button => { //opens settings and stats when clicked upon the
       stats();
       document.querySelector('.menuBox').style.display = 'none';
       document.querySelector('.canvasContainer').style.display = 'none';
+      // document.querySelector('#scrollable').style.display = 'none'
     }
     if (button.innerText === 'Settings') {
+
+      //document.getElementById('scrollable').style.display = 'none'
+      document.querySelector("#scrollable").style.display = "none";
       settings();
       document.querySelector('.menuBox').style.display = 'none';
       document.querySelector('.canvasContainer').style.display = 'none';

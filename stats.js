@@ -13,6 +13,8 @@ import {
 
 export default function stats() {
 
+  document.querySelector('#scrollable').style.display = 'none'
+
   var todayCardsStudiedCounter = 0
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = 'flex';
@@ -515,9 +517,9 @@ export default function stats() {
   handleOutsideClick(mainWindow);
   redCross.onclick = () => {close(mainWindow, anchorElement)
     document.querySelector('.canvasContainer').style.display = 'block';
-    // document.querySelector('.orangeCircle').style.display = 'flex !important'
-    // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
-   // createDom(dataBase.DeckNames)
+     document.querySelector('.orangeCircle').style.display = 'flex !important'
+     document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+    createDom(dataBase.DeckNames)
   }
 
   closeMenu();

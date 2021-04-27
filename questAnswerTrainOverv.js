@@ -444,7 +444,8 @@ cardPausedAddCursor()
           questAnswerTrainOverv(item)
           createDom(dataBase.DeckNames) //to remove it from the database
         }
-      }
+      },
+     
     }, { top: '-15px', left: '13px' }, 'card', { marginTop: '0px' }
 
 
@@ -478,6 +479,8 @@ cardPausedAddCursor()
     margin: '5px 0'
   }, 'flexSpaceBetween'
   );
+
+ console.log(dataBase.DeckNames, 'data decknames')
 
 
   let [containerForLeft, containerForMiddle, containerForRight] = ['', '', ''].map(el => {
@@ -568,8 +571,6 @@ cardPausedAddCursor()
 
         randomNum = newRandomNumber
 
-
-        //console.log(randomNum)
       }
       if (el === `${rightName}`) {
         let newRandomNumber = Math.floor(Math.random() * 3000);
@@ -611,7 +612,7 @@ cardPausedAddCursor()
     cardModifiedPrompt.style.display = 'block'
    
     console.log(questionField.value, 'questionFieldvalue')
-    console.log(questionFieldTextArea.vlaue, 'questionfieldtextarevalue')
+    console.log(document.getElementById('questionFieldTextArea').value, 'questionfieldtextarevalue')
 
     if (questionField.value !== questionFieldTextArea.value) { //only show modified when card was actually changed
 
@@ -637,6 +638,7 @@ cardPausedAddCursor()
     dataBase.DeckNames[item].data[index].question = question
     dataBase.DeckNames[item].data[index].answer = answer
 
+    handleOutsideClick(mainWindow)  //add red cross blink functionality as it was killed by clicking on three dots
     display();
     shuffleLogic();
     cardPausedAddCursor()

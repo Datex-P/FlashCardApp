@@ -983,6 +983,10 @@ pauseIconContainer:hover {
   position: relative;
 }
 
+.plusButtonInsidePause:hover{
+  cursor:pointer;
+}
+
 
 .littleModalWindow {
   position: absolute;

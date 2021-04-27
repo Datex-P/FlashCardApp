@@ -29,6 +29,9 @@ function closeMenu() {  //closes the menu on the starting screen
   document.getElementById('menuIcon2').style.display = 'block';
   //  dataBase.showDiagram = true
   //  createDom(dataBase.DeckNames)
+    // document.querySelector('.orangeCircle').style.display = 'flex !important' //probably don t work 10.27 tuesday
+    // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+    document.querySelector('#scrollable').style.display = 'block'
 };
 
 
@@ -234,7 +237,7 @@ function threeDots() {
           break;
       }
     }
-
+    
     return threeDotsContainer
   }
 }

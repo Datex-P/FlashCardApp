@@ -491,14 +491,15 @@ export default function settings() {
     radio.value = comp;
     radio.title = `Change background color of main menu to ${comp}.`
     radio.onchange = function () {
-      if (comp === 'default') {
+      if (comp === dataBase.backgroundColorApp) { //backgroundColor gets saved in database so that it remembers the prev state
         document.body.className = ''
        
       } else {
-        document.body.className = this.value    
+        document.body.className = this.value  
+        dataBase.backgroundColorApp = this.value  
       }
     }
-    if (comp === 'default') {
+    if (comp === dataBase.backgroundColorApp) {
       radio.checked = true
     }
     createElement("label", comp, {}, '', '', inputContainer);
