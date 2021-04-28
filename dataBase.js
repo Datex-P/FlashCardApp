@@ -5,7 +5,9 @@ DeckNames: { /*deckname:[]*/   },
   diagramWasTriggeredOnce: false, 
   backgroundColorApp: 'default',
   userStylePreferences: [],
+  currentQuestionAndAnswerArr: null, //is needed to compare whether question was changed by clicking on save button
   openedToday: false,
+  statsOrSettingsOpened: false, //whenver questionanswertrain stats or settings is opened, the scrollbar in the back dissapears
   displayDeck: false, //when display deck is true the study goal of the deck is reached and thus it is not displayed anymore
   deckCompleted: 0, //counter goes up when study goal for the day is reached and deck is finished, thus no need to display it anymore
   showDeleteFrameQuestion: true,

@@ -41,11 +41,11 @@ textarea {
   content: "";
   display: inline-block;
   vertical-align: -25%;
-  height: 2ex;
-  width: 2ex;
+  height: 13px;
+  width: 15px;
   background-color: white;
-  /* border: 1px solid rgb(166, 166, 166); */
-  border-radius: 4px;
+  top:-3px;
+  position:relative;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.25);
   margin-right: 0.5em;
 } 
@@ -487,6 +487,9 @@ pauseIconContainer:hover {
   position: absolute;
   border: 1px grey solid;
   border-radius: 5px;
+  flex-direction: column;
+  justify-content:space-evenly !important; 
+  padding: 4px;
 }
 
 
@@ -529,8 +532,8 @@ pauseIconContainer:hover {
 
 .deleteContainerInner {
   position: absolute;
-  top: 255px;
-  height: 177px;
+  top: 257px;
+  height: 162px !important;
   width: 252px;
   height: 160px;
   background-color: white;
@@ -933,7 +936,7 @@ pauseIconContainer:hover {
 
 .showAnswerButtonContainer {
   display: none;
-  width: calc(88% - 2px);
+  width: calc(86% - 2px);
   height: 86px;
   border-radius: 5px;
   border: 1px solid grey;
@@ -1060,7 +1063,7 @@ textarea:enabled {
 }
 
 .questionAndQuestionField {
-  margin-bottom 20px;
+  margin-bottom: 20px;
   margin-top: 20px;
 }
 

@@ -63,8 +63,9 @@ export default function addQuestionsToDeck(item) {
 
     anchorElement.innerHTML = '';
     anchorElement.style.display = 'none'
+    dataBase.statsOrSettingsOpened = false; //needed so that scrollbar on the right reappears
     createDom(dataBase.DeckNames)
-    console.log('heljlo')
+    
   };
 
   handleOutsideClick(mainWindow)

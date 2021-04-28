@@ -7,6 +7,7 @@ import {createElement} from './exportFunctions.js'
 
 export default function createNewDeck() {
   document.querySelector('#listOfDecks').style.display= 'none'
+
  
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
@@ -57,10 +58,7 @@ export default function createNewDeck() {
     )
 
     button.addEventListener('click', function () {
-      // Array.from(all).reverse()[selectedIndex].style.zIndex = 2;
-      // Array.from(all).reverse()[selectedIndex].querySelector('.threeDotsIcon').style.opacity = 1;
-      // Array.from(all).reverse()[selectedIndex].style.transform = 'rotate(0deg)';
-     //  Array.from(all).reverse()[selectedIndex].querySelector('.orangeCircle').style.display = 'flex'
+
 
       if (el === 'Cancel') {
 
@@ -68,6 +66,13 @@ export default function createNewDeck() {
         // mainWindow.style.display = 'none';
         // anchorElement.style.display = 'none';
         document.querySelector('#listOfDecks').style.display= 'block'
+
+        if (Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
+            Object.keys(dataBase.DeckNames).length) === 100 ) {
+  
+            document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
+   
+  }
 
 
       } else if (el === 'Ok') {
@@ -83,17 +88,14 @@ export default function createNewDeck() {
 
         } else {
 
-          //when deckname does not already exist this method is triggered
-
           document.querySelector('#listOfDecks').style.display= 'block';
-
 
   //         Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
   // Object.keys(dataBase.DeckNames).length) === 100 )
 
         if(Object.keys(dataBase.DeckNames).length !== 0) {
 
-          document.querySelector('.orangeCircle').style.display = 'flex';
+         // document.querySelector('.orangeCircle').style.display = 'flex';
         }
         
           dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, 
@@ -107,11 +109,17 @@ export default function createNewDeck() {
 
             color: colors[ Object.keys(dataBase.DeckNames).length % colors.length],
           name: inputField.value};
+
+          
           createDom(dataBase.DeckNames);
           anchorElement.removeChild(mainWindow); 
           anchorElement.style.display = 'none';
-
+          
+          
         }
+      }
+      if (Object.keys(dataBase.DeckNames).length > 1) { //needed in case there is only one deck in the stack the scrollbar would reappear otherwise
+          document.querySelector('#scrollable').style.display = 'block' //scrollbar reappears after it was hidden in script.js when createnewdeck was invoked
       }
     })
 

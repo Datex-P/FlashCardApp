@@ -60,7 +60,7 @@ export default function shuffle(item, index = null) {
   if (dataBase.queue[0] && dataBase.queue[0].timeLeft == 0) {
     return Object.values(dataBase.queue.shift())
   } else {
-    console.log('magic place',[questionNumber(randomInScope), answerNumber(randomInScope), randomInScope]);
+     dataBase.currentQuestionAndAnswerArr = [questionNumber(randomInScope), answerNumber(randomInScope), randomInScope];
     return [questionNumber(randomInScope), answerNumber(randomInScope), randomInScope];
   }
 

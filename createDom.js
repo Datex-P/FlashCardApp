@@ -20,7 +20,7 @@ export default function createDom(obj) {
   let edited = false;
   let canvasContainer = createElement("div", "", {}, "canvasContainer");
   let canvas = createElement("canvas", "", {}, "pieChart canvasStyling");
-  decksThatArenotCompleted.forEach((item, index) => {
+  decksThatArenotCompleted.forEach((item, index, filteredArray) => {
     let newDeckContainer = createElement(
       "div",
       "",
@@ -257,6 +257,14 @@ export default function createDom(obj) {
               deleteCardQuestionBox(
                 () => {
                   delete dataBase.DeckNames[item];
+                  
+                  // if (Object.keys(dataBase.DeckNames).length === 2) {
+                  //   document.querySelector("#scrollable").style.display = "none";
+                  //   console.log('only one deck is left here')
+                  //   console.log(Object.keys(dataBase.DeckNames))
+                  // }
+                  console.log(Object.keys(dataBase.DeckNames))
+                  
                 },
                 createDom,
                 "Delete deck",
@@ -265,6 +273,9 @@ export default function createDom(obj) {
             } else {
               delete dataBase.DeckNames[item];
               createDom(dataBase.DeckNames);
+
+
+
 
               window.onclick = ""; //otherwise you had to click double on three dots as some event listener was still active
             }
@@ -348,16 +359,6 @@ export default function createDom(obj) {
     deckIsEmptyField.append(plusButtonInsidePause);
 
 
-    console.log((window.getComputedStyle(document.body).getPropertyValue('--backgroundColor')), 'backgro')
-
-    // console.log((window.getComputedStyle(document.getElementById('createEditDeleteDeckPage')).getPropertyValue('background')), 'this is backgroudn')
-    // if (window.getComputedStyle(document.body).getPropertyValue('background') ==='#5aaaff') {
-    //   console.log('that is true that body is dark')
-    // }
-
-      console.log(dataBase.backgroundColorApp, 'backgroundcolorApp')
-      console.log(dataBase.openedToday, 'openedToday')
-
     let playIconContainer = createElement(
       "button",
       play,
@@ -420,7 +421,7 @@ export default function createDom(obj) {
           questAnswerTrainOverv(item); //here the questAnswertrainoverview gets started
           dataBase.openedToday = true;
           dataBase.showDiagram = false; //deck is opened and thus diagram with goals is not shown for the moment
-
+          dataBase.statsOrSettingsOpened = true;
           createDom(dataBase.DeckNames);
 
 
@@ -452,7 +453,7 @@ export default function createDom(obj) {
 
     let addToDeckIcon = createElement("div", "", {}, "orangeCircle");
 
-    if (index === arr.length - 1) {
+    if (index === filteredArray.length - 1) {
       addToDeckIcon.style.display = "flex";
       newDeckContainer.style.zIndex = 2;
       newDeckContainer.style.transform = "rotate(0deg)";
@@ -464,6 +465,7 @@ export default function createDom(obj) {
 
     function addToDeckHandler() {
       addQuestionsToDeck(item);
+      dataBase.statsOrSettingsOpened = true; //needed so that scrollbar in the back dissapears when add to deck menu is open
       createDom(dataBase.DeckNames);
     }
 
@@ -572,6 +574,7 @@ export default function createDom(obj) {
           },
         },
         tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
+        hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights
         //legend: {
           //display: false
         //   // position: 'bottom',
@@ -592,7 +595,7 @@ export default function createDom(obj) {
 
     let cardsStudiedInPercent = (cardsStudiedToday || 0) * 100;
     
-    // console.log('trickz condition',Math.round(cardsStudiedInPercent / inputToStudy.value))
+ 
     if ((Math.round(cardsStudiedInPercent / inputToStudy.value) >= 10 )
       && 
       dataBase.DeckNames[item].thisDeckCompleted === false 
@@ -729,17 +732,31 @@ export default function createDom(obj) {
       }
 
 
+  
 
   if (Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
   Object.keys(dataBase.DeckNames).length) === 100 ) {
     //if no deck is present, scrollbar dissapear and info to create a deck appears
 
-    document.querySelector("#scrollable").style.display = "none";
+    document.querySelector("#scrollable").style.display = "none"; //no deck in the stack so the scrollbar disappears
     document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
     document.getElementById("createYourFirstDeckPrompt").style.display =
       "block";
   } else {
-   document.querySelector("#scrollable").style.display = "block";
+
+    if (Object.keys(dataBase.DeckNames).length === 1) { //when there is only one deck in the stack the scrollbar on the right sid disappears
+      document.querySelector("#scrollable").style.display = 'none';
+   
+    } else {
+
+      if (dataBase.statsOrSettingsOpened) {
+          document.querySelector("#scrollable").style.display = 'none'
+      } else {
+         document.querySelector("#scrollable").style.display = 'block'
+      }
+
+    }
+
   }
 
   document.querySelector("#scrollable").onscroll = function(event) {

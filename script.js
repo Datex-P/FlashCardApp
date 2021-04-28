@@ -37,14 +37,9 @@ function handleOutsideClick(e) {
     closeMenu()            //menu closes after clicked outside
     dataBase.showDiagram = true
     createDom(dataBase.DeckNames)
+ 
 
-    // document.querySelector('.orangeCircle').style.display = 'flex !important'
-    // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
-    let decks = document.querySelectorAll("#listOfDecks .newDeckContainer");
-
-    // if (decks.length) {
-    //   decks[length - ].querySelector(".orangeCircle").style.display = "flex";
-    // }
+   
 
 
     opened = false;
@@ -94,6 +89,14 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
     if(chartjsel){
       chartjsel.classList.remove('d-none');
     }
+
+
+    // let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
+    // if(chartjsel){
+    //   chartjsel.classList.toggle('d-none');
+    // }
+
+
   //  document.querySelector('.canvasContainer .chartjs-render-monitor').classList.toggle('d-none');
   }
 
@@ -150,25 +153,25 @@ boxesInMenu.forEach(button => { //opens settings and stats when clicked upon the
     if (button.innerText === 'Stats') {
       stats();
       document.querySelector('.menuBox').style.display = 'none';
-      document.querySelector('.canvasContainer').style.display = 'none';
-      // document.querySelector('#scrollable').style.display = 'none'
     }
     if (button.innerText === 'Settings') {
-
-      //document.getElementById('scrollable').style.display = 'none'
-      document.querySelector("#scrollable").style.display = "none";
+      
       settings();
       document.querySelector('.menuBox').style.display = 'none';
-      document.querySelector('.canvasContainer').style.display = 'none';
+      
     }
+    document.querySelector('#scrollable').style.display = 'none' //scrollbar dissapears when stats or settings is clicked
+    dataBase.statsOrSettingsOpened = true //when stats or settings button is clicked the scrollbar in createDom dissapears because of this prop
   }
 });
 
 document.getElementById("createDeckButton").onclick = function () {
                                     //opens the add new deck question field when create button is clicked
-  createNewDeck()
+                                    document.querySelector('#scrollable').style.display = 'none'
+                                   // dataBase.statsOrSettingsOpened = true //needed so that scrollbar on the right disappears
+  createNewDeck()  
 
-  document.querySelector(".arrowDown").style.display = "none";
+  document.querySelector(".arrowDown").style.display = "none"; //arrow down that is visible when there is no deck in the stack is put to display: none
 };
 
 

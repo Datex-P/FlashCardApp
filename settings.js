@@ -499,7 +499,7 @@ export default function settings() {
         dataBase.backgroundColorApp = this.value  
       }
     }
-    if (comp === dataBase.backgroundColorApp) {
+    if (comp === dataBase.backgroundColorApp) { //the individual box is checked depending on the color of the background
       radio.checked = true
     }
     createElement("label", comp, {}, '', '', inputContainer);

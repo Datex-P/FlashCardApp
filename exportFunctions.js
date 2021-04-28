@@ -247,6 +247,7 @@ function close(mainWindow, anchorElement) {
   mainWindow.parentNode.removeChild(mainWindow);
   dataBase.showDiagram = true  //is set to true because when stats or settings closed it is shown on the starting screen again
  // document.querySelector('.canvasContainer').style.display = 'block'
+  dataBase.statsOrSettingsOpened = false
    createDom(dataBase.DeckNames)   //rerenders the dom so that diagram is displayed again
   anchorElement.style.display = "none";
   window.onclick = null
@@ -275,19 +276,32 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
    // handleOutsideClick(mainWindow) //add red cross blink functionality as it was killed by clicking on three dots
   })
 
+  function activateAgain() {
+    setThreeDotsOpen(false)
+    anchorElement.removeChild(deleteContainerFrame)
+    document.getElementById('showAnswerButton').style.display = 'block'
+  }
+
 
 
   deleteContainerYes.onclick = function () {
-    setThreeDotsOpen(false)
-    remove()
+    activateAgain()
+    remove() //probably not needed not sure
     refresh(dataBase.DeckNames)
-    anchorElement.removeChild(deleteContainerFrame)
+    
+    // setThreeDotsOpen(false)
+    // remove()
+    // refresh(dataBase.DeckNames)
+    // anchorElement.removeChild(deleteContainerFrame)
+
+    // document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
   }
 
 
   deleteContainerNo.onclick = function () {
     setThreeDotsOpen(false)
     anchorElement.removeChild(deleteContainerFrame)
+    document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
   }
 
   let deleteHeader = createElement('div', '', {}, 'deleteHeader')
@@ -305,6 +319,8 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   leaveXsign.onclick = function () {
     setThreeDotsOpen(false)
     anchorElement.removeChild(deleteContainerFrame)
+    document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
+
   }
 
 
@@ -345,7 +361,7 @@ let dontShowMessageText = createElement('label', "Don't show message again", {
     });
   if (showMessageAgainCheckBox) { //by default this true, only false for the stats section
 
-    let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '65px'}, 'flexCenter');
+    let dontShowMessageAgainContainer = createElement('div', '', {position: 'relative', top: '67px'}, 'flexCenter');
     
     deleteContainerFrame.append(dontShowMessageAgainContainer);
     dontShowMessageAgainContainer.append(checkBoxContainer)

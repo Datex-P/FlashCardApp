@@ -237,7 +237,7 @@ cardPausedAddCursor()
     
       dataBase.DeckNames[item].pauseSwitch = false
       dataBase.showDiagram = true; //diagram is shown again, when deck is opened it is set to false
-
+      dataBase.statsOrSettingsOpened = false; //needed so that scrollbar on the side reappears
 
 
       createDom(dataBase.DeckNames)
@@ -373,11 +373,15 @@ cardPausedAddCursor()
     }, 'generalButtonStyling flexCenterAlignCenter')
   })
 
+  let saveChangesText = createElement('div', 'Save changes?', {width: '100px', height:'23px'})
+  let saveAndDiscardButtonContainer = createElement('div', '', {width: '140px', display: 'flex', justifyContent:'space-between'})
+
   saveButton.classList.add('alertSuccess')
   discardButton.classList.add('alertDanger')
 
   mainWindow.append(showAnswerButtonContainer, answerContainer, saveAndDiscardContainer);
-  saveAndDiscardContainer.append(discardButton, saveButton);
+  saveAndDiscardContainer.append(saveChangesText, saveAndDiscardButtonContainer);
+  saveAndDiscardButtonContainer.append(discardButton, saveButton)
   let [question, answer, index] = shuffleLogic()
 
   //var editMode = false;
@@ -430,7 +434,7 @@ cardPausedAddCursor()
         } else {
           dataBase.DeckNames[item].data[index].pause = true
         }
-       
+        document.getElementById('showAnswerButton').style.display = 'none' //show answer button is set to display none when pause is activated
       }
       ,
       delete: () => {
@@ -602,6 +606,7 @@ cardPausedAddCursor()
   });
 
 
+
   console.log(randomNum, 'randomNum')
   console.log(dataBase.DeckNames[item].data[randomNum].answer, 'newRandomNumber')
 
@@ -609,40 +614,37 @@ cardPausedAddCursor()
   saveButton.onclick = function () {
     setThreeDotsOpen(false);
     questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
-    cardModifiedPrompt.style.display = 'block'
    
-    console.log(questionField.value, 'questionFieldvalue')
-    console.log(document.getElementById('questionFieldTextArea').value, 'questionfieldtextarevalue')
+    if (dataBase.currentQuestionAndAnswerArr[0] !== questionFieldTextArea.value || dataBase.currentQuestionAndAnswerArr[1] !== answerFieldTextArea.value) { //only show modified when card was actually changed
+      cardModifiedPrompt.style.display = 'block'
 
-    if (questionField.value !== questionFieldTextArea.value) { //only show modified when card was actually changed
-
-      setTimeout(() => cardModifiedPrompt.style.display = 'none', 500) //message that card was changed appears for half a second
+       setTimeout(() => cardModifiedPrompt.style.display = 'none', 500) //message that card was changed appears for half a second
     }
 
-    [answerFieldTextArea, questionFieldTextArea].map(el=> el.classList.add('answerAndQuestion'))
-  
+        [answerFieldTextArea, questionFieldTextArea].map(el=> el.classList.add('answerAndQuestion'))
+      
 
-    mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
-    showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
-    showAnswerButtonContainer.style.display = 'flex';
-    saveAndDiscardContainer.classList.remove('flexSpaceAroundAlignCenter')
-    anchorThreeDots.style.display = 'block';
+        mainWindow.insertBefore(showAnswerButtonContainer, buttonContainer);
+        showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+        showAnswerButtonContainer.style.display = 'flex';
+        saveAndDiscardContainer.classList.remove('flexSpaceAroundAlignCenter')
+        anchorThreeDots.style.display = 'block';
 
-    [editLogo, pauseAndEditText].map(el=>el.style.display = 'none'); //edit Logo dissapears that is active in card edit mode
+        [editLogo, pauseAndEditText].map(el=>el.style.display = 'none'); //edit Logo dissapears that is active in card edit mode
 
-    editMode = false                          //whether edit in three dots was clicked or not
+        editMode = false                          //whether edit in three dots was clicked or not
 
 
-    question = questionFieldTextArea.value;
-    answer = answerFieldTextArea.value;
-    dataBase.DeckNames[item].data[index].question = question
-    dataBase.DeckNames[item].data[index].answer = answer
+        question = questionFieldTextArea.value;
+        answer = answerFieldTextArea.value;
+        dataBase.DeckNames[item].data[index].question = question
+        dataBase.DeckNames[item].data[index].answer = answer
 
-    handleOutsideClick(mainWindow)  //add red cross blink functionality as it was killed by clicking on three dots
-    display();
-    shuffleLogic();
-    cardPausedAddCursor()
-   
+        handleOutsideClick(mainWindow)  //add red cross blink functionality as it was killed by clicking on three dots
+        display();
+        shuffleLogic();
+        cardPausedAddCursor()
+      
   }
 
   discardButton.onclick = function () {

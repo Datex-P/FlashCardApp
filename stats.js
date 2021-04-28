@@ -14,6 +14,7 @@ import {
 export default function stats() {
 
   document.querySelector('#scrollable').style.display = 'none'
+  
 
   var todayCardsStudiedCounter = 0
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
@@ -519,6 +520,10 @@ export default function stats() {
     document.querySelector('.canvasContainer').style.display = 'block';
      document.querySelector('.orangeCircle').style.display = 'flex !important'
      document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+
+    
+
+
     createDom(dataBase.DeckNames)
   }
 
