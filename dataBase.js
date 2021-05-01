@@ -3,8 +3,10 @@ DeckNames: { /*deckname:[]*/   },
   queue: [],
   showDiagram: true, //when clicked on the menu button or in questionAsnwerTrain it is set to false
   diagramWasTriggeredOnce: false, 
-  backgroundColorApp: 'default',
+  backgroundColorApp: 'default', //needed so that colors is switched accordingly in settings
+  hourlyBreakdown: '1 month', //needed for stats.js so that it is certain which breakdown field is checked by default
   userStylePreferences: [],
+  statsOpen: false,
   currentQuestionAndAnswerArr: null, //is needed to compare whether question was changed by clicking on save button
   openedToday: false,
   statsOrSettingsOpened: false, //whenver questionanswertrain stats or settings is opened, the scrollbar in the back dissapears
@@ -12,6 +14,7 @@ DeckNames: { /*deckname:[]*/   },
   deckCompleted: 0, //counter goes up when study goal for the day is reached and deck is finished, thus no need to display it anymore
   showDeleteFrameQuestion: true,
   showDeleteFrameOverview: true,
+  questionAnswerOverview: false,
   showDeleteFrameStats: true,
   timeValues: { left: 2, middle: 5, right: 10 },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
@@ -40,7 +43,9 @@ for (let i = 3; i < 7; i++) {
   };
 
   dataBase.DeckNames[`Literature${i}`] = {data: arr, name: `Literature${i}`,
-    cardsToday:0, pause:false, color: colors[i%colors.length], 
+    cardsToday:0, 
+    pause:false, 
+    color: colors[i%colors.length], 
     toStudyValue: 0,
     pauseSwitch: false, 
     studyGoal: 0,

@@ -3,10 +3,12 @@ import {
 } from './dataBase.js';
 import createDom from './createDom.js';
 import {createElement} from './exportFunctions.js'
+import questAnswerTrainOverv from './questAnswerTrainOverv.js'
 
 
 export default function createNewDeck() {
   document.querySelector('#listOfDecks').style.display= 'none'
+  document.querySelectorAll('.addQuestionsToDeck').forEach(box => { box.style.display = 'none'}) //for some reasons serveral addquestionstodeck are made in questionanswertrain, this way they get all hidden
 
  
 

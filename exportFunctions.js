@@ -136,6 +136,8 @@ function threeDots() {
       }, 'flexCenterAlignCenter')
     });
 
+   
+
 
     let [editIcon, trashIcon, saveIcon, pauseIcon, playIcon, resetIcon] = [edit, trash, save, pause, play, reset].map(el => {
       return createElement('div', el, {
@@ -163,6 +165,9 @@ function threeDots() {
     editIconContainer.classList.add('editIconContainer')
     pauseIconContainer.classList.add('resetAndPauseIconContainer')
     resetIconContainer.classList.add('resetIconContainer')
+
+
+ 
 
 
 
@@ -268,6 +273,15 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
   let deleteContainerInner = createElement('div', '', {}, 'flexCenterAlignCenter deleteContainerInner')
 
+
+  if(dataBase.statsOpen) { //needed to give the deletecardquestionbox a different top
+  
+  deleteContainerInner.classList.add('topDeleteContainer')
+  } else {
+    deleteContainerInner.classList.remove('topDeleteContainer')
+  }
+
+
   let [deleteContainerYes, deleteContainerNo] = ['Yes', 'No'].map(el => {
 
     return createElement('div', el, {
@@ -279,7 +293,10 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
   function activateAgain() {
     setThreeDotsOpen(false)
     anchorElement.removeChild(deleteContainerFrame)
-    document.getElementById('showAnswerButton').style.display = 'block'
+
+    if (document.querySelector('.showAnswerButtonContainer') === 'none') { //otherwise showanswerbutton appears when questanswer menu is completely open when clicking the red dot
+        document.getElementById('showAnswerButton').style.display = 'block'
+    }
   }
 
 
@@ -294,14 +311,21 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
     // refresh(dataBase.DeckNames)
     // anchorElement.removeChild(deleteContainerFrame)
 
-    // document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
+     document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
   }
 
 
   deleteContainerNo.onclick = function () {
-    setThreeDotsOpen(false)
-    anchorElement.removeChild(deleteContainerFrame)
-    document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
+    activateAgain()
+   // refresh(dataBase.DeckNames)
+    // setThreeDotsOpen(false)
+    // anchorElement.removeChild(deleteContainerFrame)
+    if(document.querySelector('.showAnswerButtonContainer')) { //if showAnswerButtonField is open don t do anything when it is closed again
+
+    } else {
+    
+     document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
+    }
   }
 
   let deleteHeader = createElement('div', '', {}, 'deleteHeader')
@@ -312,14 +336,14 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
   let flashcardIcon = createElement('div', flashcards, {}, 'flashcardIcon');
 
-
   let leaveXContainer = createElement('div', '', {}, 'leaveXContainer')
   let leaveXsign = createElement('div', '&#10006;', { cursor: 'pointer' }, 'flexCenterAlignCenter leaveXsign')
 
   leaveXsign.onclick = function () {
-    setThreeDotsOpen(false)
-    anchorElement.removeChild(deleteContainerFrame)
-    document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
+    activateAgain()
+    // setThreeDotsOpen(false)
+    // anchorElement.removeChild(deleteContainerFrame)
+    // document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
 
   }
 
@@ -352,9 +376,17 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
 
   checkbox.onchange = function (e) {
 
-    dataBase.showDeleteFrame = !e.target.checked;
-   
+    console.log('checkbox was fired you know')
+
+    if (  dataBase.questionAnswerOverview) { //checks whether questionAnswerTrain is opened
+      
+      dataBase.showDeleteFrameQuestion = !e.target.checked; //if questionAnswer is opened it triggers the delete frame for questionanswer
+       
+    } else  {
+      dataBase.showDeleteFrameOverview = !e.target.checked; //else it triggers the delete from for the main menu
+    }
   }
+
 let dontShowMessageText = createElement('label', "Don't show message again", {
       width: '200px',
       color: 'white'

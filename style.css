@@ -532,12 +532,16 @@ pauseIconContainer:hover {
 
 .deleteContainerInner {
   position: absolute;
-  top: 257px;
+  top:257px;
   height: 162px !important;
   width: 252px;
   height: 160px;
   background-color: white;
   border-radius: 10px;
+}
+
+.topDeleteContainer {
+  top: 227px !important; 
 }
 
 .leaveXContainer {
@@ -1058,7 +1062,7 @@ textarea:focus {
   border: 3px solid grey;
   box-shadow: 0px 0px 15px grey;
 }
-textarea:enabled {
+textarea:not(:disabled) {
   border: 3px solid grey;
 }
 

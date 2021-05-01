@@ -36,19 +36,21 @@ function handleOutsideClick(e) {
     //window.onclick = ''
     closeMenu()            //menu closes after clicked outside
     dataBase.showDiagram = true
-    createDom(dataBase.DeckNames)
+   // createDom(dataBase.DeckNames)
  
-
    
-
-
     opened = false;
-    let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
-    if(chartjsel){
-      chartjsel.classList.toggle('d-none');
-    }
-  }
+//     let chartjsel= document.querySelectorAll('.canvasContainer .chartjs-render-monitor')
+
+//     for (const chart in chartjsel) {
+//       chart.classList.toggle('d-none')
+
+
+// }
+
+
   window.onclick = ''
+}
 }
 
 document.querySelector('.menu').onclick = function () { //opens the menu field when clicked
@@ -152,6 +154,7 @@ boxesInMenu.forEach(button => { //opens settings and stats when clicked upon the
   button.onclick = function () {
     if (button.innerText === 'Stats') {
       stats();
+      dataBase.statsOpen = true; //needed to give the deletecardquestionbox a different top
       document.querySelector('.menuBox').style.display = 'none';
     }
     if (button.innerText === 'Settings') {

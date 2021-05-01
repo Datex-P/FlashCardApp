@@ -169,11 +169,15 @@ export default function stats() {
                 }
               })
             }
-          }
+          } //remove
             //breakdown has to be resetted as well
             , () => {
 
-            }, 'Reset current progress', 'reset the stats section?', { marginLeft: '40px', fontSize: '18px' }, false)
+            }, //refresh
+            'Reset current progress', //header
+            'reset the stats section?',  // body,
+            { marginLeft: '40px', fontSize: '18px' }, //messageDeleteCardStyling
+            false) //showmessageagaincontainercheckbox
 
             , { marginLeft: '40px', fontSize: '18px' }, 'Reset progress'
         } else {
@@ -216,10 +220,17 @@ export default function stats() {
     radioBtn.setAttribute("type", "radio");
     radioBtn.name = "month";
     radioBtn.onchange = function (event) {
-      let { value } = event.target;
-      console.log(value);
+      let { value } = event.target; //gets destructured because otherwise the whole input field is displayed
+
+      dataBase.hourlyBreakdown = value
+
+    
     };
-    if (radioBtn.value === '1 month') { //sets the blue mark to 1 month by default
+
+
+  
+
+    if (radioBtn.value === dataBase.hourlyBreakdown) { //sets the blue mark to 1 month by default
       radioBtn.checked = true
     }
 
@@ -418,7 +429,7 @@ export default function stats() {
 
             dayInner.innerText = `${date} Time: ${time
               .toString()
-              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`;
+              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}:⠀${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`;
 
             day.append(dayInner);
             dayInner.title = 'Click outside the window to close it'
@@ -520,9 +531,7 @@ export default function stats() {
     document.querySelector('.canvasContainer').style.display = 'block';
      document.querySelector('.orangeCircle').style.display = 'flex !important'
      document.querySelector('.orangeCircle').style.zIndex = '3 !important'
-
-    
-
+     dataBase.statsOpen = false; //needed to give the deletecardquestionbox a different top
 
     createDom(dataBase.DeckNames)
   }

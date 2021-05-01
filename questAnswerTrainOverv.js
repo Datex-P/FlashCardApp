@@ -94,7 +94,6 @@ function cardPausedAddCursor() {
 
   if (dataBase.DeckNames[item].data.find(x => x.pause === true)) {
 
-
     label1.classList.add('cursor')  //if card in deck is set to pause, the on off switch is clickable and cursor appears
   } else {
     label1.classList.remove('cursor')
@@ -219,7 +218,7 @@ cardPausedAddCursor()
 
   function close() {   //is triggered when user clicks on red cross, the timer that counts how long each card is studied is stopped
     
-    if (saveAndDiscardContainer.style.display === 'flex') { //questionAnswerTrain can not be closed when save and Discard button is shown
+    if (document.querySelector('.saveAndDiscardContainer').classList.contains('flexSpaceAroundAlignCenter')) { //questionAnswerTrain can not be closed when save and Discard button is shown, thus when this class wasn t removed
       
       saveAndDiscardContainer.classList.add('blinkingIcon');
       setTimeout(() => {
@@ -239,7 +238,7 @@ cardPausedAddCursor()
       dataBase.showDiagram = true; //diagram is shown again, when deck is opened it is set to false
       dataBase.statsOrSettingsOpened = false; //needed so that scrollbar on the side reappears
 
-
+      dataBase.questionAnswerOverview = false; 
       createDom(dataBase.DeckNames)
     }
   }
@@ -391,6 +390,7 @@ cardPausedAddCursor()
 
     {
       edit: () => {
+        [answerFieldTextArea, questionFieldTextArea].map(el=> el.classList.remove('answerAndQuestion')) //needed so that grey border is removed after cards are saved
         editMode = true;
         showAnswerButtonContainer.style.justifyContent = 'center';
        // label1.classList.remove('cursor')
@@ -400,6 +400,8 @@ cardPausedAddCursor()
         [answerFieldTextArea, questionFieldTextArea].map(el=> el.removeAttribute('disabled'));
     
         questionFieldTextArea.focus();
+
+        console.log('hello hello from edit')
        
         dataBase.DeckNames[item].pauseSwitch = false
 
@@ -419,29 +421,40 @@ cardPausedAddCursor()
         questionContainer.style.marginTop = '37px' //more  space for edit mode text needed, changed back to default via discard and save button
         anchorThreeDots.style.display = 'none' //three dots are not displayed so that they can t be clicked accidentaly
         label1.classList.remove('cursor') 
-        
+       
       },
 
       pause: (container, playIcon, pauseIcon, edited) => {
 
+        //document.getElementById('showAnswerButton').style.display = 'none' //show answer button is set to display none when pause is activated
         if (dataBase.showDeleteFrameQuestion) {
-          deleteCardQuestionBox(() =>
-            dataBase.DeckNames[item].data[index].pause = true, () => {
-              questAnswerTrainOverv(item),
-                (data)=>createDom(data), clearInterval(decrementTimer)
-            }, 'Pause card', 'pause this card? <br><span style="font-size: 12px">Paused cards are not counted in stats.</span>')
+            deleteCardQuestionBox(() =>
+                dataBase.DeckNames[item].data[index].pause = true, //remove
+                () => {
+                   questAnswerTrainOverv(item),
+                  (data)=>createDom(data), clearInterval(decrementTimer)
+                  },  //refresh
+            'Pause card',  //header
+            'pause this card? <br><span style="font-size: 12px">Paused cards are not counted in stats.</span>') //body
 
         } else {
-          dataBase.DeckNames[item].data[index].pause = true
+          dataBase.DeckNames[item].data[index].pause = true;
+         
         }
-        document.getElementById('showAnswerButton').style.display = 'none' //show answer button is set to display none when pause is activated
+        document.getElementById('showAnswerButton').style.display = 'none' 
+        //console.log('hello from pause')
+
+        console.log(document.querySelector('.resetAndPauseIconContainer'), 'puaseIconcontainer')
       }
       ,
       delete: () => {
 
         if (dataBase.showDeleteFrameQuestion) {
           deleteCardQuestionBox(() =>
-            dataBase.DeckNames[item].data.splice(index, 1), () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames), clearInterval(decrementTimer) }, 'Delete card', 'delete this card')
+            dataBase.DeckNames[item].data.splice(index, 1), //remove
+            () => { questAnswerTrainOverv(item), createDom(dataBase.DeckNames), clearInterval(decrementTimer) }, //refresh
+             'Delete card', //header
+             'delete this card') //body
 
         } else {
           dataBase.DeckNames[item].data.splice(index, 1)
@@ -478,11 +491,7 @@ cardPausedAddCursor()
   };
 
   let containerForAgainGoodEasyButtons = createElement(
-    'div',
-    '', {
-    margin: '5px 0'
-  }, 'flexSpaceBetween'
-  );
+    'div', '', {margin: '5px 0'}, 'flexSpaceBetween');
 
  console.log(dataBase.DeckNames, 'data decknames')
 
@@ -511,6 +520,9 @@ cardPausedAddCursor()
   containerForLeft.append(leftTimeValue);
   containerForMiddle.append(middleTimeValue);
   containerForRight.append(rightTimeValue);
+
+
+
 
 
   let editLogo = createElement('div', edit, {}, 'editAndPauseLogo')
@@ -629,7 +641,6 @@ cardPausedAddCursor()
         showAnswerButtonContainer.style.display = 'flex';
         saveAndDiscardContainer.classList.remove('flexSpaceAroundAlignCenter')
         anchorThreeDots.style.display = 'block';
-
         [editLogo, pauseAndEditText].map(el=>el.style.display = 'none'); //edit Logo dissapears that is active in card edit mode
 
         editMode = false                          //whether edit in three dots was clicked or not
@@ -646,6 +657,18 @@ cardPausedAddCursor()
         cardPausedAddCursor()
       
   }
+
+  // document.querySelector('.resetAndPauseIconContainer').onclick = function () {
+  //   console.log('hello from reset and pause')
+  // }
+
+  // console.log(document.querySelector('.resetAndPauseIconContainer'), 'resetandpuaseIcon')
+
+ 
+  
+  
+  
+  console.log(dataBase.DeckNames, 'database decknames')
 
   discardButton.onclick = function () {
     setThreeDotsOpen(false);

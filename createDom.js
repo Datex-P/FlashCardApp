@@ -7,10 +7,11 @@ import {
   threeDots,
 } from "./exportFunctions.js";
 import { play, plusSvg } from "./svgs.js";
-
+let canvasContainer = createElement('div', '', {}, 'canvasContainer');
+  let canvas = createElement('canvas', '', {}, 'pieChart canvasStyling');
 export default function createDom(obj) {
   console.log("create Dom was rendered");
-  listOfDecks.innerHTML = "";
+  listOfDecks.innerHTML = '';
   let arr = Object.keys(obj);
 
   let decksThatArenotCompleted = arr.filter(
@@ -18,8 +19,7 @@ export default function createDom(obj) {
   );
 
   let edited = false;
-  let canvasContainer = createElement("div", "", {}, "canvasContainer");
-  let canvas = createElement("canvas", "", {}, "pieChart canvasStyling");
+  
   decksThatArenotCompleted.forEach((item, index, filteredArray) => {
     let newDeckContainer = createElement(
       "div",
@@ -63,7 +63,7 @@ export default function createDom(obj) {
 
 
 
-    let toStud = "To Study:"; //field on each card on the main screen
+    let toStud = 'To Study:'; //field on each card on the main screen
 
     let inputToStudy = createElement("input", "", {}, "inputToStudy");
 
@@ -102,7 +102,7 @@ export default function createDom(obj) {
 
     toStudy.append(inputToStudy);
 
-    let [toStudyContainer, decksizeContainer] = ["", ""].map((el) => {
+    let [toStudyContainer, decksizeContainer] = ['', ''].map((el) => {
       return createElement("div", el, {}, "studyReviewDecksize");
     });
 
@@ -115,13 +115,10 @@ export default function createDom(obj) {
       "decksizeStudyRev"
     );
 
-    let changeNameofDeckInput = createElement(
-      "input",
-      "",
-      {
-        //input field that gets active when deckname is changed
-      },
-      "changeNameOfDeckInput"
+    let changeNameofDeckInput = createElement(    //input field that gets active when deckname is changed
+      'input',
+      '',
+      { }, 'changeNameOfDeckInput'
     );
 
     changeNameofDeckInput.onclick = function(event) {
@@ -139,7 +136,7 @@ export default function createDom(obj) {
     //shows if edit button inside three dots on the mainscreen is pressed
 
     
-
+/*
     let arrOfCanvases = Array.from(document.querySelectorAll(".canvasContainer"))
     
     arrOfCanvases.forEach((item,index) => {
@@ -148,7 +145,7 @@ export default function createDom(obj) {
       }
     });
 
-    
+    */
 
     let mainThreeDots = threeDots();
     let threeDotsContainer = null;
@@ -257,12 +254,7 @@ export default function createDom(obj) {
               deleteCardQuestionBox(
                 () => {
                   delete dataBase.DeckNames[item];
-                  
-                  // if (Object.keys(dataBase.DeckNames).length === 2) {
-                  //   document.querySelector("#scrollable").style.display = "none";
-                  //   console.log('only one deck is left here')
-                  //   console.log(Object.keys(dataBase.DeckNames))
-                  // }
+                
                   console.log(Object.keys(dataBase.DeckNames))
                   
                 },
@@ -407,10 +399,9 @@ export default function createDom(obj) {
 
 
     function openDeckHandler() {
-      if (
-        dataBase.DeckNames[item].deckPauseActive !== true &&
-        dataBase.DeckNames[item].data.length !== 0
-      ) {
+      if (dataBase.DeckNames[item].deckPauseActive !== true && 
+          dataBase.DeckNames[item].data.length !== 0) {
+
         if (edited) {
           //checks whether the input field is open and in that case it does not open the trainings overview
           document
@@ -426,11 +417,13 @@ export default function createDom(obj) {
 
 
           document.querySelector('.canvasContainer').style.display = 'none';
-       
+          dataBase.questionAnswerOverview = true; 
         }
       }
       // console.log(toStudyValue, 'tostudyvalue')
     }
+
+
     openDeck.addEventListener("click", openDeckHandler);
 
     if (dataBase.DeckNames[item].data.length === 0) {
@@ -498,15 +491,8 @@ export default function createDom(obj) {
     );
     deckIsEmptyField.append(deckIsEmptyFieldAdditional);
     newDeckContainer.append(deckIsEmptyFieldAdditionalTwo); // how to add deckIsEmptyFieldAdditionalTwo??
-    addEditDeleteContainer.append(
-      toStudyContainer,
-      toStudy,
-      decksizeContainer,
-      openDeck
-    );
-
+    addEditDeleteContainer.append( toStudyContainer, toStudy, decksizeContainer,openDeck);
     toStudyContainer.append(toStudy);
-
     decksizeContainer.append(decksize);
 
     listOfDecks.prepend(newDeckContainer);
@@ -563,8 +549,7 @@ export default function createDom(obj) {
           center: {
               text: `Daily Goal \n ${(dataBase.deckCompleted * 100) /
                 Object.keys(dataBase.DeckNames).length} %`,
-            //text: 'hello',
-
+          
             fontStyle: "Times", // Default is Arial
             // sidePadding: 2, // Default is 20 (as a percentage)
             minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
@@ -575,13 +560,7 @@ export default function createDom(obj) {
         },
         tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
         hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights
-        //legend: {
-          //display: false
-        //   // position: 'bottom',
-        //   // labels: {
-        //   //   fontColor: 'black'
-        //   // }
-        //},
+        
         cutoutPercentage: 81,
         maintainAspectRatio: false,
         layout: {
@@ -731,6 +710,7 @@ export default function createDom(obj) {
         canvasContainer.style.backgroundColor = 'blue'
       }
 
+      console.log(document.getElementById('listOfDecks').childElementCount, 'child element count')
 
   
 
@@ -740,12 +720,13 @@ export default function createDom(obj) {
 
     document.querySelector("#scrollable").style.display = "none"; //no deck in the stack so the scrollbar disappears
     document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
-    document.getElementById("createYourFirstDeckPrompt").style.display =
-      "block";
+    document.getElementById("createYourFirstDeckPrompt").style.display = 'block';
   } else {
 
-    if (Object.keys(dataBase.DeckNames).length === 1) { //when there is only one deck in the stack the scrollbar on the right sid disappears
-      document.querySelector("#scrollable").style.display = 'none';
+    console.log(document.getElementById('listOfDecks').children, 'children')
+
+    if (document.getElementById('listOfDecks').childElementCount ===1) { //when there is only one deck in the stack the scrollbar on the right sid disappears
+      document.querySelector('#scrollable').style.display = 'none';
    
     } else {
 
