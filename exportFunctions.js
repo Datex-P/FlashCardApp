@@ -311,8 +311,11 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
     // refresh(dataBase.DeckNames)
     // anchorElement.removeChild(deleteContainerFrame)
 
+    if (dataBase.questionAnswerOverview) {
+
      document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
   }
+}
 
 
   deleteContainerNo.onclick = function () {
@@ -320,12 +323,14 @@ function deleteCardQuestionBox(remove, refresh, header, body, messageDeleteCardS
    // refresh(dataBase.DeckNames)
     // setThreeDotsOpen(false)
     // anchorElement.removeChild(deleteContainerFrame)
-    if(document.querySelector('.showAnswerButtonContainer')) { //if showAnswerButtonField is open don t do anything when it is closed again
+    if (dataBase.questionAnswerOverview) {
+     if(document.querySelector('.showAnswerButtonContainer').style.display = 'flex') { //if showAnswerButtonField is open don t do anything when it is closed again
 
-    } else {
+     } else {
     
      document.getElementById('showAnswerButton').style.display = 'block' //showanswerbutton is hidden in questanswertrain when pause is active
     }
+  }
   }
 
   let deleteHeader = createElement('div', '', {}, 'deleteHeader')

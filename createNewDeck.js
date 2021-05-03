@@ -74,8 +74,8 @@ export default function createNewDeck() {
   
             document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
    
-  }
-
+            }
+        document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
 
       } else if (el === 'Ok') {
 
@@ -91,6 +91,7 @@ export default function createNewDeck() {
         } else {
 
           document.querySelector('#listOfDecks').style.display= 'block';
+          document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
 
   //         Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
   // Object.keys(dataBase.DeckNames).length) === 100 )

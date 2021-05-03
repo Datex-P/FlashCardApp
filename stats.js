@@ -528,12 +528,15 @@ export default function stats() {
 
   handleOutsideClick(mainWindow);
   redCross.onclick = () => {close(mainWindow, anchorElement)
-    document.querySelector('.canvasContainer').style.display = 'block';
+ 
      document.querySelector('.orangeCircle').style.display = 'flex !important'
      document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+      document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
+
      dataBase.statsOpen = false; //needed to give the deletecardquestionbox a different top
 
-    createDom(dataBase.DeckNames)
+    // createDom(dataBase.DeckNames)
+    // document.querySelector('.canvasContainer .chartjs-render-monitor').remove('d-none')
   }
 
   closeMenu();

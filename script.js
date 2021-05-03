@@ -40,13 +40,7 @@ function handleOutsideClick(e) {
  
    
     opened = false;
-//     let chartjsel= document.querySelectorAll('.canvasContainer .chartjs-render-monitor')
 
-//     for (const chart in chartjsel) {
-//       chart.classList.toggle('d-none')
-
-
-// }
 
 
   window.onclick = ''
@@ -169,9 +163,10 @@ boxesInMenu.forEach(button => { //opens settings and stats when clicked upon the
 });
 
 document.getElementById("createDeckButton").onclick = function () {
-                                    //opens the add new deck question field when create button is clicked
-                                    document.querySelector('#scrollable').style.display = 'none'
-                                   // dataBase.statsOrSettingsOpened = true //needed so that scrollbar on the right disappears
+  //opens the add new deck question field when create button is clicked
+  document.querySelector('#scrollable').style.display = 'none'
+  // dataBase.statsOrSettingsOpened = true //needed so that scrollbar on the right disappears
+  document.querySelector('.canvasContainer').style.display = 'none'; //diagram on main screen dissappears
   createNewDeck()  
 
   document.querySelector(".arrowDown").style.display = "none"; //arrow down that is visible when there is no deck in the stack is put to display: none

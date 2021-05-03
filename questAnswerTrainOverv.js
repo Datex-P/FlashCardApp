@@ -239,6 +239,9 @@ cardPausedAddCursor()
       dataBase.statsOrSettingsOpened = false; //needed so that scrollbar on the side reappears
 
       dataBase.questionAnswerOverview = false; 
+
+      document.querySelector('.canvasContainer').style.display = 'block'; //diagram container was hidden when openening questionAnswer, now it is shown again
+
       createDom(dataBase.DeckNames)
     }
   }

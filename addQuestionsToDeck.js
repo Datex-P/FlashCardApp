@@ -64,6 +64,7 @@ export default function addQuestionsToDeck(item) {
     anchorElement.innerHTML = '';
     anchorElement.style.display = 'none'
     dataBase.statsOrSettingsOpened = false; //needed so that scrollbar on the right reappears
+    document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
     createDom(dataBase.DeckNames)
     
   };

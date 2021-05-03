@@ -379,11 +379,7 @@ export default function createDom(obj) {
 
     playIconContainer.onclick = function() {
       //play button that appears inside the card  when it is put on pause
-      document.querySelector(".plusIcon").style.cursor = "pointer"; //plus Icon pointable again
-      document.querySelector(".orangeCircle").style.cursor = "pointer"; //plus Icon pointable again
-     
-
-      // [plusIcon, orangeCircle].map(el => document.querySelector(`.${el}`) = pointer);
+      [plusIcon, addToDeckIcon].map(el => el.style.cursor = 'pointer'); //grey circle is pointable again
 
       threeDotsContainer.style.display = "block"; //three dots container is shown again
       newDeckContainer.style.background = dataBase.DeckNames[item].color;
@@ -420,7 +416,6 @@ export default function createDom(obj) {
           dataBase.questionAnswerOverview = true; 
         }
       }
-      // console.log(toStudyValue, 'tostudyvalue')
     }
 
 
@@ -434,7 +429,7 @@ export default function createDom(obj) {
       [deckIsEmptyField, deckIsEmptyFieldAdditionalTwo].map(
         (el) => (el.style.display = "flex")
       );
-      //  deckIsEmptyField.style.display = 'flex'
+
     } else {
       addEditDeleteContainer.style.display = "flex";
       openDeck.style.display = "block";
@@ -459,6 +454,7 @@ export default function createDom(obj) {
     function addToDeckHandler() {
       addQuestionsToDeck(item);
       dataBase.statsOrSettingsOpened = true; //needed so that scrollbar in the back dissapears when add to deck menu is open
+      document.querySelector('.canvasContainer').style.display = 'none'; //progress diagram on the main screen gets hidden
       createDom(dataBase.DeckNames);
     }
 
@@ -482,15 +478,9 @@ export default function createDom(obj) {
       0
     );
 
-    newDeckContainer.append(
-      pauseInfoField,
-      deckIsEmptyField,
-      nameOfNewDeck,
-      threeDotsContainer,
-      addToDeckIcon
-    );
+    newDeckContainer.append(pauseInfoField,deckIsEmptyField,nameOfNewDeck,threeDotsContainer,addToDeckIcon);
     deckIsEmptyField.append(deckIsEmptyFieldAdditional);
-    newDeckContainer.append(deckIsEmptyFieldAdditionalTwo); // how to add deckIsEmptyFieldAdditionalTwo??
+    newDeckContainer.append(deckIsEmptyFieldAdditionalTwo); 
     addEditDeleteContainer.append( toStudyContainer, toStudy, decksizeContainer,openDeck);
     toStudyContainer.append(toStudy);
     decksizeContainer.append(decksize);
@@ -707,7 +697,7 @@ export default function createDom(obj) {
         canvasContainer.append(canvas);
         console.log('just got triggered')
       } else {
-        canvasContainer.style.backgroundColor = 'blue'
+        
       }
 
       console.log(document.getElementById('listOfDecks').childElementCount, 'child element count')
@@ -718,25 +708,25 @@ export default function createDom(obj) {
   Object.keys(dataBase.DeckNames).length) === 100 ) {
     //if no deck is present, scrollbar dissapear and info to create a deck appears
 
-    document.querySelector("#scrollable").style.display = "none"; //no deck in the stack so the scrollbar disappears
-    document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
-    document.getElementById("createYourFirstDeckPrompt").style.display = 'block';
+      document.querySelector("#scrollable").style.display = "none"; //no deck in the stack so the scrollbar disappears
+      document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
+      document.getElementById("createYourFirstDeckPrompt").style.display = 'block';
   } else {
 
-    console.log(document.getElementById('listOfDecks').children, 'children')
+  console.log(document.getElementById('listOfDecks').children, 'children')
 
-    if (document.getElementById('listOfDecks').childElementCount ===1) { //when there is only one deck in the stack the scrollbar on the right sid disappears
-      document.querySelector('#scrollable').style.display = 'none';
-   
-    } else {
+        if (document.getElementById('listOfDecks').childElementCount ===1) { //when there is only one deck in the stack the scrollbar on the right sid disappears
+            document.querySelector('#scrollable').style.display = 'none';
+      
+        } else {
 
-      if (dataBase.statsOrSettingsOpened) {
-          document.querySelector("#scrollable").style.display = 'none'
-      } else {
-         document.querySelector("#scrollable").style.display = 'block'
-      }
+              if (dataBase.statsOrSettingsOpened) {
+                  document.querySelector("#scrollable").style.display = 'none'
+              } else {
+                document.querySelector("#scrollable").style.display = 'block'
+              }
 
-    }
+        }
 
   }
 
@@ -751,8 +741,7 @@ export default function createDom(obj) {
       document.querySelector(".littleModalWindow").style.display = "none";
       let all = listOfDecks.querySelectorAll(".newDeckContainer");
       let allInArr = Array.from(all).filter((el) => el.style.display != "none");
-      let step =
-        (1000 - all[0].getBoundingClientRect().height) / (allInArr.length - 1);
+      let step =(1000 - all[0].getBoundingClientRect().height) / (allInArr.length - 1);
       let index = Math.floor(event.target.scrollTop / step);
       // index = (index > arr.length-1) ? arr.length-1 : index
 
