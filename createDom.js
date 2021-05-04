@@ -83,7 +83,7 @@ export default function createDom(obj) {
 
       dataBase.DeckNames[item].toStudyValue = inputToStudy.value || 0
       
-      console.log(dataBase.DeckNames[item].toStudyValue, 'tostudyvalue')
+    //  console.log(dataBase.DeckNames[item].toStudyValue, 'tostudyvalue')
 
     let [toStudy] = [
       `${toStud.padEnd(7, "⠀")}`,
@@ -372,11 +372,7 @@ export default function createDom(obj) {
       "playTextAdditional"
     );
 
-    // console.log(dataBase.DeckNames[item].filter((x) => x.deckPauseActive === true), 'deckpauseact')
-
-    // console.log(dataBase.DeckNames[0].deckPauseActive, 'deckpause actie')
-    // console.log(dataBase.DeckNames.deckPauseActive.filter(x=> x===true), 'decks that are  paused')
-
+    
     playIconContainer.onclick = function() {
       //play button that appears inside the card  when it is put on pause
       [plusIcon, addToDeckIcon].map(el => el.style.cursor = 'pointer'); //grey circle is pointable again
@@ -509,10 +505,6 @@ export default function createDom(obj) {
             }
           }
         },
-        //  labels: [
-        //  "Red",
-        //   'Blue'
-        //  ],
         datasets: [
           {
             data: [
@@ -526,10 +518,6 @@ export default function createDom(obj) {
             "#FF6384"],
             borderColor: ["#5aaa95", "#FF6384"],
             borderWidth: 0,
-            // hoverBackgroundColor: [
-            //   // "#FF6384",
-            //   'green'
-            // ],
           },
         ],
       },
@@ -537,7 +525,7 @@ export default function createDom(obj) {
          
         elements: {
           center: {
-              text: `Daily Goal \n ${(dataBase.deckCompleted * 100) /
+              text: `Daily  \n ${(dataBase.deckCompleted * 100) /
                 Object.keys(dataBase.DeckNames).length} %`,
           
             fontStyle: "Times", // Default is Arial
@@ -549,8 +537,7 @@ export default function createDom(obj) {
           },
         },
         tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
-        hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights
-        
+        hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights      
         cutoutPercentage: 81,
         maintainAspectRatio: false,
         layout: {
@@ -723,12 +710,43 @@ export default function createDom(obj) {
               if (dataBase.statsOrSettingsOpened) {
                   document.querySelector("#scrollable").style.display = 'none'
               } else {
+            
                 document.querySelector("#scrollable").style.display = 'block'
-              }
+           
+              
+            }
 
         }
 
   }
+
+  let pars = parseInt((dataBase.deckCompleted * 100) /
+  Object.keys(dataBase.DeckNames).length) 
+
+  
+
+
+  if(pars === 100)  {
+
+    console.log('hurray everyhting finished')
+    document.getElementById('allDecksFinished').style.display = 'none'
+    document.getElementById('finishedAllDecksToday').style.display='flex'
+    document.getElementById('createDeckButtonContainer').style.display='none'
+
+  } else {
+    document.getElementById('allDecksFinished').style.display = 'block'
+    document.getElementById('finishedAllDecksToday').style.display='none'
+    document.getElementById('scrollable').style.display='none'
+  }
+
+
+
+
+
+
+
+
+
 
   document.querySelector("#scrollable").onscroll = function(event) {
     if (edited) {

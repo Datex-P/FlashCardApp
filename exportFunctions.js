@@ -31,7 +31,15 @@ function closeMenu() {  //closes the menu on the starting screen
   //  createDom(dataBase.DeckNames)
     // document.querySelector('.orangeCircle').style.display = 'flex !important' //probably don t work 10.27 tuesday
     // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+    
+    if(parseInt((dataBase.deckCompleted * 100) /
+    Object.keys(dataBase.DeckNames).length !==100)) {
+    
     document.querySelector('#scrollable').style.display = 'block'
+    }
+    // if(document.querySelector('.canvasContainer .chartjs-render-monitor')) {
+    //   document.querySelector('.canvasContainer .chartjs-render-monitor').classList.remove('d-none');
+    // }
 };
 
 
@@ -256,6 +264,9 @@ function close(mainWindow, anchorElement) {
    createDom(dataBase.DeckNames)   //rerenders the dom so that diagram is displayed again
   anchorElement.style.display = "none";
   window.onclick = null
+  if(document.querySelector('.canvasContainer .chartjs-render-monitor')) { //when diagram exists, show it again after closing stats or settings 
+      document.querySelector('.canvasContainer .chartjs-render-monitor').classList.remove('d-none');
+    }
 }
 
 let threeDotsOpen = false;

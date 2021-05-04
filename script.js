@@ -68,8 +68,7 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
         handleOutsideClick(e);
         if(chartjsel){
           chartjsel.classList.remove('d-none');
-          document.querySelector('.orangeCircle').style.display = 'flex !important'
-          document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+
         }
       }
     }, 10)
@@ -79,24 +78,18 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
   } else {
     closeMenu()
     opened = false;
-    
-    document.querySelector('.orangeCircle').style.display = 'flex !important'
-    document.querySelector('.orangeCircle').style.zIndex = '3 !important'
+   
     if(chartjsel){
       chartjsel.classList.remove('d-none');
     }
 
-
-    // let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
-    // if(chartjsel){
-    //   chartjsel.classList.toggle('d-none');
-    // }
-
-
-  //  document.querySelector('.canvasContainer .chartjs-render-monitor').classList.toggle('d-none');
   }
 
 };
+
+
+
+
 
 document.querySelector('.menuContainer').onclick = function () {
   //dataBase.showDiagram = false

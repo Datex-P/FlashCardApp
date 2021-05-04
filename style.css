@@ -822,6 +822,14 @@ pauseIconContainer:hover {
   overflow: auto;
 }
 
+#finishedAllDecksToday{
+  display:none;
+  justify-content: center;
+  top: 278px;
+  position: absolute;
+  width: 100%;
+}
+
 #showAnswerButton {
   background-color: grey;
   color: white;
@@ -1280,7 +1288,7 @@ border-color:#f5c6cb;
   border: 1px solid black;
   width: 61px;
   height: 26px;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 .editGoals {
@@ -1312,6 +1320,7 @@ border-color:#f5c6cb;
   font-size: 15px; 
   width: 68px; 
   padding: 4px;
+  border-radius:2px;
 }
 
 .changeRepetitionIntervalContainerInner {
