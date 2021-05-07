@@ -227,7 +227,7 @@ export default function stats() {
     
     };
 
-
+   
   
 
     if (radioBtn.value === dataBase.hourlyBreakdown) { //sets the blue mark to 1 month by default
@@ -242,12 +242,12 @@ export default function stats() {
   );
 
 
-  let studyGoal = 90
+  let studyGoal = 100
   let timeObj = { //shows time in hourly breakdown
-    6: 15,
-    12: 20,
-    18: 1,
-    24: 14,
+    6: 50,
+    12: 0,
+    18: 0,
+    24: 0,
 
   }
 
@@ -267,7 +267,11 @@ export default function stats() {
     width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`, height: '10px'
   });
 
-  let currentProgress = Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100
+  let currentProgress = Number(Object.keys(dataBase.goalReached)) //why does it not invoke right number here??
+
+  console.log(Object.keys(dataBase.goalReached), 'database goal reached')
+  
+  // old current progress Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100
   let widthAdjusted = Math.round(currentProgress) + 120
 
 
@@ -326,6 +330,119 @@ export default function stats() {
 
     }
   }
+
+
+
+
+
+
+//function openedInLastMonth() {
+
+  let dateToday = new Date()
+  let date1MonthAgo = new Date()
+  
+  date1MonthAgo.setHours(0,0,0,0)
+
+  date1MonthAgo.setMonth(date1MonthAgo.getMonth() - 1);
+  
+  //setMonth(dateToday.getMonth() - 1)
+
+
+// tage seit installation 12 tage   7 tage 100 prozent 
+
+
+// 5 tage    --> 
+
+// 5tage / 7 tage
+
+for (let deck in dataBase.DeckNames) {
+
+  let deckItem = dataBase.DeckNames[deck]
+  // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
+  //   todayCardsStudiedCounter++
+    console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())), 'cards stu')
+  }
+
+//dataBase.DeckNames[deck]
+
+// console.log(dataBase.DeckNames[item].data.map((item) => item?.openHistory) , 'date with open hsitory')
+
+
+
+//   study goal reached * days to study
+
+// 10 tage studieren schaffe 5 tage = %50prozent
+
+// seit installieren der app 1monath
+
+// alle 10 tag 50 prozent = 50%
+
+
+
+  console.log(date1MonthAgo, 'date1monthagoundso')
+  console.log(date1MonthAgo.getTime(), 'utc baby')
+  console.log(dateToday.getTime(), 'utc right right now')
+  //date1MonthAgo.setHours(0,0,0,0)
+
+  //let date1MonthAg = new Date(date1MonthAgo)
+
+  // console.log(date1MonthAg.toString().setHours(0,0,0,0), 'date to string 1 onth')
+
+
+
+
+// var time = new Date().getTime(); // get your number
+// var date = new Date(time); // create Date object
+
+// console.log(date.toString()); // result: Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
+
+
+
+//   console.log(date1MonthAgo, 'date 1 month ago und so')
+
+//   console.log(date1MonthAgo.toUTCString(), 'date in normal read')
+
+//   console.log(dateToday, 'again date today')
+
+//   // Zero the time component
+//   dateToday.setHours(0, 0, 0, 0);
+
+//   console.log(dateToday, 'again date today')
+  
+//   // Set it to one month ago
+// // let openedSinceLastMonth = dateToday.setMonth(dateToday.getMonth() - 1);
+// // let openedSinceLast3Months = dateToday.setMonth(dateToday.getMonth() - 3);
+// // let openedSinceLast12Months = dateToday.setMonth(dateToday.getMonth() - 3);
+
+// console.log(dateToday.getTime(), 'datetoday')
+// console.log(openedSinceLast3Months, 'openedsincelast3months')
+// console.log(dateToday, 'todays date you know')
+
+//  console.log(dateToday.getTime() > openedSinceLast3Months, 'gettimetoday')
+// // console.log(openedSinceLast3Months.getTime(), '3 months ago')
+//   //let date1MonthAgo = new Date() - 1 month
+
+//   console.log(openedSinceLastMonth < dateToday, 'isittrue')
+
+
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   let yearOfStudy = new Date();

@@ -74,9 +74,10 @@ export default function addQuestionsToDeck(item) {
   addToDeck.onclick = function () {
     console.log('still here')
     if (!dataBase.DeckNames[item]) {
-      dataBase.DeckNames[item] = [];
+      dataBase.DeckNames[item].data = [];
       dataBase.DeckNames[item].cardsStudied = 0;
     }
+    dataBase.DeckNames[item].pause = false;
 
     if (document.getElementsByTagName('textarea')[0].value.trim() === ''  //if one of the two input fields is empty message gets changed
     ||

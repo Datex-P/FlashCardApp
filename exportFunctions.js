@@ -27,19 +27,18 @@ function closeMenu() {  //closes the menu on the starting screen
   all[2].classList.remove('transMinus');
   all[2].style.top = '16px'
   document.getElementById('menuIcon2').style.display = 'block';
-  //  dataBase.showDiagram = true
-  //  createDom(dataBase.DeckNames)
-    // document.querySelector('.orangeCircle').style.display = 'flex !important' //probably don t work 10.27 tuesday
-    // document.querySelector('.orangeCircle').style.zIndex = '3 !important'
-    
+  
     if(parseInt((dataBase.deckCompleted * 100) /
     Object.keys(dataBase.DeckNames).length !==100)) {
     
     document.querySelector('#scrollable').style.display = 'block'
     }
-    // if(document.querySelector('.canvasContainer .chartjs-render-monitor')) {
-    //   document.querySelector('.canvasContainer .chartjs-render-monitor').classList.remove('d-none');
-    // }
+   
+    dataBase.showDiagram = true;
+
+    dataBase.statsUpdated = true;
+
+    createDom(dataBase.DeckNames) //tried to add it so that diagram rerenders when color is changed but did not work
 };
 
 

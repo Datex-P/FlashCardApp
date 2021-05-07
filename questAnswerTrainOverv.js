@@ -181,7 +181,7 @@ cardPausedAddCursor()
   )
 
 
-
+console.log(dataBase, 'db und so')
 
   let anchorElement = document.getElementById("questAnswerTrainOverv");
   anchorElement.style.display = "flex";
@@ -511,7 +511,7 @@ cardPausedAddCursor()
 
   let { left, middle, right } = dataBase.timeValues
 
-  let [leftTimeValue, middleTimeValue, rightTimeValue] = [`${left}min`, `${middle}hrs`, `${right}days`].map(el => {
+  let [leftTimeValue, middleTimeValue, rightTimeValue] = [`${left} min`, `${middle} hrs`, `${right}      days`].map(el => {
     return createElement('div', `< ${el}`, {
       fontWeight: 'bold',
       fontSize: '14px'

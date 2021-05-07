@@ -101,14 +101,15 @@ export default function createNewDeck() {
          // document.querySelector('.orangeCircle').style.display = 'flex';
         }
         
-          dataBase.DeckNames[inputField.value] = {data: [], toStudyGoal:20, 
-
-            cardsToday:0, pause: false, 
+          dataBase.DeckNames[inputField.value] = {data: [], 
+           
+            cardsToday:0, 
+            pause: true,  //initially every deck is paused true but that changes to pause false
             skippedPausedCards: 0,
             pauseSwitch: false, 
             studyGoal: 0,
             thisDeckCompleted: false, 
-            toStudyValue: 0,
+            toStudyValue: 1,
 
             color: colors[ Object.keys(dataBase.DeckNames).length % colors.length],
           name: inputField.value};
