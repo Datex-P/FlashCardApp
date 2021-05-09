@@ -135,13 +135,13 @@ export default function createDom(obj) {
     //console.log(dataBase.DeckNames, 'databse decknames')
     //console.log(Object.values(dataBase.DeckNames).filter(item => !item.pause ).length, 'obj len')
 
-    console.log(
+    // console.log(
       
-      Object.values(dataBase.DeckNames).filter(item => item.pause ).length +
+    //   Object.values(dataBase.DeckNames).filter(item => item.pause ).length +
       
-      Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length, 'decks completed')
+    //   Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length, 'decks completed')
         
-console.log(      Object.values(dataBase.DeckNames).filter(item => item.deckPauseActive ).length, 'apused decks und so')
+//console.log(Object.values(dataBase.DeckNames).filter(item => item.deckPauseActive ).length, 'apused decks und so')
     // console.log(
     //     Object.fromEntries(
     //       Object.entries(dataBase.DeckNames[item]).filter((x) => x.pause==true)
@@ -173,8 +173,9 @@ console.log(      Object.values(dataBase.DeckNames).filter(item => item.deckPaus
       document.querySelector("#mainMenu").removeChild(item);
       }
     });
-
     */
+  // console.log(dataBase.deckCompleted, 'completed decks')
+   //console.log(Object.values(dataBase.DeckNames).filter(item => !item.pause ).length, 'decks not paused right now')
 
     let mainThreeDots = threeDots();
     let threeDotsContainer = null;
@@ -504,93 +505,6 @@ console.log(      Object.values(dataBase.DeckNames).filter(item => item.deckPaus
     );
 
 
-
-    // console.log(Object.keys(dataBase.DeckNames).length, 'obj key length here')
-
-    // dateBase.goalReached.push({
-    // parseInt(
-    //   (dataBase.deckCompleted * 100) / 
-    //   Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-      
-    //   //Object.keys(dataBase.DeckNames).length
-    // ): 'hell'})
-
-
-    let dateToday = new Date()
-    
-    dateToday.setHours(0, 0, 0, 0)
-
-
-    let dateToPush = new Date()
-    dateToPush.setHours(0,0,0,0)
-
- /*when there is a deck that is completed, it is checked whether there is already a prop inside goalReached with
- the value of today and if this is the case, the key gets updated in case more progress is made
- 
- dataBase.goalReached = {50: "Fri May 07 2021 00:00:00 GMT+0200 (Central European Summer Time)"} updated to
- dataBase.goalReached = {75: "Fri May 07 2021 00:00:00 GMT+0200 (Central European Summer Time)"}
-
- dates are all put to 00:00:00 of each day, might create a problem when decks are studied  between midnight times
- 
- */
-
-//  console.log(Number(Object.keys(dataBase.goalReached)), 'database goal reached')
-
-
-    if ((Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length) > 0) {
-      
-
-      if(Object.values(dataBase.goalReached).includes(`${dateToPush}`)) {
-
-        let keyToDelete = Object.keys(dataBase.goalReached).find(key => dataBase.goalReached[key] === `${dateToPush}`)
-
-        let data = dataBase.goalReached
-
-        //delete Object.assign(o, {[newKey]: o[oldKey] })[oldKey];
-
-        let newK = parseInt(
-          (dataBase.deckCompleted * 100) / 
-          Object.values(dataBase.DeckNames).filter(item => !item.pause ).length)
-
-        delete Object.assign(data, {[newK]: data[keyToDelete] })[keyToDelete];
-          console.log('fired first time')
-        
-      } else {
-
-
-      Object.assign(dataBase.goalReached, { [parseInt(
-        (dataBase.deckCompleted * 100) / 
-        Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-        
-        //Object.keys(dataBase.DeckNames).length
-      )]: `${dateToPush}`});
-      console.log('got fired hurray hurray')
-    }
-  }
-
-
-
-  //   console.log(dataBase.goalReached, 'allvalues in database')
-  //   // console.log(Object.values(dataBase.goalReached, 'datadecknames values'))
-  //   // console.log(dataBase.goalReached, 'goalreached')
-
-  //   console.log((Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted).length), 'all decks compl')
-
-  //  console.log(dataBase.deckCompleted, 'deck completed')
-  //   console.log(dateToday, 'date today my friends')
-
-  //   console.log(Object.values(dataBase.goalReached), 'obj val')
-
-  //   console.log(dataBase.goalReached, 'goalreache')
-
-
- console.log(dataBase.goalReached, 'goalreached')
-
-
-
-
-
-
     deckIsEmptyField.append(deckIsEmptyFieldAdditional);
     newDeckContainer.append(deckIsEmptyFieldAdditionalTwo);
     addEditDeleteContainer.append(
@@ -731,7 +645,7 @@ console.log(      Object.values(dataBase.DeckNames).filter(item => item.deckPaus
 
       dataBase.DeckNames[item].thisDeckCompleted = true;
       // dataBase.showDiagram = true;
-      dataBase.deckCompleted++;
+//      dataBase.deckCompleted++;
       newDeckContainer.style.display = "none";
       config.data.datasets[0].data.push(
         Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
@@ -868,6 +782,10 @@ console.log(      Object.values(dataBase.DeckNames).filter(item => item.deckPaus
   //   "child element count"
   // );
 
+
+
+
+
   if (
     Object.keys(dataBase.DeckNames).length === 0 ||
     (dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length ===
@@ -905,6 +823,87 @@ console.log(      Object.values(dataBase.DeckNames).filter(item => item.deckPaus
   let pars = parseInt(
     (dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length
   );
+
+
+
+
+  // let dateToday = new Date()
+    
+  // dateToday.setHours(0, 0, 0, 0)
+
+
+  // let dateToPush = new Date()
+  // dateToPush.setHours(0,0,0,0)
+
+  
+
+  let dateToday = new Date()
+    
+  dateToday.setHours(0, 0, 0, 0)
+
+
+  let dateToPush = new Date()
+  dateToPush.setHours(0,0,0,0)
+
+   //console.log(dataToPush, 'datetopush')
+
+
+  if ((Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length) > 0) {
+      
+
+    if(Object.values(dataBase.goalReached).includes(`${dateToPush}`)) {
+
+      // let keyToDelete = Object.keys(dataBase.goalReached).find(key => dataBase.goalReached[key] === `${dateToPush}`)
+
+
+      // dataBase.goalReached['yeah'] = obj[keyToDelete]
+      //Object.keys(object).find(key => object[key] === value)
+
+
+      // let data = dataBase.goalReached
+
+      // //delete Object.assign(o, {[newKey]: o[oldKey] })[oldKey];
+
+      // let newK = parseInt(
+      //   (dataBase.deckCompleted * 100) / 
+      //   Object.values(dataBase.DeckNames).filter(item => !item.pause ).length)
+
+      // delete Object.assign(data, {[newK]: data[keyToDelete] })[keyToDelete];
+      //   console.log(dataBase.goalReached, 'fired in if statement')
+      
+     } else {
+
+      let progress = parseInt(
+          (dataBase.deckCompleted * 100) / 
+          Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
+          )
+       
+
+      dataBase.goalReached = {  [parseInt(
+            (dataBase.deckCompleted * 100) / 
+            Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
+            
+            //Object.keys(dataBase.DeckNames).length
+          )] : dateToPush}
+
+
+  //   Object.assign(dataBase.goalReached, { [parseInt(
+  //     (dataBase.deckCompleted * 100) / 
+  //     Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
+      
+  //     //Object.keys(dataBase.DeckNames).length
+  //   )]: `${dateToPush}`});
+  //   console.log(dataBase.goalReached, 'fired in else statement')
+  // }
+}
+  }
+
+console.log(dataBase.goalReached, 'goalReached')
+
+
+
+
+
 
   if (pars === 100) {
  

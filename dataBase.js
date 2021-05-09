@@ -32,18 +32,26 @@ DeckNames: { /*deckname:[]*/   },
 
 let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
+var d = new Date();
+
+d.setHours(d.getHours() - 2)
 
 
 
-for (let i = 3; i < 7; i++) {
+for (let i = 3; i < 6; i++) {
   let arr = [];
   for (let i = 1; i < 5; i++) {
     arr.push({
       question: `question${i}`,
       answer: `answer${i}`,
+      // openHistory: [ d],
       pause: false
     })
   };
+
+
+
+
 
   dataBase.DeckNames[`Literature${i}`] = {data: arr, name: `Literature${i}`,
     cardsToday:0, 

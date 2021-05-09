@@ -242,15 +242,36 @@ export default function stats() {
   );
 
 
-  let studyGoal = 100
-  let timeObj = { //shows time in hourly breakdown
-    6: 50,
+for (let deck in dataBase.DeckNames) {
+
+  let deckItem = dataBase.DeckNames[deck]
+  // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
+  //   todayCardsStudiedCounter++
+    var firstVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).filter(n => typeof n === "number"))
+    var secVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).filter(n => typeof n === "number"))
+    var thirdVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).filter(n => typeof n === "number"))
+    //var fourthVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 14 ))).filter(n => typeof n === "number")
+
+    
+    
+  }
+  
+  console.log(firstVal, 'firstval')
+  console.log(secVal, 'secval')
+  console.log(thirdVal, 'thirdval')
+  //console.log(fourthVal, 'fourthval')
+
+
+   let studyGoal = 100
+   let timeObj = { 
+    //shows time in hourly breakdown
+    6: 0,
     12: 0,
     18: 0,
     24: 0,
 
-  }
-
+   }
+  console.log(firstVal, 'firstval on line 254')
 
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
   let time = createElement("div", 'Study Goal', {}, 'studyGoal');
@@ -261,13 +282,27 @@ export default function stats() {
 
 
 
+  let currentProgress = 50  //number that shows the whole progress
+
+
+  // 2/7   * 7/5
+
+
+  // studygoal 2 per week
+
+  // (studygoal / 7) * days since installation
+
+
+
 
   let innerprogress = createElement('div', '', {
     backgroundColor: 'orange', color: 'black',
-    width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`, height: '10px'
+    width: `${currentProgress}%`, height: '10px'
   });
 
-  let currentProgress = Number(Object.keys(dataBase.goalReached)) //why does it not invoke right number here??
+  //old width for innerprogress width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`
+
+  //Number(Object.keys(dataBase.goalReached)) //why does it not invoke right number here??
 
   console.log(Object.keys(dataBase.goalReached), 'database goal reached')
   
@@ -355,13 +390,6 @@ export default function stats() {
 
 // 5tage / 7 tage
 
-for (let deck in dataBase.DeckNames) {
-
-  let deckItem = dataBase.DeckNames[deck]
-  // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
-  //   todayCardsStudiedCounter++
-    console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())), 'cards stu')
-  }
 
 //dataBase.DeckNames[deck]
 
@@ -379,10 +407,10 @@ for (let deck in dataBase.DeckNames) {
 
 
 
-  console.log(date1MonthAgo, 'date1monthagoundso')
-  console.log(date1MonthAgo.getTime(), 'utc baby')
-  console.log(dateToday.getTime(), 'utc right right now')
-  //date1MonthAgo.setHours(0,0,0,0)
+  // console.log(date1MonthAgo, 'date1monthagoundso')
+  // console.log(date1MonthAgo.getTime(), 'utc baby')
+  // console.log(dateToday.getTime(), 'utc right right now')
+  // //date1MonthAgo.setHours(0,0,0,0)
 
   //let date1MonthAg = new Date(date1MonthAgo)
 
@@ -563,7 +591,6 @@ for (let deck in dataBase.DeckNames) {
               dayInner.style.left = '-5px'
             }
 
-
              if (parseInt((day.id)) > 287 )  { //question ...why does this line not fire up without replace??
               //.replace(/[^0-9]/g,'')
               console.log('true bigger than 100')                //October 13 is the breakpoint aka day 287 where layout changes and box is shown above red point
@@ -608,7 +635,7 @@ for (let deck in dataBase.DeckNames) {
 
         if (openTime > timeToday.setMonth(timeToday.getMonth() - 1)) {
           cardsOpenLastOne++;
-          console.log(cardsOpenLastOne)
+        //  console.log(cardsOpenLastOne)
         }
         else if (openTime > timeToday.setMonth(timeToday.getMonth() - 3)) {
 

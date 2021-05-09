@@ -80,7 +80,7 @@ export default function questAnswerTrainOverv(item) {
 
 
   function cardsPaused() {
-    console.log('function cardsPaused was fired')
+   // console.log('function cardsPaused was fired')
     return dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0
   }
 
@@ -104,14 +104,14 @@ cardPausedAddCursor()
 
 
   let arrOfPausedDecks;
-  console.log(dataBase.DeckNames[item], 'items')
+ // console.log(dataBase.DeckNames[item], 'items')
 
   onOffSwitch.onclick = (e) => { clickHandler(e) }
 
   function clickHandler(e) {
 
     i = 0;
-    console.log(i, 'value of i')
+   // console.log(i, 'value of i')
 
     dataBase.DeckNames[item].skippedPausedCards = 0
 
@@ -135,7 +135,7 @@ cardPausedAddCursor()
 
         if (editMode === false) {
 
-        console.log('hello from right now')
+    
 
         arrOfPausedDecks = dataBase.DeckNames[item].data.reduce((acc, el, index) => {
           if (el.pause) {
@@ -241,6 +241,34 @@ console.log(dataBase, 'db und so')
       dataBase.questionAnswerOverview = false; 
 
       document.querySelector('.canvasContainer').style.display = 'block'; //diagram container was hidden when openening questionAnswer, now it is shown again
+
+
+
+    let today = new Date().toDateString();
+
+      let cardsStudiedToday = dataBase.DeckNames[item].data.reduce(
+        (acc, card) => {
+          let cardsForToday = card.openHistory?.filter(
+            (time) => time?.toDateString() == today
+          );
+  
+          if (cardsForToday?.length) {
+            acc += cardsForToday.length;
+          }
+          return acc;
+        },
+        0
+      );
+
+      if (cardsStudiedToday >=Number(dataBase.DeckNames[item].toStudyValue)) {
+        dataBase.deckCompleted++;
+      }
+
+
+
+      console.log(dataBase.deckCompleted)
+
+
 
       createDom(dataBase.DeckNames)
     }
@@ -404,7 +432,7 @@ console.log(dataBase, 'db und so')
     
         questionFieldTextArea.focus();
 
-        console.log('hello hello from edit')
+   
        
         dataBase.DeckNames[item].pauseSwitch = false
 
@@ -417,7 +445,7 @@ console.log(dataBase, 'db und so')
 
 
         dataBase.DeckNames[item].pauseSwitch = false
-        console.log(dataBase.DeckNames[item].pauseSwitch, 'pauseSwitch status')
+        // console.log(dataBase.DeckNames[item].pauseSwitch, 'pauseSwitch status')
 
         //inputCheckbox.checked = true
 
@@ -445,9 +473,9 @@ console.log(dataBase, 'db und so')
          
         }
         document.getElementById('showAnswerButton').style.display = 'none' 
-        //console.log('hello from pause')
+       
 
-        console.log(document.querySelector('.resetAndPauseIconContainer'), 'puaseIconcontainer')
+        
       }
       ,
       delete: () => {
@@ -496,7 +524,7 @@ console.log(dataBase, 'db und so')
   let containerForAgainGoodEasyButtons = createElement(
     'div', '', {margin: '5px 0'}, 'flexSpaceBetween');
 
- console.log(dataBase.DeckNames, 'data decknames')
+
 
 
   let [containerForLeft, containerForMiddle, containerForRight] = ['', '', ''].map(el => {
@@ -580,7 +608,7 @@ console.log(dataBase, 'db und so')
         }
 
         randomNum = newRandomNumber
-        console.log(randomNum)
+    
       }
       if (el === `${middleName}`) {
         let newRandomNumber = Math.floor(Math.random() * (100 - 60 + 1) + 60);
@@ -622,8 +650,8 @@ console.log(dataBase, 'db und so')
 
 
 
-  console.log(randomNum, 'randomNum')
-  console.log(dataBase.DeckNames[item].data[randomNum].answer, 'newRandomNumber')
+  // console.log(randomNum, 'randomNum')
+  // console.log(dataBase.DeckNames[item].data[randomNum].answer, 'newRandomNumber')
 
 
   saveButton.onclick = function () {
@@ -661,17 +689,12 @@ console.log(dataBase, 'db und so')
       
   }
 
-  // document.querySelector('.resetAndPauseIconContainer').onclick = function () {
-  //   console.log('hello from reset and pause')
-  // }
-
-  // console.log(document.querySelector('.resetAndPauseIconContainer'), 'resetandpuaseIcon')
 
  
   
   
   
-  console.log(dataBase.DeckNames, 'database decknames')
+  // console.log(dataBase.DeckNames, 'database decknames')
 
   discardButton.onclick = function () {
     setThreeDotsOpen(false);
