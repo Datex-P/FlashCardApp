@@ -260,16 +260,18 @@ console.log(dataBase, 'db und so')
         0
       );
 
-      if (cardsStudiedToday >=Number(dataBase.DeckNames[item].toStudyValue)) {
-        dataBase.deckCompleted++;
-      }
+      // if (cardsStudiedToday >=Number(dataBase.DeckNames[item].toStudyValue)) {
+      //   dataBase.deckCompleted++;
+      // }
 
 
 
       console.log(dataBase.deckCompleted)
-
-
-
+      // document.querySelector('.overDiagram').style.display = 'block'
+      createDom(dataBase.DeckNames)
+      if (dataBase.deckCompleted>0) {
+      document.querySelector('.overDiagram').style.display = 'block'
+      }
       createDom(dataBase.DeckNames)
     }
   }

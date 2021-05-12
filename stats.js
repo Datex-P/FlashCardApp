@@ -1,5 +1,5 @@
 import { dataBase } from "./dataBase.js";
-import createDom from './createDom.js';
+
 
 import {
   createElement,
@@ -84,21 +84,22 @@ export default function stats() {
     options: {
       elements: {
         center: {
-          text: !dataBase.openedToday ? 'No cards studied today'
-            //<div style='font-size:12px'>No data</div> 
-            :
-            `Data from ${todayDate.toLocaleString('de-DE', {
-              day: 'numeric',
-              month: 'numeric',
-              year: 'numeric',
-            })}`,
-          //color: '#FF6384', // Default is #000000
-          color: 'black',
-          fontStyle: 'Arial', // Default is Arial
-          sidePadding: 2, // Default is 20 (as a percentage)
-          minFontSize: 14, // Default is 20 (in px), set to false and text will not wrap.
-          lineHeight: 19,
-          // Default is 25 (in px), used for when text wraps
+          text:''
+          // text: !dataBase.openedToday ? 'No cards studied today'
+          //   //<div style='font-size:12px'>No data</div> 
+          //   :
+          //   `Data from ${todayDate.toLocaleString('de-DE', {
+          //     day: 'numeric',
+          //     month: 'numeric',
+          //     year: 'numeric',
+          //   })}`,
+          // //color: '#FF6384', // Default is #000000
+          // color: 'black',
+          // fontStyle: 'Arial', // Default is Arial
+          // sidePadding: 2, // Default is 20 (as a percentage)
+          // minFontSize: 14, // Default is 20 (in px), set to false and text will not wrap.
+          // lineHeight: 19,
+          // // Default is 25 (in px), used for when text wraps
         }
       },
       legend: {
@@ -118,6 +119,23 @@ export default function stats() {
       }
     }
   };
+
+
+
+  let dateBetterFormatted = createElement('div', `${!dataBase.openedToday ? 'No cards studied today'
+  //<div style='font-size:12px'>No data</div> 
+  :
+  `Data from ${todayDate.toLocaleString('de-DE', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  })}`
+}`, {
+     
+    
+  }, 'dataBetterFormatted')
+
+  todayStudyContainer.append(dateBetterFormatted)
 
   var ctx = canvas.getContext("2d");
   var myChart = new Chart(ctx, config);
@@ -247,10 +265,10 @@ for (let deck in dataBase.DeckNames) {
   let deckItem = dataBase.DeckNames[deck]
   // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
   //   todayCardsStudiedCounter++
-    var firstVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).filter(n => typeof n === "number"))
-    var secVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).filter(n => typeof n === "number"))
-    var thirdVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).filter(n => typeof n === "number"))
-    //var fourthVal = deckItem.data.map((item) => item?.openHistory?.filter(item => new Date(item).getHours() < 14 ))).filter(n => typeof n === "number")
+    var firstVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length)
+    var secVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length)
+    var thirdVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length)
+    var fourthVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 6 ).length)
 
     
     
@@ -259,55 +277,55 @@ for (let deck in dataBase.DeckNames) {
   console.log(firstVal, 'firstval')
   console.log(secVal, 'secval')
   console.log(thirdVal, 'thirdval')
-  //console.log(fourthVal, 'fourthval')
+  console.log(fourthVal, 'fourthval')
 
 
-   let studyGoal = 100
+ 
    let timeObj = { 
     //shows time in hourly breakdown
-    6: 0,
-    12: 0,
-    18: 0,
-    24: 0,
+    6: 30,
+    12: 70,
+    18: 0 ,
+    24: 0 ,
 
    }
   console.log(firstVal, 'firstval on line 254')
 
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
-  let time = createElement("div", 'Study Goal', {}, 'studyGoal');
+  let time = createElement("div", 'Monthly Goal', {}, 'studyGoal');
 
   let progressBar = createElement('div', '', {}, 'progressBar');
 
-  progressBar.style.marginLeft = '20px' //first progress bar next to study goal
+  progressBar.style.marginLeft = '16px' //first progress bar next to study goal
 
+  
+  let currentProgress = Object.keys(dataBase.goalReached).length >0 ?  Number(Object.keys(dataBase.goalReached)[0]) : 0
+  
+  let studyGoal = currentProgress;
 
+  console.log(Number(currentProgress/100), 'currentprog')
+  //let currentProgr = 
+  
+  //forumula for better current progress Object.keys(dataBase.goalReached).find(key => dataBase.goalReached[key] == new Date(dataBase.dateToday))
 
-  let currentProgress = 50  //number that shows the whole progress
-
-
-  // 2/7   * 7/5
-
-
-  // studygoal 2 per week
-
-  // (studygoal / 7) * days since installation
-
-
-
+  // console.log(currentProgr, 'current progress')
+  
+  //dataBase.goalReached[0]  //number that shows the whole progress
 
   let innerprogress = createElement('div', '', {
     backgroundColor: 'orange', color: 'black',
     width: `${currentProgress}%`, height: '10px'
   });
 
-  //old width for innerprogress width: `${Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100}%`
+  //old width for innerprogress width: 
+  
+  //console.log(Object.values(timeObj).reduce((sum, i) => sum += i, 0), 'stud')
 
   //Number(Object.keys(dataBase.goalReached)) //why does it not invoke right number here??
 
-  console.log(Object.keys(dataBase.goalReached), 'database goal reached')
-  
+
   // old current progress Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100
-  let widthAdjusted = Math.round(currentProgress) + 120
+  let widthAdjusted = Math.round(currentProgress)+ 120
 
 
   console.log((((Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100) / 145) * 125))
@@ -326,6 +344,7 @@ for (let deck in dataBase.DeckNames) {
   let arr = [];
   let previousWidthVar = 0
 
+  let stud = 100
 
   for (let i = 6; i <= 30; i += 6) {
 
@@ -337,13 +356,38 @@ for (let deck in dataBase.DeckNames) {
       let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
 
 
+      let allProgress = Number(Object.values(timeObj).reduce((sum, i) => sum + i, 0))
+      //30prozent von 66%
+      console.log(allProgress, 'allprogress')
+      
+      let widthVar  = width()
+      
+      function width (){
+      if (timeObj[i]) {
+      
+      return ((((timeObj[i] || 0) / allProgress)*100) - 
+      (previousWidthVar*100/currentProgress)) 
+      *1.46*Number(currentProgress/100)
+      } else {
+        return 0
+      }
+    
+    }
+      //let widthVar  = Number((((timeObj[i] || 0) / allProgress * 100)*100)/currentProgress)
 
-      let widthVar = (timeObj[i] || 0) / studyGoal * 100
+
+      
+      console.log(previousWidthVar,i, 'prevWidthVar')
+      console.log(widthVar,i, 'widthVar')
+      // console.log((timeObj[i]/studyGoal)*100, 'study')
+      
+      //(timeObj[i] || 0) / studyGoal * 100
 
       let time = createElement("div", '', {}, 'time flexCenterAlignCenter'); //container for the times 06-12 / 12-18 etc.
 
       let progressBar = createElement('div', '', {}, 'progressBar')
-      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`, backgroundColor: 'orange', width: `${widthVar}%`, height: '10px' });
+      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`,
+       backgroundColor: 'orange', width: `${widthVar}%`, height: '10px' });
 
       previousWidthVar += widthVar
 
@@ -574,7 +618,7 @@ for (let deck in dataBase.DeckNames) {
 
             dayInner.innerText = `${date} Time: ${time
               .toString()
-              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}:⠀${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`;
+              .padStart(3, "⠀")} min \n  Review${cardsStudiedCounter !== 1 ? 's' : ''}: ${cardsStudiedCounter} card${cardsStudiedCounter !== 1 ? 's' : ''}`;
 
             day.append(dayInner);
             dayInner.title = 'Click outside the window to close it'
@@ -676,6 +720,10 @@ for (let deck in dataBase.DeckNames) {
       document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
 
      dataBase.statsOpen = false; //needed to give the deletecardquestionbox a different top
+
+     if (dataBase.deckCompleted) {  //the inner percentages get shown again when there is a deck that is completed
+     document.querySelector('.overDiagram').style.display='block'
+     }
 
   }
 

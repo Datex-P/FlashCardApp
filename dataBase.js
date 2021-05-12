@@ -3,6 +3,7 @@ DeckNames: { /*deckname:[]*/   },
   queue: [],
   showDiagram: true, //when clicked on the menu button or in questionAsnwerTrain it is set to false
   diagramWasTriggeredOnce: false, 
+  dateToday: new Date().setHours(0,0,0,0),
   backgroundColorApp: 'default', //needed so that colors is switched accordingly in settings
   hourlyBreakdown: '1 month', //needed for stats.js so that it is certain which breakdown field is checked by default
   userStylePreferences: [],

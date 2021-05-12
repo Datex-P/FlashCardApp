@@ -1,4 +1,4 @@
-import createDom from './createDom.js';
+import createDom, {putOver} from './createDom.js';
 import {
   dataBase
 } from './dataBase.js';
@@ -7,12 +7,12 @@ import settings from './settings.js';
 import createNewDeck from './createNewDeck.js';
 import {
   closeMenu,
+  createElement
 } from './exportFunctions.js';
 import {
   brush, hexagon
 } from "./svgs.js";
-
-createDom(dataBase.DeckNames);
+createDom(dataBase.DeckNames) 
 
 
 
@@ -47,6 +47,14 @@ function handleOutsideClick(e) {
 }
 }
 
+
+
+
+
+
+
+
+
 document.querySelector('.menu').onclick = function () { //opens the menu field when clicked
 
 
@@ -57,6 +65,7 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
   let chartjsel= document.querySelector('.canvasContainer .chartjs-render-monitor')
     
 
+  console.log(putOver, 'putover here')
   document.getElementById('menuIcon2').style.display = 'none';
 
   if (!opened) {
@@ -68,13 +77,19 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
         handleOutsideClick(e);
         if(chartjsel){
           chartjsel.classList.remove('d-none');
-
+         document.querySelector('.overDiagram').style.display='block'
         }
       }
     }, 10)
     if(chartjsel){
       chartjsel.classList.add('d-none');
+       document.querySelector('.overDiagram').style.display='none'
+
     }
+    // document.querySelectorAll('.overDiagram').style.display = 'none'
+     console.log('I fired display none')
+
+ 
   } else {
     closeMenu()
     opened = false;
@@ -82,7 +97,7 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
     if(chartjsel){
       chartjsel.classList.remove('d-none');
     }
-
+     document.querySelector('.overDiagram').style.display = 'block'
   }
 
 };
@@ -98,6 +113,8 @@ document.querySelector('.menuContainer').onclick = function () {
   if(chartjsel){
     chartjsel.classList.toggle('d-none');
   }
+
+
 
 
 }

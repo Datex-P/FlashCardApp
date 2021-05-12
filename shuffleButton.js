@@ -29,10 +29,10 @@ export default function shuffle(item, index = null) {
 
   let date = new Date()
 
-  let rand = Math.floor(Math.random()*3)
+  let rand = Math.floor(Math.random()*10)
 
   date.setHours(date.getHours() - rand)
-  date.setDate(rand)
+ //  date.setDate(rand)
 
   dataBase.DeckNames[item].data[randomInScope].openHistory.push(date);  //before it was new Date()
  // dataBase.DeckNames[item].data[randomInScope].openHistory.push(new Date(('January 01, 2020')))

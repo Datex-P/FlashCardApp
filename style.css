@@ -515,6 +515,15 @@ pauseIconContainer:hover {
   transform: rotate(-135deg); 
 } 
 
+.showPausedDecks {
+  width: 150px;
+  height:100px;
+  background-color: blue;
+  left:169px;
+  position: relative;
+  display:none;
+}
+
 
 .deleteContainerFr {
   display: flex;
@@ -523,7 +532,7 @@ pauseIconContainer:hover {
   background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
   top: 0;
-  border-radius: 18px;
+  border-radius: 9px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -825,7 +834,7 @@ pauseIconContainer:hover {
 #finishedAllDecksToday{
   display:none;
   justify-content: center;
-  top: 278px;
+  top: 245px;
   position: absolute;
   width: 100%;
 }
@@ -1111,6 +1120,7 @@ textarea:not(:disabled) {
 
 .todayStudyContainer {
   width: 105px; 
+  height:50px;
   text-align: center; 
   font-weight: bold; 
   font-size: 17px;
@@ -1172,6 +1182,26 @@ textarea:not(:disabled) {
   margin-left: 37px; 
   border-radius: 3px;
   margin-top: 7px;
+}
+
+.dataBetterFormatted {
+  position: relative;
+  top: 67px;
+  left: 3px;
+  width: 107px;
+  height: 53px;
+}
+
+.overDiagram {
+  width: 43px;
+  line-height:1.4;
+  height: 43px;
+  z-index: 5;
+  position: absolute;
+  left: 322px;
+  top: 69px;
+  border-radius: 8px;
+  display: none;
 }
 
 #scrollable {
@@ -1317,8 +1347,8 @@ border-color:#f5c6cb;
 .studyGoal {
   margin-left: 10px; 
   border: 1px solid black; 
-  font-size: 15px; 
-  width: 68px; 
+  font-size: 13px; 
+  width: 74px; 
   padding: 4px;
   border-radius:2px;
 }

@@ -38,7 +38,7 @@ function closeMenu() {  //closes the menu on the starting screen
 
     dataBase.statsUpdated = true;
 
-    createDom(dataBase.DeckNames) //tried to add it so that diagram rerenders when color is changed but did not work
+   // createDom(dataBase.DeckNames) //tried to add it so that diagram rerenders when color is changed but did not work
 };
 
 
@@ -72,6 +72,9 @@ let redCross = createElement(
   redCrossIcon, {},
   'redCross'
 );
+
+
+
 
 function handleOutsideClick(mainWindow, target = redCross) {
   setTimeout(function () {

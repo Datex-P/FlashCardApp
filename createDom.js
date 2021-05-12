@@ -9,17 +9,21 @@ import {
 import { play, plusSvg } from "./svgs.js";
 let canvasContainer = createElement("div", "", {}, "canvasContainer");
 let canvas = createElement("canvas", "", {}, "pieChart canvasStyling");
+
 export default function createDom(obj) {
   console.log("create Dom was rendered");
   listOfDecks.innerHTML = "";
   let arr = Object.keys(obj);
+
+  document.getElementById("mainMenu").append(putOver);
+  document.getElementById("mainMenu").append(showPausedDecks);
 
   let decksThatArenotCompleted = arr.filter(
     (item) => !obj[item].thisDeckCompleted
   );
 
   let edited = false;
-   // console.log(decksThatArenotCompleted)
+
   decksThatArenotCompleted.forEach((item, index, filteredArray) => {
     let newDeckContainer = createElement(
       "div",
@@ -125,33 +129,6 @@ export default function createDom(obj) {
       event.stopPropagation();
     };
 
-    // console.log(Object.keys(dataBase.DeckNames).length, "obj length");
-
-    // console.log(dataBase, "database und so");
-
-    // console.log(dataBase.DeckNames.Literature3.pause, "literature 3 und so");
-    // console.log(dataBase.DeckNames[item].filter((x) => x.pause === true), 'paused stuff und so')
-
-    //console.log(dataBase.DeckNames, 'databse decknames')
-    //console.log(Object.values(dataBase.DeckNames).filter(item => !item.pause ).length, 'obj len')
-
-    // console.log(
-      
-    //   Object.values(dataBase.DeckNames).filter(item => item.pause ).length +
-      
-    //   Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length, 'decks completed')
-        
-//console.log(Object.values(dataBase.DeckNames).filter(item => item.deckPauseActive ).length, 'apused decks und so')
-    // console.log(
-    //     Object.fromEntries(
-    //       Object.entries(dataBase.DeckNames[item]).filter((x) => x.pause==true)
-    //     ), 'obj entries')
-
-    //.filter(([key, value]) => value === 5) )
-    // filteredByValue = {V: 5}
-
-    // dataBase.DeckNames[item].pause
-
     function clickOutsideHandle(el) {
       //alert("Clicked out Box")
       el.classList.add("blinkingIcon");
@@ -159,23 +136,6 @@ export default function createDom(obj) {
         el.classList.remove("blinkingIcon");
       }, 3000);
     }
-
- 
-
-   // console.log(dataBase.DeckNames[item].filter(x=>x.thisDeckCompleted === true).length, 'all decks that are completed')
-    //shows if edit button inside three dots on the mainscreen is pressed
-
-    /*
-    let arrOfCanvases = Array.from(document.querySelectorAll(".canvasContainer"))
-    
-    arrOfCanvases.forEach((item,index) => {
-      if(index != arrOfCanvases.length -1){
-      document.querySelector("#mainMenu").removeChild(item);
-      }
-    });
-    */
-  // console.log(dataBase.deckCompleted, 'completed decks')
-   //console.log(Object.values(dataBase.DeckNames).filter(item => !item.pause ).length, 'decks not paused right now')
 
     let mainThreeDots = threeDots();
     let threeDotsContainer = null;
@@ -344,6 +304,8 @@ export default function createDom(obj) {
       "pauseInfoField"
     );
 
+    // threeDotsContainer()
+
     let deckIsEmptyField = createElement(
       "div",
       "Deck is empty.",
@@ -397,6 +359,9 @@ export default function createDom(obj) {
       "playTextAdditional"
     );
 
+    // console.log( (dataBase.deckCompleted * 100) /
+    // Object.values(dataBase.DeckNames).filter(item => !item.pause).length, 'goalundso')
+
     playIconContainer.onclick = function() {
       //play button that appears inside the card  when it is put on pause
       [plusIcon, addToDeckIcon].map((el) => (el.style.cursor = "pointer")); //grey circle is pointable again
@@ -429,6 +394,8 @@ export default function createDom(obj) {
           dataBase.openedToday = true;
           dataBase.showDiagram = false; //deck is opened and thus diagram with goals is not shown for the moment
           dataBase.statsOrSettingsOpened = true;
+          // openDeck.style.display = 'none'
+          document.querySelector(".overDiagram").style.display = "none";
           createDom(dataBase.DeckNames);
 
           document.querySelector(".canvasContainer").style.display = "none";
@@ -496,6 +463,7 @@ export default function createDom(obj) {
       0
     );
 
+
     newDeckContainer.append(
       pauseInfoField,
       deckIsEmptyField,
@@ -503,7 +471,6 @@ export default function createDom(obj) {
       threeDotsContainer,
       addToDeckIcon
     );
-
 
     deckIsEmptyField.append(deckIsEmptyFieldAdditional);
     newDeckContainer.append(deckIsEmptyFieldAdditionalTwo);
@@ -550,7 +517,11 @@ export default function createDom(obj) {
             ],
             //checks which background color is set in the database and changed in settings
             backgroundColor: [
-                 dataBase.backgroundColorApp === 'default'? "#5aaa95": dataBase.backgroundColorApp ==='dark'? '#5aaaff':'#86a873',
+              dataBase.backgroundColorApp === "default"
+                ? "#5aaa95"
+                : dataBase.backgroundColorApp === "dark"
+                ? "#5aaaff"
+                : "#86a873",
               "#FF6384",
             ],
             borderColor: ["#5aaa95", "#FF6384"],
@@ -561,17 +532,14 @@ export default function createDom(obj) {
       options: {
         elements: {
           center: {
-            text: `Daily  \n ${(dataBase.deckCompleted * 100) /
-              //Object.keys(dataBase.DeckNames).length
-              Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-            } %`,
+            text: "",
 
             fontStyle: "Times", // Default is Arial
             // sidePadding: 2, // Default is 20 (as a percentage)
             minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
 
-            // lineHeight: 19,
-            // Default is 25 (in px), used for when text wraps
+            lineHeight: 19,
+            //Default is 25 (in px), used for when text wraps
           },
         },
         tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
@@ -586,86 +554,117 @@ export default function createDom(obj) {
         },
       },
     };
-    // config.data.datasets[0].backgroundColor.push("#5aaa95")
 
-    // console.log( config.data.datasets[0].backgroundColor, 'backgr')
+    dataBase.showDiagram === false;
 
-    // if (dataBase.backgroundColorApp === "default") {
-    //   // config.data.datasets[0].backgroundColor = ['blue']
+    let numberOfDecks = Object.keys(dataBase.DeckNames).length;
+    let pausedDecks = Object.values(dataBase.DeckNames).filter(
+      (item) => item.deckPauseActive
+    ).length;
+    let completedDecks = dataBase.deckCompleted;
 
-    //   //console.log(config.data.datasets[0].backgroundColor, "conf right now");
+    console.log(numberOfDecks, "numebr of decks");
+    console.log(pausedDecks, "paused decks");
+    console.log(completedDecks, "completed decks");
 
-    //   config.data.datasets[0].backgroundColor = [];
-    //   config.data.datasets[0].backgroundColor.push("#5aaa95");
-    //   //config.data.datasets[0].backgroundColor.unshift("#5aaa95")
-    //   config.data.datasets[0].backgroundColor.push("yellow");
-    // } else if (dataBase.backgroundColorApp === "dark") {
-    //   config.data.datasets[0].backgroundColor = [];
-    //   config.data.datasets[0].backgroundColor.push("#5aaaff");
-    //   config.data.datasets[0].backgroundColor.push("#FF6384");
-      
-    // } else {
-    //   config.data.datasets[0].backgroundColor = [];
-    //   config.data.datasets[0].backgroundColor.push("yellow");
-    //   config.data.datasets[0].backgroundColor.push("#FF6384");
+    // console.log(Object.keys(dataBase.DeckNames).length, 'legnth of databse')
+    // console.log(dataBase.DeckNames[item].deckPauseActive, 'deck active yes or deck')
+    // console.log(Object.values(dataBase.DeckNames).filter(item => !item.deckPauseActive ), 'items that are not pasued right now')
 
-    //   // config.data.datasets[0].backgroundColor = []
-    //   // config.data.datasets[0].backgroundColor.push("#86a873")
-    // }
-    // console.log(603, config.data.datasets[0].backgroundColor);
-    
-    // console.log(dataBase.DeckNames[item].thisDeckCompleted.filter(item=>item === false).length, 'filter completed deck')
-
-    // console.log( inputToStudy.value, 'input study value')
-
-    //     let cardsStudiedInPercent = (cardsStudiedToday || 0) * 100;
-
-    // console.log(cardsStudiedToday, "cardsstudiedtody");
-    // console.log(Number(dataBase.DeckNames[item].toStudyValue), "studyvale");
-
-   // console.log((Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted).length), 'all decks compl')
-
-    dataBase.showDiagram === false
-
-    // console.log(dataBase.DeckNames[item].thisDeckCompleted, 'deckcompl')
-    // console.log(dataBase.showDiagram, 'showdiagram')
-
+    // console.log(dataBase.deckCompleted, 'deckcompleted')
 
     if (
-      (cardsStudiedToday >= Number(dataBase.DeckNames[item].toStudyValue) &&
+      numberOfDecks > completedDecks &&
+      numberOfDecks === completedDecks + pausedDecks
+    ) {
+      console.log("unpause now what do you think?");
+      document.querySelector(".showPausedDecks ").style.display = "block";
+
+      //let cardThreeDots = threeDots();
+
+      let cardThreeDots = deleteCardQuestionBox(
+        () => dataBase.DeckNames[item].data.splice(index, 1), //remove
+        () => {
+          questAnswerTrainOverv(item),
+            createDom(dataBase.DeckNames),
+            clearInterval(decrementTimer);
+        }, //refresh
+        "Delete card", //header
+        "delete this card"
+      ); //body
+
+
+
+
+      // let threeDotsContainerUnpauseMode = cardThreeDots(
+      //   {
+      //     delete: () => {
+      //       if (dataBase.showDeleteFrameQuestion) {
+      //         deleteCardQuestionBox(
+      //           () => dataBase.DeckNames[item].data.splice(index, 1), //remove
+      //           () => {
+      //             questAnswerTrainOverv(item),
+      //               createDom(dataBase.DeckNames),
+      //               clearInterval(decrementTimer);
+      //           }, //refresh
+      //           "Delete card", //header
+      //           "delete this card"
+      //         ); //body
+      //       } else {
+      //         dataBase.DeckNames[item].data.splice(index, 1);
+      //         questAnswerTrainOverv(item);
+      //         createDom(dataBase.DeckNames); //to remove it from the database
+      //       }
+      //     },
+      //   },
+      //   { top: "-15px", left: "13px" },
+      //   "card",
+      //   { marginTop: "0px" }
+      // );
+
+      newDeckContainer.append(
+        threeDotsContainerUnpauseMode
+      );
+    }
+
+    if (
+      cardsStudiedToday >= Number(dataBase.DeckNames[item].toStudyValue) &&
       // >=  inputToStudy.value
 
       // Math.round(cardsStudiedInPercent / inputToStudy.value) >= 10
       dataBase.DeckNames[item].thisDeckCompleted === false &&
       dataBase.showDiagram === true
-      ) 
     ) {
       //console.log('just got fired')
       //when the study goal is fullfilled for 100 %
 
       dataBase.DeckNames[item].thisDeckCompleted = true;
       // dataBase.showDiagram = true;
-//      dataBase.deckCompleted++;
+      dataBase.deckCompleted++;
       newDeckContainer.style.display = "none";
       config.data.datasets[0].data.push(
         Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
         dataBase.deckCompleted
       );
       // config.data.labels.push('completed decks')
-      config.options.elements.center.text = `Goal ${
-        
-        parseInt(
-        (dataBase.deckCompleted * 100) / 
-        Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-        
-        //Object.keys(dataBase.DeckNames).length
-      )
-    } %`;
+      // config.options.elements.center.text = `Goal ${
+
+      // let putOver = createElement('div', `Goal ${
+
+      //   parseInt(
+      //   (dataBase.deckCompleted * 100) /
+      //   Object.values(dataBase.DeckNames).filter(item => !item.pause ).length)} %`, {}, 'overDiagram')
+
+      // document.getElementById('mainMenu').append(putOver)
+      //document.querySelector('.overDiagram').style.display = 'block'
+
+      //   parseInt(
+      //   (dataBase.deckCompleted * 100) /
+      //   Object.values(dataBase.DeckNames).filter(item => !item.pause ).length)} %`;
       // createDom(dataBase.DeckNames);
 
       let decks = document.querySelectorAll("#listOfDecks .newDeckContainer");
       let length = Array.from(decks).length;
-     
 
       if (decks.length) {
         decks[length - 1].querySelector(".orangeCircle").style.display = "flex";
@@ -765,12 +764,11 @@ export default function createDom(obj) {
       });
     }
   });
+
   if (dataBase.showDiagram) {
     document.querySelector("#mainMenu").append(canvasContainer);
     canvasContainer.append(canvas);
-
-   } else {
-   
+  } else {
     //  if(canvasContainer) {
     // document.querySelector("#mainMenu").remove(canvasContainer);
     // canvasContainer.remove(canvas);
@@ -782,14 +780,11 @@ export default function createDom(obj) {
   //   "child element count"
   // );
 
-
-
-
-
   if (
     Object.keys(dataBase.DeckNames).length === 0 ||
     (dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length ===
-      100) {
+      100
+  ) {
     //if no deck is present, scrollbar dissapear and info to create a deck appears
 
     document.querySelector("#scrollable").style.display = "none"; //no deck in the stack so the scrollbar disappears
@@ -801,13 +796,13 @@ export default function createDom(obj) {
 
     if (
       //document.getElementById("listOfDecks").childElementCount === 1
-    
+
       Object.values(dataBase.DeckNames).length -
-      
-      ( Object.values(dataBase.DeckNames).filter(item => item.pause ).length +
-      
-      Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length) <=1
-    
+        (Object.values(dataBase.DeckNames).filter((item) => item.pause).length +
+          Object.values(dataBase.DeckNames).filter(
+            (item) => item.thisDeckCompleted
+          ).length) <=
+      1
     ) {
       //when there is only one deck in the stack the scrollbar on the right sid disappears
       document.querySelector("#scrollable").style.display = "none";
@@ -824,89 +819,44 @@ export default function createDom(obj) {
     (dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length
   );
 
+  putOver.innerHTML = `${"Goal".bold()} <span>${parseInt(
+    (dataBase.deckCompleted * 100) /
+      Object.values(dataBase.DeckNames).filter((item) => !item.pause).length
+  )} % </span>`;
 
+  let dateToday = new Date();
 
+  dateToday.setHours(0, 0, 0, 0);
 
-  // let dateToday = new Date()
-    
-  // dateToday.setHours(0, 0, 0, 0)
+  let dateToPush = new Date();
+  dateToPush.setHours(0, 0, 0, 0);
 
+  console.log(new Date(dataBase.dateToday), "datetoday");
 
-  // let dateToPush = new Date()
-  // dateToPush.setHours(0,0,0,0)
-
-  
-
-  let dateToday = new Date()
-    
-  dateToday.setHours(0, 0, 0, 0)
-
-
-  let dateToPush = new Date()
-  dateToPush.setHours(0,0,0,0)
-
-   //console.log(dataToPush, 'datetopush')
-
-
-  if ((Object.values(dataBase.DeckNames).filter(item => item.thisDeckCompleted ).length) > 0) {
-      
-
-    if(Object.values(dataBase.goalReached).includes(`${dateToPush}`)) {
-
-      // let keyToDelete = Object.keys(dataBase.goalReached).find(key => dataBase.goalReached[key] === `${dateToPush}`)
-
-
-      // dataBase.goalReached['yeah'] = obj[keyToDelete]
-      //Object.keys(object).find(key => object[key] === value)
-
-
-      // let data = dataBase.goalReached
-
-      // //delete Object.assign(o, {[newKey]: o[oldKey] })[oldKey];
-
-      // let newK = parseInt(
-      //   (dataBase.deckCompleted * 100) / 
-      //   Object.values(dataBase.DeckNames).filter(item => !item.pause ).length)
-
-      // delete Object.assign(data, {[newK]: data[keyToDelete] })[keyToDelete];
-      //   console.log(dataBase.goalReached, 'fired in if statement')
-      
-     } else {
-
-      let progress = parseInt(
-          (dataBase.deckCompleted * 100) / 
-          Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-          )
-       
-
-      dataBase.goalReached = {  [parseInt(
-            (dataBase.deckCompleted * 100) / 
-            Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-            
-            //Object.keys(dataBase.DeckNames).length
-          )] : dateToPush}
-
-
-  //   Object.assign(dataBase.goalReached, { [parseInt(
-  //     (dataBase.deckCompleted * 100) / 
-  //     Object.values(dataBase.DeckNames).filter(item => !item.pause ).length
-      
-  //     //Object.keys(dataBase.DeckNames).length
-  //   )]: `${dateToPush}`});
-  //   console.log(dataBase.goalReached, 'fired in else statement')
-  // }
-}
+  if (
+    Object.values(dataBase.DeckNames).filter((item) => item.thisDeckCompleted)
+      .length > 0
+  ) {
+    if (Object.values(dataBase.goalReached).includes(`${dateToPush}`)) {
+      dataBase.goalReached = {};
+    } else {
+      console.log(
+        Object.values(dataBase.DeckNames).filter((item) => !item.pause).length,
+        "items not pasued"
+      );
+      dataBase.goalReached = {
+        [parseInt(
+          (dataBase.deckCompleted * 100) /
+            Object.values(dataBase.DeckNames).filter((item) => !item.pause)
+              .length
+        )]: dateToPush,
+      };
+    }
   }
 
-console.log(dataBase.goalReached, 'goalReached')
-
-
-
-
-
+  console.log(dataBase.goalReached, "goalReached");
 
   if (pars === 100) {
- 
     document.getElementById("allDecksFinished").style.display = "none";
     document.getElementById("finishedAllDecksToday").style.display = "flex";
     document.getElementById("createDeckButtonContainer").style.display = "none";
@@ -950,3 +900,6 @@ console.log(dataBase.goalReached, 'goalReached')
     }
   };
 }
+
+export let putOver = createElement("div", "", {}, "overDiagram");
+export let showPausedDecks = createElement("div", "", {}, "showPausedDecks");
