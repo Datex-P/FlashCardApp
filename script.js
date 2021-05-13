@@ -77,7 +77,11 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
         handleOutsideClick(e);
         if(chartjsel){
           chartjsel.classList.remove('d-none');
+
+          if (dataBase.deckCompleted>0) {
+
          document.querySelector('.overDiagram').style.display='block'
+          }
         }
       }
     }, 10)
@@ -97,7 +101,9 @@ document.querySelector('.menu').onclick = function () { //opens the menu field w
     if(chartjsel){
       chartjsel.classList.remove('d-none');
     }
+    if (dataBase.deckCompleted >0){
      document.querySelector('.overDiagram').style.display = 'block'
+    }
   }
 
 };

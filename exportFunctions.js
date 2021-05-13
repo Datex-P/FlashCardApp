@@ -34,8 +34,11 @@ function closeMenu() {
   ) {
     document.querySelector("#scrollable").style.display = "block";
   }
+  if (!dataBase.reset) {
 
-  dataBase.showDiagram = true;
+    dataBase.showDiagram = true;
+  }
+
 
   dataBase.statsUpdated = true;
 
@@ -364,7 +367,9 @@ function deleteCardQuestionBox(
         document.getElementById("showAnswerButton").style.display = "block"; //showanswerbutton is hidden in questanswertrain when pause is active
       }
     }
+    if (anchorElement.contains(deleteContainerFrame)){
     anchorElement.removeChild(deleteContainerFrame);
+    }
   };
 
   deleteContainerNo.onclick = function() {

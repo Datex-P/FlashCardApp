@@ -441,7 +441,7 @@ export default function settings() {
   redCross.onclick = () => {
     if (!editedUpper && !editClicked) { //checks whether times and names field are still open or study days is open
         close(mainWindow, anchorElement);
-        if (dataBase.deckCompleted) {  //the inner percentages get shown again when there is a deck that is completed
+        if (dataBase.deckCompleted > 0) {  //the inner percentages get shown again when there is a deck that is completed
           document.querySelector('.overDiagram').style.display='block'
           }
     

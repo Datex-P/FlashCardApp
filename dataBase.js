@@ -1,4 +1,6 @@
 export let dataBase = {
+
+
 DeckNames: { /*deckname:[]*/   },
   queue: [],
   showDiagram: true, //when clicked on the menu button or in questionAsnwerTrain it is set to false
@@ -8,6 +10,7 @@ DeckNames: { /*deckname:[]*/   },
   hourlyBreakdown: '1 month', //needed for stats.js so that it is certain which breakdown field is checked by default
   userStylePreferences: [],
   statsOpen: false,
+  reset: false,
   allLeftOverDecksPaused :false,
   installationDate: new Date(),
   currentQuestionAndAnswerArr: null, //is needed to compare whether question was changed by clicking on save button
@@ -26,12 +29,33 @@ DeckNames: { /*deckname:[]*/   },
   nameValues: {leftName: 'again', middleName: 'good', rightName: 'easy'},
   studyTime : 0,
   calendarReset: false,
+  timeObj: {
+      6: 0,
+      12: 20,
+      18: 20,
+      24: 0
+      // 12: deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length,
+      // 18: deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length,
+      // 24: deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 6 ).length).length
+     },
   weeklyTarget: 1,
   daysOfStudy : {day : 4},
   overview: false,
   studied: [new Date()],
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
