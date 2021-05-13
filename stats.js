@@ -16,6 +16,15 @@ export default function stats() {
   document.querySelector('#scrollable').style.display = 'none'
   
 
+  let timeObj = { 
+    //shows time in hourly breakdown
+    6: 30,
+    12: 70,
+    18: 0,
+    24: 0 
+
+   }
+
   var todayCardsStudiedCounter = 0
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
   anchorElement.style.display = 'flex';
@@ -125,11 +134,7 @@ export default function stats() {
   let dateBetterFormatted = createElement('div', `${!dataBase.openedToday ? 'No cards studied today'
   //<div style='font-size:12px'>No data</div> 
   :
-  `Data from ${todayDate.toLocaleString('de-DE', {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  })}`
+  `${new Date().toLocaleDateString().replace(/\//g,'.')}`
 }`, {
      
     
@@ -175,6 +180,11 @@ export default function stats() {
 
           deleteCardQuestionBox(() => {
 
+            for (let time in timeObj) {
+              timeObj[time] = 0
+              console.log('i fired inside')
+            }
+
 
             for (let deck in dataBase.DeckNames) {
 
@@ -208,8 +218,13 @@ export default function stats() {
               }
             })
           }
+          for (let time in timeObj) {
+            timeObj[time] = 0
+            console.log('i fired inside')
+          }
+         
         }
-
+        console.log('i fired finally you know')
       }
     }, { top: '4px' } //the position of the stats field after three dots is clicked
   )
@@ -281,14 +296,7 @@ for (let deck in dataBase.DeckNames) {
 
 
  
-   let timeObj = { 
-    //shows time in hourly breakdown
-    6: 30,
-    12: 70,
-    18: 0 ,
-    24: 0 ,
-
-   }
+  
   console.log(firstVal, 'firstval on line 254')
 
   let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
@@ -365,15 +373,18 @@ for (let deck in dataBase.DeckNames) {
       function width (){
       if (timeObj[i]) {
       
-      return ((((timeObj[i] || 0) / allProgress)*100) - 
-      (previousWidthVar*100/currentProgress)) 
-      *1.46*Number(currentProgress/100)
+      return ((((timeObj[i] || 0)/ allProgress)*100) - (previousWidthVar*100/currentProgress)) *1.4467*Number(currentProgress/100)
       } else {
         return 0
       }
     
     }
-      //let widthVar  = Number((((timeObj[i] || 0) / allProgress * 100)*100)/currentProgress)
+
+
+    // 20 prozent wieviel von 90
+
+    // 20+90
+    //   //let widthVar  = Number((((timeObj[i] || 0) / allProgress * 100)*100)/currentProgress)
 
 
       
@@ -393,14 +404,14 @@ for (let deck in dataBase.DeckNames) {
 
       if (i === 24) {
 
-        time.innerHTML = `<div style='padding: 3px' >${24} - ${'0' + 6}</div>` //line gets not triggered for some reason
+        time.innerHTML = `<div style='padding: 3px, font-size: 15px' >${24} - ${'0' + 6}</div>` //line gets not triggered for some reason
 
       } else if (i === 6) {
 
-        time.innerHTML = `<div style='padding: 3px'>${'0' + i} - ${(i + 6)}</div>`
+        time.innerHTML = `<div style='padding: 3px, font-size: 15px'>${'0' + i} - ${(i + 6)}</div>`
       } else {
 
-        time.innerHTML = `<div>${i} - ${i + 6}</div>`
+        time.innerHTML = `<div style='font-size:'15px'>${i} - ${i + 6}</div>`
       }
 
       diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
@@ -417,87 +428,15 @@ for (let deck in dataBase.DeckNames) {
 
 //function openedInLastMonth() {
 
-  let dateToday = new Date()
-  let date1MonthAgo = new Date()
+//   let dateToday = new Date()
+//   let date1MonthAgo = new Date()
   
-  date1MonthAgo.setHours(0,0,0,0)
+//   date1MonthAgo.setHours(0,0,0,0)
 
-  date1MonthAgo.setMonth(date1MonthAgo.getMonth() - 1);
+//   date1MonthAgo.setMonth(date1MonthAgo.getMonth() - 1);
   
-  //setMonth(dateToday.getMonth() - 1)
-
-
-// tage seit installation 12 tage   7 tage 100 prozent 
-
-
-// 5 tage    --> 
-
-// 5tage / 7 tage
-
-
-//dataBase.DeckNames[deck]
-
-// console.log(dataBase.DeckNames[item].data.map((item) => item?.openHistory) , 'date with open hsitory')
-
-
-
-//   study goal reached * days to study
-
-// 10 tage studieren schaffe 5 tage = %50prozent
-
-// seit installieren der app 1monath
-
-// alle 10 tag 50 prozent = 50%
-
-
-
-  // console.log(date1MonthAgo, 'date1monthagoundso')
-  // console.log(date1MonthAgo.getTime(), 'utc baby')
-  // console.log(dateToday.getTime(), 'utc right right now')
-  // //date1MonthAgo.setHours(0,0,0,0)
-
-  //let date1MonthAg = new Date(date1MonthAgo)
-
-  // console.log(date1MonthAg.toString().setHours(0,0,0,0), 'date to string 1 onth')
-
-
-
-
-// var time = new Date().getTime(); // get your number
-// var date = new Date(time); // create Date object
-
-// console.log(date.toString()); // result: Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
-
-
-
-//   console.log(date1MonthAgo, 'date 1 month ago und so')
-
-//   console.log(date1MonthAgo.toUTCString(), 'date in normal read')
-
-//   console.log(dateToday, 'again date today')
-
-//   // Zero the time component
-//   dateToday.setHours(0, 0, 0, 0);
-
-//   console.log(dateToday, 'again date today')
-  
-//   // Set it to one month ago
-// // let openedSinceLastMonth = dateToday.setMonth(dateToday.getMonth() - 1);
-// // let openedSinceLast3Months = dateToday.setMonth(dateToday.getMonth() - 3);
-// // let openedSinceLast12Months = dateToday.setMonth(dateToday.getMonth() - 3);
-
-// console.log(dateToday.getTime(), 'datetoday')
-// console.log(openedSinceLast3Months, 'openedsincelast3months')
-// console.log(dateToday, 'todays date you know')
-
-//  console.log(dateToday.getTime() > openedSinceLast3Months, 'gettimetoday')
-// // console.log(openedSinceLast3Months.getTime(), '3 months ago')
-//   //let date1MonthAgo = new Date() - 1 month
-
-//   console.log(openedSinceLastMonth < dateToday, 'isittrue')
-
-
-//}
+//   /
+// //}
 
 
 
@@ -664,6 +603,8 @@ for (let deck in dataBase.DeckNames) {
 
   /*when deck is deleted it should also be deleted out of stats*/
 
+
+  console.log(timeObj, 'timeobj')
 
 
   let timeToday = new Date();

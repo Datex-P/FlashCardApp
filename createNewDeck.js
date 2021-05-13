@@ -131,3 +131,17 @@ export default function createNewDeck() {
   });
 
 };
+
+
+
+// width: 96px;
+//     height: 31px;
+//     z-index: 10;
+//     position: absolute;
+//     /* background: blue; */
+//     top: 255px;
+//     left: 274px;
+
+
+
+//     specifics for name too long short field

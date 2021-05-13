@@ -515,14 +515,7 @@ pauseIconContainer:hover {
   transform: rotate(-135deg); 
 } 
 
-.showPausedDecks {
-  width: 150px;
-  height:100px;
-  background-color: blue;
-  left:169px;
-  position: relative;
-  display:none;
-}
+
 
 
 .deleteContainerFr {
@@ -541,7 +534,7 @@ pauseIconContainer:hover {
 
 .deleteContainerInner {
   position: absolute;
-  top:257px;
+  top:255px;
   height: 162px !important;
   width: 252px;
   height: 160px;
@@ -1186,10 +1179,21 @@ textarea:not(:disabled) {
 
 .dataBetterFormatted {
   position: relative;
-  top: 67px;
+  top: 87px;
   left: 3px;
   width: 107px;
   height: 53px;
+  z-index: -2;
+}
+
+.messageTooLongOrShort {
+  width: 96px;
+  height: 31px;
+  z-index: 10;
+  position: absolute;
+  top: -25px;
+  left: 152px;
+  display:none;
 }
 
 .overDiagram {

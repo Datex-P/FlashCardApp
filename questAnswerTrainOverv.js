@@ -604,9 +604,9 @@ console.log(dataBase, 'db und so')
 
       if (el === `${leftName}`) {
 
-        let newRandomNumber = Math.floor(Math.random() * 10);
+        let newRandomNumber = Math.floor(Math.random() * dataBase.timeValues.left);
         while (randomNum == newRandomNumber) {
-          newRandomNumber = Math.floor(Math.random() * 10);
+          newRandomNumber = Math.floor(Math.random() * dataBase.timeValues.left);
         }
 
         randomNum = newRandomNumber
