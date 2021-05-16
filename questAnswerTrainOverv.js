@@ -104,7 +104,6 @@ cardPausedAddCursor()
 
 
   let arrOfPausedDecks;
- // console.log(dataBase.DeckNames[item], 'items')
 
   onOffSwitch.onclick = (e) => { clickHandler(e) }
 
@@ -264,16 +263,14 @@ console.log(dataBase, 'db und so')
       //   dataBase.deckCompleted++;
       // }
 
-
-
-      console.log(dataBase.deckCompleted)
-      // document.querySelector('.overDiagram').style.display = 'block'
+      
       createDom(dataBase.DeckNames)
       if (dataBase.deckCompleted>0) {
-      document.querySelector('.overDiagram').style.display = 'block'
+        document.querySelector('.overDiagram').style.display = 'block'
       }
       createDom(dataBase.DeckNames)
     }
+    document.querySelector('.canvasContainer .chartjs-render-monitor').style.display='block'
   }
 
   redCross.onclick = close
@@ -541,7 +538,7 @@ console.log(dataBase, 'db und so')
 
   let { left, middle, right } = dataBase.timeValues
 
-  let [leftTimeValue, middleTimeValue, rightTimeValue] = [`${left} min`, `${middle} hrs`, `${right}      days`].map(el => {
+  let [leftTimeValue, middleTimeValue, rightTimeValue] = [`${left} ${dataBase.timeValuesForButton.left}`, `${middle} ${dataBase.timeValuesForButton.middle}`, `${right} ${dataBase.timeValuesForButton.right}`].map(el => {
     return createElement('div', `< ${el}`, {
       fontWeight: 'bold',
       fontSize: '14px'
@@ -652,10 +649,6 @@ console.log(dataBase, 'db und so')
 
 
 
-  // console.log(randomNum, 'randomNum')
-  // console.log(dataBase.DeckNames[item].data[randomNum].answer, 'newRandomNumber')
-
-
   saveButton.onclick = function () {
     setThreeDotsOpen(false);
     questionContainer.style.marginTop = '20px' //place for edit mode text not needed anymore, changed back to default
@@ -693,10 +686,6 @@ console.log(dataBase, 'db und so')
 
 
  
-  
-  
-  
-  // console.log(dataBase.DeckNames, 'database decknames')
 
   discardButton.onclick = function () {
     setThreeDotsOpen(false);

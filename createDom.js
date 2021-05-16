@@ -7,6 +7,9 @@ import {
   threeDots,
 } from "./exportFunctions.js";
 import { play, plusSvg } from "./svgs.js";
+
+
+
 let canvasContainer = createElement("div", "", {}, "canvasContainer");
 let canvas = createElement("canvas", "", {}, "pieChart canvasStyling");
 
@@ -42,10 +45,10 @@ export default function createDom(obj) {
       dataBase.DeckNames[item].name,
       {//most upper deck after rendering name of deck
       },
-      "nameOfNewDeck"
+      'nameOfNewDeck'
     );
 
-    nameOfNewDeck.title = "Click to open this deck";
+    nameOfNewDeck.title = 'Click to open this deck';
 
     if (!dataBase.DeckNames[item].data.length) {
       nameOfNewDeck.onclick = function () {
@@ -59,9 +62,9 @@ export default function createDom(obj) {
       'div', '', {}, 'flexColumnSpaceEvenlyAlignCenter addEditDeleteContainer', '', newDeckContainer
     );
 
-    let toStud = "To Study:"; //field on each card on the main screen
+    let toStud = 'To Study:'; //field on each card on the main screen
 
-    let inputToStudy = createElement("input", "", {}, "inputToStudy");
+    let inputToStudy = createElement('input', '', {}, 'inputToStudy');
 
 
     inputToStudy.type = "number";
@@ -80,7 +83,7 @@ export default function createDom(obj) {
 
     dataBase.DeckNames[item].toStudyValue = inputToStudy.value || 0;
 
-    //  console.log(dataBase.DeckNames[item].toStudyValue, 'tostudyvalue')
+
 
     let [toStudy] = [
       `${toStud.padEnd(7, "⠀")}`,
@@ -114,8 +117,7 @@ export default function createDom(obj) {
       "decksizeStudyRev"
     );
 
-    let changeNameofDeckInput = createElement(
-      //input field that gets active when deckname is changed
+    let changeNameofDeckInput = createElement(       //input field that gets active when deckname is change
       "input",
       "",
       {},
@@ -164,7 +166,6 @@ export default function createDom(obj) {
                 edited = false;
               }
             }
-            //littleModalWindow.style.display = 'block'
 
             if (!edited) {
               //edited was pressed in three dots /default false
@@ -185,15 +186,6 @@ export default function createDom(obj) {
 
               changeNameofDeckInput.oninput = function () {
                 let name = dataBase.DeckNames[item].name
-                console.log(name, 'name of deck')
-                //this function checks whether the input length is bigger than 3  and smaller than 13
-
-                // for (let it in Object.keys(dataBase.DeckNames[it])){
-                // if (dataBase.DeckNames.includes(this.value)){
-                //   console.log('name already exists')
-                // }
-                // console.log(typeof(name), 'name')
-                // console.log(this.value), 'this value')
 
                 if ((this.value.length > 12 || this.value.length < 3 || Object.keys(dataBase.DeckNames).includes(this.value)) && this.value !== name) {
 
@@ -417,8 +409,7 @@ export default function createDom(obj) {
           questAnswerTrainOverv(item); //here the questAnswertrainoverview gets started
           dataBase.openedToday = true;
           dataBase.showDiagram = false; //deck is opened and thus diagram with goals is not shown for the moment
-          dataBase.statsOrSettingsOpened = true;
-          // openDeck.style.display = 'none'
+          dataBase.statsOrSettingsOpened = true
           document.querySelector(".overDiagram").style.display = "none";
           createDom(dataBase.DeckNames);
 
@@ -441,28 +432,22 @@ export default function createDom(obj) {
     } else {
       addEditDeleteContainer.style.display = "flex";
       openDeck.style.display = "block";
-      // deckIsEmptyField.style.display = 'none'
-      //[deckIsEmptyField, deckIsEmptyFieldAdditionalTwo].map(el=>el.style.display = 'none');
     }
 
     openDeck.title = "Click to open this deck";
 
     let addToDeckIcon = createElement("div", "", {}, "orangeCircle");
 
-    if (index === filteredArray.length - 1) {
-      addToDeckIcon.style.display = "flex";
-      newDeckContainer.style.zIndex = 2;
-      newDeckContainer.style.transform = "rotate(0deg)";
-    }
+    addToDeckIcon.style.display = "flex";
+     addToDeckIcon.title = "Add Questions to this deck";
 
-    addToDeckIcon.title = "Add Questions to this deck";
-
-    addToDeckIcon.addEventListener("click", addToDeckHandler);
+     addToDeckIcon.addEventListener("click", addToDeckHandler);
 
     function addToDeckHandler() {
       addQuestionsToDeck(item);
       dataBase.statsOrSettingsOpened = true; //needed so that scrollbar in the back dissapears when add to deck menu is open
       document.querySelector(".canvasContainer").style.display = "none"; //progress diagram on the main screen gets hidden
+      document.querySelector('.overDiagram').style.display = 'none' //progress diagram on the main screen gets hidden
       createDom(dataBase.DeckNames);
     }
 
@@ -498,12 +483,7 @@ export default function createDom(obj) {
 
     deckIsEmptyField.append(deckIsEmptyFieldAdditional);
     newDeckContainer.append(deckIsEmptyFieldAdditionalTwo);
-    addEditDeleteContainer.append(
-      toStudyContainer,
-      toStudy,
-      decksizeContainer,
-      openDeck
-    );
+    addEditDeleteContainer.append(toStudyContainer, toStudy, decksizeContainer, openDeck);
     toStudyContainer.append(toStudy);
     decksizeContainer.append(decksize);
 
@@ -518,7 +498,7 @@ export default function createDom(obj) {
       pauseInfoField.style.display = "block";
       [addToDeckIcon, plusIcon].map((el) => (el.style.cursor = "default"));
     } else {
-      //  [item].querySelector('.orangeCircle').style.display = 'pointer'
+
     }
 
     var config = {
@@ -559,7 +539,6 @@ export default function createDom(obj) {
             text: "",
 
             fontStyle: "Times", // Default is Arial
-            // sidePadding: 2, // Default is 20 (as a percentage)
             minFontSize: 12, // Default is 20 (in px), set to false and text will not wrap.
 
             lineHeight: 19,
@@ -579,10 +558,6 @@ export default function createDom(obj) {
       },
     };
 
-    // if (dataBase.reset) {
-    //   //config.datasets.data = []
-    //   config.data.datasets[0].data = []
-    // }
 
     dataBase.showDiagram === false;
 
@@ -592,9 +567,9 @@ export default function createDom(obj) {
     ).length;
     let completedDecks = dataBase.deckCompleted;
 
-    console.log(numberOfDecks, "numebr of decks");
-    console.log(pausedDecks, "paused decks");
-    console.log(completedDecks, "completed decks");
+    // console.log(numberOfDecks, "numebr of decks");
+    // console.log(pausedDecks, "paused decks");
+    // console.log(completedDecks, "completed decks");
 
     // console.log(Object.keys(dataBase.DeckNames).length, 'legnth of databse')
     // console.log(dataBase.DeckNames[item].deckPauseActive, 'deck active yes or deck')
@@ -614,9 +589,7 @@ export default function createDom(obj) {
         deleteCardQuestionBox(
           () => dataBase.DeckNames[item].data.splice(index, 1), //remove
           () => {
-            // questAnswerTrainOverv(item),
             createDom(dataBase.DeckNames)
-            // clearInterval(decrementTimer);
           }, //refresh
           "Unpause deck", //header
           "unpause this deck? <br/> <span style='font-size:12px; top:9px; position:relative'>All the decks left to study are paused.</span>"
@@ -629,43 +602,30 @@ export default function createDom(obj) {
       }
       callableOnce()
     }
-    if (dataBase.reset) {
-      //config.datasets.data = []
-      //        config.data.datasets[0].data
-      debugger
-      config.data.datasets[0].data = []
-    }
-    if (
-      cardsStudiedToday >= Number(dataBase.DeckNames[item].toStudyValue) &&
-      // >=  inputToStudy.value
 
-      // Math.round(cardsStudiedInPercent / inputToStudy.value) >= 10
+    if (
+      ((cardsStudiedToday >= Number(dataBase.DeckNames[item].toStudyValue) &&
+
       dataBase.DeckNames[item].thisDeckCompleted === false &&
-      dataBase.showDiagram === true || dataBase.leftOverDeckPausedComplete
+      dataBase.showDiagram === true )|| dataBase.leftOverDeckPausedComplete)
+      || dataBase.settingsClosed
     ) {
 
-      dataBase.DeckNames[item].thisDeckCompleted = true;
-      // dataBase.showDiagram = true;
-      dataBase.deckCompleted++;
-      newDeckContainer.style.display = "none";
+       if (!dataBase.settingsClosed) { //condition is needed so that diagram redraws correctly when color of background is changed
 
-
-      if (dataBase.reset) {
-        //config.datasets.data = []
-        //        config.data.datasets[0].data
-        debugger
-        config.data.datasets[0].data = []
-      } else {
-
-
-
-        config.data.datasets[0].data.push(
-          Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
-          dataBase.deckCompleted
-        );
-        debugger
-        console.log(650, config.data.datasets)
+        dataBase.DeckNames[item].thisDeckCompleted = true;
+        
+        dataBase.deckCompleted++;
+        newDeckContainer.style.display = "none";
       }
+      dataBase.showDiagram = true;
+
+
+
+      config.data.datasets[0].data.push(
+        Object.keys(dataBase.DeckNames).length - dataBase.deckCompleted,
+        dataBase.deckCompleted
+      );
 
 
       let decks = document.querySelectorAll("#listOfDecks .newDeckContainer");
@@ -674,15 +634,7 @@ export default function createDom(obj) {
       if (decks.length) {
         decks[length - 1].querySelector(".orangeCircle").style.display = "flex";
       }
-      config.data.datasets[0].data.push("config data");
 
-
-      //       if (dataBase.reset) {
-      //         //config.datasets.data = []
-      // //        config.data.datasets[0].data
-      //         debugger
-      //         config.data.datasets[0].data = []
-      //       }
 
 
       let ctx = canvas.getContext("2d");
@@ -763,7 +715,6 @@ export default function createDom(obj) {
                 line = testLine;
               }
             }
-
             // Move the center up depending on line height and number of lines
             centerY -= (lines.length / 2) * lineHeight;
 
@@ -791,35 +742,29 @@ export default function createDom(obj) {
   if (
     Object.keys(dataBase.DeckNames).length === 0 ||
     (dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length ===
-    100
-  ) {
+    100) {
     //if no deck is present, scrollbar dissapear and info to create a deck appears
 
     document.querySelector("#scrollable").style.display = "none"; //no deck in the stack so the scrollbar disappears
     document.querySelector(".arrowDown").style.display = "block"; //arrow down button gets displayed
-    document.getElementById("createYourFirstDeckPrompt").style.display =
-      "block";
+    document.getElementById("createYourFirstDeckPrompt").style.display = "block";
   } else {
-    // console.log(document.getElementById("listOfDecks").children, "children");
+
 
     if (
       //document.getElementById("listOfDecks").childElementCount === 1
 
-      Object.values(dataBase.DeckNames).length -
-      (Object.values(dataBase.DeckNames).filter((item) => item.pause).length +
-        Object.values(dataBase.DeckNames).filter(
-          (item) => item.thisDeckCompleted
-        ).length) <=
-      1
+      Object.values(dataBase.DeckNames).length - 
+      (Object.values(dataBase.DeckNames).filter((item) => item.pause).length + Object.values(dataBase.DeckNames).filter((item) => item.thisDeckCompleted).length) <=1
     ) {
       //when there is only one deck in the stack the scrollbar on the right sid disappears
       document.querySelector("#scrollable").style.display = "none";
     } else {
-      if (dataBase.statsOrSettingsOpened) {
-        document.querySelector("#scrollable").style.display = "none";
-      } else {
-        document.querySelector("#scrollable").style.display = "block";
-      }
+        if (dataBase.statsOrSettingsOpened) {
+          document.querySelector("#scrollable").style.display = "none";
+        } else {
+          document.querySelector("#scrollable").style.display = "block";
+        }
     }
   }
 
@@ -839,7 +784,7 @@ export default function createDom(obj) {
   let dateToPush = new Date();
   dateToPush.setHours(0, 0, 0, 0);
 
-  console.log(new Date(dataBase.dateToday), "datetoday");
+  // console.log(new Date(dataBase.dateToday), "datetoday");
 
   if (
     Object.values(dataBase.DeckNames).filter((item) => item.thisDeckCompleted)
@@ -848,10 +793,10 @@ export default function createDom(obj) {
     if (Object.values(dataBase.goalReached).includes(`${dateToPush}`)) {
       dataBase.goalReached = {};
     } else {
-      console.log(
-        Object.values(dataBase.DeckNames).filter((item) => !item.pause).length,
-        "items not pasued"
-      );
+      // console.log(
+      //   Object.values(dataBase.DeckNames).filter((item) => !item.pause).length,
+      //   "items not pasued"
+      // );
       dataBase.goalReached = {
         [parseInt(
           (dataBase.deckCompleted * 100) /
@@ -862,7 +807,7 @@ export default function createDom(obj) {
     }
   }
 
-  console.log(dataBase.goalReached, "goalReached");
+  dataBase.settingsClosed = false //when stats was closed it is needed to be set back to false so that diagram work again
 
   if (pars === 100) {
     document.getElementById("allDecksFinished").style.display = "none";
@@ -889,29 +834,31 @@ export default function createDom(obj) {
         (1000 - all[0].getBoundingClientRect().height) / (allInArr.length - 1);
       let index = Math.floor(event.target.scrollTop / step);
       // index = (index > arr.length-1) ? arr.length-1 : index
-
-      allInArr.reverse().forEach((item, index) => {
-        item.style.zIndex = 0;
-
+      let count = 1
+      allInArr.reverse().forEach((item, i) => {
+        
+        if(i !=index){
+          item.style.transform = `rotate(${count* -2 }deg)`;
+          item.style.zIndex = 0;
+          count++
+        }else{
+          item.style.transform = `rotate(0deg)`;
+          item.style.zIndex = 2;
+        }
         item.querySelector(".settingsIconContainer").style.display = "none";
         item.querySelector(".nameOfNewDeck").style.display = "none";
         item.querySelector(".orangeCircle").style.display = "none";
-        item.style.transform = `rotate(${index * -2 || -2}deg)`;
+        
       });
 
-      allInArr[index].style.zIndex = 2;
-      allInArr[index].style.transform = "rotate(0deg)";
+     // allInArr[index].style.zIndex = 2;
+      //allInArr[index].style.transform = "rotate(0deg)";
       allInArr[index].querySelector(".settingsIconContainer").style.display =
         "block";
       allInArr[index].querySelector(".nameOfNewDeck").style.display = "block";
       allInArr[index].querySelector(".orangeCircle").style.display = "flex";
     }
   };
-
-
-
-
-
 
 
 }

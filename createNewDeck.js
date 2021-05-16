@@ -3,13 +3,12 @@ import {
 } from './dataBase.js';
 import createDom from './createDom.js';
 import {createElement} from './exportFunctions.js'
-import questAnswerTrainOverv from './questAnswerTrainOverv.js'
 
 
 export default function createNewDeck() {
   document.querySelector('#listOfDecks').style.display= 'none'
   document.querySelectorAll('.addQuestionsToDeck').forEach(box => { box.style.display = 'none'}) //for some reasons serveral addquestionstodeck are made in questionanswertrain, this way they get all hidden
-
+  document.querySelector('.overDiagram').style.display = 'none'
  
 
   let anchorElement = document.getElementById('questAnswerTrainOverv');
@@ -21,11 +20,15 @@ export default function createNewDeck() {
 
   anchorElement.append(mainWindow);
 
+
+  let nameTooShortOrLong = createElement('div', '', {}, 'nameTooShortOrLong')
+
   let nameForNewDeckText = createElement('div', 'Name for new deck', {
     fontWeight: 'bold'
   });
 
   mainWindow.append(nameForNewDeckText);
+  mainWindow.append(nameTooShortOrLong)
 
   let inputField = createElement('input', '', { //to add the new deck name
 }, 'inputField');
@@ -34,10 +37,12 @@ export default function createNewDeck() {
   mainWindow.append(inputField);
   
   inputField.focus()
+
+
 //select Field contains different options in the 'add new deck' field
 
   let selectField = createElement('select', ` 
-    <option>or choose existing one</option>
+    <option>premade Deck</option>
     <option>cars' brands</option>
  
   `, {}, 'selectField');
@@ -46,17 +51,17 @@ export default function createNewDeck() {
 
   let buttonContainer = createElement('div', '', { //contains cancel and ok-button
     width: '57%',
-  }, 'flexSpaceBetween');
+  }, 'flexSpaceBetween buttonContainerTwo');
   mainWindow.append(buttonContainer);
 
 
-  ['Cancel', 'Ok'].forEach((el) => { //cancel and ok-button that are part of the button container
+  let [cancel,ok]= ['Cancel', 'Ok'].map((el) => { //cancel and ok-button that are part of the button container
     let button = createElement(
       'button',
       el, {
         pointer: 'cursor'
       },
-      'cancelOkButtonStyling'
+      'cancelOkButtonStyling cancelOkstyling'
     )
 
     button.addEventListener('click', function () {
@@ -65,8 +70,7 @@ export default function createNewDeck() {
       if (el === 'Cancel') {
 
         [mainWindow, anchorElement].map(el=> el.style.display = 'none');
-        // mainWindow.style.display = 'none';
-        // anchorElement.style.display = 'none';
+     
         document.querySelector('#listOfDecks').style.display= 'block'
 
         if (Object.keys(dataBase.DeckNames).length === 0 || ((dataBase.deckCompleted * 100) /
@@ -76,6 +80,12 @@ export default function createNewDeck() {
    
             }
         document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
+
+        if (dataBase.deckCompleted>0) {
+          document.querySelector('.overDiagram').style.display = 'block'
+        }
+
+
 
       } else if (el === 'Ok') {
 
@@ -89,7 +99,9 @@ export default function createNewDeck() {
 
 
         } else {
-
+          if (dataBase.deckCompleted>0) {
+            document.querySelector('.overDiagram').style.display = 'block'
+          }
           document.querySelector('#listOfDecks').style.display= 'block';
           document.querySelector('.canvasContainer').style.display = 'block'; //diagram on main screen reappears
 
@@ -98,7 +110,7 @@ export default function createNewDeck() {
 
         if(Object.keys(dataBase.DeckNames).length !== 0) {
 
-         // document.querySelector('.orangeCircle').style.display = 'flex';
+    
         }
         
           dataBase.DeckNames[inputField.value] = {data: [], 
@@ -128,20 +140,44 @@ export default function createNewDeck() {
     })
 
     buttonContainer.append(button);
+    return button
   });
+
+
+
+  inputField.oninput = function(e){
+      
+    setTimeout(()=>{
+      if (e.target.value.length > 10 || e.target.value.length <3 || 
+        Object.keys(dataBase.DeckNames).includes(e.target.value)) { 
+
+          if (nameTooShortOrLong.classList.contains('fontSizeNameTooShort')) {
+            nameTooShortOrLong.classList.remove('fontSizeNameTooShort')
+          }
+        
+            ok.disabled = true;  
+            ok.classList.remove('cancelOkButtonStyling')
+            nameTooShortOrLong.style.display = 'block'
+
+            if (e.target.value.length>10) {
+              nameTooShortOrLong.innerText = 'too long'
+            } else if (e.target.value.length < 3) {
+              nameTooShortOrLong.innerText = 'too short'
+            } else {
+              nameTooShortOrLong.innerText = 'name exists'
+              nameTooShortOrLong.classList.add('fontSizeNameTooShort')
+            }
+
+      } else {
+
+        nameTooShortOrLong.style.display = 'none'
+        ok.disabled = false;
+        ok.classList.add('cancelOkButtonStyling')
+      }
+    }
+, 800)
+  }
 
 };
 
 
-
-// width: 96px;
-//     height: 31px;
-//     z-index: 10;
-//     position: absolute;
-//     /* background: blue; */
-//     top: 255px;
-//     left: 274px;
-
-
-
-//     specifics for name too long short field

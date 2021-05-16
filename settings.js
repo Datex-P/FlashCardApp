@@ -13,8 +13,7 @@ import {
 import {
   dataBase
 } from './dataBase.js';
-
-
+import createDom from "./createDom.js";
 
 
 
@@ -49,6 +48,43 @@ export default function settings() {
 
   editContainerUpper.title = 'Click and change name buttons and repetition intervals for all decks.'
 
+  let selectLeft = createElement('div', '', {}, 'selectStylingLeft selectStylingGeneral')
+  let selectMiddle = createElement('div', '', {}, 'selectStylingMiddle selectStylingGeneral')
+  let selectRight = createElement('div', '', {}, 'selectStylingRight selectStylingGeneral');
+
+  [selectLeft, selectMiddle, selectRight].forEach(el => el.title = 'click to change the time interval');
+
+
+  selectLeft.onclick = function () {
+
+    console.log('oipjopregfijngoerpjngoejnhnisu')
+
+    let counter = 1;
+    counter++
+
+ // return function() {
+
+    if (counter ===2) {
+      document.querySelector('.m').innerText = 'h'
+      dataBase.timeValuesForButton.left = 'hrs'
+    } else if (counter ===3) {
+      document.querySelector('.m').innerText = 'd'
+      dataBase.timeValuesForButton.left = 'days'
+      counter++
+    } else {
+      document.querySelector('.m').innerText = 'm'
+      dataBase.timeValuesForButton.left = 'min'
+      counter++
+      counter = 1
+    }
+ // }
+   // console.log(counter)
+
+  }
+
+
+
+
 
   let changeRepetitionIntervalContainer = createElement(
     'div', '', {}, 'flexColumn changeRepetitionIntervalContainer', '', mainWindow
@@ -60,6 +96,12 @@ export default function settings() {
   );
 
   changeRepetitionIntervalContainer.append(changeRepetitionIntervalContainerInner);
+
+
+  changeRepetitionIntervalContainer.append(selectLeft)
+  changeRepetitionIntervalContainer.append(selectMiddle)
+  changeRepetitionIntervalContainer.append(selectRight)
+
 
 
   let [containerUpper, containerLower] = ['', ''].map((el) => createElement(
@@ -121,6 +163,7 @@ export default function settings() {
     input.innerText = el;
     input.style.fontWeight = 'bold'
    
+    input.classList.add(el)
     
     input.style.backgroundColor = 'rgba(200, 168, 115, 0.95)';
 
@@ -138,6 +181,8 @@ export default function settings() {
     return input;
 
   })
+
+  //console.log(upperLeftContainer < input, )
 
 
   changeRepetitionIntervalContainer.append(editContainerUpper)
@@ -177,7 +222,7 @@ export default function settings() {
 
      let inp = createElement('input', '', {
       width
-    }, 'settingsButtonStyling');
+    }, 'settingsButtonStyling widthSmaller');
     inp.type='number'
     inp.oninput = function(e){
       
@@ -272,11 +317,11 @@ export default function settings() {
     if (editClicked) {
       this.innerHTML = save;
       editClicked = true;
-
-
+      console.log('I just fired')
     } else {
       this.innerHTML = edit;
       dataBase.daysOfStudy.day = selected + 1;
+     
     }
 
     editHandler(editClicked)
@@ -407,6 +452,7 @@ export default function settings() {
         item.input.value = item.div.innerText
         item.smaller.style.display = 'none'
         editContainerUpper.innerHTML = save;
+      document.querySelectorAll('.selectStylingGeneral').forEach(el => el.style.display = 'block') //so that red dots appear when save mode is active
 
       } else {
 
@@ -414,6 +460,8 @@ export default function settings() {
         item.div.innerText = item.input.value
         item.smaller.style.display = 'block'
         editContainerUpper.innerHTML = edit;
+      document.querySelectorAll('.selectStylingGeneral').forEach(el => el.style.display = 'none') //so that red dots appear when save mode is active
+
 
         if (idx === 0) {
 
@@ -446,7 +494,6 @@ export default function settings() {
           }
     
     } else if (editClicked && editedUpper) {
-      console.log('fired')
     
       editContainerUpper.classList.add('blinkingIcon');
       editGoals.classList.add('blinkingIcon');
@@ -469,6 +516,8 @@ export default function settings() {
     editContainerUpper.classList.remove('blinkingIcon')
   }, 3000);
   }
+  dataBase.settingsClosed = true
+  createDom(dataBase.DeckNames)
 }
 
   handleOutsideClick(mainWindow, redCross)

@@ -3,6 +3,7 @@ export let dataBase = {
 
 DeckNames: { /*deckname:[]*/   },
   queue: [],
+  settingsClosed: false,
   showDiagram: true, //when clicked on the menu button or in questionAsnwerTrain it is set to false
   diagramWasTriggeredOnce: false, 
   dateToday: new Date().setHours(0,0,0,0),
@@ -12,6 +13,7 @@ DeckNames: { /*deckname:[]*/   },
   statsOpen: false,
   reset: false,
   allLeftOverDecksPaused :false,
+  timeValuesForButton: {left: 'min', middle:'hrs', right: 'days'},
   installationDate: new Date(),
   currentQuestionAndAnswerArr: null, //is needed to compare whether question was changed by clicking on save button
   openedToday: false,
@@ -31,8 +33,8 @@ DeckNames: { /*deckname:[]*/   },
   calendarReset: false,
   timeObj: {
       6: 0,
-      12: 20,
-      18: 20,
+      12: 0,
+      18: 0,
       24: 0
       // 12: deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length,
       // 18: deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length,
@@ -79,8 +81,7 @@ for (let i = 3; i < 6; i++) {
 
 
 
-
-  dataBase.DeckNames[`Literature${i}`] = {data: arr, name: `Literature${i}`,
+  dataBase.DeckNames[`Lit${i}`] = {data: arr, name: `Lit${i}`,
     cardsToday:0, 
     pause:false,  
     color: colors[i%colors.length], 

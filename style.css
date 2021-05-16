@@ -85,7 +85,7 @@ textarea {
   position: absolute;
   width: 50px; 
   right: 50px; 
-  top: 34px; 
+  top: 4px; 
   height: 50px; 
   overflow: hidden; 
   border-radius: 5px;
@@ -94,6 +94,9 @@ textarea {
 .canvasContainer {
   width: 100px; 
   height: 100px;
+  position: absolute; 
+  right: -30px;
+  top: 3px;
 }
 
 button,
@@ -126,8 +129,19 @@ button {
 text-align: left;
 width: 90%;
 display: flex;
-margin-top: 20px;
+margin-top: 18px;
 }
+
+.buttonContainerTwo {
+  text-align: left;
+  width: 90%;
+  display: flex;
+  margin-top: 1px;
+  }
+  
+
+
+
 
 
 .addToDeck {
@@ -391,11 +405,16 @@ textarea {
 }
 
 .cancelOkButtonStyling {
-  width: 65px;
-  height: 27px;
+
   background-color: grey;
   color: white;
   cursor: pointer;
+  
+}
+
+.cancelOkstyling {
+  width: 65px;
+  height: 27px;
   border-radius: 5px;
 }
 
@@ -742,8 +761,8 @@ pauseIconContainer:hover {
 }
 
 .calendarButtons {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   background-color: grey;
   color: white;
   border: none;
@@ -827,7 +846,7 @@ pauseIconContainer:hover {
 #finishedAllDecksToday{
   display:none;
   justify-content: center;
-  top: 245px;
+  top: 223px;
   position: absolute;
   width: 100%;
 }
@@ -935,6 +954,10 @@ pauseIconContainer:hover {
   background-color: #545863;
   text-align: center;
   color: white;
+}
+
+.widthSmaller {
+  width: 25px !important;
 }
 
 .level {
@@ -1177,6 +1200,25 @@ textarea:not(:disabled) {
   margin-top: 7px;
 }
 
+.nameTooShortOrLong {
+  width: 100px;
+  height: 18px;
+  position: absolute;
+  top: 51px;
+  left: 202px;
+  font-size: 13px;
+}
+
+.fontSizeNameTooShort {
+  font-size: 11px;
+}
+
+
+.addDispNone {
+  display: none !important;
+}
+
+
 .dataBetterFormatted {
   position: relative;
   top: 77px;
@@ -1198,12 +1240,12 @@ textarea:not(:disabled) {
 
 .overDiagram {
   width: 43px;
-  line-height:1.4;
+  line-height: 1.4;
   height: 43px;
   z-index: 5;
   position: absolute;
-  left: 322px;
-  top: 69px;
+  left: 351px;
+  top: 42px;
   border-radius: 8px;
   display: none;
 }
@@ -1281,8 +1323,11 @@ textarea:not(:disabled) {
 
 .theWordCalendar {
   margin-top: 10px;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   font-weight: bold;
+  position: relative;
+  left: 2px;
+  font-size: 18px;
 }
 
 .alertSuccess {
@@ -1314,6 +1359,10 @@ border-color:#f5c6cb;
 .alertSuccess:hover {
   background-color: #2d6a4f;
   color: white;
+}
+
+.timeAndProgressContain {
+  display: flex;
 }
 
 
@@ -1445,6 +1494,31 @@ input[type=number]  {
   background: transparent;
   
 }
+
+.selectStylingGeneral {
+  display:none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 16px;
+  position: absolute;
+  background: red;
+  cursor: pointer  
+}
+
+.selectStylingLeft {
+  left: 46px;
+}
+
+.selectStylingMiddle {
+  left: 135px;
+ 
+}
+
+.selectStylingRight {
+  left: 222px;
+}
+
 
 .buttonUpAndDownStyling {
   display: flex; 
@@ -1816,20 +1890,20 @@ height: 57px;
 }
 
 .selectField {
-  width: 63%;
-  margin-top: 10px;
+  width: 56%;
+  margin-top: 8px;
   margin-bottom: 10px;
-  height: 30px;
+  height: 25px;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
 }
 
 .inputField {
-  width: 64%;
+  width: 54%;
   margin-top: 10px;
   margin-bottom: 10px;
-  height: 24px;
+  height: 20px;
 }
 
 .logoutSettingsStatsStyling {

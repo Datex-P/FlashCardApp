@@ -1,6 +1,5 @@
 import { dataBase } from "./dataBase.js";
 
-
 import {
   createElement,
   handleOutsideClick,
@@ -10,23 +9,15 @@ import {
   deleteCardQuestionBox, threeDots
 } from "./exportFunctions.js";
 
+import createDom from "./createDom.js";
+
 
 export default function stats() {
 
   document.querySelector('#scrollable').style.display = 'none'
   
 
-console.log(dataBase.timeObj[6], 'timeobj 6 here')
 
-
-  // let timeObj = { 
-  //   //shows time in hourly breakdown
-  //   6: 30,
-  //   12: 70,
-  //   18: 0,
-  //   24: 0 
-
-  //  }
 
   var todayCardsStudiedCounter = 0
   let anchorElement = document.querySelector("#questAnswerTrainOverv");
@@ -36,7 +27,6 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
 
   let innerWindow = createElement('div', '', {
     overflow: 'scroll', overflowX: "hidden",
-    //cursor: 'pointer'
   }); //scroll bar at the right side of the stats window
 
   let redCrossAndStatsContainer = createElement(
@@ -61,7 +51,6 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
 
 
   let canvas = createElement('canvas', '', { width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }
-  //, 'pieChart' probably not needed
   )
 
   theWordTodayContainer.append(canvas)
@@ -120,7 +109,6 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
 
 
   let dateBetterFormatted = createElement('div', `${!dataBase.openedToday ? 'No cards studied today'
-  //<div style='font-size:12px'>No data</div> 
   :
   `Data from: <br/>${new Date().toLocaleDateString().replace(/\//g,'.')}`
 }`, {
@@ -191,7 +179,9 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
                 }
               })
             }
-          } //remove
+          } 
+          
+          //remove
             //breakdown has to be resetted as well
             , () => {
 
@@ -254,6 +244,7 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
     
     };
 
+
    
   
 
@@ -269,19 +260,29 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
   );
 
 
-  // for (let deck in dataBase.DeckNames) {
+  for (let deck in dataBase.DeckNames) {
 
-  //   let deckItem = dataBase.DeckNames[deck]
-  //   // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
-  //   //   todayCardsStudiedCounter++
-  //     dataBase.timeObj[6] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length).length
-  //     dataBase.timeObj[12] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length
-  //     dataBase.timeObj[18] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length
-  //     dataBase.timeObj[24] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 6 ).length).length
-  
-      
-   
-  //   }
+    let deckItem = dataBase.DeckNames[deck]
+    // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
+    //   todayCardsStudiedCounter++
+    if (deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length).length >0) {
+
+      dataBase.timeObj[6]  = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length).length
+    }
+
+    if (deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length >0) {
+      dataBase.timeObj[12] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length
+    }
+
+    if ( dataBase.timeObj[18] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length > 0) {
+      dataBase.timeObj[18] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length
+    }
+
+    }
+
+    
+
+
 
     console.log(dataBase.timeObj[6], 'wert von 6')
     console.log(dataBase.timeObj[12], 'wert von 12')
@@ -289,23 +290,28 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
 
 
 
-// for (let deck in dataBase.DeckNames) {
+for (let deck in dataBase.DeckNames) {
 
-//   let deckItem = dataBase.DeckNames[deck]
-//   // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
-//   //   todayCardsStudiedCounter++
-//     var firstVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length)
-//     var secVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length)
-//     var thirdVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length)
-//     var fourthVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 6 ).length)
+  let deckItem = dataBase.DeckNames[deck]
+  // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
+  //   todayCardsStudiedCounter++
+    var firstVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length).length
+    var secVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length
+    var thirdVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length
+    var fourthVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 6 ).length).length
 
     
     
-//   }
+  }
+
+
+  console.log(firstVal, 'firstcval')
+  console.log(secVal, 'secVal')
+  console.log(thirdVal, 'thirdval')
 
  
 
-  let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
+  let timeAndProgressCont = createElement('div', '', {display:'flex'});
   let time = createElement("div", 'Monthly Goal', {}, 'studyGoal');
 
   let progressBar = createElement('div', '', {}, 'progressBar');
@@ -315,25 +321,15 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
   
   let currentProgress = Object.keys(dataBase.goalReached).length >0 ?  Number(Object.keys(dataBase.goalReached)[0]) : 0
   
-
-  console.log(Number(currentProgress/100), 'currentprog')
-  //let currentProgr = 
-  
-  //forumula for better current progress Object.keys(dataBase.goalReached).find(key => dataBase.goalReached[key] == new Date(dataBase.dateToday))
-
-  // console.log(currentProgr, 'current progress')
-  
-  //dataBase.goalReached[0]  //number that shows the whole progress
-
   let innerprogress = createElement('div', '', {
     backgroundColor: 'orange', color: 'black',
     width: `${currentProgress}%`, height: '10px'
   });
 
+
   let widthAdjusted = Math.round(currentProgress)+ 120
 
 
-  //console.log((((Object.values(timeObj).reduce((sum, i) => sum += i, 0) / studyGoal * 100) / 145) * 125))
 
 
   let progressNumber = createElement('div', `${currentProgress.toFixed(0)}%`, { //number that is shown above the study goal progress bar
@@ -341,8 +337,8 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
   }, 'progressNumber')
 
 
-  diagramHourlyBreakDownContainer.append(timeAndProgressContainer);
-  timeAndProgressContainer.append(time, progressBar, progressNumber)
+  diagramHourlyBreakDownContainer.append(timeAndProgressCont);
+  timeAndProgressCont.append(time, progressBar, progressNumber)
   progressBar.append(innerprogress);
 
 
@@ -358,17 +354,23 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
 
 
       arr.push(i)
-      let timeAndProgressContainer = createElement('div', '', { display: 'flex' });
+      let timeAndProgressContainer = createElement('div', '', {display:'flex'});
 
 
-      console.log(Object.values(dataBase.timeObj), 'timeobj')
-      //console.log(Number(Object.values(dataBase.timeObj).reduce((c+a) => c+a, 0))), 'timeobj')
-      console.log(Object.values(dataBase.timeObj).reduce((sum, i) => sum + i, 0), 'timeob')
+      let allProgress;
+      if (Object.keys(dataBase.timeObj).filter(item=>dataBase.timeObj[item] !==0).length > 1) {
+        allProgress = Number(Object.values(dataBase.timeObj).reduce((sum, i) => sum + i, 0))
+
+      } else {
+        allProgress = 1
+      }
 
 
-      let allProgress = Number(Object.values(dataBase.timeObj).reduce((sum, i) => sum + i, 0))
+
 
       console.log(allProgress, 'allprogress')
+      console.log(currentProgress, 'currentprogress')
+
       
       let widthVar  = width()
       
@@ -376,7 +378,13 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
       if (dataBase.timeObj[i]) {
         if (previousWidthVar === 0) {
           return ((((dataBase.timeObj[i] || 0)/ allProgress)*100) *1.4467*Number(currentProgress/100))    
-        } else {
+        } else if(Object.keys(dataBase.timeObj).filter(item=>dataBase.timeObj[item] !==0).length === 1) {
+          console.log('only one present')
+        return 1.4467*Number(currentProgress/100)
+          
+          
+          
+        }else {
       
       return ((((dataBase.timeObj[i] || 0)/ allProgress)*100) *1.4467*Number(currentProgress/100) - previousWidthVar)
         }
@@ -385,8 +393,9 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
       }
     
     }
-      
 
+    console.log(allProgress, 'allprogress 2')
+      
 
       let time = createElement("div", '', {}, 'time flexCenterAlignCenter'); //container for the times 06-12 / 12-18 etc.
 
@@ -416,7 +425,17 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
   }
 
 
+  // for (let deck in dataBase.DeckNames) {
 
+  //   if(dataBase.DeckNames[deck].data.find((card) =>  card.hasOwnProperty('openHistory'))) {
+  //     let ele= document.querySelector('.timeAndProgressContain')
+  //     console.log('helljkoijopoiuhihussco',ele)
+  //     if (ele){
+  //     ele.classList.remove('addDispNone')
+  //     } 
+  //   } 
+     
+  // }
 
 
 
@@ -431,21 +450,6 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
   
 //   /
 // //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -629,7 +633,6 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
   }
 
 
-
   todayAndCardsStudiedContainer.append(todayStudyContainer)
 
   todayAndCardsStudiedContainer.append(theWordTodayContainer, theWordCalendarContainer, hourlyBreakdownContainer);
@@ -657,8 +660,16 @@ console.log(dataBase.timeObj[6], 'timeobj 6 here')
      if (dataBase.deckCompleted > 0) {  //the inner percentages get shown again when there is a deck that is completed
      document.querySelector('.overDiagram').style.display='block'
      }
-
+     if(dataBase.reset) {
+     document.querySelector('.canvasContainer .chartjs-render-monitor').style.display='none'
+     }
+     createDom(dataBase.DeckNames)
+     dataBase.reset = false
   }
+
+
+
+
 
   closeMenu();
 }
