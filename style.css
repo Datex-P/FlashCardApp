@@ -1226,6 +1226,7 @@ textarea:not(:disabled) {
   width: 107px;
   height: 53px;
   z-index: -2;
+  font-weight:normal;
 }
 
 .messageTooLongOrShort {
@@ -1326,7 +1327,7 @@ textarea:not(:disabled) {
   margin-bottom: 2px;
   font-weight: bold;
   position: relative;
-  left: 2px;
+  /* left: 2px; */
   font-size: 18px;
 }
 
@@ -1508,6 +1509,32 @@ input[type=number]  {
 
 .selectStylingLeft {
   left: 46px;
+}
+
+
+.noCardsStudiedSoFar {
+  width: 176px;
+  height: 43px;
+}
+
+.containerNoCardsStudied {
+  width:100%; 
+  height:100%; 
+  display:flex; 
+  justify-content: center; 
+  align-items:center; 
+}
+
+
+.infoLogo {
+  display: none;
+  cursor: pointer;
+  width: 23px;
+  height: 24px;
+  z-index: 16;
+  position: relative;
+  left: -5px;
+  top: -25px;
 }
 
 .selectStylingMiddle {

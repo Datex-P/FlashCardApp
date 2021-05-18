@@ -579,7 +579,9 @@ export default function createDom(obj) {
 
     if (
       numberOfDecks > completedDecks &&
-      (numberOfDecks === completedDecks + pausedDecks) && !dataBase.leftOverDeckPausedComplete
+      (numberOfDecks === completedDecks + pausedDecks) 
+      
+      && !dataBase.leftOverDeckPausedComplete
     ) {
       dataBase.allLeftOverDecksPaused = true
 

@@ -1,3 +1,4 @@
+
 import { dataBase } from "./dataBase.js";
 
 import {
@@ -337,19 +338,35 @@ for (let deck in dataBase.DeckNames) {
   }, 'progressNumber')
 
 
-  diagramHourlyBreakDownContainer.append(timeAndProgressCont);
-  timeAndProgressCont.append(time, progressBar, progressNumber)
-  progressBar.append(innerprogress);
+  let containerNoCardsStudied = createElement('div', '', {}, 'containerNoCardsStudied')
+  let noCardsStudiedSoFar = createElement('div', 'No history of studied cards', {}, 'noCardsStudiedSoFar')
 
+ containerNoCardsStudied.append(noCardsStudiedSoFar)
 
   let arr = [];
   let previousWidthVar = 0
 
-  let stud = 100
+  diagramHourlyBreakDownContainer.append(containerNoCardsStudied)
+
+   for (let deck in dataBase.DeckNames) {
+
+     if(dataBase.DeckNames[deck].data.some((card) =>  card.hasOwnProperty('openHistory'))) {
+      dataBase.cardsStudiedSinceInstallation = true
+      diagramHourlyBreakDownContainer.append(timeAndProgressCont)
+      timeAndProgressCont.append(time, progressBar, progressNumber)
+      progressBar.append(innerprogress);
+      containerNoCardsStudied.remove()
+      console.log('deck with opened history')
+      }  else {
+      }
+   }
+
+
+
 
   for (let i = 6; i <= 30; i += 6) {
 
-
+    if (dataBase.cardsStudiedSinceInstallation) {
     if (i in dataBase.timeObj) { //timeObj is list of precoded times above
 
 
@@ -377,7 +394,7 @@ for (let deck in dataBase.DeckNames) {
       function width (){
       if (dataBase.timeObj[i]) {
         if (previousWidthVar === 0) {
-          return ((((dataBase.timeObj[i] || 0)/ allProgress)*100) *1.4467*Number(currentProgress/100))    
+          return ((((dataBase.timeObj[i] || 0)/ allProgress)) *144.67*Number(currentProgress/100))    
         } else if(Object.keys(dataBase.timeObj).filter(item=>dataBase.timeObj[item] !==0).length === 1) {
           console.log('only one present')
         return 1.4467*Number(currentProgress/100)
@@ -386,7 +403,7 @@ for (let deck in dataBase.DeckNames) {
           
         }else {
       
-      return ((((dataBase.timeObj[i] || 0)/ allProgress)*100) *1.4467*Number(currentProgress/100) - previousWidthVar)
+      return (((dataBase.timeObj[i] || 0)/ allProgress)*100) *1.4467*Number(currentProgress/100)
         }
       } else {
         return 0
@@ -401,7 +418,7 @@ for (let deck in dataBase.DeckNames) {
 
       let progressBar = createElement('div', '', {}, 'progressBar')
       let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`,
-       backgroundColor: 'orange', width: `${widthVar}%`, height: '10px' });
+       backgroundColor: 'orange', width: `${widthVar}px`, height: '10px' });
 
       previousWidthVar += widthVar
 
@@ -423,19 +440,7 @@ for (let deck in dataBase.DeckNames) {
 
     }
   }
-
-
-  // for (let deck in dataBase.DeckNames) {
-
-  //   if(dataBase.DeckNames[deck].data.find((card) =>  card.hasOwnProperty('openHistory'))) {
-  //     let ele= document.querySelector('.timeAndProgressContain')
-  //     console.log('helljkoijopoiuhihussco',ele)
-  //     if (ele){
-  //     ele.classList.remove('addDispNone')
-  //     } 
-  //   } 
-     
-  // }
+}
 
 
 
@@ -494,9 +499,6 @@ for (let deck in dataBase.DeckNames) {
     if (leapyear(year)) {
       daysOfYear = 367
     }
-
-
-
 
     let counter = 1
     while (
@@ -616,7 +618,7 @@ for (let deck in dataBase.DeckNames) {
 
         if (openTime > timeToday.setMonth(timeToday.getMonth() - 1)) {
           cardsOpenLastOne++;
-        //  console.log(cardsOpenLastOne)
+    
         }
         else if (openTime > timeToday.setMonth(timeToday.getMonth() - 3)) {
 
@@ -660,7 +662,7 @@ for (let deck in dataBase.DeckNames) {
      if (dataBase.deckCompleted > 0) {  //the inner percentages get shown again when there is a deck that is completed
      document.querySelector('.overDiagram').style.display='block'
      }
-     if(dataBase.reset) {
+     if(dataBase.reset && dataBase.deckCompleted > 0) {
      document.querySelector('.canvasContainer .chartjs-render-monitor').style.display='none'
      }
      createDom(dataBase.DeckNames)

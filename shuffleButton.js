@@ -27,9 +27,9 @@ export default function shuffle(item, index = null) {
     dataBase.DeckNames[item].data[randomInScope].openHistory = [];
   }
 
-  let date = new Date('May 16, 2021 18:24:00')
+  let date = new Date()
 
-  let rand = Math.floor(Math.random()*10)
+  let rand = Math.floor(Math.random()*13)
 
   date.setHours(date.getHours() - rand)
  //  date.setDate(rand)

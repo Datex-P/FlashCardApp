@@ -55,30 +55,34 @@ export default function settings() {
   [selectLeft, selectMiddle, selectRight].forEach(el => el.title = 'click to change the time interval');
 
 
-  selectLeft.onclick = function () {
+  selectLeft.onclick = clickGenerator()
+  
+  
+  function clickGenerator() {
 
     console.log('oipjopregfijngoerpjngoejnhnisu')
 
     let counter = 1;
-    counter++
-
- // return function() {
-
-    if (counter ===2) {
-      document.querySelector('.m').innerText = 'h'
-      dataBase.timeValuesForButton.left = 'hrs'
-    } else if (counter ===3) {
-      document.querySelector('.m').innerText = 'd'
-      dataBase.timeValuesForButton.left = 'days'
-      counter++
-    } else {
-      document.querySelector('.m').innerText = 'm'
-      dataBase.timeValuesForButton.left = 'min'
-      counter++
-      counter = 1
-    }
- // }
-   // console.log(counter)
+   
+    return function () {
+ counter++
+        if (counter ===2) {
+          document.querySelector('.m').innerText = 'h'
+          dataBase.timeValuesForButton.left = 'hrs'
+      
+        } else if (counter ===3) {
+          document.querySelector('.m').innerText = 'd'
+          dataBase.timeValuesForButton.left = 'days'
+      
+        } else {
+          document.querySelector('.m').innerText = 'm'
+          dataBase.timeValuesForButton.left = 'min'
+          //counter++
+          counter = 1
+        }
+        console.log(counter, 'value of coutner')
+      }
+ 
 
   }
 

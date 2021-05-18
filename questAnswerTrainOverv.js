@@ -13,7 +13,7 @@ import {
 } from './exportFunctions.js'
 import createDom from "./createDom.js";
 import {
-  edit, pause
+  edit, pause, infoIcon
 } from "./svgs.js";
 
 
@@ -99,6 +99,9 @@ function cardPausedAddCursor() {
     label1.classList.remove('cursor')
   }
 }
+
+
+let infoLogo = createElement('div', infoIcon, {}, 'infoLogo')
 
 cardPausedAddCursor()
 
@@ -267,10 +270,10 @@ console.log(dataBase, 'db und so')
       createDom(dataBase.DeckNames)
       if (dataBase.deckCompleted>0) {
         document.querySelector('.overDiagram').style.display = 'block'
+        document.querySelector('.canvasContainer .chartjs-render-monitor').style.display='block'
       }
       createDom(dataBase.DeckNames)
     }
-    document.querySelector('.canvasContainer .chartjs-render-monitor').style.display='block'
   }
 
   redCross.onclick = close
@@ -437,7 +440,7 @@ console.log(dataBase, 'db und so')
 
         saveAndDiscardContainer.classList.add('flexSpaceAroundAlignCenter');
         [showAnswerButton, anchorThreeDots].map(el=> el.style.display = 'none');
-
+        infoLogo.style.display = 'none'
         showAnswerButtonContainer.removeChild(containerForAgainGoodEasyButtons);
         mainWindow.removeChild(showAnswerButtonContainer);
         [editLogo, pauseAndEditText].map(el=> el.style.display = 'block');
@@ -516,6 +519,7 @@ console.log(dataBase, 'db und so')
     [answerContainer, answerFieldTextArea].map(el=> el.style.display = 'block');
      
     showAnswerButtonContainer.style.display = 'flex';
+    infoLogo.style.display = 'block'
       dataBase.DeckNames[item].pauseSwitch = false
     }
   };
@@ -562,6 +566,15 @@ console.log(dataBase, 'db und so')
   let pauseAndEditText = createElement('div', 'mode', {}, 'pauseAndEditText')
 
 
+
+  infoLogo.onclick = function () {
+    console.log('hello how is it')
+  }
+
+
+
+  infoLogo.title = 'ohhijhpjkoji'
+  
   function display() {
 
     [answerFieldTextArea, answerContainer, showAnswerButtonContainer].map(el=>el.style.display = 'none');
@@ -585,6 +598,8 @@ console.log(dataBase, 'db und so')
   let randomNum = 0
   
   showAnswerButtonContainer.append(containerForAgainGoodEasyButtons);
+  showAnswerButtonContainer.append(infoLogo);
+
   [`${leftName}`, `${middleName}`, `${rightName}`].forEach((el, idx) => {
 
     let button = createElement(
@@ -629,6 +644,7 @@ console.log(dataBase, 'db und so')
       dataBaseQueue(randomNum, item)
       display()
       shuffleLogic()
+      infoLogo.style.display = 'none'
       createDom(dataBase.DeckNames)
       // console.log(dataBase.DeckNames)
 
