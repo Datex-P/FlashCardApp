@@ -37,15 +37,11 @@ export default function stats() {
   let theWordStats = createElement('div', 'Stats', { fontWeight: "bold", fontSize: '22px' });
 
   let todayAndCardsStudiedContainer = createElement(
-    'div',
-    '',
-    { marginTop: "30px" },
-    'flexColumnAlignCenter'
+    'div','',{ marginTop: "30px" },'flexColumnAlignCenter'
   );
 
   let theWordTodayContainer = createElement(
-    'div', '',
-    { }, 'flexColumnAlignCenter theWordTodayContainer'
+    'div', '',{ }, 'flexColumnAlignCenter theWordTodayContainer'
   );
 
 
@@ -58,7 +54,7 @@ export default function stats() {
 
   let todayStudyContainer = createElement('div', "Today's study breakdown", {}, 'todayStudyContainer')
 
-  let todayDate = new Date();
+  //let todayDate = new Date();
 
 
   var config = {
@@ -165,9 +161,10 @@ export default function stats() {
             dataBase.goalReached = 0
             dataBase.reset = true
             dataBase.openedToday = false
-           // dataBase.showDiagram = false
-            //document.querySelector(".canvasContainer").style.display = "none";
-           // dataBase.showDiagram = false;
+            dataBase.cardsStudiedSinceInstallation = false //needed so that diagram gets reset in hourly breakdown
+            dataBase.showDiagram = false
+       
+           
 
             for (let deck in dataBase.DeckNames) {
 
@@ -176,7 +173,8 @@ export default function stats() {
                 if (card.openHistory) {
                   delete card.openHistory
                   stats()
-                  //createDom(dataBase.deckNames)
+                  console.log('database rerendered')
+               
                 }
               })
             }
@@ -239,9 +237,7 @@ export default function stats() {
     radioBtn.name = "month";
     radioBtn.onchange = function (event) {
       let { value } = event.target; //gets destructured because otherwise the whole input field is displayed
-
       dataBase.hourlyBreakdown = value
-
     
     };
 
@@ -278,39 +274,9 @@ export default function stats() {
     if ( dataBase.timeObj[18] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length > 0) {
       dataBase.timeObj[18] = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length
     }
-
     }
 
-    
-
-
-
-    console.log(dataBase.timeObj[6], 'wert von 6')
-    console.log(dataBase.timeObj[12], 'wert von 12')
-    console.log(dataBase.timeObj[18], 'wert von 18')
-
-
-
-for (let deck in dataBase.DeckNames) {
-
-  let deckItem = dataBase.DeckNames[deck]
-  // if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() == new Date().toDateString())) {
-  //   todayCardsStudiedCounter++
-    var firstVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 12 && new Date(item).getHours() > 6).length).length
-    var secVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 18 && new Date(item).getHours() > 12).length).length
-    var thirdVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 24 && new Date(item).getHours() > 18).length).length
-    var fourthVal = deckItem.data.filter((item) => item.openHistory && item.openHistory.filter(item => new Date(item).getHours() < 6 ).length).length
-
-    
-    
-  }
-
-
-  console.log(firstVal, 'firstcval')
-  console.log(secVal, 'secVal')
-  console.log(thirdVal, 'thirdval')
-
- 
+  
 
   let timeAndProgressCont = createElement('div', '', {display:'flex'});
   let time = createElement("div", 'Monthly Goal', {}, 'studyGoal');
@@ -331,8 +297,6 @@ for (let deck in dataBase.DeckNames) {
   let widthAdjusted = Math.round(currentProgress)+ 120
 
 
-
-
   let progressNumber = createElement('div', `${currentProgress.toFixed(0)}%`, { //number that is shown above the study goal progress bar
     left: `${widthAdjusted}px`, 
   }, 'progressNumber')
@@ -348,6 +312,9 @@ for (let deck in dataBase.DeckNames) {
 
   diagramHourlyBreakDownContainer.append(containerNoCardsStudied)
 
+  console.log(dataBase.cardsStudiedSinceInstallation, 'studiedsinceinstallation1')
+
+
    for (let deck in dataBase.DeckNames) {
 
      if(dataBase.DeckNames[deck].data.some((card) =>  card.hasOwnProperty('openHistory'))) {
@@ -361,7 +328,7 @@ for (let deck in dataBase.DeckNames) {
       }
    }
 
-
+   console.log(dataBase.cardsStudiedSinceInstallation, 'studiedsinceinstallation2')
 
 
   for (let i = 6; i <= 30; i += 6) {
@@ -369,7 +336,7 @@ for (let deck in dataBase.DeckNames) {
     if (dataBase.cardsStudiedSinceInstallation) {
     if (i in dataBase.timeObj) { //timeObj is list of precoded times above
 
-
+      console.log('I was invoked a seoncd time')
       arr.push(i)
       let timeAndProgressContainer = createElement('div', '', {display:'flex'});
 
@@ -382,12 +349,6 @@ for (let deck in dataBase.DeckNames) {
         allProgress = 1
       }
 
-
-
-
-      console.log(allProgress, 'allprogress')
-      console.log(currentProgress, 'currentprogress')
-
       
       let widthVar  = width()
       
@@ -396,11 +357,10 @@ for (let deck in dataBase.DeckNames) {
         if (previousWidthVar === 0) {
           return ((((dataBase.timeObj[i] || 0)/ allProgress)) *144.67*Number(currentProgress/100))    
         } else if(Object.keys(dataBase.timeObj).filter(item=>dataBase.timeObj[item] !==0).length === 1) {
-          console.log('only one present')
+        
         return 1.4467*Number(currentProgress/100)
-          
-          
-          
+                    
+
         }else {
       
       return (
@@ -411,9 +371,6 @@ for (let deck in dataBase.DeckNames) {
       }
     
     }
-
-    console.log(allProgress, 'allprogress 2')
-      
 
       let time = createElement("div", '', {}, 'time flexCenterAlignCenter'); //container for the times 06-12 / 12-18 etc.
 
@@ -668,6 +625,12 @@ for (let deck in dataBase.DeckNames) {
      }
      createDom(dataBase.DeckNames)
      dataBase.reset = false
+
+     if (dataBase.cardsStudiedSinceInstallation === false) {
+
+       document.querySelector(".canvasContainer").style.display = "none";
+     }
+     
   }
 
 
