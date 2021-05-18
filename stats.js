@@ -403,7 +403,8 @@ for (let deck in dataBase.DeckNames) {
           
         }else {
       
-      return (((dataBase.timeObj[i] || 0)/ allProgress)*100) *1.4467*Number(currentProgress/100)
+      return (
+        ((dataBase.timeObj[i] || 0)/ allProgress) *144.67*Number(currentProgress/100))
         }
       } else {
         return 0
@@ -417,7 +418,7 @@ for (let deck in dataBase.DeckNames) {
       let time = createElement("div", '', {}, 'time flexCenterAlignCenter'); //container for the times 06-12 / 12-18 etc.
 
       let progressBar = createElement('div', '', {}, 'progressBar')
-      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}%`,
+      let innerprogress = createElement('div', '', { marginLeft: `${previousWidthVar}px`,
        backgroundColor: 'orange', width: `${widthVar}px`, height: '10px' });
 
       previousWidthVar += widthVar
