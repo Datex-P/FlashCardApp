@@ -45,8 +45,6 @@ export default function stats() {
   );
 
 
-
-
   let canvas = createElement('canvas', '', { width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }
   )
 
@@ -55,7 +53,6 @@ export default function stats() {
   let todayStudyContainer = createElement('div', "Today's study breakdown", {}, 'todayStudyContainer')
 
   //let todayDate = new Date();
-
 
   var config = {
     type: 'doughnut',
@@ -174,6 +171,7 @@ export default function stats() {
                   delete card.openHistory
                   stats()
                   console.log('database rerendered')
+                  console.log(dataBase.DeckNames, 'database decknames')
                
                 }
               })
@@ -207,13 +205,11 @@ export default function stats() {
           }
          
         }
-        console.log('i fired finally you know')
       }
     }, { top: '4px' } //the position of the stats field after three dots is clicked
   )
 
-    anchorThreeDots.classList.add('anchorThreeDots')
-
+  anchorThreeDots.classList.add('anchorThreeDots')
 
   let yearBoxContainer = createElement("div", "", {}, 'yearBoxContainer'
   );
@@ -241,9 +237,6 @@ export default function stats() {
     
     };
 
-
-   
-  
 
     if (radioBtn.value === dataBase.hourlyBreakdown) { //sets the blue mark to 1 month by default
       radioBtn.checked = true
@@ -312,12 +305,11 @@ export default function stats() {
 
   diagramHourlyBreakDownContainer.append(containerNoCardsStudied)
 
-  console.log(dataBase.cardsStudiedSinceInstallation, 'studiedsinceinstallation1')
 
 
    for (let deck in dataBase.DeckNames) {
 
-     if(dataBase.DeckNames[deck].data.some((card) =>  card.hasOwnProperty('openHistory'))) {
+     if(dataBase.DeckNames[deck].data.some((card) =>  card.hasOwnProperty('openHistory')) == true) {
       dataBase.cardsStudiedSinceInstallation = true
       diagramHourlyBreakDownContainer.append(timeAndProgressCont)
       timeAndProgressCont.append(time, progressBar, progressNumber)
@@ -325,18 +317,15 @@ export default function stats() {
       containerNoCardsStudied.remove()
       console.log('deck with opened history')
       }  else {
+     
       }
    }
-
-   console.log(dataBase.cardsStudiedSinceInstallation, 'studiedsinceinstallation2')
-
 
   for (let i = 6; i <= 30; i += 6) {
 
     if (dataBase.cardsStudiedSinceInstallation) {
-    if (i in dataBase.timeObj) { //timeObj is list of precoded times above
+        if (i in dataBase.timeObj) { //timeObj is list of precoded times above
 
-      console.log('I was invoked a seoncd time')
       arr.push(i)
       let timeAndProgressContainer = createElement('div', '', {display:'flex'});
 

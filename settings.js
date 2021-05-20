@@ -48,42 +48,45 @@ export default function settings() {
 
   editContainerUpper.title = 'Click and change name buttons and repetition intervals for all decks.'
 
-  let selectLeft = createElement('div', '', {}, 'selectStylingLeft selectStylingGeneral')
-  let selectMiddle = createElement('div', '', {}, 'selectStylingMiddle selectStylingGeneral')
-  let selectRight = createElement('div', '', {}, 'selectStylingRight selectStylingGeneral');
+  let selectLeft = createElement('div', '', {}, 'selectStylingLeft selectStylingGeneral', 'left')
+  let selectMiddle = createElement('div', '', {}, 'selectStylingMiddle selectStylingGeneral', 'middle')
+  let selectRight = createElement('div', '', {}, 'selectStylingRight selectStylingGeneral', 'right');
 
   [selectLeft, selectMiddle, selectRight].forEach(el => el.title = 'click to change the time interval');
 
 
-  selectLeft.onclick = clickGenerator()
-  
+  selectLeft.onclick = function(){
+    clickGenerator()(this,'m')
+  }
+   selectMiddle.onclick = function(){
+    clickGenerator()(this,'h')
+  }
+   selectRight.onclick = function(){
+    clickGenerator()(this,'d')
+  }
   
   function clickGenerator() {
-
-    console.log('oipjopregfijngoerpjngoejnhnisu')
-
-    let counter = 1;
    
-    return function () {
- counter++
-        if (counter ===2) {
-          document.querySelector('.m').innerText = 'h'
-          dataBase.timeValuesForButton.left = 'hrs'
+    return function (self,selector) {
+
+      let el = self.parentNode.querySelector(`.${selector}`)
+
+      let a = self.id
+
+        if (el.innerText === 'm') {
+          el.innerText = 'h'
+          dataBase.timeValuesForButton[a] = 'hrs'
       
-        } else if (counter ===3) {
-          document.querySelector('.m').innerText = 'd'
-          dataBase.timeValuesForButton.left = 'days'
+        } else if (el.innerText === 'h') {
+          el.innerText = 'd'
+          dataBase.timeValuesForButton[a] = 'days'
       
         } else {
-          document.querySelector('.m').innerText = 'm'
-          dataBase.timeValuesForButton.left = 'min'
-          //counter++
-          counter = 1
-        }
-        console.log(counter, 'value of coutner')
-      }
- 
+          el.innerText = 'm'
+          dataBase.timeValuesForButton[a] = 'min'
 
+        }  
+      }
   }
 
 

@@ -4,6 +4,68 @@ textarea {
   outline: none;
 }
 
+
+@media only screen and (max-height: 720px) {
+
+  #mainMenu {
+    height: 700px !important;
+
+  }
+}
+
+@media only screen and (min-height: 1300px) and (min-width: 1000px) {
+  #mainMenu {
+    height: 1300px !important;
+    background: orange !important;
+    width: 1000px !important;
+  
+  }
+
+  #listOfDecks {
+    height: 100% !important;
+    width: 100% !important;
+    top:434px !important;
+  }
+
+  #questAnswerTrainOverv {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .addQuestionsToDeck {
+    height: 1000px !important;
+  }
+
+  .newDeckContainer {
+    width: 496px !important;
+    height: 370px !important;
+  }
+
+  * {
+    font-size: 20px !important;
+  
+  } 
+
+  .menuBox {
+    width: 855px !important;
+    height: 62px !important;
+  }
+
+  #createDeckButton {
+    width: 290px !important;
+    height: 70px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 .checkbox:checked + label::after {
   content: '';
   position: absolute;
@@ -56,6 +118,13 @@ textarea {
   top:130px; 
   position: absolute; 
   z-index: 3;
+}
+
+.spanStyling {
+  font-size: 15px;
+  position: absolute;
+  top: 22px;
+  left: 4px;
 }
 
 
@@ -827,11 +896,10 @@ pauseIconContainer:hover {
 
 #listOfDecks {
   width: 80%;
-  height: 300px;
-  margin-left: 20px;
-  margin-top: 10px;
+  height: 80%;
+  display: flex;
+  justify-content:center;
   position: absolute;
-  top: 200px;
   padding: 20px;
   
 }
@@ -1503,7 +1571,7 @@ input[type=number]  {
   border-radius: 50%;
   top: 16px;
   position: absolute;
-  background: red;
+  background: #772e25;
   cursor: pointer  
 }
 

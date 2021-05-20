@@ -148,7 +148,7 @@ export default function createNewDeck() {
   inputField.oninput = function(e){
       
     setTimeout(()=>{
-      if (e.target.value.length > 10 || e.target.value.length <3 || 
+      if (e.target.value.length > 11 || e.target.value.length <3 || 
         Object.keys(dataBase.DeckNames).includes(e.target.value)) { 
 
           if (nameTooShortOrLong.classList.contains('fontSizeNameTooShort')) {

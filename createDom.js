@@ -774,7 +774,7 @@ export default function createDom(obj) {
     (dataBase.deckCompleted * 100) / Object.keys(dataBase.DeckNames).length
   );
 
-  putOver.innerHTML = `${"Goal".bold()} <span>${parseInt(
+  putOver.innerHTML = `${"Goal".bold()} <span class='spanStyling'>${parseInt(
     (dataBase.deckCompleted * 100) /
     Object.values(dataBase.DeckNames).filter((item) => !item.pause).length
   )} % </span>`;
