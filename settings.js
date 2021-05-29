@@ -147,6 +147,7 @@ export default function settings() {
     if (el === '<') { //if input is < sign than give it a different left position /overall position
       input.style.position = 'relative';
       input.style.left = '6px'
+  
     }
 
 
@@ -249,7 +250,7 @@ export default function settings() {
   let editGoals = createElement('div', edit, {}, 'editToReview editGoals');
 
 
-  let goalSettingsBox = createElement('div', '', {}, 'flexSpaceAround')
+  let goalSettingsBox = createElement('div', '', {paddingTop:'5px'}, 'flexSpaceAround')
   let weeklyTarget = createElement('div', `Target met: ${0} weeks in a row`, {}, 'weeklyTarget')
 
 

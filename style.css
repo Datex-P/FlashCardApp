@@ -24,7 +24,7 @@ textarea {
   #listOfDecks {
     height: 100% !important;
     width: 100% !important;
-    top:434px !important;
+    top: 28% !important;
   }
 
   #questAnswerTrainOverv {
@@ -779,6 +779,7 @@ pauseIconContainer:hover {
   /*transition: all 1s; */
   position: absolute;
   top:22px;
+  left:45px;
   transform-origin: 0px 195px;
   
 }
@@ -901,6 +902,7 @@ pauseIconContainer:hover {
   justify-content:center;
   position: absolute;
   padding: 20px;
+  top: 28% !important;
   
 }
 #listOfDecksSmall {
@@ -1225,8 +1227,8 @@ textarea:not(:disabled) {
 
 
 .changeRepetitionIntervalContainer {
-  width: 290px;
-  height: 75px;
+  width: 284px;
+  height: 88px;
   border: 1px black solid;
   margin-top: 15px;
   border-radius: 5px;
@@ -1445,7 +1447,7 @@ border-color:#f5c6cb;
 
 .editGoals {
   position: absolute;
-  right: -30px;
+  right: -28px;
   top: 13px;
 }
 
@@ -1569,14 +1571,14 @@ input[type=number]  {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  top: 16px;
+  top: 20px;
   position: absolute;
   background: #772e25;
   cursor: pointer  
 }
 
 .selectStylingLeft {
-  left: 46px;
+  left: 52px;
 }
 
 
@@ -1606,12 +1608,12 @@ input[type=number]  {
 }
 
 .selectStylingMiddle {
-  left: 135px;
+  left: 149px;
  
 }
 
 .selectStylingRight {
-  left: 222px;
+  left: 245px;
 }
 
 
@@ -1668,8 +1670,8 @@ input[type=number]  {
 }
 
 .againGoodEasySettings {
-  width: 68px;
-  height: 27px;
+  width: 70px;
+  height: 26px;
   background-color: grey;
   color: white;
   position: relative;
@@ -1734,7 +1736,7 @@ margin-left: 5px;
    padding: 3px;
    padding-left: 6px; 
    padding-right: 16px;
-   height: 50px;  
+   height: 56px;  
    border: 1px solid black; 
    border-radius: 5px;
    position: relative;  
@@ -1757,6 +1759,7 @@ height: 57px;
 .weeklyTarget {
   width: 165px;
   margin-top: 5px;
+  margin-left:10px;
   height: 20px;
   font-size: 14px; 
   font-weight: normal;
@@ -1820,8 +1823,8 @@ height: 57px;
 
 .editContainerUpper {
   position: absolute;
-  right: 8px;
-  top: 24px;
+  right: -26px;
+  top: 33px;
   cursor: pointer;
 }
 
@@ -1941,8 +1944,9 @@ height: 57px;
 
 .containerUpperAndLower {
   position: relative;
-  width: 100%;
+  width: 110%;
   height: 50%;
+  margin-top:10px;
 }
 
 .theWordSettings {

@@ -29,7 +29,7 @@ export default function shuffle(item, index = null) {
 
   let date = new Date()
 
-  let rand = Math.floor(Math.random()*13)
+  let rand = Math.floor(Math.random()*8)
 
   date.setHours(date.getHours() - rand)
  //  date.setDate(rand)
