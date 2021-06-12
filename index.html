@@ -18,19 +18,20 @@
 
   <div id="outerLoginPage"
   >
-    <!-- <div style="display: block; position: relative">
+     <div style="display: block; position: relative" id='loginFormular'>
       
 
-      <div style="background-color: #86a873; width: 411px; height: 731px; margin: 0 auto; padding: 20px; border-radius: 15px;" id='registerAndLoginContainer'>
+      <div style="background-color: #5aaa95; width: 411px; height: 731px; margin: 0 auto; padding: 20px; border-radius: 15px;" id='registerAndLoginContainer'>
 
         <div id='registerPageContainer' style="display: none; flex-direction: column; align-items: center; justify-content: space-around">
   
-              <img src="coins-solid.svg" style="width: 30px" "height: 10px">
-  
-  
-  
-              <div id='innerRegisterPage'>
-                  <div style="width: 100%; text-align: center; margin-top: 25px">Budget Master
+          
+          
+          
+          <div id='innerRegisterPage'>
+                
+                <img src="flashcards.svg" style="width: 30px" "height: 10px">
+                  <div style="width: 100%; text-align: center; margin-top: 25px; font-size: 26px">FlashCard App
   
                       <div style="font-size: 26px; margin-top: 30px">Register</div> 
   
@@ -54,7 +55,7 @@
                       <button id="registerButton" style="width: 80%; color: white; border-radius: 8px; border-color: #53131E; padding: 5px; background-color: #53131E;margin-top: 90px">
                       Register
                       </button>
-                      <div id='backToSignIn' style="margin-top: 8px; font-size: small">Already a user? <strong>Sign In</strong></div>
+                      <div id='backToSignIn' style="margin-top: 8px; font-size: small">Already a user? <strong onclick="hideLogin()" style="cursor:pointer">Sign In</strong></div>
                   </div> 
               </div>
               
@@ -70,57 +71,76 @@
   
         <div id='loginPage' style="display: flex; flex-direction: column; align-items: center">
   
-            <img src="coins-solid.svg" style="width: 30px" "height: 10px">
-  
-            <div style="width: 100%; text-align: center; margin-top: 25px">Budget Master</div>
+            <div style='display: flex; font-size: 23px; margin-top:35px'>
+            
+              <img src="flashcards.svg" style="width: 30px" "height: 10px">
+    
+              <div style="width: 100%; text-align: center">FlashCard App</div>
+              <img src="words.svg" style="width: 16px; margin-right: 10px; margin-bottom: -13px">
+              <img src="words2.svg" style="width: 16px; margin-right: 10px; margin-bottom: -13px">
+              <img src="word3.svg" style="width: 16px; margin-right: 10px; margin-bottom: -13px">
+            </div>
 
 
             <div style="font-size: 26px; margin-top: 30px">Login</div>
-             <script> -->
-              <!-- function handlerInput(event){
+
+
+             <script> 
+               function handlerInput(event){
                 console.log('input',event.target.value)
               }
               function handlerChange(event){
                 console.log('change',event.target.value)
               }
+
+              function hideLogin () {
+
+                if (document.getElementById('loginPage').style.display === 'flex') {
+               document.getElementById('loginPage').style.display = 'none'
+               document.getElementById('registerPageContainer').style.display='block'
+                } else {
+                  document.getElementById('loginPage').style.display = 'flex'
+               document.getElementById('registerPageContainer').style.display='none'
+                }
+              }
+
+              function redirectMainPage() {
+              document.getElementById('mainMenu').style.display='flex';
+              document.getElementById('loginPage').style.display='none'
+              document.getElementById('loginFormular').style.display='none'
+              }
             </script> 
-   -->
-            <!-- <div style="display: flex; margin-top: 40px">
-                <img src="user-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 3px">
-                <input class="buttonPassWordandReg" id="userNameInput" type="text" style="width: 80%" autofocus>
-            </div>
-  
-            <div style="display: flex; margin-top: 10px">
-                <img src="key-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 1px">
-                <input class="buttonPassWordandReg" type="password" id="userPassWord"  style="width: 80%; margin-top: 15px">
-            </div>
+
+             <div id='containterForLoginButtons'>
+               <div style="display: flex; margin-top: 40px">
+                  <img src="user-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: 3px">
+                  <input class="buttonPassWordandReg" id="userNameInput" type="text" style="width: 80%" autofocus>
+              </div>
+    
+              <div style="display: flex; margin-top: 10px">
+                  <img src="key-solid.svg" style="width: 16px; margin-right: 10px; margin-bottom: -13px">
+                  <input class="buttonPassWordandReg" type="password" id="userPassWord"  style="width: 80%; margin-top: 15px">
+              </div>
+             </div>
   
   
            
   
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; ">
           
-                <button id="loginButton" style="width: 80%; color: white; border-radius: 8px; border-color: #53131E; padding: 5px; background-color: #53131E;margin-top: 90px"> Login</button>
+                <button id="loginButton" style="width: 80%; 
+                color: white; border-radius: 8px; border-color: #53131E; 
+                padding: 5px; background-color: #53131E;margin-top: 25px"
+                onclick="redirectMainPage()"> Login</button>
   
 
-
-                <fb:login-button 
-                scope="public_profile,email"
-                onlogin="checkLoginState();">
-                </fb:login-button>
+                <div id='signUpNow' style="margin-top: 8px; font-size: small">Don't have an account? <strong onclick="hideLogin()" style="cursor:pointer">Sign up Now</strong></div>
               
-
-
-
-
-
-                <div id='signUpNow' style="margin-top: 8px; font-size: small">Don't have an account? <strong>Sign up Now</strong></div>
-                
             </div>
         </div>
     </div>
+ 
 
- -->
 
 
 
@@ -135,7 +155,7 @@
 
       </div> 
 
-      <div id="mainMenu" style="display: flex"
+      <div id="mainMenu" style="display: none"
       >
 
         
@@ -268,11 +288,9 @@
       let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
     </script>
     <script type='module' src="script.js"></script>
+    <script type='module' src="svgs.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-<script>
-
-  </script>
 
 </body>
 

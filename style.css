@@ -27,10 +27,10 @@ textarea {
     top: 28% !important;
   }
 
-  #questAnswerTrainOverv {
+  /* #questAnswerTrainOverv {
     width: 100% !important;
     height: 100% !important;
-  }
+  } */
 
   .addQuestionsToDeck {
     height: 1000px !important;
@@ -723,12 +723,21 @@ pauseIconContainer:hover {
   color: #ffe3e3;
 }
 
+#containterForLoginButtons {
+  margin-top: 95px;
+  border: 1px solid black;
+  height: 130px !important;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
 #loginPage {
   width: 411px;
   height: 731px;
-  background-color: #86a873;
+  background-color: #5aaa95;
   border-radius: 5px;
-  margin-left: 20px;
 }
 
 .redCross {
@@ -877,12 +886,13 @@ pauseIconContainer:hover {
 
 
 #questAnswerTrainOverv {
-  width: 441px;
+  width: 411px;
   height: 731px;
   position: absolute;
   /* height: 100vh; */
   display: none;
   justify-content: center;
+  border-radius: 10px;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   top:0;
@@ -950,7 +960,8 @@ pauseIconContainer:hover {
   height: 731px;
   display: flex;
   justify-content: center;
-  display: none;
+  margin:auto;
+  /*display: none;*/
 }
 
 #mainMenu {
@@ -1024,6 +1035,15 @@ pauseIconContainer:hover {
   background-color: #545863;
   text-align: center;
   color: white;
+}
+
+#loginButton {
+  width: 92% important;
+  height: 28px;
+}
+
+.buttonPassWordandReg {
+  height: 20px;
 }
 
 .widthSmaller {
